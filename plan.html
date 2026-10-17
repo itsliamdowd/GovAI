@@ -16,6 +16,22 @@
        Status badge classes: planned | progress | done | blocked.
        Do NOT log changes to ~/.claude/, plan.html itself, or the changelog server. -->
 
+  <article class="entry" id="e-2026-10-17-1400">
+    <header>
+      <time>2026-10-17 14:10</time>
+      <h2>Address autocomplete from the city's official Address Points layer</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "for addresses when typed in it should autofill." Done against real Santa Monica addresses, offline, no third-party geocoder.</p>
+    <ul>
+      <li><code>addresses.js</code> (new) — <code>ingestAddresses(j)</code> finds the "Address Points" FeatureServer in the city's collected <code>gis.json</code> (no hardcoded URL), pages it 5,000 rows at a time, normalizes to "1685 Main St" / "1685 Main St #101" (building row always present before its units; unit prefixes like APARTMENT/STE stripped), writes <code>data/&lt;jur&gt;/addresses.json</code>. <code>loadAddresses()</code> + <code>suggestAddresses(q, limit, jur)</code>: normalized prefix match; a query starting with a digit matches the full address, otherwise the street name. Santa Monica: 57,063 points → ~57k entries, 2 MB, committed.</li>
+      <li><code>warm.js</code> — <code>addresses</code> job (runs after <code>gis</code> since it reads gis.json). <code>server.js</code> — loads the book at start, <code>GET /api/addresses?q=&amp;jur=</code> returns up to 8 <code>{address, city, zip}</code>.</li>
+      <li><code>public/index.html</code> — one shared <code>.sugg</code> popover (keyboard ↑↓ Enter Tab Esc, mouse, repositions on scroll, 120 ms debounce, stale-response guard). Attached to: the chat box (matches only an address-looking tail — number + street word — and replaces just that span, so "311" alone doesn't pop); every form-card input whose key/label mentions address or location; the Menu's watch-topic and watch-address inputs.</li>
+      <li><code>test.js</code> — building-before-units ordering, street-name matching, short-query guard.</li>
+    </ul>
+    <h3>Verified</h3><ul><li>Chrome on :8788: typing "…permit for 1685 ma" opens the popover above the composer with "1685 Main St" first, then units; ↓ Enter replaces only the address span (caret after it), the message is not sent. <code>/api/addresses?q=1</code> → []. After the building-row change: 61,717 entries. <code>npm test</code> passes.</li></ul>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1500">
     <header>
       <time>2026-10-17 15:00</time>
@@ -1034,6 +1050,7 @@ daily 07:00 → refreshCouncil() → for each alert:
       <li>19:05 — Phase B (data) results: catalogs for all four portals (82 Santa Monica CKAN, ~120 City of San Diego, SANDAG, OCPW; 2,449 datasets indexed; the server logs the count). Verified in chat: "City of San Diego budget accounts" → <code>query_dataset</code> downloaded the CSV (1,833 rows) and answered with the Department of Finance badge; "SANDAG crime datasets" → SODA rows from <code>opendata.sandag.org</code>. <code>knowledge-gen.js san-diego</code> produced 6 files / 32 sections (permits file thin: sitemap keyword picking is crude — improve by scoring page titles). <code>warm.js council san-diego-county</code> (Legistar, 200 meetings, PDFs via pdftotext) still running in the background; some <code>eventitems</code> calls returned "fetch failed" (retry on the next run). Council adapters now dispatch to <code>adapters/&lt;platform&gt;.js</code> (interface: <code>listMeetings(j)</code>, optional <code>meetingText(m, j)</code>) so the LA County session's platform adapters plug in. <code>set_jurisdiction</code> takes a free string (the 143-id enum hit the API's schema-complexity limit).</li>
       <li>Teammate session "scale-govai-to-la-county" replaced the in-memory BM25 with SQLite FTS5 (<code>store.js</code>) behind the same rag contract; tests set <code>GOVAI_DB=:memory:</code>. The libc++ "mutex lock failed" line at the end of <code>npm test</code> comes from the Kokoro TTS teardown in the test process (run with <code>TTS=off</code>), not from the suite.</li>
       <li>Open: OC Board archive (<code>board.oc.gov</code>) is script-rendered with no API found — needs a browser-driven fetch or a human to locate the data source; City of San Diego dockets are on Hyland (JS) — transcripts via YouTube are the practical route once <code>discover.js</code> finds the channel id (yt-dlp was declined at the permission prompt in this session). Phase C (50 cities via <code>discover.js</code>) and Phase D (per-city forms/routing) not started.</li>
+      <li>19:20 — County of San Diego Legistar collection finished: 200 Board of Supervisors meetings, agenda + minutes text for all 200 (PDF via pdftotext), item-by-item actions/votes for 198, 28,847 chunks in <code>data/san-diego-county/council/</code>. Two <code>eventitems</code> fetches failed and will retry on the next <code>warm.js</code> run.</li>
       <li>Next: Phase B adapters (Legistar for County of San Diego, DCAT catalogs for City of San Diego + OCPW, OC board scrape, Hyland dockets) and per-city knowledge generation.</li>
     </ul>
   </article>

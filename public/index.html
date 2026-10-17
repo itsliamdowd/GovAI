@@ -88,6 +88,9 @@
   .clip iframe { width:100%; aspect-ratio:16/9; border:0; display:block }
   .clip .body { padding:10px 14px 12px } .clip .body b { font-size:13px } .clip .body p { margin:4px 0 8px; font-size:13.5px; color:var(--muted); max-height:4.6em; overflow:hidden; line-height:1.5 } .clip .body p.open { max-height:none }
   .clip .cacts { display:flex; gap:6px; flex-wrap:wrap } .clip .cacts a,.clip .cacts button { font:inherit; font-size:12.5px; color:var(--ink); background:transparent; border:1px solid var(--line); border-radius:999px; padding:4px 10px; text-decoration:none; cursor:pointer } .clip .cacts a:hover,.clip .cacts button:hover { background:var(--pill-2) }
+  /* address autocomplete (official city address points) */
+  .sugg { position:absolute; z-index:30; background:var(--card,#12161c); border:1px solid var(--line); border-radius:12px; padding:4px; box-shadow:0 12px 32px -8px rgba(0,0,0,.6); min-width:240px; max-width:min(92vw,420px); display:none }
+  .sugg.open { display:block } .sugg div { padding:8px 10px; border-radius:8px; font-size:14px; cursor:pointer; display:flex; justify-content:space-between; gap:12px } .sugg div span { color:var(--muted); font-size:12px } .sugg div.on,.sugg div:hover { background:var(--pill) }
   /* composer */
   #f { position:fixed; left:0; right:0; bottom:0; padding:12px 16px calc(12px + var(--sab)); background:linear-gradient(transparent, var(--bg) 40%); z-index:5 } /* composer only: a bare `form` selector also pinned the menu's watch form to the viewport */
   .row { max-width:720px; margin:0 auto; display:flex; gap:4px; align-items:flex-end; background:var(--pill); border:1px solid var(--line); border-radius:26px; padding:6px 6px 6px 18px; transition:border-color .12s }
@@ -418,6 +421,57 @@ for (const id of ["sheet", "alertSheet", "srcSheet"]) $(id).onclick = (e) => { i
 $("hero").onclick = (e) => { const t = e.target.closest(".chip"); if (t) { input.value = t.dataset.q; form.requestSubmit(); } };
 input.addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey && !/Mobi|Android/i.test(navigator.userAgent)) { e.preventDefault(); form.requestSubmit(); } });
 input.addEventListener("input", () => { input.style.height = "auto"; input.style.height = Math.min(input.scrollHeight, 180) + "px"; });
+
+// Address autocomplete. One popover, attached to whichever field is active. For the chat box only the
+// address-looking tail of the text ("…permit for 1685 ma|") is matched and replaced, the rest is left alone.
+const sugg = document.createElement("div"); sugg.className = "sugg"; document.body.appendChild(sugg);
+let suggItems = [], suggIdx = -1, suggEl = null, suggApply = null, suggTimer = 0, suggSeq = 0;
+const closeSugg = () => { sugg.classList.remove("open"); suggItems = []; suggIdx = -1; };
+function placeSugg(el) {
+  const r = el.getBoundingClientRect(), h = sugg.offsetHeight || 200, above = r.top > window.innerHeight - r.bottom;
+  sugg.style.left = Math.max(8, Math.min(r.left, window.innerWidth - sugg.offsetWidth - 8)) + "px";
+  sugg.style.top = (above ? r.top - h - 6 : r.bottom + 6) + window.scrollY + "px";
+}
+function showSugg(el, items, apply) {
+  suggEl = el; suggApply = apply; suggItems = items; suggIdx = -1;
+  if (!items.length) return closeSugg();
+  sugg.innerHTML = items.map((a, i) => `<div data-i="${i}">${esc(a.address)}<span>${esc(a.city)} ${esc(a.zip)}</span></div>`).join("");
+  sugg.classList.add("open"); placeSugg(el);
+}
+sugg.onmousedown = (e) => { e.preventDefault(); const d = e.target.closest("[data-i]"); if (d) pickSugg(+d.dataset.i); };
+function pickSugg(i) { const a = suggItems[i]; if (!a) return; suggApply(a); closeSugg(); suggEl?.dispatchEvent(new Event("input", { bubbles: true })); }
+// tail of a text that looks like the start of an address: "1685", "1685 ma", "2600 ocean park bl"
+const ADDR_TAIL = /(?:^|[\s,(])(\d{1,5}\s+[A-Za-z][A-Za-z.]*(?:\s+[A-Za-z][A-Za-z.]*){0,3}\s*)$/; // number + at least one street word, so "311" alone doesn't pop
+function addressSuggest(el, { whole = true } = {}) {
+  const query = () => {
+    if (whole) return { q: el.value, start: 0 };
+    const head = el.value.slice(0, el.selectionStart ?? el.value.length), m = head.match(ADDR_TAIL);
+    return m ? { q: m[1], start: head.length - m[1].length } : null;
+  };
+  el.addEventListener("input", () => {
+    clearTimeout(suggTimer); const cur = query();
+    if (!cur || cur.q.trim().length < 2) return closeSugg();
+    const seq = ++suggSeq;
+    suggTimer = setTimeout(async () => {
+      let items = []; try { items = await (await fetch(`/api/addresses?q=${encodeURIComponent(cur.q)}`)).json(); } catch {}
+      if (seq !== suggSeq || document.activeElement !== el) return;
+      showSugg(el, items, (a) => {
+        const text = whole ? a.address : el.value.slice(0, cur.start) + a.address + " " + el.value.slice(el.selectionStart ?? el.value.length).replace(/^\s+/, "");
+        el.value = text; const pos = whole ? text.length : cur.start + a.address.length + 1; el.setSelectionRange(pos, pos);
+      });
+    }, 120);
+  });
+  el.addEventListener("keydown", (e) => {
+    if (!sugg.classList.contains("open") || suggEl !== el) return;
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); suggIdx = (suggIdx + (e.key === "ArrowDown" ? 1 : -1) + suggItems.length) % suggItems.length; [...sugg.children].forEach((d, i) => d.classList.toggle("on", i === suggIdx)); }
+    else if ((e.key === "Enter" || e.key === "Tab") && suggIdx >= 0) { e.preventDefault(); e.stopImmediatePropagation(); pickSugg(suggIdx); }
+    else if (e.key === "Escape") closeSugg();
+  }, true); // capture: runs before the chat box's own Enter-to-send handler
+  el.addEventListener("blur", () => setTimeout(closeSugg, 150));
+}
+addressSuggest(input, { whole: false });
+for (const id of ["wTopic", "wAddress"]) if ($(id)) addressSuggest($(id));
+window.addEventListener("scroll", () => { if (sugg.classList.contains("open") && suggEl) placeSugg(suggEl); }, { passive: true });
 const atBottom = () => window.innerHeight + window.scrollY >= document.body.scrollHeight - 80;
 window.addEventListener("scroll", () => $("down").classList.toggle("show", !atBottom()), { passive: true });
 $("down").onclick = scroll;
@@ -653,6 +707,7 @@ function formCard(f) {
       if (fld.type === "date") { const d = new Date(); d.setDate(d.getDate() + (fld.minDays ?? 0)); el.min = d.toISOString().slice(0, 10); } // no past dates; lead time per field
     }
     if (el.tagName !== "DIV") { el.id = "ff"; el.required = !fld.optional; if (fld.placeholder) el.placeholder = fld.placeholder; if (vals[fld.key] != null) el.value = vals[fld.key]; }
+    if (el.tagName === "INPUT" && /address|location/i.test(fld.key + " " + fld.label)) { el.autocomplete = "off"; addressSuggest(el); }
     c.querySelector(".ffwrap").appendChild(el); (el.querySelector?.("input,button") ?? el).focus();
     el.addEventListener("input", () => { c.querySelector(".error").textContent = ""; }); // a stale "required" message shouldn't sit under a field being filled
     el.onkeydown = (e) => { if (e.key === "Enter" && fld.type !== "textarea") { e.preventDefault(); go(1); } };

@@ -130,5 +130,16 @@ assert.equal(rag.searchNews("pier repairs").length, 1, "news re-ingest must not 
 assert.ok(rag.search("pier repairs").some((d) => d.kind === "news"), "recent news should ride along in general search");
 assert.ok(rag.searchNews("pier repairs", 10, 1).length === 1 && rag.searchNews("pier repairs", 10, 0).length === 1);
 await assert.rejects(S.queryGis({ service_url: "https://evil.example/FeatureServer/0" }), /service_url/);
+const ADDR = await import("./addresses.js");
+if (ADDR.loadAddresses()) {
+  const top = ADDR.suggestAddresses("1685 ma", 3);
+  assert.equal(top[0]?.address, "1685 Main St", "building itself should come before its units");
+  assert.ok(ADDR.suggestAddresses("ocean park bl", 5).every((a) => /Ocean Park Blvd/.test(a.address)));
+  assert.deepEqual(ADDR.suggestAddresses("1"), [], "too-short queries return nothing");
+}
+const { speechText } = await import("./tts.js");
+assert.equal(speechText("Call (310) 458-8411, Mon–Thu 7:30 a.m.–5:30 p.m. Confirmation SM-749311."), "Call 3 1 0, 4 5 8, 8 4 1 1, Monday through Thursday 7:30 AM to 5:30 PM. Confirmation S M, 7 4 9 3 1 1.");
+assert.equal(speechText("601 Santa Monica Blvd; email 311@santamonica.gov or https://www.santamonica.gov/311."), "601 Santa Monica Boulevard; email 311 at santamonica dot gov or santamonica dot gov");
+assert.equal(speechText("**Fee:** $100.95 & a 14–30 day notice. St. John is on 4th St / PCH, open 24/7. Zone 2 runs Jul 1–Jun 30."), "Fee: $100.95 and a 14 to 30 day notice. St. John is on 4th Street or Pacific Coast Highway, open twenty-four seven. Zone 2 runs July 1 to June 30.");
 console.log(`ok (${rag.datasetCount} datasets indexed)`);
 process.exit(0);

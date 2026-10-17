@@ -11,6 +11,7 @@ import { createAlert, cancelAlert, runAlerts } from "./alerts.js";
 import { loadTTS, speakWav } from "./tts.js";
 import { FORMS, FORM_TYPES, formsFor, toApplication } from "./forms.js";
 import { ingestNews, loadNewsDocs, loadGisCatalog, gisDocs, gisJurs, feedsFor, queryGis, liveData, LIVE_KINDS, LIVE_HELP } from "./sources.js";
+import { loadAddresses, suggestAddresses } from "./addresses.js";
 import { councilJurs } from "./council.js";
 import { transcriptJurs } from "./transcripts.js";
 
@@ -44,6 +45,7 @@ for (const j of new Set([...councilJurs(), ...transcriptJurs()])) {
   console.log(`Council ${j.id} (from data/): ${c.meta.ingested.length} meetings, ${c.docs.length} chunks; transcripts: ${t.count} meetings, ${t.docs.length} chunks`);
 }
 if (!councils.size) console.log("No council records on disk — run `node warm.js` to collect");
+console.log(`Addresses (from data/): ${loadAddresses()} official address points for autocomplete`);
 function refreshCouncil() {
   if (!COLLECT) return Promise.resolve();
   return Promise.all(SERVED.flatMap((j) => [
@@ -521,6 +523,11 @@ const server = http.createServer(async (req, res) => {
       fs.appendFileSync("./data/feedback.jsonl", JSON.stringify({ at: new Date().toISOString(), sessionId: String(sessionId).slice(0, 64), vote, answer: answer.slice(0, 4000) }) + "\n");
       res.writeHead(204).end();
     } catch { res.writeHead(400).end("bad request"); }
+    return;
+  }
+  if (req.method === "GET" && req.url.startsWith("/api/addresses?")) { // autocomplete against the city's official address points
+    const u = new URL(req.url, "http://x"), q = (u.searchParams.get("q") ?? "").slice(0, 80);
+    res.writeHead(200, { "Content-Type": "application/json", "Cache-Control": "no-store" }).end(JSON.stringify(suggestAddresses(q, 8, u.searchParams.get("jur"))));
     return;
   }
   if (req.method === "GET" && req.url === "/api/clips") {
