@@ -236,15 +236,6 @@
   "youtube": [
    "UC3ethohaz3fuapOdycVAmWg"
   ],
-  "gis": [
-   {
-    "org": "Home  Carson City, Nevada",
-    "url": "https://data-CarsonCity.opendata.arcgis.com/api/feed/dcat-us/1.1.json"
-   }
-  ],
-  "gisHosts": [
-   "data-carsoncity.opendata.arcgis.com"
-  ],
   "discovered_at": "2026-10-17T20:50:46.401Z"
  },
  "santa-fe-springs": {
@@ -915,18 +906,6 @@
   ],
   "discovered_at": "2026-10-17T21:12:29.866Z"
  },
- "chula-vista": {
-  "gis": [
-   {
-    "org": "City of Chula Vista ESRI User Conference",
-    "url": "https://city-of-chula-vista-gisovw-cvgis.hub.arcgis.com/api/feed/dcat-us/1.1.json"
-   }
-  ],
-  "gisHosts": [
-   "city-of-chula-vista-gisovw-cvgis.hub.arcgis.com"
-  ],
-  "discovered_at": "2026-10-17T21:11:13.080Z"
- },
  "coronado": {
   "youtube": [
    "UCABHyvBfGFkplAg40leNkcA"
@@ -1259,17 +1238,5 @@
    "UCa0YfB3hj0hKyQLR8M9svQg"
   ],
   "discovered_at": "2026-10-17T21:11:37.442Z"
- },
- "westminster": {
-  "gis": [
-   {
-    "org": "City of Westminster, Colorado Hub Site",
-    "url": "https://opendata-westminster.hub.arcgis.com/api/feed/dcat-us/1.1.json"
-   }
-  ],
-  "gisHosts": [
-   "opendata-westminster.hub.arcgis.com"
-  ],
-  "discovered_at": "2026-10-17T21:19:56.469Z"
  }
 }

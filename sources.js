@@ -106,7 +106,7 @@ export const isJunkLayer = (title) => JUNK.test(title.trim());
 const extraLayers = (j) => (j.gisExtra ?? []).map((l) => ({ kind: "gis", jur: j.id, org: j.short + " GIS", ...l }));
 export async function loadGisCatalog(log = console.error, refresh = false, j = SM) {
   const GIS_FILE = gisFile(j);
-  try { const c = JSON.parse(fs.readFileSync(GIS_FILE, "utf8")); if (!refresh || Date.now() - c.fetched_at < 24 * 3600e3) return c.layers; } catch { if (!refresh) return []; }
+  try { const c = JSON.parse(fs.readFileSync(GIS_FILE, "utf8")); if (!refresh) return c.layers; } catch { if (!refresh) return []; } // refresh = explicit collector run: always refetch
   const layers = [...extraLayers(j)];
   for (const cat of j.gis ?? []) {
     try {
@@ -122,6 +122,9 @@ export async function loadGisCatalog(log = console.error, refresh = false, j = S
       }
       layers.push(...seen.values());
     } catch (e) { log(`gis catalog ${cat.org}: ${e.message}`); }
+  }
+  if (!layers.length) { // every catalog fetch failed: keep what we had rather than overwrite a good cache with nothing
+    try { const prev = JSON.parse(fs.readFileSync(GIS_FILE, "utf8")); if (prev.layers?.length) { log(`gis ${j.id}: refresh failed, keeping ${prev.layers.length} cached layers`); return prev.layers; } } catch {}
   }
   fs.mkdirSync(dataDir(j), { recursive: true });
   fs.writeFileSync(GIS_FILE, JSON.stringify({ fetched_at: Date.now(), layers }));

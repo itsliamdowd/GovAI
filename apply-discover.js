@@ -33,9 +33,10 @@ for (const j of SERVED) {
   const pattern = new RegExp(`^(www\\.)?(cityof${slug}|data${slug}|opendata${slug}|gis${slug}|maps${slug}|hub${slug}|${slug}gis|${slug}ca|${slug}city|${slug}data|gishub${slug}|open-data-${slug}|data-${slug}|gis-${slug}|maps-${slug}|${slug})\\.`, "i");
   const junk = /wca\.app|arboraccess|universit|college|\.edu|csu|ucf|columbusstate|spotsy|ocfl|roseinstitute|final-project|emht|avalonia|smcmaps|lcri|entech|manatee|nccommerce|cmrpc|sierravista|cnecr|hlplanning|fehrandpeers|lametro|uscssi|bellcounty|county-emergency|vision-zero|neighborhood-watch|covid|air-quality|paving|town-square|comprehensive-plan|utility-network-meeting|datos|colectivo|lake-forest-park|bell-em|gisanddata/i;
   const otherSlugs = SERVED.filter((o) => o.id !== j.id).map((o) => o.id.replace(/-/g, "")).filter((o) => o.includes(slug) && o !== slug); // "westcovina" vs "covina"
+  const otherState = /nevada|colorado|texas|florida|washington|arizona|oregon|utah|georgia|carolina|virginia|ohio|michigan|illinois|new york|new jersey|maryland|massachusetts|pennsylvania|tennessee|indiana|wisconsin|minnesota|missouri|kansas|oklahoma|louisiana|alabama|kentucky|idaho|montana|nebraska|iowa|arkansas|mississippi|connecticut|maine|vermont|hampshire|delaware|dakota|alaska|hawaii|wyoming|new mexico|canada|ontario|british columbia|costa rica|user conference|esri uc/i;
   const hubs = (f.hub ?? []).filter((h) => {
     const host = new URL(h.url).host.toLowerCase(), flat = host.replace(/-/g, ""), owner = String(h.owner ?? "").toLowerCase().replace(/[^a-z]/g, "");
-    if (junk.test(h.url)) return false;
+    if (junk.test(h.url) || otherState.test(h.org ?? "")) return false; // "Carson City, Nevada", "Westminster, Colorado"
     if (otherSlugs.some((o) => flat.includes(o) || owner.includes(o))) return false; // belongs to a longer-named city
     if (j.kind === "city" && /county/.test(owner + flat)) return false; // a county's portal that happens to share the name
     if (/\buc|ucirvine|ucla|ucsd|csu/.test(owner)) return false; // universities

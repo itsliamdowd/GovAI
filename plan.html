@@ -264,9 +264,14 @@
       <li>Hub probe found 0 of 94 because <code>hub.arcgis.com/api/v3/datasets?q=</code> returns unrelated orgs for common city names. Rewrote <code>hub()</code> in <code>discover.js</code> on the ArcGIS Online item search (<code>type:"Hub Site Application"</code>), filtered to city-named, non-university/transit items, each verified by fetching its DCAT feed; added <code>--hub</code> mode that merges into existing probe files. Running for all 143 in 4 batches. Note: some custom-domain hubs (e.g. data.cityofpasadena.net) time out at the TCP level from this machine, for curl too, so they'll need a retry later.</li>
       <li>Collectors running in the background: <code>node warm.js council</code> (27 jurisdictions done so far), <code>node warm.js transcripts</code> (74 channels listed, captions pulling).</li>
     </ul>
+    <h3>Hub pass (all 143) and two loader bugs</h3>
+    <ul>
+      <li>Rewritten probe found candidate hubs for 76 jurisdictions, but the item search returns look-alikes (a Florida "infohub-ocfl" for Orange County, Bell County TX, Lake Forest Park WA, a Costa Rica Coronado, consultant project pages, university hubs). <code>apply-discover.js</code> hub rule, final form: accept only if on the city's own domain, or the owning ArcGIS account names the city and the host contains the slug, or the host is an arcgis hub/opendata host that names the city and reads as a data/GIS portal; reject hosts naming a longer-named served city (westcovina vs covina), county-owned portals for cities, universities, and a junk list of known vendors/edu/other-state hosts. Result: <b>24 jurisdictions with a verified city data portal</b> (was 4). Stale <code>gis.json</code> files from the looser passes deleted for 18 ids.</li>
+      <li><code>sources.js loadGisCatalog</code>: (1) took the first GeoServices distribution per dataset, which on Hub feeds is often an Experience Builder app URL, so the FeatureServer regex failed and every hub indexed 0 layers; now picks the first distribution whose URL is an actual layer. (2) <code>refresh=true</code> still honored the 24 h cache, so reruns returned the zero-layer files; an explicit refresh now always refetches. Carlsbad: 0 → 34 layers. Full re-collect running.</li>
+    </ul>
     <h3>Next</h3>
     <ul>
-      <li>When the hub pass lands: <code>apply-discover</code> again, then <code>warm.js gis</code> and <code>warm.js addresses</code> (Address Points layers for cities that publish one). Rerun <code>warm.js council</code> for configs added by the final apply. Then a per-city coverage table here and a commit of <code>data/</code>.</li>
+      <li>GIS + addresses re-collect finishing; council (31 jurisdictions done) and transcripts (12 of 76 channels) still running. Then a second council pass for configs added by the final apply, a per-city coverage table here, and a commit of <code>data/</code>.</li>
     </ul>
   </article>
 

@@ -19,8 +19,8 @@ for (const j of jurs) {
   if (want("transcripts") && j.youtube?.length) jobs.push(ingestTranscripts((docs, videos) => console.log(`transcripts ${j.id}: ${videos.length} videos, ${docs.length} chunks`), log, j));
   if (want("news") && feedsFor(j).length) jobs.push(ingestNews((docs, meta) => console.log(`news ${j.id}: ${meta.fresh} new, ${meta.total} total`), log, j));
 }
-if (want("gis")) for (const j of gisJurs()) jobs.push(loadGisCatalog(log, true, j).then((l) => console.log(`gis ${j.id}: ${l.length} layers`)));
-if (want("addresses")) { const { ingestAddresses } = await import("./addresses.js"); const { SERVED } = await import("./jurisdictions.js"); for (const j of SERVED) jobs.push(ingestAddresses(j, log)); } // needs each city's gis.json first
+if (want("gis")) for (const j of gisJurs().filter((g) => jurs.includes(g))) jobs.push(loadGisCatalog(log, true, j).then((l) => console.log(`gis ${j.id}: ${l.length} layers`)));
+if (want("addresses")) { const { ingestAddresses } = await import("./addresses.js"); for (const j of jurs) jobs.push(ingestAddresses(j, log)); } // needs each city's gis.json first
 const results = await Promise.allSettled(jobs);
 for (const r of results) if (r.status === "rejected") console.error("failed:", r.reason?.message ?? r.reason);
 console.log(`done in ${Math.round((Date.now() - t0) / 1000)}s`);
