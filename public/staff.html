@@ -123,7 +123,7 @@ async function load() {
 }
 function render() {
   const dept = $("view").value, q = $("q").value.trim();
-  if (!apps.length) { $("list").innerHTML = `<p class="empty">No applications${q ? ` matching “${esc(q)}”` : ""}${dept === "all" ? "" : ` for ${esc(dept)}`}.</p>`; return; }
+  if (!apps.length) { $("list").innerHTML = `<p class="empty">${dept === "all" ? "No applications" : `${esc(dept)} has no applications`}${q ? ` matching “${esc(q)}”` : ""}.</p>`; return; }
   $("list").innerHTML = apps.map((a) => `
     <article class="app${a.confirmation_number === openId ? " open" : ""}" data-id="${esc(a.confirmation_number)}">
       <div class="top"><span class="id">${esc(a.confirmation_number)}</span><span class="name">${esc(a.applicant_name)}</span><span class="st ${esc(a.status)}">${esc(LABEL[a.status] || a.status)}</span>
