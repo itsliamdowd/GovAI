@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GovAI — repo changes</title>
+<link rel="stylesheet" href="/_assets/plan.css">
+</head>
+<body>
+<div class="wrap" id="root">
+  <header class="page">
+    <h1>GovAI</h1>
+    <span class="subtitle">repo changes <span id="live-dot" title="live"></span></span>
+  </header>
+
+  <!-- Entries go below, NEWEST FIRST. Each entry is one repo-level change.
+       Status badge classes: planned | progress | done | blocked.
+       Do NOT log changes to ~/.claude/, plan.html itself, or the changelog server. -->
+
+  <article class="entry" id="e-2026-10-17-1130">
+    <header>
+      <time>2026-10-17 11:30</time>
+      <h2>Deploy the site so the user can try it</h2>
+      <span class="badge blocked">blocked</span>
+    </header>
+    <p><b>Goal.</b> A URL where the user can try the assistant.</p>
+    <p><b>Tried and reverted.</b> A Vercel adaptation (export the <code>server.js</code> request handler, <code>api/index.js</code> entry, <code>vercel.json</code> rewrite, <code>/tmp</code> app store, no catalog refetch on cold start) was drafted, then fully reverted on the user's instruction: <b>do not use Vercel</b>. <code>server.js</code> and <code>rag.js</code> are back to their pre-attempt content; <code>api/</code> and <code>vercel.json</code> are deleted. Net repo change from this entry: none.</p>
+    <h3>What is blocking</h3>
+    <ul>
+      <li><b>Host.</b> No hosting CLI besides Vercel is installed or logged in (checked: railway, flyctl, render, ngrok, cloudflared). Any other host needs an interactive login the user has to do.</li>
+      <li><b>API key.</b> The app constructs <code>new Anthropic()</code> at startup (<code>server.js:10</code>) and crashes without <code>ANTHROPIC_API_KEY</code>. There is no <code>.env</code> in the repo, and the user said not to use any key from outside the project.</li>
+    </ul>
+    <h3>What unblocks</h3>
+    <ul>
+      <li>Local trial: user creates <code>.env</code> from <code>.env.example</code> with their key, then <code>npm start</code> → <code>http://localhost:8787</code>. No code change needed.</li>
+      <li>Public URL: user names the host (Railway / Render / Fly / a VPS) and logs in once; the app runs as a plain long-lived Node process, so none of those need code changes.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1045">
+    <header>
+      <time>2026-10-17 11:05</time>
+      <h2>Santa Monica city assistant: RAG chat + open data + council records + permit intake</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> america.gov-style single front door for a city: a chatbot that knows Santa Monica city services, pulls live rows from <code>data.santamonica.gov</code>, searches City Council agendas and official minutes, and files permit applications / 311 requests end to end. Mobile-first PWA.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>server.js</code> — Node <code>http</code> server, SSE streaming to browser. Claude <code>claude-opus-5-5</code> via <code>@anthropic-ai/sdk</code> (<code>client.beta.messages.stream</code>, <code>fallbacks: "default"</code>, cached system prompt, effort medium). Manual streaming tool loop (pause_turn / refusal / tool_use handled). Tools: <code>search_city_knowledge</code>, <code>query_dataset</code>, <code>search_council_meetings</code>, <code>web_search_20260209</code> (allowed_domains = santamonica.gov family), <code>submit_application</code>, <code>check_application_status</code>. Sessions in-memory; applications in <code>data/applications.json</code>.</li>
+      <li><code>rag.js</code> — BM25 index (no embeddings dependency) over <code>knowledge/*.md</code> chunks + CKAN catalog (82 datasets: title, notes, tags, datastore field names; cached 24h in <code>data/catalog.json</code>). <code>queryDataset()</code> → CKAN <code>datastore_search</code> live (full-text <code>q</code>, <code>filters</code>, <code>sort</code>). <code>addDocs()</code> rebuilds index; <code>searchCouncil()</code> filters to council docs.</li>
+      <li><code>council.js</code> — reads City Council rows from the "Agendas &amp; Minutes" dataset (resource <code>40013cb9…</code>, 450 council meetings incl. future), ingests the 30 most recent past meetings: agenda text from IQM2 HTML, minutes via <code>pdftotext</code> (poppler). Cached per meeting in <code>data/council/*.json</code>; chunked ~1500 chars; runs in background after server start. Returns upcoming meeting dates too.</li>
+      <li><code>knowledge/permits-howto.md</code>, <code>housing-rent-control.md</code>, <code>transportation-parking.md</code>, <code>public-safety-code.md</code>, <code>city-services-az.md</code> — 43 KB of sourced sections (each ends with <code>Source: &lt;santamonica.gov url&gt;</code>) written by a research subagent; auto-indexed because <code>rag.js</code> globs <code>knowledge/*.md</code>.</li>
+      <li><code>knowledge/santa-monica.md</code> — hand-compiled KB (contacts, 311, departments, permit types &amp; where they live, trash, parking rates FY26-27, housing, places), sourced from santamonica.gov searches 2026-10-17.</li>
+      <li><code>public/index.html</code>, <code>manifest.webmanifest</code>, <code>icon.svg</code> — single-page PWA: safe-area insets, sticky blurred composer, dark mode, quick-action tiles, streaming markdown (marked + DOMPurify from cdnjs), status line for tool calls, dataset/minutes source chips, application confirmation card with copy, "My applications" bottom sheet (localStorage), Web Speech voice input.</li>
+      <li><code>test.js</code> — store round-trip, retrieval, council chunking, council/general index isolation. <code>npm test</code> passes.</li>
+      <li><code>package.json</code>, <code>.env.example</code>, <code>.gitignore</code>, <code>README.md</code>.</li>
+    </ul>
+    <h3>Decisions</h3>
+    <ul>
+      <li>API key: per-project <code>.env</code> loaded by <code>node --env-file=.env</code> (native, no dotenv). User supplies key.</li>
+      <li>RAG without embeddings: BM25 in-process over ~1k docs. <code>ponytail:</code> swap to vector store if corpus grows past RAM.</li>
+      <li>Council "transcripts": Granicus/IQM2 video player exposes no caption file and <code>video_url</code> is empty in the dataset, so official minutes PDFs are the record of what was said/decided. Agenda HTML gives item text + recommended actions.</li>
+      <li>Open data portal contains fuzz rows (<code>pHqghUme</code>, <code>ncMUFCMU</code>) in several datasets; prompt tells the model to cite dataset + URL and the UI shows source chips so users can check.</li>
+      <li><code>datastore_search_sql</code> is blocked by the portal's WAF for complex queries; use <code>datastore_search</code> with <code>filters</code>.</li>
+    </ul>
+    <h3>Review fixes (from code-review subagent)</h3>
+    <ul>
+      <li><code>server.js</code> <code>withSessionLock()</code> — per-session promise chain so two concurrent sends on one sessionId can't interleave the shared <code>messages</code> array. Verified with two parallel POSTs.</li>
+      <li><code>server.js</code> error path — history rolls back to before the failed user turn (<code>findLastIndex</code> + <code>splice</code>) instead of popping only a trailing user message.</li>
+      <li><code>server.js</code> static handler — <code>path.resolve</code> + prefix check against <code>public/</code>. Reviewer's traversal claim was incorrect (<code>path.join</code> doesn't treat a leading slash as absolute) but the guard is one line; <code>/../</code>, <code>//etc/hosts</code>, <code>%2e%2e</code> all 404.</li>
+      <li><code>council.js</code> <code>chunk()</code> — oversize paragraphs now split on whitespace instead of mid-word. <code>rag.js</code> logs per-resource field-fetch failures.</li>
+      <li>Declined: extra tool-name guard, filters JSON pre-validation, localStorage warning — all already surface as <code>is_error</code>/caught paths; not worth code.</li>
+    </ul>
+    <h3>UI QA (Chrome MCP subagent, 1280×900 and 390×844, light + dark)</h3>
+    <ul>
+      <li>No console errors, no horizontal scroll on phone, composer pinned, tiles 2-col on phone / 3-col desktop, sheet + copy card work. Fixed: added <code>&lt;meta name="mobile-web-app-capable"&gt;</code> next to the Apple one.</li>
+    </ul>
+    <h3>Verified</h3>
+    <ul>
+      <li><code>npm test</code> passes (store, retrieval, council chunking, index isolation). Server boots: 82 datasets indexed, 30 council meetings → 789 chunks in background. <code>/chat</code> with a bad key streams a clean <code>error</code> event.</li>
+      <li>Not verified in-session: a real model round-trip — needs the user's <code>ANTHROPIC_API_KEY</code> in <code>.env</code>.</li>
+    </ul>
+  </article>
+
+</div>
+<script src="/_assets/plan.js"></script>
+</body>
+</html>

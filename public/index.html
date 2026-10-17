@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b5fb3">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icon.svg">
+<link rel="apple-touch-icon" href="/icon.svg">
+<title>Santa Monica Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#f3f6fa; --card:#ffffff; --ink:#0f172a; --muted:#64748b; --line:#e2e8f0;
+    --blue:#0b5fb3; --blue-2:#0a4f95; --sky:#56c1e8; --sand:#ffd166; --me:#e3eefc;
+    --ok:#166534; --ok-bg:#ecfdf5; --ok-line:#86efac; --err:#b91c1c; --shadow:0 1px 2px rgba(15,23,42,.06),0 8px 24px -12px rgba(15,23,42,.18);
+    --sat:env(safe-area-inset-top); --sab:env(safe-area-inset-bottom);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg:#0b1118; --card:#131b25; --ink:#e6edf5; --muted:#94a3b8; --line:#243040; --blue:#3b8ff0; --blue-2:#2f7bd6; --me:#1a2a40; --ok:#86efac; --ok-bg:#0f2a1c; --ok-line:#1f5a38; --err:#fca5a5; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6); }
+  }
+  :root[data-theme="dark"] { --bg:#0b1118; --card:#131b25; --ink:#e6edf5; --muted:#94a3b8; --line:#243040; --blue:#3b8ff0; --blue-2:#2f7bd6; --me:#1a2a40; --ok:#86efac; --ok-bg:#0f2a1c; --ok-line:#1f5a38; --err:#fca5a5; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6); }
+  * { box-sizing:border-box } html { -webkit-text-size-adjust:100% }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.55 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif; min-height:100dvh; }
+  header { position:sticky; top:0; z-index:5; padding:calc(10px + var(--sat)) 16px 10px; background:linear-gradient(135deg,var(--blue),var(--blue-2)); color:#fff; box-shadow:0 2px 12px rgba(0,0,0,.15); }
+  .hrow { max-width:860px; margin:0 auto; display:flex; align-items:center; gap:12px }
+  .hrow img { width:38px; height:38px; border-radius:11px; flex:none }
+  .hrow h1 { font-size:16px; margin:0; font-weight:600; line-height:1.2 }
+  .hrow small { opacity:.85; font-size:12px; display:block }
+  .hbtn { margin-left:auto; background:#fff2; border:1px solid #fff3; color:#fff; border-radius:10px; padding:7px 11px; font:inherit; font-size:13px; cursor:pointer; backdrop-filter:blur(6px); display:flex; gap:6px; align-items:center }
+  .hbtn:active { background:#fff3 }
+  main { max-width:860px; margin:0 auto; padding:16px 16px 0; padding-bottom:calc(132px + var(--sab)); }
+  .hero { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:6px 0 14px }
+  .tile { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px; cursor:pointer; box-shadow:var(--shadow); text-align:left; font:inherit; color:var(--ink); transition:transform .12s, border-color .12s }
+  .tile:hover { border-color:var(--blue) } .tile:active { transform:scale(.98) }
+  .tile .ic { font-size:22px; margin-bottom:6px } .tile b { display:block; font-size:14px; font-weight:600 } .tile span { color:var(--muted); font-size:12.5px }
+  @media (min-width:640px) { .hero { grid-template-columns:repeat(3,1fr) } }
+  .msg { padding:12px 16px; border-radius:18px; margin:10px 0; max-width:88%; word-wrap:break-word; animation:pop .18s ease-out }
+  @keyframes pop { from { opacity:0; transform:translateY(6px) } to { opacity:1; transform:none } }
+  .me { background:var(--blue); color:#fff; margin-left:auto; border-bottom-right-radius:6px }
+  .bot { background:var(--card); border:1px solid var(--line); box-shadow:var(--shadow); border-bottom-left-radius:6px }
+  .bot > :first-child { margin-top:0 } .bot > :last-child { margin-bottom:0 }
+  .bot p { margin:.45em 0 } .bot ul,.bot ol { margin:.45em 0; padding-left:1.3em } .bot li { margin:.15em 0 }
+  .bot a { color:var(--blue); text-decoration:none; border-bottom:1px solid currentColor } .bot h1,.bot h2,.bot h3 { font-size:1.02em; margin:.8em 0 .3em }
+  .bot code { background:var(--me); padding:1px 5px; border-radius:5px; font-size:.9em }
+  .tblwrap { overflow-x:auto; margin:.5em -4px; -webkit-overflow-scrolling:touch }
+  .bot table { border-collapse:collapse; font-size:13.5px; min-width:100% } .bot th,.bot td { border-bottom:1px solid var(--line); padding:6px 8px; text-align:left; white-space:nowrap } .bot th { color:var(--muted); font-weight:600; font-size:12px; text-transform:uppercase; letter-spacing:.03em }
+  .status { display:flex; align-items:center; gap:8px; color:var(--muted); font-size:13px; margin:2px 0 0 8px }
+  .dots { display:inline-flex; gap:3px } .dots i { width:5px; height:5px; border-radius:50%; background:var(--muted); animation:b 1s infinite } .dots i:nth-child(2){animation-delay:.15s} .dots i:nth-child(3){animation-delay:.3s}
+  @keyframes b { 0%,80%,100% { opacity:.25 } 40% { opacity:1 } }
+  .sources { display:flex; gap:6px; flex-wrap:wrap; margin:6px 0 0 4px } .sources a { font-size:12px; color:var(--blue); background:var(--card); border:1px solid var(--line); border-radius:999px; padding:3px 10px; text-decoration:none }
+  .card { border:1px solid var(--ok-line); background:var(--ok-bg); color:var(--ok); border-radius:16px; padding:14px 16px; margin:10px 0; max-width:88%; box-shadow:var(--shadow) }
+  .card .num { font-size:22px; font-weight:700; letter-spacing:1px; display:flex; align-items:center; gap:10px; margin:4px 0 }
+  .card button { background:transparent; border:1px solid var(--ok-line); color:inherit; border-radius:8px; padding:3px 9px; font:inherit; font-size:12px; cursor:pointer }
+  .card small { display:block; opacity:.9; font-size:13px }
+  .error { color:var(--err); font-size:14px }
+  form { position:fixed; left:0; right:0; bottom:0; padding:10px 12px calc(10px + var(--sab)); background:color-mix(in srgb,var(--bg) 85%,transparent); backdrop-filter:blur(14px); border-top:1px solid var(--line); z-index:5 }
+  .row { max-width:860px; margin:0 auto; display:flex; gap:8px; align-items:flex-end; background:var(--card); border:1px solid var(--line); border-radius:22px; padding:6px 6px 6px 14px; box-shadow:var(--shadow) }
+  .row:focus-within { border-color:var(--blue) }
+  textarea { flex:1; resize:none; border:0; background:transparent; color:var(--ink); font:inherit; padding:9px 0; max-height:150px; outline:none; line-height:1.4 }
+  .ib { width:38px; height:38px; border-radius:50%; border:0; display:grid; place-items:center; cursor:pointer; flex:none; font:inherit }
+  #mic { background:transparent; color:var(--muted) } #mic.on { color:#fff; background:#dc2626; animation:pulse 1.2s infinite } @keyframes pulse { 50% { box-shadow:0 0 0 8px rgba(220,38,38,.18) } }
+  #send { background:var(--blue); color:#fff } #send:disabled { opacity:.45 }
+  .fine { max-width:860px; margin:6px auto 0; color:var(--muted); font-size:11.5px; text-align:center }
+  .sheet { position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; z-index:10; align-items:flex-end; justify-content:center }
+  .sheet.open { display:flex } .panel { background:var(--card); color:var(--ink); width:100%; max-width:560px; border-radius:22px 22px 0 0; padding:18px 18px calc(22px + var(--sab)); max-height:80dvh; overflow:auto; animation:up .22s ease-out }
+  @media (min-width:640px) { .sheet { align-items:center } .panel { border-radius:22px } }
+  @keyframes up { from { transform:translateY(30px); opacity:0 } }
+  .panel h2 { margin:0 0 10px; font-size:17px } .panel .app { border:1px solid var(--line); border-radius:12px; padding:10px 12px; margin:8px 0; font-size:14px } .panel .app b { font-family:ui-monospace,monospace } .panel .app .st { float:right; font-size:11px; text-transform:uppercase; color:var(--ok); background:var(--ok-bg); padding:2px 8px; border-radius:999px }
+  .panel .empty { color:var(--muted); font-size:14px }
+  .panel .close { margin-top:10px; width:100%; padding:11px; border:0; border-radius:12px; background:var(--blue); color:#fff; font:inherit; font-weight:600 }
+</style>
+</head>
+<body>
+<header>
+  <div class="hrow">
+    <img src="/icon.svg" alt="">
+    <div><h1>City of Santa Monica</h1><small>Ask anything · Apply for permits · File 311 requests</small></div>
+    <button class="hbtn" id="appsBtn" aria-label="My applications">📋 <span id="appsCount">My applications</span></button>
+  </div>
+</header>
+
+<main id="log">
+  <div class="msg bot">Hi, I'm the City of Santa Monica's assistant. I can answer questions about any city service, pull from the city's open data, and file permit applications or 311 requests for you. What do you need?</div>
+  <div class="hero" id="hero">
+    <button class="tile" data-q="I want to host a block party on my street. What permit do I need and can you help me apply?"><div class="ic">🎉</div><b>Host an event</b><span>Block parties, festivals, races</span></button>
+    <button class="tile" data-q="Help me apply for a residential preferential parking permit."><div class="ic">🅿️</div><b>Parking permit</b><span>Residential & visitor permits</span></button>
+    <button class="tile" data-q="Schedule a bulky item pickup for an old couch and a mattress."><div class="ic">🛋️</div><b>Bulky item pickup</b><span>3 free pickups a year</span></button>
+    <button class="tile" data-q="How do I start a business in Santa Monica? What licenses and fees apply?"><div class="ic">🏪</div><b>Start a business</b><span>Licenses, taxes, zoning</span></button>
+    <button class="tile" data-q="What are the current fees for a building permit for a kitchen remodel? Use the city's fee data."><div class="ic">🔨</div><b>Building permits</b><span>Remodels, ADUs, solar</span></button>
+    <button class="tile" data-q="There's a pothole on my street. Can you report it for me?"><div class="ic">🛣️</div><b>Report a problem</b><span>Potholes, graffiti, lights</span></button>
+  </div>
+</main>
+
+<form id="f">
+  <div class="row">
+    <textarea id="in" rows="1" placeholder="Message the city…" autocomplete="off" required></textarea>
+    <button type="button" class="ib" id="mic" aria-label="Voice input" title="Voice input">🎤</button>
+    <button type="submit" class="ib" id="send" aria-label="Send">➤</button>
+  </div>
+  <div class="fine">Not for emergencies. Call 911. Non-emergency: 311 or (310) 458-8411.</div>
+</form>
+
+<div class="sheet" id="sheet" role="dialog" aria-label="My applications">
+  <div class="panel">
+    <h2>My applications</h2>
+    <div id="appsList"></div>
+    <button class="close" id="closeSheet">Close</button>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.4/purify.min.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+const log = $("log"), input = $("in"), form = $("f"), sendBtn = $("send"), mic = $("mic");
+const sessionId = crypto.randomUUID();
+const md = (t) => DOMPurify.sanitize(marked.parse(t, { breaks: true }), { ADD_ATTR: ["target"] }).replace(/<table>/g, '<div class="tblwrap"><table>').replace(/<\/table>/g, "</table></div>");
+
+let apps = []; try { apps = JSON.parse(localStorage.getItem("sm_apps") || "[]"); } catch {}
+const renderApps = () => {
+  $("appsCount").textContent = apps.length ? `${apps.length} application${apps.length > 1 ? "s" : ""}` : "My applications";
+  $("appsList").innerHTML = apps.length ? apps.map((a) => `<div class="app"><span class="st">${esc(a.status)}</span><b>${esc(a.confirmation_number)}</b><br>${esc(a.summary)}<br><small style="color:var(--muted)">${esc(a.department)} · ${new Date(a.submitted_at).toLocaleDateString()}</small></div>`).join("") : `<p class="empty">Nothing filed yet. Ask me to apply for a permit or report an issue and it will show up here.</p>`;
+};
+renderApps();
+$("appsBtn").onclick = () => $("sheet").classList.add("open");
+$("closeSheet").onclick = () => $("sheet").classList.remove("open");
+$("sheet").onclick = (e) => { if (e.target === $("sheet")) $("sheet").classList.remove("open"); };
+
+$("hero").onclick = (e) => { const t = e.target.closest(".tile"); if (t) { input.value = t.dataset.q; form.requestSubmit(); } };
+input.addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey && !/Mobi|Android/i.test(navigator.userAgent)) { e.preventDefault(); form.requestSubmit(); } });
+input.addEventListener("input", () => { input.style.height = "auto"; input.style.height = Math.min(input.scrollHeight, 150) + "px"; });
+
+// Voice input: native Web Speech API where available.
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+if (!SR) mic.style.display = "none";
+else {
+  const rec = new SR(); rec.lang = "en-US"; rec.interimResults = true; let on = false;
+  rec.onresult = (e) => { input.value = [...e.results].map((r) => r[0].transcript).join(""); input.dispatchEvent(new Event("input")); };
+  rec.onend = () => { on = false; mic.classList.remove("on"); if (input.value.trim()) form.requestSubmit(); };
+  mic.onclick = () => { if (on) rec.stop(); else { on = true; mic.classList.add("on"); input.value = ""; rec.start(); } };
+}
+
+form.onsubmit = async (e) => {
+  e.preventDefault();
+  const text = input.value.trim(); if (!text || sendBtn.disabled) return;
+  $("hero")?.remove();
+  add("me").textContent = text;
+  input.value = ""; input.style.height = "auto"; sendBtn.disabled = true;
+
+  const bot = add("bot"); let buf = "";
+  const status = document.createElement("div"); status.className = "status"; status.innerHTML = `<span class="dots"><i></i><i></i><i></i></span><span>Thinking…</span>`; log.appendChild(status); scroll();
+  let sources = null;
+  try {
+    const res = await fetch("/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sessionId, message: text }) });
+    const reader = res.body.getReader(), dec = new TextDecoder(); let carry = "";
+    while (true) {
+      const { value, done } = await reader.read(); if (done) break;
+      carry += dec.decode(value, { stream: true });
+      const parts = carry.split("\n\n"); carry = parts.pop();
+      for (const p of parts) {
+        if (!p.startsWith("data: ")) continue;
+        const ev = JSON.parse(p.slice(6));
+        if (ev.type === "text") { buf += ev.text; bot.innerHTML = md(buf); status.remove(); }
+        else if (ev.type === "status") { status.lastChild.textContent = ev.text; log.appendChild(status); }
+        else if (ev.type === "sources" && ev.data.length) { sources ??= Object.assign(document.createElement("div"), { className: "sources" }); sources.innerHTML = ev.data.slice(0, 4).map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener">📊 ${esc(s.title)}</a>`).join(""); }
+        else if (ev.type === "application") { apps.unshift(ev.data); try { localStorage.setItem("sm_apps", JSON.stringify(apps)); } catch {} renderApps(); appCard(ev.data); }
+        else if (ev.type === "error") { const d = document.createElement("div"); d.className = "error"; d.textContent = ev.text; bot.appendChild(d); }
+        scroll();
+      }
+    }
+  } catch (err) { const d = document.createElement("div"); d.className = "error"; d.textContent = "Connection lost. Try again."; bot.appendChild(d); }
+  status.remove(); if (!bot.textContent) bot.remove();
+  if (sources) { log.appendChild(sources); }
+  for (const a of bot.querySelectorAll("a")) { a.target = "_blank"; a.rel = "noopener"; }
+  sendBtn.disabled = false; if (!/Mobi|Android/i.test(navigator.userAgent)) input.focus(); scroll();
+};
+function appCard(a) {
+  const c = document.createElement("div"); c.className = "card";
+  c.innerHTML = `<small>✅ Application received</small><div class="num">${esc(a.confirmation_number)} <button type="button">Copy</button></div><small><b>Routed to:</b> ${esc(a.department)}</small><small>${esc(a.next_steps)}</small>`;
+  c.querySelector("button").onclick = (e) => { navigator.clipboard?.writeText(a.confirmation_number); e.target.textContent = "Copied"; };
+  log.appendChild(c);
+}
+function add(cls) { const d = document.createElement("div"); d.className = "msg " + cls; log.appendChild(d); scroll(); return d; }
+function esc(s) { return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
+function scroll() { requestAnimationFrame(() => window.scrollTo({ top: document.body.scrollHeight })); }
+</script>
+</body>
+</html>

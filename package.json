@@ -1,0 +1,12 @@
+{
+  "name": "govai",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file=.env server.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "latest"
+  }
+}
