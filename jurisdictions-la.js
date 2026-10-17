@@ -103,3 +103,33 @@ export const LA_CITIES = [
   city("industry", "Industry", LA, "https://www.cityofindustry.org", [34.020, -117.958], ["city of industry", "industry ca", "industry city council"]),
   city("vernon", "Vernon", LA, "https://www.cityofvernon.org", [34.004, -118.230], ["city of vernon", "vernon ca"]),
 ];
+
+// Platform wiring from the 2026-10-17 inventory (plan.html "LA County expansion"). Verified live: PrimeGov API (lacity, longbeach),
+// Granicus ViewPublisher (lacity view 129: 1,614 council meetings 2008-2021, 577 with transcripts), CivicPlus AgendaCenter (malibu),
+// Legistar Web API open for pomona, cityofsignalhill, lacounty, metro, mwdh2o. Everything else stays a draft until tools/discover.mjs confirms it.
+const WIRING = {
+  "los-angeles": {
+    council: { platform: "multi", label: "City Council", limit: 30000, sources: [
+      { platform: "primegov", client: "lacity", since: "2016" }, // all ~110 bodies: council, 15 committees, commissions
+      { platform: "granicus", client: "lacity", views: [{ id: 129, body: "City Council" }, { id: 46, body: "Council Committee" }] }, // 2008-2021 archive; agenda/journal hosts are unreachable off-net, transcripts work
+    ] },
+    youtube: ["UCC2hfJIf4FjXXL9ZBP-EXwA"], // LA CityView 35: council + Police/Fire/Harbor/DWP/Airport commissions
+    domains: ["lacity.gov", "lacity.org", "lacity.primegov.com", "lacity.granicus.com", "clerk.lacity.gov", "cityclerk.lacity.org", "councilvote.lacity.org", "ens.lacity.org", "planning.lacity.gov", "ladbs.org", "dbs.lacity.gov", "lapdonline.org", "lafd.org", "ladwp.com", "lawa.org", "portoflosangeles.org", "laparks.org", "lapl.org", "lacitysan.org", "ladot.lacity.gov", "myla311.lacity.gov", "data.lacity.org", "geohub.lacity.org", "codelibrary.amlegal.com", "neighborhoodempowerment.lacity.gov", "mayor.lacity.gov", "controller.lacity.gov", "cao.lacity.gov", "laist.com", "latimes.com", "ktla.com", "nbclosangeles.com", "knock-la.com", "crosstownla.com", "lapublicpress.org", "dailynews.com"],
+    contact: { name: "MyLA311", phone: "311 or (213) 473-3231", email: "", line: "311 (within the city) or (213) 473-3231" },
+  },
+  "long-beach": { council: { platform: "primegov", client: "longbeach", since: "2023", limit: 5000, label: "City Council" }, domains: ["longbeach.gov", "longbeach.primegov.com", "longbeach.legistar.com", "data.longbeach.gov", "lbpost.com", "signaltribunenewspaper.com", "presstelegram.com"] },
+  "pomona": { council: { platform: "legistar", client: "pomona", body: "City Council", limit: 2000, label: "City Council" }, domains: ["pomonaca.gov", "pomona.legistar.com"] },
+  "signal-hill": { council: { platform: "legistar", client: "cityofsignalhill", body: "City Council", limit: 2000, label: "City Council" }, domains: ["cityofsignalhill.org", "cityofsignalhill.legistar.com"] },
+  "malibu": { council: { platform: "civicplus", since: "2016", limit: 5000, label: "City Council" }, domains: ["malibucity.org"] },
+  "el-monte": { council: { platform: "civicplus", since: "2019", limit: 3000, label: "City Council" } },
+  "inglewood": { council: { platform: "civicplus", since: "2019", limit: 3000, label: "City Council" } },
+  "alhambra": { council: { platform: "civicplus", site: "https://www.cityofalhambra.org", since: "2019", limit: 3000, label: "City Council" } },
+  "avalon": { council: { platform: "civicplus", site: "https://www.cityofavalon.com", since: "2019", limit: 2000, label: "City Council" } },
+  "la-verne": { council: { platform: "civicplus", since: "2019", limit: 2000, label: "City Council" } },
+  "arcadia": { youtube: ["UCmUzBtC0MaSH-c4aMmtlZtA"] },
+  "bellflower": { youtube: ["UCNt4BKguGJ_n8v8Vkb34XTw"] },
+  "carson": { youtube: ["UC3ethohaz3fuapOdycVAmWg"] },
+  "glendora": { youtube: ["UCQVXk5L__r9wqma0jlbox5A"] },
+  "san-marino": { youtube: ["UCGG3Yh9Yhr4ZtDxC8_IPC5Q"] },
+};
+for (const [id, extra] of Object.entries(WIRING)) { const c = LA_CITIES.find((x) => x.id === id); if (!c) throw new Error(`WIRING: unknown LA city ${id}`); Object.assign(c, { ...extra, domains: [...new Set([...(c.domains ?? []), ...(extra.domains ?? [])])] }); }

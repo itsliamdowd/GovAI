@@ -149,15 +149,16 @@ export async function geocode(address, j = SM) {
 }
 const GIS_HOSTS = [...new Set(SERVED.flatMap((j) => [...(j.gisHosts ?? []), ...(countyOf(j)?.gisHosts ?? [])]))];
 /** Query an ArcGIS REST layer by SQL where and/or by address (point-in-polygon, or within 250 m for point/line layers). */
-export async function queryGis({ service_url, where = "", address = "", limit = 20, jur = "santa-monica" }) {
+/** point = { lon, lat } (the resident's device location) stands in for address when no address is given. */
+export async function queryGis({ service_url, where = "", address = "", limit = 20, jur = "santa-monica", point: here = null }) {
   const host = service_url.match(/^https:\/\/([^/]+)\//)?.[1] ?? "";
   if (!GIS_HOSTS.includes(host) && !/(^|\.)arcgis\.com$/.test(host)) throw new Error(`service_url must be an arcgis.com REST layer or one of: ${GIS_HOSTS.join(", ")}`);
   const J = jurById(jur) ?? SM;
   const info = await layerInfo(service_url);
   const params = { where: where || "1=1", outFields: "*", returnGeometry: "false", f: "json", resultRecordCount: String(Math.min(Math.max(1, limit), 100)) };
   let point = null;
-  if (address) {
-    point = await geocode(address, J);
+  if (address || here) {
+    point = address ? await geocode(address, J) : { ...here, display: "your current location" };
     Object.assign(params, { geometry: `${point.lon},${point.lat}`, geometryType: "esriGeometryPoint", inSR: "4326", spatialRel: "esriSpatialRelIntersects" });
     if (info.geometryType !== "esriGeometryPolygon") Object.assign(params, { distance: "250", units: "esriSRUnit_Meter" });
   }
@@ -252,12 +253,12 @@ export const live = {
       .map(({ km, s }) => ({ beach: s.title?.trim(), km_from_center: km, dry_weather_grade: s.dry_grade, wet_weather_grade: s.wet_grade, graded: s.grade_updated?.slice(0, 10), note: s.grade_note || undefined, annual: s.annual_year ? { year: s.annual_year, summer_dry: s.annual_summer_dry, winter_dry: s.annual_winter_dry, wet: s.annual_year_wet } : undefined, alerts: s.alerts?.length ? s.alerts : undefined, factors: s.factorsAffectingWater || undefined }));
     return { source: "Heal the Bay Beach Report Card (weekly grades; ns = not sampled)", url: "https://beachreportcard.org/", beaches: near };
   },
-  scooters: async (near = "", j = SM) => {
+  scooters: async (near = "", j = SM, here = null) => {
     const g = need(j.live?.gbfs, "a scooter/bike-share GBFS feed", j);
     const r = await getJson(g.url);
     const bikes = r.data.bikes.filter((b) => !b.is_disabled && !b.is_reserved);
     const out = { source: `GBFS feed for ${j.short} (updated every minute)`, url: g.site, available: Object.fromEntries(Object.entries(Object.groupBy(bikes, (b) => b.vehicle_type ?? b.vehicle_type_id)).map(([k, v]) => [k, v.length])), note: g.note };
-    if (near) { const p = await geocode(near, j); out.nearest = bikes.map((b) => ({ type: b.vehicle_type, meters: Math.round(km(p.lat, p.lon, b.lat, b.lon) * 1000), range_km: Math.round((b.current_range_meters ?? 0) / 1000) })).sort((a, b) => a.meters - b.meters).slice(0, 5); out.near = p.display; }
+    if (near || here) { const p = near ? await geocode(near, j) : { ...here, display: "your current location" }; out.nearest = bikes.map((b) => ({ type: b.vehicle_type, meters: Math.round(km(p.lat, p.lon, b.lat, b.lon) * 1000), range_km: Math.round((b.current_range_meters ?? 0) / 1000) })).sort((a, b) => a.meters - b.meters).slice(0, 5); out.near = p.display; }
     return out;
   },
   bus_alerts: async (_q, j = SM) => {
@@ -298,15 +299,15 @@ export const live = {
     const e = await getJson(`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro=1&explaintext=1&titles=${encodeURIComponent(titles.join("|"))}&format=json`);
     return { source: "Wikipedia", results: Object.values(e.query.pages).map((p) => ({ title: p.title, url: `https://en.wikipedia.org/wiki/${encodeURIComponent(p.title.replace(/ /g, "_"))}`, extract: p.extract?.slice(0, 1200) })) };
   },
-  property: async (address, j = SM) => {
-    if (!address) throw new Error("property needs an address in query");
+  property: async (address, j = SM, here = null) => {
+    if (!address && !here) throw new Error("property needs an address in query (or the resident's device location)");
     const A = need(countyOf(j)?.live?.assessor ?? j.live?.assessor, "an assessor roll", j); // LA County publishes its roll as an ArcGIS table; other counties: Phase B
-    const m = address.match(/^\s*(\d+)\s+([NSEW]\.?\s+)?([^,#]+?)(?:\s+(?:apt|unit|#|ste|suite)\s*\S+)?(?:,|$)/i);
-    if (!m) throw new Error("give a street address like '1685 Main St'");
-    const street = m[3].trim().replace(new RegExp(`\\s+${j.short}$`, "i"), "").replace(/\s+(st|street|ave|avenue|blvd|boulevard|dr|drive|pl|place|ct|court|way|ter|terrace|ln|lane|rd|road)\.?$/i, "").toUpperCase().replace(/'/g, "''");
+    const m = address ? address.match(/^\s*(\d+)\s+([NSEW]\.?\s+)?([^,#]+?)(?:\s+(?:apt|unit|#|ste|suite)\s*\S+)?(?:,|$)/i) : null;
+    if (address && !m) throw new Error("give a street address like '1685 Main St'");
+    const street = (m?.[3] ?? "").trim().replace(new RegExp(`\\s+${j.short}$`, "i"), "").replace(/\s+(st|street|ave|avenue|blvd|boulevard|dr|drive|pl|place|ct|court|way|ter|terrace|ln|lane|rd|road)\.?$/i, "").toUpperCase().replace(/'/g, "''");
     const q = async (where) => (await getJson(`${A.url}/query?${new URLSearchParams({ where, outFields: "*", returnGeometry: "false", resultRecordCount: "10", f: "json" })}`)).features?.map((f) => f.attributes) ?? [];
-    let rows = await q(`SitusHouseNo = ${+m[1]} AND UPPER(SitusStreet) LIKE '${street}%' AND SitusCity LIKE '${j.short.toUpperCase()}%'`);
-    if (!rows.length) { const p = await geocode(address, j); rows = await q(`CENTER_LAT BETWEEN ${p.lat - 0.0008} AND ${p.lat + 0.0008} AND CENTER_LON BETWEEN ${p.lon - 0.001} AND ${p.lon + 0.001}`); } // ~90 m box: public parcels often have a blank situs
+    let rows = m ? await q(`SitusHouseNo = ${+m[1]} AND UPPER(SitusStreet) LIKE '${street}%' AND SitusCity LIKE '${j.short.toUpperCase()}%'`) : [];
+    if (!rows.length) { const p = m ? await geocode(address, j) : here; rows = await q(`CENTER_LAT BETWEEN ${p.lat - 0.0008} AND ${p.lat + 0.0008} AND CENTER_LON BETWEEN ${p.lon - 0.001} AND ${p.lon + 0.001}`); } // ~90 m box: public parcels often have a blank situs
     const keep = /^(AIN|AssessorID|PropertyLocation|UseType|UseCodeDescChar\d|YearBuilt|EffectiveYearBuilt|SQFTmain|Bedrooms|Bathrooms|Units|RecordingDate|Roll_LandValue|Roll_ImpValue|Roll_totLandImp|Roll_HomeOwnersExemp|Roll_TotalValue|netTaxableValue|isTaxableParcel|RollYear|SitusUnit|SitusZIP5)$/;
     return { source: A.name, url: rows[0] ? `${A.portal}/parceldetail/${rows[0].AIN}` : `${A.portal}/`, note: "Public assessment record; values are assessed (Prop 13 base year + 2%/yr), not market.",
       parcels: rows.map((r) => Object.fromEntries(Object.entries(r).filter(([k, v]) => keep.test(k) && v !== null && v !== "" && v !== 0))) };
@@ -328,10 +329,10 @@ export const live = {
 };
 export const LIVE_KINDS = Object.keys(live);
 const TTL = { unemployment: 864e5, health_stats: 864e5, census: 864e5, wikipedia: 3600e3, property: 3600e3, ca_open_data: 3600e3, scooters: 60e3, flights_over_airport: 60e3 };
-export const liveData = (kind, query = "", jur = "santa-monica") => {
+export const liveData = (kind, query = "", jur = "santa-monica", here = null) => {
   if (!live[kind]) throw new Error(`unknown kind; one of ${LIVE_KINDS.join(", ")}`);
-  const j = jurById(jur) ?? SM;
-  return cached(`${j.id}|${kind}|${query}`, TTL[kind] ?? 300e3, () => live[kind](query, j));
+  const j = jurById(jur) ?? SM, h = here && !query ? { lon: +here.lon.toFixed(3), lat: +here.lat.toFixed(3) } : null; // ~100 m cache granularity
+  return cached(`${j.id}|${kind}|${query}|${h ? `${h.lat},${h.lon}` : ""}`, TTL[kind] ?? 300e3, () => live[kind](query, j, h));
 };
 export const LIVE_HELP = {
   weather: "7-day NWS forecast + active alerts (heat, wind, surf, flood) for the jurisdiction",

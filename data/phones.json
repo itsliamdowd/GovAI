@@ -1,14 +1,15 @@
 {
  "long-beach": {
-  "phone": "(562) 570-6801",
-  "url": "https://www.longbeach.gov",
+  "phone": "(562) 570-6555",
+  "url": "https://locator.lacounty.gov/lac/Location/3176635/long-beach-city-hall",
   "score": 7,
   "alt": [
    "(562) 570-6919",
    "(562) 570-2222"
   ],
   "name": "Long Beach",
-  "at": "2026-10-17"
+  "at": "2026-10-17",
+  "method": "verified-by-search"
  },
  "lancaster": {
   "phone": "(661) 723-6000",
@@ -112,18 +113,20 @@
   "at": "2026-10-17"
  },
  "whittier": {
-  "phone": "",
+  "phone": "(562) 567-9999",
   "name": "Whittier",
-  "url": "https://www.whittierca.gov",
-  "note": "not found"
+  "url": "https://211la.org/agencies/HxBb6XvdNuBK68Extj4qnkEtQa6rVr/city-whittier",
+  "method": "verified-by-search",
+  "at": "2026-10-17"
  },
  "glendale": {
-  "phone": "(818) 548-3960",
-  "url": "https://www.glendaleca.gov/contact-us",
+  "phone": "(818) 548-4844",
+  "url": "https://www.glendaleca.gov/government/city-hall/contact-city-officials/city-service-line",
   "score": 4,
   "alt": [],
   "name": "Glendale",
-  "at": "2026-10-17"
+  "at": "2026-10-17",
+  "method": "verified-by-search"
  },
  "carson": {
   "phone": "(310) 830-7600",
@@ -144,21 +147,23 @@
   "at": "2026-10-17"
  },
  "burbank": {
-  "phone": "",
+  "phone": "(818) 238-5850",
   "name": "Burbank",
-  "url": "https://www.burbankca.gov",
-  "note": "not found"
+  "url": "https://www.muckrock.com/agency/burbank-3129/office-of-the-city-manager-14902/",
+  "method": "verified-by-search",
+  "at": "2026-10-17"
  },
  "torrance": {
-  "phone": "(310) 618-5929",
-  "url": "https://www.torranceca.gov/contactus",
+  "phone": "(310) 328-5310",
+  "url": "https://www.torranceca.gov/government/city-manager/city-contact",
   "score": 14,
   "alt": [
    "(310) 618-5910",
    "(310) 618-5898"
   ],
   "name": "Torrance",
-  "at": "2026-10-17"
+  "at": "2026-10-17",
+  "method": "verified-by-search"
  },
  "bellflower": {
   "phone": "(562) 804-1424",
@@ -177,10 +182,11 @@
   "at": "2026-10-17"
  },
  "santa-fe-springs": {
-  "phone": "",
+  "phone": "(562) 868-0511",
   "name": "Santa Fe Springs",
-  "url": "https://www.santafesprings.org",
-  "note": "not found"
+  "url": "https://files.santafesprings.gov/how_do_i/contact_us/index.php",
+  "method": "verified-by-search",
+  "at": "2026-10-17"
  },
  "redondo-beach": {
   "phone": "(310) 372-1171",
@@ -207,10 +213,11 @@
   "at": "2026-10-17"
  },
  "lynwood": {
-  "phone": "",
+  "phone": "(310) 603-0220",
   "name": "Lynwood",
-  "url": "https://www.lynwood.ca.us",
-  "note": "not found"
+  "url": "https://www.codepublishing.com/CA/Lynwood",
+  "method": "verified-by-search",
+  "at": "2026-10-17"
  },
  "huntington-park": {
   "phone": "(323) 582-6161",
@@ -272,12 +279,13 @@
   "at": "2026-10-17"
  },
  "azusa": {
-  "phone": "(826) 812-5200",
+  "phone": "(626) 812-5200",
   "url": "https://www.azusaca.gov",
   "score": 6,
   "alt": [],
   "name": "Azusa",
-  "at": "2026-10-17"
+  "at": "2026-10-17",
+  "method": "verified-by-search"
  },
  "gardena": {
   "phone": "(310) 217-9500",
@@ -298,10 +306,11 @@
   "at": "2026-10-17"
  },
  "arcadia": {
-  "phone": "",
+  "phone": "(626) 574-5400",
   "name": "Arcadia",
-  "url": "https://www.arcadiaca.gov",
-  "note": "not found"
+  "url": "https://locator.lacounty.gov/lac/Location/3177267/arcadia-city-hall",
+  "method": "verified-by-search",
+  "at": "2026-10-17"
  },
  "san-gabriel": {
   "phone": "(626) 308-2800",
@@ -381,10 +390,11 @@
   "at": "2026-10-17"
  },
  "montebello": {
-  "phone": "",
+  "phone": "(323) 887-1200",
   "name": "Montebello",
-  "url": "https://www.cityofmontebello.com",
-  "note": "not found"
+  "url": "https://locator.lacounty.gov/lac/Location/3177273/montebello-city-hall",
+  "method": "verified-by-search",
+  "at": "2026-10-17"
  },
  "san-dimas": {
   "phone": "(909) 394-6200",
@@ -525,17 +535,18 @@
   "at": "2026-10-17"
  },
  "claremont": {
-  "phone": "",
+  "phone": "(909) 399-5460",
   "name": "Claremont",
-  "url": "https://www.ci.claremont.ca.us",
-  "note": "not found"
+  "url": "https://claremontca.gov/Site-Footer/Footer-Widgets/Contact-Us/Ways-to-Contact-the-City",
+  "method": "verified-by-search",
+  "at": "2026-10-17"
  },
  "la-canada-flintridge": {
   "phone": "(818) 790-8880",
   "url": "https://www.lcf.ca.gov/contact",
   "score": 1,
   "alt": [],
-  "name": "La Cañada Flintridge",
+  "name": "La Ca\u00f1ada Flintridge",
   "at": "2026-10-17"
  },
  "malibu": {
@@ -571,16 +582,18 @@
   "at": "2026-10-17"
  },
  "paramount": {
-  "phone": "",
+  "phone": "(562) 220-2000",
   "name": "Paramount",
-  "url": "https://www.paramountcity.com",
-  "note": "not found"
+  "url": "https://locator.lacounty.gov/lac/Location/3176639/paramount-city-hall",
+  "method": "verified-by-search",
+  "at": "2026-10-17"
  },
  "south-el-monte": {
-  "phone": "",
+  "phone": "(626) 579-6540",
   "name": "South El Monte",
-  "url": "https://www.ci.south-el-monte.ca.us",
-  "note": "not found"
+  "url": "https://locator.lacounty.gov/lac/Location/3176652/south-el-monte-city-hall",
+  "method": "verified-by-search",
+  "at": "2026-10-17"
  },
  "rolling-hills-estates": {
   "phone": "(310) 377-1577",
@@ -591,10 +604,11 @@
   "at": "2026-10-17"
  },
  "sierra-madre": {
-  "phone": "",
+  "phone": "(626) 355-7135",
   "name": "Sierra Madre",
-  "url": "https://www.cityofsierramadre.com",
-  "note": "not found"
+  "url": "https://www.sierramadreca.gov/cityhall/parks_and_facilities/city_hall",
+  "method": "verified-by-search",
+  "at": "2026-10-17"
  },
  "westlake-village": {
   "phone": "(818) 706-1613",
@@ -648,10 +662,11 @@
   "at": "2026-10-17"
  },
  "duarte": {
-  "phone": "",
+  "phone": "(626) 357-7931",
   "name": "Duarte",
-  "url": "https://www.accessduarte.com",
-  "note": "not found"
+  "url": "https://www.cityofduarte.ca.gov/Home/Components/StaffDirectory/StaffDirectory/218/20",
+  "method": "verified-by-search",
+  "at": "2026-10-17"
  },
  "industry": {
   "phone": "(626) 333-2211",
@@ -662,12 +677,13 @@
   "at": "2026-10-17"
  },
  "chula-vista": {
-  "phone": "(619) 409-5811",
-  "url": "https://www.chulavistaca.gov",
+  "phone": "(619) 691-5041",
+  "url": "https://chulavistaca.gov/departments/city-clerk/contact-us",
   "score": 7,
   "alt": [],
   "name": "Chula Vista",
-  "at": "2026-10-17"
+  "at": "2026-10-17",
+  "method": "verified-by-search"
  },
  "vernon": {
   "phone": "(323) 583-8811",
@@ -708,10 +724,11 @@
   "at": "2026-10-17"
  },
  "coronado": {
-  "phone": "",
+  "phone": "(619) 522-7300",
   "name": "Coronado",
-  "url": "https://www.coronado.ca.us",
-  "note": "not found"
+  "url": "https://www.coronado.ca.us/m/directory/department?did=17",
+  "method": "verified-by-search",
+  "at": "2026-10-17"
  },
  "encinitas": {
   "phone": "(760) 633-2600",
@@ -750,22 +767,24 @@
   "at": "2026-10-17"
  },
  "imperial-beach": {
-  "phone": "(858) 586-2650",
-  "url": "https://www.imperialbeachca.gov",
+  "phone": "(619) 423-8300",
+  "url": "https://imperialbeachca.gov/Directory.aspx?did=21",
   "score": 4,
   "alt": [],
   "name": "Imperial Beach",
-  "at": "2026-10-17"
+  "at": "2026-10-17",
+  "method": "verified-by-search"
  },
  "national-city": {
-  "phone": "(310) 456-7890",
-  "url": "https://www.nationalcityca.gov",
+  "phone": "(619) 336-4241",
+  "url": "https://www.sdlafco.org/home/showpublisheddocument/2194/636914386866070000",
   "score": 6,
   "alt": [
    "(619) 336-4241"
   ],
   "name": "National City",
-  "at": "2026-10-17"
+  "at": "2026-10-17",
+  "method": "verified-by-search"
  },
  "oceanside": {
   "phone": "(760) 435-4500",
@@ -820,16 +839,18 @@
   "at": "2026-10-17"
  },
  "vista": {
-  "phone": "",
+  "phone": "(760) 726-1340",
   "name": "Vista",
-  "url": "https://www.cityofvista.com",
-  "note": "not found"
+  "url": "https://vista.gov/city-hall/contact-us",
+  "method": "verified-by-search",
+  "at": "2026-10-17"
  },
  "anaheim": {
-  "phone": "",
+  "phone": "(714) 765-4311",
   "name": "Anaheim",
-  "url": "https://www.anaheim.net",
-  "note": "not found"
+  "url": "https://www.anaheim.gov/189/Anaheim-311",
+  "method": "verified-by-search",
+  "at": "2026-10-17"
  },
  "buena-park": {
   "phone": "(714) 562-3500",
@@ -840,10 +861,11 @@
   "at": "2026-10-17"
  },
  "el-cajon": {
-  "phone": "",
+  "phone": "(619) 441-1776",
   "name": "El Cajon",
-  "url": "https://www.elcajon.gov",
-  "note": "not found"
+  "url": "https://www.elcajon.gov/i-want-to/contact-the-city",
+  "method": "verified-by-search",
+  "at": "2026-10-17"
  },
  "poway": {
   "phone": "(858) 668-4671",
@@ -929,10 +951,11 @@
   "at": "2026-10-17"
  },
  "brea": {
-  "phone": "",
+  "phone": "(714) 990-7600",
   "name": "Brea",
-  "url": "https://www.ci.brea.ca.us",
-  "note": "not found"
+  "url": "https://www.cityofbrea.gov/DocumentCenter/View/10294/City-Phone-Numbers-for-Services",
+  "method": "verified-by-search",
+  "at": "2026-10-17"
  },
  "dana-point": {
   "phone": "(949) 248-3500",
@@ -1086,29 +1109,40 @@
   "at": "2026-10-17"
  },
  "villa-park": {
-  "phone": "",
+  "phone": "(714) 998-1500",
   "name": "Villa Park",
-  "url": "https://www.villapark.org",
-  "note": "not found"
+  "url": "https://villapark.org/About-Us/Contact-Us/City-Hall",
+  "method": "verified-by-search",
+  "at": "2026-10-17"
  },
  "newport-beach": {
-  "phone": "(949) 717-3800",
-  "url": "https://www.newportbeachca.gov/about",
+  "phone": "(949) 644-3309",
+  "url": "https://newportbeachca.gov/i-am-a/business/civic-center-directory-and-map",
   "score": 3,
   "alt": [],
   "name": "Newport Beach",
-  "at": "2026-10-17"
+  "at": "2026-10-17",
+  "method": "verified-by-search"
  },
  "san-juan-capistrano": {
-  "phone": "",
+  "phone": "(949) 493-1171",
   "name": "San Juan Capistrano",
-  "url": "https://sanjuancapistrano.org",
-  "note": "not found"
+  "url": "https://www.citydirectory.us/city-san-juan-capistrano.html",
+  "method": "verified-by-search",
+  "at": "2026-10-17"
  },
  "orange": {
-  "phone": "",
+  "phone": "(714) 744-2225",
   "name": "Orange",
-  "url": "https://www.cityoforange.org",
-  "note": "not found"
+  "url": "https://www.cityoforange.org/residents/city-contacts",
+  "method": "verified-by-search",
+  "at": "2026-10-17"
+ },
+ "cudahy": {
+  "phone": "(323) 773-5143",
+  "name": "Cudahy",
+  "url": "https://www.cityofcudahyca.gov/directory.aspx?EID=55",
+  "method": "verified-by-search",
+  "at": "2026-10-17"
  }
 }

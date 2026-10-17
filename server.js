@@ -97,10 +97,11 @@ How you find answers (retrieval first, always)
 2. If a dataset can answer (fees, active permits, business licenses, police/fire calls, rents, parking rates, trees, EV chargers, budget, campaign finance, water, etc.), call query_dataset with the resource_id and a full-text q or filters, then answer from the rows.
 3. For anything about the City Council or Board of Supervisors: what was decided, who voted how, what's on an agenda, what a member or speaker actually said, upcoming meetings — call search_council_meetings. It searches the active jurisdiction's agendas, official minutes and meeting transcripts (YouTube captions where recordings exist; Santa Monica back to 2014–2015) and returns dated excerpts with links; the context block says what is indexed. Use doc="minutes" for votes/decisions, doc="transcript" for quotes/what was said, empty for both. Quote dates; cite the minutes link or the timestamped video link. When you quote or paraphrase something said in a meeting, include the transcript excerpt's exact url (the youtube link with &t=) as a markdown link — the app turns it into a playable clip of that moment. Transcripts are auto-captions and may misspell names.
 4. For what's happening in town — news, controversies, crime, closures, openings, elections, school districts, what residents are saying — call search_local_news. It searches the jurisdiction's local outlets, news-wire queries and meeting-video feeds (Santa Monica: Daily Press, Mirror, Next, Observer, Lookout, Westside Current, Patch, LA Times, KCRW, LAist, city releases, CityTV, r/SantaMonica), refreshed every 30 minutes. Give the date and the publisher in the text ("the Daily Press reported on Oct 12 that…"); reporting is not city policy, say which it is.
-5. For anything about a specific place or address — zoning, land use, preferential parking zone and rules, street sweeping day, bike lanes, nearby trees, historic status, fault/liquefaction/tsunami/flood zone, evacuation zone, airport noise contour, fire run district, transit stops, census tract, supervisorial/congressional/assembly/senate district — search_city_knowledge returns matching GIS layers (kind "gis" with a service URL); then call query_gis with that service_url and the address. Use where for attribute filters (e.g. zone = 'R1'). County layers cover the whole county; pass the resident's address as given (the server geocodes it inside the active jurisdiction).
-6. For live conditions and outside-the-city statistics call get_live_data: ${LIVE_KINDS.map((k) => `${k} (${LIVE_HELP[k]})`).join("; ")}.
-7. Live research (hard rule). Your training data ends long before today; the current date is given at the end of this prompt. Never mention a knowledge cutoff, training data, or "as of my last update", and never answer a question about anything recent, current, or dated from memory. For current events, recent decisions, who holds an office now, prices, hours, deadlines, elections, anything "latest"/"this week"/"now": call search_local_news and search_council_meetings first, then web_search (city, county, state and local-news domains) for whatever they don't cover. Use web_fetch to read a page you found or a link the resident gave you. Report what you found with its date and publisher; if nothing turns up, say the search found nothing rather than guessing.
-8. Never invent fees, phone numbers, addresses or legal requirements. If you can't verify, say so and point to the contact line in the context block or the owning department.
+5. Location (hard rule): when a question is about the resident's own place ("my street", "near me", "where I am", "my zoning", "my supervisor") and they gave no address, do NOT ask for one — call the tool with an empty address/query; the server fills in their device location and the result says "your current location". Only ask for an address if the tool reports that no device location is available.
+6. For anything about a specific place or address — zoning, land use, preferential parking zone and rules, street sweeping day, bike lanes, nearby trees, historic status, fault/liquefaction/tsunami/flood zone, evacuation zone, airport noise contour, fire run district, transit stops, census tract, supervisorial/congressional/assembly/senate district — search_city_knowledge returns matching GIS layers (kind "gis" with a service URL); then call query_gis with that service_url and the address. Use where for attribute filters (e.g. zone = 'R1'). County layers cover the whole county; pass the resident's address as given (the server geocodes it inside the active jurisdiction).
+7. For live conditions and outside-the-city statistics call get_live_data: ${LIVE_KINDS.map((k) => `${k} (${LIVE_HELP[k]})`).join("; ")}.
+8. Live research (hard rule). Your training data ends long before today; the current date is given at the end of this prompt. Never mention a knowledge cutoff, training data, or "as of my last update", and never answer a question about anything recent, current, or dated from memory. For current events, recent decisions, who holds an office now, prices, hours, deadlines, elections, anything "latest"/"this week"/"now": call search_local_news and search_council_meetings first, then web_search (city, county, state and local-news domains) for whatever they don't cover. Use web_fetch to read a page you found or a link the resident gave you. Report what you found with its date and publisher; if nothing turns up, say the search found nothing rather than guessing.
+9. Never invent fees, phone numbers, addresses or legal requirements. If you can't verify, say so and point to the contact line in the context block or the owning department.
 
 Scope (hard rule)
 - You only handle local government for the covered jurisdictions: their services, permits, rules, data, councils and boards, neighborhoods, local news, and how residents, businesses and visitors deal with them. Nothing else.
@@ -168,12 +169,12 @@ const tools = [
   },
   {
     name: "query_gis",
-    description: "Query a City of Santa Monica or LA County GIS layer (ArcGIS REST). Pass the layer's service_url from a search_city_knowledge 'gis' result. address finds the feature(s) at that Santa Monica address (polygon layers: the containing zone; point/line layers: within 250 m). where is an ArcGIS SQL filter on the layer's fields, or empty. Returns the layer's fields and matching records.",
+    description: "Query a city or county GIS layer (ArcGIS REST). Pass the layer's service_url from a search_city_knowledge 'gis' result. address finds the feature(s) at that address (polygon layers: the containing zone; point/line layers: within 250 m); with an empty address the resident's device location is used when available. where is an ArcGIS SQL filter on the layer's fields, or empty. Returns the layer's fields and matching records.",
     input_schema: {
       type: "object",
       properties: {
         service_url: { type: "string", description: "e.g. https://gis.santamonica.gov/server/rest/services/Zoning/FeatureServer/2" },
-        address: { type: "string", description: "Street address in Santa Monica, or empty string." },
+        address: { type: "string", description: "Street address in the active jurisdiction, or empty string. Empty + a device location = the resident's current spot." },
         where: { type: "string", description: "ArcGIS SQL where clause, or empty string." },
         limit: { type: "integer", description: "Max records, 1-100." },
       },
@@ -330,8 +331,8 @@ const runTool = {
     excerpts: rag.searchCouncil(query, 8, year, doc, ctx.jur),
   }),
   search_local_news: async ({ query, days }, ctx) => JSON.stringify({ status: `${news.total} items from ${news.feeds} feeds, refreshed every 30 min`, articles: rag.searchNews(query, 10, days, ctx.jur) }),
-  query_gis: async (input, ctx) => JSON.stringify(await queryGis({ ...input, jur: ctx.jur ?? "santa-monica" })),
-  get_live_data: async ({ kind, query }, ctx) => JSON.stringify(await liveData(kind, query, ctx.jur ?? "santa-monica")),
+  query_gis: async (input, ctx) => JSON.stringify(await queryGis({ ...input, jur: ctx.jur ?? "santa-monica", point: input.address ? null : ctx.geo })),
+  get_live_data: async ({ kind, query }, ctx) => JSON.stringify(await liveData(kind, query, ctx.jur ?? "santa-monica", ctx.geo)),
   submit_application: async (input, ctx) => JSON.stringify(submitApplication(input, ctx.J)),
   open_application_form: async ({ type }, ctx) => {
     if (!formsFor(ctx.J.id).includes(type)) throw new Error(`No guided ${type} form for ${ctx.J.name}; collect the details in conversation and file with submit_application.`);
@@ -389,6 +390,7 @@ async function chat(sessionId, userText, send, voice = false, geo = null) {
   const jurEvent = () => { const j = jurById(session.jur); send({ type: "jurisdiction", data: j ? { id: j.id, name: j.name, short: j.short, kind: j.kind, icon: j.icon, contact: j.contact?.line ?? "", phone: j.contact?.phone ?? "", site: j.site } : null }); };
   const setJur = (id, via = "message") => { if (id !== session.jur && jurById(id)) { session.jur = id; session.via = via; jurEvent(); } };
   const hit = detect(userText); if (hit) setJur(hit); // server-side alias/ZIP match; the model's set_jurisdiction covers the rest
+  if (geo) session.geo = geo; // latest device location; tools use it whenever the resident hasn't given an address
   if (!session.jur && geo) { const near = nearest(geo.lon, geo.lat); if (near) setJur(near.id, "location"); } // device location, only when nothing was named
   // Preserved thinking: a thinking block's signature is bound to the exact system prompt + tools + earlier messages it was produced
   // under. Anything that varies per request (voice on/off, the date) must not live in `system`, or the next turn 400s. So the voice
@@ -439,7 +441,7 @@ async function chat(sessionId, userText, send, voice = false, geo = null) {
       return;
     }
 
-    const ctx = { get jur() { return session.jur; }, get J() { return jurById(session.jur) ?? SM; }, setJur: (id) => setJur(id, "tool") };
+    const ctx = { get jur() { return session.jur; }, get J() { return jurById(session.jur) ?? SM; }, get geo() { return session.geo ?? null; }, setJur: (id) => setJur(id, "tool") };
     const results = await Promise.all(toolUses.map(async (t) => {
       try {
         const out = await runTool[t.name](t.input, ctx);

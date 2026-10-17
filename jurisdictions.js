@@ -56,7 +56,7 @@ const LA_COUNTY = {
   site: "https://lacounty.gov", icon: null,
   domains: ["lacounty.gov", "lavote.gov", "lahsa.org", "assessor.lacounty.gov", "publichealth.lacounty.gov", "metro.net"],
   contact: { name: "LA County 211", phone: "211", email: "", line: "211" },
-  portals: [], council: null, youtube: [], feeds: [],
+  portals: [], council: { platform: "legistar", client: "lacounty", body: "Board of Supervisors", label: "Board of Supervisors", limit: 500 }, youtube: [], feeds: [], // Legistar holds only 2022-> BOS meetings; bos.lacounty.gov (Kontent SPA) + Statement of Proceedings are the fuller record — pdflist/SOP adapter pending
   gis: [{ org: "LA County eGIS", url: "https://egis-lacounty.hub.arcgis.com/api/feed/dcat-us/1.1.json" }], gisHosts: ["public.gis.lacounty.gov"],
   gisExtra: [ // political boundaries: "who represents this address"
     [27, "Supervisorial District (Current)", "county supervisor board of supervisors"], [29, "Congressional District (2021)", "congress congressman congresswoman house representative"],
@@ -211,7 +211,7 @@ export function contextFor(j, { catalogSummary = "", councilStatus = "", via = "
   const county = countyOf(j);
   const lines = [
     `Active jurisdiction: ${j.name} (${j.kind}${county ? `, ${county.name}` : ""}). Website: ${j.site}. Contact for anything you can't verify: ${j.contact?.line ?? "the city's main line"}.`,
-    via === "location" ? `This was inferred from the resident's device location, not from anything they said. Answer for ${j.short} without asking; the first time a place matters, say in a few words that you're assuming ${j.short} and that they can name another city.` : "",
+    via === "location" ? `The resident's device location is available: tools that take an address use it automatically when the address is empty. This jurisdiction was inferred from the resident's device location, not from anything they said. Answer for ${j.short} without asking; the first time a place matters, say in a few words that you're assuming ${j.short} and that they can name another city.` : "",
     j.draft ? `Data wiring for ${j.short} is partial: no curated knowledge or indexed records yet beyond what is listed below. Prefer web_search/web_fetch on ${j.domains.join(", ")} and say when something could not be verified.` : "",
     j.council ? `Council/board records: ${j.council.label} via ${j.council.platform}${councilStatus ? ` (${councilStatus})` : ""}.` : `No council/board records are indexed for ${j.short}; use web_search on its site for meetings.`,
     j.forms?.length ? `Guided application cards available here: ${j.forms.join(", ")}.` : `No guided application cards for ${j.short}; collect details in conversation and file with submit_application (type "other" if nothing fits).`,
