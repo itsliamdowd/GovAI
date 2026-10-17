@@ -1,0 +1,3 @@
+# Optional offline importer; the Node server does not require Python.
+google-api-python-client>=2.160,<3
+youtube-transcript-api>=1.2,<2

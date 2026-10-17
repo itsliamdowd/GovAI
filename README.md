@@ -26,6 +26,119 @@ Env: `ANTHROPIC_API_KEY` (required), `PORT` (default 8787), `COUNCIL_MEETINGS` (
 - `public/` — single-page PWA (installable, dark mode, voice input, "My applications" tracker in localStorage).
 - Applications persist to `data/applications.json`.
 
+## Official YouTube transcript ingestion
+
+This optional offline importer covers **all uploads**, including archived livestreams, from:
+
+| Channel | Channel ID |
+| --- | --- |
+| City of Santa Monica / CityTV | `UC4V0jOEL4JMCcElkGA7AJpA` |
+| Santa Monica Police Department | `UCyq1UTKGqCmUtsJi984yF5A` |
+
+The app is Node-based and has no Python dependency manager or database. The importer uses an
+optional `requirements-youtube.txt` and the same `data/` file-cache pattern as the other sources.
+It does not replace the existing council-only `yt-dlp` importer or change other feeds.
+
+### Setup and run
+
+Use Python 3.10+ and the Node version used by the app (Node 22+ recommended).
+Enable **YouTube Data API v3** in your Google Cloud project, create an API key, and put
+`YOUTUBE_API_KEY=your-key` in your local `.env` (or export it in the environment).
+Keep this key server-side. `.env` and generated `data/` are gitignored.
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate           # Windows PowerShell: .venv\Scripts\Activate.ps1
+python -m pip install -r requirements-youtube.txt
+npm run ingest:youtube             # loads .env; all pages, both channels
+
+# Small first run (limit applies to each channel):
+npm run ingest:youtube -- --max-videos 3
+# One channel, prefer English then Spanish captions:
+npm run ingest:youtube -- --channel-id UCyq1UTKGqCmUtsJi984yF5A --languages en,es
+# Force a refresh of successful captions too:
+npm run ingest:youtube -- --refresh-transcripts
+```
+
+On Windows set `PYTHON=python` in `.env` if `python3` is unavailable. When calling
+`python -m scripts.ingest_youtube` directly, export `YOUTUBE_API_KEY` yourself; Python does
+not load `.env`. `--data-dir PATH` overrides output for standalone uses; the app reads the
+default `data/youtube/` directory. No Anthropic key is needed to run this importer.
+
+### Data flow and stored schema
+
+`scripts/ingest_youtube.py` calls `channels.list(part="snippet,contentDetails")` for official
+channel metadata and the uploads playlist, paginates `playlistItems.list` with 50 items per
+page, and hydrates title, description, publication date and availability with `videos.list`
+in batches. It never uses `search.list` or the authenticated captions download API.
+Public original-language captions come from `youtube-transcript-api` (manual preferred over
+generated within each requested language; other original languages used as a fallback).
+Auto-generated tracks are retained and flagged. There is no automatic translation.
+
+- `data/youtube/channels/<channel_id>.json`: official channel metadata.
+- `data/youtube/records/<video_id>.json`: canonical per-video checkpoints, atomically replaced.
+- `data/youtube/videos.jsonl`: one deduplicated video record per line, including failed/unavailable videos.
+- `data/youtube/chunks.jsonl`: one retrieval chunk per line, built from available transcripts only.
+
+Video records contain `video_id`, `youtube_url`, `channel_id`, official `channel_name`,
+`configured_channel_name`, `title`, `description`, `published_at` (nullable for unavailable
+uploads), `video_available`, `transcript_available`, normalized `transcript_text`, and
+`transcript_segments: [{text, start, duration}]`. Times are seconds with fractional precision.
+They also contain `transcript_language`, `transcript_is_generated`, `transcript_checked_at`,
+`transcript_status`, `transcript_error` (exception class, no raw request URLs), and `updated_at`.
+Missing captions leave empty text/segments and `transcript_available: false`; errors are
+classified as disabled, no_captions, unavailable, blocked, empty, or error.
+
+Chunks have deterministic `chunk_id` (`video_id:ordinal`), video/channel IDs and names, video
+title, publication date, language/generated flag, text, `start`, `end`, base `youtube_url` and
+timestamped `url`. Chunking targets at most 250 whitespace-separated words, retaining caption
+boundaries and up to 35 words of overlap. Long individual cues are split without inventing
+word-level timestamps: their pieces retain the enclosing cue times. Chunks are based on text
+size, not fixed time intervals.
+
+`youtube.js` adapts these chunks to the existing BM25 document format. **Restart the app after
+ingestion** to load them through `rag.js`; they appear in `search_city_knowledge` with source
+links and caption provenance (`kind: youtube_video`). Existing council search keeps its current
+behavior. Cited timestamped clips can also read the new per-video cache. Captions are source
+material and may contain transcription errors; they are not authoritative minutes or policy.
+
+### Repeated runs and failures
+
+`video_id` is the stable key. Every run refreshes video/channel metadata, reuses successful
+captions, and retries videos with missing/failed captions. `--refresh-transcripts` retries
+successful captions; a failed refresh preserves the last usable transcript and records the
+failure under `last_refresh_status/error/at`. Private/deleted videos returned by the uploads
+playlist keep metadata (last known fields where available). Existing records are not removed
+just because an upload disappears from a later playlist listing.
+
+Each video is checkpointed before continuing. JSONL snapshots are rebuilt atomically, one file
+at a time, at the end of the run, including partial runs with channel failures. Re-running after
+an interruption resumes using saved records and regenerates chunks without duplicates or stale
+chunks. The CLI rejects concurrent importers using `data/youtube/.ingest.lock`; after a hard kill,
+verify no importer is running before removing that lock. Do not run multiple writers on different
+machines against the same directory. Use persistent disk if running on ephemeral hosting.
+
+YouTube API calls have 30-second timeouts and up to three client-library retries. A metadata/API
+failure stops that channel, continues with the next, exports saved results and returns exit code 1.
+A caption failure affects only that video and is recorded; other videos continue, and the command
+still succeeds. Check `transcript_status` in `videos.jsonl` when assessing coverage. YouTube may
+block public-caption requests from cloud IPs; this is recorded as a failure rather than pretending
+the video has no captions. No proxy, cookies, or ownership credentials are required by this code.
+The initial import can be slow; no whole-channel ingest is started inside an HTTP request or at
+server startup. Schedule the CLI externally if regular refreshes are needed.
+
+### Validation
+
+```bash
+npm run test:youtube       # offline Python importer tests + Node cache/RAG adapter tests
+npm test                  # existing app checks (also start background network sources)
+```
+
+Tests cover paginated uploads, video hydration, metadata retention, missing/failed/auto captions,
+language selection, idempotent re-runs, successful-caption reuse, failed-refresh preservation,
+bounded overlapping chunks and precise times, channel isolation, lock/path safety, and BM25 loading.
+Live ingestion requires a real YouTube API key and network access to YouTube.
+
 ## Sources
 
 Beyond `knowledge/*.md`, the 82 data.santamonica.gov datasets and council agendas/minutes/transcripts, the assistant retrieves from:

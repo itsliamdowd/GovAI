@@ -2,6 +2,7 @@
 // yt-dlp lists the channel and pulls the English caption track (manual if present, else YouTube's
 // auto-captions); VTT is flattened to timestamped text, chunked, and indexed. Cached in data/transcripts/.
 import fs from "node:fs";
+import { loadYouTubeRecord } from "./youtube.js";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 
@@ -125,7 +126,13 @@ export async function ingestTranscripts(onDocs, log = console.error) {
 /** Transcript window around a cited moment, from the local cache. Returns null if that video isn't cached. */
 export function clipWindow(videoId, t, before = 10, after = 90) {
   if (!/^[\w-]{6,20}$/.test(videoId)) return null;
-  let rec; try { rec = JSON.parse(fs.readFileSync(`${DIR}/${videoId}.json`, "utf8")); } catch { return null; }
+  let rec; try { rec = JSON.parse(fs.readFileSync(`${DIR}/${videoId}.json`, "utf8")); } catch {}
+  if (!rec?.segments?.length) {
+    const video = loadYouTubeRecord(videoId);
+    if (!video?.transcript_available) return null;
+    rec = { id: videoId, title: video.title, date: video.published_at?.slice(0, 10),
+      segments: video.transcript_segments.map((s) => ({ t: s.start, text: s.text })) };
+  }
   const segs = rec.segments.filter((s) => s.t >= t - before && s.t <= t + after);
   return { id: `${videoId}-${t}`, video_id: videoId, t, hms: hms(t), meeting_date: rec.date, title: rec.title,
     url: `https://www.youtube.com/watch?v=${videoId}&t=${t}s`, embed: `https://www.youtube-nocookie.com/embed/${videoId}?start=${t}&autoplay=1`,

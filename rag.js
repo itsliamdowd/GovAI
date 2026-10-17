@@ -1,6 +1,7 @@
 // Retrieval over (a) knowledge/*.md chunks and (b) the data.santamonica.gov CKAN catalog.
 // ponytail: BM25 in-process, no embeddings; swap in a vector store when the corpus outgrows RAM.
 import fs from "node:fs";
+import { loadYouTubeDocs } from "./youtube.js";
 
 const CKAN = "https://data.santamonica.gov/api/3/action";
 const PORTALS = { santamonica: CKAN, california: "https://data.ca.gov/api/3/action" };
@@ -101,6 +102,7 @@ export async function buildIndex() {
   let datasets = [];
   try { datasets = await loadCatalog(); } catch (e) { console.error("open data catalog unavailable:", e.message); }
   const docs = [
+    ...loadYouTubeDocs(),
     ...knowledge.map((c) => ({ ...c, searchText: `${c.title} ${c.text}` })),
     ...datasets.map((d) => ({
       kind: "dataset", title: d.title, url: d.url, org: d.org, notes: d.notes, modified: d.modified,
