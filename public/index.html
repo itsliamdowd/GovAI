@@ -122,7 +122,8 @@
   /* sheets */
   .sheet { position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; z-index:10; align-items:flex-end; justify-content:center }
   .sheet.open { display:flex } .panel { background:#12161c; color:var(--ink); width:100%; max-width:600px; border-radius:24px 24px 0 0; padding:22px 22px calc(24px + var(--sab)); max-height:82dvh; overflow:auto; animation:up .22s ease-out; border:1px solid var(--line) }
-  @media (min-width:640px) { .sheet { align-items:center } .panel { border-radius:24px } }
+  @media (min-width:640px) { .sheet { align-items:center } .panel { border-radius:24px; max-width:min(880px, calc(100vw - 48px)); padding:26px 30px calc(28px + var(--sab)) } }
+  .panel .app .edit,.panel .app .stop,.panel .app .cancel { margin-right:6px } /* action pills sit side by side in the wider panel */
   @keyframes up { from { transform:translateY(30px); opacity:0 } }
   .panel h2 { margin:0 0 12px; font-size:18px; font-weight:600; letter-spacing:-.01em }
   .hbtns { display:flex; gap:6px } .menu .n:not(:empty) { margin-left:6px; background:var(--blue); color:#fff; border-radius:999px; font-size:11px; padding:1px 7px; vertical-align:1px }
@@ -136,7 +137,7 @@
   .panel .app.watching { border-color:#2b3a55; background:#0f1626 } .panel .app.watching b { font-family:inherit; font-size:15px } .panel .app.watching .st { color:var(--info); background:var(--info-bg) } .panel .app .stop,.panel .app .edit { margin-top:8px; background:transparent; color:var(--ink); border:1px solid var(--line); border-radius:999px; height:30px; padding:0 12px; font:inherit; font-size:12.5px; cursor:pointer } .panel .app .stop:hover { border-color:var(--err); color:var(--err) }
   .panel .app.canceled { opacity:.6 } .panel .app .st.canceled { color:var(--muted); background:var(--pill) }
   .panel .app .stop { display:inline-block; margin:8px 6px 0 0; background:transparent; border:1px solid var(--line); border-radius:999px; padding:4px 12px; font:inherit; font-size:12px; color:var(--ink); cursor:pointer } .panel .app .stop:hover { border-color:var(--err); color:var(--err) }
-  .panel .app .edit { display:block; margin-top:8px; background:transparent; border:1px solid var(--line); border-radius:999px; padding:4px 12px; font:inherit; font-size:12px; color:var(--ink); cursor:pointer } .panel .app .edit:hover { border-color:var(--blue) }
+  .panel .app .edit { display:inline-block; margin-top:8px; background:transparent; border:1px solid var(--line); border-radius:999px; padding:4px 12px; font:inherit; font-size:12px; color:var(--ink); cursor:pointer } .panel .app .edit:hover { border-color:var(--blue) }
   .panel .close { margin-top:14px; width:100%; padding:12px; border:1px solid var(--line); border-radius:999px; background:transparent; color:var(--ink); font:inherit; font-size:14px; font-weight:500; cursor:pointer } .panel .close:hover { background:var(--pill) }
   .srcitem { display:flex; gap:14px; align-items:center; padding:12px 0; border-bottom:1px solid var(--line); text-decoration:none; color:inherit } .srcitem:last-of-type { border:0 }
   .srcitem img { width:44px; height:44px; border-radius:50%; background:#fff; object-fit:cover; flex:none; border:1px solid var(--line) }
@@ -425,7 +426,7 @@ const renderApps = () => {
 const saveApps = () => { try { localStorage.setItem("sm_apps", JSON.stringify(apps)); } catch {} };
 // Resident self-service: pull current status + staff notes when the menu opens; edit while the application is still "received".
 async function syncApps() {
-  apps = await Promise.all(apps.map(async (a) => { if (!a.type) return a; try { const r = await fetch(`/api/applications/${encodeURIComponent(a.confirmation_number)}`); return r.ok ? { ...a, ...(await r.json()) } : a; } catch { return a; } }));
+  apps = (await Promise.all(apps.map(async (a) => { if (!a.type) return a; try { const r = await fetch(`/api/applications/${encodeURIComponent(a.confirmation_number)}`); return r.ok ? { ...a, ...(await r.json()) } : r.status === 404 ? null : a; } catch { return a; } }))).filter(Boolean); // 404 = deleted on the server → drop the cached card
   saveApps(); renderApps();
 }
 async function editApp(i) {
@@ -673,7 +674,7 @@ async function send(text, voice = false) {
 
   const bot = add("bot"); let buf = "";
   const status = document.createElement("div"); status.className = "status"; status.innerHTML = `<span class="dots"><i></i><i></i><i></i></span><span>Thinking…</span>`; log.appendChild(status); scroll();
-  const sources = new Map();
+  const sources = new Map(), contacts = []; // contact cards are held until the reply text is done, then placed between the text and the Sources row
   // Token-by-token rendering. The API streams first turns live but delivers the turn after a tool result
   // as one burst (measured: ~15 deltas within 5ms on every request shape), so queue deltas and let a frame
   // loop reveal ~2 chars/frame (~120 chars/s), speeding up only when the backlog is large.
@@ -711,7 +712,7 @@ async function send(text, voice = false) {
         else if (ev.type === "jurisdiction") setJurisdiction(ev.data);
         else if (ev.type === "clips") { for (const c of ev.data) clipCard(c); }
         else if (ev.type === "form") { cardOnly(); formCard(ev.data); }
-        else if (ev.type === "contact") { flush(); contactCard(ev.data); }
+        else if (ev.type === "contact") contacts.push(ev.data);
         else if (ev.type === "live") { flush(); liveCard(ev.data); }
         else if (ev.type === "meeting") { flush(); meetingCard(ev.data); }
         else if (ev.type === "application" || ev.type === "alert") { cardOnly(); apps.unshift(ev.data); try { localStorage.setItem("sm_apps", JSON.stringify(apps)); } catch {} renderApps(); appCard(ev.data, ev.type === "alert" ? "🔔 Daily watch on" : "✅ Application received"); }
@@ -731,6 +732,7 @@ async function send(text, voice = false) {
   }
   flush(); status.remove(); if (!bot.textContent) bot.remove();
   for (const a of bot.querySelectorAll("a")) { a.target = "_blank"; a.rel = "noopener"; }
+  for (const c of contacts) contactCard(c); // text → contact card(s) → Sources/feedback row
   if (bot.isConnected || card) log.appendChild(actionRow(bot, [...sources.values()])); // after every card the reply produced, not between the text and its card
   ctrl = null; sendBtn.classList.remove("stop"); sendBtn.innerHTML = ICONS.send; sendBtn.setAttribute("aria-label", "Send");
   if (!/Mobi|Android/i.test(navigator.userAgent) && !$("voice").classList.contains("open")) input.focus(); scroll();
@@ -759,20 +761,6 @@ function contactCard(c) {
   const cta = [c.phone && `<a href="tel:${esc(tel)}">${I.phone}Call</a>`, c.email && `<a class="alt" href="mailto:${esc(c.email)}">${I.mail}Email</a>`, c.address && `<a class="alt" href="${esc(maps)}" target="_blank" rel="noopener">${I.pin}Directions</a>`, c.url && `<a class="alt" href="${esc(c.url)}" target="_blank" rel="noopener">${I.link}Website</a>`].filter(Boolean).join("");
   d.innerHTML = `<b>${esc(c.name)}</b>${c.role ? `<div class="role">${esc(c.role)}</div>` : ""}<div class="rows">${rows}</div>${c.note ? `<div class="note">${esc(c.note)}</div>` : ""}${cta ? `<div class="cta">${cta}</div>` : ""}`;
   log.appendChild(d);
-}
-// Address autocomplete: "111 eu" → datalist of "111 Euclid St", … from /api/streets (LA County Assessor roll, Santa Monica only).
-function streetSuggest(input) {
-  const dl = document.createElement("datalist"); dl.id = "streets-" + Math.random().toString(36).slice(2, 8); input.after(dl); input.setAttribute("list", dl.id); input.autocomplete = "off";
-  let t = 0, last = "";
-  input.addEventListener("input", () => {
-    clearTimeout(t);
-    t = setTimeout(async () => {
-      const m = input.value.match(/^\s*(\d+[A-Za-z]?(?:\s*\/\s*\d+)?)?\s*([A-Za-z0-9][A-Za-z0-9 ]{1,}?)\s*$/); if (!m) return;
-      if (jurId && jurId !== "santa-monica") return; // the street roll is Santa Monica's; other cities use /api/addresses scoped to them
-      const num = m[1] ? m[1] + " " : "", q = m[2].trim(); if (q === last) return; last = q;
-      try { const names = await (await fetch(`/api/streets?q=${encodeURIComponent(q)}`)).json(); if (Array.isArray(names)) dl.innerHTML = names.map((n) => `<option value="${esc(num + n)}">`).join(""); } catch {}
-    }, 180);
-  });
 }
 // Data cards: a structured tool result rendered as a visual card under the reply (weather, air, tides, beach grades, cameras, quakes, property, stats).
 const AQI_COLOR = (aqi) => aqi <= 50 ? "#4ade80" : aqi <= 100 ? "#fde047" : aqi <= 150 ? "#fb923c" : aqi <= 200 ? "#f87171" : aqi <= 300 ? "#c084fc" : "#9f1239";
@@ -860,7 +848,7 @@ function formCard(f) {
     else if (fld.type === "textarea") el = document.createElement("textarea");
     else {
       el = document.createElement("input"); el.type = fld.type || "text"; if (fld.type === "number") el.min = "1";
-      if (/address|street|location/.test(fld.key)) streetSuggest(el); // autocomplete Santa Monica street names as they type
+      if (/address|street|location/.test(fld.key)) addressSuggest(el); // same official-address dropdown as the chat box and watch form
       if (fld.type === "date") { const d = new Date(); d.setDate(d.getDate() + (fld.minDays ?? 0)); el.min = d.toISOString().slice(0, 10); } // no past dates; lead time per field
       if (fld.type === "tel") { // US number, formatted as (111) 111-1111 while typing; stored that way too
         el.inputMode = "tel"; el.placeholder ||= "(310) 555-0100"; el.maxLength = 14;

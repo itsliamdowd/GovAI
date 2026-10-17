@@ -54,7 +54,8 @@ async function generate(j) {
   fs.mkdirSync(dir, { recursive: true });
   for (const [topic, keys] of Object.entries(TOPICS)) {
     if (fs.existsSync(`${dir}/${topic}.md`)) continue; // resumable: rerun a jurisdiction to fill only the missing topics
-    const picked = all.filter((u) => keys.some((k) => u.toLowerCase().includes(k))).slice(0, PER_TOPIC);
+    // Round-robin over keywords so every theme gets pages (first-match-wins let "department"/"contact" crowd out trash/bulky pages)
+    const picked = []; for (let round = 0; picked.length < PER_TOPIC && round < PER_TOPIC; round++) for (const k of keys) { const u = all.find((x) => x.toLowerCase().includes(k) && !picked.includes(x)); if (u && picked.length < PER_TOPIC) picked.push(u); }
     if (!all.length) picked.push(...keys.slice(0, 6).map((k) => `${j.site}/${k}`)); // no sitemap: try guessed paths
     const pages = [];
     for (const u of picked) { const t = strip(await text(u)); if (t.length > 400) pages.push({ url: u, text: t.slice(0, MAX_CHARS) }); }

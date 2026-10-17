@@ -7,31 +7,62 @@ const file = (j) => `${dataDir(j)}/addresses.json`;
 const title = (s) => (s ?? "").toLowerCase().replace(/\b[a-z]/g, (c) => c.toUpperCase());
 const norm = (s) => s.toLowerCase().replace(/[^a-z0-9 ]+/g, " ").replace(/\s+/g, " ").trim();
 
-/** The city's Address Points layer, found in its collected GIS catalog (no hardcoded URLs). */
+/** The city's address-point layer, found in its collected GIS catalog (no hardcoded URLs). Titles vary by city. */
 function addressLayer(j) {
   try {
     const layers = JSON.parse(fs.readFileSync(`${dataDir(j)}/gis.json`, "utf8")).layers;
-    return layers.find((l) => /^address points$/i.test(l.title) && (j.gisHosts ?? []).some((h) => l.service.includes(h)))?.service;
+    const mine = layers.filter((l) => !/street lines|road|centerline|parcel|range|grid/i.test(l.title) && /\baddress(es)?( ?points?)?( view)?$/i.test(l.title.trim())); // "Address Points", "Pasadena CA Addresses view", "SiteAddress"
+    return mine.find((l) => /points?/i.test(l.title))?.service ?? mine[0]?.service ?? null;
   } catch { return null; }
 }
 
-/** Collector: pages through the layer (5000/page) and writes a compact, deduped, sorted list. Network. */
+// Field schemas differ per city (st_number/st_name, AddressNum/RoadName, ADDR_ST_NMBR/ADDR_ST_NAME...). Prefer a
+// full-address field; else compose number + prefix dir + name + type + suffix dir.
+const pickField = (names, re) => names.find((n) => re.test(n)) ?? null;
+function schema(fields) {
+  const names = fields.map((f) => f.name);
+  return {
+    full: pickField(names, /^(st_)?full_?(st_)?addr(ess)?$|^fulladdress$|^full_address$|^addr$|^address$|^siteaddr(ess)?$|^situs_?addr(ess)?$/i),
+    num: pickField(names, /^(addr_?)?(st_?)?(num(ber)?|nmbr)$|^house(_?num(ber)?)?$|^addressnum$|^st_number$|^add_?number$/i), // NENA: Add_Number
+    pre: pickField(names, /^(addr_?st_?)?(pfx|prefix|pre_?dir|st_prefix|roadpredir|roadprefix|street_dir)$|^st_?predir$/i),
+    name: pickField(names, /^(addr_?st_?)?(name|st_?name|roadname|street)$/i),
+    type: pickField(names, /^(addr_?st_?)?(name_?sfx|st_?type|roadnametype|roadsuffix|street_?type|st_suffix)$|^st_?pos_?typ(e)?$/i),
+    suf: pickField(names, /^(addr_?st_?)?(sfx|suf_?dir|roadsufdir|roadsuff_1|st_suffix_dir)$|^st_?posdir$/i),
+    unit: pickField(names, /^(addr_?st_?)?(unit|st_unit|unitnumber)$/i),
+    zip: pickField(names, /^(zip|zipcode|zip_?code|postal|zipc|post_?code)$/i),
+  };
+}
+
+/** Collector: pages through the layer and writes a compact, deduped, sorted list. Network. */
 export async function ingestAddresses(j, log = console.error) {
   const service = addressLayer(j);
   if (!service) return 0;
+  const meta = await (await fetch(`${service}?f=json`, { signal: AbortSignal.timeout(60000) })).json();
+  const sc = schema(meta.fields ?? []), page = Math.min(meta.maxRecordCount || 2000, 5000);
+  // ponytail: the in-memory book is a linear scan; a county-wide layer (LA County eGIS: 2.7M rows, surfaced in LA City's GeoHub)
+  // needs the SQLite store instead. Cap at 400k rows until that exists.
+  const { count = 0 } = await (await fetch(`${service}/query?where=1%3D1&returnCountOnly=true&f=json`, { signal: AbortSignal.timeout(60000) })).json();
+  if (count > 400000) { log(`addresses ${j.id}: ${count.toLocaleString()} rows in ${service} exceeds the 400k in-memory cap; skipped`); return 0; }
+  if (!sc.full && !(sc.num && sc.name)) { log(`addresses ${j.id}: no usable address fields in ${service}`); return 0; }
+  const outFields = [sc.full, sc.num, sc.pre, sc.name, sc.type, sc.suf, sc.unit, sc.zip].filter(Boolean).join(",");
   const seen = new Set(), rows = [];
-  for (let offset = 0; ; offset += 5000) {
-    const q = new URLSearchParams({ where: "1=1", outFields: "house,street_dir,street,street_type,unit,zip", orderByFields: "objectid", resultOffset: offset, resultRecordCount: 5000, returnGeometry: "false", f: "json" });
-    const r = await fetch(`${service}/query?${q}`, { signal: AbortSignal.timeout(60000) });
+  for (let offset = 0; ; offset += page) {
+    const q = new URLSearchParams({ where: "1=1", outFields, orderByFields: meta.objectIdField ?? "OBJECTID", resultOffset: offset, resultRecordCount: page, returnGeometry: "false", f: "json" });
+    const r = await fetch(`${service}/query?${q}`, { signal: AbortSignal.timeout(120000) });
     const { features = [], exceededTransferLimit } = await r.json();
     for (const { attributes: a } of features) {
-      if (!a.house || !a.street) continue;
-      const street = title([a.street_dir, a.street, a.street_type].filter(Boolean).join(" "));
-      const base = `${a.house} ${street}`;
-      const unit = (a.unit ?? "").replace(/^(APARTMENT|APT|UNIT|SUITE|STE|SPACE|SPC|BLDG|#)\.?\s*/i, "").trim();
+      let base, unit = "";
+      if (sc.full && a[sc.full]) {
+        base = title(String(a[sc.full]).replace(/\s+/g, " ").trim());
+      } else {
+        if (!a[sc.num] || !a[sc.name]) continue;
+        base = `${a[sc.num]} ${title([a[sc.pre], a[sc.name], a[sc.type], a[sc.suf]].map((x) => (x ?? "").toString().trim()).filter(Boolean).join(" "))}`;
+        unit = (sc.unit && a[sc.unit] ? String(a[sc.unit]) : "").replace(/^(APARTMENT|APT|UNIT|SUITE|STE|SPACE|SPC|BLDG|#)\.?\s*/i, "").trim();
+      }
+      if (!/^\d/.test(base)) continue;
       for (const addr of unit ? [base, `${base} #${unit}`] : [base]) { // the building itself is always offered, then its units
         if (seen.has(addr)) continue;
-        seen.add(addr); rows.push([addr, a.zip ?? ""]);
+        seen.add(addr); rows.push([addr, sc.zip ? String(a[sc.zip] ?? "") : ""]);
       }
     }
     if (!exceededTransferLimit || !features.length) break;

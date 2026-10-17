@@ -19,3 +19,4 @@ data/youtube/request-state.json
 # probe scratch (keep data/discover/<id>.json and data/discovered.json)
 data/discover/_*
 data/_warm-*.log
+data/.yt-*

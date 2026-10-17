@@ -136,6 +136,7 @@ if (ADDR.loadAddresses()) {
   assert.equal(top[0]?.address, "1685 Main St", "building itself should come before its units");
   assert.ok(ADDR.suggestAddresses("ocean park bl", 5).every((a) => /Ocean Park Blvd/.test(a.address)));
   assert.deepEqual(ADDR.suggestAddresses("1"), [], "too-short queries return nothing");
+  if (ADDR.suggestAddresses("100 n", 1, "pasadena").length) assert.ok(ADDR.suggestAddresses("100 n", 8, "pasadena").every((a) => a.city === "Pasadena"), "jurisdiction filter leaks other cities");
 }
 const { speechText } = await import("./tts.js");
 assert.equal(speechText("Call (310) 458-8411, Mon–Thu 7:30 a.m.–5:30 p.m. Confirmation SM-749311."), "Call 3 1 0, 4 5 8, 8 4 1 1, Monday through Thursday 7:30 AM to 5:30 PM. Confirmation S M, 7 4 9 3 1 1.");

@@ -13,7 +13,10 @@ export function parseLinks(html, page, j) {
   for (const m of html.matchAll(/<a\b[^>]*href="([^"#]+)"[^>]*>([\s\S]*?)<\/a>/gi)) {
     // classify by link text + file name only: a folder called "Agenda and Minutes" in the path must not turn every agenda into minutes
     let file = m[1].split(/[?#]/)[0].split("/").pop(); try { file = decodeURIComponent(file); } catch {}
-    const url = absUrl(m[1], base), label = text(m[2]), blob = `${label} ${file}`;
+    let label = text(m[2]);
+    // Revize sites (Arcadia) pair every document with a "Copy document link" button whose real title sits in data-copy-label / aria-label
+    if (/copy .*link/i.test(label)) label = text(m[0].match(/data-copy-label="([^"]*)"/)?.[1] ?? m[0].match(/aria-label="Copy[^"]*? for ([^"]*)"/)?.[1] ?? label);
+    const url = absUrl(m[1], base), blob = `${label} ${file}`;
     if (!url || !keep.test(blob)) continue;
     let date = toYmd(label); if (!date) { try { date = toYmd(decodeURIComponent(m[1])); } catch { date = null; } }
     if (!date || date < since) continue;
@@ -22,6 +25,7 @@ export function parseLinks(html, page, j) {
     if (/minute|action|summary/i.test(blob)) rec.minutes_url ||= url; else if (/packet/i.test(blob)) rec.packet_url ||= url; else rec.agenda_url ||= url;
     if (/cancel/i.test(blob)) rec.canceled = true;
   }
+  for (const r of by.values()) r.agenda_url ||= r.packet_url; // packet-only sites (Arcadia): the packet is the agenda text
   return [...by.values()];
 }
 export async function listMeetings(j) {

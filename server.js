@@ -587,6 +587,11 @@ const server = http.createServer(async (req, res) => {
     const u = new URL(req.url, "http://x"), q = (u.searchParams.get("q") ?? "").slice(0, 80), jur = u.searchParams.get("jur") || "santa-monica";
     let items = [];
     try { items = hasBook(jur) ? suggestAddresses(q, 8, jur) : await liveAddresses(q, jurById(jur)); } catch (e) { console.error("addresses:", e.message); }
+    // No address point matched (number typed before the street, or a number that isn't on file): complete the street name instead, keeping the typed number.
+    if (!items.length && jur === "santa-monica") {
+      const m = q.match(/^\s*(\d+[A-Za-z]?)?\s*([A-Za-z][A-Za-z0-9 ]*?)\s*$/);
+      if (m && m[2].length >= 2) try { items = (await streetNames(m[2].toUpperCase().replace(/[^A-Z0-9 ]/g, ""))).slice(0, 8).map((n) => ({ address: `${m[1] ? m[1] + " " : ""}${n}`, city: "Santa Monica", zip: "" })); } catch (e) { console.error("streets:", e.message); }
+    }
     res.writeHead(200, { "Content-Type": "application/json", "Cache-Control": "no-store" }).end(JSON.stringify(items));
     return;
   }

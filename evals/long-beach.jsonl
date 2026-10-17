@@ -1,0 +1,6 @@
+{"q":"how do I get a preferential parking permit for my street in Long Beach","jur":"long-beach","expect":{"url_re":"longbeach\\.gov/parking"},"status":"proposed"}
+{"q":"how do I contest a parking ticket","jur":"long-beach","expect":{"url":"https://www.longbeach.gov/parking/citations/"},"status":"proposed"}
+{"q":"how do I apply for a building permit","jur":"long-beach","expect":{"url":"https://www.longbeach.gov/lbcd/building/"},"status":"proposed"}
+{"q":"I want to hold a street festival, what permit do I need","jur":"long-beach","expect":{"url":"https://www.longbeach.gov/special-events-filming/"},"status":"proposed"}
+{"q":"how do I speak at a city council meeting on zoom","jur":"long-beach","expect":{"url":"https://www.longbeach.gov/cityclerk/"},"status":"proposed"}
+{"q":"call to order","jur":"long-beach","kind":"council","expect":{"url_re":"longbeach|primegov"},"status":"proposed"}

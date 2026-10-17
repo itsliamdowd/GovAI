@@ -89,10 +89,23 @@ export function vttToSegments(vtt) {
 // Global gate between yt-dlp caption pulls (all jurisdictions, all workers): YT_MIN_GAP_MS, default 30 s ≈ 120 pulls/hour/IP.
 // ponytail: single-process gate; a shared token bucket is only needed if several collectors run on one IP.
 const YT_GAP = Number(process.env.YT_MIN_GAP_MS) || 30000, YT_PAUSE = Number(process.env.YT_PAUSE_MS) || 15 * 60e3;
-let lastPull = 0, pausedUntil = 0, gateChain = Promise.resolve();
-const gate = () => (gateChain = gateChain.then(async () => { const wait = Math.max(lastPull + YT_GAP, pausedUntil) - Date.now(); if (wait > 0) await new Promise((r) => setTimeout(r, wait)); lastPull = Date.now(); }));
+// The gate is shared by every collector process on this machine through two marker files' mtimes (several `warm.js transcripts <jur>`
+// runs side by side were each pacing themselves and together tripping 429s). ponytail: mtime markers, not a lock — two processes can
+// still fire within the same tick; a real token bucket only if collectors ever run on more than one host behind one IP.
+const MARK = "./data/.yt-last-pull", PAUSE = "./data/.yt-paused";
+const mtime = (f) => { try { return fs.statSync(f).mtimeMs; } catch { return 0; } };
+const touch = (f) => { fs.mkdirSync("./data", { recursive: true }); fs.writeFileSync(f, ""); };
+let gateChain = Promise.resolve();
+const gate = () => (gateChain = gateChain.then(async () => {
+  for (;;) {
+    const wait = Math.max(mtime(MARK) + YT_GAP, mtime(PAUSE) + YT_PAUSE) - Date.now();
+    if (wait <= 0) break;
+    await new Promise((r) => setTimeout(r, Math.min(wait, 5000)));
+  }
+  touch(MARK);
+}));
 // 429 / bot check: every further pull in the window fails too and digs the hole deeper — pause all pulls (YT_PAUSE_MS, default 15 min) instead
-const rateLimited = (msg) => { if (/429|Too Many Requests|Sign in to confirm/i.test(msg)) { pausedUntil = Date.now() + YT_PAUSE; return true; } return false; };
+const rateLimited = (msg) => { if (/429|Too Many Requests|Sign in to confirm/i.test(msg)) { touch(PAUSE); return true; } return false; };
 async function fetchTranscript(v, log, j = SM) {
   const DIR = dirFor(j);
   const file = `${DIR}/${v.id}.json`;

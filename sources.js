@@ -110,7 +110,11 @@ export async function loadGisCatalog(log = console.error, refresh = false, j = S
   const layers = [...extraLayers(j)];
   for (const cat of j.gis ?? []) {
     try {
-      const { dataset } = await getJson(cat.url, { timeout: 60000 });
+      let dataset;
+      for (let attempt = 1; ; attempt++) { // geohub.lacity.org drops connections intermittently at the TCP level; big feeds (~4 MB) stream slowly
+        try { ({ dataset } = await getJson(cat.url, { timeout: 180000 })); break; }
+        catch (e) { if (attempt >= 3) throw e; log(`gis catalog ${cat.org}: ${e.message}, retry ${attempt}`); await new Promise((r) => setTimeout(r, 5000 * attempt)); }
+      }
       const seen = new Map(); // same layer is often published twice (MapServer + FeatureServer); keep one, prefer FeatureServer
       for (const d of dataset) {
         // Hub feeds list several GeoServices distributions per dataset (an Experience Builder app, a web map, the layer); take the layer
