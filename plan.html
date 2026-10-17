@@ -16,6 +16,92 @@
        Status badge classes: planned | progress | done | blocked.
        Do NOT log changes to ~/.claude/, plan.html itself, or the changelog server. -->
 
+  <article class="entry" id="e-2026-10-17-1120">
+    <header>
+      <time>2026-10-17 11:20</time>
+      <h2>Council records: full minutes archive (2015→) + YouTube caption transcripts; strict-schema fix</h2>
+      <span class="badge progress">in-progress</span>
+    </header>
+    <p><b>Goal.</b> User asked whether every council meeting's transcript is stored. Answer was no (30 recent meetings, agendas+minutes only). This entry widens coverage to everything that is actually obtainable and adds real spoken-word transcripts where they exist.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>transcripts.js</code> (new) — <code>yt-dlp</code> lists the City of Santa Monica YouTube channel (<code>UC4V0jOEL4JMCcElkGA7AJpA</code>), keeps council <em>meeting</em> videos (filters out candidate forums, COVID PSAs, retreats), parses the meeting date from the title (handles "Sept.", ordinals like "28th"), dedupes to one video per date (prefers "(with captions)", drops "Copy of"), downloads the English caption track (manual else auto), flattens rolling VTT cues to <code>{t, text}</code>, chunks ~1500 chars with a timestamped <code>watch?v=…&amp;t=Ns</code> link. Cached per video in <code>data/transcripts/*.json</code>.</li>
+      <li><code>council.js</code> — <code>COUNCIL_MEETINGS</code> default 30 → 1000 (all past meetings in the Agendas &amp; Minutes dataset, 2015→).</li>
+      <li><code>rag.js</code> — <code>searchCouncil(query, k, year, doc)</code> gains a <code>doc</code> filter; with no filter it returns half official-record hits (agenda/minutes) and half transcript hits so bulkier transcripts don't crowd out votes.</li>
+      <li><code>server.js</code> — runs <code>ingestTranscripts</code> in the background alongside <code>ingestCouncil</code>; <code>search_council_meetings</code> tool gains <code>doc: ""|"agenda"|"minutes"|"transcript"</code>; prompt explains when to use which and that transcripts are auto-captions. <b>Bug fix:</b> removed <code>minimum</code>/<code>maximum</code> from the strict <code>query_dataset.limit</code> integer schema (API 400: "For 'integer' type, properties maximum, minimum are not supported"); runtime clamp in <code>rag.js</code> already covers it.</li>
+      <li><code>warm.js</code> (new) — one-off cache warm-up (<code>node warm.js</code>) so a server restart doesn't re-fetch ~440 PDFs.</li>
+      <li><code>test.js</code> — date parsing, VTT dedupe, timestamped chunk links, doc filter isolation.</li>
+      <li>System dep: <code>yt-dlp</code> installed via Homebrew (2026.08.19). <code>pdftotext</code> (poppler) already present.</li>
+    </ul>
+    <h3>Coverage reality (measured 2026-10-17)</h3>
+    <table>
+      <tr><th>Source</th><th>What it is</th><th>Coverage</th></tr>
+      <tr><td>Agendas &amp; Minutes dataset → IQM2</td><td>Agenda item text + official minutes PDF (roll call, motions, votes, speakers listed)</td><td>2015–2026: ~440 meetings, 373 with minutes. All ingested.</td></tr>
+      <tr><td>YouTube captions</td><td>Verbatim auto-captions of the full meeting</td><td>Only ~29 meetings are on YouTube (2017–2026, mostly 2025–26). All ingested.</td></tr>
+      <tr><td>Granicus/IQM2 video archive</td><td>HLS video of every meeting</td><td>No caption/transcript track exposed; <code>video_url</code> empty in dataset. Not ingested.</td></tr>
+    </table>
+    <h3>Open question for user</h3>
+    <ul>
+      <li>Full verbatim transcripts for all ~440 meetings would require transcribing the Granicus audio ourselves (~1,500 hours). Local Whisper is impractical; a speech-to-text API (cost + another key) would work as a batch job. Not started — needs a decision.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1315">
+    <header>
+      <time>2026-10-17 13:15</time>
+      <h2>Icons &amp; chrome restyled to match america.gov</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "make the icons etc look more like america.gov". Inspected america.gov (WebFetch, Chrome MCP was down): icons are solid-filled Material-style SVG paths (the location icon is Material <code>my_location</code>, the plus is Material <code>add</code>) in near-black navy <code>#000C1F</code>; red accent <code>#D80007</code>; cards use ~4px corners with a large soft shadow; no emoji anywhere.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>public/index.html</code> — all emoji (🎉 🅿️ 🛋️ 🏪 🔨 🛣️ 🎤 ➤ ✅ 📊 🎙️ 🔇 ✕) replaced with an inline <code>&lt;svg&gt;&lt;symbol&gt;</code> sprite of Material Icons paths (<code>event, local_parking, weekend, store, build, report_problem, mic, mic_off, send, check_circle, bar_chart, assignment, close</code>) referenced via <code>&lt;use href="#i-…"&gt;</code>; tile icons sit in a 36px navy square chip; palette shifted to america.gov navy (<code>--ink:#000C1F</code>, <code>--blue-2:#0b2340</code>) and red flag stripe <code>#D80007</code>; corner radii tightened (tiles 6px, bubbles 8px, composer 8px, panel 8px).</li>
+      <li><code>public/icon.svg</code> — flat navy rounded-square mark with a white Material <code>location_city</code> glyph and a red base stripe, replacing the sun/wave illustration.</li>
+      <li><code>public/manifest.webmanifest</code> — theme/background color to navy.</li>
+    </ul>
+    <h3>Approach</h3>
+    <ul>
+      <li>No icon library dependency: 13 Material path strings inline as symbols (~2 KB). <code>fill="currentColor"</code> so dark mode inherits <code>--ink</code>.</li>
+      <li>Voice-mode mute button swaps <code>&lt;use href&gt;</code> between <code>#i-mic</code> and <code>#i-micoff</code> instead of swapping emoji text.</li>
+    </ul>
+    <h3>Acceptance</h3>
+    <ul><li>No emoji in <code>public/index.html</code>; <code>grep -P '[\x{1F300}-\x{1FAFF}\x{2600}-\x{27BF}]'</code> returns nothing. Page renders in light + dark; mute toggle still works.</li>
+      <li><b>Verified:</b> emoji grep returns 0; inline script passes <code>node --check</code>; mute toggle swaps <code>use[href]</code>. <b>Not verified:</b> visual render — both Chrome DevTools MCP servers were unreachable this session (browser lock / port 9223 refused).</li></ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1240">
+    <header>
+      <time>2026-10-17 12:40</time>
+      <h2>Voice mode: ChatGPT-style full-screen voice conversation</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "microphone should be like the gpt voice talk feature and look like it". Tapping 🎤 now opens a full-screen voice overlay instead of dictating into the textarea: a large glowing orb that swells with mic level while listening, morphs while thinking, pulses while the reply is spoken aloud. Hands-free loop: listen → send → speak reply → listen again, until the user taps ✕. Mute button pauses listening.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>public/index.html</code> — new <code>.voice</code> overlay CSS + markup (<code>#voice</code>, <code>#orb</code>, <code>#vstate</code>, <code>#vtext</code>, <code>#vmute</code>, <code>#vend</code>); <code>form.onsubmit</code> body extracted into <code>send(text)</code> which returns the bot bubble so voice mode can read its plain <code>textContent</code> for TTS; voice block replaces the old inline SpeechRecognition snippet.</li>
+    </ul>
+    <h3>Approach</h3>
+    <ul>
+      <li>STT: native <code>SpeechRecognition</code> (hidden if unsupported, as before). TTS: native <code>speechSynthesis</code>. Orb level: <code>getUserMedia</code> + <code>AnalyserNode</code> RMS → <code>transform:scale()</code>. No dependencies, no server change.</li>
+      <li>States live on <code>#voice[data-state]</code> = listening | thinking | speaking; CSS keys animations off it.</li>
+    </ul>
+    <p><b>Verify.</b> Inline script extracted and passes <code>node --check</code>. Browser check pending by user (Chrome MCP still locked by another session). Known limits: TTS uses the OS default voice; recognition quality depends on the browser's engine (Chrome/Safari); muting mid-reply lets the reply finish, then shows "Muted".</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1210">
+    <header>
+      <time>2026-10-17 12:10</time>
+      <h2>Header restyled to look like a .gov site (America.gov / USWDS banner)</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User asked for the blue gradient banner to look "more like America.gov". Swapped it for the recognisable USWDS pattern: thin "An official website of the City of Santa Monica" strip with a small CSS flag, then a white masthead with a navy bottom rule, navy title, circular seal, and a solid navy rectangular button.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>public/index.html</code> — CSS for <code>header</code>, new <code>.govbar</code> / <code>.flag</code>, <code>.hrow</code>, <code>.hbtn</code>; markup adds the govbar div and drops the 📋 emoji from the button. Theme vars unchanged, so dark mode still works (<code>--card</code> masthead, <code>--me</code> strip).</li>
+    </ul>
+    <p><b>Verify.</b> Automated screenshot was not possible (all Chrome MCP instances failed to attach: a Chrome owned by another session holds the MCP profile lock, pid 4599). Server serves <code>public/</code> per request, so a browser reload shows the new header; user eyeballs light + dark.</p>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1130">
     <header>
       <time>2026-10-17 11:30</time>

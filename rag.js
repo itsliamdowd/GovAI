@@ -101,7 +101,13 @@ export async function buildIndex() {
     datasetCount: datasets.length,
     catalogSummary: datasets.map((d) => `- ${d.title} (${d.modified})`).join("\n"),
     search(query, k = 6) { return index.search(query, k, (d) => d.kind !== "council_meeting").map(strip); },
-    searchCouncil(query, k = 6, year = "") { return index.search(query, k, (d) => d.kind === "council_meeting" && (!year || d.meeting_date.startsWith(year))).map(strip); },
+    searchCouncil(query, k = 8, year = "", doc = "") {
+      const want = (d) => d.kind === "council_meeting" && (!year || d.meeting_date.startsWith(year)) && (!doc || d.doc === doc);
+      if (doc) return index.search(query, k, want).map(strip);
+      // no doc filter: balance the official record (agenda/minutes) against spoken transcript excerpts
+      const half = Math.ceil(k / 2);
+      return [...index.search(query, half, (d) => want(d) && d.doc !== "transcript"), ...index.search(query, k - half, (d) => want(d) && d.doc === "transcript")].map(strip);
+    },
     addDocs(more) { docs.push(...more); index = new BM25(docs); }, // ponytail: full rebuild, fine for <100k docs
   };
 }

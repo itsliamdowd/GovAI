@@ -5,6 +5,7 @@ import crypto from "node:crypto";
 import Anthropic from "@anthropic-ai/sdk";
 import { buildIndex, queryDataset } from "./rag.js";
 import { ingestCouncil } from "./council.js";
+import { ingestTranscripts } from "./transcripts.js";
 
 const PORT = Number(process.env.PORT) || 8787;
 const APPS_FILE = "./data/applications.json";
@@ -12,9 +13,11 @@ const client = new Anthropic(); // ANTHROPIC_API_KEY from .env (npm start loads 
 
 const rag = await buildIndex();
 console.log(`RAG index ready: ${rag.datasetCount} open datasets indexed`);
-let council = { ready: false, ingested: [], upcoming: [] };
-ingestCouncil((docs, meta) => { rag.addDocs(docs); council = { ready: true, ...meta }; console.log(`Council: ${meta.ingested.length} meetings, ${docs.length} chunks indexed`); })
+let council = { ready: false, ingested: [], upcoming: [], transcripts: 0 };
+ingestCouncil((docs, meta) => { rag.addDocs(docs); council = { ...council, ready: true, ...meta }; console.log(`Council: ${meta.ingested.length} meetings (agendas+minutes), ${docs.length} chunks indexed`); })
   .catch((e) => console.error("council ingestion failed:", e.message));
+ingestTranscripts((docs, videos) => { rag.addDocs(docs); council.transcripts = videos.filter((v) => docs.some((d) => d.url.includes(v.id))).length; console.log(`Transcripts: ${council.transcripts} meetings, ${docs.length} chunks indexed`); })
+  .catch((e) => console.error("transcript ingestion failed (is yt-dlp installed?):", e.message));
 
 const SYSTEM = `You are the City of Santa Monica's digital assistant: one front door to every city service, like america.gov but for a city.
 
@@ -26,7 +29,7 @@ What you do
 How you find answers (retrieval first, always)
 1. Call search_city_knowledge with the resident's question before answering anything factual. It returns the most relevant city knowledge chunks AND matching open datasets (with resource_ids and field names).
 2. If a dataset can answer (fees, active permits, business licenses, police/fire calls, rents, parking rates, trees, EV chargers, budget, campaign finance, water, etc.), call query_dataset with the resource_id and a full-text q or filters, then answer from the rows. Cite the dataset by title with its URL.
-3. For anything about City Council: what was decided, who voted how, what's on an agenda, what a councilmember said, upcoming meetings — call search_council_meetings. It searches agendas and official minutes (the record of the meeting) and returns dated excerpts with links. Quote dates and cite the agenda/minutes link.
+3. For anything about City Council: what was decided, who voted how, what's on an agenda, what a councilmember or speaker actually said, upcoming meetings — call search_council_meetings. It searches agendas, official minutes (the record of the meeting, back to 2015) and meeting transcripts (YouTube captions, recent years) and returns dated excerpts with links. Use doc="minutes" for votes/decisions, doc="transcript" for quotes/what was said, empty for both. Quote dates; cite the minutes link or the timestamped video link. Transcripts are auto-captions and may misspell names.
 4. For anything time-sensitive the index doesn't cover (news, closures, current officeholders, meeting agendas, exact current hours), use web_search on santamonica.gov. Link the page.
 5. Never invent fees, phone numbers, addresses or legal requirements. If you can't verify, say so and point to 311 ((310) 458-8411 / 311@santamonica.gov) or the owning department.
 
@@ -64,22 +67,23 @@ const tools = [
         q: { type: "string", description: "Full-text search terms, or empty string." },
         filters: { type: "string", description: "JSON object of exact matches, or empty string." },
         sort: { type: "string", description: "e.g. \"fee desc\", or empty string." },
-        limit: { type: "integer", minimum: 1, maximum: 100 },
+        limit: { type: "integer", description: "Rows to return, 1-100." },
       },
       required: ["resource_id", "q", "filters", "sort", "limit"], additionalProperties: false,
     },
   },
   {
     name: "search_council_meetings",
-    description: "Search Santa Monica City Council agendas and official minutes (recent meetings, pulled from the city's Agendas & Minutes data and IQM2). Returns dated excerpts with links plus upcoming meeting dates. Use for votes, decisions, agenda items, public hearings, what council discussed.",
+    description: "Search Santa Monica City Council agendas, official minutes (2015-present) and meeting transcripts (YouTube captions). Returns dated excerpts with links (minutes PDF, agenda page, or timestamped video) plus upcoming meeting dates. Use for votes, decisions, agenda items, public hearings, what council or public speakers said.",
     strict: true,
     input_schema: {
       type: "object",
       properties: {
         query: { type: "string" },
         year: { type: "string", description: "Optional 4-digit year to restrict to, or empty string." },
+        doc: { type: "string", enum: ["", "agenda", "minutes", "transcript"], description: "Restrict to one record type, or empty string for a mix." },
       },
-      required: ["query", "year"], additionalProperties: false,
+      required: ["query", "year", "doc"], additionalProperties: false,
     },
   },
   {
@@ -150,10 +154,10 @@ export function checkStatus(id) { return loadApps()[id.trim().toUpperCase()] ?? 
 const runTool = {
   search_city_knowledge: async ({ query }) => JSON.stringify(rag.search(query)),
   query_dataset: async (input) => JSON.stringify(await queryDataset(input)),
-  search_council_meetings: async ({ query, year }) => JSON.stringify({
-    status: council.ready ? `indexed ${council.ingested.length} recent meetings (${council.ingested.at(-1)?.date} to ${council.ingested[0]?.date})` : "council records still loading; try again shortly or use web_search",
+  search_council_meetings: async ({ query, year, doc }) => JSON.stringify({
+    status: council.ready ? `indexed ${council.ingested.length} meetings' agendas/minutes (${council.ingested.at(-1)?.date} to ${council.ingested[0]?.date}) and ${council.transcripts} transcripts` : "council records still loading; try again shortly or use web_search",
     upcoming: council.upcoming.map((m) => ({ date: m.date, time: m.time, agenda: m.agenda_url })),
-    excerpts: rag.searchCouncil(query, 6, year),
+    excerpts: rag.searchCouncil(query, 8, year, doc),
   }),
   submit_application: async (input) => JSON.stringify(submitApplication(input)),
   check_application_status: async ({ confirmation_number }) => JSON.stringify(checkStatus(confirmation_number)),

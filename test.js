@@ -28,5 +28,16 @@ assert.ok(docs.filter((d) => d.doc === "minutes").length >= 2, "long minutes sho
 rag.addDocs(docs);
 assert.equal(rag.searchCouncil("call to order", 3)[0]?.meeting_date, "2026-09-08");
 assert.ok(rag.search("call to order").every((d) => d.kind !== "council_meeting"), "council docs must not leak into general search");
+const T = await import("./transcripts.js");
+assert.equal(T.dateFromTitle("Santa Monica City Council Meeting February 10, 2026 (with captions)"), "2026-02-10");
+assert.equal(T.dateFromTitle("City Council Meeting Sept. 9, 2025"), "2025-09-09");
+assert.equal(T.dateFromTitle("Santa Monica City Council October 28th, 2025"), "2025-10-28");
+const segs = T.vttToSegments("WEBVTT\n\n00:00:01.000 --> 00:00:02.000 align:start\n \nHello<00:00:01.500><c> there</c>\n\n00:00:02.000 --> 00:00:03.000\nHello there\n \n\n00:00:03.000 --> 00:00:04.000\nHello there\nnext<c> line</c>\n");
+assert.deepEqual(segs.map((s) => s.text), ["Hello there", "next line"], "VTT rolling cues should dedupe");
+const tdocs = T.toDocs({ id: "abc", date: "2026-02-10", segments: Array.from({ length: 400 }, (_, i) => ({ t: i * 5, text: "word ".repeat(10) })) });
+assert.ok(tdocs.length >= 2 && tdocs[0].url === "https://www.youtube.com/watch?v=abc&t=0s" && tdocs[1].url.includes("&t="), "transcript chunks carry timestamped links");
+rag.addDocs(tdocs);
+assert.ok(rag.searchCouncil("word", 8, "", "transcript").every((d) => d.doc === "transcript"));
+assert.ok(rag.searchCouncil("call to order", 8, "", "minutes").every((d) => d.doc === "minutes"));
 console.log(`ok (${rag.datasetCount} datasets indexed)`);
 process.exit(0);

@@ -11,7 +11,7 @@ import { ckan } from "./rag.js";
 
 const RESOURCE = "40013cb9-7b56-4059-a7eb-5de5a26f8bac"; // Agendas & Minutes datastore
 const DIR = "./data/council";
-const LIMIT = Number(process.env.COUNCIL_MEETINGS) || 30; // most recent past meetings to ingest
+const LIMIT = Number(process.env.COUNCIL_MEETINGS) || 1000; // past meetings to ingest (default: all, back to 2015)
 const UA = { "User-Agent": "Mozilla/5.0 (SantaMonicaAssistant)" };
 const run = promisify(execFile);
 
