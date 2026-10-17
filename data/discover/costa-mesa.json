@@ -1,0 +1,30 @@
+{
+ "id": "costa-mesa",
+ "probed_at": "2026-10-17T21:09:58.345Z",
+ "site": null,
+ "legistar": {
+  "client": "costamesa",
+  "bodies": [
+   "REGULAR CITY COUNCIL AND HOUSING AUTHORITY*",
+   "PLANNING COMMISSION",
+   "PARKS, ARTS, & COMMUNITY SERVICES COMMISSION"
+  ]
+ },
+ "granicus": {
+  "host": "costamesa.granicus.com",
+  "views": [
+   {
+    "view_id": 4,
+    "title": "City of Costa Mesa: Original Programs (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCttmVrEQT27ffVwRG3Wp_5Q",
+   "channel": "City of Costa Mesa",
+   "example": "Costa Mesa City Council Meeting July 15, 2025"
+  }
+ ]
+}

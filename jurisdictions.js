@@ -31,7 +31,7 @@ const SANTA_MONICA = {
     caltrans: "07", camsBox: [-118.54, 33.99, -118.43, 34.06], camsName: "I-10 and PCH",
     placesName: "Santa Monica", censusPlace: "70000", censusName: "Santa_Monica_city,_California",
   },
-  forms: ["block_party_permit", "preferential_parking_permit", "bulky_item_pickup", "business_license", "dog_license", "community_event_permit", "311_service_request"],
+  forms: ["block_party_permit", "preferential_parking_permit", "bulky_item_pickup", "business_license", "dog_license", "community_event_permit", "311_service_request", "council_comment"],
   routing: {
     building_permit: ["Building & Safety, Permit Services Center", "Plan check assignment within 2 business days; simple trade permits often issue same day."],
     business_license: ["Finance, Business License Office", "Review within 5 business days; you'll receive a tax bill before the license issues."],
@@ -47,6 +47,7 @@ const SANTA_MONICA = {
     alarm_permit: ["SMPD Alarm Unit", "Issued within 5 business days."],
     bulky_item_pickup: ["Public Works, Resource Recovery & Recycling", "Collection within 7–10 days; set items at the curb the night before."],
     "311_service_request": ["Santa Monica 311", "Routed to the responsible division; most requests acknowledged within 2 business days."],
+    council_comment: ["City Clerk's Office", "Forwarded to the Council and added to the record for the meeting you chose. Your confirmation number is your receipt."],
     other: ["Santa Monica 311", "311 staff will route to the correct department within 2 business days."],
   },
 };

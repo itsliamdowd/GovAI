@@ -1,0 +1,57 @@
+{
+ "id": "azusa",
+ "probed_at": "2026-10-17T20:57:04.769Z",
+ "site": {
+  "url": "https://www.azusaca.gov/",
+  "title": "Azusa, CA - Official Website | Official Website"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "azusa.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "Azusa, CA: New View (Agenda Feed)"
+   },
+   {
+    "view_id": 3,
+    "title": "Azusa, CA: Azusa View (Agenda Feed)"
+   },
+   {
+    "view_id": 5,
+    "title": "Azusa, CA: View 2015 (Agenda Feed)"
+   },
+   {
+    "view_id": 6,
+    "title": "Azusa, CA: 2026 Viewpage (Agenda Feed)"
+   },
+   {
+    "view_id": 7,
+    "title": "Azusa, CA: Training Videos (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UC__9XVRmwnZT03jDXvUAeRg",
+   "channel": "Citizen Azusa",
+   "example": "City Council Meeting - May 16, 2022."
+  },
+  {
+   "id": "UC7Gf1Tk50Kgwe3SO96Qz69Q",
+   "channel": "Sabrina Bow, Councilwoman for City of Azusa",
+   "example": "Sabrina Bow :: Vision for Azusa 2024"
+  },
+  {
+   "id": "UCPdqvEWDMxM_CosX79n9RAQ",
+   "channel": "Philip Campa for Azusa City Council",
+   "example": "Philip Campa - Closing Remarks at the Candidate Forum"
+  },
+  {
+   "id": "UC8Px9JAdDLT6x79uyi_B5mA",
+   "channel": "Foothill Community Network",
+   "example": "Foothill Community Network Ep 4  - 2022 Azusa City Council Candidates Forum 10/11/22"
+  }
+ ]
+}

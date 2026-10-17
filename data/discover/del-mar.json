@@ -1,0 +1,33 @@
+{
+ "id": "del-mar",
+ "probed_at": "2026-10-17T21:07:19.939Z",
+ "site": {
+  "url": "https://www.delmar.ca.us/",
+  "title": "Del Mar, CA - Official Website | Official Website"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCMscWako8oDvpdF4pppku-g",
+   "channel": "CBS 8 San Diego",
+   "example": "Del Mar City Council approves revised Senate Bill 9 housing ordinance"
+  },
+  {
+   "id": "UCQv44qD9R5Ae6Z3iUeZm7iQ",
+   "channel": "ABC 10 News",
+   "example": "Del Mar City Council to discuss issues including possible straw ban"
+  },
+  {
+   "id": "UCRmLhQzg5jYAOpNKVK5d8GA",
+   "channel": "LWVNCSD",
+   "example": "Del Mar City Council Candidate Forum | LWVNCSD"
+  },
+  {
+   "id": "UCFjZ9Dlg2AskI_gI-vUD-ig",
+   "channel": "Camlin Ciullo",
+   "example": "City of Del Mar Proclamation for Ivan Gayler Nature and Culture International"
+  }
+ ]
+}

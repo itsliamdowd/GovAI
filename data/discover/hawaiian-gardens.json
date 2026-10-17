@@ -1,0 +1,20 @@
+{
+ "id": "hawaiian-gardens",
+ "probed_at": "2026-10-17T21:04:37.646Z",
+ "site": null,
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCJwb2cnPmwML8jXtYf0QtHg",
+   "channel": "Hawaiian Gardens Meetings",
+   "example": "City Council"
+  },
+  {
+   "id": "UC4PqcvA2N0OexwnMbcUQ24A",
+   "channel": "Brian Hews",
+   "example": "Your City Tv: Hawaiian Gardens City Council Meeting gets out of hand"
+  }
+ ]
+}

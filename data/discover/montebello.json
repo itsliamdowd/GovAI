@@ -1,0 +1,18 @@
+{
+ "id": "montebello",
+ "probed_at": "2026-10-17T20:52:52.744Z",
+ "site": {
+  "url": "https://www.montebelloca.gov/",
+  "title": "Home - City of Montebello"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UC8fqZ2c0yKiFhqlDiw6nI6w",
+   "channel": "City of Montebello - Government",
+   "example": "This Is the City of Montebello City Council Meeting (6/24/26)"
+  }
+ ]
+}

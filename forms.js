@@ -95,6 +95,19 @@ export const FORMS = {
       ...contact,
     ],
   },
+  council_comment: {
+    title: "Public Comment to City Council",
+    intro: "Written public comment is forwarded to the City Clerk and the Council and entered into the record for the meeting you pick. Check the agenda for the deadline; speaking at the meeting is separate.",
+    source: "https://www.santamonica.gov/city-council",
+    fields: [
+      { key: "meeting", label: "Which meeting?", type: "select", options: [] }, // options = the jurisdiction's upcoming meetings, filled by server.js withMeetings()
+      { key: "agenda_item", label: "Agenda item number or topic", type: "text", optional: true, placeholder: "e.g. Item 7A, pier parking rates", hint: "Leave blank for general public comment on something not on the agenda." },
+      { key: "position", label: "Your position", type: "select", options: ["Support", "Oppose", "Neutral / information only"] },
+      { key: "comment", label: "Your comment", type: "textarea", hint: "Entered into the public record as written. About 250 words reads in two minutes." },
+      { key: "address", label: "Street address or neighborhood", type: "text", optional: true, hint: "Optional. Tells the Council which part of the city is speaking." },
+      ...contact,
+    ],
+  },
   "311_service_request": {
     title: "311 Service Request",
     intro: "Routed to the responsible city division; most requests are acknowledged within 2 business days. Emergencies: call 911.",
@@ -125,6 +138,7 @@ const GENERIC = {
   dog_license: { intro: "Annual dog license from the city or its animal-services provider. A current rabies vaccination certificate is required; fees depend on spay/neuter status.", fields: { altered: { options: ["Yes", "No"] } } },
   community_event_permit: { intro: "For larger public events, street closures or temporary structures. Most cities want 30–60 days' notice and police/fire sign-off.", fields: {} },
   "311_service_request": { title: "Service Request", intro: "Routed to the responsible department. Emergencies: call 911.", fields: {} },
+  council_comment: { title: "Public Comment", intro: "Written comment is forwarded to the clerk and the council or board for the meeting you pick and entered into its record.", fields: {} },
 };
 export function formFor(type, j) {
   const f = FORMS[type]; if (!f) return null;
@@ -143,8 +157,8 @@ export function toApplication(type, fields = {}, j = null) {
   const used = new Set(["applicant_name", "email", "phone"]);
   const pick = (...keys) => { for (const k of keys) if (v(k)) { used.add(k); return v(k); } return ""; };
   const address = pick("address", "street_block", "business_address");
-  const requested_date = pick("event_date", "start_date");
-  const headline = pick("event_name", "business_name", "dog_name", "category", "items", "permit_kind");
+  const requested_date = pick("event_date", "start_date") || (v("meeting").match(/\d{4}-\d{2}-\d{2}/)?.[0] ?? ""); // council_comment: the meeting's date
+  const headline = pick("event_name", "business_name", "dog_name", "category", "items", "permit_kind", "meeting");
   const details = f.fields.filter((x) => !used.has(x.key) && v(x.key)).map((x) => `${x.label}: ${v(x.key)}`).join("\n");
   return { type, applicant_name: v("applicant_name"), email: v("email"), phone: v("phone"), address, requested_date,
     summary: headline ? `${f.title} - ${headline.split("\n")[0].slice(0, 80)}` : f.title, details };

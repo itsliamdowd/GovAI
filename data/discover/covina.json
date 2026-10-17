@@ -1,0 +1,23 @@
+{
+ "id": "covina",
+ "probed_at": "2026-10-17T20:55:37.497Z",
+ "site": {
+  "url": "https://covinaca.gov/",
+  "title": "Covina &#8211; The City of Covina provides responsive municipal services and manages public resources to enhance the quality of life for our community."
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCkH1uDkyuO9sVjSqdqBygOg",
+   "channel": "CBS LA",
+   "example": "Covina residents voice concerns of proposed battery storage facility"
+  },
+  {
+   "id": "UCB6garANBTuHBkXFXBRw4RA",
+   "channel": "West Covina City",
+   "example": "The City of West Covina - July 21, 2026 - City Council Meeting"
+  }
+ ]
+}

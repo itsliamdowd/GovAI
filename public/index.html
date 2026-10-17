@@ -46,7 +46,7 @@
   .dots { display:inline-flex; gap:4px } .dots i { width:5px; height:5px; border-radius:50%; background:var(--muted); animation:b 1s infinite } .dots i:nth-child(2){animation-delay:.15s} .dots i:nth-child(3){animation-delay:.3s}
   @keyframes b { 0%,80%,100% { opacity:.25 } 40% { opacity:1 } }
   /* action row under a reply: Sources pill, thumbs, copy */
-  .acts { display:flex; gap:6px; margin:14px 0 0; flex-wrap:wrap; align-items:center } .fbnote { color:var(--muted); font-size:12.5px; margin-left:4px }
+  .acts { display:flex; gap:6px; margin:6px 0 20px; flex-wrap:wrap; align-items:center } .fbnote { color:var(--muted); font-size:12.5px; margin-left:4px }
   .pill { display:inline-flex; align-items:center; gap:8px; background:transparent; border:1px solid var(--line); border-radius:999px; padding:0 12px; height:34px; color:var(--ink); font-size:13px; cursor:pointer; transition:background .12s }
   .pill:hover { background:var(--pill) } .pill.icons { padding:0 2px; gap:0; border-color:transparent } .pill.icons button { background:none; border:0; color:var(--muted); width:30px; height:30px; border-radius:50%; cursor:pointer; display:grid; place-items:center } .pill.icons button:hover,.pill.icons button.on { background:var(--pill); color:var(--ink) }
   .pill svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round }
@@ -81,6 +81,17 @@
   .form .check { width:52px; height:52px; border-radius:50%; background:var(--ok); color:var(--ok-bg); display:grid; place-items:center; font-size:28px; font-weight:700; margin:2px auto 8px; animation:pop .35s ease-out }
   .error { color:var(--err); font-size:14px }
   /* council video moment: thumbnail → player at the cited second */
+  /* data cards: live conditions, property, stats, next meeting */
+  .dc { border:1px solid var(--line); background:var(--pill); border-radius:14px; padding:14px 16px; margin:12px 0; max-width:480px }
+  .dc .hd { display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:10px } .dc .hd b { font-size:15px } .dc .hd small { color:var(--muted); font-size:12px }
+  .dc .big { font-size:34px; font-weight:600; line-height:1; letter-spacing:-.02em } .dc .sub { color:var(--muted); font-size:13px; margin-top:4px }
+  .dc .row { display:flex; gap:8px; overflow-x:auto; margin-top:10px; padding-bottom:2px } .dc .cell { flex:1 0 76px; background:var(--bg); border:1px solid var(--line); border-radius:10px; padding:8px; text-align:center; font-size:12px; color:var(--muted) } .dc .cell b { display:block; color:var(--ink); font-size:16px; margin:2px 0 }
+  .dc .kv { display:grid; grid-template-columns:1fr 1fr; gap:6px 14px; font-size:13.5px; margin-top:6px } .dc .kv div { display:flex; justify-content:space-between; gap:8px; border-bottom:1px solid var(--line); padding:5px 0 } .dc .kv span { color:var(--muted) } .dc .kv b { font-weight:500; text-align:right }
+  .dc .list { display:grid; gap:6px; margin-top:6px; font-size:13.5px } .dc .list div { display:flex; align-items:center; gap:10px } .dc .list .t { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap } .dc .list small { color:var(--muted) }
+  .dc .badge { display:inline-grid; place-items:center; min-width:34px; height:28px; padding:0 8px; border-radius:8px; font-weight:600; font-size:13px; color:#0b0e13 }
+  .dc .alert { background:#3a1316; color:#fca5a5; border-radius:8px; padding:6px 10px; font-size:13px; margin-top:8px }
+  .dc .cams { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px } .dc .cams a { display:block; border-radius:8px; overflow:hidden; background:#000; position:relative } .dc .cams img { width:100%; aspect-ratio:4/3; object-fit:cover; display:block } .dc .cams span { position:absolute; left:0; right:0; bottom:0; padding:4px 6px; font-size:11px; background:rgba(0,0,0,.65); color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+  .dc .cta { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px } .dc .cta a,.dc .cta button { display:inline-flex; align-items:center; gap:6px; border:1px solid var(--line); background:var(--bg); color:var(--ink); border-radius:999px; padding:7px 13px; font:inherit; font-size:13px; text-decoration:none; cursor:pointer } .dc .cta a:hover,.dc .cta button:hover { border-color:var(--blue) }
   .clip { border:1px solid var(--line); border-radius:14px; margin:12px 0; max-width:480px; overflow:hidden; background:var(--pill) }
   .clip .thumb { position:relative; aspect-ratio:16/9; background:#000 center/cover no-repeat; cursor:pointer; display:grid; place-items:center }
   .clip .thumb::after { content:"▶"; width:44px; height:44px; border-radius:50%; background:rgba(0,0,0,.6); color:#fff; display:grid; place-items:center; font-size:16px; padding-left:3px; transition:background .12s }
@@ -114,7 +125,10 @@
   .panel .empty { color:var(--muted); font-size:14px }
   .panel .watch { display:grid; gap:8px; margin:4px 0 2px } .panel .watch input { width:100%; background:var(--bg); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:10px 12px; font:inherit; font-size:14px; outline:none } .panel .watch input:focus { border-color:var(--blue-2) }
   .panel .watch .hint { color:var(--muted); font-size:13px; line-height:1.45; margin:0 0 4px } .panel .watch .go { width:100%; background:var(--blue); color:#fff; border:0; border-radius:999px; height:40px; padding:0 16px; font:inherit; font-size:14px; font-weight:500; cursor:pointer } .panel .watch .go:hover { background:var(--blue-2) } .panel .watch .go:disabled { opacity:.5 }
+  #appsList:has(.editapp) .app:not(:has(.editapp)) { display:none } /* editing one application: the others leave until Cancel/Save re-renders the list */
+  .panel .app .editapp label { margin-top:14px } .panel .app .editapp label:first-of-type { margin-top:6px } .panel .app .editapp :is(input,textarea) { padding:12px 14px }
   .panel .app.watching { border-color:#2b3a55; background:#0f1626 } .panel .app.watching b { font-family:inherit; font-size:15px } .panel .app.watching .st { color:var(--info); background:var(--info-bg) } .panel .app .stop,.panel .app .edit { margin-top:8px; background:transparent; color:var(--ink); border:1px solid var(--line); border-radius:999px; height:30px; padding:0 12px; font:inherit; font-size:12.5px; cursor:pointer } .panel .app .stop:hover { border-color:var(--err); color:var(--err) }
+  .panel .app.canceled { opacity:.6 } .panel .app .st.canceled { color:var(--muted); background:var(--pill) }
   .panel .app .stop { display:inline-block; margin:8px 6px 0 0; background:transparent; border:1px solid var(--line); border-radius:999px; padding:4px 12px; font:inherit; font-size:12px; color:var(--ink); cursor:pointer } .panel .app .stop:hover { border-color:var(--err); color:var(--err) }
   .panel .app .edit { display:block; margin-top:8px; background:transparent; border:1px solid var(--line); border-radius:999px; padding:4px 12px; font:inherit; font-size:12px; color:var(--ink); cursor:pointer } .panel .app .edit:hover { border-color:var(--blue) }
   .panel .close { margin-top:14px; width:100%; padding:12px; border:1px solid var(--line); border-radius:999px; background:transparent; color:var(--ink); font:inherit; font-size:14px; font-weight:500; cursor:pointer } .panel .close:hover { background:var(--pill) }
@@ -240,7 +254,7 @@ const ICONS = {
   up: '<svg viewBox="0 0 24 24"><path d="M7 11v10H3V11zM7 11l4-8a2.5 2.5 0 0 1 2.5 2.5V9H19a2 2 0 0 1 2 2.3l-1.2 7A2 2 0 0 1 17.8 20H7"/></svg>',
   down: '<svg viewBox="0 0 24 24"><path d="M17 13V3h4v10zM17 13l-4 8a2.5 2.5 0 0 1-2.5-2.5V15H5a2 2 0 0 1-2-2.3l1.2-7A2 2 0 0 1 6.2 4H17"/></svg>',
   copy: '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg>',
-  send: '<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+  send: '<svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg>',
   stop: '<svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="3"/></svg>',
   check: '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
 };
@@ -374,7 +388,7 @@ const renderApps = () => {
   $("appsN").textContent = nA ? nA : ""; $("watchN").textContent = nW ? nW : "";
   const watchCard = (a, i) => `<div class="app watching" data-i="${i}"><span class="st">Alert on</span><b>${esc(a.topic || a.summary)}</b>${a.address ? `<br>${esc(a.address)}` : ""}<br><small style="color:var(--muted)">Checked every morning · emails ${esc(a.email || "you")} when something changes · ${esc(a.confirmation_number)}</small><br><button type="button" class="stop">Stop alerts</button></div>`;
   $("watchList").innerHTML = nW ? apps.map((a, i) => isWatch(a) ? watchCard(a, i) : "").join("") : `<p class="empty">No alerts yet.</p>`;
-  $("appsList").innerHTML = nA ? apps.map((a, i) => isWatch(a) ? "" : `<div class="app" data-i="${i}"><span class="st">${esc(String(a.status).replace(/_/g, " "))}</span><b>${esc(a.confirmation_number)}</b><br>${esc(a.summary)}<br><small style="color:var(--muted)">${esc(a.department)} · ${new Date(a.submitted_at).toLocaleDateString()}</small>${a.staff_note ? `<small style="display:block;margin-top:4px">📝 ${esc(a.department)}: ${esc(a.staff_note)}</small>` : ""}${a.type && a.status === "received" ? `<br><button type="button" class="edit">Edit application</button>` : ""}</div>`).join("") : `<p class="empty">Nothing filed yet. Ask me to apply for a permit or report an issue and it will show up here.</p>`;
+  $("appsList").innerHTML = nA ? apps.map((a, i) => isWatch(a) ? "" : `<div class="app ${a.status === "canceled" ? "canceled" : ""}" data-i="${i}"><span class="st ${a.status === "canceled" ? "canceled" : ""}">${esc(String(a.status).replace(/_/g, " "))}</span><b>${esc(a.confirmation_number)}</b><br>${esc(a.summary)}<br><small style="color:var(--muted)">${esc(a.department)} · ${new Date(a.submitted_at).toLocaleDateString()}</small>${a.staff_note ? `<small style="display:block;margin-top:4px">📝 ${esc(a.department)}: ${esc(a.staff_note)}</small>` : ""}${a.type && a.status === "received" ? `<br><button type="button" class="edit">Edit application</button>` : ""}${a.type && ["received", "in_review", "needs_info"].includes(a.status) ? `<button type="button" class="stop cancelapp">Cancel application</button>` : ""}</div>`).join("") : `<p class="empty">Nothing filed yet. Ask me to apply for a permit or report an issue and it will show up here.</p>`;
 };
 
 const saveApps = () => { try { localStorage.setItem("sm_apps", JSON.stringify(apps)); } catch {} };
@@ -383,17 +397,30 @@ async function syncApps() {
   apps = await Promise.all(apps.map(async (a) => { if (!a.type) return a; try { const r = await fetch(`/api/applications/${encodeURIComponent(a.confirmation_number)}`); return r.ok ? { ...a, ...(await r.json()) } : a; } catch { return a; } }));
   saveApps(); renderApps();
 }
-function editApp(i) {
+async function editApp(i) {
   const a = apps[i], box = $("appsList").querySelector(`.app[data-i="${i}"]`);
   const f = (k, label, type = "text") => `<label>${label}</label><input name="${k}" type="${type}" value="${esc(a[k] ?? "")}">`;
-  box.innerHTML = `<form class="form" style="margin:0;max-width:none;animation:none"><h3>Edit ${esc(a.confirmation_number)}</h3><p class="sub">${esc(a.summary)}. You can change these until ${esc(a.department)} starts reviewing.</p>
-    ${f("applicant_name", "Full name")}${f("phone", "Phone", "tel")}${f("address", "Address")}${f("requested_date", "Requested date", "date")}<label>Details</label><textarea name="details">${esc(a.details ?? "")}</textarea>
+  // "Details" is stored as "Label: value" lines (forms.js toApplication). Show each line as the card's own question again;
+  // lines that don't match a question (chat-filed apps, staff edits) stay as free text.
+  const def = a.type ? await fetch(`/api/forms/${encodeURIComponent(a.type)}?jur=${encodeURIComponent(a.jur ?? "")}`).then((r) => r.ok ? r.json() : null).catch(() => null) : null;
+  const lines = (a.details ?? "").split("\n").filter(Boolean), val = (x) => lines.find((l) => l.startsWith(x.label + ": "))?.slice(x.label.length + 2);
+  const qs = (def?.fields ?? []).filter((x) => val(x) != null), rest = lines.filter((l) => !qs.some((x) => l.startsWith(x.label + ": ")));
+  const q = (x) => { const v = val(x), n = "q:" + x.label, L = `<label>${esc(x.label)}</label>`;
+    if (x.type === "select" && x.options.length <= 4) return `${L}<div class="choices">${x.options.map((o) => `<button type="button"${o === v ? ' class="on"' : ""}>${esc(o)}</button>`).join("")}<input type="hidden" name="${esc(n)}" value="${esc(v)}"></div>`;
+    if (x.type === "select") return `${L}<select name="${esc(n)}">${x.options.map((o) => `<option${o === v ? " selected" : ""}>${esc(o)}</option>`).join("")}</select>`;
+    if (x.type === "textarea") return `${L}<textarea name="${esc(n)}">${esc(v)}</textarea>`;
+    return `${L}<input name="${esc(n)}" type="${["date", "number", "tel", "email"].includes(x.type) ? x.type : "text"}" value="${esc(v)}">`; };
+  const details = qs.length ? qs.map(q).join("") + (rest.length ? `<label>Other notes</label><textarea name="details">${esc(rest.join("\n"))}</textarea>` : "") : `<label>Details</label><textarea name="details">${esc(a.details ?? "")}</textarea>`;
+  box.innerHTML = `<form class="form editapp" style="margin:0;max-width:none;animation:none;border:0;background:transparent;padding:6px 10px 2px"><h3>Edit ${esc(a.confirmation_number)}</h3>
+    ${f("applicant_name", "Full name")}${f("phone", "Phone", "tel")}${f("address", "Address")}${f("requested_date", "Requested date", "date")}${details}
     <div class="error" style="margin-top:8px"></div><div class="nav"><button type="button" class="back">Cancel</button><button type="submit" class="next">Save changes</button></div></form>`;
   const form = box.firstElementChild;
+  for (const g of form.querySelectorAll(".choices")) for (const b of g.querySelectorAll("button")) b.onclick = () => { g.querySelector(".on")?.classList.remove("on"); b.classList.add("on"); g.querySelector("input").value = b.textContent; };
   form.querySelector(".back").onclick = renderApps;
   form.onsubmit = async (e) => {
     e.preventDefault();
     const patch = Object.fromEntries(new FormData(form)); patch.email = a.email;
+    if (qs.length) patch.details = [...qs.map((x) => { const v = patch["q:" + x.label].trim(); delete patch["q:" + x.label]; return v ? `${x.label}: ${v}` : ""; }).filter(Boolean), ...(patch.details ?? "").split("\n").filter(Boolean)].join("\n");
     const r = await fetch(`/api/applications/${encodeURIComponent(a.confirmation_number)}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(patch) });
     const j = await r.json().catch(() => ({ error: "Could not save." }));
     if (!r.ok) { form.querySelector(".error").textContent = j.error; return; }
@@ -402,8 +429,17 @@ function editApp(i) {
 }
 $("appsList").onclick = $("watchList").onclick = (e) => {
   const b = e.target.closest("button.edit"); if (b) editApp(+b.closest(".app").dataset.i);
+  const c = e.target.closest("button.cancelapp"); if (c) return cancelApp(+c.closest(".app").dataset.i, c);
   const s = e.target.closest("button.stop"); if (s) stopWatch(+s.closest(".app").dataset.i, s);
 };
+async function cancelApp(i, btn) {
+  const a = apps[i]; if (!a || !confirm(`Cancel ${a.confirmation_number} (${a.summary})? The department will see it as withdrawn.`)) return;
+  btn.disabled = true;
+  const r = await fetch(`/api/applications/${encodeURIComponent(a.confirmation_number)}`, { method: "DELETE", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: a.email }) }).catch(() => null);
+  const j = r ? await r.json().catch(() => ({})) : {};
+  if (r?.ok) { apps[i] = { ...a, ...j }; saveApps(); renderApps(); }
+  else { btn.disabled = false; btn.textContent = j.error || "Try again"; }
+}
 async function stopWatch(i, btn) {
   const a = apps[i]; if (!a || !confirm(`Stop watching "${a.topic || a.summary}"?`)) return;
   btn.disabled = true;
@@ -474,7 +510,7 @@ function addressSuggest(el, { whole = true } = {}) {
     if (!cur || cur.q.trim().length < 2) return closeSugg();
     const seq = ++suggSeq;
     suggTimer = setTimeout(async () => {
-      let items = []; try { items = await (await fetch(`/api/addresses?q=${encodeURIComponent(cur.q)}`)).json(); } catch {}
+      let items = []; try { items = await (await fetch(`/api/addresses?q=${encodeURIComponent(cur.q)}&jur=${encodeURIComponent(jurId || "")}`)).json(); } catch {} // only the active city's addresses
       if (seq !== suggSeq || document.activeElement !== el) return;
       showSugg(el, items, (a) => {
         const text = whole ? a.address : el.value.slice(0, cur.start) + a.address + " " + el.value.slice(el.selectionStart ?? el.value.length).replace(/^\s+/, "");
@@ -517,7 +553,8 @@ else {
     vtext.textContent = t;
   };
   rec.onerror = (e) => { if (e.error === "not-allowed") { vstate.textContent = "Microphone access denied"; active = false; } };
-  const spoken = (bot) => { const c = bot.cloneNode(true); c.querySelectorAll(".acts,.sources").forEach((x) => x.remove()); return c.innerText.replace(/https?:\/\/\S+/g, "").trim(); }; // never read the Sources pill or links aloud
+  const spoken = (bot) => { const c = bot.cloneNode(true); c.querySelectorAll(".acts,.sources").forEach((x) => x.remove()); return clip(c.innerText.replace(/https?:\/\/\S+/g, "").trim()); }; // never read the Sources pill or links aloud
+  const clip = (t, max = 60) => { let out = ""; for (const s of t.match(/[^.!?\n]+[.!?]*\s*/g) ?? [t]) { if (out && (out + s).split(/\s+/).length > max) break; out += s; } return out.trim(); }; // long reply → read only the first sentences, up to ~60 words
   rec.onend = async () => {
     if (!active || muted) return;
     if (voice.dataset.state === "speaking") { try { rec.start(); } catch {} return; } // keep listening while we talk so the resident can interrupt
@@ -533,8 +570,13 @@ else {
   };
   // Server voice (local Kokoro via /tts), spoken sentence-by-sentence so the first words start in ~1s while the rest generates;
   // falls back to the most human-sounding voice the browser has if /tts is off or fails.
+  // One <audio> element, unlocked by the mic tap: iOS/Safari only let an element play after a user gesture, and the
+  // first reply arrives seconds later from a fetch, so a fresh `new Audio()` there would stay silent.
+  const player = new Audio(); player.preload = "auto"; player.playsInline = true;
+  const SILENCE = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA=";
+  const unlockAudio = () => { try { player.src = SILENCE; player.play().catch(() => {}); } catch {} };
   let audio = null, speakGen = 0;
-  const stopSpeaking = () => { speakGen++; speechSynthesis.cancel(); if (audio) { audio.pause(); audio.src = ""; audio = null; } };
+  const stopSpeaking = () => { speakGen++; speechSynthesis.cancel(); if (audio) { audio.pause(); audio.removeAttribute("src"); audio = null; } };
   const sentences = (t) => { const out = []; let cur = ""; for (const s of t.match(/[^.!?\n]+[.!?]*\s*/g) ?? [t]) { if (cur && (!out.length || cur.length + s.length > 220)) { out.push(cur); cur = ""; } cur += s; } if (cur.trim()) out.push(cur); return out; };
   const fetchWav = (text) => fetch("/tts", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text }) }).then((r) => r.ok ? r.blob() : null).catch(() => null);
   async function speak(text, done) {
@@ -545,8 +587,10 @@ else {
       const blob = await next; if (gen !== speakGen || !active) return;
       if (!blob) break;
       if (i + 1 < parts.length) next = fetchWav(parts[i + 1]); // generate the next chunk while this one plays
-      await new Promise((res) => { audio = new Audio(URL.createObjectURL(blob)); audio.onended = audio.onerror = res; audio.play().catch(res); });
+      let ok = true;
+      await new Promise((res) => { audio = player; audio.onended = res; audio.onerror = () => { ok = false; res(); }; audio.src = URL.createObjectURL(blob); audio.play().catch((e) => { ok = false; console.warn("voice playback failed, using browser voice:", e.message); res(); }); });
       if (gen !== speakGen) return;
+      if (!ok) break; // couldn't decode or play this chunk: read the rest with the browser voice instead of staying silent
       played++;
     }
     audio = null;
@@ -573,7 +617,7 @@ else {
     })();
   }
   const setMuteUI = (m) => { vmute.setAttribute("aria-pressed", String(m)); vmute.setAttribute("aria-label", m ? "Unmute microphone" : "Mute microphone"); $("vmuteLabel").textContent = m ? "Unmute" : "Mute"; voice.classList.toggle("muted", m); };
-  mic.onclick = () => { active = true; muted = false; voice.classList.add("open"); setMuteUI(false); meter(); listen(); };
+  mic.onclick = () => { active = true; muted = false; voice.classList.add("open"); setMuteUI(false); unlockAudio(); meter(); listen(); };
   $("vend").onclick = () => { active = false; rec.abort(); stopSpeaking(); voice.classList.remove("open"); scroll(); };
   vmute.onclick = () => {
     muted = !muted; setMuteUI(muted);
@@ -637,6 +681,8 @@ async function send(text, voice = false) {
         else if (ev.type === "clips") { for (const c of ev.data) clipCard(c); }
         else if (ev.type === "form") { cardOnly(); formCard(ev.data); }
         else if (ev.type === "contact") { flush(); contactCard(ev.data); }
+        else if (ev.type === "live") { flush(); liveCard(ev.data); }
+        else if (ev.type === "meeting") { flush(); meetingCard(ev.data); }
         else if (ev.type === "application" || ev.type === "alert") { cardOnly(); apps.unshift(ev.data); try { localStorage.setItem("sm_apps", JSON.stringify(apps)); } catch {} renderApps(); appCard(ev.data, ev.type === "alert" ? "🔔 Daily watch on" : "✅ Application received"); }
         else if (ev.type === "error") { flush(); const d = document.createElement("div"); d.className = "error"; d.textContent = ev.text; bot.appendChild(d); }
         scroll();
@@ -654,7 +700,7 @@ async function send(text, voice = false) {
   }
   flush(); status.remove(); if (!bot.textContent) bot.remove();
   for (const a of bot.querySelectorAll("a")) { a.target = "_blank"; a.rel = "noopener"; }
-  if (bot.isConnected) bot.appendChild(actionRow(bot, [...sources.values()]));
+  if (bot.isConnected || card) log.appendChild(actionRow(bot, [...sources.values()])); // after every card the reply produced, not between the text and its card
   ctrl = null; sendBtn.classList.remove("stop"); sendBtn.innerHTML = ICONS.send; sendBtn.setAttribute("aria-label", "Send");
   if (!/Mobi|Android/i.test(navigator.userAgent) && !$("voice").classList.contains("open")) input.focus(); scroll();
   return bot;
@@ -691,10 +737,54 @@ function streetSuggest(input) {
     clearTimeout(t);
     t = setTimeout(async () => {
       const m = input.value.match(/^\s*(\d+[A-Za-z]?(?:\s*\/\s*\d+)?)?\s*([A-Za-z0-9][A-Za-z0-9 ]{1,}?)\s*$/); if (!m) return;
+      if (jurId && jurId !== "santa-monica") return; // the street roll is Santa Monica's; other cities use /api/addresses scoped to them
       const num = m[1] ? m[1] + " " : "", q = m[2].trim(); if (q === last) return; last = q;
       try { const names = await (await fetch(`/api/streets?q=${encodeURIComponent(q)}`)).json(); if (Array.isArray(names)) dl.innerHTML = names.map((n) => `<option value="${esc(num + n)}">`).join(""); } catch {}
     }, 180);
   });
+}
+// Data cards: a structured tool result rendered as a visual card under the reply (weather, air, tides, beach grades, cameras, quakes, property, stats).
+const AQI_COLOR = (aqi) => aqi <= 50 ? "#4ade80" : aqi <= 100 ? "#fde047" : aqi <= 150 ? "#fb923c" : aqi <= 200 ? "#f87171" : aqi <= 300 ? "#c084fc" : "#9f1239";
+const GRADE_COLOR = (g) => /^A/.test(g) ? "#4ade80" : /^B/.test(g) ? "#a3e635" : /^C/.test(g) ? "#fde047" : /^D/.test(g) ? "#fb923c" : /^F/.test(g) ? "#f87171" : "#64748b";
+const fmtMoney = (n) => n == null ? "" : "$" + Math.round(n).toLocaleString();
+const fmtTime = (t) => { const d = new Date(t.replace(" ", "T")); return isNaN(d) ? t : d.toLocaleString("en-US", { weekday: "short", hour: "numeric", minute: "2-digit" }); };
+const LIVE_CARDS = {
+  weather: (d) => { const p = d.forecast?.[0]; if (!p) return "";
+    return `<div class="hd"><b>Forecast</b><small>${esc(p.period)}</small></div><div class="big">${esc(p.temp)}</div><div class="sub">${esc(p.forecast.split(". ")[0])}. Wind ${esc(p.wind)}</div>
+      <div class="row">${d.forecast.slice(1, 6).map((x) => `<div class="cell">${esc(x.period.replace(" Night", " night"))}<b>${esc(x.temp)}</b>${esc(x.forecast.split(/[.,]/)[0].slice(0, 22))}</div>`).join("")}</div>
+      ${(d.alerts ?? []).map((a) => `<div class="alert"><b>${esc(a.event)}</b> · ${esc(a.headline ?? "")}</div>`).join("")}`; },
+  air_quality: (d) => { const now = d.readings?.find((r) => r.type === "observed") ?? d.readings?.[0]; if (!now) return "";
+    const fc = d.readings.filter((r) => r.type === "forecast").slice(0, 3);
+    return `<div class="hd"><b>Air quality</b><small>${esc(now.area ?? "")} · ${esc(now.parameter)}</small></div><div style="display:flex;align-items:center;gap:14px"><span class="badge" style="background:${AQI_COLOR(now.aqi)};font-size:22px;height:44px;min-width:56px">${now.aqi}</span><div><div style="font-weight:600">${esc(now.category)}</div><div class="sub" style="margin:0">${esc(now.date)} ${esc(now.time ?? "")}${now.action_day ? " · Action day" : ""}</div></div></div>
+      ${fc.length ? `<div class="row">${fc.map((r) => `<div class="cell">${esc(r.date.slice(5))} ${esc(r.parameter)}<b><span class="badge" style="background:${AQI_COLOR(r.aqi)}">${r.aqi}</span></b>${esc(r.category)}</div>`).join("")}</div>` : ""}`; },
+  tides: (d) => `<div class="hd"><b>Tides</b><small>${d.water_temp_f ? `water ${d.water_temp_f.value}°F` : ""}</small></div><div class="list">${(d.tides_next_48h ?? []).slice(0, 6).map((t) => `<div><span class="badge" style="background:${t.type === "high" ? "#7cb0ff" : "#2b3a52"};color:${t.type === "high" ? "#0b0e13" : "#e8eaed"}">${t.type === "high" ? "↑" : "↓"} ${t.height_ft.toFixed(1)} ft</span><span class="t">${esc(t.type)} tide</span><small>${esc(fmtTime(t.time))}</small></div>`).join("")}</div>`,
+  beach_water_quality: (d) => `<div class="hd"><b>Beach water quality</b><small>Heal the Bay</small></div><div class="list">${(d.beaches ?? []).slice(0, 6).map((b) => `<div><span class="badge" style="background:${GRADE_COLOR(b.dry_weather_grade ?? "")}">${esc(b.dry_weather_grade ?? "ns")}</span><span class="t">${esc(b.beach)}</span><small>wet ${esc(b.wet_weather_grade ?? "ns")} · ${esc(b.graded ?? "")}</small></div>`).join("")}</div>`,
+  traffic_cameras: (d) => { const cams = (d.cameras ?? []).filter((c) => c.image && c.in_service !== "false").slice(0, 4); if (!cams.length) return "";
+    return `<div class="hd"><b>Traffic cameras</b><small>Caltrans · live</small></div><div class="cams">${cams.map((c) => `<a href="${esc(c.image)}" target="_blank" rel="noopener"><img src="${esc(c.image)}" alt="${esc(c.name)}" loading="lazy"><span>${esc(c.route)} ${esc(c.direction)} · ${esc(c.name)}</span></a>`).join("")}</div>`; },
+  earthquakes: (d) => `<div class="hd"><b>Recent earthquakes</b><small>USGS · 30 days</small></div><div class="list">${(d.quakes ?? []).slice(0, 5).map((q) => `<div><span class="badge" style="background:${q.mag >= 4 ? "#f87171" : q.mag >= 3 ? "#fb923c" : "#fde047"}">M${q.mag.toFixed(1)}</span><span class="t">${esc(q.place)}</span><small>${new Date(q.time).toLocaleDateString()}</small></div>`).join("") || "<div class=sub>None nearby.</div>"}</div>`,
+  property: (d) => { const p = d.parcels?.[0]; if (!p) return "";
+    const kv = [["Use", p.UseType ?? p.UseCodeDescChar1], ["Year built", p.YearBuilt], ["Sq ft", p.SQFTmain?.toLocaleString?.()], ["Beds / baths", p.Bedrooms != null ? `${p.Bedrooms} / ${p.Bathrooms ?? "–"}` : null], ["Units", p.Units], ["Land value", fmtMoney(p.Roll_LandValue)], ["Improvements", fmtMoney(p.Roll_ImpValue)], ["Assessed total", fmtMoney(p.Roll_TotalValue ?? p.Roll_totLandImp)], ["Roll year", p.RollYear]].filter(([, v]) => v != null && v !== "");
+    return `<div class="hd"><b>${esc(p.PropertyLocation ?? "Parcel")}</b><small>AIN ${esc(p.AIN ?? "")}</small></div><div class="kv">${kv.map(([k, v]) => `<div><span>${k}</span><b>${esc(v)}</b></div>`).join("")}</div><div class="sub">${esc(d.note ?? "")}</div><div class="cta"><a href="${esc(d.url)}" target="_blank" rel="noopener">Assessor record ↗</a></div>`; },
+  census: (d) => { if (!d.values) return ""; const v = d.values, pct = (x) => x == null ? null : `${x}%`;
+    const kv = [["Population", v.population?.toLocaleString()], ["Median age", v.median_age], ["Median household income", fmtMoney(v.median_household_income)], ["Poverty rate", pct(v.poverty_rate_pct)], ["Bachelor's or higher", pct(v.bachelors_or_higher_pct)], ["Foreign born", pct(v.foreign_born_pct)], ["Renters", pct(v.renter_occupied_pct)], ["Median home value", fmtMoney(v.median_home_value)], ["Median rent", fmtMoney(v.median_gross_rent)], ["Transit commute", pct(v.commute_public_transit_pct)]].filter(([, x]) => x != null && x !== "");
+    return `<div class="hd"><b>Community profile</b><small>ACS 5-year</small></div><div class="kv">${kv.map(([k, x]) => `<div><span>${k}</span><b>${esc(x)}</b></div>`).join("")}</div>`; },
+  unemployment: (d) => { const s = d.series?.unemployment_rate_pct; if (!s?.length) return ""; const latest = s[0], vals = s.map((x) => x.value);
+    return `<div class="hd"><b>Unemployment</b><small>BLS · ${esc(latest.period)}${latest.preliminary ? " (prelim.)" : ""}</small></div><div class="big">${latest.value}%</div><div class="sub">12-month range ${Math.min(...vals)}% – ${Math.max(...vals)}% · labor force ${d.series.labor_force?.[0]?.value?.toLocaleString() ?? "–"}</div>`; },
+};
+function liveCard(d) {
+  const html = LIVE_CARDS[d.kind]?.(d); if (!html) return;
+  const el = document.createElement("div"); el.className = "dc"; el.dataset.kind = d.kind; el.innerHTML = html;
+  log.appendChild(el); scroll();
+}
+// Next council/board meeting with a one-tap calendar file.
+function meetingCard(m) {
+  const d = new Date(`${m.date}T${m.time || "17:30"}:00`), when = isNaN(d) ? m.date : d.toLocaleString("en-US", { weekday: "long", month: "long", day: "numeric", hour: "numeric", minute: "2-digit" });
+  const stamp = (x) => x.toISOString().replace(/[-:]|\.\d{3}/g, "");
+  const ics = isNaN(d) ? "" : `data:text/calendar;charset=utf-8,${encodeURIComponent(`BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//GovAI//EN\nBEGIN:VEVENT\nDTSTART:${stamp(d)}\nDTEND:${stamp(new Date(d.getTime() + 3 * 3600e3))}\nSUMMARY:${m.jur} meeting\nURL:${m.agenda ?? ""}\nEND:VEVENT\nEND:VCALENDAR`)}`;
+  const el = document.createElement("div"); el.className = "dc"; el.dataset.kind = "meeting";
+  el.innerHTML = `<div class="hd"><b>Next meeting</b><small>${esc(m.jur)}</small></div><div style="font-size:17px;font-weight:600">${esc(when)}</div><div class="cta">${m.agenda ? `<a href="${esc(m.agenda)}" target="_blank" rel="noopener">Agenda ↗</a>` : ""}${ics ? `<a href="${ics}" download="council-meeting.ics">Add to calendar</a>` : ""}<a href="#" data-a="comment">Submit a comment</a></div>`;
+  el.querySelector('[data-a="comment"]').onclick = (e) => { e.preventDefault(); input.value = `I want to submit a public comment for the ${m.jur} meeting on ${m.date}.`; form.requestSubmit(); };
+  log.appendChild(el); scroll();
 }
 function appCard(a, label) {
   const c = document.createElement("div"); c.className = "card";
@@ -741,6 +831,12 @@ function formCard(f) {
       el = document.createElement("input"); el.type = fld.type || "text"; if (fld.type === "number") el.min = "1";
       if (/address|street|location/.test(fld.key)) streetSuggest(el); // autocomplete Santa Monica street names as they type
       if (fld.type === "date") { const d = new Date(); d.setDate(d.getDate() + (fld.minDays ?? 0)); el.min = d.toISOString().slice(0, 10); } // no past dates; lead time per field
+      if (fld.type === "tel") { // US number, formatted as (111) 111-1111 while typing; stored that way too
+        el.inputMode = "tel"; el.placeholder ||= "(310) 555-0100"; el.maxLength = 14;
+        const fmtTel = (v) => { let d = v.replace(/\D/g, ""); if (d.length === 11 && d[0] === "1") d = d.slice(1); d = d.slice(0, 10); return d.length > 6 ? `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}` : d.length > 3 ? `(${d.slice(0, 3)}) ${d.slice(3)}` : d.length ? `(${d}` : ""; };
+        el.oninput = () => { el.value = fmtTel(el.value); };
+        invalid = () => el.value.replace(/\D/g, "").length === 10 ? "" : fld.optional && !el.value ? "" : "Enter a 10-digit phone number.";
+      }
     }
     if (el.tagName !== "DIV") { el.id = "ff"; el.required = !fld.optional; if (fld.placeholder) el.placeholder = fld.placeholder; if (vals[fld.key] != null) el.value = vals[fld.key]; }
     if (el.tagName === "INPUT" && /address|location/i.test(fld.key + " " + fld.label)) { el.autocomplete = "off"; addressSuggest(el); }
@@ -756,7 +852,7 @@ function formCard(f) {
       const a = await r.json(); if (!r.ok) throw new Error(a.error || "Could not submit");
       apps.unshift(a); try { localStorage.setItem("sm_apps", JSON.stringify(apps)); } catch {} renderApps();
       c.classList.add("done");
-      c.innerHTML = `<div class="check">✓</div><h3>Application submitted</h3><div class="num">${esc(a.confirmation_number)} <button type="button">Copy</button></div><small><b>Routed to:</b> ${esc(a.department)}</small><small>${esc(a.next_steps)}</small><small style="margin-top:8px;color:var(--muted)">Track it any time under Menu, top right.</small>`;
+      c.innerHTML = `<div class="check">✓</div><h3>Application submitted</h3><div class="num">${esc(a.confirmation_number)} <button type="button">Copy</button></div><small><b>Routed to:</b> ${esc(a.department)}</small><small>${esc(a.next_steps)}</small>`;
       c.querySelector("button").onclick = (e) => { navigator.clipboard?.writeText(a.confirmation_number); e.target.textContent = "Copied"; };
     } catch (e) {
       c.innerHTML = `<h3>${esc(f.title)}</h3><div class="error">${esc(e.message)}</div><div class="nav"><span></span><button type="button" class="next">Back to form</button></div>`;

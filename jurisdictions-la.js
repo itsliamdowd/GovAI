@@ -146,10 +146,10 @@ const WIRING = {
   "la-verne": { council: { platform: "civicplus", since: "2019", limit: 2000, label: "City Council" } },
   "west-hollywood": { feeds: [{ id: "wehotimes", name: "WeHo Times", url: "https://www.wehotimes.com/feed/" }, { id: "gn", name: "Google News", url: gnews('"West Hollywood" when:30d') }] },
   "burbank": { feeds: [{ id: "burbankleader", name: "Burbank Leader", url: "https://www.burbankleader.com/feed/" }, { id: "gn", name: "Google News", url: gnews('"Burbank" california when:30d') }], youtube: [] },
-  "glendale": { feeds: [{ id: "glendalenewspress", name: "Glendale News-Press", url: "https://www.glendalenewspress.com/feed/" }, { id: "gn", name: "Google News", url: gnews('"Glendale" california when:30d') }] },
+  "glendale": { feeds: [{ id: "glendalenewspress", name: "Glendale News-Press", url: "https://www.glendalenewspress.com/feed/" }, { id: "gn", name: "Google News", url: gnews('"Glendale" california when:30d') }], council: { platform: "primegov", client: "glendaleca", since: "2019", limit: 4000, label: "City Council" }, youtube: ["user/JewelCityCA"] },
   "pasadena": { feeds: [{ id: "pasadenanow", name: "Pasadena Now", url: "https://pasadenanow.com/main/feed" }, { id: "gn", name: "Google News", url: gnews('"Pasadena" california when:30d') }, { id: "gn-starnews", name: "Pasadena Star-News", url: gnews("site:pasadenastarnews.com when:30d") }] },
-  "hermosa-beach": { feeds: [{ id: "easyreader", name: "Easy Reader", url: "https://easyreadernews.com/feed/" }, { id: "gn", name: "Google News", url: gnews('"Hermosa Beach" when:30d') }] },
-  "manhattan-beach": { feeds: [{ id: "easyreader", name: "Easy Reader", url: "https://easyreadernews.com/feed/" }, { id: "gn", name: "Google News", url: gnews('"Manhattan Beach" when:30d') }] },
+  "hermosa-beach": { feeds: [{ id: "easyreader", name: "Easy Reader", url: "https://easyreadernews.com/feed/" }, { id: "gn", name: "Google News", url: gnews('"Hermosa Beach" when:30d') }], youtube: ["c/CityofHermosaBeach90254"] },
+  "manhattan-beach": { feeds: [{ id: "easyreader", name: "Easy Reader", url: "https://easyreadernews.com/feed/" }, { id: "gn", name: "Google News", url: gnews('"Manhattan Beach" when:30d') }], council: { platform: "legistar", client: "manhattanbeach", body: "City Council", limit: 2000, label: "City Council" }, youtube: ["user/cityofmb"] },
   "redondo-beach": { feeds: [{ id: "easyreader", name: "Easy Reader", url: "https://easyreadernews.com/feed/" }, { id: "gn", name: "Google News", url: gnews('"Redondo Beach" when:30d') }, { id: "gn-breeze", name: "Daily Breeze", url: gnews("site:dailybreeze.com \"Redondo Beach\" when:30d") }] },
   "carson": { youtube: ["UC3ethohaz3fuapOdycVAmWg"] },
   "glendora": { youtube: ["UCQVXk5L__r9wqma0jlbox5A"] },
@@ -183,5 +183,13 @@ const WIRING = {
   "santa-clarita": { youtube: ["user/CityofSantaClarita"] },
   "torrance": { youtube: ["@TorranceCitiCABLE"] },
   "west-covina": { youtube: ["UCB6garANBTuHBkXFXBRw4RA"] },
+  // --- second discover pass with the plain browser UA (2026-10-17): APIs verified by hand (Legistar Events, PrimeGov ListArchivedMeetings)
+  "commerce": { council: { platform: "legistar", client: "cityofcommerce", body: "City Council", limit: 2000, label: "City Council" } },
+  "hawaiian-gardens": { council: { platform: "primegov", client: "hgcity", since: "2019", limit: 2000, label: "City Council" }, youtube: ["user/HGCityCA"] },
+  "downey": { youtube: ["@cityofdowneycouncilmeetings"] }, // agendas: AgendaLink (downeyca) — adapter pending
+  "duarte": { youtube: ["UC3bIJAEFDDT41mLkQxaS--g"] },
+  "el-segundo": { youtube: ["UCxIHXywoJ5iy5iiizQyULXg"] },
+  "lancaster": { youtube: ["UCitRWO0qH_VJoKRxI2W01Ag"], feeds: [{ id: "gn", name: "Google News", url: gnews('"Lancaster" california when:30d') }] },
+  "vernon": { youtube: ["UCQilkDtzhIQFu1Fx7iiOJMg"] },
 };
 for (const [id, extra] of Object.entries(WIRING)) { const c = LA_CITIES.find((x) => x.id === id); if (!c) throw new Error(`WIRING: unknown LA city ${id}`); Object.assign(c, { ...extra, domains: [...new Set([...(c.domains ?? []), ...(extra.domains ?? [])])] }); }

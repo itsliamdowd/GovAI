@@ -1,0 +1,41 @@
+{
+ "id": "la-mirada",
+ "probed_at": "2026-10-17T20:56:36.122Z",
+ "site": {
+  "url": "https://www.lamirada.gov/",
+  "title": "City of La Mirada"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "cityoflamirada.granicus.com",
+  "views": [
+   {
+    "view_id": 1,
+    "title": "City of La Mirada: La Mirada View (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCfK6vv4QdbmA4aiV1-BoFNw",
+   "channel": "Brian Hews",
+   "example": "Ion \"John\" Sarega Removed from La Mirada City Council Meeting"
+  },
+  {
+   "id": "UCk9tOrYltH_xOisPTnCZ9zw",
+   "channel": "La Mirada Blog TV",
+   "example": "Outgoing Mayor Steve Jones at City Council Meeting"
+  },
+  {
+   "id": "UChcN94ydn0sPf96QXiJJTtg",
+   "channel": "City Government Meetings",
+   "example": "La Mirada, CA CITY COUNCIL MEETING - May 24, 2022"
+  },
+  {
+   "id": "UCZBsfJKI1u85dlao-vH4_9g",
+   "channel": "andrew sarega",
+   "example": "La Mirada District Selection"
+  }
+ ]
+}

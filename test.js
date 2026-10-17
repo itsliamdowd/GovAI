@@ -141,5 +141,14 @@ const { speechText } = await import("./tts.js");
 assert.equal(speechText("Call (310) 458-8411, Mon–Thu 7:30 a.m.–5:30 p.m. Confirmation SM-749311."), "Call 3 1 0, 4 5 8, 8 4 1 1, Monday through Thursday 7:30 AM to 5:30 PM. Confirmation S M, 7 4 9 3 1 1.");
 assert.equal(speechText("601 Santa Monica Blvd; email 311@santamonica.gov or https://www.santamonica.gov/311."), "601 Santa Monica Boulevard; email 311 at santamonica dot gov or santamonica dot gov");
 assert.equal(speechText("**Fee:** $100.95 & a 14–30 day notice. St. John is on 4th St / PCH, open 24/7. Zone 2 runs Jul 1–Jun 30."), "Fee: $100.95 and a 14 to 30 day notice. St. John is on 4th Street or Pacific Coast Highway, open twenty-four seven. Zone 2 runs July 1 to June 30.");
+{ // cancel flow on the store: only undecided applications can be withdrawn
+  const { submitApplication, checkStatus } = await import("./server.js");
+  const a = submitApplication({ type: "dog_license", applicant_name: "T", email: "c@example.com", phone: "1", address: "", requested_date: "", summary: "cancel test", details: "" });
+  const appsFile = JSON.parse(fs.readFileSync("./data/applications.json", "utf8"));
+  assert.equal(appsFile[a.confirmation_number].status, "received");
+  appsFile[a.confirmation_number].status = "canceled"; fs.writeFileSync("./data/applications.json", JSON.stringify(appsFile, null, 2));
+  assert.equal(checkStatus(a.confirmation_number).status, "canceled");
+  delete appsFile[a.confirmation_number]; fs.writeFileSync("./data/applications.json", JSON.stringify(appsFile, null, 2));
+}
 console.log(`ok (${rag.datasetCount} datasets indexed)`);
 process.exit(0);

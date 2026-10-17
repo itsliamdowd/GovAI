@@ -1,0 +1,9 @@
+{"q":"how do I get a block party permit","jur":"santa-monica","expect":{"url":"https://www.santamonica.gov/process-explainers/how-to-get-a-block-party-permit"},"at":1,"status":"verified"}
+{"q":"how do I get rid of a bulky item like a couch","jur":"santa-monica","expect":{"url":"https://www.santamonica.gov/process-explainers/how-to-request-bulky-and-abandoned-item-collection"},"status":"proposed"}
+{"q":"do I need a business license to open a shop","jur":"santa-monica","expect":{"url":"https://www.santamonica.gov/topic-explainers/business-taxes"},"status":"proposed"}
+{"q":"how do I license my dog","jur":"santa-monica","expect":{"url":"https://www.santamonica.gov/categories/services/animal-services"},"status":"proposed"}
+{"q":"how do I get a preferential parking permit for my street","jur":"santa-monica","expect":{"url":"https://www.santamonica.gov/process-explainers/how-to-obtain-a-preferential-parking-permit"},"status":"proposed"}
+{"q":"how much does trash service cost","jur":"santa-monica","expect":{"url":"https://www.santamonica.gov/solid-waste-rates"},"status":"proposed"}
+{"q":"what number do I call to report a pothole","jur":"santa-monica","expect":{"url":"https://www.santamonica.gov/311"},"status":"proposed"}
+{"q":"when does the city council meet","jur":"santa-monica","expect":{"url_re":"santamonica\\.gov|iqm2|smgov"},"status":"proposed"}
+{"q":"call to order","jur":"santa-monica","kind":"council","expect":{"url_re":"santamonica|iqm2|smgov|youtube"},"status":"verified"}

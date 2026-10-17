@@ -1,0 +1,40 @@
+{
+ "id": "mission-viejo",
+ "probed_at": "2026-10-17T21:11:27.437Z",
+ "site": {
+  "url": "https://www.missionviejo.gov/",
+  "title": "Home | City of Mission Viejo"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "missionviejo.granicus.com",
+  "views": [
+   {
+    "view_id": 4,
+    "title": "City of Mission Viejo: zCity Council View (Agenda Feed)"
+   },
+   {
+    "view_id": 7,
+    "title": "City of Mission Viejo: zCity Council iframe View (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCHvYne2JtJw5s2g_PaS0rHA",
+   "channel": "Greg Raths",
+   "example": "Councilman Greg Raths lays out his vision for 2016 for the City of Mission Viejo"
+  },
+  {
+   "id": "UCuk5icIwCE3eO-_Olf_h1dQ",
+   "channel": "No Toll Road 2020",
+   "example": "Wendy Bucknam Mission Viejo City Council"
+  },
+  {
+   "id": "UCa_TLUfdPgJ6r-FOScd2o-A",
+   "channel": "mvindependent",
+   "example": "2007 Mission Viejo City Council Discusses Rotating Mayor Spot"
+  }
+ ]
+}

@@ -1,0 +1,38 @@
+{
+ "id": "monterey-park",
+ "probed_at": "2026-10-17T20:56:31.626Z",
+ "site": {
+  "url": "https://www.montereypark.ca.gov/",
+  "title": "Monterey Park, CA - Official Website | Official Website"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "monterey-park.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "City of Monterey Park, CA: City Council Mtg. Videos, Monterey Park, Calif. (Agenda Feed)"
+   },
+   {
+    "view_id": 4,
+    "title": "City of Monterey Park, CA: TEST 2010 City Council Mtg. Videos, Monterey Park, Calif. (Agenda Feed)"
+   },
+   {
+    "view_id": 6,
+    "title": "City of Monterey Park, CA: Training (Agenda Feed)"
+   },
+   {
+    "view_id": 7,
+    "title": "City of Monterey Park, CA: Planning Commission Mtg. Videos, Monterey Park, Calif. (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCAGjNrEYfmeEhFwi5URrODQ",
+   "channel": "City of Monterey Park",
+   "example": "MPK City Council Meeting, Oct  7, 2026, 630 p.m."
+  }
+ ]
+}

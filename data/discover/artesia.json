@@ -1,0 +1,23 @@
+{
+ "id": "artesia",
+ "probed_at": "2026-10-17T21:02:05.995Z",
+ "site": {
+  "url": "https://www.cityofartesia.us/",
+  "title": "Artesia, CA - Official Website | Official Website"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCp5feYj5wRgRwft9amm6erQ",
+   "channel": "Radio TV Artesia",
+   "example": "City of Artesia Town Hall Meeting 2/19/2026"
+  },
+  {
+   "id": "UCacO_Bdaabw9hepALd1FNQA",
+   "channel": "KSVPtv",
+   "example": "Raye Miller - Mayor of Artesia - City Council Recap"
+  }
+ ]
+}

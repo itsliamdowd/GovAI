@@ -1,0 +1,26 @@
+{
+ "id": "cerritos",
+ "probed_at": "2026-10-17T20:57:28.950Z",
+ "site": {
+  "url": "https://www.cerritos.gov/",
+  "title": "City | City of Cerritos"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "cerritos.granicus.com",
+  "views": [
+   {
+    "view_id": 8,
+    "title": "City of Cerritos: Redesign TV3 Video Archive of City Council and Commission Meetings (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCLKWCMkYO2aVRGBpdAWnYWQ",
+   "channel": "CityofCerritos",
+   "example": "City Council Meeting: May 11, 2026"
+  }
+ ]
+}

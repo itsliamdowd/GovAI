@@ -1,0 +1,47 @@
+{
+ "id": "el-segundo",
+ "probed_at": "2026-10-17T21:03:06.683Z",
+ "site": null,
+ "legistar": null,
+ "granicus": {
+  "host": "elsegundo.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "City of El Segundo: City Council Meetings (Agenda Feed)"
+   },
+   {
+    "view_id": 3,
+    "title": "City of El Segundo: All Public Archives (Agenda Feed)"
+   },
+   {
+    "view_id": 4,
+    "title": "City of El Segundo: Internal Council Meetings (Agenda Feed)"
+   },
+   {
+    "view_id": 5,
+    "title": "City of El Segundo: Community Cable (Agenda Feed)"
+   },
+   {
+    "view_id": 6,
+    "title": "City of El Segundo: Planning Commission (Agenda Feed)"
+   },
+   {
+    "view_id": 7,
+    "title": "City of El Segundo: Recreation &amp; Parks Commission (Agenda Feed)"
+   },
+   {
+    "view_id": 8,
+    "title": "City of El Segundo: GIS Listing View (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCxIHXywoJ5iy5iiizQyULXg",
+   "channel": "El Segundo Media",
+   "example": "City Council Recap - September 15, 2026"
+  }
+ ]
+}

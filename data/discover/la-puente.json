@@ -1,0 +1,62 @@
+{
+ "id": "la-puente",
+ "probed_at": "2026-10-17T20:56:53.581Z",
+ "site": {
+  "url": "https://lapuente.org/",
+  "title": "City of La Puente -Where the past meets the future."
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "lapuente.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "City of La Puente: Council &amp; RDA Meetings (Agenda Feed)"
+   },
+   {
+    "view_id": 3,
+    "title": "City of La Puente: Planning Commission (Agenda Feed)"
+   },
+   {
+    "view_id": 4,
+    "title": "City of La Puente: Community Development Commission (Agenda Feed)"
+   },
+   {
+    "view_id": 5,
+    "title": "City of La Puente: Development Review Board (Agenda Feed)"
+   },
+   {
+    "view_id": 8,
+    "title": "City of La Puente: IFrame View (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UChcN94ydn0sPf96QXiJJTtg",
+   "channel": "City Government Meetings",
+   "example": "La Puente, CA Special Planning Commission Meeting - Jul 19, 2022"
+  },
+  {
+   "id": "UC2uN20oNwmJdF4TeQ1bjCnA",
+   "channel": "Recall HLPUSD",
+   "example": "La Puente Budget Town Hall"
+  },
+  {
+   "id": "UCP3dFD4RVZ7OhrR5yR25AHA",
+   "channel": "Ricardo Martinez For City Council",
+   "example": "Ricardo Martinez for La Puente"
+  },
+  {
+   "id": "UCfvV_Wd3PsLIDlzqmu8Pvhw",
+   "channel": "La Puente City Channel",
+   "example": "La Puente Council Meeting 02-11-2025"
+  },
+  {
+   "id": "UCJcz38rQcuYgaXyBYQPy22w",
+   "channel": "City of La Puente",
+   "example": "Mayor Klinakis and Mayor Pro Tem Lewis  La Puente Community Update"
+  }
+ ]
+}

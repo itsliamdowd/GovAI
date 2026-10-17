@@ -1,0 +1,47 @@
+{
+ "id": "gardena",
+ "probed_at": "2026-10-17T20:53:57.874Z",
+ "site": {
+  "url": "https://cityofgardena.org/",
+  "title": "Home | City of Gardena"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "cityofgardena.granicus.com",
+  "views": [
+   {
+    "view_id": 1,
+    "title": "City of Gardena, CA: City Council (Agenda Feed)"
+   },
+   {
+    "view_id": 3,
+    "title": "City of Gardena, CA: Gardena Youth Commission (Agenda Feed)"
+   },
+   {
+    "view_id": 6,
+    "title": "City of Gardena, CA: Planning and Environmental Quality Commission (Agenda Feed)"
+   },
+   {
+    "view_id": 7,
+    "title": "City of Gardena, CA: Recreation and Parks Commission (Agenda Feed)"
+   },
+   {
+    "view_id": 8,
+    "title": "City of Gardena, CA: Senior Citizens Commission (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UC9uawxTCE9JrUpj-NKi3aWg",
+   "channel": "CityofGardena",
+   "example": "Council Meeting - February 10, 2026"
+  },
+  {
+   "id": "UCbpMb3nL_LXRfjzltI8kTCQ",
+   "channel": "Upfront Productions",
+   "example": "Gardena City Council Meeting: Restructuring the World Famous Gardena Jazz Festival (Highlights/new)"
+  }
+ ]
+}

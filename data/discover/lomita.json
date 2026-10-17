@@ -1,0 +1,30 @@
+{
+ "id": "lomita",
+ "probed_at": "2026-10-17T21:02:20.733Z",
+ "site": {
+  "url": "https://lomitacity.com/",
+  "title": "Home - City of Lomita"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "lomita.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "City of Lomita, CA: Lomita City Council Streaming Media Archive (Agenda Feed)"
+   },
+   {
+    "view_id": 3,
+    "title": "City of Lomita, CA: Redesigned View Page (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCZkU5IjRuGnY1ng9qj8N1Ig",
+   "channel": "City of Lomita",
+   "example": "January 13, 2025 Planning Commission Meeting"
+  }
+ ]
+}

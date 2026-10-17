@@ -1,0 +1,30 @@
+{
+ "id": "agoura-hills",
+ "probed_at": "2026-10-17T21:02:34.536Z",
+ "site": {
+  "url": "https://www.agourahillscity.gov/",
+  "title": "Agoura Hills, CA"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "agourahills.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "City of Agoura Hills: Agoura Hills View (Agenda Feed)"
+   },
+   {
+    "view_id": 3,
+    "title": "City of Agoura Hills: Testing (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UC0gMkam3bJPeYxYFn1vsPtw",
+   "channel": "City of Agoura Hills",
+   "example": "Agoura Hills City Council Meeting September 9, 2026"
+  }
+ ]
+}

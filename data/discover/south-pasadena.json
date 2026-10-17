@@ -1,0 +1,35 @@
+{
+ "id": "south-pasadena",
+ "probed_at": "2026-10-17T21:01:03.058Z",
+ "site": {
+  "url": "https://www.southpasadenaca.gov/Home",
+  "title": "Home - City of South Pasadena"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "southpasadena.granicus.com",
+  "views": [
+   {
+    "view_id": 1,
+    "title": "South Pasadena, CA: South Pasadena CA Content (Agenda Feed)"
+   },
+   {
+    "view_id": 2,
+    "title": "South Pasadena, CA: Training Videos (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCnR169ohzi1AIewD_6sfwDA",
+   "channel": "City of South Pasadena",
+   "example": "South Pasadena Regular City Council Meeting - January 21, 2026"
+  },
+  {
+   "id": "UCy2Rwii4lAGh1lLRjvuk1ig",
+   "channel": "The South Pasadenan News",
+   "example": "Mayor Calls Out Citizen in Open Meeting | South Pasadena City Council"
+  }
+ ]
+}

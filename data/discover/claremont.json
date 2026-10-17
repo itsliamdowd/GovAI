@@ -1,0 +1,37 @@
+{
+ "id": "claremont",
+ "probed_at": "2026-10-17T20:57:46.705Z",
+ "site": {
+  "url": "https://www.claremontca.gov/Home",
+  "title": "Home | City of Claremont, CA"
+ },
+ "legistar": {
+  "client": "claremontca",
+  "bodies": [
+   "City Council ",
+   "Community and Human Services Commission",
+   "Planning Commission"
+  ]
+ },
+ "granicus": {
+  "host": "claremontca.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "City of Claremont, CA: Claremont Main View (Agenda Feed)"
+   },
+   {
+    "view_id": 3,
+    "title": "City of Claremont, CA: Meeting in progress - Iframe (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCI2waRa_rFF06yq2UsM6xtA",
+   "channel": "City of Claremont",
+   "example": "Claremont City Council Meeting 4/6/2026"
+  }
+ ]
+}

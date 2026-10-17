@@ -10,7 +10,7 @@ import { promisify } from "node:util";
 import { ckan, PORTALS } from "./rag.js";
 import { jurById, dataDir, SERVED } from "./jurisdictions.js";
 
-// Which jurisdiction's records: default Santa Monica (platform ckan-iqm2). Other platforms (legistar, granicus, ocboard, hyland) land in Phase B/C.
+// Which jurisdiction's records: default Santa Monica (platform ckan-iqm2). Other platforms resolve to ./adapters/<platform>.js (legistar, granicus, primegov, civicplus, pdflist, hyland, ocboard, ...).
 const SM = jurById("santa-monica");
 const dirFor = (j) => `${dataDir(j)}/council`;
 const limitFor = (j) => Number(process.env.COUNCIL_MEETINGS) || j.council?.limit || 200; // past meetings to ingest
@@ -78,9 +78,10 @@ async function ingestMeeting(m, log, j = SM) {
   const file = `${dirFor(j)}/${m.id}.json`;
   let cached = null;
   try { cached = JSON.parse(fs.readFileSync(file, "utf8")); } catch {}
-  // re-fetch only if minutes have appeared since we last looked
-  if (cached && (cached.minutes_text || !m.minutes_url)) return cached;
-  const rec = { ...m, agenda_text: cached?.agenda_text ?? "", minutes_text: "" };
+  // re-fetch only if minutes have appeared since we last looked, or a past fetch left the agenda empty (404, bot wall, bad base URL) — at most 3 tries
+  const tries = cached?.tries ?? 0, agendaMissing = m.agenda_url && !cached?.agenda_text && tries < 3;
+  if (cached && (cached.minutes_text || !m.minutes_url) && !agendaMissing) return cached;
+  const rec = { ...m, agenda_text: cached?.agenda_text ?? "", minutes_text: "", tries: tries + 1 };
   const custom = (await adapterFor(j)).meetingText;
   if (custom) { try { Object.assign(rec, await custom(m, j)); } catch (e) { log(`text ${m.date}: ${e.message}`); } fs.writeFileSync(file, JSON.stringify(rec)); return rec; }
   const isPdf = (u) => /\.pdf($|\?)|ViewReport\.ashx|legistar\.com\/View/i.test(u);

@@ -1,0 +1,15 @@
+{
+ "id": "paramount",
+ "probed_at": "2026-10-17T20:54:46.256Z",
+ "site": null,
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCcZqvGsihr1-z8GpdKuarfg",
+   "channel": "City of Paramount",
+   "example": "Paramount City Council Meeting July 14, 2026"
+  }
+ ]
+}

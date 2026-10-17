@@ -9,7 +9,7 @@ import fs from "node:fs";
 import crypto from "node:crypto";
 import { politeFetch, html2text, absUrl, UA } from "./adapters/_http.js";
 
-const DROP = /\/(news|press|calendar|events?|event-|blog|gallery|photos?|videos?|archive|search|login|jobs?|careers|rfp|bids?|agendas?|minutes|category|tag|author|feed|directory|staff|sitemap|rss|share|print|translate|es|zh|ko|hy|tl|ru)(\/|$|\.)|\.(docx?|xlsx?|pptx?|jpe?g|png|gif|svg|mp4|mp3|zip|ics|xml|json|css|js)($|\?)|\?|#|\/es\/|lang=|\/wp-json\/|\/wp-content\/uploads\/.*\.(pdf)$/i;
+const DROP = /(?:^|\/)FAQ\.aspx$|\/(news|press|calendar|events?|event-|blog|gallery|photos?|videos?|archive|search|login|jobs?|careers|rfp|bids?|agendas?|minutes|category|tag|author|feed|directory|staff|sitemap|rss|share|print|translate|es|zh|ko|hy|tl|ru)(\/|$|\.)|\.(docx?|xlsx?|pptx?|jpe?g|png|gif|svg|mp4|mp3|zip|ics|xml|json|css|js)($|\?)|\?|#|\/es\/|lang=|\/wp-json\/|\/wp-content\/uploads\/.*\.(pdf)$/i;
 const BOOST = /permit|licen|fee|apply|application|how-?to|process|services?|trash|recycl|refuse|bulky|parking|animal|dog|business|rent|tenant|housing|311|contact|council|clerk|records|utility|water|sewer|street|sidewalk|tree|code-?enforcement|noise|short-?term|vending|film|event-?permit|block-?party|building|planning|zoning|adu|garage-?sale|alarm|fireworks|senior|library|park|pool|transit|bus|bike|ev-?charg|tax|budget|election|vote|emergency|evacuat|fire|police|faq/i;
 const EXPLAINER = [/\$\s?\d/, /\bfees?\b/i, /\bapply|application\b/i, /\bpermit|licen[cs]e\b/i, /\brequired|must\b/i, /\bdeadline|business days|calendar days\b/i, /\bsubmit\b/i, /\bhow to|step\b/i, /\brenew/i, /\(?\d{3}\)?[ .-]\d{3}[ .-]\d{4}/, /@[a-z0-9.-]+\.(gov|org|us|com)/i];
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -88,7 +88,7 @@ export function extractSections(html, url) {
     if (m[1]) { const t = html2text(m[2]); if (t && t.length < 160) blocks.push({ level: +m[1][1], heading: t }); continue; }
     if (/<(p|li|td)\b/i.test(m[4])) continue; // nested block: children match on their own
     const t = html2text(m[4]).replace(/\s*\n\s*/g, " ").trim(), k = norm(t);
-    if (t.length < 25 && !/[.:$%]|\d/.test(t) || seenLine.has(k)) continue; // link-list fragments, repeats
+    if (t.length < 25 && !/[.:$%]|\d/.test(t) || /^[a-z,.;:)]/.test(t) || seenLine.has(k)) continue; // link-list fragments, accordion tails, repeats
     seenLine.add(k); blocks.push({ text: t });
   }
   // Text in bare <div>/<span>s (CivicPlus fr-view widgets): fall back to the flattened main region when blocks caught little of it.

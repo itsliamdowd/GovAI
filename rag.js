@@ -147,8 +147,12 @@ export async function buildIndex() {
     // general search: knowledge + datasets + GIS layers, plus up to 2 recent news hits so current events surface without a second call
     search(query, k = 6, jur = null) {
       return memo(`s|${jur}|${k}|${query}`, () => {
-        const jurs = scope(jur);
-        return [...store.search(query, { k, jurs, notKinds: ["council_meeting", "news"] }), ...store.search(query, { k: 2, jurs, kinds: ["news"], since: since(60) })];
+        const jurs = scope(jur), notKinds = ["council_meeting", "news"];
+        // the resident's own jurisdiction first, then at most 2 county/state hits: a county dataset about "council districts" must
+        // never push the city's own "when does the council meet" page out of the top 6 (evals/santa-monica.jsonl)
+        const own = jurs?.length > 1 ? store.search(query, { k, jurs: [jurs[0]], notKinds }) : [];
+        const rest = store.search(query, { k: own.length ? 2 : k, jurs: own.length ? jurs.slice(1) : jurs, notKinds });
+        return [...own, ...rest, ...store.search(query, { k: 2, jurs, kinds: ["news"], since: since(60) })];
       });
     },
     searchNews(query, k = 10, days = 0, jur = null) { return memo(`n|${jur}|${k}|${days}|${query}`, () => store.search(query, { k, jurs: scope(jur), kinds: ["news"], since: days ? since(days) : null })); },

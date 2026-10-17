@@ -1,0 +1,38 @@
+{
+ "id": "maywood",
+ "probed_at": "2026-10-17T21:00:36.493Z",
+ "site": {
+  "url": "https://www.cityofmaywood.com/",
+  "title": "Maywood, CA | Official Website"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCkH1uDkyuO9sVjSqdqBygOg",
+   "channel": "CBS LA",
+   "example": "Maywood Mayor And City Hall Raided, Served Search Warrants"
+  },
+  {
+   "id": "UCKBkjHnDlMfB4jBpxVD90OQ",
+   "channel": "City of Maywood",
+   "example": "City of Maywood Virtual Neighborhood Watch Meeting Pt.2"
+  },
+  {
+   "id": "UCFszhpSzhFp_bSbZJkPu0Cg",
+   "channel": "Leeland Evans El",
+   "example": "Chairman Fred Hampton Jr., Speaks at Maywood City, Council Meeting."
+  },
+  {
+   "id": "UCztvLMAmyXBl-APnen9RlKw",
+   "channel": "Arthur Schaper (STAND FOR TRUTH)",
+   "example": "Opening, Maywood City Council: City Clerk Spars with City Councilman"
+  },
+  {
+   "id": "UCYUWke1ZrEl02GSiIE0nrhQ",
+   "channel": "Missionary Malik Tariq Mahmood",
+   "example": "My speech at Maywood City Council Meeting Jan 11  2023"
+  }
+ ]
+}

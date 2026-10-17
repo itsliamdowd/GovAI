@@ -16,6 +16,119 @@
        Status badge classes: planned | progress | done | blocked.
        Do NOT log changes to ~/.claude/, plan.html itself, or the changelog server. -->
 
+  <article class="entry" id="e-2026-10-17-1610">
+    <header>
+      <time>2026-10-17 16:10</time>
+      <h2>Thumbs and copy row sits below the reply's cards, not between text and card</h2>
+      <span class="badge done">done</span>
+    </header>
+    <ul>
+      <li><code>public/index.html</code> — the action row was appended inside the assistant text element, so contact / clip / application cards (appended to the log as they stream in) landed under it. It's now appended to the log after the stream ends, so it follows every card the reply produced; also shown for card-only replies. Margin changed to sit under the card with breathing room before the next turn.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1440">
+    <header>
+      <time>2026-10-17 14:40</time>
+      <h2>Submissions never reach real city systems; never described as a demo</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "the submissions on the site should NEVER submit to the real site - this is a demo, but never mention it as such."</p>
+    <p><b>Audit.</b> <code>submitApplication()</code> and <code>POST /api/applications</code> write only to <code>data/applications.json</code>; no code path POSTs to a city portal, 311 system or email (the only outbound POST is the resident-facing alert email in <code>alerts.js</code>). <code>web_search</code>/<code>web_fetch</code> are read-only. The three "demo" strings in the repo are code comments, not UI or prompt text. Form cards link to the official page for reference only.</p>
+    <ul>
+      <li><code>server.js</code> — policy comment on <code>submitApplication</code>; new "Filing" rule in <code>SYSTEM</code>: never call the service/forms/confirmations a demo, test, sample, simulation or prototype, never say an application wasn't actually filed, never redirect the resident to re-file on a city portal; confirm receipt with the confirmation number.</li>
+    </ul>
+    <p>Not changed: the Santa Monica-only scope entry (11:42) and the intake flows themselves. If a real integration is ever wanted it must be a deliberate change behind a flag; by default it stays local.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1545">
+    <header>
+      <time>2026-10-17 15:50</time>
+      <h2>Residents can cancel an application from the Menu</h2>
+      <span class="badge done">done</span>
+    </header>
+    <ul>
+      <li><code>server.js</code> — <code>DELETE /api/applications/:id</code> with <code>{email}</code>: email must match the filing; allowed while status is received / in_review / needs_info (<code>CANCELABLE</code>); sets <code>status: "canceled"</code> + <code>canceled_at</code> and keeps the record so the department's staff desk sees the withdrawal. Approved/denied → 409 with the department to contact. Idempotent on an already-canceled one. <code>STATUSES</code> gains <code>canceled</code> so the staff desk accepts it.</li>
+      <li><code>public/index.html</code> — "Cancel application" button on each undecided application card (same pill style as the alert "Stop" button), confirm dialog, optimistic re-render from the server's response; canceled cards dim with a muted status chip. Edit stays limited to "received".</li>
+      <li><code>test.js</code> — store round-trip for the canceled status.</li>
+    </ul>
+    <h3>Verified on :8788</h3><ul><li>wrong email → 403; right email → 200 with <code>status: canceled</code> + <code>canceled_at</code>; repeat → 200; after staff set approved → 409 naming the department. Test record removed. <code>npm test</code> passes.</li></ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1425">
+    <header>
+      <time>2026-10-17 14:25</time>
+      <h2>Data cards: live conditions, property, stats, next meeting</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "what other cards can we add? figure it out and implement it". Existing cards: form, application, alert, contact, clip. The structured results from <code>get_live_data</code> and <code>search_council_meetings</code> were only ever prose; they now also render as visual cards under the reply, the same way sources/contact do (no prompt changes, no new tools).</p>
+    <ul>
+      <li><code>server.js</code> — after <code>get_live_data</code> emits <code>{type:"live", data:{kind, …result}}</code>; after <code>search_council_meetings</code> emits <code>{type:"meeting", data: upcoming[0]}</code> when there is an upcoming meeting.</li>
+      <li><code>public/index.html</code> — <code>LIVE_CARDS</code> renderers keyed by kind: <b>weather</b> (big temp, 5-period strip, NWS alerts), <b>air_quality</b> (AQI badge coloured by EPA category + forecast), <b>tides</b> (next 6 highs/lows + water temp), <b>beach_water_quality</b> (letter-grade badges), <b>traffic_cameras</b> (2&times;2 live image grid), <b>earthquakes</b> (magnitude badges), <b>property</b> (assessor key/values + record link), <b>census</b> (ACS profile grid), <b>unemployment</b> (rate + 12-month range). <code>meetingCard</code>: next meeting date/time, agenda link, "Add to calendar" (<code>.ics</code> data URL). Kinds without a renderer (wikipedia, scooters, bus_alerts, flights, health_stats, ca_open_data) stay prose. Shared <code>.dc</code> CSS.</li>
+    </ul>
+    <p><b>Verified 14:32:</b> every renderer run in Node against sample payloads (no undefined/NaN leaks). Live chats on 8787: weather + air_quality, tides + beach_water_quality, property, and a <code>meeting</code> event (2026-10-27) all emitted. Not visually checked (Chrome MCP still locked by another session).</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1530">
+    <header>
+      <time>2026-10-17 15:30</time>
+      <h2>Dropped API connections retry instead of surfacing "API error undefined"</h2>
+      <span class="badge done">done</span>
+    </header>
+    <ul>
+      <li>User saw "API error undefined: Connection error." The client is built with <code>maxRetries: 0</code> (chosen earlier so 429/529 don't sit in silent retry sleeps), so a single dropped socket to api.anthropic.com failed the turn. Reachability check from this machine: 3/3 requests OK, ~0.6 s each. The 8 discovery batches were holding ~78 open sockets at the time; plausible transient cause.</li>
+      <li><code>server.js</code> — the stream call sits in an attempt loop: on <code>Anthropic.APIConnectionError</code> (not on 4xx/5xx) it sends <code>reset</code> + a "Connection dropped, reconnecting…" status and retries after 1 s then 2 s; third failure throws. Error mapping gains a specific message for connection errors (it was falling into the generic <code>API error ${e.status}</code> branch where status is undefined).</li>
+      <li>Restart <code>npm start</code> to pick it up.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1420-send-arrow">
+    <header>
+      <time>2026-10-17 14:20</time>
+      <h2>Send button arrow points up instead of right</h2>
+      <span class="badge done">done</span>
+    </header>
+    <ul><li><code>public/index.html:257</code> &mdash; <code>ICONS.send</code> path rotated: <code>M12 19V5M6 11l6-6 6 6</code>. Same 24-box, stroke and size; the stop icon is untouched.</li></ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1415-edit-questions">
+    <header>
+      <time>2026-10-17 14:15</time>
+      <h2>Edit application: "Details" shown as the card's own questions, not one text box</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Why.</b> <code>toApplication()</code> (<code>forms.js:148</code>) flattens every non-core answer into a <code>details</code> string of "Label: value" lines. The Menu's edit view dumped that string into a textarea.</p>
+    <ul>
+      <li><code>server.js:620</code> &mdash; <code>GET /api/forms/:type?jur=</code> returns <code>formFor(type, jur)</code> (404 for unknown type; falls back to Santa Monica for unknown jur).</li>
+      <li><code>public/index.html:400</code> &mdash; <code>editApp()</code> is async: fetches the form, matches each details line to a field by label, renders select&le;4 options as the wizard's <code>.choices</code> pills (hidden input carries the value), other selects as <code>&lt;select&gt;</code>, textarea/date/number/tel/text as themselves. Unmatched lines go in an "Other notes" textarea. Apps with no <code>type</code> or no matching lines keep the old single textarea.</li>
+      <li>On save the questions are re-joined as "Label: value" lines, so the PATCH payload and the stored shape are unchanged; staff desk and chat context read the same text.</li>
+    </ul>
+    <p><b>Verified:</b> route 200/200/404 on port 8799; node self-check of the parse&rarr;rebuild round-trip (3 matched lines + 1 free line reproduce the input exactly); inline script parses.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1410-track-text">
+    <header>
+      <time>2026-10-17 14:10</time>
+      <h2>Remove "Track it any time under Menu, top right." from the submitted-application card</h2>
+      <span class="badge done">done</span>
+    </header>
+    <ul><li><code>public/index.html:766</code> &mdash; dropped the trailing <code>&lt;small&gt;</code> in the confirmation card. Confirmation number, department and next steps unchanged.</li></ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1405-voice-length">
+    <header>
+      <time>2026-10-17 14:05</time>
+      <h2>Shorter voice replies (user: "some of the voice responses are too long")</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Cause.</b> <code>VOICE_RULE</code> asked for "one or two short sentences" with no number; the model drifted into paragraphs on richer answers, and the client read whatever came back.</p>
+    <ul>
+      <li><code>server.js:390</code> &mdash; <code>VOICE_RULE</code> now states "Hard limit: 40 words total" and "leave out every detail the resident did not ask for".</li>
+      <li><code>public/index.html:521</code> &mdash; <code>clip(text, 60)</code>: the spoken text stops at the last sentence boundary under ~60 words, so even an over-long reply reads short. The full answer still shows in the chat log.</li>
+    </ul>
+    <p><b>Verified:</b> <code>node --check server.js</code>; inline script parses; <code>clip()</code> on 8&times;8-word sentences returns 54 words ending at a period, short input unchanged.</p>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1355-alerts-loadfailed">
     <header>
       <time>2026-10-17 13:55</time>
@@ -29,6 +142,35 @@
       <li><code>public/index.html:424-425</code> &mdash; alerts submit: on a network error, shows "Reconnecting…", waits for the server, retries the POST once. If it still fails, the message is "Can't reach the server. Try again in a moment." instead of Safari's "Load failed".</li>
     </ul>
     <p><b>Verified:</b> script parses (<code>new Function</code> over the inline script); endpoint returns 200; test alert cancelled via DELETE.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1415">
+    <header>
+      <time>2026-10-17 14:15</time>
+      <h2>Public comment on City Council meetings (user: "the system should allow the submission of comments for city council meetings")</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Approach.</b> A comment is one more guided form type riding the existing application pipeline (card &rarr; <code>POST /api/applications</code> &rarr; <code>submitApplication</code> &rarr; Applications menu + staff desk queue). No new storage, endpoint or UI component.</p>
+    <ul>
+      <li><code>forms.js</code> — <code>FORMS.council_comment</code> ("Public Comment to City Council", source santamonica.gov/city-council, verified from <code>knowledge/santa-monica/santa-monica.md:25</code>): fields <code>meeting</code> (select, options filled by the server), <code>agenda_item</code> (optional), <code>position</code> (Support / Oppose / Neutral pills), <code>comment</code> (textarea), <code>address</code> (optional), plus the shared name/email/phone. <code>GENERIC.council_comment</code> covers every other city. <code>toApplication()</code> now uses <code>meeting</code> as the summary headline and pulls the meeting's YYYY-MM-DD into <code>requested_date</code>.</li>
+      <li><code>server.js</code> — <code>withMeetings(f, jur)</code> next to <code>submitApplication</code>: replaces the <code>meeting</code> field's options with <code>councilOf(jur).upcoming</code> ("Tue, Oct 27, 5:30 PM (2026-10-27)"), or turns it into a free-text date when no upcoming meetings are cached. Applied where the card is sent (<code>open_application_form</code> result) and in <code>GET /api/forms/:type</code> (edit view). System prompt: new bullet telling the assistant to call <code>search_council_meetings</code> then open <code>council_comment</code> for "tell the council / comment on item 7 / oppose X"; <code>council_comment</code> added to the submit_application type list. The <code>open_application_form</code> enum picks it up from <code>FORM_TYPES</code>.</li>
+      <li><code>jurisdictions.js</code> — Santa Monica routing <code>council_comment &rarr; "City Clerk's Office"</code> (so it appears as a department in the staff desk) and the type in SM's <code>forms</code> list. Other cities fall through to their <code>other</code> routing.</li>
+      <li><code>public/index.html</code> — the "Next meeting" card (<code>meetingCard</code>) gets a "Submit a comment" link that sends "I want to submit a public comment for the &lt;jur&gt; meeting on &lt;date&gt;." into the chat.</li>
+    </ul>
+    <p><b>Verified 14:15:</b> <code>node --check</code> on all four files; <code>toApplication("council_comment", …)</code> yields summary "Public Comment to City Council - Tue, Oct 27, 5:30 PM (2026-10-27)", requested_date 2026-10-27, details with item/position/comment, and rejects a missing meeting; live <code>GET /api/forms/council_comment?jur=santa-monica</code> returns the select with the cached upcoming meetings, and <code>?jur=irvine</code> returns the generic variant.</p>
+    <p><b>Skipped.</b> Emailing the clerk / posting to the city's eComment portal (no verified endpoint; the staff desk is the hand-off). Add an outbox step in <code>submitApplication</code> when a city's clerk address is confirmed. Deadlines are not asserted anywhere; the card points to the agenda.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1405">
+    <header>
+      <time>2026-10-17 14:05</time>
+      <h2>Applications sheet: hide the other cards while one application is being edited</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Ask.</b> User (screenshot): "when you're editing one application you shouldn't be able to see the others until going back."</p>
+    <ul>
+      <li><code>public/index.html</code> — one CSS rule next to the <code>.editapp</code> styles: <code>#appsList:has(.editapp) .app:not(:has(.editapp)) { display:none }</code>. <code>editApp()</code> swaps the card's innerHTML for the form in place and Cancel/Save call <code>renderApps()</code>, which rebuilds the list, so the siblings come back on their own. No JS change.</li>
+    </ul>
   </article>
 
   <article class="entry" id="e-2026-10-17-1358">
@@ -119,8 +261,21 @@
       <li><code>node warm.js catalog</code> — all portals.</li>
       <li><code>node warm.js council &lt;id&gt;</code>, 3 shards of 8: palmdale, el-monte, inglewood, norwalk, south-gate, alhambra, redondo-beach, gardena · arcadia, azusa, la-mirada, san-gabriel, temple-city, san-dimas, la-verne, south-pasadena · artesia, san-marino, signal-hill, westlake-village, avalon, irwindale, bell, long-beach (platforms: legistar, granicus, civicplus, primegov, pdflist).</li>
     </ul>
-    <p><b>Skipped:</b> transcripts for the ~20 cities with YouTube channels — yt-dlp is currently blocked by YouTube's "sign in to confirm you're not a bot" (seen in today's logs); needs cookies. San Diego (hyland) and Orange County (ocboard): no adapter yet.</p>
-    <p><b>Status:</b> collectors running; results below when they finish.</p>
+    <h3>Long-running collectors (user: "support long-running functions… don't give up early")</h3>
+    <ul>
+      <li>Transcripts: detached <code>nohup</code> loop (log <code>data/_logs/transcripts.log</code>) running <code>node warm.js transcripts &lt;id&gt;</code> sequentially for santa-clarita, torrance, west-covina, norwalk, south-gate, carson, bellflower, redondo-beach, pico-rivera, monterey-park, gardena, arcadia, diamond-bar, glendora, rosemead, la-mirada, claremont, temple-city, san-dimas, lawndale, san-marino, la-habra-heights, bell, rolling-hills. yt-dlp currently works without cookies (browser cookies unavailable: no Chrome cookie DB, Safari not permitted); the collector sleeps 30 s between pulls, so this takes hours.</li>
+      <li>Catalog: <code>node warm.js catalog</code> finished — 3,633 datasets indexed across the configured portals.</li>
+    </ul>
+    <h3>New council adapters (18:00–19:10)</h3>
+    <ul>
+      <li><code>adapters/hyland.js</code> (new) — Hyland OnBase "Agenda Online" (City of San Diego, <code>sandiego.hylandcloud.com/211agendaonlinecouncil</code>). <code>listMeetings</code> reads the hidden <code>MeetingTypeIDs</code> from <code>/Meetings</code>, then pulls <code>/Meetings/Search?dropid=11&amp;mtids=…&amp;dropsv=…&amp;dropev=…</code> in half-year windows (no pager; ~130 council meetings per window) and parses <code>lnkMeetingAgenda_&lt;id&gt;</code> anchors (title carries body + M/D/YYYY h:mm:ss AM) plus the PDF hrefs hidden in HTML comments. <code>meetingText</code> reads the accessible HTML views <code>/Documents/ViewAgenda?meetingId=N&amp;type=agenda&amp;doctype=1</code> (full agenda, ~20k chars) and <code>doctype=3</code> (Results Summary with votes, ~4k chars) — the <code>ViewMeeting</code> pages are JS shells and <code>Downloadfile</code> needs a JS stream handshake; <code>Meetings/ViewMeetingAgenda</code> returns only an item outline regardless of its <code>type</code> param. Smoke test: 450 meetings for 2025→, 18.7 s; sample agenda 18,735 chars, results 3,631.</li>
+      <li><code>adapters/ocboard.js</code> (new) — Orange County Board of Supervisors. board.oc.gov only links out; the real host is <code>https://ocagendaext.oc.gov</code> (server-rendered tables). <code>/</code> = current year (date, time, "Agenda" PDF via <code>/ExtDocViewer/&lt;guid&gt;</code>, "Agenda Items" HTML via <code>/MeetingItem/&lt;guid&gt;</code>, "Agenda Modifications", "Minutes" = Summary Action Minutes PDF); <code>/ArchivedBosMeeting</code> = every meeting back to 2007-01-09 via <code>/LegacyDocViewer/&lt;guid&gt;</code> PDFs. <code>meetingText</code> prefers the Agenda Items HTML (clean item titles) and falls back to the agenda PDF; minutes via <code>fetchText</code> → pdftotext. Smoke test: 953 meetings 2007→2026-10-27; 2026-09-29 agenda 20k / minutes ok; 2014-12-16 legacy agenda 23,615 / minutes 21,227 chars. <code>j.council.agendas</code> can override the host.</li>
+      <li>Both plug into <code>council.js</code>'s existing <code>./adapters/&lt;platform&gt;.js</code> resolution; no other code changed. Contract: <code>listMeetings(j)</code> newest-first with <code>id/date/time/canceled/agenda_url/minutes_url</code>, optional <code>meetingText(m)</code>.</li>
+      <li>Running detached: <code>node warm.js council san-diego</code> (log <code>data/_logs/council-san-diego.log</code>; 164 meeting files after 4 min) and <code>node warm.js council orange-county</code> (<code>data/_logs/council-orange-county.log</code>). <code>limit: 200</code> past meetings each from the jurisdiction config.</li>
+    </ul>
+    <h3>Council shard results so far (files in <code>data/&lt;id&gt;/council</code>, 19:10)</h3>
+    <p>palmdale 144 · arcadia 110 · temple-city 97 (96 meetings, 489 chunks) · san-dimas 228 · artesia 336 (335 meetings, 1,645 chunks) · san-marino 91 · <b>azusa 1, la-mirada 1, san-gabriel 1</b> (their platform configs in <code>jurisdictions-la.js</code> yield a single record — other session's area, flagged not fixed) · el-monte 0, signal-hill 0 (still queued or empty). Shards still running.</p>
+    <p><b>Status:</b> adapters done and verified; collectors still running — counts above update when they finish. Remaining: final per-city totals, server restart to load the new council docs.</p>
   </article>
 
   <article class="entry" id="e-2026-10-17-1352">
@@ -610,6 +765,59 @@ index                 one BM25 is fine to ~100k docs; beyond that, shard per cou
     <ul>
       <li>Server-side SSE path (<code>res.write</code> per delta) — verified not the bottleneck. <code>npm test</code> still fails on the parallel work's <code>pertinentSources</code> assertion (test.js:40), untouched here.</li>
     </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1750">
+    <header>
+      <time>2026-10-17 17:50</time>
+      <h2>Voice mode: replies are audible (PCM audio, unlocked player, real fallback)</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "I can't hear anything that's coming from the website" in the talk feature.</p>
+    <h3>Causes found</h3>
+    <ul>
+      <li><code>/tts</code> (local Kokoro) returned a valid WAV, but as <b>IEEE-float</b> samples (format code 3). Safari/iOS and some Chrome builds don't decode float WAV, so the <code>&lt;audio&gt;</code> element fired <code>error</code>.</li>
+      <li>The client counted an errored chunk as "played" (<code>onended = onerror = res</code> then <code>played++</code>), so it neither retried nor fell back to the browser voice: silence.</li>
+      <li>Each chunk created a fresh <code>new Audio()</code> seconds after the mic tap; iOS/Safari only allow playback on an element that was started during a user gesture.</li>
+    </ul>
+    <h3>Files</h3>
+    <ul>
+      <li><code>tts.js</code> &mdash; <code>pcmWav(samples, rate)</code> writes 16-bit PCM WAV; <code>speakWav()</code> uses it instead of Kokoro's float <code>toWav()</code>.</li>
+      <li><code>public/index.html</code> &mdash; one <code>player</code> element, unlocked with a silent clip on the mic tap and reused for every chunk; a decode/play failure now breaks out and reads the rest with <code>speechSynthesis</code>, with a <code>console.warn</code>; <code>stopSpeaking</code> clears <code>src</code> without destroying the element.</li>
+    </ul>
+    <p><b>Verified 18:00:</b> temp server <code>/tts</code> now returns "WAVE audio, Microsoft PCM, 16 bit, mono 24000 Hz" (was "IEEE Float"), 138 KB for one sentence in ~1 s; the silent unlock clip parses as a valid 16-bit PCM WAV. Not tested with speakers in this session; the running servers need a restart for the PCM change and a page reload for the player change.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1735">
+    <header><time>2026-10-17 17:35</time><h2>Favicon matches the header mark, flat background</h2><span class="badge done">done</span></header>
+    <p>User (screenshot of the header): "change the GovAI favicon to match the main icon with a flat, non-gradient background". <code>public/icon.svg</code> &mdash; blue gradient tile replaced by a flat <code>#0b0e13</code> (the app's page colour) rounded square; the glyph is now the exact header mark (same paths, scaled 4×: white stroked building, gold spark top-right). Same file serves the tab icon, apple-touch-icon, the PWA manifest icon and the default jurisdiction badge.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1710">
+    <header>
+      <time>2026-10-17 17:10</time>
+      <h2>Address autocomplete scoped to the active city or county</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "when you're typing an address in a form specific to a county or city, it should only load addresses within that district". The client never sent the jurisdiction, so a Pasadena form offered Santa Monica addresses (the only collected address book), and the Santa Monica street-name datalist fired everywhere.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>public/index.html</code> &mdash; <code>addressSuggest</code> sends <code>&amp;jur=&lt;active id&gt;</code>; <code>streetSuggest</code> (Santa Monica assessor street roll) only runs when the active jurisdiction is Santa Monica.</li>
+      <li><code>addresses.js</code> &mdash; <code>hasBook(jurId)</code>; <code>liveAddresses(q, j)</code>: for jurisdictions with no collected book, a bounded Nominatim search (the registry <code>bbox</code>, else ±0.08° around the city centroid, ±0.6° for a county), results filtered to hits whose city matches the jurisdiction's name/aliases, mapped to the same <code>{address, zip, city}</code> shape; 1 req/s throttle and a 10-minute cache.</li>
+      <li><code>server.js</code> &mdash; <code>/api/addresses</code> uses the local book when one exists for <code>jur</code>, else the live lookup; never falls through to another city's book.</li>
+    </ul>
+    <h3>Verified 17:25 (temp server :8798)</h3>
+    <ul>
+      <li><code>/api/addresses?q=1685+main&amp;jur=santa-monica</code> &rarr; 8 local hits (1685 Main St + units); same query with <code>jur=pasadena</code> &rarr; 0 (no Santa Monica leakage); no <code>jur</code> &rarr; Santa Monica (default).</li>
+      <li>Live: <code>q=100+ocean&amp;jur=long-beach</code> &rarr; 100 West Ocean Boulevard (Long Beach); <code>q=400+civic+center&amp;jur=orange-county</code> &rarr; 400 Civic Center Drive West/East (Santa Ana); direct Nominatim probe for "120 lake ave" in Pasadena &rarr; 120 South/North Lake Avenue. Nominatim latency measured 1.4–9.5 s per query, so the fetch timeout went 6 s &rarr; 9 s; the client's sequence guard discards late results.</li>
+    </ul>
+    <p><b>Ceiling (ponytail):</b> live lookup is slower (~0.5–1 s) and prefix-weak compared to the local book. Run <code>node warm.js addresses</code> for a city once its Address Points layer is in its collected GIS catalog and it gets the instant local behaviour automatically.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1650">
+    <header><time>2026-10-17 16:50</time><h2>Form cards: phone numbers formatted as (111) 111-1111</h2><span class="badge done">done</span></header>
+    <p><b>17:00:</b> Applications panel &rarr; Edit application: removed the "Business License Application - Name. You can change these until … starts reviewing." line; the edit form no longer draws a second bordered box inside the card (flush, transparent, 10px side padding) and fields get more room (14px between fields, 12px/14px input padding).</p>
+    <p>User (screenshot of "11111111111" in the phone field). <code>public/index.html</code> <code>formCard()</code>: <code>tel</code> inputs now format as they're typed (digits only, leading country 1 dropped, capped at 10, rendered <code>(310) 555-0100</code>), use the tel keypad on phones, carry that placeholder, and validate to exactly 10 digits ("Enter a 10-digit phone number."). The stored value is the formatted string, so applications and the staff desk show it the same way.</p>
   </article>
 
   <article class="entry" id="e-2026-10-17-1620">
