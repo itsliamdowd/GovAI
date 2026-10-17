@@ -70,7 +70,7 @@
   .form .bar { height:3px; background:var(--line); border-radius:2px; overflow:hidden; margin:6px 0 14px } .form .bar i { display:block; height:100%; background:var(--blue); transition:width .25s }
   .form label { display:block; font-size:15px; font-weight:500; margin:0 0 6px } .form .hint { color:var(--muted); font-size:13px; margin:-2px 0 10px; line-height:1.45 }
   .form input,.form select,.form textarea { width:100%; background:var(--bg); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:10px 12px; font:inherit; font-size:15px; outline:none } .form :is(input,select,textarea):focus { border-color:var(--blue-2) } .form textarea { min-height:84px; resize:vertical }
-  /* native time/date pickers: one highlight only — the focused segment takes the field's accent, the field border stays quiet */
+  /* native time/date pickers: one highlight only - the focused segment takes the field's accent, the field border stays quiet */
   .form input:is([type=time],[type=date]) { color-scheme:dark } .form input:is([type=time],[type=date]):focus { border-color:var(--line); box-shadow:0 0 0 2px var(--blue) }
   .form input:is([type=time],[type=date])::-webkit-datetime-edit-hour-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-minute-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-ampm-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-month-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-day-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-year-field:focus { background:var(--blue); color:#fff; border-radius:4px; outline:none }
   .form select { padding:13px 36px 13px 14px } /* room to breathe + space for the native chevron */
@@ -412,6 +412,7 @@ async function stopWatch(i, btn) {
 }
 // Menu → Watch a topic: same daily-watch store the chat's create_alert uses.
 try { $("wEmail").value = localStorage.getItem("sm_email") || ""; } catch {}
+const waitForServer = async (tries = 20) => { for (let i = 0; i < tries; i++) { if (await fetch("/", { method: "HEAD", cache: "no-store" }).then((r) => r.ok, () => false)) return true; await new Promise((r) => setTimeout(r, 1000)); } return false; };
 $("watchForm").onsubmit = async (e) => {
   e.preventDefault();
   const topic = $("wTopic").value.trim(), address = $("wAddress").value.trim(), email = $("wEmail").value.trim(), err = $("wErr"), go = e.target.querySelector(".go");
@@ -420,14 +421,15 @@ $("watchForm").onsubmit = async (e) => {
   if (!$("wEmail").checkValidity() || !email) return err.textContent = "Enter a valid email for the alerts.";
   go.disabled = true; go.textContent = "Starting…";
   try {
-    const r = await fetch("/api/alerts", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ topic, address, email }) });
+    const post = () => fetch("/api/alerts", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ topic, address, email }) });
+    let r; try { r = await post(); } catch { go.textContent = "Reconnecting…"; await waitForServer(); r = await post(); } // Safari "Load failed" = server down/restarting
     const a = await r.json(); if (!r.ok) throw new Error(a.error || "Could not start the watch.");
     apps.unshift(a); saveApps(); renderApps();
     try { localStorage.setItem("sm_email", email); } catch {}
     $("wTopic").value = ""; $("wAddress").value = "";
     go.textContent = "Alert added ✓"; setTimeout(() => { go.textContent = "Start alerts"; go.disabled = false; }, 1500);
     $("watchList").firstElementChild?.scrollIntoView({ block: "nearest", behavior: "smooth" });
-  } catch (ex) { err.textContent = ex.message; go.textContent = "Start alerts"; go.disabled = false; }
+  } catch (ex) { err.textContent = ex instanceof TypeError ? "Can't reach the server. Try again in a moment." : ex.message; go.textContent = "Start alerts"; go.disabled = false; }
 };
 renderApps();
 $("appsBtn").onclick = () => { $("sheet").classList.add("open"); syncApps(); };
@@ -645,7 +647,7 @@ async function send(text, voice = false) {
     if (err.name === "AbortError") break;
     if (attempt === 0 && !buf && !pending && !card) {
       status.lastChild.textContent = "Server restarted, reconnecting…"; log.appendChild(status);
-      for (let i = 0; i < 20 && !ctrl.signal.aborted; i++) { await new Promise((r) => setTimeout(r, 1000)); if (await fetch("/", { method: "HEAD", cache: "no-store" }).then((r) => r.ok, () => false)) break; }
+      await waitForServer();
       if (!ctrl.signal.aborted) continue;
     }
     flush(); const d = document.createElement("div"); d.className = "error"; d.textContent = "Connection lost. Try again."; bot.appendChild(d); break;
@@ -767,11 +769,11 @@ function formCard(f) {
 function add(cls) { const d = document.createElement("div"); d.className = "msg " + cls; log.appendChild(d); scroll(); return d; }
 function esc(s) { return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
 function scroll() { if ($("voice").classList.contains("open")) return; requestAnimationFrame(() => window.scrollTo({ top: document.body.scrollHeight })); }
-if (location.hostname === "localhost") { // dev live-reload: never yank a resident out of a voice conversation; reload when they end it
-  const es = new EventSource("/dev"); let first = true, pending = false;
-  const reload = () => { if ($("voice").classList.contains("open")) pending = true; else location.reload(); };
+if (location.hostname === "localhost") { // dev live-reload (public/ saved or server restarted), but never once a conversation has started:
+  // a reload drops the transcript and the server keeps history in memory, so the chat would be gone. Refresh by hand to pick up changes.
+  const es = new EventSource("/dev"); let first = true;
+  const reload = () => { if (!log.querySelector(".msg") && !$("voice").classList.contains("open")) location.reload(); };
   es.onopen = () => { if (!first) reload(); first = false; }; es.onmessage = reload;
-  $("vend").addEventListener("click", () => { if (pending) location.reload(); });
 }
 </script>
 </body>

@@ -1,0 +1,31 @@
+{
+ "id": "glendale",
+ "probed_at": "2026-10-17T20:50:11.393Z",
+ "site": null,
+ "legistar": null,
+ "granicus": {
+  "host": "glendale.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "City of Glendale: Archive View (Agenda Feed)"
+   },
+   {
+    "view_id": 3,
+    "title": "City of Glendale: XML Feed View (Agenda Feed)"
+   },
+   {
+    "view_id": 8,
+    "title": "City of Glendale: Test View (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCSic6AKD1jsrwn8IzRJVSIw",
+   "channel": "MyGlendale",
+   "example": "City Council - 7/28/26"
+  }
+ ]
+}

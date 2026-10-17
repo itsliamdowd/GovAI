@@ -1,0 +1,34 @@
+{
+ "id": "baldwin-park",
+ "probed_at": "2026-10-17T20:52:53.711Z",
+ "site": {
+  "url": "https://www.baldwinpark.com/",
+  "title": "Baldwin Park, CA | Official Website"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "baldwinpark.granicus.com",
+  "views": [
+   {
+    "view_id": 3,
+    "title": "City of Baldwin Park: Community Video (Agenda Feed)"
+   },
+   {
+    "view_id": 7,
+    "title": "City of Baldwin Park: Planning Commission (Agenda Feed)"
+   },
+   {
+    "view_id": 8,
+    "title": "City of Baldwin Park: Housing Commission (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCFLZ0_dDFRjy59rhiDZ13Fg",
+   "channel": "Baldwin Park Council Meeting",
+   "example": "Baldwin Park City Council Regular Meeting - 10/19/2022"
+  }
+ ]
+}

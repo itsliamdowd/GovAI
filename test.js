@@ -16,7 +16,7 @@ for (const [text, want] of [["block party in Irvine", "irvine"], ["OC Board of S
   assert.equal(detect(text), want, `detect(${JSON.stringify(text)})`);
 assert.deepEqual(scopeIds(jurById("irvine")), ["irvine", "orange-county", "california"]);
 assert.equal(nearest(-118.49, 34.02)?.id, "santa-monica"); assert.equal(nearest(-117.16, 32.72)?.id, "san-diego");
-assert.deepEqual(formsFor("santa-monica").sort(), Object.keys(FORMS).sort()); assert.deepEqual(formsFor("irvine"), []);
+assert.deepEqual(formsFor("santa-monica").sort(), Object.keys(FORMS).sort()); assert.deepEqual(formsFor("irvine"), formsFor("santa-monica")); // every jurisdiction gets every card (forms.js)
 
 // Predefined forms: every field must be renderable, contact fields present, validation + mapping work.
 for (const [type, f] of Object.entries(FORMS)) {
@@ -110,7 +110,7 @@ assert.deepEqual(R.parseCsv('a,b\n1,"x, y"\n2,"he said ""hi"""\n'), [{ a: "1", b
 const C = await import("./council.js");
 const ev = C.legistarEvent({ EventId: 2040, EventBodyName: "BOARD OF SUPERVISORS", EventDate: "2026-10-07T00:00:00", EventTime: "9:00 AM", EventAgendaFile: "https://sdcounty.legistar.com/View.ashx?M=A&ID=1", EventMinutesFile: null, EventInSiteURL: "https://sdcounty.legistar.com/MeetingDetail.aspx?ID=2040", EventComment: "" });
 assert.deepEqual(ev, { id: "legistar-2040", event_id: 2040, body: "BOARD OF SUPERVISORS", date: "2026-10-07", time: "9:00 AM", canceled: false, agenda_url: "https://sdcounty.legistar.com/View.ashx?M=A&ID=1", minutes_url: "", site_url: "https://sdcounty.legistar.com/MeetingDetail.aspx?ID=2040" });
-assert.ok(C.toDocs({ date: "2026-10-07", agenda_url: "a", minutes_url: "m", agenda_text: "", minutes_text: "AGENDA ITEMS AND ACTIONS\n1. Airport lease — Action: Adopted (Pass) Vote: 4-1" }, jurById("san-diego-county")).every((d) => d.jur === "san-diego-county" && /^Board of Supervisors 2026-10-07/.test(d.title)));
+assert.ok(C.toDocs({ date: "2026-10-07", agenda_url: "a", minutes_url: "m", agenda_text: "", minutes_text: "AGENDA ITEMS AND ACTIONS\n1. Airport lease - Action: Adopted (Pass) Vote: 4-1" }, jurById("san-diego-county")).every((d) => d.jur === "san-diego-county" && /^Board of Supervisors 2026-10-07/.test(d.title)));
 const S = await import("./sources.js");
 const rss = S.parseFeed(`<rss><channel><item><title><![CDATA[Pier &amp; beach]]></title><link>https://www.bing.com/news/apiclick.aspx?ref=x&url=https%3A%2F%2Fsmdp.com%2Fa</link><pubDate>Fri, 17 Oct 2026 16:00:00 GMT</pubDate><description><![CDATA[<p>Body &#8217;s</p>]]></description><source url="x">Santa Monica Daily Press</source></item></channel></rss>`, { id: "t", name: "Feed" });
 assert.deepEqual(rss, [{ title: "Pier & beach", url: "https://smdp.com/a", date: "2026-10-17", text: "Body 's", publisher: "Santa Monica Daily Press", feed: "t" }]);

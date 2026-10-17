@@ -1,0 +1,31 @@
+{
+ "id": "burbank",
+ "probed_at": "2026-10-17T20:53:17.176Z",
+ "site": null,
+ "legistar": null,
+ "granicus": {
+  "host": "burbank.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "City of Burbank: ViewID = 2 - for published minutes.  DO NOT DELETE (Agenda Feed)"
+   },
+   {
+    "view_id": 4,
+    "title": "City of Burbank: Burbank Unified School District (Agenda Feed)"
+   },
+   {
+    "view_id": 6,
+    "title": "City of Burbank: Burbank&apos;s Web Page (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCNDlWLv3ZR1YlYRBxemNF3A",
+   "channel": "TheBurbankChannel",
+   "example": "Burbank City Council Meeting - June 30, 2026"
+  }
+ ]
+}

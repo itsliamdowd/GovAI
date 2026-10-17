@@ -13,7 +13,7 @@ const SM = jurById("santa-monica"); // default jurisdiction for every function b
 const geo = (j) => ({ lat: j.center?.[0], lon: j.center?.[1], bbox: j.bbox ?? (j.center ? [j.center[1] - 0.08, j.center[0] - 0.07, j.center[1] + 0.08, j.center[0] + 0.07] : null) }); // [xmin,ymin,xmax,ymax]; ~8 km box when no limits are known
 const strip = (h = "") => h.replace(/<!\[CDATA\[|\]\]>/g, "").replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/g, "")
   .replace(/<br\s*\/?>|<\/(p|div|li|h\d)>/gi, "\n").replace(/<[^>]+>/g, " ")
-  .replace(/&nbsp;|&#160;|&#xa0;/g, " ").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#0?39;|&apos;/g, "'").replace(/&#8217;|&rsquo;/g, "'").replace(/&#821[12];|&[lr]dquo;/g, '"').replace(/&#8211;|&ndash;/g, "–").replace(/&#8212;|&mdash;/g, "—").replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n))
+  .replace(/&nbsp;|&#160;|&#xa0;/g, " ").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#0?39;|&apos;/g, "'").replace(/&#8217;|&rsquo;/g, "'").replace(/&#821[12];|&[lr]dquo;/g, '"').replace(/&#8211;|&ndash;/g, "–").replace(/&#8212;|&mdash;/g, " - ").replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n))
   .replace(/[ \t]+/g, " ").replace(/\s*\n\s*/g, "\n").trim();
 
 async function getJson(url, opts = {}) {

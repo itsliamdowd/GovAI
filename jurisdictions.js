@@ -1,3 +1,4 @@
+import { FORM_TYPES } from "./forms.js";
 // Jurisdiction registry: every city/county the assistant serves, with the ids every ingester, tool and prompt reads.
 // Santa Monica is fully wired. Other entries start as `draft: true` (name, aliases, centroid, site) and get their
 // portals / council / youtube / feeds / live ids filled by discover.js + a human. Null fields degrade gracefully.
@@ -56,7 +57,7 @@ const LA_COUNTY = {
   site: "https://lacounty.gov", icon: null,
   domains: ["lacounty.gov", "lavote.gov", "lahsa.org", "assessor.lacounty.gov", "publichealth.lacounty.gov", "metro.net"],
   contact: { name: "LA County 211", phone: "211", email: "", line: "211" },
-  portals: [{ id: "lacounty", type: "dcat", url: "https://data.lacounty.gov/data.json", site: "https://data.lacounty.gov" }], council: { platform: "legistar", client: "lacounty", body: "Board of Supervisors", label: "Board of Supervisors", limit: 500 }, youtube: [], feeds: [], // Legistar holds only 2022-> BOS meetings; bos.lacounty.gov (Kontent SPA) + Statement of Proceedings are the fuller record — pdflist/SOP adapter pending
+  portals: [{ id: "lacounty", type: "dcat", url: "https://data.lacounty.gov/data.json", site: "https://data.lacounty.gov" }], council: { platform: "legistar", client: "lacounty", body: "Board of Supervisors", label: "Board of Supervisors", limit: 500 }, youtube: [], feeds: [], // Legistar holds only 2022-> BOS meetings; bos.lacounty.gov (Kontent SPA) + Statement of Proceedings are the fuller record - pdflist/SOP adapter pending
   gis: [{ org: "LA County eGIS", url: "https://egis-lacounty.hub.arcgis.com/api/feed/dcat-us/1.1.json" }], gisHosts: ["public.gis.lacounty.gov"],
   gisExtra: [ // political boundaries: "who represents this address"
     [27, "Supervisorial District (Current)", "county supervisor board of supervisors"], [29, "Congressional District (2021)", "congress congressman congresswoman house representative"],
@@ -127,7 +128,7 @@ const CITIES = [
   city("poway", "Poway", SD, "https://poway.org", [32.963, -117.036]),
   city("san-diego", "San Diego", SD, "https://www.sandiego.gov", [32.716, -117.161], ["la jolla", "hillcrest", "north park", "mission valley", "rancho bernardo", "otay mesa", "san ysidro", "pacific beach", "ocean beach", "point loma", "clairemont", "mira mesa", "downtown san diego", "gaslamp"],
     { prefix: "SD", icon: "https://www.sandiego.gov/sites/default/files/favicon.ico", domains: ["sandiego.gov", "data.sandiego.gov", "sandiego.hylandcloud.com", "sdmts.com", "voiceofsandiego.org", "kpbs.org", "timesofsandiego.com"],
-      contact: { name: "City of San Diego — Get It Done", phone: "(619) 236-5555", email: "", line: "(619) 236-5555 or the Get It Done app" },
+      contact: { name: "City of San Diego - Get It Done", phone: "(619) 236-5555", email: "", line: "(619) 236-5555 or the Get It Done app" },
       portals: [{ id: "sandiego", type: "dcat", url: "https://raw.githubusercontent.com/COSD-PANDA/data-inventory/refs/heads/master/data.json", site: "https://data.sandiego.gov", datasetUrl: "https://data.sandiego.gov/datasets/" }],
       council: { platform: "hyland", url: "https://sandiego.hylandcloud.com/211agendaonlinecouncil", docket: "https://www.sandiego.gov/city-clerk/city-council-docket-agenda", label: "City Council", limit: 200 },
       live: { caltrans: "11", tide: "9410170", tideName: "La Jolla (Scripps Pier)", airport: { name: "San Diego International (SAN)", box: [-117.25, 32.70, -117.15, 32.76], globe: "https://globe.adsbexchange.com/?lat=32.7336&lon=-117.1897&zoom=12" }, placesName: "San Diego", censusPlace: "66000", censusName: "San_Diego_city,_California" } }),
@@ -176,6 +177,17 @@ CITIES.find((c) => c.id === "orange").aliases = ["city of orange", "orange, ca",
 // Same for LA County cities whose names are ordinary words: never match the bare word.
 
 export const JURS = [SANTA_MONICA, LA_COUNTY, CALIFORNIA, SD_COUNTY, OC_COUNTY, ...LA_CITIES, ...CITIES];
+// Auto-discovered sources (node discover.js + node apply-discover.js -> data/discovered.json) fill fields a draft
+// entry leaves empty. Hand-written registry values always win.
+{
+  let found = {}; try { found = JSON.parse(fs.readFileSync("./data/discovered.json", "utf8")); } catch {}
+  for (const j of JURS) {
+    const d = found[j.id]; if (!d || !j.draft) continue;
+    if (!j.council && d.council) j.council = d.council;
+    if (!j.youtube?.length && d.youtube?.length) j.youtube = d.youtube;
+    if (!j.gis?.length && d.gis?.length) { j.gis = d.gis; j.gisHosts = [...new Set([...(j.gisHosts ?? []), ...(d.gisHosts ?? [])])]; }
+  }
+}
 const byId = new Map(JURS.map((j) => [j.id, j]));
 export const jurById = (id) => byId.get(id) ?? null;
 export const SERVED = JURS.filter((j) => !j.context); // what the assistant answers for (counties + cities)
@@ -214,7 +226,7 @@ export function contextFor(j, { catalogSummary = "", councilStatus = "", via = "
     via === "location" ? `The resident's device location is available: tools that take an address use it automatically when the address is empty. This jurisdiction was inferred from the resident's device location, not from anything they said. Answer for ${j.short} without asking; the first time a place matters, say in a few words that you're assuming ${j.short} and that they can name another city.` : "",
     j.draft ? `Data wiring for ${j.short} is partial beyond what is listed below. web_search is open: search "${j.short}" plus the service (e.g. "${j.short} bulky item pickup"), prefer the city's site ${j.domains[0]} and its contracted providers (trash hauler, permit portal, transit agency, county), read the page with web_fetch, and answer with the actual rules, fees, limits and phone numbers you find. Say only what could not be verified after searching.` : "",
     j.council ? `Council/board records: ${j.council.label} via ${j.council.platform}${councilStatus ? ` (${councilStatus})` : ""}.` : `No council/board records are indexed for ${j.short}; use web_search on its site for meetings.`,
-    j.forms?.length ? `Guided application cards available here: ${j.forms.join(", ")}.` : `No guided application cards for ${j.short}; collect details in conversation and file with submit_application (type "other" if nothing fits).`,
+    `Guided application cards available here: ${(j.forms?.length ? j.forms : FORM_TYPES).join(", ")}${j.forms?.length ? "" : ` (generic cards: they collect the common fields and ${j.short} confirms fees and documents on review)`}.`,
     Object.keys(j.live ?? {}).length ? `Live data configured: ${Object.keys(j.live).join(", ")} (weather, earthquakes, air quality, wikipedia work everywhere).` : "Live data: weather, earthquakes, air quality, wikipedia only.",
     catalogSummary ? `Open datasets available for ${j.short} (search_city_knowledge finds the right one and its fields):\n${catalogSummary}` : `No open-data catalog indexed for ${j.short}.`,
   ];

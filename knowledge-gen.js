@@ -11,7 +11,8 @@ import { SERVED, jurById } from "./jurisdictions.js";
 try { process.loadEnvFile(); } catch {}
 const client = new Anthropic();
 const MODEL = process.env.KNOWLEDGE_MODEL || "claude-sonnet-5-5";
-const UA = { "User-Agent": "Mozilla/5.0 (GovAI knowledge; +https://github.com/liamdowd/GovAI)" };
+// Browser-like headers: several city sites (Akamai/Cloudflare fronted) 403 a bare UA. Sites that still block get the web-tools pass below.
+const UA = { "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36", Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", "Accept-Language": "en-US,en;q=0.9" };
 const TOPICS = {
   "city-services-az": ["library", "parks", "recreation", "trash", "recycl", "waste", "bulky", "street-sweep", "water", "utilit", "311", "report", "animal", "senior", "youth", "events", "contact", "hours", "department"],
   "permits-howto": ["permit", "building", "planning", "zoning", "adu", "business-licen", "business-tax", "film", "special-event", "block-party", "encroach", "inspection", "fee"],
@@ -52,19 +53,26 @@ async function generate(j) {
   console.log(`${j.id}: ${all.length} ${how} urls`);
   fs.mkdirSync(dir, { recursive: true });
   for (const [topic, keys] of Object.entries(TOPICS)) {
+    if (fs.existsSync(`${dir}/${topic}.md`)) continue; // resumable: rerun a jurisdiction to fill only the missing topics
     const picked = all.filter((u) => keys.some((k) => u.toLowerCase().includes(k))).slice(0, PER_TOPIC);
     if (!all.length) picked.push(...keys.slice(0, 6).map((k) => `${j.site}/${k}`)); // no sitemap: try guessed paths
     const pages = [];
     for (const u of picked) { const t = strip(await text(u)); if (t.length > 400) pages.push({ url: u, text: t.slice(0, MAX_CHARS) }); }
-    if (!pages.length) { console.log(`  ${topic}: no pages`); continue; }
-    const res = await client.messages.create({
-      model: MODEL, max_tokens: 6000,
-      system: `You write a local-government knowledge file for ${j.name}, California, for a retrieval index. Output Markdown only, in exactly this format (title line, then "## " sections, each 1-3 short paragraphs of concrete facts followed by a "Source: <url>" line using the page the facts came from):\n\n${EXAMPLE}\n\nRules: only facts stated on the pages given; copy fees, hours, phone numbers, addresses and deadlines verbatim; never guess or generalise; skip a page that has no resident-facing facts; one section per distinct service or process; no preamble, no closing notes.`,
+    const system = `You write a local-government knowledge file for ${j.name}, California, for a retrieval index. Output Markdown only, in exactly this format (title line, then "## " sections, each 1-3 short paragraphs of concrete facts followed by a "Source: <url>" line using the page the facts came from):\n\n${EXAMPLE}\n\nRules: only facts stated on the pages given; copy fees, hours, phone numbers, addresses and deadlines verbatim; never guess or generalise; skip a page that has no resident-facing facts; one section per distinct service or process; no preamble, no closing notes.`;
+    // Site unreachable from here (403s, no sitemap, no crawlable links): let the model search and fetch the site itself (same tools server.js uses)
+    const host = new URL(j.site).host.replace(/^www\./, "");
+    const res = pages.length ? await client.messages.create({
+      model: MODEL, max_tokens: 6000, system,
       messages: [{ role: "user", content: `Topic file: ${topic}. Pages:\n\n${pages.map((p) => `=== ${p.url}\n${p.text}`).join("\n\n")}` }],
+    }, { maxRetries: 2 }) : await client.messages.create({
+      model: MODEL, max_tokens: 8000, system: system.replace("only facts stated on the pages given", `only facts stated on pages you fetched from ${host} (or the city's contracted providers it links to)`),
+      tools: [{ type: "web_search_20260209", name: "web_search", max_uses: 8, allowed_domains: [host] }, { type: "web_fetch_20260209", name: "web_fetch", max_uses: 10, max_content_tokens: 12000 }],
+      messages: [{ role: "user", content: `Topic file: ${topic} (themes: ${keys.join(", ")}). Search ${host} for the resident-facing pages on these themes, fetch the best ${PER_TOPIC} of them, then write the file. Finish with the Markdown only.` }],
     }, { maxRetries: 2 });
+    if (!pages.length) console.log(`  ${topic}: no fetchable pages, used web tools`);
     const md = res.content.filter((b) => b.type === "text").map((b) => b.text).join("\n").trim();
     if (!/^## /m.test(md)) { console.log(`  ${topic}: model returned no sections`); continue; }
-    fs.writeFileSync(`${dir}/${topic}.md`, `# ${j.name} — ${topic.replace(/-/g, " ")}\n\nGenerated ${new Date().toISOString().slice(0, 10)} from ${j.site} pages listed in each section's Source line.\n\n${md.replace(/^# .*\n+/, "")}\n`);
+    fs.writeFileSync(`${dir}/${topic}.md`, `# ${j.name} - ${topic.replace(/-/g, " ")}\n\nGenerated ${new Date().toISOString().slice(0, 10)} from ${j.site} pages listed in each section's Source line.\n\n${md.replace(/^# .*\n+/, "")}\n`);
     console.log(`  ${topic}: ${pages.length} pages → ${(md.match(/^## /gm) ?? []).length} sections`);
   }
 }

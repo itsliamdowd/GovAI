@@ -53,11 +53,11 @@ async function legistarMeetings(j) {
   return (await r.json()).map(legistarEvent);
 }
 export const legistarEvent = (e) => ({ id: `legistar-${e.EventId}`, event_id: e.EventId, body: e.EventBodyName, date: e.EventDate.slice(0, 10), time: e.EventTime ?? "", canceled: /cancel/i.test(e.EventComment ?? ""), agenda_url: e.EventAgendaFile || e.EventInSiteURL || "", minutes_url: e.EventMinutesFile || "", site_url: e.EventInSiteURL || "" });
-/** Agenda items with their recorded actions ("ITEM 3 Title — Passed 4-1"): the decisions without reading the PDFs. */
+/** Agenda items with their recorded actions ("ITEM 3 Title - Passed 4-1"): the decisions without reading the PDFs. */
 async function legistarItemsText(j, event_id) {
   const r = await fetch(`https://webapi.legistar.com/v1/${j.council.client}/events/${event_id}/eventitems?AgendaNote=1&MinutesNote=1`, { headers: UA, signal: AbortSignal.timeout(60000) });
   if (!r.ok) return "";
-  return (await r.json()).filter((i) => i.EventItemTitle).map((i) => [i.EventItemAgendaNumber && `${i.EventItemAgendaNumber}.`, i.EventItemTitle, i.EventItemActionName && `— Action: ${i.EventItemActionName}`, i.EventItemPassedFlagName && `(${i.EventItemPassedFlagName})`, i.EventItemMover && `Moved by ${i.EventItemMover}`, i.EventItemTally && `Vote: ${i.EventItemTally}`, i.EventItemMinutesNote].filter(Boolean).join(" ")).join("\n\n");
+  return (await r.json()).filter((i) => i.EventItemTitle).map((i) => [i.EventItemAgendaNumber && `${i.EventItemAgendaNumber}.`, i.EventItemTitle, i.EventItemActionName && ` -  Action: ${i.EventItemActionName}`, i.EventItemPassedFlagName && `(${i.EventItemPassedFlagName})`, i.EventItemMover && `Moved by ${i.EventItemMover}`, i.EventItemTally && `Vote: ${i.EventItemTally}`, i.EventItemMinutesNote].filter(Boolean).join(" ")).join("\n\n");
 }
 // Platform adapters. Built-ins live here; any other platform resolves to ./adapters/<platform>.js exporting
 //   listMeetings(j) -> [{ id, date (YYYY-MM-DD), time, canceled, agenda_url, minutes_url, packet_url?, ...extra }]  (newest first)
@@ -119,7 +119,7 @@ export function toDocs(rec, j = SM) {
     if (!text) continue;
     chunk(text).forEach((t, i) => docs.push({
       kind: "council_meeting", jur: j.id, meeting_date: rec.date, doc: type, part: i + 1,
-      title: `${label} ${rec.date} — ${type}`, url, text: t,
+      title: `${label} ${rec.date} - ${type}`, url, text: t,
       searchText: `${label.toLowerCase()} meeting ${rec.date} ${type} ${t}`,
     }));
   }

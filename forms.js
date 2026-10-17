@@ -16,7 +16,7 @@ export const FORMS = {
       { key: "event_date", label: "Date of the block party", type: "date", minDays: 14, hint: "At least 14 calendar days from today; 30 if it's around a holiday." },
       { key: "event_hours", label: "Start and end time", type: "timerange" },
       { key: "street_block", label: "Street and block to close", type: "text", placeholder: "e.g. 1100 block of Euclid St, between Wilshire and California", hint: "Must be an eligible street on the city's block party map." },
-      { key: "zoning", label: "Is your block mostly single-family (R-1) homes?", type: "select", options: ["Yes — 51% of residents/businesses must sign the petition", "No — 25% must sign", "Not sure"] },
+      { key: "zoning", label: "Is your block mostly single-family (R-1) homes?", type: "select", options: ["Yes - 51% of residents/businesses must sign the petition", "No - 25% must sign", "Not sure"] },
       { key: "petition", label: "Neighbor petition signatures", type: "select", options: ["Already collected", "Will collect through the online petition", "Need the paper petition form"] },
       { key: "expected_attendance", label: "Expected number of people", type: "number" },
       { key: "address", label: "Your address on the block", type: "text" },
@@ -28,7 +28,7 @@ export const FORMS = {
     intro: "Residential permits (vehicle-specific) $41 for the first; visitor permits (any vehicle, max 2) $72. Processing takes 3–5 business days.",
     source: "https://www.santamonica.gov/process-explainers/how-to-obtain-a-preferential-parking-permit",
     fields: [
-      { key: "permit_kind", label: "Which permit do you need?", type: "select", options: ["Residential — tied to one vehicle ($41 first, $51 second, $95 third, $148 fourth+)", "Visitor — usable in any vehicle ($72 each, max 2)"] },
+      { key: "permit_kind", label: "Which permit do you need?", type: "select", options: ["Residential - tied to one vehicle ($41 first, $51 second, $95 third, $148 fourth+)", "Visitor - usable in any vehicle ($72 each, max 2)"] },
       { key: "quantity", label: "How many permits?", type: "number" },
       { key: "address", label: "Your Santa Monica address (including unit)", type: "text", hint: "Must be inside a preferential parking zone." },
       { key: "zone", label: "Your parking zone", type: "select", options: ["Zone 1", "Zone 2", "Zone 3", "Zone 4", "Zone 5", "Not sure"] },
@@ -60,7 +60,7 @@ export const FORMS = {
       { key: "business_address", label: "Business address in Santa Monica", type: "text", hint: "Home-based businesses use the home address." },
       { key: "start_date", label: "Planned start date", type: "date" },
       { key: "structure", label: "Ownership structure", type: "select", options: ["Sole proprietor", "Partnership", "LLC", "Corporation", "Non-profit"] },
-      { key: "sellers_permit", label: "Will you sell goods (retail or wholesale)?", type: "select", options: ["Yes — I have a California Seller's Permit", "Yes — I still need a Seller's Permit", "No"], hint: "Retail and wholesale need a state Seller's Permit (CDTFA) before the city license issues." },
+      { key: "sellers_permit", label: "Will you sell goods (retail or wholesale)?", type: "select", options: ["Yes - I have a California Seller's Permit", "Yes - I still need a Seller's Permit", "No"], hint: "Retail and wholesale need a state Seller's Permit (CDTFA) before the city license issues." },
       { key: "special", label: "Does it involve alcohol, live entertainment, firearms, secondhand goods, massage or industrial wastewater?", type: "select", options: ["No", "Yes"], hint: "These need a supplemental police or wastewater permit." },
       ...contact,
     ],
@@ -108,13 +108,35 @@ export const FORMS = {
   },
 };
 
-for (const f of Object.values(FORMS)) f.jur ??= "santa-monica"; // a form is specific to one jurisdiction's process and fees
+for (const f of Object.values(FORMS)) f.jur ??= "santa-monica"; // the definitions above are Santa Monica's exact process and fees
 export const FORM_TYPES = Object.keys(FORMS);
-export const formsFor = (jur) => Object.keys(FORMS).filter((t) => FORMS[t].jur === jur);
+export const formsFor = () => FORM_TYPES; // every jurisdiction gets every card (see formFor)
+
+// Every city gets the same cards. In Santa Monica the card is the exact city process; elsewhere it collects the common
+// fields, says it's filed with that city, and the city confirms fees, deadlines and documents on review.
+// ponytail: one generic variant per type; add a per-city override table when a city's real process is wired in.
+const GENERIC = {
+  block_party_permit: { intro: "Closing a street for a block party needs the city's approval; most cities want 2–4 weeks' notice and a neighbor petition, and confirm the fee on review.", drop: ["zoning"],
+    fields: { petition: { label: "Have your neighbors on the block agreed?", options: ["Yes, most have signed or agreed", "Not yet", "Not sure what's required"] }, street_block: { hint: "" }, event_date: { hint: "Give the city at least two weeks; more around holidays." } } },
+  preferential_parking_permit: { intro: "Residential parking permits are issued for homes inside a permit zone; fees and proof-of-residency rules vary by city.",
+    fields: { permit_kind: { options: ["Residential - tied to one vehicle", "Visitor - usable in any vehicle"] }, address: { label: "Your address (including unit)", hint: "Must be inside a permit parking zone." }, zone: { type: "text", label: "Your parking zone or district, if you know it", optional: true, options: undefined }, vehicle: { hint: "Residential permits only. Registration must match your name and this address. Type N/A for visitor permits." } } },
+  bulky_item_pickup: { intro: "Most cities and their trash haulers collect large items from the curb by appointment, usually within 1–2 weeks. No construction debris or hazardous waste.", fields: { items: { hint: "Appliances with refrigerant are often a separate pickup." } } },
+  business_license: { intro: "Required for any business operating or based in the city; the city confirms its fee and any extra permits on review.", fields: { business_address: { label: "Business address in the city" } } },
+  dog_license: { intro: "Annual dog license from the city or its animal-services provider. A current rabies vaccination certificate is required; fees depend on spay/neuter status.", fields: { altered: { options: ["Yes", "No"] } } },
+  community_event_permit: { intro: "For larger public events, street closures or temporary structures. Most cities want 30–60 days' notice and police/fire sign-off.", fields: {} },
+  "311_service_request": { title: "Service Request", intro: "Routed to the responsible department. Emergencies: call 911.", fields: {} },
+};
+export function formFor(type, j) {
+  const f = FORMS[type]; if (!f) return null;
+  if (!j || j.id === f.jur) return f;
+  const g = GENERIC[type] ?? {};
+  const fields = f.fields.filter((x) => !(g.drop ?? []).includes(x.key)).map((x) => ({ ...x, ...(g.fields?.[x.key] ?? {}) }));
+  return { ...f, ...(g.title ? { title: g.title } : {}), intro: `Filed with the ${j.name}. ${g.intro ?? f.intro}`, source: j.site, fields, jur: j.id };
+}
 
 // Validates answers against the form and returns the submit_application input, or throws with a resident-readable message.
-export function toApplication(type, fields = {}) {
-  const f = FORMS[type]; if (!f) throw new Error(`No form for ${type}`);
+export function toApplication(type, fields = {}, j = null) {
+  const f = formFor(type, j); if (!f) throw new Error(`No form for ${type}`);
   const v = (k) => String(fields[k] ?? "").trim();
   for (const fld of f.fields) if (!fld.optional && !v(fld.key)) throw new Error(`${fld.label} is required`);
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v("email"))) throw new Error("Email address looks invalid");
@@ -125,5 +147,5 @@ export function toApplication(type, fields = {}) {
   const headline = pick("event_name", "business_name", "dog_name", "category", "items", "permit_kind");
   const details = f.fields.filter((x) => !used.has(x.key) && v(x.key)).map((x) => `${x.label}: ${v(x.key)}`).join("\n");
   return { type, applicant_name: v("applicant_name"), email: v("email"), phone: v("phone"), address, requested_date,
-    summary: headline ? `${f.title} — ${headline.split("\n")[0].slice(0, 80)}` : f.title, details };
+    summary: headline ? `${f.title} - ${headline.split("\n")[0].slice(0, 80)}` : f.title, details };
 }

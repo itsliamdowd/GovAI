@@ -1,0 +1,18 @@
+{
+ "id": "west-covina",
+ "probed_at": "2026-10-17T20:50:11.644Z",
+ "site": {
+  "url": "https://www.westcovina.gov/",
+  "title": "West Covina, CA | Official Website"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCB6garANBTuHBkXFXBRw4RA",
+   "channel": "West Covina City",
+   "example": "The City of West Covina - August 18, 2026 - City Council Meeting"
+  }
+ ]
+}

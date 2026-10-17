@@ -1,10 +1,10 @@
-# GovAI — local-government assistant (Santa Monica, San Diego County, Orange County)
+# GovAI - local-government assistant (Santa Monica, San Diego County, Orange County)
 
 One chat front door to local government. Santa Monica is fully wired (knowledge base, [data.santamonica.gov](https://data.santamonica.gov),
 City Council agendas/minutes/transcripts, local news, GIS, live feeds, guided permit forms). Every city in San Diego County and
 Orange County plus both county governments are in the registry (`jurisdictions.js`) and are being wired phase by phase.
-The assistant works out which jurisdiction a resident means from the conversation (city name, neighborhood, ZIP, address) —
-there is no picker — and scopes every search, tool, form and contact line to it.
+The assistant works out which jurisdiction a resident means from the conversation (city name, neighborhood, ZIP, address)  - 
+there is no picker - and scopes every search, tool, form and contact line to it.
 
 ## Jurisdictions
 
@@ -33,14 +33,14 @@ Env: `ANTHROPIC_API_KEY` (required), `PORT` (default 8787), `COUNCIL_MEETINGS` (
 
 ## How it works
 
-- `server.js` — Node http server. Streams Claude responses over SSE to the browser. Tools: `search_city_knowledge`, `query_dataset`, `search_council_meetings`, `web_search` (santamonica.gov only), `open_application_form`, `submit_application`, `check_application_status`, `create_alert`, `cancel_alert`. Sources shown under an answer are only knowledge chunks scoring near the top hit (each carries its section's `Source:` URL) plus datasets actually read via `query_dataset`.
-- `forms.js` — predefined applications (block party, preferential parking, bulky pickup, business license, dog license, community event, 311). Each lists the information the city's own page asks for; the browser renders it as a step-by-step card (Next → Submit → ✓) and files it via `POST /api/applications`.
-- `rag.js` — incremental BM25 inverted index (stemmed unigrams + content bigrams) over `knowledge/*.md` chunks, the CKAN dataset catalog, council agendas/minutes/transcripts, GIS layers and news. `addDocs()` appends without rebuilding; search results are LRU-cached until docs change; `query_dataset` hits the CKAN datastore live with a capped 10-minute row cache. Everything indexes from committed `data/` at startup (~2.5 s for ~42k chunks).
-- `council.js` — pulls City Council meetings from the Agendas & Minutes dataset, fetches agenda text (IQM2) and minutes (PDF → text), chunks and indexes them. Cached in `data/council/`.
-- `sources.js` — everything else Santa Monica (see below): local news feeds, city + county GIS layers, live federal/state/county APIs.
-- `public/` — single-page PWA (installable, dark mode, voice input, "My applications" tracker in localStorage).
-- `phones.js` — collector for each city's main phone number (homepage/contact-page `tel:` links and "City Hall" proximity) → `data/phones.json`, read by `jurisdictions*.js` for the footer, the prompt's contact line and application routing. `node phones.js` fills gaps; `node phones.js <id>` re-pulls one city.
-- `tts.js` — voice mode speech: Kokoro-82M (free, Apache-2.0, runs locally on CPU via `kokoro-js`, no API key). fp32 by default (`TTS_DTYPE`), voice `af_heart` (`TTS_VOICE`), warmed at startup; `speechText()` rewrites phone numbers, confirmation IDs, street/day/month abbreviations, emails and URLs so they read naturally. `TTS=off` falls back to the browser voice. First start downloads ~330 MB into `node_modules/@huggingface/transformers/.cache`.
+- `server.js` - Node http server. Streams Claude responses over SSE to the browser. Tools: `search_city_knowledge`, `query_dataset`, `search_council_meetings`, `web_search` (santamonica.gov only), `open_application_form`, `submit_application`, `check_application_status`, `create_alert`, `cancel_alert`. Sources shown under an answer are only knowledge chunks scoring near the top hit (each carries its section's `Source:` URL) plus datasets actually read via `query_dataset`.
+- `forms.js` - predefined applications (block party, preferential parking, bulky pickup, business license, dog license, community event, 311). Each lists the information the city's own page asks for; the browser renders it as a step-by-step card (Next → Submit → ✓) and files it via `POST /api/applications`.
+- `rag.js` - incremental BM25 inverted index (stemmed unigrams + content bigrams) over `knowledge/*.md` chunks, the CKAN dataset catalog, council agendas/minutes/transcripts, GIS layers and news. `addDocs()` appends without rebuilding; search results are LRU-cached until docs change; `query_dataset` hits the CKAN datastore live with a capped 10-minute row cache. Everything indexes from committed `data/` at startup (~2.5 s for ~42k chunks).
+- `council.js` - pulls City Council meetings from the Agendas & Minutes dataset, fetches agenda text (IQM2) and minutes (PDF → text), chunks and indexes them. Cached in `data/council/`.
+- `sources.js` - everything else Santa Monica (see below): local news feeds, city + county GIS layers, live federal/state/county APIs.
+- `public/` - single-page PWA (installable, dark mode, voice input, "My applications" tracker in localStorage).
+- `phones.js` - collector for each city's main phone number (homepage/contact-page `tel:` links and "City Hall" proximity) → `data/phones.json`, read by `jurisdictions*.js` for the footer, the prompt's contact line and application routing. `node phones.js` fills gaps; `node phones.js <id>` re-pulls one city.
+- `tts.js` - voice mode speech: Kokoro-82M (free, Apache-2.0, runs locally on CPU via `kokoro-js`, no API key). fp32 by default (`TTS_DTYPE`), voice `af_heart` (`TTS_VOICE`), warmed at startup; `speechText()` rewrites phone numbers, confirmation IDs, street/day/month abbreviations, emails and URLs so they read naturally. `TTS=off` falls back to the browser voice. First start downloads ~330 MB into `node_modules/@huggingface/transformers/.cache`.
 - Applications persist to `data/applications.json`.
 
 ## Sources

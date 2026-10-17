@@ -43,7 +43,7 @@ export async function politeFetch(url, { timeout = 45000, headers = {}, retries 
 
 export const html2text = (h) => String(h).replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<!--[\s\S]*?-->/g, "")
   .replace(/<\/(p|div|li|tr|h\d|section|article|table|ul|ol)>/gi, "\n").replace(/<br\s*\/?>/gi, "\n").replace(/<\/t[dh]>/gi, " \t").replace(/<[^>]+>/g, " ")
-  .replace(/&nbsp;|&#xa0;|&#160;/g, " ").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;|&apos;|&#8217;/g, "'").replace(/&#8220;|&#8221;/g, '"').replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n))
+  .replace(/&nbsp;|&#xa0;|&#160;/g, " ").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;?|&apos;|&#8217;|&[lr]squo;/g, "'").replace(/&#8220;|&#8221;|&[lr]dquo;/g, '"').replace(/&ndash;/g, "–").replace(/&mdash;/g, "—").replace(/&sect;/g, "§").replace(/&hellip;/g, "...").replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n))
   .replace(/[ \t]+/g, " ").replace(/\s*\n\s*/g, "\n").trim();
 
 // ponytail: shells out to poppler's pdftotext (brew install poppler). Missing binary -> throws, caller logs and moves on.

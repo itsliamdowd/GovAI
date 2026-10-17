@@ -16,6 +16,127 @@
        Status badge classes: planned | progress | done | blocked.
        Do NOT log changes to ~/.claude/, plan.html itself, or the changelog server. -->
 
+  <article class="entry" id="e-2026-10-17-1355-alerts-loadfailed">
+    <header>
+      <time>2026-10-17 13:55</time>
+      <h2>Fix "Load failed" on the Alerts form (Start alerts)</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Symptom.</b> Safari showed <code>Load failed</code> under the Start alerts button. That string is Safari's generic <code>TypeError</code> for a fetch that never got a response: the server was down or restarting. Nothing was listening on 8787 when checked; same class of failure as the 14:12 entry (<code>node --watch</code> restarts / crashed child).</p>
+    <p><b>Not a server bug.</b> <code>POST /api/alerts</code> verified on a fresh server (port 8799): 200 in 2.5 s with the full alert JSON. The chat path already waited for the server to come back and resent; the alerts form did not.</p>
+    <ul>
+      <li><code>public/index.html:415</code> &mdash; new <code>waitForServer()</code> (HEAD <code>/</code> once a second, up to 20 s). Chat's inline reconnect loop at <code>:650</code> now calls it instead of duplicating it.</li>
+      <li><code>public/index.html:424-425</code> &mdash; alerts submit: on a network error, shows "Reconnecting…", waits for the server, retries the POST once. If it still fails, the message is "Can't reach the server. Try again in a moment." instead of Safari's "Load failed".</li>
+    </ul>
+    <p><b>Verified:</b> script parses (<code>new Function</code> over the inline script); endpoint returns 200; test alert cancelled via DELETE.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1358">
+    <header>
+      <time>2026-10-17 13:58</time>
+      <h2>Chat page reloaded mid-conversation and lost the transcript</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Symptom.</b> User: "when I send a chat it refreshes and loses my conversation."</p>
+    <p><b>Root cause.</b> The dev live-reload in <code>public/index.html</code> (the <code>EventSource("/dev")</code> block at the end of the script) called <code>location.reload()</code> on every <code>/dev</code> message and on every reconnect. A parallel session is saving source files every few seconds (<code>server.js</code>, <code>tts.js</code>, <code>transcripts.js</code>, <code>public/index.html</code>, …), each save restarts <code>node --watch</code> or fires <code>fs.watch("public")</code> (<code>server.js:600-604</code>), so the page reloaded while the user was chatting. The server's conversation history is an in-memory <code>Map</code> (<code>server.js:380</code>), so a reload also loses the server-side context. The form submit itself was fine (<code>preventDefault</code> at <code>form.onsubmit</code>).</p>
+    <ul>
+      <li><code>public/index.html</code> — <code>reload()</code> now only reloads when the log has no <code>.msg</code> and the voice panel is closed. Once a conversation has started the page never auto-reloads; the <code>vend</code> deferred-reload line is gone (a voice chat always leaves messages, so it could never fire).</li>
+    </ul>
+    <p><b>Trade-off.</b> In dev, edits to <code>public/index.html</code> no longer apply to a tab that has a conversation open: refresh it by hand. Skipped persisting the transcript/server history across reloads; add if a demo needs to survive a server restart.</p>
+    <p><b>Verified:</b> <code>node --check</code> on the extracted inline script passes; the only reload paths in the page are the two in this block.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1412">
+    <header>
+      <time>2026-10-17 14:12</time>
+      <h2>Fix "Connection lost": server crashed on a locked SQLite index and stayed down</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Symptom.</b> User: "keep getting connection lost... FIX". Nothing was listening on 8787. The dev server (<code>npm run dev</code> = <code>node --watch</code>) had crashed at startup and <code>--watch</code> keeps the parent alive but does not relaunch a crashed child until the next file save, so every message failed until someone edited a file.</p>
+    <p><b>Root cause.</b> <code>store.js</code> (new SQLite FTS5 index from the parallel session) threw <code>ERR_SQLITE_ERROR: database is locked</code> inside <code>Store.addDocs</code> while <code>server.js:43</code> re-indexed cached council docs at boot. At that moment ten <code>discover.js</code> processes, two <code>warm.js</code>, a <code>crawl.js</code>, a <code>_probe.mjs</code> and a second <code>server.js</code> were all writing <code>data/govai.db</code>; the write lock outlasted the 30 s <code>busy_timeout</code>. The exception was uncaught, so the process died.</p>
+    <ul>
+      <li><code>rag.js</code> — <code>addDocs()</code> (the one path every indexer goes through) now catches locked/busy errors: logs "index busy", retries up to 5&times; every 10 s in the background via <code>setTimeout</code> (non-blocking), returns 0 meanwhile. Anything else still throws.</li>
+      <li><code>server.js</code> — <code>process.on("uncaughtException")</code> / <code>("unhandledRejection")</code> log instead of exiting, so a background collector (council/news/GIS/TTS) can never take the HTTP server down.</li>
+    </ul>
+    <p><b>Verified 14:10:</b> with all those writers still running, a server on port 8795 booted to the listen line and answered <code>POST /chat</code> with a full 43-event stream. <code>node --check</code> on both files.</p>
+    <p><b>Still true, not fixable in code:</b> with two Claude sessions saving files, <code>node --watch</code> restarts on every save and kills in-flight requests (the client already waits and resends once if nothing had streamed). Run <code>npm start</code> instead of <code>npm run dev</code> while that's going on.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1352-knowledge">
+    <header>
+      <time>2026-10-17 13:52</time>
+      <h2>Service knowledge for every San Diego and Orange County city (user: "wire knowledge for ALL the cities I said")</h2>
+      <span class="badge progress">in-progress</span>
+    </header>
+    <p><b>Trigger.</b> A Huntington Beach bulky-pickup question came back vague. User: "This is the type of data that you need to be an expert on." Two fixes: (1) draft jurisdictions get open web search immediately, (2) generate the six <code>knowledge/&lt;id&gt;/*.md</code> files for all 53 remaining SD/OC jurisdictions.</p>
+    <h3>Done</h3>
+    <ul>
+      <li><code>server.js</code>: <code>webScope(j)</code> drops <code>allowed_domains</code> for <code>draft</code> entries (open web search); draft context text tells the model to search "&lt;city&gt; &lt;service&gt;", prefer the city site and its contracted haulers/providers, and web_fetch the page before answering.</li>
+      <li><code>knowledge-gen.js</code>: accepts several ids per run; browser-like request headers (Carlsbad's Akamai front 403'd the old UA: 0 pages, now 10,575 sitemap URLs); <code>crawlUrls()</code> same-host two-level crawl when a site has no sitemap (ocgov.com); when a site is still unreachable the model writes the topic file itself with <code>web_search</code> (allowed_domains = city host) + <code>web_fetch</code>.</li>
+      <li>Generation running: 4 background workers over the 53 targets (18 SD cities minus san-diego, 34 OC cities, both counties). Groups in the session scratchpad <code>kgen-groups.json</code>, logs <code>kgen-1..4.log</code>. First launch failed on zsh word-splitting (<code>$ids</code> passed as one arg, so the usage error); relaunched with <code>${=ids}</code>.</li>
+    </ul>
+    <h3>Pending</h3>
+    <ul>
+      <li>Workers finish → <code>touch server.js</code> so the watch server rebuilds the index with the new <code>knowledge/</code> folders (rag.js reads <code>knowledge/&lt;id&gt;</code> for every JURS entry at build).</li>
+      <li>Verify: Huntington Beach bulky-item pickup answer cites the city's / Republic Services page with the actual limits and phone; spot-check one SD city and one county file for thin topics.</li>
+      <li>Known ceiling: PER_TOPIC=14 pages per topic; permit files tend to be thinner than services files. Re-run a single id with <code>KNOWLEDGE_PAGES=30</code> if a city reads thin.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1500">
+    <header>
+      <time>2026-10-17 15:00</time>
+      <h2>Data push across all 143 served jurisdictions: discovery at scale, auto-apply, collect</h2>
+      <span class="badge progress">in-progress</span>
+    </header>
+    <p><b>Goal.</b> User: "we need to be THE source of info for local gov for these cities, we need data NOW." Starting point: 143 served (140 cities, 3 counties), 142 drafts, only 15 with a council source, 7 with YouTube, 4 with GIS, 9 with any data on disk.</p>
+    <h3>Done so far</h3>
+    <ul>
+      <li>News: <code>node warm.js news</code> pulled all 144 feeds (27 s).</li>
+      <li>GIS: refreshed LA County (656 layers), Orange County (744), City of LA (1,312), Santa Monica.</li>
+      <li>Discovery: <code>node discover.js</code> running for the 128 draft cities with no council source, in 8 parallel batches (Legistar, Granicus, ArcGIS Hub DCAT, YouTube channel, site). Output: <code>data/discover/&lt;id&gt;.json</code>.</li>
+      <li><code>apply-discover.js</code> (new): folds probes into <code>data/discovered.json</code>. Legistar: body = exact "City Council" else first non-committee "council" body. Granicus: client from host, council-titled views (max 3). YouTube: first channel the probe already matched to the city name. Hub: every DCAT feed found.</li>
+      <li><code>jurisdictions.js</code>: overlays <code>data/discovered.json</code> onto draft entries at load, filling only empty <code>council</code> / <code>youtube</code> / <code>gis</code>. Hand-written values win. No source-file pasting.</li>
+      <li>Em dashes removed from every source file (server prompt, UI, README, adapters' callers). Hyphens instead.</li>
+      <li><code>test.js</code>: stale <code>formsFor("irvine")</code> expectation updated to match forms.js (every jurisdiction gets every card).</li>
+    </ul>
+    <h3>Next (when probes finish)</h3>
+    <ul>
+      <li><code>node apply-discover.js</code>, then <code>node warm.js council</code>, <code>transcripts</code>, <code>gis</code>, <code>addresses</code> for everything newly configured. Report per-city coverage.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1720">
+    <header>
+      <time>2026-10-17 17:20</time>
+      <h2>Pull more data: discover + collect council/video/GIS/news for the San Diego and Orange County cities</h2>
+      <span class="badge progress">in-progress</span>
+    </header>
+    <p><b>Goal (user).</b> "pull MORE DATA". State before: 144 jurisdictions, 142 still drafts (name, site, centroid only); data dirs exist for 9; council configured for 15; the LA County expansion (other session, <code>jurisdictions-la.js</code> overrides + <code>data/_discover/los-angeles-county.json</code>) is in progress. The 52 San Diego + Orange County cities had not been probed at all.</p>
+    <p><b>Pivot 17:35.</b> Discovery for every draft city (LA + SD + OC, 8 parallel <code>discover.js</code> batches), <code>warm.js council|transcripts los-angeles</code>, <code>crawl.js malibu</code> and <code>knowledge-gen.js</code> for all SD/OC cities are already running from the other session (seen in <code>ps</code>; <code>data/discover/_batch*.txt</code>). My 4 SD/OC discovery shards were stopped so as not to double-hit the same sites. What nobody was collecting: <b>council records for the LA cities that already have a platform configured but no <code>data/&lt;id&gt;/council</code></b>, and the <b>open-data catalogs</b> for the configured portals (LA County, SD County, Long Beach, San Diego, Santa Monica all showed <code>portals ✗</code>).</p>
+    <h3>Running now</h3>
+    <ul>
+      <li><code>node warm.js catalog</code> — all portals.</li>
+      <li><code>node warm.js council &lt;id&gt;</code>, 3 shards of 8: palmdale, el-monte, inglewood, norwalk, south-gate, alhambra, redondo-beach, gardena · arcadia, azusa, la-mirada, san-gabriel, temple-city, san-dimas, la-verne, south-pasadena · artesia, san-marino, signal-hill, westlake-village, avalon, irwindale, bell, long-beach (platforms: legistar, granicus, civicplus, primegov, pdflist).</li>
+    </ul>
+    <p><b>Skipped:</b> transcripts for the ~20 cities with YouTube channels — yt-dlp is currently blocked by YouTube's "sign in to confirm you're not a bot" (seen in today's logs); needs cookies. San Diego (hyland) and Orange County (ocboard): no adapter yet.</p>
+    <p><b>Status:</b> collectors running; results below when they finish.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1352">
+    <header>
+      <time>2026-10-17 13:52</time>
+      <h2>Form wizard: street-name autocomplete on address fields</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User screenshot ("111 eu" in "Street and block to close"): "address autofill needs to be enabled here". Tried Photon/OSM (empty inside the SM bbox) and house-number matching on the Assessor roll (empty even for City Hall); distinct street names by prefix work, so the number the resident types is kept and the street is completed.</p>
+    <ul>
+      <li><code>server.js</code> — <code>GET /api/streets?q=eu</code> &rarr; <code>["Euclid St"]</code>: distinct <code>SitusStreet LIKE 'EU%'</code> for <code>SitusCity = SANTA MONICA</code> from the LA County Assessor roll FeatureServer (same layer <code>live.property</code> uses), title-cased with street-type abbreviations so "EUCLID ST" and "EUCLID STREET" collapse to one. Cached per prefix in-process; prefix sanitized to <code>[A-Z0-9 ]</code>, min 2 chars.</li>
+      <li><code>public/index.html</code> — <code>streetSuggest(input)</code> attaches a native <code>&lt;datalist&gt;</code> to any wizard text field whose key matches <code>address|street|location</code>; on input (180 ms debounce) it splits leading house number from the typed street prefix and fills options like "111 Euclid St".</li>
+    </ul>
+    <p><b>Verified:</b> on a temp server: <code>eu</code> &rarr; Euclid St; <code>wil</code> &rarr; Wilshire Blvd, Wilson Pl; <code>4th</code> &rarr; 4th St; 1-char &rarr; <code>[]</code>. Browser datalist behaviour not visually checked (Chrome MCP still locked by another session). Santa Monica-only on purpose: the forms are SM permits.</p>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1700">
     <header>
       <time>2026-10-17 17:00</time>
@@ -489,6 +610,29 @@ index                 one BM25 is fine to ~100k docs; beyond that, shard per cou
     <ul>
       <li>Server-side SSE path (<code>res.write</code> per delta) — verified not the bottleneck. <code>npm test</code> still fails on the parallel work's <code>pertinentSources</code> assertion (test.js:40), untouched here.</li>
     </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1620">
+    <header>
+      <time>2026-10-17 16:20</time>
+      <h2>Application cards work in every city, not just Santa Monica</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "make the cards work for all cities mentioned". The seven guided cards (block party, parking permit, bulky pickup, business license, dog license, community event, 311) were tagged <code>jur: "santa-monica"</code>; in any other city <code>open_application_form</code> threw "No guided form for …" and the context block told the model there were no cards.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>forms.js</code> &mdash; <code>formFor(type, j)</code>: Santa Monica gets the exact card as before; any other jurisdiction gets a generic variant built from the same fields with a <code>GENERIC</code> override per type (intro "Filed with the City of X. …", <code>source</code> = the city's site, Santa Monica-only fields dropped or neutralised: the R-1 petition-percentage question goes, parking fees/zones become plain text, dog-license fees become Yes/No, 311 becomes "Service Request"). <code>formsFor()</code> returns every type for every jurisdiction; <code>toApplication(type, fields, j)</code> validates against that jurisdiction's variant (so Pasadena doesn't require the R-1 answer, Santa Monica still does).</li>
+      <li><code>server.js</code> &mdash; the <code>form</code> SSE event sends <code>formFor(type, ctx.J)</code>; <code>POST /api/applications</code> validates with and files under the session's active jurisdiction (confirmation prefix and department follow it, e.g. <code>PAS-123456</code> routed to "City of Pasadena"); prompt now says guided cards exist in every jurisdiction and explains the generic/exact distinction.</li>
+      <li><code>jurisdictions.js</code> &mdash; context block lists the cards for every jurisdiction (imports <code>FORM_TYPES</code>), noting they're generic outside Santa Monica.</li>
+    </ul>
+    <h3>Verified 16:40 (temp server :8798)</h3>
+    <ul>
+      <li>Unit: Santa Monica cards are byte-identical to before; Pasadena parking card has generic fee-free options and a free-text zone; Pasadena block party drops the R-1 question and files; Santa Monica still requires it; Orange County 311 is "Service Request".</li>
+      <li>End to end: "I need a bulky item pickup in Pasadena for an old couch" &rarr; jurisdiction switched to pasadena, <code>form</code> event with intro "Filed with the City of Pasadena. …", source cityofpasadena.net; filing the card returned <b>PAS-637832</b>, jurisdiction City of Pasadena, department City of Pasadena. Smoke records removed from <code>data/applications.json</code> afterwards.</li>
+      <li><b>Bug fixed on the way:</b> every <code>/chat</code> request was returning HTTP 400. A parallel session's <code>/chat</code> parser destructured <code>jur</code> without declaring it (<code>let sessionId, message, voice, geo;</code>), which throws a ReferenceError in strict mode and was caught as "bad request". Added <code>jur</code> to the <code>let</code>.</li>
+      <li>Temp servers now contend for the SQLite store with the running instances ("database is locked" at boot); a retry got through on the next attempt.</li>
+    </ul>
+    <p><b>Ceiling (ponytail):</b> one generic variant per type. When a city's real process is wired in (its own fees, zones, portal), add a per-city override next to the Santa Monica definition; the staff desk already routes by jurisdiction.</p>
   </article>
 
   <article class="entry" id="e-2026-10-17-1600">
