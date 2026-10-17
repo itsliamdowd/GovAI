@@ -386,7 +386,7 @@ const DEFAULT_JUR = process.env.DEFAULT_JUR || null; // set e.g. santa-monica fo
 const sessionFor = (id) => { if (!sessions.has(id)) sessions.set(id, { messages: [], jur: DEFAULT_JUR }); return sessions.get(id); };
 async function chat(sessionId, userText, send, voice = false, geo = null) {
   const session = sessionFor(sessionId), { messages } = session;
-  const jurEvent = () => { const j = jurById(session.jur); send({ type: "jurisdiction", data: j ? { id: j.id, name: j.name, short: j.short, kind: j.kind, icon: j.icon, contact: j.contact?.line ?? "", site: j.site } : null }); };
+  const jurEvent = () => { const j = jurById(session.jur); send({ type: "jurisdiction", data: j ? { id: j.id, name: j.name, short: j.short, kind: j.kind, icon: j.icon, contact: j.contact?.line ?? "", phone: j.contact?.phone ?? "", site: j.site } : null }); };
   const setJur = (id, via = "message") => { if (id !== session.jur && jurById(id)) { session.jur = id; session.via = via; jurEvent(); } };
   const hit = detect(userText); if (hit) setJur(hit); // server-side alias/ZIP match; the model's set_jurisdiction covers the rest
   if (!session.jur && geo) { const near = nearest(geo.lon, geo.lat); if (near) setJur(near.id, "location"); } // device location, only when nothing was named

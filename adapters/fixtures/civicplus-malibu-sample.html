@@ -1,985 +1,110 @@
+" class="videos media">
+					Media
+				</th>
+				
+				<th scope="col" class="downloads">
+					Download
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+		<!-- Agendas for a category starts -->
+	
 
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-<!-- Google Tag Manager for GA4 -->
-				<script>(function(w,d,s,l,i){w.GAMeasurementID='G-9TP0H8C26H';w[l]=w[l]||[];w[l].push({'gtm.start':
-				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-				j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-				'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-				})(window,document,'script','cpDataLayerGA4','GTM-K73C5PS');</script>
-				<!-- End Google Tag Manager for GA4 -->
-				<script type='text/javascript'>
-					var enableTelemetry = 'false'
-					var aiConfig = {
-					instrumentationKey: '1cde048e-3185-4906-aa46-c92a7312b60f'						
-					}
-					var appInsights = window.appInsights || function (a) { function b(a) { c[a] = function () { var b = arguments; c.queue.push(function () { c[a].apply(c, b) }) } } var c = { config: a }, d = document, e = window; setTimeout(function () { var b = d.createElement('script'); b.src = a.url || 'https://js.monitor.azure.com/scripts/a/ai.0.js', d.getElementsByTagName('script')[0].parentNode.appendChild(b) }); try { c.cookie = d.cookie } catch (a) { } c.queue = []; for (var f = ['Event', 'Exception', 'Metric', 'PageView', 'Trace', 'Dependency']; f.length;)b('track' + f.pop()); if (b('setAuthenticatedUserContext'), b('clearAuthenticatedUserContext'), b('startTrackEvent'), b('stopTrackEvent'), b('startTrackPage'), b('stopTrackPage'), b('flush'), !a.disableExceptionTracking) { f = 'onerror', b('_' + f); var g = e[f]; e[f] = function (a, b, d, e, h) { var i = g && g(a, b, d, e, h); return !0 !== i && c['_' + f](a, b, d, e, h), i } } return c }(aiConfig);
-					window.appInsights = appInsights, appInsights.queue && 0 === appInsights.queue.length;
-					// Add telemetry initializer
-					appInsights.queue.push(function() {
-						appInsights.context.addTelemetryInitializer(function(envelope) {
-							var telemetryItem = envelope.data.baseData;
-							// To check the telemetry item’s type:
-							if (!false)
-							{
-								//If the telemetry is not enabled, we still want to capture Google map custom event, so only allow that
-								if (envelope.name.indexOf('.Event') == -1)
-									return false;
-							}
-						});
-					});						
-					appInsights.trackPageView();
-				</script>
-	<script>
-		function populateAntiForgery(token) {
-			var input = document.createElement("input");
-			input.name = "__RequestVerificationToken";
-			input.type = "hidden";
-			input.value = token;
-			var absPat = /^https?:\/\/|^\/\//i;
-			var forms = document.getElementsByTagName("form");
-			for (var i = 0; i < forms.length; i++) {
-				if (forms[i].method == "post" &&
-					!forms[i].querySelector('[name="__RequestVerificationToken"]') &&
-					!absPat.test(forms[i].getAttribute("action"))) {
-					forms[i].appendChild(input.cloneNode());
-				}
-			}
-		}
-
-		function getAntiForgeryToken(callback, error) {
-			var xhr = new XMLHttpRequest();
-			xhr.open("GET", "/antiforgery");
-			xhr.addEventListener("load", function() {
-				try {
-					if (this.status !== 200) {
-						throw Error("Invalid status. Could not retrieve antiforgery token.");
-					}
-					var obj = JSON.parse(this.responseText);
-					callback(obj.token);
-				} catch (e) {
-					typeof error === "function" && error(e);
-				}
-			});
-			xhr.send();
-		}
-
-		getAntiForgeryToken(function(token) {
-			if (document.readyState === "complete"
-				|| document.readyState === "loaded" 
-				|| document.readyState === "interactive") {
-				populateAntiForgery(token);
-				return;
-			}
-			document.addEventListener("DOMContentLoaded", function() {
-				populateAntiForgery(token);
-			}, false);
-		}, console.error);
-	</script>
+<tr class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h412222025-2650">
+			<a id="_12222025-2650" name="_12222025-2650"></a>
+			<strong aria-label="Agenda for December 22, 2025"><abbr title="December">Dec</abbr> 22, 2025</strong>
 			
-
-	<script type="text/javascript">
-		window.departmentHeader = {};
-		window.pageSectionTracker = {};
-		window.isResponsiveEnabled = true;
-		window.isRemoveSetHeights= true;
-		if (window.isRemoveSetHeights) {
-			document.documentElement.className += ' removeSetHeights';
-		}
-		window.mainMenuMediaQuery = 'screen and (max-width: 45em)';
-		window.isMobileBrowserIncludingTablets = false;
-		window.fixedResponsiveMenu = false;
-		window.fullWidthResponsiveMenu = false;
-		window.responsiveMenuHeight = '';
-		window.responsiveMenuFontSize = '';
-		window.isContentAdvisor = false;
-		(function () {
-			window.setSizeCookie = function () {
-				document.cookie = "dpi=" + window.devicePixelRatio + "; path=/";
-				document.cookie = "viewportWidth=" + window.innerWidth + "; path=/";
-				document.cookie = "viewportHeight=" + window.innerHeight + "; path=/";
-				if (screen && screen.width && screen.height) {
-					document.cookie = "screenWidth=" + screen.width + "; path=/";
-					document.cookie = "screenHeight=" + screen.height + "; path=/";
-				}
-				document.cookie = "responsiveGhost=1; path=/";
-			};
-
-			setSizeCookie();
-		}());
-	</script>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<script async src="https://docaccess.com/docbox.js"></script>
+			</h3>
+	<p>
 	
-	
-	
-	<meta name="theme-color" content="#478b91">
-	<link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
-	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
-		<title>Agenda Center • Malibu, CA • CivicEngage</title>
-
-			<script src="/Assets/Scripts/jQuery/jquery-3.7.1.min.js"></script>
-	<script src="/Assets/Scripts/jQuery/jquery-migrate-3.6.0.min.js" type="text/javascript"></script>
-	
-
-	<!--[if IE 6]><script language="JavaScript" type="text/javascript"> var isie6 = true; </script><![endif]-->
-	<!--[if IE 7]><script language="JavaScript" type="text/javascript"> var isie7 = true; </script><![endif]-->
-	<!--[if IE 8]><script language="JavaScript" type="text/javascript"> var isie8 = true; </script><![endif]-->
-	<!--[if IE 9]><script language="JavaScript" type="text/javascript"> var isie8 = true; </script><![endif]-->
-	<script type="text/javascript"><!--
-	var intCountryCode = 840;
-	var order = '';
-//--></script>
-	
-<link href="/-681783051.css" rel="stylesheet" type="text/css" />	<link href="/-2140275272.css" rel="stylesheet" type="text/css" />	<link href="/-1686575258.css" rel="stylesheet" type="text/css" />
-
-	<link rel="stylesheet" type="text/css" href="/Assets/Styles/Print.css" media="print">
-	<script type="text/javascript">
-		window.Pages = window.Pages || {};
-		// FrontEnd RWD initialization
-		window.Pages.rwdReady = $.Deferred();
-		window.Pages.toolBarDeferred = $.Deferred();
-		window.Pages.rwdSetupComplete = $.Deferred();
-		window.Pages.megaMenuLoaded = $.Deferred();
-		window.Pages.angularToolbarComplete = $.Deferred();
-		window.Pages.frontEndToolbarComplete = $.Deferred();
-	</script>
-	<!--CPHeadContent-->
-	<script src="/739942322.js" type="text/javascript"></script>
-	
-	
-	
-<script type="text/javascript" src="/Scripts/HtmlExtensionSupport.js"></script>
-
-<link type="text/css" href="/asset.axd?id=kgAAAB-LCAAAAAAABABVjTEKhDAURO8ydYj5K1qk9RiLxRIjiCZZzF8RJHf34xZiN_PewBwYYN8HvrDoUmQfGQrjxaIw9otfp1m7FEKK2uUsOsGaop6Dbcr8uT2VvvQKjq_JztXfbFJfhkjXmogaIU7-67aRAMvrz5cTeII6tJIAAAA%3d" rel="stylesheet"/>
-
-	<link href="/718583105.css" rel="stylesheet" type="text/css" />
-	<script src="/-981222267.js" type="text/javascript" defer></script>
-	<script type="text/javascript">
-		$(document).ready(function () {
-			$('body').append('<div id="cpDatePickerWrapper" class="bottom leftEdge" style="position:absolute; width: 300px"></div>');
-			cp.datetimepicker.createDatePicker('#StartDatePicker', {format:'mm/dd/yyyy'});
-			cp.datetimepicker.createDatePicker('#EndDatePicker', { format: 'mm/dd/yyyy' });
-			$('#StartDatePicker').addClass('cpDatePickerElevate');
-			$('#EndDatePicker').addClass('cpDatePickerElevate');
-			$('.popoutContainer > a').click(function (e) {
-				e.preventDefault();
-			});
-
-            timePeriodEventBinder();
-			todayDate = new Date();
-
-			$('#searchButton').click(function () {
-				doSearch();
-				return false;
-			});
-
-			$('#searchField').keypress(function (e) {
-				if (e.which == 13 || e.keyCode == 13) {
-					$('#searchButton').trigger('click');
-				}
-			});
-
-			checkUncheckAllCategoriesCB();
-
-			$('#submittedIn').change(function () {
-				updateSubmittedRangeDates();
-				return false;
-			});
-
-			var match = RegExp('[?&]' + 'dateSelector' + '=([^&]*)')
-					.exec(window.location.search);
-
-			var dateRangeVal = null;
-			if (match != null)
-				dateRangeVal = decodeURIComponent(match[1].replace(/\+/g, ' '));
-			if (dateRangeVal != null) {
-				switch (dateRangeVal) {
-					case "":
-						$('#timePeriod').html('<span>Time Period</span>');
-						break;
-					case "1":
-						$('#timePeriod').html('<span>Last Week</span>');
-						break;
-					case "2":
-						$('#timePeriod').html('<span>Last Month</span>');
-						break;
-					case "3":
-						$('#timePeriod').html('<span>Last 6 Months</span>');
-						break;
-					case "4":
-						$('#timePeriod').html('<span>Last Year</span>');
-						break;
-				}
-			}
-		});
-
-		function checkUncheckAllCategoriesCB() {
-			if ($('input:not(:checked)[name=chkCategoryID]').length == 0)
-				attrOrProps($('#allCategories'), "checked", true);
-			else
-				removeAttrOrProps($('#allCategories'), "checked");
-		}
-
-		function checkUncheckAll(checked) {
-			var $cbs = $('input[name=chkCategoryID]');
-			if (checked) {
-				$cbs.each(function () {
-					$(this).prop('checked', true);
-				});
-			}
-			else {
-				$cbs.each(function () {
-					$(this).prop('checked', false);
-				});
-			}
-		}
-
-		function doSearch() {
-			var term = $('#searchField').val();
-
-			var startDate = $('#StartDatePicker').val();
-			var endDate = $('#EndDatePicker').val();
-			var dt = $('input[name=dateRange]').val();
-			var dateSelector = $('#submittedIn').val();
-
-			if (startDate!='' && endDate!='' && dt == '')
-				dateSelector = '';
-
-			var $cbs = $('input:checked[name=chkCategoryID]');
-			var cids = '';
-			$cbs.each(function () {
-				cids += $(this).val() + ',';
-			});
-
-			if ($('#allCategories').is(':checked'))
-				cids = 'all';
-
-			document.location = '/AgendaCenter/Search/?term=' + escape(term.trim()) + '&CIDs=' + cids.trim() + '&startDate=' + startDate + '&endDate=' + endDate + '&dateRange=' + dt + '&dateSelector=' + dateSelector;
-
-		}
-
-		function validSearchTerm(term) {
-			return (term && term != null && term.trim() != '' && term.trim() != $('#searchField').attr('placeholder'));
-		}
-
-		function getDatePicker(id) {
-			var datePicker = $('#' + id);
-			return datePicker;
-		}
-
-		function updateSubmittedRangeDates() {
-			var value = $('#submittedIn').val();
-			var myDate = new Date();
-			myDate.setFullYear(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
-
-			if (value != '') {
-				$(".submittedEnd").each(function () {
-					getDatePicker($(this).attr('id')).val(
-						myDate.getMonth()+1+"/"+myDate.getDate()+"/"+myDate.getFullYear());
-				});
-			}
-			else
-				$('input[name=EndDatePicker]').val('');
-
-			switch (value) {
-				case "1":
-					$('input[name=dateRange]').val('1 week');
-					myDate.setDate(myDate.getDate() - 7);
-					break;
-				case "2":
-					$('input[name=dateRange]').val('1 month');
-					myDate.setMonth(myDate.getMonth() - 1);
-					break;
-				case "3":
-					$('input[name=dateRange]').val('6 months');
-					myDate.setMonth(myDate.getMonth() - 6);
-					break;
-				case "4":
-					$('input[name=dateRange]').val('1 year');
-					myDate.setMonth(myDate.getMonth() - 12);
-					break;
-				default:
-					$('input[name=StartDatePicker]').val('');
-			}
-			if (value != '') {
-				$(".submittedStart").each(function () {
-					getDatePicker($(this).attr('id')).val(
-					  myDate.getMonth()+1 + "/" + myDate.getDate() + "/" + myDate.getFullYear());
-				});
-			}
-		}
-
-        function changeDateRange(rangeVal, displayText) {
-            $('#timePeriod').html('<span>' + displayText + '</span>');
-            $('#liTimePeriod').show();
-            $('#liTimePeriod button').attr("aria-hidden", "false");
-            $('#submittedIn').val(rangeVal);
-            $('#dateRangePopup').hide();
-            $('#timePeriod').removeClass('open').attr('aria-expanded', 'false').focus();
-            updateSubmittedRangeDates();
-        }
-
-        function displayDateRangePopup() {
-            $('#dateRangePopup').toggle();
-            var isOpen = $('#dateRangePopup').is(':visible');
-            $('#timePeriod').toggleClass('open').attr('aria-expanded', isOpen ? 'true' : 'false');
-            return false;
-        }
-
-        function resetDateDefaults() {
-            $('#liTimePeriod').hide();
-            $('#liTimePeriod button').attr("aria-hidden", "true");
-            $('#timePeriod').html('<span>Time Period</span>');
-            $('input[name=StartDatePicker]').val('');
-            $('input[name=EndDatePicker]').val('');
-            $('#dateRangePopup').hide();
-            $('#timePeriod').removeClass('open').attr('aria-expanded', 'false').focus();
-        }
-
-        function timePeriodEventBinder() {
-            $('#timePeriod').on('click keydown', function (e) {
-                // Handle Enter, Space, or click - open/close
-                if (e.type === 'click' || e.keyCode === 13 || e.keyCode === 32) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    var isOpen = $('#dateRangePopup').is(':visible');
-                    if (!isOpen) {
-                        $('#dateRangePopup').show();
-                        $('#timePeriod').addClass('open').attr('aria-expanded', 'true');
-                        // Focus the container to enter focus mode
-                        $('#dateRangePopup')[0].focus();
-                    } else {
-                        $('#dateRangePopup').hide();
-                        $('#timePeriod').removeClass('open').attr('aria-expanded', 'false');
-                    }
-                    return false;
-                }
-                // Arrow Down - focus first option (excluding Time Period option)
-                if (e.keyCode === 40) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if (!$('#dateRangePopup').is(':visible')) {
-                        $('#dateRangePopup').show();
-                        $('#timePeriod').addClass('open').attr('aria-expanded', 'true');
-                    }
-                    var $firstOption = $('#submittedIn li:visible:not(#liTimePeriod) button').first();
-                    if ($firstOption.length) {
-                        $firstOption[0].focus();
-                    }
-                    return false;
-                }
-                // Arrow Up - focus last option (excluding Time Period option)
-                if (e.keyCode === 38) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if (!$('#dateRangePopup').is(':visible')) {
-                        $('#dateRangePopup').show();
-                        $('#timePeriod').addClass('open').attr('aria-expanded', 'true');
-                    }
-                    var $lastOption = $('#submittedIn li:visible:not(#liTimePeriod) button').last();
-                    if ($lastOption.length) {
-                        $lastOption[0].focus();
-                    }
-                    return false;
-                }
-                // Escape - close if open
-                if (e.keyCode === 27) {
-                    if ($('#dateRangePopup').is(':visible')) {
-                        e.preventDefault();
-                        $('#dateRangePopup').hide();
-                        $('#timePeriod').removeClass('open').attr('aria-expanded', 'false');
-                    }
-                }
-            });
-
-            // Handle arrow keys on the popup container itself
-            $('#dateRangePopup').on('keydown', function (e) {
-                if (e.target.id === 'dateRangePopup') {
-                    if (e.keyCode === 40) { // Arrow Down - focus first option
-                        e.preventDefault();
-                        e.stopPropagation();
-                        var $firstOption = $('#submittedIn li:visible:not(#liTimePeriod) button').first();
-                        if ($firstOption.length) {
-                            $firstOption[0].focus();
-                        }
-                    }
-                    if (e.keyCode === 38) { // Arrow Up - focus last option
-                        e.preventDefault();
-                        e.stopPropagation();
-                        var $lastOption = $('#submittedIn li:visible:not(#liTimePeriod) button').last();
-                        if ($lastOption.length) {
-                            $lastOption[0].focus();
-                        }
-                    }
-                    if (e.keyCode === 27) { // Escape
-                        e.preventDefault();
-                        $('#dateRangePopup').hide();
-                        $('#timePeriod').removeClass('open').attr('aria-expanded', 'false');
-                        $('#timePeriod')[0].focus();
-                    }
-                    if (e.keyCode === 9) { // Tab - close popup
-                        $('#dateRangePopup').hide();
-                        $('#timePeriod').removeClass('open').attr('aria-expanded', 'false');
-                    }
-                }
-            });
-
-            // Arrow key navigation within dropdown options
-            $('#submittedIn').on('keydown', 'button[role="option"]', function (e) {
-                var $options = $('#submittedIn li:visible:not(#liTimePeriod) button');
-                var currentIndex = $options.index(this);
-                var $target = null;
-
-                switch (e.keyCode) {
-                    case 40: // Arrow Down
-                        e.preventDefault();
-                        e.stopPropagation();
-                        if (currentIndex < $options.length - 1) {
-                            $target = $options.eq(currentIndex + 1);
-                        } else {
-                            $target = $options.first();
-                        }
-                        break;
-                    case 38: // Arrow Up
-                        e.preventDefault();
-                        e.stopPropagation();
-                        if (currentIndex > 0) {
-                            $target = $options.eq(currentIndex - 1);
-                        } else {
-                            $target = $options.last();
-                        }
-                        break;
-                    case 27: // Escape
-                        e.preventDefault();
-                        e.stopPropagation();
-                        $('#dateRangePopup').hide();
-                        $('#timePeriod').removeClass('open').attr('aria-expanded', 'false');
-                        $('#timePeriod')[0].focus();
-                        break;
-                    case 9: // Tab
-                        var isLastOption = (currentIndex === $options.length - 1);
-                        var isFirstOption = (currentIndex === 0);
-
-                        // Close popup when tabbing forward from last option or backward from first
-                        if ((isLastOption && !e.shiftKey) || (isFirstOption && e.shiftKey)) {
-                            $('#dateRangePopup').hide();
-                            $('#timePeriod').removeClass('open').attr('aria-expanded', 'false');
-                        }
-                        break;
-                }
-
-                if ($target && $target.length) {
-                    $target[0].focus();
-                }
-            });
-
-            $(document).on('click', function (e) {
-                if (!$(e.target).closest('.popoutContainer.timePeriod').length) {
-                    if ($('#dateRangePopup').is(':visible')) {
-                        $('#dateRangePopup').hide();
-                        $('#timePeriod').removeClass('open').attr('aria-expanded', 'false');
-                    }
-                }
-            });
-        }
-    </script>
-	
-	<script src="/2068681422.js" type="text/javascript"></script>
-<script type="text/javascript">
-
-	$(document).ready(function (e) {
-		//Trying to go to a particular agenda.
-		if (window.location.href.indexOf('/?#') != -1) {
-			var dateYearInfo = findCatIDAgendaIDAndYearFromUrl();
-			var year = dateYearInfo.year;
-			var catID = dateYearInfo.catID;
-			var agendaID = dateYearInfo.agendaID;
-			var rowAgendaID = "tr[id^=row" + agendaID + "]";
-
-			$.ajax({
-				type: 'POST',
-				url: '/AgendaCenter/UpdateCategoryList',
-				data: { year: year, catID: catID },
-				success: function (response) {
-					//Changing the arrow display.
-					var $elem1 = $('#span' + catID);
-					$elem1.html('&#9660');
-					$('#section' + catID).replaceWith(response);
-					$('ul.years li').removeClass('current');
-					$('ul.years li').each(function (e) {
-						if ($(this).text() == year.toString())
-							$(this).addClass('current');
-					});
-					//$('ul.years').html($('<li class="current"><a>' + year + '</a></li>'));
-					$('.catAgendaRow').hide();
-					var row = $(rowAgendaID);
-					row.show();
-					row.length && row[0].scrollIntoView(true);
-				}
-			});
-		}
-	});
-
-	function findCatIDAgendaIDAndYearFromUrl() {
-		var url = window.location.href;
-		var urlBreakpoint = url.indexOf('/?#');
-		var hashIndex = urlBreakpoint + 3;
-		var indexOfHyphenBeforeAgendaID = url.lastIndexOf('-');
-		var indexOfHyphenBeforeCatID = url.substring(0, urlBreakpoint).lastIndexOf('-');
-		var agendaID = parseInt(url.substring(indexOfHyphenBeforeAgendaID + 1));
-		var catID = parseInt(url.substring(indexOfHyphenBeforeCatID + 1, urlBreakpoint));
-		var dateString = url.substring(hashIndex, indexOfHyphenBeforeAgendaID);
-		var year = dateString.substring(dateString.length - 4);
-		return { year: year, catID: catID, agendaID: agendaID };
-	}
-</script>
-<meta property="og:title" content="Agenda Center &amp;bull; Malibu Arts Commission" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.malibucity.org/AgendaCenter/City-Council-1" />
-<meta property="og:description" content="Formerly Cultural Arts Commission" />
-
-
-
-
-	<!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="/App_Themes/ie8.css"><![endif]-->
-	<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="/App_Themes/ie7.css"><![endif]-->
-	<!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="/App_Themes/ie6.css"><![endif]-->
-	<!--[if lt IE 9]><script type="text/javascript" src="/Scripts/html5.js"></script><![endif]-->
-
-	<script type="text/javascript">
-		setEditorVariables(false, 840);
-		function getPrintPreviewType() { return 0; } function printPreview() {pPreview(getPrintPreviewType()); }
-	</script>
-	<script src="/Assets/Scripts/AlpineJS/3.14.1/alpine.min.js" type="text/javascript" defer="defer"></script>
-</head>
-<body class="wide " >
-
-    <script>jQuery(document).click(function (event) {
-	var target = jQuery(event.target);
-	if (target.attr('src') && target.parents('.image').length && target.parents('.widget').length) {
-		var text = target.attr('title');
+			<a id="12222025-2650" name="2650" href="/AgendaCenter/ViewFile/Agenda/_12222025-2650" target="_blank" aria-describedby="h412222025-2650">
+		December 22, 2025 Regular Meeting - Notice of Cancellation
+	</a></p>
 		
-		if (!text.length) {
-			text = "N/A";
-		}
-		ga('send',
-			{
-				hitType: 'event',
-				eventCategory: 'Image',
-				eventAction: 'Image - ' + text,
-				eventLabel: window.location.href
-			});
-	}
-	if (target.is('button') || target.hasClass('button') || target.parents().hasClass('button')) {
-		var text = "";
-		if (target.parents('.button')[0]) {
-			text = target.parents('.button').first().text();
-		} else if (target.text().length) {
-			text = target.text();
-		} else if (target.attr('title').length) {
-			text = target.attr('title');
-		}
-		if (!text.length) {
-			text = "N/A";
-		}
-		ga('send',
-			{
-				hitType: 'event',
-				eventCategory: 'Button',
-				eventAction: 'Button - ' + text,
-				eventLabel: window.location.href
-			});
-	}
-	if (target.parents('.widgetCustomHtml').length) {
-		ga('send',
-			{
-				hitType: 'event',
-				eventCategory: 'Custom Html',
-				eventAction: 'Custom Html Clicked',
-				eventLabel: window.location.href
-			});
-	}
-	if (target.parents('.editor').length) {
-		ga('send',
-			{
-				hitType: 'event',
-				eventCategory: 'Editor',
-				eventAction: 'Editor Link Clicked',
-				eventLabel: window.location.href
-			});
-	}
-	if (target.parents('.GraphicLinks').length) {
-		var text = "";
-		var targetGraphicLink = target;
-		if (target.hasClass('widgetGraphicLinksLink')) {
-			targetGraphicLink = jQuery(target.children()[0]);
-		}
-		if (targetGraphicLink.hasClass('text')) {
-			text = targetGraphicLink.text();
-		} else if (targetGraphicLink.attr('src').length) {
-			if (targetGraphicLink.attr('alt').length) {
-				text = targetGraphicLink.attr('alt');
-			} else {
-				text = targetGraphicLink.attr('src');
-			}
-		} else {
-			text = "N/A";
-		}
-		ga('send',
-			{
-				hitType: 'event',
-				eventCategory: 'Graphic Links',
-				eventAction: 'Graphic Link - ' + text,
-				eventLabel: window.location.href
-			});
-	}
-	if (target.parents('.InfoAdvanced').length) {
-		ga('send',
-			{
-				hitType: 'event',
-				eventCategory: 'Info Advanced',
-				eventAction: 'Info Advanced Clicked',
-				eventLabel: window.location.href
-			});
-	}
-	if (target.parents('.list').length) {
-		ga('send',
-			{
-				hitType: 'event',
-				eventCategory: 'List',
-				eventAction: 'List Clicked',
-				eventLabel: window.location.href
-			});
-	}
-	if (target.parents('.megaMenuItem').length || target.parents('.topMenuItem').length) {
-		var megaMenuText = jQuery('.topMenuItem.mouseover').find('span').text();
-		var breadCrumbs = [];
-		jQuery('.breadCrumbs > li').each(function () {
-			 breadCrumbs.push(this.textContent);
-		});
-		var pageTitle = breadCrumbs.join('>');
-		var subTitleText = target.parents('.megaMenuItem').children('.widgetTitle').children().text();
-		var text = "";
-		if (pageTitle) {
-			text += pageTitle + " | ";
-		} else {
-			text += document.title + ' - ';
-		}
-		if (target.text() == "" && megaMenuText == "") {
-			text += "N/A";
-		} else if (target.text().length && megaMenuText.length) {
-			if (megaMenuText == target.text()) {
-				text += megaMenuText;
-			} else {
-				text += megaMenuText + " - " + subTitleText + " - " + target.text();
-			}
-		} else if (target.text() == "") {
-			text += megaMenuText;
-		} else {
-			text += target.text();
-		}
-		if (!text.length) {
-			text = "N/A";
-		}
-		ga('send',
-			{
-				hitType: 'event',
-				eventCategory: 'Mega Menu',
-				eventAction: 'Mega Menu : ' + text,
-				eventLabel: window.location.href
-			});
-	}
-	if (target.parents('.widgetNewsFlash').length && target.parents('.widgetItem').length) {
-		var text = jQuery(target.parents('.widgetItem')[0]).find('.widgetTitle').children().text();
-		if (!text.length) {
-			text = "N/A";
-		}
-		ga('send',
-			{
-				hitType: 'event',
-				eventCategory: 'News Flash',
-				eventAction: 'News Flash - ' + text,
-				eventLabel: window.location.href
-			});
-	}
-	if (target.hasClass('widgetQuickLinksLink') || target.find('.widgetQuickLinksLink').length) {
-		var text = target.text();
-		if (!text.length) {
-			text = "N/A";
-		}
-		ga('send',
-			{
-				hitType: 'event',
-				eventCategory: 'Quick Links',
-				eventAction: 'Quick Links - ' + text,
-				eventLabel: window.location.href
-			});
-	}
-	if (target.attr('src') && target.parents('.cpSlideshow').length) {
-		var text = target.attr('title');
-		if (!text.length) {
-			text = "N/A";
-		}
-		ga('send',
-			{
-				hitType: 'event',
-				eventCategory: 'Slideshow',
-				eventAction: 'Slideshow - ' + text,
-				eventLabel: window.location.href
-			});
-	}
-	if (target.parents('.widgetText').length) {
-		ga('send',
-			{
-				hitType: 'event',
-				eventCategory: 'Text',
-				eventAction: 'Text Link Clicked',
-				eventLabel: window.location.href
-			});
-	}
-});</script>
-	<div id="popoverModal" class="cp-PopOver cp-PopOver--modal cp-AdminWrap" style="position: fixed; display: none;">
-	<div class="cp-PopOver-header">
-		<h3 class="cp-PopOver-title"></h3>
-		<button class="cp-Btn cp-PopOver-close" onclick="closePopOverModal(event)">
-			<svg class="cp-Icon--close" alt="close" title="close">
-				<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#iconClose"></use>
-			</svg>
-		</button>
-	</div>
-	<div id="cpPopOverBody" class="cp-PopOver-body">
-		<form id="cpPopOverForm" name="cpPopOverForm" novalidate></form>
-	</div>
-	<div id="cpPopOverFooter" class="cp-PopOver-footer">
-		<div class="cp-BtnGroup" id="actionButtons">
-			<!-- Action buttons will be dynamically added here -->
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+
+	<td class="media">
+		
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2650" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2650" data-cp-toggle="dropdown" aria-controls="agendaDD2650" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2650">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2650" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a aria-label="December 22, 2025, December 22, 2025 Regular Meeting - Notice of Cancellation. Agenda" class="pdf" href="/AgendaCenter/ViewFile/Agenda/_12222025-2650" id="anch226500dc119e2" target="_blank">Agenda</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
-    <div id="fb-root"></div>
-<div id=skipToContentLinks>
-<a href="#contentarea" target="_self" class="skipToContentLink">Skip to Main Content</a>
-</div>
-    <form id="frmReferenceFormForTelerikEditorDialogs"></form>
+	</td>
+</tr>
 
-        <input type="hidden" id="GoogleMapsKey" value="AIzaSyDWUuE-ifkbhxblF920N8MjpBdTg1Wt784" />
+		
 
-
-
-    <input type="hidden" id="cpcDomain" value="https://cp-civicplusuniversity2.civicplus.com">
-    <input type="hidden" id="hdnStructureID" value="2" />
-    <input type="hidden" id="hdnContentCollectionID" value="edc74670-0db3-40f4-86a5-90d806e5cdff" />
-    <input type="hidden" id="hdnWorkingCopyID" value="00000000-0000-0000-0000-000000000000" />
-    <input type="hidden" id="hdnThemeID" value="2" />
-    <input type="hidden" id="pageIsFrontEnd" value="true" />
-    <input type="hidden" id="pageModuleID" value="65" />
-    <input type="hidden" id="pagePageID" />
-
-        <input type="hidden" id="hdnModuleID" value="65" />
-    <div id="stickyPlaceholder"></div>
-    <div id="outer-wrap" class="outer-wrap">
-        <div id="inner-wrap" class="inner-wrap">
-                <div id="divToolbars" class="cpToolbars newCP mui-fixed" style="">
-                    
-<style>
-@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700); 
-.alertText .customAlert {
-    color: #EAEAEA;
-    display: inline-block;
-    font-family: 'Open Sans Condensed', sans-serif; 
-    text-transform: uppercase;
-    font-weight: bold;
-    height: 27px;
-    left: 57px;
-    line-height: 27px;
-    overflow: hidden;
-    position: absolute;
-    top: 15px;
-    white-space: nowrap;
-    width: 268px;
-}
-</style>
-  <div id="24_divAlertBar" class="alertToolbar cpToolbar" style="background: #222222;">
-    <div id="24_divAlertToolbarInner" class="alertToolbarInner" style="font-size: 16px;">
-        <a href="/AlertCenter.aspx" id="24_lnkAlertText" class="alertText" style="border-right: 1px solid #000000;">
-            <img src="/Common/Images/AlertCenter/alertBarBlink.svg" id="24_imgDot" alt="Emergency Alert" class="redDot" />
-            <span id="24_customAlert" class="customAlert">EMERGENCY ALERT</span>
-        </a>
-        <span id="24_spnAlertContainer" class="alertContainer"><a href="/AlertCenter.aspx?AID=Bryson-Fire-Update-1017-1000-AM-the-fire-3706" target="_self" class="alert" style="border-left: 1px solid #635e65; border-right: 1px solid #000000;background: #030303 url(/Common/images/AlertCenter/alertBarBlackTextBckg.png) repeat-x; color: #FFFFFF;">
-	Bryson Fire Update 10/17 10:00 AM- the fire is 52% contained. Evacuation warnings and road closures remain in place. SCE inspecting circuits.
-	<span style="color: #FC4C2F;">Read On...</span>
-</a>
-</span>
-    </div>
-  </div>
-  <div id="24_divAlertBarEmpty" class="alertBarEmpty"></div>
-  
-
-
-
-<!-- Begin Signed Out Bar -->
-<div class="cpToolbar user public">
-    <div class="inner selfClear">
-        <p class="dropdown"><a href="/MyAccount/ProfileCreate" class="myConnections" id="signedOutToolbarCreateProfileButton">Create a Website Account</a> <span class="welcomeMessage">- Manage notification subscriptions, save form progress and more. &nbsp;&nbsp;</span></p>
-        <ul class="nav secondary">
-	        <li><a href="/MyAccount" class="button" id="loggedOutToolbarSignInButton">Website Sign In</a></li>
-        </ul>
-    </div>
-</div>
-<script>
-    $(document).ready(function () {
-        $('#signedOutToolbarCreateProfileButton').click(function (event) {
-            event.preventDefault();
-            window.location.href = '/MyAccount/ProfileCreate?from=url&url=/&dn=' + window.location.origin;
-        });
-
+<tr class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h412172025-2648">
+			<a id="_12172025-2648" name="_12172025-2648"></a>
+			<strong aria-label="Agenda for December 17, 2025"><abbr title="December">Dec</abbr> 17, 2025</strong>
 			
-				$('#loggedOutToolbarSignInButton').click(function (event) {
-					event.preventDefault();
-					window.location.href = '/MyAccount/?from=url&url=' + encodeURIComponent(window.location.href.replace(window.location.origin, '')) + '&dn=' + window.location.host;
-				});
-			
-
-		if ('False' == 'True') {
-            $('#loggedOutToolbarSignInButton').hide();
-		}
-    })
-</script>
-<!-- End Signed Out Bar -->
-
-                </div>
-            <div id="bodyWrapper">
-                <div id="mainNavHolderMobile" class="mainNavHolderMobile"></div>
-                
-<div data-cpRole="structuralContainer" id="structuralContainer1">
-<div data-cpRole="banner" id="banner1"><div data-cpRole="stickyStructuralContainer" id="stickyStructuralContainer"><div id="stickyStructuralContainer_14efcb8b-7d4b-4206-aadf-e23fad598b1d" class="stickyInnerDiv sticky  ">
-<div class="siteWrap"><nav data-cpRole="nav" id="mainNav" class="siteNav mainNav" role="navigation">
-<ol id="mainNavMenu" data-parent="1" class="rootNavMenu" role="menu"><!--
---><li id="MainItem118" class="topMenuItem" role="none" data-pageid="118" data-displaymegamenu="True"><!--
-			--><!--
-			--> <a role = "menuitem"  aria-haspopup=true aria-expanded='false' aria-controls="mainNavMegaMenu118" id = "mainNavHowDoI" class="navMainItem mainNavItem mainNavItem1 " href="/118/How-Do-I" target = "_self" >   How Do I...?  </a>			<!--
-			--><!--
-			--></li><!----><li id="MainItem452" class="topMenuItem" role="none" data-pageid="452" data-displaymegamenu="True"><!--
-			--><!--
-			--> <a role = "menuitem"  aria-haspopup=true aria-expanded='false' aria-controls="mainNavMegaMenu452" id = "mainNavServices" class="navMainItem mainNavItem mainNavItem2 " href="/452/Services" target = "_self" >   Services  </a>			<!--
-			--><!--
-			--></li><!----><li id="MainItem173" class="topMenuItem" role="none" data-pageid="173" data-displaymegamenu="True"><!--
-			--><!--
-			--> <a role = "menuitem"  aria-haspopup=true aria-expanded='false' aria-controls="mainNavMegaMenu173" id = "mainNavCityGovernment" class="navMainItem mainNavItem mainNavItem3 " href="/173/City-Government" target = "_self" >   City Government  </a>			<!--
-			--><!--
-			--></li><!----><li id="MainItem92" class="topMenuItem" role="none" data-pageid="92" data-displaymegamenu="True"><!--
-			--><!--
-			--> <a role = "menuitem"  aria-haspopup=true aria-expanded='false' aria-controls="mainNavMegaMenu92" id = "mainNavResources" class="navMainItem mainNavItem mainNavItem4 " href="/92/Resources" target = "_self" >   Resources  </a>			<!--
-			--><!--
-			--></li><!---->
-</ol>
-
-
-	<script type="text/javascript">
-		(function () {
-			function setupMenu() {
-				const menuID = 'mainNavMenu';
-				const menuType = MAIN_MENU;
-
-				//setup menu manager properties for main menu
-				if (!menuManager.mobileMainNav && false)
-					menuManager.adjustMainItemsWidth('#' + menuID);
-				menuManager.isMainMenuEditable = false;
-				menuManager.mainMenuMaxSubMenuLevels = 4;
-				menuManager.setMOMMode(2, menuType);
-
-				//Init main menu
-				const setupDraggable = menuManager.isMainMenuEditable;
-				const urlToGetHiddenMenus = '/Pages/MenuMain/HiddenMainSubMenus?pageID=1&moduleID=65&themeID=2&menuContainerID=mainNav';
-
-				menuManager.setupMenu(menuID, 'mainNav', menuType, setupDraggable, urlToGetHiddenMenus);
-				menuManager.mainMenuInit = true;
-				menuManager.mainMenuTextResizer = true;
-				if (0.99 > 0)
-					menuManager.mainMenuTextResizerRatio = 0.99;
-				if (window.isResponsiveEnabled)
-					menuManager.mainMenuReady.resolve();
-
-			}
-
-			if (document.readyState === "complete"
-				|| document.readyState === "loaded"
-				|| document.readyState === "interactive") {
-				setupMenu();
-				return;
-			}
-
-			document.addEventListener("DOMContentLoaded", setupMenu);
-		})();
-	</script>
-
-
-<aside data-cpRole="megaMenu" id="megaMenu" class="megaMenu" style="display: none;"><input type="hidden" id="megaMenuPopupDirection" value="0"><input type="hidden" id="megaMenuWidthReference" value="1"><aside role="menu" data-cpRole="contentContainer" id="mainNavMegaMenu118" class="contentTop mainNavMegaMenu megaMenuContainer pageID_118 hidden" data-orientation="horizontal">	<div id="cc3ba262e3-1ed5-46e9-a73e-fca3ca3c4e24" data-containerid="3ba262e3-1ed5-46e9-a73e-fca3ca3c4e24" class="pageContent cpGrid cpGrid24 showInMobile">
-				                
-
-
-
-	</div>
-</aside><aside role="menu" data-cpRole="contentContainer" id="mainNavMegaMenu452" class="contentTop mainNavMegaMenu megaMenuContainer pageID_452 hidden" data-orientation="horizontal">	<div id="ccff5fa153-5246-4e21-b8b3-e34361da8c03" data-containerid="ff5fa153-5246-4e21-b8b3-e34361da8c03" class="pageContent cpGrid cpGrid24 showInMobile">
-				                
-
-
-
-	</div>
-</aside><aside role="menu" data-cpRole="contentContainer" id="mainNavMegaMenu173" class="contentTop mainNavMegaMenu megaMenuContainer pageID_173 hidden" data-orientation="horizontal">	<div id="cc431c93b2-6926-41de-9cb3-0ba759360f85" data-containerid="431c93b2-6926-41de-9cb3-0ba759360f85" class="pageContent cpGrid cpGrid24 showInMobile">
-				                
-
-
-
-	</div>
-</aside><aside role="menu" data-cpRole="contentContainer" id="mainNavMegaMenu92" class="contentTop mainNavMegaMenu megaMenuContainer pageID_92 hidden" data-orientation="horizontal">	<div id="cc6f3abfc8-0012-4fe4-b76f-1c00f12958ca" data-containerid="6f3abfc8-0012-4fe4-b76f-1c00f12958ca" class="pageContent cpGrid cpGrid24 showInMobile">
-				                
-
-
-
-	</div>
-</aside></aside></nav></div></div>
-</div><div data-cpRole="structuralContainer" id="structuralContainer3">
-<div class="siteWrap2"><div data-cpRole="banner" id="banner2" class="logo empty">
-
-
-
-
-				<a id="banner2-3" style="			display: block; text-align: center;
-" class="bannerObject" href="/" target="_self"><img alt="Site ID" class="bannerObject" height="149" src="/ImageRepository/Document?documentID=15691" width="522" /></a>
-</div><aside data-cpRole="contentContainer" id="contentContainer1" class="search_ts">	<div id="cc0e3fa710-8f9e-41ee-abcb-99a16d6ad512" data-containerid="0e3fa710-8f9e-41ee-abcb-99a16d6ad512" class="pageContent cpGrid cpGrid24 isLockedContainer showInMobile">
-				                
-
-		<div class="row outer wide"><!--
---><div class="outer col col24 first last" style="" data-widgetcontainerid="9a24ecc2-3138-4cb8-8322-f8e045a96d65">				
-	<div class="row nest first last wide">
+			</h3>
+	<p>
 	
-	<div class="inner col col24 first last id14776e10-3358-4bfa-bf86-a3ae65e9f1fa" style="" data-widgetcontainerid="14776e10-3358-4bfa-bf86-a3ae65e9f1fa">	
-<div data-widget-id="3c92aa8e-f870-4af2-bd82-34aa506aa12f" data-widget-controller-path="/Layout/WidgetSearch">
+			<a id="12172025-2648" name="2648" href="/AgendaCenter/ViewFile/Agenda/_12172025-2648?html=true" target="_blank" aria-describedby="h412172025-2648">
+		December 17, 2025 Adjourned Regular Meeting
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"><a href="/AgendaCenter/ViewFile/Minutes/_12172025-2648" aria-label="December 17, 2025, December 17, 2025 Adjourned Regular Meeting. Minutes" target="_blank"><img src="/Areas/AgendaCenter/Assets/Images/HomeIconMinutes.png" alt="Minutes"></a></td>
 	
-	<script defer type="text/javascript" src="/Common/Controls/jquery-ui-1.14.2/jquery-ui.min.js"></script>
-	<script defer src="/Areas/Layout/Assets/Scripts/Search.js" type="text/javascript"></script>
-	<script defer type="text/javascript">
 
-		$(document).ready(function () {
-			try {
-				// Minimum characters required before performing a search/autocomplete
-				var minPrefixLength = 3;
-				var autoCompleteDebounceDelay = 500;
-				var searchFieldSelector = "#searchField" + '3c92aa8e-f870-4af2-bd82-34aa506aa12f';
-				var checkboxSelector = "#ysnSearchOnlyDept" + '3c92aa8e-f870-4af2-bd82-34aa506aa12f';
-				var buttonSelector = ".widgetSearchButton" + '3c92aa8e-f870-4af2-bd82-34aa506aa12f';
-				var autoCompleteCache = {};
-				var autoCompleteCacheKeys = [];
-				var autoCompleteCacheLimit = 25;
-				var currentAut
+	<td class="media">
+		
+			<span id="media" class="videos" style="display: inline-block;">
+			<a href="https://youtu.be/ued8sKJ7_QY?si=MywDnccGSVP0JOLO" aria-label="December 17, 2025, December 17, 2025 Adjourned Regular Meeting. Media" >
+				<img  src="/Areas/AgendaCenter/Assets/Images/HomeIconVideos.png" alt="Videos">
+			</a></span>
+		
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2648" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2648" data-cp-toggle="dropdown" aria-controls="agendaDD2648" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2648">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2648" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="December 17, 2025, December 17, 2025 Adjourned Regular Meeting. HTML" href="/AgendaCenter/ViewFile/Agenda/_12172025-2648?html=true" id="anch12648ba1f4b39" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="December 17, 2025, December 17, 2025 Adjourned Regular Meeting. PDF" href="/AgendaCenter/ViewFile/Agenda/_12172025-2648" id="anch22648ba1f4b39" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="December 17, 2025, December 17, 2025 Adjourned Regular Meeting. Packet" href="/AgendaCenter/ViewFile/Agenda/_12172025-2648?packet=true" id="anch32648ba1f4b39" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="December 17, 2025, December 17, 2025 Adjourned Regular Meeting. Previous Version" id="anch42648ba1f4b39" class="previous" href="/AgendaCenter/PreviousVersions/_12172025-2648">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+

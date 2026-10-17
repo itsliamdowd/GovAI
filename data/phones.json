@@ -1,0 +1,1114 @@
+{
+ "long-beach": {
+  "phone": "(562) 570-6801",
+  "url": "https://www.longbeach.gov",
+  "score": 7,
+  "alt": [
+   "(562) 570-6919",
+   "(562) 570-2222"
+  ],
+  "name": "Long Beach",
+  "at": "2026-10-17"
+ },
+ "lancaster": {
+  "phone": "(661) 723-6000",
+  "url": "https://www.cityoflancasterca.org",
+  "score": 3,
+  "alt": [],
+  "name": "Lancaster",
+  "at": "2026-10-17"
+ },
+ "pomona": {
+  "phone": "(909) 620-2311",
+  "url": "https://www.pomonaca.gov",
+  "score": 9,
+  "alt": [],
+  "name": "Pomona",
+  "at": "2026-10-17"
+ },
+ "palmdale": {
+  "phone": "(661) 267-5100",
+  "url": "https://www.cityofpalmdaleca.gov",
+  "score": 9,
+  "alt": [
+   "(661) 267-5122"
+  ],
+  "name": "Palmdale",
+  "at": "2026-10-17"
+ },
+ "santa-clarita": {
+  "phone": "(661) 259-2489",
+  "url": "https://www.santa-clarita.com",
+  "score": 15,
+  "alt": [],
+  "name": "Santa Clarita",
+  "at": "2026-10-17"
+ },
+ "downey": {
+  "phone": "(562) 869-7331",
+  "url": "https://www.downeyca.org",
+  "score": 7,
+  "alt": [],
+  "name": "Downey",
+  "at": "2026-10-17"
+ },
+ "los-angeles": {
+  "phone": "(213) 473-3231",
+  "url": "https://www.lacity.gov/contact",
+  "score": 1,
+  "alt": [],
+  "name": "Los Angeles",
+  "at": "2026-10-17"
+ },
+ "inglewood": {
+  "phone": "(310) 412-5111",
+  "url": "https://www.cityofinglewood.org",
+  "score": 11,
+  "alt": [],
+  "name": "Inglewood",
+  "at": "2026-10-17"
+ },
+ "el-monte": {
+  "phone": "(626) 580-2001",
+  "url": "https://www.elmonteca.gov",
+  "score": 11,
+  "alt": [],
+  "name": "El Monte",
+  "at": "2026-10-17"
+ },
+ "norwalk": {
+  "phone": "(562) 929-5700",
+  "url": "https://www.norwalk.org",
+  "score": 9,
+  "alt": [],
+  "name": "Norwalk",
+  "at": "2026-10-17"
+ },
+ "pasadena": {
+  "phone": "(626) 744-7311",
+  "url": "https://www.cityofpasadena.net/contact",
+  "score": 27,
+  "alt": [
+   "(626) 744-4501",
+   "(626) 744-6005"
+  ],
+  "name": "Pasadena",
+  "at": "2026-10-17"
+ },
+ "south-gate": {
+  "phone": "(323) 563-9500",
+  "url": "https://www.cityofsouthgate.org",
+  "score": 7,
+  "alt": [],
+  "name": "South Gate",
+  "at": "2026-10-17"
+ },
+ "west-covina": {
+  "phone": "(626) 939-8400",
+  "url": "https://www.westcovina.org",
+  "score": 3,
+  "alt": [],
+  "name": "West Covina",
+  "at": "2026-10-17"
+ },
+ "whittier": {
+  "phone": "",
+  "name": "Whittier",
+  "url": "https://www.whittierca.gov",
+  "note": "not found"
+ },
+ "glendale": {
+  "phone": "(818) 548-3960",
+  "url": "https://www.glendaleca.gov/contact-us",
+  "score": 4,
+  "alt": [],
+  "name": "Glendale",
+  "at": "2026-10-17"
+ },
+ "carson": {
+  "phone": "(310) 830-7600",
+  "url": "https://ci.carson.ca.us",
+  "score": 7,
+  "alt": [
+   "(310) 952-1700"
+  ],
+  "name": "Carson",
+  "at": "2026-10-17"
+ },
+ "hawthorne": {
+  "phone": "(310) 349-2900",
+  "url": "https://www.cityofhawthorne.org",
+  "score": 9,
+  "alt": [],
+  "name": "Hawthorne",
+  "at": "2026-10-17"
+ },
+ "burbank": {
+  "phone": "",
+  "name": "Burbank",
+  "url": "https://www.burbankca.gov",
+  "note": "not found"
+ },
+ "torrance": {
+  "phone": "(310) 618-5929",
+  "url": "https://www.torranceca.gov/contactus",
+  "score": 14,
+  "alt": [
+   "(310) 618-5910",
+   "(310) 618-5898"
+  ],
+  "name": "Torrance",
+  "at": "2026-10-17"
+ },
+ "bellflower": {
+  "phone": "(562) 804-1424",
+  "url": "https://www.bellflower.org",
+  "score": 3,
+  "alt": [],
+  "name": "Bellflower",
+  "at": "2026-10-17"
+ },
+ "baldwin-park": {
+  "phone": "(626) 960-4011",
+  "url": "https://www.baldwinpark.com",
+  "score": 5,
+  "alt": [],
+  "name": "Baldwin Park",
+  "at": "2026-10-17"
+ },
+ "santa-fe-springs": {
+  "phone": "",
+  "name": "Santa Fe Springs",
+  "url": "https://www.santafesprings.org",
+  "note": "not found"
+ },
+ "redondo-beach": {
+  "phone": "(310) 372-1171",
+  "url": "https://www.redondo.org",
+  "score": 9,
+  "alt": [],
+  "name": "Redondo Beach",
+  "at": "2026-10-17"
+ },
+ "alhambra": {
+  "phone": "(626) 570-5007",
+  "url": "https://www.cityofalhambra.org",
+  "score": 11,
+  "alt": [],
+  "name": "Alhambra",
+  "at": "2026-10-17"
+ },
+ "lakewood": {
+  "phone": "(562) 866-9771",
+  "url": "https://www.lakewoodcity.org",
+  "score": 17,
+  "alt": [],
+  "name": "Lakewood",
+  "at": "2026-10-17"
+ },
+ "lynwood": {
+  "phone": "",
+  "name": "Lynwood",
+  "url": "https://www.lynwood.ca.us",
+  "note": "not found"
+ },
+ "huntington-park": {
+  "phone": "(323) 582-6161",
+  "url": "https://www.hpca.gov",
+  "score": 11,
+  "alt": [],
+  "name": "Huntington Park",
+  "at": "2026-10-17"
+ },
+ "pico-rivera": {
+  "phone": "(562) 801-4332",
+  "url": "https://www.pico-rivera.org",
+  "score": 8,
+  "alt": [
+   "(562) 949-2421",
+   "(562) 942-2000"
+  ],
+  "name": "Pico Rivera",
+  "at": "2026-10-17"
+ },
+ "diamond-bar": {
+  "phone": "(909) 839-7000",
+  "url": "https://www.diamondbarca.gov",
+  "score": 9,
+  "alt": [],
+  "name": "Diamond Bar",
+  "at": "2026-10-17"
+ },
+ "compton": {
+  "phone": "(310) 605-5500",
+  "url": "https://www.comptoncity.org/departments",
+  "score": 1,
+  "alt": [],
+  "name": "Compton",
+  "at": "2026-10-17"
+ },
+ "monterey-park": {
+  "phone": "(626) 307-1458",
+  "url": "https://www.montereypark.ca.gov",
+  "score": 9,
+  "alt": [],
+  "name": "Monterey Park",
+  "at": "2026-10-17"
+ },
+ "cerritos": {
+  "phone": "(562) 860-0311",
+  "url": "https://www.cerritos.gov",
+  "score": 11,
+  "alt": [],
+  "name": "Cerritos",
+  "at": "2026-10-17"
+ },
+ "rosemead": {
+  "phone": "(626) 569-2100",
+  "url": "https://www.cityofrosemead.org",
+  "score": 9,
+  "alt": [],
+  "name": "Rosemead",
+  "at": "2026-10-17"
+ },
+ "azusa": {
+  "phone": "(826) 812-5200",
+  "url": "https://www.azusaca.gov",
+  "score": 6,
+  "alt": [],
+  "name": "Azusa",
+  "at": "2026-10-17"
+ },
+ "gardena": {
+  "phone": "(310) 217-9500",
+  "url": "https://www.cityofgardena.org",
+  "score": 11,
+  "alt": [
+   "(310) 217-9565"
+  ],
+  "name": "Gardena",
+  "at": "2026-10-17"
+ },
+ "covina": {
+  "phone": "(626) 384-5400",
+  "url": "https://www.covinaca.gov",
+  "score": 5,
+  "alt": [],
+  "name": "Covina",
+  "at": "2026-10-17"
+ },
+ "arcadia": {
+  "phone": "",
+  "name": "Arcadia",
+  "url": "https://www.arcadiaca.gov",
+  "note": "not found"
+ },
+ "san-gabriel": {
+  "phone": "(626) 308-2800",
+  "url": "https://www.sangabrielcity.com",
+  "score": 5,
+  "alt": [],
+  "name": "San Gabriel",
+  "at": "2026-10-17"
+ },
+ "rancho-palos-verdes": {
+  "phone": "(310) 544-5200",
+  "url": "https://www.rpvca.gov",
+  "score": 9,
+  "alt": [],
+  "name": "Rancho Palos Verdes",
+  "at": "2026-10-17"
+ },
+ "glendora": {
+  "phone": "(626) 914-8200",
+  "url": "https://www.cityofglendora.org",
+  "score": 6,
+  "alt": [],
+  "name": "Glendora",
+  "at": "2026-10-17"
+ },
+ "bell-gardens": {
+  "phone": "(562) 806-7700",
+  "url": "https://www.bellgardens.org",
+  "score": 7,
+  "alt": [],
+  "name": "Bell Gardens",
+  "at": "2026-10-17"
+ },
+ "la-mirada": {
+  "phone": "(562) 943-7277",
+  "url": "https://www.cityoflamirada.org/departments",
+  "score": 7,
+  "alt": [
+   "(562) 943-0131"
+  ],
+  "name": "La Mirada",
+  "at": "2026-10-17"
+ },
+ "monrovia": {
+  "phone": "(626) 932-5550",
+  "url": "https://www.cityofmonrovia.org",
+  "score": 7,
+  "alt": [],
+  "name": "Monrovia",
+  "at": "2026-10-17"
+ },
+ "la-puente": {
+  "phone": "(626) 855-1500",
+  "url": "https://www.lapuente.org",
+  "score": 5,
+  "alt": [
+   "(626) 855-1585",
+   "(626) 855-1560"
+  ],
+  "name": "La Puente",
+  "at": "2026-10-17"
+ },
+ "manhattan-beach": {
+  "phone": "(310) 802-5000",
+  "url": "https://www.manhattanbeach.gov",
+  "score": 9,
+  "alt": [],
+  "name": "Manhattan Beach",
+  "at": "2026-10-17"
+ },
+ "west-hollywood": {
+  "phone": "(323) 848-6400",
+  "url": "https://www.weho.org",
+  "score": 9,
+  "alt": [],
+  "name": "West Hollywood",
+  "at": "2026-10-17"
+ },
+ "montebello": {
+  "phone": "",
+  "name": "Montebello",
+  "url": "https://www.cityofmontebello.com",
+  "note": "not found"
+ },
+ "san-dimas": {
+  "phone": "(909) 394-6200",
+  "url": "https://www.sandimasca.gov",
+  "score": 16,
+  "alt": [],
+  "name": "San Dimas",
+  "at": "2026-10-17"
+ },
+ "beverly-hills": {
+  "phone": "(310) 285-1000",
+  "url": "https://www.beverlyhills.org",
+  "score": 11,
+  "alt": [],
+  "name": "Beverly Hills",
+  "at": "2026-10-17"
+ },
+ "calabasas": {
+  "phone": "(818) 224-1600",
+  "url": "https://www.cityofcalabasas.com",
+  "score": 7,
+  "alt": [],
+  "name": "Calabasas",
+  "at": "2026-10-17"
+ },
+ "temple-city": {
+  "phone": "(626) 285-2171",
+  "url": "https://www.templecity.us",
+  "score": 11,
+  "alt": [],
+  "name": "Temple City",
+  "at": "2026-10-17"
+ },
+ "maywood": {
+  "phone": "(323) 562-5700",
+  "url": "https://www.cityofmaywood.com",
+  "score": 11,
+  "alt": [],
+  "name": "Maywood",
+  "at": "2026-10-17"
+ },
+ "lawndale": {
+  "phone": "(310) 973-3200",
+  "url": "https://www.lawndalecity.org",
+  "score": 3,
+  "alt": [],
+  "name": "Lawndale",
+  "at": "2026-10-17"
+ },
+ "la-verne": {
+  "phone": "(909) 596-8726",
+  "url": "https://www.cityoflaverne.org",
+  "score": 11,
+  "alt": [],
+  "name": "La Verne",
+  "at": "2026-10-17"
+ },
+ "south-pasadena": {
+  "phone": "(626) 403-7200",
+  "url": "https://www.southpasadenaca.gov",
+  "score": 3,
+  "alt": [],
+  "name": "South Pasadena",
+  "at": "2026-10-17"
+ },
+ "agoura-hills": {
+  "phone": "(818) 597-7300",
+  "url": "https://www.agourahillscity.org",
+  "score": 7,
+  "alt": [],
+  "name": "Agoura Hills",
+  "at": "2026-10-17"
+ },
+ "hermosa-beach": {
+  "phone": "(310) 318-0239",
+  "url": "https://www.hermosabeach.gov",
+  "score": 3,
+  "alt": [
+   "(310) 524-2750"
+  ],
+  "name": "Hermosa Beach",
+  "at": "2026-10-17"
+ },
+ "lomita": {
+  "phone": "(310) 325-7110",
+  "url": "https://www.lomitacity.com",
+  "score": 5,
+  "alt": [],
+  "name": "Lomita",
+  "at": "2026-10-17"
+ },
+ "el-segundo": {
+  "phone": "(310) 524-2300",
+  "url": "https://www.elsegundo.org",
+  "score": 9,
+  "alt": [],
+  "name": "El Segundo",
+  "at": "2026-10-17"
+ },
+ "artesia": {
+  "phone": "(562) 865-6262",
+  "url": "https://www.cityofartesia.us",
+  "score": 9,
+  "alt": [],
+  "name": "Artesia",
+  "at": "2026-10-17"
+ },
+ "hawaiian-gardens": {
+  "phone": "(562) 420-2641",
+  "url": "https://www.hgcity.org",
+  "score": 7,
+  "alt": [],
+  "name": "Hawaiian Gardens",
+  "at": "2026-10-17"
+ },
+ "san-fernando": {
+  "phone": "(818) 898-1200",
+  "url": "https://ci.san-fernando.ca.us",
+  "score": 9,
+  "alt": [],
+  "name": "San Fernando",
+  "at": "2026-10-17"
+ },
+ "culver-city": {
+  "phone": "(310) 253-6000",
+  "url": "https://www.culvercity.org/city-hall",
+  "score": 11,
+  "alt": [],
+  "name": "Culver City",
+  "at": "2026-10-17"
+ },
+ "san-marino": {
+  "phone": "(626) 300-0700",
+  "url": "https://www.cityofsanmarino.org",
+  "score": 7,
+  "alt": [],
+  "name": "San Marino",
+  "at": "2026-10-17"
+ },
+ "claremont": {
+  "phone": "",
+  "name": "Claremont",
+  "url": "https://www.ci.claremont.ca.us",
+  "note": "not found"
+ },
+ "la-canada-flintridge": {
+  "phone": "(818) 790-8880",
+  "url": "https://www.lcf.ca.gov/contact",
+  "score": 1,
+  "alt": [],
+  "name": "La Cañada Flintridge",
+  "at": "2026-10-17"
+ },
+ "malibu": {
+  "phone": "(310) 456-2489",
+  "url": "https://www.malibucity.org",
+  "score": 9,
+  "alt": [],
+  "name": "Malibu",
+  "at": "2026-10-17"
+ },
+ "palos-verdes-estates": {
+  "phone": "(310) 378-0383",
+  "url": "https://www.pvestates.org",
+  "score": 5,
+  "alt": [],
+  "name": "Palos Verdes Estates",
+  "at": "2026-10-17"
+ },
+ "signal-hill": {
+  "phone": "(562) 989-7300",
+  "url": "https://www.cityofsignalhill.org",
+  "score": 5,
+  "alt": [],
+  "name": "Signal Hill",
+  "at": "2026-10-17"
+ },
+ "la-habra-heights": {
+  "phone": "(562) 694-6302",
+  "url": "https://www.lhhcity.org",
+  "score": 11,
+  "alt": [],
+  "name": "La Habra Heights",
+  "at": "2026-10-17"
+ },
+ "paramount": {
+  "phone": "",
+  "name": "Paramount",
+  "url": "https://www.paramountcity.com",
+  "note": "not found"
+ },
+ "south-el-monte": {
+  "phone": "",
+  "name": "South El Monte",
+  "url": "https://www.ci.south-el-monte.ca.us",
+  "note": "not found"
+ },
+ "rolling-hills-estates": {
+  "phone": "(310) 377-1577",
+  "url": "https://www.rollinghillsestates.gov/contact",
+  "score": 134,
+  "alt": [],
+  "name": "Rolling Hills Estates",
+  "at": "2026-10-17"
+ },
+ "sierra-madre": {
+  "phone": "",
+  "name": "Sierra Madre",
+  "url": "https://www.cityofsierramadre.com",
+  "note": "not found"
+ },
+ "westlake-village": {
+  "phone": "(818) 706-1613",
+  "url": "https://www.wlv.org",
+  "score": 9,
+  "alt": [],
+  "name": "Westlake Village",
+  "at": "2026-10-17"
+ },
+ "irwindale": {
+  "phone": "(626) 430-2200",
+  "url": "https://www.irwindaleca.gov",
+  "score": 9,
+  "alt": [],
+  "name": "Irwindale",
+  "at": "2026-10-17"
+ },
+ "commerce": {
+  "phone": "(323) 722-4805",
+  "url": "https://www.ci.commerce.ca.us",
+  "score": 7,
+  "alt": [],
+  "name": "Commerce",
+  "at": "2026-10-17"
+ },
+ "rolling-hills": {
+  "phone": "(310) 377-1521",
+  "url": "https://www.rolling-hills.org",
+  "score": 7,
+  "alt": [],
+  "name": "Rolling Hills",
+  "at": "2026-10-17"
+ },
+ "walnut": {
+  "phone": "(909) 595-7543",
+  "url": "https://www.cityofwalnut.org/departments",
+  "score": 12,
+  "alt": [
+   "(909) 598-5605",
+   "(909) 348-0710"
+  ],
+  "name": "Walnut",
+  "at": "2026-10-17"
+ },
+ "bradbury": {
+  "phone": "(626) 358-3218",
+  "url": "https://www.cityofbradbury.org",
+  "score": 3,
+  "alt": [],
+  "name": "Bradbury",
+  "at": "2026-10-17"
+ },
+ "duarte": {
+  "phone": "",
+  "name": "Duarte",
+  "url": "https://www.accessduarte.com",
+  "note": "not found"
+ },
+ "industry": {
+  "phone": "(626) 333-2211",
+  "url": "https://www.cityofindustry.org",
+  "score": 11,
+  "alt": [],
+  "name": "Industry",
+  "at": "2026-10-17"
+ },
+ "chula-vista": {
+  "phone": "(619) 409-5811",
+  "url": "https://www.chulavistaca.gov",
+  "score": 7,
+  "alt": [],
+  "name": "Chula Vista",
+  "at": "2026-10-17"
+ },
+ "vernon": {
+  "phone": "(323) 583-8811",
+  "url": "https://www.cityofvernon.org",
+  "score": 7,
+  "alt": [],
+  "name": "Vernon",
+  "at": "2026-10-17"
+ },
+ "bell": {
+  "phone": "(323) 588-6211",
+  "url": "https://www.cityofbell.org",
+  "score": 3,
+  "alt": [],
+  "name": "Bell",
+  "at": "2026-10-17"
+ },
+ "avalon": {
+  "phone": "(310) 510-0220",
+  "url": "https://www.cityofavalon.com/contactus",
+  "score": 122,
+  "alt": [
+   "(310) 510-0203",
+   "(213) 617-7489"
+  ],
+  "name": "Avalon",
+  "at": "2026-10-17"
+ },
+ "del-mar": {
+  "phone": "(858) 755-9313",
+  "url": "https://www.delmar.ca.us",
+  "score": 17,
+  "alt": [
+   "(858) 756-1126",
+   "(858) 755-3294"
+  ],
+  "name": "Del Mar",
+  "at": "2026-10-17"
+ },
+ "coronado": {
+  "phone": "",
+  "name": "Coronado",
+  "url": "https://www.coronado.ca.us",
+  "note": "not found"
+ },
+ "encinitas": {
+  "phone": "(760) 633-2600",
+  "url": "https://www.encinitasca.gov",
+  "score": 7,
+  "alt": [
+   "(760) 633-2710"
+  ],
+  "name": "Encinitas",
+  "at": "2026-10-17"
+ },
+ "hidden-hills": {
+  "phone": "(818) 888-9281",
+  "url": "https://www.hiddenhillscity.org",
+  "score": 9,
+  "alt": [
+   "(818) 719-0083"
+  ],
+  "name": "Hidden Hills",
+  "at": "2026-10-17"
+ },
+ "escondido": {
+  "phone": "(760) 839-4880",
+  "url": "https://www.escondido.gov",
+  "score": 11,
+  "alt": [],
+  "name": "Escondido",
+  "at": "2026-10-17"
+ },
+ "lemon-grove": {
+  "phone": "(619) 825-3800",
+  "url": "https://www.lemongrove.ca.gov",
+  "score": 5,
+  "alt": [],
+  "name": "Lemon Grove",
+  "at": "2026-10-17"
+ },
+ "imperial-beach": {
+  "phone": "(858) 586-2650",
+  "url": "https://www.imperialbeachca.gov",
+  "score": 4,
+  "alt": [],
+  "name": "Imperial Beach",
+  "at": "2026-10-17"
+ },
+ "national-city": {
+  "phone": "(310) 456-7890",
+  "url": "https://www.nationalcityca.gov",
+  "score": 6,
+  "alt": [
+   "(619) 336-4241"
+  ],
+  "name": "National City",
+  "at": "2026-10-17"
+ },
+ "oceanside": {
+  "phone": "(760) 435-4500",
+  "url": "https://www.ci.oceanside.ca.us",
+  "score": 9,
+  "alt": [],
+  "name": "Oceanside",
+  "at": "2026-10-17"
+ },
+ "carlsbad": {
+  "phone": "(442) 339-2820",
+  "url": "https://www.carlsbadca.gov/city-hall",
+  "score": 4,
+  "alt": [
+   "(760) 720-9461"
+  ],
+  "name": "Carlsbad",
+  "at": "2026-10-17"
+ },
+ "la-mesa": {
+  "phone": "(619) 463-6611",
+  "url": "https://www.cityoflamesa.us",
+  "score": 9,
+  "alt": [],
+  "name": "La Mesa",
+  "at": "2026-10-17"
+ },
+ "santee": {
+  "phone": "(619) 258-4100",
+  "url": "https://www.cityofsanteeca.gov",
+  "score": 3,
+  "alt": [],
+  "name": "Santee",
+  "at": "2026-10-17"
+ },
+ "san-marcos": {
+  "phone": "(760) 744-1050",
+  "url": "https://www.san-marcos.net",
+  "score": 7,
+  "alt": [
+   "(760) 722-1050"
+  ],
+  "name": "San Marcos",
+  "at": "2026-10-17"
+ },
+ "aliso-viejo": {
+  "phone": "(949) 425-2500",
+  "url": "https://www.avcity.org",
+  "score": 11,
+  "alt": [],
+  "name": "Aliso Viejo",
+  "at": "2026-10-17"
+ },
+ "vista": {
+  "phone": "",
+  "name": "Vista",
+  "url": "https://www.cityofvista.com",
+  "note": "not found"
+ },
+ "anaheim": {
+  "phone": "",
+  "name": "Anaheim",
+  "url": "https://www.anaheim.net",
+  "note": "not found"
+ },
+ "buena-park": {
+  "phone": "(714) 562-3500",
+  "url": "https://www.buenapark.com",
+  "score": 7,
+  "alt": [],
+  "name": "Buena Park",
+  "at": "2026-10-17"
+ },
+ "el-cajon": {
+  "phone": "",
+  "name": "El Cajon",
+  "url": "https://www.elcajon.gov",
+  "note": "not found"
+ },
+ "poway": {
+  "phone": "(858) 668-4671",
+  "url": "https://poway.org/contactus",
+  "score": 49,
+  "alt": [
+   "(858) 668-4400",
+   "(858) 668-4781"
+  ],
+  "name": "Poway",
+  "at": "2026-10-17"
+ },
+ "costa-mesa": {
+  "phone": "(714) 754-5000",
+  "url": "https://www.costamesaca.gov",
+  "score": 9,
+  "alt": [],
+  "name": "Costa Mesa",
+  "at": "2026-10-17"
+ },
+ "cypress": {
+  "phone": "(714) 229-6700",
+  "url": "https://www.cypressca.org",
+  "score": 7,
+  "alt": [],
+  "name": "Cypress",
+  "at": "2026-10-17"
+ },
+ "solana-beach": {
+  "phone": "(858) 720-2400",
+  "url": "https://www.cityofsolanabeach.org",
+  "score": 5,
+  "alt": [],
+  "name": "Solana Beach",
+  "at": "2026-10-17"
+ },
+ "huntington-beach": {
+  "phone": "(714) 536-5511",
+  "url": "https://www.huntingtonbeachca.gov",
+  "score": 7,
+  "alt": [],
+  "name": "Huntington Beach",
+  "at": "2026-10-17"
+ },
+ "fountain-valley": {
+  "phone": "(714) 593-4400",
+  "url": "https://www.fountainvalley.gov",
+  "score": 11,
+  "alt": [],
+  "name": "Fountain Valley",
+  "at": "2026-10-17"
+ },
+ "irvine": {
+  "phone": "(949) 724-6000",
+  "url": "https://www.cityofirvine.org",
+  "score": 9,
+  "alt": [],
+  "name": "Irvine",
+  "at": "2026-10-17"
+ },
+ "garden-grove": {
+  "phone": "(714) 741-5000",
+  "url": "https://ggcity.org",
+  "score": 11,
+  "alt": [],
+  "name": "Garden Grove",
+  "at": "2026-10-17"
+ },
+ "la-habra": {
+  "phone": "(562) 383-4000",
+  "url": "https://www.lahabraca.gov",
+  "score": 5,
+  "alt": [],
+  "name": "La Habra",
+  "at": "2026-10-17"
+ },
+ "laguna-beach": {
+  "phone": "(949) 497-3311",
+  "url": "https://www.lagunabeachcity.net",
+  "score": 11,
+  "alt": [],
+  "name": "Laguna Beach",
+  "at": "2026-10-17"
+ },
+ "brea": {
+  "phone": "",
+  "name": "Brea",
+  "url": "https://www.ci.brea.ca.us",
+  "note": "not found"
+ },
+ "dana-point": {
+  "phone": "(949) 248-3500",
+  "url": "https://www.danapoint.org",
+  "score": 7,
+  "alt": [],
+  "name": "Dana Point",
+  "at": "2026-10-17"
+ },
+ "lake-forest": {
+  "phone": "(949) 461-3400",
+  "url": "https://www.lakeforestca.gov",
+  "score": 9,
+  "alt": [],
+  "name": "Lake Forest",
+  "at": "2026-10-17"
+ },
+ "fullerton": {
+  "phone": "(714) 738-6300",
+  "url": "https://www.cityoffullerton.com/contactus",
+  "score": 1,
+  "alt": [],
+  "name": "Fullerton",
+  "at": "2026-10-17"
+ },
+ "laguna-hills": {
+  "phone": "(949) 707-2600",
+  "url": "https://www.lagunahillsca.gov",
+  "score": 9,
+  "alt": [],
+  "name": "Laguna Hills",
+  "at": "2026-10-17"
+ },
+ "laguna-niguel": {
+  "phone": "(949) 362-4300",
+  "url": "https://www.cityoflagunaniguel.org",
+  "score": 11,
+  "alt": [
+   "(949) 425-5151",
+   "(949) 425-5100"
+  ],
+  "name": "Laguna Niguel",
+  "at": "2026-10-17"
+ },
+ "mission-viejo": {
+  "phone": "(949) 470-3000",
+  "url": "https://cityofmissionviejo.org",
+  "score": 7,
+  "alt": [],
+  "name": "Mission Viejo",
+  "at": "2026-10-17"
+ },
+ "la-palma": {
+  "phone": "(714) 690-3300",
+  "url": "https://www.cityoflapalma.org",
+  "score": 9,
+  "alt": [],
+  "name": "La Palma",
+  "at": "2026-10-17"
+ },
+ "los-alamitos": {
+  "phone": "(562) 431-3538",
+  "url": "https://cityoflosalamitos.org",
+  "score": 9,
+  "alt": [],
+  "name": "Los Alamitos",
+  "at": "2026-10-17"
+ },
+ "san-clemente": {
+  "phone": "(949) 361-8200",
+  "url": "https://www.san-clemente.org",
+  "score": 11,
+  "alt": [],
+  "name": "San Clemente",
+  "at": "2026-10-17"
+ },
+ "placentia": {
+  "phone": "(714) 993-8117",
+  "url": "https://www.placentia.org",
+  "score": 5,
+  "alt": [],
+  "name": "Placentia",
+  "at": "2026-10-17"
+ },
+ "rancho-santa-margarita": {
+  "phone": "(949) 635-1800",
+  "url": "https://www.cityofrsm.org",
+  "score": 9,
+  "alt": [],
+  "name": "Rancho Santa Margarita",
+  "at": "2026-10-17"
+ },
+ "seal-beach": {
+  "phone": "(562) 431-2527",
+  "url": "https://www.sealbeachca.gov",
+  "score": 11,
+  "alt": [],
+  "name": "Seal Beach",
+  "at": "2026-10-17"
+ },
+ "laguna-woods": {
+  "phone": "(949) 770-6011",
+  "url": "https://www.cityoflagunawoods.org/contact",
+  "score": 9,
+  "alt": [
+   "(949) 639-0500"
+  ],
+  "name": "Laguna Woods",
+  "at": "2026-10-17"
+ },
+ "stanton": {
+  "phone": "(714) 379-9222",
+  "url": "https://www.stantonca.gov",
+  "score": 9,
+  "alt": [],
+  "name": "Stanton",
+  "at": "2026-10-17"
+ },
+ "santa-ana": {
+  "phone": "(714) 647-5400",
+  "url": "https://www.santa-ana.org",
+  "score": 5,
+  "alt": [
+   "(714) 647-3380"
+  ],
+  "name": "Santa Ana",
+  "at": "2026-10-17"
+ },
+ "westminster": {
+  "phone": "(714) 898-3311",
+  "url": "https://www.westminster-ca.gov",
+  "score": 7,
+  "alt": [],
+  "name": "Westminster",
+  "at": "2026-10-17"
+ },
+ "tustin": {
+  "phone": "(714) 573-3000",
+  "url": "https://www.tustinca.org",
+  "score": 9,
+  "alt": [],
+  "name": "Tustin",
+  "at": "2026-10-17"
+ },
+ "yorba-linda": {
+  "phone": "(714) 961-7100",
+  "url": "https://www.yorbalindaca.gov",
+  "score": 9,
+  "alt": [],
+  "name": "Yorba Linda",
+  "at": "2026-10-17"
+ },
+ "villa-park": {
+  "phone": "",
+  "name": "Villa Park",
+  "url": "https://www.villapark.org",
+  "note": "not found"
+ },
+ "newport-beach": {
+  "phone": "(949) 717-3800",
+  "url": "https://www.newportbeachca.gov/about",
+  "score": 3,
+  "alt": [],
+  "name": "Newport Beach",
+  "at": "2026-10-17"
+ },
+ "san-juan-capistrano": {
+  "phone": "",
+  "name": "San Juan Capistrano",
+  "url": "https://sanjuancapistrano.org",
+  "note": "not found"
+ },
+ "orange": {
+  "phone": "",
+  "name": "Orange",
+  "url": "https://www.cityoforange.org",
+  "note": "not found"
+ }
+}

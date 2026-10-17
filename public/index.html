@@ -254,7 +254,7 @@ let geo = null;
 navigator.geolocation?.getCurrentPosition((p) => { geo = { lat: p.coords.latitude, lon: p.coords.longitude }; }, () => {}, { maximumAge: 600000, timeout: 8000 });
 function setJurisdiction(j) {
   JUR = j; CITY_ICON = j?.icon || "/icon.svg"; CITY_NAME = j?.name || "Local government";
-  $("fine").textContent = j ? `Not for emergencies. Call 911. ${j.name}: ${j.contact || j.site}.` : "Not for emergencies. Call 911. Non-emergency: your city's 311 or main line.";
+  $("fine").textContent = j ? `Not for emergencies. Call 911. ${j.name}: ${j.phone || j.contact || j.site}.` : "Not for emergencies. Call 911. Non-emergency: your city's 311 or main line.";
   document.title = j ? `GovAI · ${j.short}` : "GovAI";
 }
 const fav = (d) => `https://www.google.com/s2/favicons?sz=128&domain=${d}`;

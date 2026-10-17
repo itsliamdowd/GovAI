@@ -1,6 +1,7 @@
 // Jurisdiction registry: every city/county the assistant serves, with the ids every ingester, tool and prompt reads.
 // Santa Monica is fully wired. Other entries start as `draft: true` (name, aliases, centroid, site) and get their
 // portals / council / youtube / feeds / live ids filled by discover.js + a human. Null fields degrade gracefully.
+import fs from "node:fs";
 
 import { LA_CITIES } from "./jurisdictions-la.js";
 const gnews = (q) => `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=en-US&gl=US&ceid=US:en`;
@@ -98,11 +99,13 @@ const OC_COUNTY = {
 };
 
 // Cities: name, site (from memory; discover.js verifies), centroid, extra aliases. Everything else is filled per phase.
+// Main phone numbers collected from each city's own site by `node phones.js` (data/phones.json: {id: {phone, url}}).
+const PHONES = (() => { try { return JSON.parse(fs.readFileSync("./data/phones.json", "utf8")); } catch { return {}; } })();
 const city = (id, name, county, site, center, aliases = [], extra = {}) => ({
   id, name: `City of ${name}`, short: name, kind: "city", county, prefix: id.replace(/-/g, "").slice(0, 3).toUpperCase(), draft: true,
   aliases: [name.toLowerCase(), ...aliases], zips: [], center, bbox: null,
   site, icon: null, domains: [site.replace(/^https?:\/\/(www\.)?/, "")],
-  contact: { name: `City of ${name}`, phone: "", email: "", line: `the city's main line (see ${site})` },
+  contact: { name: `City of ${name}`, phone: PHONES[id]?.phone ?? "", email: "", line: PHONES[id]?.phone ? `${PHONES[id].phone} (City Hall main line)` : `the city's main line (see ${site})` },
   portals: [], council: null, youtube: [], feeds: [{ id: "gn", name: "Google News", url: gnews(`"${name}" california when:30d`) }], gis: [], gisHosts: [], live: {}, forms: [], routing: {},
   ...extra,
 });

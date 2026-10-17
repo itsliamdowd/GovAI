@@ -108,7 +108,7 @@ function chunk(text, size = 1500) {
 }
 
 export function toDocs(rec, j = SM) {
-  const docs = [], label = j.council?.label ?? "City Council";
+  const docs = [], label = rec.body?.trim() || j.council?.label || "City Council"; // multi-body platforms (LA City: 110 bodies) name the body per record
   for (const [type, text, url] of [["agenda", rec.agenda_text, rec.agenda_url], ["minutes", rec.minutes_text, rec.minutes_url]]) {
     if (!text) continue;
     chunk(text).forEach((t, i) => docs.push({

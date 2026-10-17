@@ -1,13 +1,15 @@
 // Los Angeles County jurisdictions (88 cities; the County itself and Santa Monica are full entries in jurisdictions.js).
 // Spread into JURS by jurisdictions.js. Rows start as drafts (name, aliases, centroid, site); the LA County expansion
 // (plan.html 2026-10-17 15:10) fills agenda platform, video, portals, code host and feeds per city from the seed inventory.
+import fs from "node:fs";
 const gnews = (q) => `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=en-US&gl=US&ceid=US:en`;
 const LA = "los-angeles-county";
+const PHONES = (() => { try { return JSON.parse(fs.readFileSync("./data/phones.json", "utf8")); } catch { return {}; } })(); // from `node phones.js`
 const city = (id, name, county, site, center, aliases = [], extra = {}) => ({
   id, name: `City of ${name}`, short: name, kind: "city", county, prefix: id.replace(/-/g, "").slice(0, 3).toUpperCase(), draft: true,
   aliases: [name.toLowerCase(), ...aliases], zips: [], center, bbox: null,
   site, icon: null, domains: [site.replace(/^https?:\/\/(www\.)?/, "")],
-  contact: { name: `City of ${name}`, phone: "", email: "", line: `the city's main line (see ${site})` },
+  contact: { name: `City of ${name}`, phone: PHONES[id]?.phone ?? "", email: "", line: PHONES[id]?.phone ? `${PHONES[id].phone} (City Hall main line)` : `the city's main line (see ${site})` },
   portals: [], council: null, youtube: [], feeds: [{ id: "gn", name: "Google News", url: gnews(`"${name}" california when:30d`) }], gis: [], gisHosts: [], live: {}, forms: [], routing: {},
   ...extra,
 });

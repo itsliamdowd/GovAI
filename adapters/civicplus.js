@@ -15,7 +15,8 @@ export function parseCategories(html) {
 export function parseRows(html, cat, site) {
   const out = [];
   for (const row of html.split(/<tr[^>]*class="catAgendaRow"[^>]*>/i).slice(1)) {
-    const a = row.match(/href="(\/AgendaCenter\/ViewFile\/Agenda\/(_\d{8}-\d+))"[^>]*>([\s\S]*?)<\/a>/i); if (!a) continue;
+    const links = [...row.matchAll(/href="(\/AgendaCenter\/ViewFile\/Agenda\/(_\d{8}-\d+))"[^>]*>([\s\S]*?)<\/a>/gi)];
+    const a = links.find((l) => !/^(pdf|html|download)$/i.test(text(l[3]))) ?? links[0]; if (!a) continue; // the row's title link, not its "PDF" download button
     const key = a[2], date = toYmd(key), title = text(a[3]);
     const minutes = row.match(/href="(\/AgendaCenter\/ViewFile\/Minutes\/_\d{8}-\d+)"/i)?.[1] ?? "";
     out.push({ id: `civicplus-${cat.id}-${key.slice(1)}`, platform: "civicplus", body: cat.name, name: title, date, time: "", canceled: /cancel/i.test(title),

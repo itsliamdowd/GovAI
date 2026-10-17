@@ -16,6 +16,22 @@
        Status badge classes: planned | progress | done | blocked.
        Do NOT log changes to ~/.claude/, plan.html itself, or the changelog server. -->
 
+  <article class="entry" id="e-2026-10-17-1605">
+    <header>
+      <time>2026-10-17 16:05</time>
+      <h2>Every city's main phone number in the footer and contact line (collected from each city's site)</h2>
+      <span class="badge progress">in-progress</span>
+    </header>
+    <p><b>Goal (user).</b> The footer read "City of Diamond Bar: the city's main line (see https://www.diamondbarca.gov)". It should show the city's actual number, for all cities.</p>
+    <p><b>Why.</b> <code>city()</code> in <code>jurisdictions.js</code> / <code>jurisdictions-la.js</code> creates 140 cities with <code>contact.phone: ""</code>; only Santa Monica and San Diego had numbers. The footer, the system prompt's "contact for anything you can't verify" line, and application routing all read <code>contact.line</code>.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>phones.js</code> (new collector, run with <code>node phones.js [id…]</code>) — for each city without a phone, fetches the official site's homepage and common contact paths with a browser UA; picks a number by signal strength: <code>tel:</code> links (+6), proximity to "City Hall" / "main" / "phone" (+2 each), repetition (+1); skips fax/TTY, toll-free, 311/911. Writes <code>data/phones.json</code> {id: {phone, url, score, alt, name, at}} incrementally; re-runs only fill gaps unless ids are given.</li>
+      <li><code>jurisdictions.js</code>, <code>jurisdictions-la.js</code> — <code>city()</code> reads <code>data/phones.json</code> at load; <code>contact.phone</code> and <code>contact.line</code> ("(909) 839-7000 (City Hall main line)") come from it, with the old "see &lt;site&gt;" text only when no number was found.</li>
+    </ul>
+    <p><b>Status:</b> collector running across 138 cities.</p>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1520">
     <header>
       <time>2026-10-17 15:20</time>
