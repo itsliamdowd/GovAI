@@ -27,12 +27,24 @@
    }
   ]
  },
- "hub": null,
+ "hub": [
+  {
+   "org": "City of Monterey Park - Urban Forestry Benefits",
+   "url": "https://city-of-monterey-park-urban-forestry-benefits-arboraccess.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "andpineda"
+  },
+  {
+   "org": "Monterey Park PD Neighborhood Watch Program",
+   "url": "https://neighborhood-watch-montereypark.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "jlee_MontereyPark"
+  }
+ ],
  "youtube": [
   {
    "id": "UCAGjNrEYfmeEhFwi5URrODQ",
    "channel": "City of Monterey Park",
    "example": "MPK City Council Meeting, Oct  7, 2026, 630 p.m."
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:25:04.838Z"
 }

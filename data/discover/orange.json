@@ -1,0 +1,21 @@
+{
+ "id": "orange",
+ "probed_at": "2026-10-17T21:20:00.874Z",
+ "site": null,
+ "legistar": null,
+ "granicus": null,
+ "hub": [
+  {
+   "org": "Orange County Open GIS Data Portal",
+   "url": "https://data-OCPW.opendata.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "Brian.Anderson@pw.oc.gov_OCPW"
+  },
+  {
+   "org": "Orange County Infohub",
+   "url": "https://infohub-ocfl.opendata.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "Robert.Drow_ocfl"
+  }
+ ],
+ "youtube": null,
+ "hub_probed_at": "2026-10-17T21:27:29.767Z"
+}

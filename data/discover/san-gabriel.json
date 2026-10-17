@@ -7,12 +7,19 @@
  },
  "legistar": null,
  "granicus": null,
- "hub": null,
+ "hub": [
+  {
+   "org": "City of San Gabriel GIS Portal",
+   "url": "https://city-of-san-gabriel-gis-portal-sangabrielcity.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "Osandoval_sangabrielcity"
+  }
+ ],
  "youtube": [
   {
    "id": "UCniLDPXskawRaAntVyeaqLw",
    "channel": "City of San Gabriel",
    "example": "City Council Regular Meeting - August 18, 2026 - City of San Gabriel"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:25:03.150Z"
 }

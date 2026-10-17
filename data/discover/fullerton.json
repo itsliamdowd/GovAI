@@ -1,0 +1,21 @@
+{
+ "id": "fullerton",
+ "probed_at": "2026-10-17T21:19:54.900Z",
+ "site": null,
+ "legistar": null,
+ "granicus": null,
+ "hub": [
+  {
+   "org": "City of Fullerton - Urban Forestry Benefits",
+   "url": "https://city-of-fullerton-urban-forestry-benefits-arboraccess.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "andpineda"
+  },
+  {
+   "org": "Fullerton Town Square",
+   "url": "https://fullerton-town-square-fullertoncagis.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "ccarter_fullertoncagis"
+  }
+ ],
+ "youtube": null,
+ "hub_probed_at": "2026-10-17T21:27:48.722Z"
+}

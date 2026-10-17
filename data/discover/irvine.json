@@ -1,0 +1,38 @@
+{
+ "id": "irvine",
+ "probed_at": "2026-10-17T21:14:53.352Z",
+ "site": {
+  "url": "https://cityofirvine.gov/",
+  "title": "City of Irvine | Official City Government Website"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "irvine.granicus.com",
+  "views": [
+   {
+    "view_id": 6,
+    "title": "City of Irvine: Site - Redirect from Old ICTV page to New (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": [
+  {
+   "org": "COI GIS",
+   "url": "https://coi-gis-CityofIrvine.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "joy_chen"
+  },
+  {
+   "org": "UC Irvine AXISdata",
+   "url": "https://axisdata-ucirvine-admin.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "nhathinh_ucirvine_admin"
+  }
+ ],
+ "youtube": [
+  {
+   "id": "UCcY6j8uOuuVgI6QXVXS68Aw",
+   "channel": "Irvine Council Meetings",
+   "example": "(4/14/2026) April 14, 2026 Irvine City Council Meeting"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:27:37.128Z"
+}

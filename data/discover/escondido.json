@@ -7,12 +7,24 @@
  },
  "legistar": null,
  "granicus": null,
- "hub": null,
+ "hub": [
+  {
+   "org": "Volunteer Escondido",
+   "url": "https://volunteer.escondido.org/api/feed/dcat-us/1.1.json",
+   "owner": "CityofEscondido"
+  },
+  {
+   "org": "Escondido Broadband",
+   "url": "https://broadband.escondido.org/api/feed/dcat-us/1.1.json",
+   "owner": "CityofEscondido"
+  }
+ ],
  "youtube": [
   {
    "id": "UC5Y9rYGmjQzXuZf95TJes0w",
    "channel": "City of Escondido",
    "example": "Escondido City Council Meeting - September 30, 2026"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:27:06.467Z"
 }

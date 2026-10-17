@@ -1,0 +1,37 @@
+{
+ "id": "chula-vista",
+ "probed_at": "2026-10-17T21:11:13.080Z",
+ "site": null,
+ "legistar": null,
+ "granicus": null,
+ "hub": [
+  {
+   "org": "City of Chula Vista ESRI User Conference",
+   "url": "https://city-of-chula-vista-gisovw-cvgis.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "GISDeptPublisher"
+  }
+ ],
+ "youtube": [
+  {
+   "id": "UCQv44qD9R5Ae6Z3iUeZm7iQ",
+   "channel": "ABC 10 News",
+   "example": "Chula Vista's mayor storms out of City Council meeting"
+  },
+  {
+   "id": "UCUPU09hfdemclhLeO_ecgnA",
+   "channel": "NBC 7 San Diego",
+   "example": "Chula Vista City Council votes down $45K proposed pay raise after residents voiced grievances | NBC7"
+  },
+  {
+   "id": "UCGCeNmeSButuOp4yFCIh9Iw",
+   "channel": "CityofChulaVista",
+   "example": "Chula Vista City Council Meeting - May 18, 2021"
+  },
+  {
+   "id": "UC_wrwr3-VtgHfLqY6_nnsnw",
+   "channel": "JDATA",
+   "example": "LIVE | Chula Vista City Council Meeting | Oct 6, 2026"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:26:21.247Z"
+}

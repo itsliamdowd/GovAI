@@ -26,12 +26,24 @@
    }
   ]
  },
- "hub": null,
+ "hub": [
+  {
+   "org": "City of Claremont - Urban Forestry Benefits",
+   "url": "https://city-of-claremont-urban-forest-benefits-arboraccess.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "andpineda"
+  },
+  {
+   "org": "Rose Institute DataHub",
+   "url": "https://roseinstitute-cmc-claremont.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "perezd7612@cgu.edu_claremont"
+  }
+ ],
  "youtube": [
   {
    "id": "UCI2waRa_rFF06yq2UsM6xtA",
    "channel": "City of Claremont",
    "example": "Claremont City Council Meeting 4/6/2026"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:25:12.066Z"
 }

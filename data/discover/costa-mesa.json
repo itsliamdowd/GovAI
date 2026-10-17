@@ -19,12 +19,19 @@
    }
   ]
  },
- "hub": null,
+ "hub": [
+  {
+   "org": "City of Costa Mesa - Urban Forestry Benefits",
+   "url": "https://city-of-costa-mesa-urban-forestry-benefits-arboraccess.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "andpineda"
+  }
+ ],
  "youtube": [
   {
    "id": "UCttmVrEQT27ffVwRG3Wp_5Q",
    "channel": "City of Costa Mesa",
    "example": "Costa Mesa City Council Meeting July 15, 2025"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:27:31.862Z"
 }

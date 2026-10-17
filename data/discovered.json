@@ -1,0 +1,1275 @@
+{
+ "santa-monica": {
+  "gis": [
+   {
+    "org": "Santa Monica GIS Data",
+    "url": "https://gisdata.santamonica.gov/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "gisdata.santamonica.gov"
+  ]
+ },
+ "los-angeles-county": {
+  "gis": [
+   {
+    "org": "LA County Tree Hub",
+    "url": "https://trees-lacounty.hub.arcgis.com/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "trees-lacounty.hub.arcgis.com"
+  ]
+ },
+ "glendale": {
+  "council": {
+   "platform": "granicus",
+   "client": "glendale",
+   "views": [
+    {
+     "id": 2,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCSic6AKD1jsrwn8IzRJVSIw"
+  ],
+  "discovered_at": "2026-10-17T20:50:11.393Z"
+ },
+ "santa-clarita": {
+  "youtube": [
+   "UCYcqV6_02Th_MgSVcZv8AjQ"
+  ],
+  "discovered_at": "2026-10-17T20:50:11.417Z"
+ },
+ "lancaster": {
+  "council": {
+   "platform": "granicus",
+   "client": "lancaster",
+   "views": [
+    {
+     "id": 2,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCTZlT_pCX2A_9q2MdbXL9Zw"
+  ],
+  "gis": [
+   {
+    "org": "Lancaster GIS",
+    "url": "https://lancaster-gis-home-LancasterGIS.hub.arcgis.com/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "lancaster-gis-home-lancastergis.hub.arcgis.com"
+  ],
+  "discovered_at": "2026-10-17T20:50:11.453Z"
+ },
+ "palmdale": {
+  "council": {
+   "platform": "granicus",
+   "client": "palmdale",
+   "views": [
+    {
+     "id": 2,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCJHoqIwLNDlVFu7vZEJNkdA"
+  ],
+  "gis": [
+   {
+    "org": "Mapping Palmdale - Geospatial Hub",
+    "url": "https://city-of-palmdale-geospatial-hub-CityOfPalmdale.hub.arcgis.com/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "city-of-palmdale-geospatial-hub-cityofpalmdale.hub.arcgis.com"
+  ],
+  "discovered_at": "2026-10-17T20:50:11.487Z"
+ },
+ "torrance": {
+  "council": {
+   "platform": "granicus",
+   "client": "torrance",
+   "views": [
+    {
+     "id": 8,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCNCEKEuWWc3gNCzAo3mMb7Q"
+  ],
+  "discovered_at": "2026-10-17T20:50:11.520Z"
+ },
+ "pasadena": {
+  "council": {
+   "platform": "granicus",
+   "client": "pasadena",
+   "views": [
+    {
+     "id": 4,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UChfkDrnz1Vc8FnzcXHTF8bQ"
+  ],
+  "gis": [
+   {
+    "org": "City of Pasadena, CA (Open Data 2.0)",
+    "url": "https://data.cityofpasadena.net/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "data.cityofpasadena.net"
+  ],
+  "discovered_at": "2026-10-17T20:50:11.567Z"
+ },
+ "downey": {
+  "council": {
+   "platform": "granicus",
+   "client": "downey",
+   "views": [
+    {
+     "id": 2,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCjWsukwVjG13PI3UugptpRg"
+  ],
+  "discovered_at": "2026-10-17T20:50:11.607Z"
+ },
+ "west-covina": {
+  "youtube": [
+   "UCB6garANBTuHBkXFXBRw4RA"
+  ],
+  "gis": [
+   {
+    "org": "City of West Covina GIS Hub",
+    "url": "https://city-of-west-covina-gis-hub-westcovina.hub.arcgis.com/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "city-of-west-covina-gis-hub-westcovina.hub.arcgis.com"
+  ],
+  "discovered_at": "2026-10-17T20:50:11.644Z"
+ },
+ "norwalk": {
+  "youtube": [
+   "UCNNvw-AUAw-DxCLYhyFcefw"
+  ],
+  "discovered_at": "2026-10-17T20:50:50.305Z"
+ },
+ "burbank": {
+  "council": {
+   "platform": "granicus",
+   "client": "burbank",
+   "views": [
+    {
+     "id": 2,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCNDlWLv3ZR1YlYRBxemNF3A"
+  ],
+  "discovered_at": "2026-10-17T20:53:17.176Z"
+ },
+ "compton": {
+  "youtube": [
+   "UCMkF3Ct0pHOFxECslmU4qcg"
+  ],
+  "discovered_at": "2026-10-17T20:50:43.846Z"
+ },
+ "south-gate": {
+  "council": {
+   "platform": "granicus",
+   "client": "cityofsouthgate",
+   "views": [
+    {
+     "id": 1,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCaLGb6Z8TOuR2lzosAc2OpA"
+  ],
+  "discovered_at": "2026-10-17T20:50:49.228Z"
+ },
+ "carson": {
+  "council": {
+   "platform": "legistar",
+   "client": "carson",
+   "body": "City Council",
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UC3ethohaz3fuapOdycVAmWg"
+  ],
+  "gis": [
+   {
+    "org": "Home  Carson City, Nevada",
+    "url": "https://data-CarsonCity.opendata.arcgis.com/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "data-carsoncity.opendata.arcgis.com"
+  ],
+  "discovered_at": "2026-10-17T20:50:46.401Z"
+ },
+ "santa-fe-springs": {
+  "youtube": [
+   "UCJmFa7tkAJ3J5D4p4SZoHvQ"
+  ],
+  "discovered_at": "2026-10-17T20:50:52.514Z"
+ },
+ "hawthorne": {
+  "youtube": [
+   "UCpr2tWobeX17Ut3i9t3EWbg"
+  ],
+  "discovered_at": "2026-10-17T20:50:43.527Z"
+ },
+ "whittier": {
+  "youtube": [
+   "UC6seOK4_MZtAVNkhmy4X2dQ"
+  ],
+  "discovered_at": "2026-10-17T20:53:27.223Z"
+ },
+ "lakewood": {
+  "council": {
+   "platform": "granicus",
+   "client": "lakewood",
+   "views": [
+    {
+     "id": 3,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCAwxi9rw1c5WTi479Uzg6sw"
+  ],
+  "discovered_at": "2026-10-17T20:53:05.707Z"
+ },
+ "bellflower": {
+  "youtube": [
+   "UCNt4BKguGJ_n8v8Vkb34XTw"
+  ],
+  "discovered_at": "2026-10-17T20:54:14.067Z"
+ },
+ "baldwin-park": {
+  "council": {
+   "platform": "granicus",
+   "client": "baldwinpark",
+   "views": [
+    {
+     "id": 3,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCFLZ0_dDFRjy59rhiDZ13Fg"
+  ],
+  "discovered_at": "2026-10-17T20:52:53.711Z"
+ },
+ "lynwood": {
+  "council": {
+   "platform": "granicus",
+   "client": "lynwood",
+   "views": [
+    {
+     "id": 1,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCvKUHxi_hzytCWsen35RXiQ"
+  ],
+  "discovered_at": "2026-10-17T20:52:18.843Z"
+ },
+ "redondo-beach": {
+  "youtube": [
+   "UCixOCrY4J6zCwJ2xP2TO1Mw"
+  ],
+  "discovered_at": "2026-10-17T20:51:18.789Z"
+ },
+ "pico-rivera": {
+  "youtube": [
+   "UC0pHCL4z2dSoBjYMK_ZQeKw"
+  ],
+  "discovered_at": "2026-10-17T20:54:11.061Z"
+ },
+ "montebello": {
+  "youtube": [
+   "UC8fqZ2c0yKiFhqlDiw6nI6w"
+  ],
+  "discovered_at": "2026-10-17T20:52:52.744Z"
+ },
+ "monterey-park": {
+  "council": {
+   "platform": "granicus",
+   "client": "monterey-park",
+   "views": [
+    {
+     "id": 2,
+     "body": "City Council"
+    },
+    {
+     "id": 4,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCAGjNrEYfmeEhFwi5URrODQ"
+  ],
+  "discovered_at": "2026-10-17T20:56:31.626Z"
+ },
+ "gardena": {
+  "council": {
+   "platform": "granicus",
+   "client": "cityofgardena",
+   "views": [
+    {
+     "id": 1,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UC9uawxTCE9JrUpj-NKi3aWg"
+  ],
+  "discovered_at": "2026-10-17T20:53:57.874Z"
+ },
+ "huntington-park": {
+  "council": {
+   "platform": "granicus",
+   "client": "huntingtonpark",
+   "views": [
+    {
+     "id": 2,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "discovered_at": "2026-10-17T20:56:41.345Z"
+ },
+ "arcadia": {
+  "youtube": [
+   "UCk8usiTiut5Jibf1vIW8aWQ"
+  ],
+  "discovered_at": "2026-10-17T20:53:30.751Z"
+ },
+ "diamond-bar": {
+  "youtube": [
+   "UCn8AOTolRk1duxhjSzNoSOA"
+  ],
+  "discovered_at": "2026-10-17T20:53:00.693Z"
+ },
+ "paramount": {
+  "youtube": [
+   "UCcZqvGsihr1-z8GpdKuarfg"
+  ],
+  "discovered_at": "2026-10-17T20:54:46.256Z"
+ },
+ "glendora": {
+  "youtube": [
+   "UCQVXk5L__r9wqma0jlbox5A"
+  ],
+  "gis": [
+   {
+    "org": "Glendora Mapping Solutions",
+    "url": "https://gishub.cityofglendora.org/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "gishub.cityofglendora.org"
+  ],
+  "discovered_at": "2026-10-17T20:57:43.188Z"
+ },
+ "rosemead": {
+  "council": {
+   "platform": "granicus",
+   "client": "cityofrosemead",
+   "views": [
+    {
+     "id": 2,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UC0xiZ103lwEnctJqw3TYgTQ"
+  ],
+  "discovered_at": "2026-10-17T20:55:44.828Z"
+ },
+ "cerritos": {
+  "council": {
+   "platform": "granicus",
+   "client": "cerritos",
+   "views": [
+    {
+     "id": 8,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCLKWCMkYO2aVRGBpdAWnYWQ"
+  ],
+  "discovered_at": "2026-10-17T20:57:28.950Z"
+ },
+ "covina": {
+  "youtube": [
+   "UCB6garANBTuHBkXFXBRw4RA"
+  ],
+  "discovered_at": "2026-10-17T20:55:37.497Z"
+ },
+ "azusa": {
+  "council": {
+   "platform": "granicus",
+   "client": "azusa",
+   "views": [
+    {
+     "id": 2,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UC__9XVRmwnZT03jDXvUAeRg"
+  ],
+  "gis": [
+   {
+    "org": "Azusa Open Data Site",
+    "url": "https://data-AzusaGIS.opendata.arcgis.com/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "data-azusagis.opendata.arcgis.com"
+  ],
+  "discovered_at": "2026-10-17T20:57:04.769Z"
+ },
+ "la-mirada": {
+  "council": {
+   "platform": "granicus",
+   "client": "cityoflamirada",
+   "views": [
+    {
+     "id": 1,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCk9tOrYltH_xOisPTnCZ9zw"
+  ],
+  "discovered_at": "2026-10-17T20:56:36.122Z"
+ },
+ "culver-city": {
+  "council": {
+   "platform": "legistar",
+   "client": "culver-city",
+   "body": "City Council Meeting Agenda",
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCJiFiwX9o1v7iEUqMwAMWFA"
+  ],
+  "discovered_at": "2026-10-17T20:56:59.621Z"
+ },
+ "san-gabriel": {
+  "youtube": [
+   "UCniLDPXskawRaAntVyeaqLw"
+  ],
+  "gis": [
+   {
+    "org": "City of San Gabriel GIS Portal",
+    "url": "https://city-of-san-gabriel-gis-portal-sangabrielcity.hub.arcgis.com/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "city-of-san-gabriel-gis-portal-sangabrielcity.hub.arcgis.com"
+  ],
+  "discovered_at": "2026-10-17T21:01:05.925Z"
+ },
+ "la-puente": {
+  "council": {
+   "platform": "granicus",
+   "client": "lapuente",
+   "views": [
+    {
+     "id": 2,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCfvV_Wd3PsLIDlzqmu8Pvhw"
+  ],
+  "discovered_at": "2026-10-17T20:56:53.581Z"
+ },
+ "bell-gardens": {
+  "youtube": [
+   "UCv3b1UeIQavbRuGIniARemg"
+  ],
+  "discovered_at": "2026-10-17T20:58:26.122Z"
+ },
+ "claremont": {
+  "council": {
+   "platform": "legistar",
+   "client": "claremontca",
+   "body": "City Council ",
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCI2waRa_rFF06yq2UsM6xtA"
+  ],
+  "discovered_at": "2026-10-17T20:57:46.705Z"
+ },
+ "manhattan-beach": {
+  "council": {
+   "platform": "legistar",
+   "client": "manhattanbeach",
+   "body": "City Council Regular Meeting",
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCJTGNACj7h8pYYb5tfi87Dg"
+  ],
+  "discovered_at": "2026-10-17T21:00:31.741Z"
+ },
+ "beverly-hills": {
+  "council": {
+   "platform": "legistar",
+   "client": "beverlyhills",
+   "body": "City Council Formal Meeting",
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCvXKgjqoopm4l8AcR9nj1uQ"
+  ],
+  "discovered_at": "2026-10-17T21:03:59.504Z"
+ },
+ "san-dimas": {
+  "youtube": [
+   "UC5JuGp_ZnyKNab6zGsrI2cg"
+  ],
+  "discovered_at": "2026-10-17T20:57:45.586Z"
+ },
+ "lawndale": {
+  "youtube": [
+   "UCfzabQru02YprD2xs5FC2Ow"
+  ],
+  "discovered_at": "2026-10-17T21:02:26.840Z"
+ },
+ "calabasas": {
+  "council": {
+   "platform": "granicus",
+   "client": "calabasas",
+   "views": [
+    {
+     "id": 2,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCxwNWYgy56QaN39nf7Cng3g"
+  ],
+  "discovered_at": "2026-10-17T21:01:54.163Z"
+ },
+ "maywood": {
+  "youtube": [
+   "UCKBkjHnDlMfB4jBpxVD90OQ"
+  ],
+  "discovered_at": "2026-10-17T21:00:36.493Z"
+ },
+ "agoura-hills": {
+  "council": {
+   "platform": "granicus",
+   "client": "agourahills",
+   "views": [
+    {
+     "id": 2,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UC0gMkam3bJPeYxYFn1vsPtw"
+  ],
+  "discovered_at": "2026-10-17T21:02:34.536Z"
+ },
+ "south-pasadena": {
+  "council": {
+   "platform": "granicus",
+   "client": "southpasadena",
+   "views": [
+    {
+     "id": 1,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCnR169ohzi1AIewD_6sfwDA"
+  ],
+  "discovered_at": "2026-10-17T21:01:03.058Z"
+ },
+ "cudahy": {
+  "youtube": [
+   "UCsFX8g1TOBQar5qQTZchvxw"
+  ],
+  "discovered_at": "2026-10-17T21:02:36.048Z"
+ },
+ "duarte": {
+  "youtube": [
+   "UC8eJLKjHNan8UTMM6xf0XIw"
+  ],
+  "discovered_at": "2026-10-17T21:06:06.741Z"
+ },
+ "san-fernando": {
+  "youtube": [
+   "UC2OGT0-5m7SPbA-YmtPyDaA"
+  ],
+  "discovered_at": "2026-10-17T21:02:06.863Z"
+ },
+ "hermosa-beach": {
+  "youtube": [
+   "UCaiZxw06ue-Tgc8DmXYzh2Q"
+  ],
+  "discovered_at": "2026-10-17T21:04:21.908Z"
+ },
+ "lomita": {
+  "council": {
+   "platform": "granicus",
+   "client": "lomita",
+   "views": [
+    {
+     "id": 2,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCZkU5IjRuGnY1ng9qj8N1Ig"
+  ],
+  "discovered_at": "2026-10-17T21:02:20.733Z"
+ },
+ "el-segundo": {
+  "council": {
+   "platform": "granicus",
+   "client": "elsegundo",
+   "views": [
+    {
+     "id": 2,
+     "body": "City Council"
+    },
+    {
+     "id": 4,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCxIHXywoJ5iy5iiizQyULXg"
+  ],
+  "discovered_at": "2026-10-17T21:03:06.683Z"
+ },
+ "walnut": {
+  "council": {
+   "platform": "granicus",
+   "client": "cityofwalnut",
+   "views": [
+    {
+     "id": 2,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCKpxTJSNMXesTPPBeEgUcUA"
+  ],
+  "discovered_at": "2026-10-17T21:03:19.358Z"
+ },
+ "artesia": {
+  "youtube": [
+   "UCp5feYj5wRgRwft9amm6erQ"
+  ],
+  "discovered_at": "2026-10-17T21:02:05.995Z"
+ },
+ "hawaiian-gardens": {
+  "youtube": [
+   "UCJwb2cnPmwML8jXtYf0QtHg"
+  ],
+  "discovered_at": "2026-10-17T21:04:37.646Z"
+ },
+ "san-marino": {
+  "youtube": [
+   "UCGG3Yh9Yhr4ZtDxC8_IPC5Q"
+  ],
+  "discovered_at": "2026-10-17T21:08:28.400Z"
+ },
+ "la-canada-flintridge": {
+  "youtube": [
+   "UC4qh2ljfKY56umGGhVdI4iw"
+  ],
+  "discovered_at": "2026-10-17T21:04:33.298Z"
+ },
+ "signal-hill": {
+  "gis": [
+   {
+    "org": "Signal Hill Open Data",
+    "url": "https://data-signalhill.hub.arcgis.com/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "data-signalhill.hub.arcgis.com"
+  ]
+ },
+ "palos-verdes-estates": {
+  "youtube": [
+   "UCrEnYifSUN4_SqSmye0Scjw"
+  ],
+  "discovered_at": "2026-10-17T21:03:42.853Z"
+ },
+ "la-habra-heights": {
+  "council": {
+   "platform": "granicus",
+   "client": "la-habra-heights",
+   "views": [
+    {
+     "id": 2,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCxMF9QSjVT1H7Wc4Fep2vXA"
+  ],
+  "discovered_at": "2026-10-17T21:04:22.552Z"
+ },
+ "rolling-hills-estates": {
+  "council": {
+   "platform": "legistar",
+   "client": "rollinghillsestatesca",
+   "body": "City Council",
+   "label": "City Council",
+   "limit": 2000
+  },
+  "discovered_at": "2026-10-17T21:03:55.368Z"
+ },
+ "westlake-village": {
+  "council": {
+   "platform": "granicus",
+   "client": "westlakevillage",
+   "views": [
+    {
+     "id": 2,
+     "body": "City Council"
+    },
+    {
+     "id": 8,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "discovered_at": "2026-10-17T21:08:00.127Z"
+ },
+ "commerce": {
+  "council": {
+   "platform": "legistar",
+   "client": "commerce",
+   "body": "City Council",
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCRndyCJZcg3Eb8UzYTlgxEw"
+  ],
+  "discovered_at": "2026-10-17T21:12:04.865Z"
+ },
+ "rolling-hills": {
+  "council": {
+   "platform": "granicus",
+   "client": "rollinghills",
+   "views": [
+    {
+     "id": 1,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UC3tMDkIN2V-EniiaihhOGHQ"
+  ],
+  "discovered_at": "2026-10-17T21:06:18.837Z"
+ },
+ "vernon": {
+  "council": {
+   "platform": "granicus",
+   "client": "cityofvernon",
+   "views": [
+    {
+     "id": 1,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCcdOYdk1MlAJxcvOBIlaOYA"
+  ],
+  "discovered_at": "2026-10-17T21:08:22.643Z"
+ },
+ "carlsbad": {
+  "youtube": [
+   "UCXT8ROgdIl_igiVqIwrbTZw"
+  ],
+  "gis": [
+   {
+    "org": "Carlsbad Open Data Portal",
+    "url": "https://open-data-carlsbad.hub.arcgis.com/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "open-data-carlsbad.hub.arcgis.com"
+  ],
+  "discovered_at": "2026-10-17T21:12:29.866Z"
+ },
+ "chula-vista": {
+  "gis": [
+   {
+    "org": "City of Chula Vista ESRI User Conference",
+    "url": "https://city-of-chula-vista-gisovw-cvgis.hub.arcgis.com/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "city-of-chula-vista-gisovw-cvgis.hub.arcgis.com"
+  ],
+  "discovered_at": "2026-10-17T21:11:13.080Z"
+ },
+ "coronado": {
+  "youtube": [
+   "UCABHyvBfGFkplAg40leNkcA"
+  ],
+  "gis": [
+   {
+    "org": "Coronado",
+    "url": "https://coronado-Coronadogis.hub.arcgis.com/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "coronado-coronadogis.hub.arcgis.com"
+  ],
+  "discovered_at": "2026-10-17T21:13:05.621Z"
+ },
+ "el-cajon": {
+  "youtube": [
+   "UCUAnuS-laKkRTQBh7c7NBKg"
+  ],
+  "discovered_at": "2026-10-17T21:06:48.932Z"
+ },
+ "encinitas": {
+  "council": {
+   "platform": "granicus",
+   "client": "encinitas",
+   "views": [
+    {
+     "id": 2,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UC0Y0bsSxZ4kYXwV1zBaqbLQ"
+  ],
+  "discovered_at": "2026-10-17T21:08:34.647Z"
+ },
+ "escondido": {
+  "youtube": [
+   "UC5Y9rYGmjQzXuZf95TJes0w"
+  ],
+  "gis": [
+   {
+    "org": "Volunteer Escondido",
+    "url": "https://volunteer.escondido.org/api/feed/dcat-us/1.1.json"
+   },
+   {
+    "org": "Escondido Broadband",
+    "url": "https://broadband.escondido.org/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "volunteer.escondido.org",
+   "broadband.escondido.org"
+  ],
+  "discovered_at": "2026-10-17T21:08:31.573Z"
+ },
+ "imperial-beach": {
+  "youtube": [
+   "UCXSS9RJyL_jHsHIAe5GK8MQ"
+  ],
+  "discovered_at": "2026-10-17T21:09:20.548Z"
+ },
+ "la-mesa": {
+  "youtube": [
+   "UCB4uZ_ORCVXIfaOAZeVSHeg"
+  ],
+  "discovered_at": "2026-10-17T21:14:08.976Z"
+ },
+ "lemon-grove": {
+  "youtube": [
+   "UC3T48cHnkP4Oe0fwlmNNGJQ"
+  ],
+  "discovered_at": "2026-10-17T21:13:54.866Z"
+ },
+ "oceanside": {
+  "council": {
+   "platform": "granicus",
+   "client": "oceanside",
+   "views": [
+    {
+     "id": 1,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "gis": [
+   {
+    "org": "GISHUB",
+    "url": "https://gishub-Oceanside.hub.arcgis.com/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "gishub-oceanside.hub.arcgis.com"
+  ],
+  "discovered_at": "2026-10-17T21:10:18.736Z"
+ },
+ "san-marcos": {
+  "council": {
+   "platform": "legistar",
+   "client": "sanmarcos",
+   "body": "City Council",
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UC95wmXIQpIibZWa1YMyy4tQ"
+  ],
+  "gis": [
+   {
+    "org": "City of San Marcos GIS",
+    "url": "https://gis-sanmarcos.hub.arcgis.com/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "gis-sanmarcos.hub.arcgis.com"
+  ],
+  "discovered_at": "2026-10-17T21:09:02.372Z"
+ },
+ "santee": {
+  "youtube": [
+   "UCW_D0ZNNppy1zEu3X64VXVA"
+  ],
+  "gis": [
+   {
+    "org": "City of Santee GIS Hub",
+    "url": "https://maps-cityofsanteeca.hub.arcgis.com/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "maps-cityofsanteeca.hub.arcgis.com"
+  ],
+  "discovered_at": "2026-10-17T21:11:29.894Z"
+ },
+ "solana-beach": {
+  "council": {
+   "platform": "granicus",
+   "client": "solanabeach",
+   "views": [
+    {
+     "id": 2,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCw7kPQ6zKXxdhkzzCP0t6uQ"
+  ],
+  "discovered_at": "2026-10-17T21:12:43.509Z"
+ },
+ "vista": {
+  "council": {
+   "platform": "granicus",
+   "client": "vista",
+   "views": [
+    {
+     "id": 3,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "discovered_at": "2026-10-17T21:18:11.466Z"
+ },
+ "anaheim": {
+  "gis": [
+   {
+    "org": "City of Anaheim Open Data",
+    "url": "https://main-anaheim.opendata.arcgis.com/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "main-anaheim.opendata.arcgis.com"
+  ],
+  "discovered_at": "2026-10-17T21:19:56.935Z"
+ },
+ "brea": {
+  "youtube": [
+   "UC7KrpFiIR-RsO_o_ApYb82w"
+  ],
+  "discovered_at": "2026-10-17T21:11:04.804Z"
+ },
+ "buena-park": {
+  "gis": [
+   {
+    "org": "Buena Park Open Data",
+    "url": "https://buena-park-gis-open-data-BuenaPark.hub.arcgis.com/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "buena-park-gis-open-data-buenapark.hub.arcgis.com"
+  ],
+  "discovered_at": "2026-10-17T21:12:31.305Z"
+ },
+ "costa-mesa": {
+  "council": {
+   "platform": "legistar",
+   "client": "costamesa",
+   "body": "REGULAR CITY COUNCIL AND HOUSING AUTHORITY*",
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCttmVrEQT27ffVwRG3Wp_5Q"
+  ],
+  "discovered_at": "2026-10-17T21:09:58.345Z"
+ },
+ "cypress": {
+  "youtube": [
+   "UCWk1dQ1qu-8JHKFg5wff5AA"
+  ],
+  "discovered_at": "2026-10-17T21:13:15.654Z"
+ },
+ "dana-point": {
+  "youtube": [
+   "UCdNW_5KL2Q7lC-DFHUyFr7A"
+  ],
+  "discovered_at": "2026-10-17T21:13:03.432Z"
+ },
+ "huntington-beach": {
+  "council": {
+   "platform": "legistar",
+   "client": "huntingtonbeach",
+   "body": "City Council/Public Financing Authority",
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCqaosllyy3vU5eHadlDShpg"
+  ],
+  "discovered_at": "2026-10-17T21:12:56.010Z"
+ },
+ "irvine": {
+  "council": {
+   "platform": "granicus",
+   "client": "irvine",
+   "views": [
+    {
+     "id": 6,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCcY6j8uOuuVgI6QXVXS68Aw"
+  ],
+  "gis": [
+   {
+    "org": "COI GIS",
+    "url": "https://coi-gis-CityofIrvine.hub.arcgis.com/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "coi-gis-cityofirvine.hub.arcgis.com"
+  ],
+  "discovered_at": "2026-10-17T21:14:53.352Z"
+ },
+ "la-habra": {
+  "council": {
+   "platform": "granicus",
+   "client": "lahabra",
+   "views": [
+    {
+     "id": 2,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "youtube": [
+   "UCxMF9QSjVT1H7Wc4Fep2vXA"
+  ],
+  "discovered_at": "2026-10-17T21:10:27.067Z"
+ },
+ "mission-viejo": {
+  "council": {
+   "platform": "granicus",
+   "client": "missionviejo",
+   "views": [
+    {
+     "id": 4,
+     "body": "City Council"
+    },
+    {
+     "id": 7,
+     "body": "City Council"
+    }
+   ],
+   "label": "City Council",
+   "limit": 2000
+  },
+  "discovered_at": "2026-10-17T21:11:27.437Z"
+ },
+ "placentia": {
+  "gis": [
+   {
+    "org": "City of Placentia - Spatial",
+    "url": "https://data-placentia.opendata.arcgis.com/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "data-placentia.opendata.arcgis.com"
+  ],
+  "discovered_at": "2026-10-17T21:20:12.749Z"
+ },
+ "santa-ana": {
+  "gis": [
+   {
+    "org": " City of Santa Ana - GIS Open Data",
+    "url": "https://gis-Santa-Ana.opendata.arcgis.com/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "gis-santa-ana.opendata.arcgis.com"
+  ],
+  "discovered_at": "2026-10-17T21:19:58.233Z"
+ },
+ "seal-beach": {
+  "youtube": [
+   "UCa0YfB3hj0hKyQLR8M9svQg"
+  ],
+  "discovered_at": "2026-10-17T21:11:37.442Z"
+ },
+ "westminster": {
+  "gis": [
+   {
+    "org": "City of Westminster, Colorado Hub Site",
+    "url": "https://opendata-westminster.hub.arcgis.com/api/feed/dcat-us/1.1.json"
+   }
+  ],
+  "gisHosts": [
+   "opendata-westminster.hub.arcgis.com"
+  ],
+  "discovered_at": "2026-10-17T21:19:56.469Z"
+ }
+}

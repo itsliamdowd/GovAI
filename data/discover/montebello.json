@@ -7,12 +7,19 @@
  },
  "legistar": null,
  "granicus": null,
- "hub": null,
+ "hub": [
+  {
+   "org": "City of Montebello - Urban Forestry Benefits",
+   "url": "https://city-of-montebello-urban-forestry-benefits-arboraccess.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "andpineda"
+  }
+ ],
  "youtube": [
   {
    "id": "UC8fqZ2c0yKiFhqlDiw6nI6w",
    "channel": "City of Montebello - Government",
    "example": "This Is the City of Montebello City Council Meeting (6/24/26)"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:25:15.258Z"
 }

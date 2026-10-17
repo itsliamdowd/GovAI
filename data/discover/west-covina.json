@@ -7,12 +7,19 @@
  },
  "legistar": null,
  "granicus": null,
- "hub": null,
+ "hub": [
+  {
+   "org": "City of West Covina GIS Hub",
+   "url": "https://city-of-west-covina-gis-hub-westcovina.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "TVictoria_westcovina"
+  }
+ ],
  "youtube": [
   {
    "id": "UCB6garANBTuHBkXFXBRw4RA",
    "channel": "West Covina City",
    "example": "The City of West Covina - August 18, 2026 - City Council Meeting"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:24:54.299Z"
 }

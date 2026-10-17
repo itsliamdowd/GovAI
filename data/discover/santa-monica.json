@@ -1,0 +1,16 @@
+{
+ "id": "santa-monica",
+ "hub": [
+  {
+   "org": "Santa Monica GIS Data",
+   "url": "https://gisdata.santamonica.gov/api/feed/dcat-us/1.1.json",
+   "owner": "smgov_agoladmin"
+  },
+  {
+   "org": "Santa Monica Mountains Defensible Space",
+   "url": "https://santa-monica-mountains-defensible-space-USCSSI.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "ablondi_USCSSI"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:23:36.399Z"
+}

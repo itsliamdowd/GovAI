@@ -1,0 +1,37 @@
+{
+ "id": "brea",
+ "probed_at": "2026-10-17T21:11:04.804Z",
+ "site": null,
+ "legistar": null,
+ "granicus": null,
+ "hub": [
+  {
+   "org": "City of Brea - Urban Forestry Benefits",
+   "url": "https://brea-urbanforest.wca.app/api/feed/dcat-us/1.1.json",
+   "owner": "andpineda"
+  },
+  {
+   "org": "CVI Breakout Data",
+   "url": "https://cvi-breakout-smcmaps.opendata.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "jridener@smcgov.org_smcmaps"
+  }
+ ],
+ "youtube": [
+  {
+   "id": "UC7KrpFiIR-RsO_o_ApYb82w",
+   "channel": "Brea Chamber",
+   "example": "2014 Brea City Council Candidates Forum"
+  },
+  {
+   "id": "UCfrMAXzOXLf8LAVKxbjf9Ww",
+   "channel": "Thomas Piechota",
+   "example": "ES&P Capstone 2025 Brea City Council Presentation"
+  },
+  {
+   "id": "UCChWc-zpzH-ZSa1Cyt0UScA",
+   "channel": "Orange County Employees Association",
+   "example": "BCEA Members Demand Fair Pay at Brea City Council"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:26:24.125Z"
+}

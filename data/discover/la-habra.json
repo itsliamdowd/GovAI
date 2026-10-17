@@ -15,7 +15,13 @@
    }
   ]
  },
- "hub": null,
+ "hub": [
+  {
+   "org": "La Habra Covid-19  Hub",
+   "url": "https://la-habra-covid-19-hub-LaHabra.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "LaHabraIT"
+  }
+ ],
  "youtube": [
   {
    "id": "UCxMF9QSjVT1H7Wc4Fep2vXA",
@@ -27,5 +33,6 @@
    "channel": "Delwin Lampkin",
    "example": "La Habra City Council Meeting Tutorial"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:27:55.587Z"
 }

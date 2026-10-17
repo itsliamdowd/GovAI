@@ -12,7 +12,13 @@
    }
   ]
  },
- "hub": null,
+ "hub": [
+  {
+   "org": "Vernon Connected",
+   "url": "https://vernon-connected-cmrpc.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "trans_cmrpc"
+  }
+ ],
  "youtube": [
   {
    "id": "UCcdOYdk1MlAJxcvOBIlaOYA",
@@ -29,5 +35,6 @@
    "channel": "City of Mount Vernon, WA - Government Television",
    "example": "Mount Vernon City Council Meeting - August 11, 2021"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:26:23.119Z"
 }

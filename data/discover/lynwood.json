@@ -16,12 +16,24 @@
    }
   ]
  },
- "hub": null,
+ "hub": [
+  {
+   "org": "LB24-0134 Lynwood Vision Zero Action Plan ENGLISH",
+   "url": "https://lynwood-vision-zero-action-plan-english-fehrandpeers.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "s.reseigh"
+  },
+  {
+   "org": "LB24-0134 Lynwood Vision Zero Action Plan SPANISH",
+   "url": "https://lynwood-vision-zero-action-plan-spanish-fehrandpeers.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "s.reseigh"
+  }
+ ],
  "youtube": [
   {
    "id": "UCvKUHxi_hzytCWsen35RXiQ",
    "channel": "City of Lynwood",
    "example": "Lynwood City Council Continues to Move the Community Forward"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:24:55.963Z"
 }

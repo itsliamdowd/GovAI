@@ -21,12 +21,19 @@
    }
   ]
  },
- "hub": null,
+ "hub": [
+  {
+   "org": "City of San Marcos GIS",
+   "url": "https://gis-sanmarcos.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "SMCGISAdmin"
+  }
+ ],
  "youtube": [
   {
    "id": "UC95wmXIQpIibZWa1YMyy4tQ",
    "channel": "City of San Marcos, California ",
    "example": "City of San Marcos City Council Meeting | Tuesday, March 10, 2026"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:27:18.818Z"
 }

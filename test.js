@@ -21,7 +21,7 @@ assert.deepEqual(formsFor("santa-monica").sort(), Object.keys(FORMS).sort()); as
 // Predefined forms: every field must be renderable, contact fields present, validation + mapping work.
 for (const [type, f] of Object.entries(FORMS)) {
   assert.ok(f.title && f.intro && f.jur && f.source.startsWith(jurById(f.jur).site + "/"), `${type} needs title/intro and a source on its own jurisdiction's site`);
-  for (const fld of f.fields) { assert.ok(fld.key && fld.label, `${type} field missing key/label`); if (fld.type === "select") assert.ok(fld.options?.length, `${type}.${fld.key} select needs options`); }
+  for (const fld of f.fields) { assert.ok(fld.key && fld.label, `${type} field missing key/label`); if (fld.type === "select" && fld.key !== "meeting") assert.ok(fld.options?.length, `${type}.${fld.key} select needs options`); } // meeting options come from server.js withMeetings() at request time
   for (const k of ["applicant_name", "email", "phone"]) assert.ok(f.fields.some((x) => x.key === k), `${type} missing ${k}`);
   assert.throws(() => toApplication(type, {}), /required/, `${type} should reject empty answers`);
 }

@@ -16,7 +16,10 @@ export function parseView(html, j, view) {
     const clip = row.match(/clip_id=(\d+)/)?.[1]; if (!clip) continue;
     const name = text(cell(row, "Name")) || view.body || "Meeting";
     const date = toYmd(text(cell(row, "Date"))); if (!date) continue;
-    const agenda = href(cell(row, "Agenda"), base), minutes = href(cell(row, "Minutes"), base) || href(cell(row, "Journal"), base);
+    // newer ViewPublisher templates (Azusa, La Mirada) drop the headers= attribute on the Agenda/Minutes cells, so fall back to the viewer URLs
+    const link = (re) => { const m = row.match(re); return m ? absUrl(m[1], base) : ""; };
+    const agenda = href(cell(row, "Agenda"), base) || link(/href="([^"]*AgendaViewer\.php[^"]*)"/i);
+    const minutes = href(cell(row, "Minutes"), base) || href(cell(row, "Journal"), base) || link(/href="([^"]*MinutesViewer\.php[^"]*)"/i) || link(/href="([^"]*\/(?:minutes|journal)[^"]*\.pdf[^"]*)"/i);
     const transcript = row.match(/TranscriptViewer\.php\?[^"']+/)?.[0], mp4 = row.match(/https?:\/\/[^"']+\.mp4/)?.[0] ?? "", mp3 = row.match(/https?:\/\/[^"']+\.mp3/)?.[0] ?? "";
     out.push({
       id: `granicus-${view.id}-${clip}`, platform: "granicus", body: view.body ?? name, name, date, time: "", canceled: /cancel/i.test(name),

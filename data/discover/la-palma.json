@@ -1,0 +1,21 @@
+{
+ "id": "la-palma",
+ "probed_at": "2026-10-17T21:15:36.563Z",
+ "site": null,
+ "legistar": null,
+ "granicus": null,
+ "hub": [
+  {
+   "org": "Meteo La Palma",
+   "url": "https://datos-meteorologicos-lapalma.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "alejandro.ESRI"
+  },
+  {
+   "org": "Colectivo de Hombres por la Igualdad La Palma",
+   "url": "https://colectivo-hombres-lapalma.opendata.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "marcos.luis.garcia_lapalma"
+  }
+ ],
+ "youtube": null,
+ "hub_probed_at": "2026-10-17T21:28:03.913Z"
+}

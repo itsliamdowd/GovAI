@@ -15,7 +15,18 @@
    }
   ]
  },
- "hub": null,
+ "hub": [
+  {
+   "org": "Lakewood Ranch Blvd Paving Projects",
+   "url": "https://lakewood-ranch-blvd-paving-projects-manateegis.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "Ogden.Clark@mymanatee.org"
+  },
+  {
+   "org": "Lakewood Ranch Stewardship District Open GIS Hub",
+   "url": "https://lwrsd-open-data-lwrstewardship.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "Consultant1@lwrstewardshipdistrict.com"
+  }
+ ],
  "youtube": [
   {
    "id": "UCAwxi9rw1c5WTi479Uzg6sw",
@@ -27,5 +38,6 @@
    "channel": "City of Lakewood",
    "example": "City Council Meeting of October 14, 2026"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:24:29.108Z"
 }

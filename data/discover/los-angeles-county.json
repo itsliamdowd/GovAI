@@ -1,0 +1,11 @@
+{
+ "id": "los-angeles-county",
+ "hub": [
+  {
+   "org": "LA County Tree Hub",
+   "url": "https://trees-lacounty.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "BPrice@planning.lacounty.gov_lacounty"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:23:39.692Z"
+}

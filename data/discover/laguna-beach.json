@@ -1,0 +1,21 @@
+{
+ "id": "laguna-beach",
+ "probed_at": "2026-10-17T21:16:27.959Z",
+ "site": null,
+ "legistar": null,
+ "granicus": null,
+ "hub": [
+  {
+   "org": "Coffee shop experience in Laguna Beach, California",
+   "url": "https://coffee-shops-experience-CSULB.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "033769175_CSULB"
+  },
+  {
+   "org": "Laguna Beach CRA-SOC Hub",
+   "url": "https://lagunabeach-esci.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "ESCI_OfficialDataManager"
+  }
+ ],
+ "youtube": null,
+ "hub_probed_at": "2026-10-17T21:26:38.336Z"
+}

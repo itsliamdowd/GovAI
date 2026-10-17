@@ -1,0 +1,16 @@
+{
+ "id": "avalon",
+ "hub": [
+  {
+   "org": "Project Avalon",
+   "url": "https://project-avalon-emht.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "05ab435"
+  },
+  {
+   "org": "Avalonia Soluciones",
+   "url": "https://soluciones-avalonia.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "ManagerAvalonia"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:25:24.631Z"
+}

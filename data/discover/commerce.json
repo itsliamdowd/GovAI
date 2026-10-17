@@ -35,12 +35,24 @@
    }
   ]
  },
- "hub": null,
+ "hub": [
+  {
+   "org": "North Carolina Department of Commerce GIS Open Data",
+   "url": "https://data-nccommerce.opendata.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "james.dyson"
+  },
+  {
+   "org": "Commerce City Open Data",
+   "url": "https://data-c3.opendata.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "C3_GIS_Admin"
+  }
+ ],
  "youtube": [
   {
    "id": "UCRndyCJZcg3Eb8UzYTlgxEw",
    "channel": "Commerce City, CO",
    "example": "City Council Regular Meeting - October 5, 2026"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:26:05.608Z"
 }

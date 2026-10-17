@@ -113,7 +113,7 @@ const WIRING = {
       { platform: "primegov", client: "lacity", since: "2016" }, // all ~110 bodies: council, 15 committees, commissions
       { platform: "granicus", client: "lacity", views: [{ id: 129, body: "City Council" }, { id: 46, body: "Council Committee" }] }, // 2008-2021 archive; agenda/journal hosts are unreachable off-net, transcripts work
     ] },
-    youtube: ["UCC2hfJIf4FjXXL9ZBP-EXwA"], // LA CityView 35: council + Police/Fire/Harbor/DWP/Airport commissions
+    youtube: ["@lacityclerk"] /* City Clerk streams every council + committee meeting (SAP = Spanish audio dupes, filtered). CityView 35 (UCC2hfJIf4FjXXL9ZBP-EXwA) dropped: 2,574 videos, 130 pass the body filter and nearly all are ribbon cuttings */, // LA CityView 35: council + Police/Fire/Harbor/DWP/Airport commissions
     domains: ["lacity.gov", "lacity.org", "lacity.primegov.com", "lacity.granicus.com", "clerk.lacity.gov", "cityclerk.lacity.org", "councilvote.lacity.org", "ens.lacity.org", "planning.lacity.gov", "ladbs.org", "dbs.lacity.gov", "lapdonline.org", "lafd.org", "ladwp.com", "lawa.org", "portoflosangeles.org", "laparks.org", "lapl.org", "lacitysan.org", "ladot.lacity.gov", "myla311.lacity.gov", "data.lacity.org", "geohub.lacity.org", "codelibrary.amlegal.com", "neighborhoodempowerment.lacity.gov", "mayor.lacity.gov", "controller.lacity.gov", "cao.lacity.gov", "laist.com", "latimes.com", "ktla.com", "nbclosangeles.com", "knock-la.com", "crosstownla.com", "lapublicpress.org", "dailynews.com"],
     contact: { name: "MyLA311", phone: "311 or (213) 473-3231", email: "", line: "311 (within the city) or (213) 473-3231" },
     portals: [{ id: "lacity", type: "dcat", url: "https://data.lacity.org/data.json", site: "https://data.lacity.org" }], // Socrata via its DCAT feed (~360 datasets; SODA at /resource/<4x4>.json)
@@ -191,5 +191,9 @@ const WIRING = {
   "el-segundo": { youtube: ["UCxIHXywoJ5iy5iiizQyULXg"] },
   "lancaster": { youtube: ["UCitRWO0qH_VJoKRxI2W01Ag"], feeds: [{ id: "gn", name: "Google News", url: gnews('"Lancaster" california when:30d') }] },
   "vernon": { youtube: ["UCQilkDtzhIQFu1Fx7iiOJMg"] },
+  "beverly-hills": { council: { platform: "civicplus", since: "2019", limit: 3000, label: "City Council" } },
+  "calabasas": { council: { platform: "granicus", client: "calabasas", views: [{ id: 2, body: "City Council" }], limit: 2000, label: "City Council" } },
+  "palos-verdes-estates": { council: { platform: "granicus", client: "pvestates", views: [{ id: 1, body: "City Council" }], limit: 2000, label: "City Council" } },
+  "rolling-hills-estates": { council: { platform: "granicus", client: "rollinghillsestatesca", views: [{ id: 1, body: "City Council" }], limit: 2000, label: "City Council" } },
 };
 for (const [id, extra] of Object.entries(WIRING)) { const c = LA_CITIES.find((x) => x.id === id); if (!c) throw new Error(`WIRING: unknown LA city ${id}`); Object.assign(c, { ...extra, domains: [...new Set([...(c.domains ?? []), ...(extra.domains ?? [])])] }); }

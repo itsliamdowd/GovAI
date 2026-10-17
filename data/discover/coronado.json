@@ -1,0 +1,42 @@
+{
+ "id": "coronado",
+ "probed_at": "2026-10-17T21:13:05.621Z",
+ "site": null,
+ "legistar": null,
+ "granicus": null,
+ "hub": [
+  {
+   "org": "Coronado",
+   "url": "https://coronado-Coronadogis.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "coronado_Coronadogis"
+  },
+  {
+   "org": "CME Vazquez de Coronado",
+   "url": "https://cme-vazquez-de-coronado-CNEcr.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "dperezu_cne"
+  }
+ ],
+ "youtube": [
+  {
+   "id": "UCABHyvBfGFkplAg40leNkcA",
+   "channel": "coronado beach",
+   "example": "8:18:2026 Coronado City Council Meeting - Mayor Duncan comments"
+  },
+  {
+   "id": "UCPO-VJQFc_driX7UBktkucA",
+   "channel": "Coronado Democratic Club",
+   "example": "Coronado Democratic Club - City Council Forum - September 9. 2026"
+  },
+  {
+   "id": "UC413G2xUd843x10wFesTDHA",
+   "channel": "Rotary Club of Coronado Meeting Channel",
+   "example": "Rotary Meeting-10-05-2022 (Forum for Coronado City Council)"
+  },
+  {
+   "id": "UC2LTDeI-UU1vCEpmLftmFTQ",
+   "channel": "City of Coronado",
+   "example": "Weekly Update Aug. 26, 2022"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:26:50.337Z"
+}

@@ -1,0 +1,6 @@
+{"q":"who picks up my trash in Malibu and when do I put the cans out","jur":"malibu","expect":{"url":"https://www.malibucity.org/680/Trash-Pickup"},"status":"proposed"}
+{"q":"how much is an alarm permit and how do I apply","jur":"malibu","expect":{"url":"https://www.malibucity.org/120/Alarm-Permit"},"status":"proposed"}
+{"q":"I want to film a commercial in Malibu, who do I call","jur":"malibu","expect":{"url":"https://www.malibucity.org/124/Film-Permit"},"status":"proposed"}
+{"q":"where is the current city fee schedule","jur":"malibu","expect":{"url":"https://www.malibucity.org/316/Fee-Schedule"},"status":"proposed"}
+{"q":"do I have to separate food scraps for organics recycling","jur":"malibu","expect":{"url_re":"malibucity\\.org/(304|680|\\d+/Organics)"},"status":"proposed"}
+{"q":"call to order","jur":"malibu","kind":"council","expect":{"domain":"malibucity.org"},"status":"proposed"}

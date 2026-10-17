@@ -1,0 +1,16 @@
+{
+ "id": "anaheim",
+ "probed_at": "2026-10-17T21:19:56.935Z",
+ "site": null,
+ "legistar": null,
+ "granicus": null,
+ "hub": [
+  {
+   "org": "City of Anaheim Open Data",
+   "url": "https://main-anaheim.opendata.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "vguerrero2@anaheim.net_anaheim"
+  }
+ ],
+ "youtube": null,
+ "hub_probed_at": "2026-10-17T21:27:35.398Z"
+}

@@ -8,7 +8,7 @@ import { fetchJson, fetchText, html2text, politeFetch, toYmd } from "./_http.js"
 
 const base = (j) => `https://${j.council.client}.primegov.com`;
 const docUrl = (j, d) => `${base(j)}/Public/CompiledDocument?meetingTemplateId=${d.templateId}&compileOutputType=${d.compileOutputType}`;
-const isAgenda = (n) => /agenda/i.test(n) && !/spanish|cancel|recess|sap video/i.test(n);
+const isAgenda = (n) => /agenda|packet/i.test(n) && !/spanish|cancel|recess|sap video/i.test(n); // "Packet" = agenda + attachments where no Agenda template exists (Hawaiian Gardens)
 const isMinutes = (n) => /journal|minutes|action summary|actions taken/i.test(n) && !/spanish/i.test(n);
 
 export function toRecord(m, j) {

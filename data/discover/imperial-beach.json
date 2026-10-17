@@ -1,0 +1,25 @@
+{
+ "id": "imperial-beach",
+ "probed_at": "2026-10-17T21:09:20.548Z",
+ "site": {
+  "url": "https://www.imperialbeachca.gov/",
+  "title": "Imperial Beach, CA | Official Website"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": [
+  {
+   "org": "Imperial Beach Environmental Monitoring",
+   "url": "https://ib-environmental-monitoring-cuesta.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "donna_altamirano"
+  }
+ ],
+ "youtube": [
+  {
+   "id": "UCXSS9RJyL_jHsHIAe5GK8MQ",
+   "channel": "City of Imperial Beach",
+   "example": "2021 09 01 Imperial Beach City Council Meeting"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:26:33.771Z"
+}

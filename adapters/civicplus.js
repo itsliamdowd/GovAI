@@ -9,7 +9,8 @@ import { fetchHtml, fetchText, toYmd, absUrl } from "./_http.js";
 const text = (h) => h.replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
 export function parseCategories(html) {
   const cats = [];
-  for (const m of html.matchAll(/<h2[^>]*aria-controls="category-panel-(\d+)"[^>]*>([\s\S]*?)<\/h2>/gi)) cats.push({ id: +m[1], name: text(m[2]) });
+  // categories are <h2> on most sites; sites that group bodies under "header-panel" sections (San Gabriel) use <h3>
+  for (const m of html.matchAll(/<(h[2-4])[^>]*aria-controls="category-panel-(\d+)"[^>]*>([\s\S]*?)<\/\1>/gi)) cats.push({ id: +m[2], name: text(m[3]) });
   return cats;
 }
 export function parseRows(html, cat, site) {

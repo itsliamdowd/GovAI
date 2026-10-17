@@ -1,0 +1,29 @@
+{
+ "id": "vista",
+ "probed_at": "2026-10-17T21:18:11.466Z",
+ "site": null,
+ "legistar": null,
+ "granicus": {
+  "host": "vista.granicus.com",
+  "views": [
+   {
+    "view_id": 3,
+    "title": "City of Vista: Redesign View (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": [
+  {
+   "org": "City of Sierra Vista GIS",
+   "url": "https://cosvazgis-sierravista.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "cosvcosv"
+  },
+  {
+   "org": "City of Chula Vista ESRI User Conference",
+   "url": "https://city-of-chula-vista-gisovw-cvgis.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "GISDeptPublisher"
+  }
+ ],
+ "youtube": null,
+ "hub_probed_at": "2026-10-17T21:27:03.963Z"
+}

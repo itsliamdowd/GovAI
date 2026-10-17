@@ -20,12 +20,19 @@
    }
   ]
  },
- "hub": null,
+ "hub": [
+  {
+   "org": "City of Glendale Community Performance",
+   "url": "https://performance-management-cog-gis.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "GisAdmin_COG"
+  }
+ ],
  "youtube": [
   {
    "id": "UCSic6AKD1jsrwn8IzRJVSIw",
    "channel": "MyGlendale",
    "example": "City Council - 7/28/26"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:23:55.685Z"
 }

@@ -1,0 +1,16 @@
+{
+ "id": "san-juan-capistrano",
+ "probed_at": "2026-10-17T21:20:09.977Z",
+ "site": null,
+ "legistar": null,
+ "granicus": null,
+ "hub": [
+  {
+   "org": "City of San Juan Capistrano GIS Open Data Site",
+   "url": "https://gisdata-SANJUANCAP.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "infgis_sanjuancap"
+  }
+ ],
+ "youtube": null,
+ "hub_probed_at": "2026-10-17T21:27:40.096Z"
+}

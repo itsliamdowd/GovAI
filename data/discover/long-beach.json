@@ -1,0 +1,11 @@
+{
+ "id": "long-beach",
+ "hub": [
+  {
+   "org": "Long Beach Culture and Cuisine",
+   "url": "https://long-beach-culture-and-cuisine-CSULB.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "015698837_CSULB"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:24:04.070Z"
+}

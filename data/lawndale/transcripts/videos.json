@@ -1,0 +1,931 @@
+{
+ "fetched_at": 1792271899763,
+ "key": "@lawndalecitytv7478",
+ "videos": [
+  {
+   "id": "8PV1HpgUIj0",
+   "title": "Lawndale City Council Meeting - October 5, 2026",
+   "date": "2026-10-05"
+  },
+  {
+   "id": "HAoSiz8i0QI",
+   "title": "Lawndale City Council Meeting - September 21, 2026",
+   "date": "2026-09-21"
+  },
+  {
+   "id": "5ef9NGWICeI",
+   "title": "Lawndale City Council Meeting - August 17, 2026",
+   "date": "2026-08-17"
+  },
+  {
+   "id": "oAvfh06Mebc",
+   "title": "Lawndale City Council Meeting - August 3, 2026",
+   "date": "2026-08-03"
+  },
+  {
+   "id": "Yn3PL2q9MCM",
+   "title": "Lawndale City Council Meeting - July 20, 2026",
+   "date": "2026-07-20"
+  },
+  {
+   "id": "Kn3GPeziM1U",
+   "title": "Lawndale City Council Meeting - May 18, 2026",
+   "date": "2026-05-18"
+  },
+  {
+   "id": "7PNz5piyJm0",
+   "title": "Lawndale City Council Meeting - May 4, 2026",
+   "date": "2026-05-04"
+  },
+  {
+   "id": "e90P_lJsJME",
+   "title": "Lawndale City Council Meeting - April 6, 2026",
+   "date": "2026-04-06"
+  },
+  {
+   "id": "y3NJblzT-7I",
+   "title": "Lawndale City Council Meeting - March 16, 2026",
+   "date": "2026-03-16"
+  },
+  {
+   "id": "6J0saTKrZHs",
+   "title": "Lawndale City Council Meeting - March 2, 2026",
+   "date": "2026-03-02"
+  },
+  {
+   "id": "9JJRP3LS09A",
+   "title": "Lawndale City Council Meeting - February 2, 2026",
+   "date": "2026-02-02"
+  },
+  {
+   "id": "AEX143H9h9M",
+   "title": "Lawndale City Council Meeting - January 5, 2026",
+   "date": "2026-01-05"
+  },
+  {
+   "id": "rEaH7hvoAg8",
+   "title": "Lawndale City Council Meeting - December 15, 2025",
+   "date": "2025-12-15"
+  },
+  {
+   "id": "Lbt5O8DnSyA",
+   "title": "Lawndale Special City Council Meeting - December 3, 2025",
+   "date": "2025-12-03"
+  },
+  {
+   "id": "nq3MTQ5Sue4",
+   "title": "Lawndale City Council Meeting - December 1, 2025",
+   "date": "2025-12-01"
+  },
+  {
+   "id": "LgUeIJKESAU",
+   "title": "Lawndale City Council Meeting - November 17, 2025",
+   "date": "2025-11-17"
+  },
+  {
+   "id": "7kThGIOHVYs",
+   "title": "Lawndale City Council Meeting - November 3, 2025",
+   "date": "2025-11-03"
+  },
+  {
+   "id": "bjUcqyK7mFU",
+   "title": "Lawndale City Council Meeting - October 20, 2025",
+   "date": "2025-10-20"
+  },
+  {
+   "id": "IqhNbcAtPA4",
+   "title": "Lawndale City Council Meeting - October 6, 2025",
+   "date": "2025-10-06"
+  },
+  {
+   "id": "anfvArL9vqQ",
+   "title": "Lawndale City Council Meeting - August 18, 2025",
+   "date": "2025-08-18"
+  },
+  {
+   "id": "_6za3PLEaUY",
+   "title": "Lawndale City Council Meeting - August 4, 2025",
+   "date": "2025-08-04"
+  },
+  {
+   "id": "0xusB6z2PKU",
+   "title": "Lawndale City Council Meeting - July 21, 2025",
+   "date": "2025-07-21"
+  },
+  {
+   "id": "MVJOPN_sBf8",
+   "title": "Lawndale City Council Meeting - June 16, 2025",
+   "date": "2025-06-16"
+  },
+  {
+   "id": "aywLF_nuT5M",
+   "title": "Lawndale City Council Meeting - May 19, 2025",
+   "date": "2025-05-19"
+  },
+  {
+   "id": "wy12C2j3D08",
+   "title": "Lawndale City Council Meeting - May 5, 2025",
+   "date": "2025-05-05"
+  },
+  {
+   "id": "i5Sia-btPzQ",
+   "title": "Lawndale City Council Meeting - April 7, 2025",
+   "date": "2025-04-07"
+  },
+  {
+   "id": "6wrjButFa7c",
+   "title": "Lawndale City Council Meeting - March 17, 2025",
+   "date": "2025-03-17"
+  },
+  {
+   "id": "dehYmwR1ce0",
+   "title": "Lawndale City Council Meeting - March 3, 2025",
+   "date": "2025-03-03"
+  },
+  {
+   "id": "bLikaALMS98",
+   "title": "Lawndale City Council Meeting - February 18, 2025",
+   "date": "2025-02-18"
+  },
+  {
+   "id": "Ycv3ololeOA",
+   "title": "Lawndale City Council Meeting - February 3, 2025",
+   "date": "2025-02-03"
+  },
+  {
+   "id": "MJbvLdnU8h8",
+   "title": "Lawndale City Council Meeting - January 21, 2025",
+   "date": "2025-01-21"
+  },
+  {
+   "id": "R0bOLJQ1nbw",
+   "title": "Lawndale City Council Meeting - January 6, 2025",
+   "date": "2025-01-06"
+  },
+  {
+   "id": "RaJv7pfO0xI",
+   "title": "Lawndale City Council Meeting December 16 2024",
+   "date": "2024-12-16"
+  },
+  {
+   "id": "8h6ibH8k8mQ",
+   "title": "Lawndale City Council Meeting December 2 2024",
+   "date": "2024-12-02"
+  },
+  {
+   "id": "l4PyoJpb3HQ",
+   "title": "Lawndale City Council Meeting November 18 2024",
+   "date": "2024-11-18"
+  },
+  {
+   "id": "qWSa7OB_JgM",
+   "title": "Lawndale City Council Meeting November 4 2024 - Part B",
+   "date": "2024-11-04"
+  },
+  {
+   "id": "QmmiNdFVrj4",
+   "title": "Lawndale City Council Meeting October 7 2024",
+   "date": "2024-10-07"
+  },
+  {
+   "id": "CzRFtJ6Nw8A",
+   "title": "Lawndale City Council Meeting - August 19, 2024 @ 6:30pm",
+   "date": "2024-08-19"
+  },
+  {
+   "id": "6p-kr2zoEUM",
+   "title": "Lawndale City Council Meeting - March  18, 2024 @ 6:30pm",
+   "date": "2024-03-18"
+  },
+  {
+   "id": "PsmD5cx4HgQ",
+   "title": "Lawndale City Council Meeting - November 6, 2023 @ 6:30pm",
+   "date": "2023-11-06"
+  },
+  {
+   "id": "iTzsqW1kmH4",
+   "title": "LAWNDALE CITY COUNCIL MEETING- April 17, 2023@ 6:30 pm",
+   "date": "2023-04-17"
+  },
+  {
+   "id": "Ao9zfJJzacY",
+   "title": "LAWNDALE CITY COUNCIL MEETING- February 21, 2023@ 6:30 pm",
+   "date": "2023-02-21"
+  },
+  {
+   "id": "olQt97qn0NE",
+   "title": "LAWNDALE CITY COUNCIL MEETING- May 2, 2022@ 6:30 pm",
+   "date": "2022-05-02"
+  },
+  {
+   "id": "ky2d3yeMHHE",
+   "title": "LAWNDALE CITY COUNCIL MEETING- March 7, 2022@ 6:30 pm",
+   "date": "2022-03-07"
+  },
+  {
+   "id": "XExOCDWlfxc",
+   "title": "LAWNDALE CITY COUNCIL MEETING- November 1, 2021@ 6:30 pm",
+   "date": "2021-11-01"
+  },
+  {
+   "id": "ivbjqwmlbdU",
+   "title": "LAWNDALE CITY COUNCIL MEETING- September 28, 2021@ 6:30 pm",
+   "date": "2021-09-28"
+  },
+  {
+   "id": "ghbir_iNHlo",
+   "title": "LAWNDALE CITY COUNCIL MEETING- February 1, 2021@ 6:30 pm",
+   "date": "2021-02-01"
+  },
+  {
+   "id": "L3j1HPrawiA",
+   "title": "LAWNDALE CITY COUNCIL MEETING- January 19, 2021@ 6:15 pm",
+   "date": "2021-01-19"
+  },
+  {
+   "id": "do_UCb3jzTw",
+   "title": "LAWNDALE CITY COUNCIL MEETING- January 11, 2021@ 9:00 am",
+   "date": "2021-01-11"
+  },
+  {
+   "id": "A24LPrrSvas",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  September 8, 2020 @ 6:30 pm",
+   "date": "2020-09-08"
+  },
+  {
+   "id": "Hle3zGQxbN0",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  August 17, 2020 @ 6:30pm",
+   "date": "2020-08-17"
+  },
+  {
+   "id": "8H-w-vI1Bqw",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  July 20,  2020",
+   "date": "2020-07-20"
+  },
+  {
+   "id": "JYVeP4ofEz8",
+   "title": "LAWNDALE CITY COUNCIL SPECIAL MEETING  -  July 8,  2020",
+   "date": "2020-07-08"
+  },
+  {
+   "id": "P9uaq3fOTSU",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  July 6,  2020",
+   "date": "2020-07-06"
+  },
+  {
+   "id": "6C3pZU4LDRk",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  June 15,  2020",
+   "date": "2020-06-15"
+  },
+  {
+   "id": "J7c3l6x8LJg",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  June 3,  2020",
+   "date": "2020-06-03"
+  },
+  {
+   "id": "krfj9BdyfjQ",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  June 1,  2020",
+   "date": "2020-06-01"
+  },
+  {
+   "id": "l6D10TGkOVU",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  May 18, 2020",
+   "date": "2020-05-18"
+  },
+  {
+   "id": "XZxY4T4VZMU",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  May 4, 2020",
+   "date": "2020-05-04"
+  },
+  {
+   "id": "SH8xwoEFUxA",
+   "title": "LAWNDALE SPECIAL CITY COUNCIL MEETING  -  April 23, 2020",
+   "date": "2020-04-23"
+  },
+  {
+   "id": "Hcue5morevM",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  April 20, 2020",
+   "date": "2020-04-20"
+  },
+  {
+   "id": "iiGDZcyB44Q",
+   "title": "LAWNDALE CITY COUNCIL EMERGENCY MEETING  -  April 13, 2020",
+   "date": "2020-04-13"
+  },
+  {
+   "id": "x2ZeE-7-gnE",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  April 6, 2020",
+   "date": "2020-04-06"
+  },
+  {
+   "id": "Lhz2yO-1Ci8",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  March 16, 2020",
+   "date": "2020-03-16"
+  },
+  {
+   "id": "wXt0zbxQawg",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  March 2, 2020",
+   "date": "2020-03-02"
+  },
+  {
+   "id": "LxNdn9EES2c",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  February 18, 2020",
+   "date": "2020-02-18"
+  },
+  {
+   "id": "m3Q_tE316LA",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  February 3, 2020",
+   "date": "2020-02-03"
+  },
+  {
+   "id": "k7Yp8EeH7-s",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  January 21, 2020",
+   "date": "2020-01-21"
+  },
+  {
+   "id": "Kv7nq7rsq3M",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  January 6, 2020",
+   "date": "2020-01-06"
+  },
+  {
+   "id": "zUH2-ZqeFlc",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  December 02, 2019",
+   "date": "2019-12-02"
+  },
+  {
+   "id": "UqasyKq2UnI",
+   "title": "LAWNDALE CITY COUNCIL MEETING  - November 18, 2019",
+   "date": "2019-11-18"
+  },
+  {
+   "id": "Q8laWaNW3cs",
+   "title": "LAWNDALE CITY COUNCIL MEETING - November 4, 2019",
+   "date": "2019-11-04"
+  },
+  {
+   "id": "nUi7c1ENH9Y",
+   "title": "Lawndale City Council Meeting - October 7, 2019",
+   "date": "2019-10-07"
+  },
+  {
+   "id": "YOU2YYueoP4",
+   "title": "Lawndale City Council Meeting - September 3, 2019",
+   "date": "2019-09-03"
+  },
+  {
+   "id": "Iwu-f6hN7s8",
+   "title": "Lawndale City Council Meeting - August 19, 2019",
+   "date": "2019-08-19"
+  },
+  {
+   "id": "yDLE9mXEeDc",
+   "title": "Lawndale City Council Meeting - August 5, 2019",
+   "date": "2019-08-05"
+  },
+  {
+   "id": "8wuFhlcCPmY",
+   "title": "Lawndale City Council Meeting 07-15-2019",
+   "date": "2019-08-06"
+  },
+  {
+   "id": "uLmhGUp0s50",
+   "title": "Lawndale City Council Meeting - July 15, 2019",
+   "date": "2019-07-15"
+  },
+  {
+   "id": "jZjpDOahF9I",
+   "title": "Lawndale City Council Meeting - June 15th 2026",
+   "date": "2026-06-15"
+  },
+  {
+   "id": "yO9NkvPLMQA",
+   "title": "Lawndale City Council Meeting - June 1st, 2026",
+   "date": "2026-06-01"
+  },
+  {
+   "id": "TC4vL1e5iOI",
+   "title": "Special City Council Meeting - May 26th, 2026",
+   "date": "2026-05-26"
+  },
+  {
+   "id": "7i9yLTS1dDM",
+   "title": "Mock City Council - Youth in Government Day 2026",
+   "date": "2026-05-13"
+  },
+  {
+   "id": "ccGY23I7eEE",
+   "title": "Lawndale City Council Meeting - April 20, 2026",
+   "date": "2026-04-20"
+  },
+  {
+   "id": "o-MvSVFAtvA",
+   "title": "Lawndale City Council Meeting - September 15, 2025",
+   "date": "2025-09-15"
+  },
+  {
+   "id": "DVUCnDM7ZdI",
+   "title": "Lawndale City Council Meeting June 2, 2025",
+   "date": "2025-06-02"
+  },
+  {
+   "id": "yFrzQfuO4Y0",
+   "title": "Lawndale Youth in Government Day 2025 Mock City Council Session",
+   "date": "2025-05-08"
+  },
+  {
+   "id": "DLXIU4JGorU",
+   "title": "Lawndale City Council Meeting - April 21, 2025",
+   "date": "2025-04-21"
+  },
+  {
+   "id": "HvMrK1Li1sY",
+   "title": "Lawndale City Council Meeting - October 21, 2024",
+   "date": "2024-10-21"
+  },
+  {
+   "id": "U0anjpJcmtg",
+   "title": "Lawndale City Council Meeting - September 16 2024",
+   "date": "2024-09-16"
+  },
+  {
+   "id": "UyZ6D0HVs1E",
+   "title": "Lawndale City Council Meeting August 5, 2024",
+   "date": "2024-08-05"
+  },
+  {
+   "id": "cWESA-frM9Y",
+   "title": "Lawndale City Council Meeting - July 15, 2024",
+   "date": "2024-07-15"
+  },
+  {
+   "id": "ZQICHIRgj3s",
+   "title": "Lawndale City Council Meeting - June 17, 2024",
+   "date": "2024-06-17"
+  },
+  {
+   "id": "KKEmfURj2dc",
+   "title": "Lawndale City Council Meeting - June 3, 2024",
+   "date": "2024-06-03"
+  },
+  {
+   "id": "Xf_vXX_MFRc",
+   "title": "Lawndale City Council Meeting - May 20, 2024",
+   "date": "2024-05-20"
+  },
+  {
+   "id": "f-M9ih-lFtc",
+   "title": "Lawndale City Council Meeting - May 6, 2024",
+   "date": "2024-05-06"
+  },
+  {
+   "id": "SMV-A57YT2Q",
+   "title": "Lawndale City Council Meeting - April 15, 2024 @ 6:30pm",
+   "date": "2024-04-15"
+  },
+  {
+   "id": "DKsydjvfjPw",
+   "title": "Lawndale City Council Meeting April 2, 2024",
+   "date": "2024-04-02"
+  },
+  {
+   "id": "7_4fYkTpEpY",
+   "title": "LAWNDALE CITY COUNCIL MEETING  - March 4, 2024 @ 6:30 pm",
+   "date": "2024-03-04"
+  },
+  {
+   "id": "_cblz0684_Y",
+   "title": "LAWNDALE CITY COUNCIL MEETING - February 19,  2019 @ 6:30 pm",
+   "date": "2019-02-19"
+  },
+  {
+   "id": "suVdMQQAySE",
+   "title": "LAWNDALE CITY COUNCIL MEETING - February 4, 2019 @ 6:30 pm",
+   "date": "2019-02-04"
+  },
+  {
+   "id": "Q6HKajm9xVc",
+   "title": "LAWNDALE CITY COUNCIL MEETING - January 7, 2019 @ 6:30 pm",
+   "date": "2019-01-07"
+  },
+  {
+   "id": "vZmspM19PXg",
+   "title": "LAWNDALE CITY COUNCIL MEETING - February 5, 2024 @ 6:30 pm",
+   "date": "2024-02-05"
+  },
+  {
+   "id": "mwLFElsy53E",
+   "title": "LAWNDALE CITY COUNCIL MEETING, January 16, 2024 @ 6:30 pm",
+   "date": "2024-01-16"
+  },
+  {
+   "id": "dwPI5fLalkI",
+   "title": "LAWNDALE CITY COUNCIL MEETING - December 18, 2023 @ 6:30 pm",
+   "date": "2023-12-18"
+  },
+  {
+   "id": "PvD-r2rWybk",
+   "title": "LAWNDALE CITY COUNCIL MEETING - December 4, 2023 @6:30 pm",
+   "date": "2023-12-04"
+  },
+  {
+   "id": "0EW4-FakJUo",
+   "title": "LAWNDALE CITY COUNCIL MEETING   November 20, 2023",
+   "date": "2023-11-20"
+  },
+  {
+   "id": "Vd70vM7iENs",
+   "title": "LAWNDALE CITY COUNCIL MEETING - October 16, 2023 @ 6:30 pm",
+   "date": "2023-10-16"
+  },
+  {
+   "id": "ZvLUt0a4cd4",
+   "title": "LAWNDALE CITY COUNCIL MEETING, October 2, 2023 @ 6:30 pm",
+   "date": "2023-10-02"
+  },
+  {
+   "id": "pmqfXiLiBYE",
+   "title": "LAWNDALE CITY COUNCIL MEETING -  September 18, 2023",
+   "date": "2023-09-18"
+  },
+  {
+   "id": "hvAyeSMC7gQ",
+   "title": "LAWNDALE CITY COUNCIL MEETING- August 21, 2023 @ 6:30 pm",
+   "date": "2023-08-21"
+  },
+  {
+   "id": "5Tm--8N9HRY",
+   "title": "LAWNDALE CITY COUNCIL MEETING  - August 7, 2023",
+   "date": "2023-08-07"
+  },
+  {
+   "id": "4HyZEY2_a_Q",
+   "title": "LAWNDALE CITY COUNCIL MEETING - July 17, 2023 @ 6:30 pm",
+   "date": "2023-07-17"
+  },
+  {
+   "id": "ig9f0Wfsp_o",
+   "title": "LAWNDALE CITY COUNCIL MEETING   June 5, 2023",
+   "date": "2023-06-05"
+  },
+  {
+   "id": "3OefhnKja7g",
+   "title": "LAWNDALE CITY COUNCIL MEETING - May 15, 2023 @ 6:30 pm",
+   "date": "2023-05-15"
+  },
+  {
+   "id": "951PfIfDLAg",
+   "title": "LAWNDALE CITY COUNCIL MEETING - May 1, 2023 @ 6:30 p.m",
+   "date": "2023-05-01"
+  },
+  {
+   "id": "4tD7Gi__8g8",
+   "title": "LAWNDALE CITY COUNCIL MEETING - April 3, 2023 @ 6:30 pm",
+   "date": "2023-04-03"
+  },
+  {
+   "id": "Had26ZzBfAQ",
+   "title": "LAWNDALE CITY COUNCIL MEETING - November 6, 2017 @ 6:30 p.m",
+   "date": "2017-11-06"
+  },
+  {
+   "id": "9ymex5xyhpg",
+   "title": "LAWNDALE CITY COUNCIL MEETING - March 20, 2023 @ 6:30 pm",
+   "date": "2023-03-20"
+  },
+  {
+   "id": "fKaWkhfRXZA",
+   "title": "LAWNDALE CITY COUNCIL MEETING - March 6 ,2023 @ 6:30 pm",
+   "date": "2023-03-07"
+  },
+  {
+   "id": "ckfnJho7_n4",
+   "title": "LAWNDALE CITY COUNCIL MEETING - February 6, 2023 @6:30 pm",
+   "date": "2023-02-06"
+  },
+  {
+   "id": "RtdxplswlAI",
+   "title": "LAWNDALE CITY COUNCIL MEETING - January 17, 2023 @ 6:30 pm",
+   "date": "2023-01-17"
+  },
+  {
+   "id": "uW27OKXuoyI",
+   "title": "LAWNDALE CITY COUNCIL MEETING - December 19, 2022 @ 6:30 pm",
+   "date": "2022-12-19"
+  },
+  {
+   "id": "X3P3pchNUDA",
+   "title": "LAWNDALE CITY COUNCIL MEETING - December 5, 2022 @6:30 pm",
+   "date": "2022-12-05"
+  },
+  {
+   "id": "hYCH-kT7G5E",
+   "title": "LAWNDALE CITY COUNCIL MEETING - November 7, 2022@ 6:30 pm",
+   "date": "2022-11-07"
+  },
+  {
+   "id": "yNbiUa6jpGk",
+   "title": "LAWNDALE CITY COUNCIL MEETING - October 17, 2022@6:30 pm",
+   "date": "2022-10-17"
+  },
+  {
+   "id": "wunxvkF-Oro",
+   "title": "LAWNDALE CITY COUNCIL MEETING - October 3, 2022@ 6:30 pm",
+   "date": "2022-10-03"
+  },
+  {
+   "id": "JtvomPlZKGI",
+   "title": "LAWNDALE CITY COUNCIL MEETING - September 19, 2022@ 6:30 pm",
+   "date": "2022-09-19"
+  },
+  {
+   "id": "P6a_3e9PSOA",
+   "title": "LAWNDALE CITY COUNCIL MEETING -  September 6, 2022 @6:30 pm",
+   "date": "2022-09-06"
+  },
+  {
+   "id": "TLpslZ0SilU",
+   "title": "LAWNDALE CITY COUNCIL MEETING - August 15, 2022@ 6:30 pm",
+   "date": "2022-08-15"
+  },
+  {
+   "id": "QwaHtO-Fc8g",
+   "title": "LAWNDALE CITY COUNCIL MEETING -  August 1, 2022@ 6:30 pm",
+   "date": "2022-08-01"
+  },
+  {
+   "id": "Qc0m2eWU2rg",
+   "title": "LAWNDALE CITY COUNCIL MEETING - July 18, 2022@6:30pm",
+   "date": "2022-07-18"
+  },
+  {
+   "id": "lmFEvQgPZdw",
+   "title": "LAWNDALE CITY COUNCIL MEETING - June 21, 2022@6:30pm",
+   "date": "2022-06-21"
+  },
+  {
+   "id": "2kzBVYQdTds",
+   "title": "LAWNDALE CITY COUNCIL MEETING - June 6, 2022@6:30pm",
+   "date": "2022-06-06"
+  },
+  {
+   "id": "lpxnzegYT4I",
+   "title": "LAWNDALE CITY COUNCIL MEETING - May 16, 2022@6:30pm",
+   "date": "2022-05-16"
+  },
+  {
+   "id": "t3q00fCgb_k",
+   "title": "LAWNDALE CITY COUNCIL MEETING - April 18, 2022@6:30pm",
+   "date": "2022-04-18"
+  },
+  {
+   "id": "1eeJuTgVYkk",
+   "title": "LAWNDALE CITY COUNCIL MEETING - April 4, 2022@6:30 pm",
+   "date": "2022-04-04"
+  },
+  {
+   "id": "w9HeQVTQ8Sk",
+   "title": "LAWNDALE CITY COUNCIL MEETING - March 21, 2022 @6:30 pm",
+   "date": "2022-03-21"
+  },
+  {
+   "id": "LiRq_MShcs0",
+   "title": "LAWNDALE CITY COUNCIL MEETING - February 22, 2022@6:30 pm",
+   "date": "2022-02-22"
+  },
+  {
+   "id": "Xs114UxjBAs",
+   "title": "LAWNDALE CITY COUNCIL MEETING - February 7, 2022 @6:30 pm",
+   "date": "2022-02-07"
+  },
+  {
+   "id": "Rg7-yFvdAsQ",
+   "title": "LAWNDALE CITY COUNCIL MEETING  - January 18, 2022@6:30 pm",
+   "date": "2022-01-18"
+  },
+  {
+   "id": "xAfZKY9xLUs",
+   "title": "LAWNDALE CITY COUNCIL MEETING - January 11, 2022@6:30 pm",
+   "date": "2022-01-11"
+  },
+  {
+   "id": "jIadWa9GXLo",
+   "title": "LAWNDALE CITY COUNCIL MEETING - December 6, 2021 @ 6:30 pm",
+   "date": "2021-12-06"
+  },
+  {
+   "id": "cnaz90t2-eY",
+   "title": "LAWNDALE CITY COUNCIL MEETING - November 15, 2021 @ 6:30 p.m",
+   "date": "2021-11-15"
+  },
+  {
+   "id": "TwoNhGF03l0",
+   "title": "LAWNDALE SPECIAL CITY COUNCIL MEETING - November 8-2021@ 6:00 p.m",
+   "date": "2021-11-11"
+  },
+  {
+   "id": "T1fC0ZzmGuo",
+   "title": "LAWNDALE CITY COUNCIL MEETING - October 18, 2021",
+   "date": "2021-10-18"
+  },
+  {
+   "id": "jO1KhOTZJIs",
+   "title": "LAWNDALE CITY COUNCIL MEETING - October 4, 2021",
+   "date": "2021-10-04"
+  },
+  {
+   "id": "1PACfhocwJw",
+   "title": "LAWNDALE CITY COUNCIL MEETING, September 20, 2021",
+   "date": "2021-09-20"
+  },
+  {
+   "id": "yZr6l52wfXk",
+   "title": "Lawndale City Council Meeting - September 7, 2021@6:30pm",
+   "date": "2021-09-07"
+  },
+  {
+   "id": "3xVXidtG1oE",
+   "title": "LAWNDALE CITY COUNCIL MEETING - AUGUST  16,  2021",
+   "date": "2021-08-16"
+  },
+  {
+   "id": "24E23uPT1ww",
+   "title": "LAWNDALE CITY COUNCIL MEETING -  August 2, 2021",
+   "date": "2021-08-02"
+  },
+  {
+   "id": "2nxXDNAfiX4",
+   "title": "LAWNDALE CITY COUNCIL MEETING - JULY 19, 2021@ 6:30 p.m",
+   "date": "2021-07-19"
+  },
+  {
+   "id": "rDMfsf51wrE",
+   "title": "Lawndale City Council Meeting June 28, 2021",
+   "date": "2021-06-28"
+  },
+  {
+   "id": "eYF_rKqDgFo",
+   "title": "Lawndale City Council Meeting - June 21, 2021",
+   "date": "2021-06-21"
+  },
+  {
+   "id": "_fiqk1khHDo",
+   "title": "LAWNDALE CITY COUNCIL MEETING- May 3, 2021@ 6:30 pm",
+   "date": "2021-05-03"
+  },
+  {
+   "id": "-RwtHqehi38",
+   "title": "LAWNDALE CITY COUNCIL MEETING- April 26, 2021@ 12:30 pm",
+   "date": "2021-04-26"
+  },
+  {
+   "id": "2Ez_D-4b6QI",
+   "title": "LAWNDALE CITY COUNCIL MEETING- April 19, 2021@ 6:30 pm",
+   "date": "2021-04-19"
+  },
+  {
+   "id": "9LJ-BqSK72s",
+   "title": "LAWNDALE CITY COUNCIL MEETING- April 5, 2021@ 6:30 pm",
+   "date": "2021-04-05"
+  },
+  {
+   "id": "Hzepu2iaIDU",
+   "title": "LAWNDALE CITY COUNCIL MEETING- March 15, 2021@ 6:30 pm",
+   "date": "2021-03-15"
+  },
+  {
+   "id": "ZSQb6AlzA7A",
+   "title": "LAWNDALE CITY COUNCIL MEETING- March 1, 2021@ 6:30 pm",
+   "date": "2021-03-01"
+  },
+  {
+   "id": "2UnfAQ990-w",
+   "title": "LAWNDALE CITY COUNCIL MEETING- February 16, 2021@ 6:30 pm",
+   "date": "2021-02-16"
+  },
+  {
+   "id": "2nlL5dDFT0E",
+   "title": "Lawndale City Council Meeting - February 10, 2021",
+   "date": "2021-02-10"
+  },
+  {
+   "id": "eS-3i5W4Fe0",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  December 7, 2020 @ 6:30 pm",
+   "date": "2020-12-07"
+  },
+  {
+   "id": "GrwR53POvkQ",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  November 16, 2020  @ 6:30 pm",
+   "date": "2020-11-16"
+  },
+  {
+   "id": "H83iV-meAxA",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  November 2, 2020  @ 6:30 pm",
+   "date": "2020-11-02"
+  },
+  {
+   "id": "mHyuC14nmO4",
+   "title": "LAWNDALE CITY COUNCIL MEETING - October 19, 2020",
+   "date": "2020-10-19"
+  },
+  {
+   "id": "yzJiWRqqkHo",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  October 5, 2020 @ 6:30 pm",
+   "date": "2020-10-05"
+  },
+  {
+   "id": "OO26_s9zQeI",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  September 21, 2020 @ 6:30 pm",
+   "date": "2020-09-21"
+  },
+  {
+   "id": "eUOykh9H8Sg",
+   "title": "LAWNDALE  CITY COUNCIL SPECIAL MEETING  -  September 1, 2020 @ 6:00 pm",
+   "date": "2020-09-01"
+  },
+  {
+   "id": "c0rEZAYM7-Y",
+   "title": "Lawndale City Council Special Meeting - August 13, 2020",
+   "date": "2020-08-13"
+  },
+  {
+   "id": "DJX8jJhXRT8",
+   "title": "LAWNDALE CITY COUNCIL MEETING  -  August 03,  2020",
+   "date": "2020-08-03"
+  },
+  {
+   "id": "vAHFRtVmG9w",
+   "title": "Lawndale City Council Meeting - October 21, 2019",
+   "date": "2019-10-21"
+  },
+  {
+   "id": "zKw9oDPHOJM",
+   "title": "Lawndale City Council Meeting April 2, 2018",
+   "date": "2018-04-02"
+  },
+  {
+   "id": "eWBs0Yl-jrM",
+   "title": "Lawndale City Council Meeting - March 19, 2018",
+   "date": "2018-03-19"
+  },
+  {
+   "id": "o9yE-ytB_YI",
+   "title": "Lawndale City Council Meeting - February 20, 2018",
+   "date": "2018-02-20"
+  },
+  {
+   "id": "lMVePLQzClk",
+   "title": "Lawndale City Council Meeting - February 5, 2018",
+   "date": "2018-02-05"
+  },
+  {
+   "id": "Ch7HTXPD1YE",
+   "title": "Lawndale City Council Meeting - January 16, 2018",
+   "date": "2018-01-16"
+  },
+  {
+   "id": "TD5aCI7_euY",
+   "title": "Lawndale City Council Meeting - June 17, 2019",
+   "date": "2019-06-17"
+  },
+  {
+   "id": "QKUiAFaywRk",
+   "title": "Lawndale City Council Meeting - June 3, 2019",
+   "date": "2019-06-03"
+  },
+  {
+   "id": "acrksgIQQr4",
+   "title": "Lawndale City Council Meeting - May 20, 2019",
+   "date": "2019-05-20"
+  },
+  {
+   "id": "L-ZmGCOEwPU",
+   "title": "Lawndale City Council Meeting - May 6, 2019",
+   "date": "2019-05-06"
+  },
+  {
+   "id": "3AHZ5neOlRk",
+   "title": "Lawndale City Council Meeting - April 15, 2019",
+   "date": "2019-04-15"
+  },
+  {
+   "id": "vQDdAE1oH_U",
+   "title": "Lawndale City Council Meeting - April 1, 2019",
+   "date": "2019-04-01"
+  },
+  {
+   "id": "5xcTepX0SVk",
+   "title": "Lawndale City Council Meeting - March 4, 2019",
+   "date": "2019-03-04"
+  },
+  {
+   "id": "Ek2y3_9JfjE",
+   "title": "Lawndale City Council Meeting - March 18, 2019",
+   "date": "2019-03-18"
+  },
+  {
+   "id": "TpOjGRgt_a4",
+   "title": "Student Mock City Council Meeting   April 24, 2019",
+   "date": "2019-04-24"
+  }
+ ]
+}

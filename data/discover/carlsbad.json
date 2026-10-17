@@ -1,0 +1,42 @@
+{
+ "id": "carlsbad",
+ "probed_at": "2026-10-17T21:12:29.866Z",
+ "site": null,
+ "legistar": null,
+ "granicus": null,
+ "hub": [
+  {
+   "org": "Carlsbad Open Data Portal",
+   "url": "https://open-data-carlsbad.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "CarlsbadGIS"
+  }
+ ],
+ "youtube": [
+  {
+   "id": "UCMscWako8oDvpdF4pppku-g",
+   "channel": "CBS 8 San Diego",
+   "example": "Carlsbad City Council holding special meeting over COVID enforcement"
+  },
+  {
+   "id": "UCqGgn4PS6Oobsb0rEmZGa2Q",
+   "channel": "Carlsbad Chamber of Commerce",
+   "example": "2020 Carlsbad City Council Candidate Forum"
+  },
+  {
+   "id": "UCh_0v-RcwanHqOt-zIU72qQ",
+   "channel": "mediafactore",
+   "example": "Carlsbad City Council Meeting About Local Police Interaction with ICE"
+  },
+  {
+   "id": "UC61Ms-qN_-mdtF_Dw5hsRYw",
+   "channel": "KUSI News",
+   "example": "Carlsbad City Council did not vote to enforce extra COVID-19 restrictions"
+  },
+  {
+   "id": "UCXT8ROgdIl_igiVqIwrbTZw",
+   "channel": "Carlsbad Know",
+   "example": "Carlsbad City Council Meeting: Public Comment: May, 17, 2016"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:25:29.065Z"
+}

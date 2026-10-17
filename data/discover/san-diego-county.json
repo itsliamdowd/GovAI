@@ -1,0 +1,11 @@
+{
+ "id": "san-diego-county",
+ "hub": [
+  {
+   "org": "Evictions in San Diego County",
+   "url": "https://evictions-ucsdonline.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "HHub_SanDiego"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:23:34.970Z"
+}

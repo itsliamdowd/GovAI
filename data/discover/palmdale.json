@@ -31,12 +31,19 @@
    }
   ]
  },
- "hub": null,
+ "hub": [
+  {
+   "org": "Mapping Palmdale - Geospatial Hub",
+   "url": "https://city-of-palmdale-geospatial-hub-CityOfPalmdale.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "GISContent_cop"
+  }
+ ],
  "youtube": [
   {
    "id": "UCJHoqIwLNDlVFu7vZEJNkdA",
    "channel": "City Of Palmdale",
    "example": "City Council Meeting - September 1 2026"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:24:08.942Z"
 }

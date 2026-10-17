@@ -1,0 +1,26 @@
+{
+ "id": "huntington-beach",
+ "probed_at": "2026-10-17T21:12:56.010Z",
+ "site": {
+  "url": "https://www.huntingtonbeachca.gov/",
+  "title": "Welcome to Huntington Beach, CA"
+ },
+ "legistar": {
+  "client": "huntingtonbeach",
+  "bodies": [
+   "City Council/Public Financing Authority",
+   "Planning Commission",
+   "Design Review Board "
+  ]
+ },
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCqaosllyy3vU5eHadlDShpg",
+   "channel": "City of Huntington Beach",
+   "example": "Huntington Beach City Council Meeting - June 16, 2026"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:26:25.607Z"
+}

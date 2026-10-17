@@ -1,0 +1,50 @@
+{
+ "id": "bell",
+ "probed_at": "2026-10-17T21:10:51.974Z",
+ "site": {
+  "url": "https://www.cityofbell.gov/Home",
+  "title": "Home | City of Bell, CA"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": [
+  {
+   "org": "Bell County Emergency Management Information",
+   "url": "https://bell-em-gisanddata.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "bbell41_GISandData"
+  },
+  {
+   "org": "Bell County Mapping Portal",
+   "url": "https://bell-county-emergency-management-information-1-GISandData.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "bbell41_GISandData"
+  }
+ ],
+ "youtube": [
+  {
+   "id": "UClz8Xbl5kRrsrNikqRjyNhw",
+   "channel": "Roberto Fernandez",
+   "example": "City of bell council meeting June 10 part 3"
+  },
+  {
+   "id": "UCinjnmQEwCddOudyCC1v7qA",
+   "channel": "KTLA 5",
+   "example": "Mobile home redevelopment sparks protests in Bell"
+  },
+  {
+   "id": "UCjFJyo1nPu27FafFYaBawcA",
+   "channel": "AssemblyAssets",
+   "example": "Assemblymember Lara Swears in New Bell City Council"
+  },
+  {
+   "id": "UCHTK-2W11Vh1V4uwofOfR4w",
+   "channel": "AP Archive",
+   "example": "The City Council in Bell, California, a small, blue-collar suburb of Los Angeles intends to ask thre"
+  },
+  {
+   "id": "UCs4k45hIklfssenbA8ocx8A",
+   "channel": "FOX36",
+   "example": "Bell warns council to balance budget"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:26:17.949Z"
+}

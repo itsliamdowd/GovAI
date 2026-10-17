@@ -1,0 +1,21 @@
+{
+ "id": "westminster",
+ "probed_at": "2026-10-17T21:19:56.469Z",
+ "site": null,
+ "legistar": null,
+ "granicus": null,
+ "hub": [
+  {
+   "org": "Filming in New Westminster",
+   "url": "https://filming-esrica-uc.opendata.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "hub_uc"
+  },
+  {
+   "org": "City of Westminster, Colorado Hub Site",
+   "url": "https://opendata-westminster.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "lwalcott8"
+  }
+ ],
+ "youtube": null,
+ "hub_probed_at": "2026-10-17T21:28:19.482Z"
+}

@@ -1,0 +1,16 @@
+{
+ "id": "orange-county",
+ "hub": [
+  {
+   "org": "Orange County Infohub",
+   "url": "https://infohub-ocfl.opendata.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "Robert.Drow_ocfl"
+  },
+  {
+   "org": "Spotsylvania and Orange County Boundary",
+   "url": "https://countyboundary-spotsygis.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "Spotsy_SiteAdmin"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:23:40.168Z"
+}

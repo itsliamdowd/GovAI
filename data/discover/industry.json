@@ -7,6 +7,13 @@
  },
  "legistar": null,
  "granicus": null,
- "hub": null,
- "youtube": null
+ "hub": [
+  {
+   "org": "Property Records Industry Association Hub",
+   "url": "https://hub-priaus.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "cso_PRIAUS"
+  }
+ ],
+ "youtube": null,
+ "hub_probed_at": "2026-10-17T21:26:30.806Z"
 }

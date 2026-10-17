@@ -1,0 +1,11 @@
+{
+ "id": "signal-hill",
+ "hub": [
+  {
+   "org": "Signal Hill Open Data",
+   "url": "https://data-signalhill.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "cityofsignalhill"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:25:19.728Z"
+}

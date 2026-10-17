@@ -1,0 +1,19 @@
+{
+ "id": "dana-point",
+ "probed_at": "2026-10-17T21:13:03.432Z",
+ "site": {
+  "url": "https://www.danapoint.org/Home",
+  "title": "Home - City of Dana Point, CA"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCdNW_5KL2Q7lC-DFHUyFr7A",
+   "channel": "City of Dana Point",
+   "example": "City Council Special Meeting: August 17, 2026"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:26:25.260Z"
+}

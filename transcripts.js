@@ -35,8 +35,8 @@ export function dateFromTitle(title) {
 /** "Budget and Finance Committee - October 14, 2026 (with captions)" -> "Budget and Finance Committee". */
 export function bodyOf(title) {
   return title.replace(/\(?with captions\)?|^copy of/gi, "").replace(/\b(january|february|march|april|may|june|july|august|september|october|november|december|jan|feb|mar|apr|jun|jul|aug|sept?|oct|nov|dec)\b\.?\s*\d{1,2}(st|nd|rd|th)?\s*[,.]?\s*\d{4}/gi, "")
-    .replace(/\b\d{1,2}\/\d{1,2}\/\d{2,4}\b/g, "").replace(/\b(mon|tues|wednes|thurs|fri|satur|sun)day\b/gi, "").replace(/\b(regular|special|adjourned)?\s*meeting\b/gi, "")
-    .replace(/[\s\-–—:,|]+$/g, "").replace(/^[\s\-–—:,|]+/g, "").replace(/\s+/g, " ").trim() || "City Council";
+    .replace(/\b\d{1,2}\/\d{1,2}\/\d{2,4}\b/g, "").replace(/\b\d{1,2}:\d{2}\s*([ap]\.?m\.?)?/gi, "").replace(/\b(mon|tues|wednes|thurs|fri|satur|sun)day\b/gi, "").replace(/\b(regular|special|adjourned)?\s*meeting\b/gi, "")
+    .replace(/^(\s*(regular|special|adjourned|and|\+|-))+\s*/i, "").replace(/[\s\-–—:,|]+$/g, "").replace(/^[\s\-–—:,|]+/g, "").replace(/\s+/g, " ").trim() || "City Council"; // "Regular + Special City Council - 10/14/26" -> "City Council"
 }
 const ymd = (s) => (/^\d{8}$/.test(s) ? `${s.slice(0, 4)}-${s.slice(4, 6)}-${s.slice(6, 8)}` : null);
 /** Broadcast date of one video (livestream release date, else upload date), for titles with no date in them. */
@@ -53,7 +53,9 @@ export async function listVideos(log = console.error, j = SM) {
     try { stdout += (await run("yt-dlp", ["--flat-playlist", "--print", "%(id)s\t%(title)s", `https://www.youtube.com/${/^UC[\w-]{20,}$/.test(ch) ? "channel/" + ch : ch.replace(/^https?:\/\/(www\.)?youtube\.com\//, "")}/${tab}`], { maxBuffer: 50e6 })).stdout + "\n"; } // channel id, @handle, user/x or c/x
     catch (e) { log(`yt-dlp ${ch}/${tab}: ${e.stderr?.split("\n").find((l) => l.includes("ERROR")) ?? e.message}`); }
   }
-  const isMeeting = (t) => (j.council?.titleRe ?? /council/i).test(t) && /meeting|city council\b|board of supervisors/i.test(t) && !/planning|rent control|candidate|forum|budget study|workshop|retreat|proclamation|covid|booster|mask|message|election|statement|squirm/i.test(t);
+  // multi-body channels (LA City Clerk: "Transportation Committee - 10/21/26") match on the body regex alone; single-body ones need a meeting word
+  const junk = /press conference|briefing|currents|interview|\bSAP\b|rent control|candidate|forum|budget study|workshop|retreat|proclamation|covid|booster|mask|message|election|statement|squirm/i;
+  const isMeeting = (t) => (j.council?.titleRe ? j.council.titleRe.test(t) : /council/i.test(t) && /meeting|city council\b|board of supervisors/i.test(t) && !/planning/i.test(t)) && !junk.test(t);
   const all = stdout.split("\n").map((l) => l.split("\t")).filter(([id, t]) => id && isMeeting(t))
     .map(([id, title]) => ({ id, title: title.trim(), date: dateFromTitle(title) }));
   for (const v of all) if (!v.date) v.date = await uploadDate(v.id); // e.g. "City Council Meeting" with no date in the title
@@ -86,9 +88,11 @@ export function vttToSegments(vtt) {
 
 // Global gate between yt-dlp caption pulls (all jurisdictions, all workers): YT_MIN_GAP_MS, default 30 s ≈ 120 pulls/hour/IP.
 // ponytail: single-process gate; a shared token bucket is only needed if several collectors run on one IP.
-const YT_GAP = Number(process.env.YT_MIN_GAP_MS) || 30000;
-let lastPull = 0, gateChain = Promise.resolve();
-const gate = () => (gateChain = gateChain.then(async () => { const wait = lastPull + YT_GAP - Date.now(); if (wait > 0) await new Promise((r) => setTimeout(r, wait)); lastPull = Date.now(); }));
+const YT_GAP = Number(process.env.YT_MIN_GAP_MS) || 30000, YT_PAUSE = Number(process.env.YT_PAUSE_MS) || 15 * 60e3;
+let lastPull = 0, pausedUntil = 0, gateChain = Promise.resolve();
+const gate = () => (gateChain = gateChain.then(async () => { const wait = Math.max(lastPull + YT_GAP, pausedUntil) - Date.now(); if (wait > 0) await new Promise((r) => setTimeout(r, wait)); lastPull = Date.now(); }));
+// 429 / bot check: every further pull in the window fails too and digs the hole deeper — pause all pulls (YT_PAUSE_MS, default 15 min) instead
+const rateLimited = (msg) => { if (/429|Too Many Requests|Sign in to confirm/i.test(msg)) { pausedUntil = Date.now() + YT_PAUSE; return true; } return false; };
 async function fetchTranscript(v, log, j = SM) {
   const DIR = dirFor(j);
   const file = `${DIR}/${v.id}.json`;
@@ -103,7 +107,7 @@ async function fetchTranscript(v, log, j = SM) {
     try {
       await gate();
       await run("yt-dlp", ["--skip-download", "--write-subs", "--write-auto-subs", "--sub-langs", lang, "--sub-format", "vtt", "--sleep-subtitles", "1", ...COOKIES, "-o", out, `https://www.youtube.com/watch?v=${v.id}`], { maxBuffer: 50e6 });
-    } catch (e) { failed = true; log(`captions ${v.date} ${v.id}: ${e.stderr?.split("\n").find((l) => l.includes("ERROR")) ?? e.message}`); }
+    } catch (e) { failed = true; const msg = e.stderr?.split("\n").find((l) => l.includes("ERROR")) ?? e.message; log(`captions ${v.date} ${v.id}: ${msg}${rateLimited(msg) ? ` — pausing YouTube pulls ${YT_PAUSE / 60e3} min` : ""}`); }
     if (fs.existsSync(`${out}.${lang}.vtt`)) { vttFile = `${out}.${lang}.vtt`; break; }
   }
   // a yt-dlp error (bot check, 429) is not "no captions": checked_at 0 makes the next run retry immediately instead of in a week

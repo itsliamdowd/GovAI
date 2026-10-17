@@ -19,7 +19,18 @@
    }
   ]
  },
- "hub": null,
+ "hub": [
+  {
+   "org": "City of Pasadena, CA (Open Data 2.0)",
+   "url": "https://data.cityofpasadena.net/api/feed/dcat-us/1.1.json",
+   "owner": "CityOfPasadenaCAGIS"
+  },
+  {
+   "org": "Your Pasadena Water and Power Utility Network Meeting",
+   "url": "https://your-pasadena-water-and-power-utility-network-meeting-pasgis.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "CityOfPasadenaCAGIS"
+  }
+ ],
  "youtube": [
   {
    "id": "UChfkDrnz1Vc8FnzcXHTF8bQ",
@@ -36,5 +47,6 @@
    "channel": "City of Pasadena",
    "example": "Pasadena Channel Live Stream of City Council Meeting 10 6 2026"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:24:45.587Z"
 }

@@ -1,0 +1,30 @@
+{
+ "id": "buena-park",
+ "probed_at": "2026-10-17T21:12:31.305Z",
+ "site": {
+  "url": "https://www.buenapark.com/",
+  "title": "Buena Park, CA"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": [
+  {
+   "org": "City of Buena Park - Urban Forestry Benefits",
+   "url": "https://buenapark-urbanforest.wca.app/api/feed/dcat-us/1.1.json",
+   "owner": "andpineda"
+  },
+  {
+   "org": "Buena Park Open Data",
+   "url": "https://buena-park-gis-open-data-BuenaPark.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "nwray"
+  }
+ ],
+ "youtube": [
+  {
+   "id": "UCJFgNBg1r7CVHdJB-I3y0ZA",
+   "channel": "CityofBuenaPark",
+   "example": "City of Buena Park Candidate Forum 2018"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:27:19.311Z"
+}

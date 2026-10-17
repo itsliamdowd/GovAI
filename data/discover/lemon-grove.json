@@ -1,0 +1,19 @@
+{
+ "id": "lemon-grove",
+ "probed_at": "2026-10-17T21:13:54.866Z",
+ "site": {
+  "url": "https://www.lemongrove.ca.gov/",
+  "title": "Home | Lemon Grove"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UC3T48cHnkP4Oe0fwlmNNGJQ",
+   "channel": "Lemon Grove Media and Communications",
+   "example": "Lemon Grove Regular City Council Meeting 6/6/2023"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:26:31.477Z"
+}

@@ -61,14 +61,14 @@ async function generate(j) {
     const system = `You write a local-government knowledge file for ${j.name}, California, for a retrieval index. Output Markdown only, in exactly this format (title line, then "## " sections, each 1-3 short paragraphs of concrete facts followed by a "Source: <url>" line using the page the facts came from):\n\n${EXAMPLE}\n\nRules: only facts stated on the pages given; copy fees, hours, phone numbers, addresses and deadlines verbatim; never guess or generalise; skip a page that has no resident-facing facts; one section per distinct service or process; no preamble, no closing notes.`;
     // Site unreachable from here (403s, no sitemap, no crawlable links): let the model search and fetch the site itself (same tools server.js uses)
     const host = new URL(j.site).host.replace(/^www\./, "");
-    const res = pages.length ? await client.messages.create({
+    let res; try { res = pages.length ? await client.messages.create({
       model: MODEL, max_tokens: 6000, system,
       messages: [{ role: "user", content: `Topic file: ${topic}. Pages:\n\n${pages.map((p) => `=== ${p.url}\n${p.text}`).join("\n\n")}` }],
     }, { maxRetries: 2 }) : await client.messages.create({
       model: MODEL, max_tokens: 8000, system: system.replace("only facts stated on the pages given", `only facts stated on pages you fetched from ${host} (or the city's contracted providers it links to)`),
       tools: [{ type: "web_search_20260209", name: "web_search", max_uses: 8, allowed_domains: [host] }, { type: "web_fetch_20260209", name: "web_fetch", max_uses: 10, max_content_tokens: 12000 }],
       messages: [{ role: "user", content: `Topic file: ${topic} (themes: ${keys.join(", ")}). Search ${host} for the resident-facing pages on these themes, fetch the best ${PER_TOPIC} of them, then write the file. Finish with the Markdown only.` }],
-    }, { maxRetries: 2 });
+    }, { maxRetries: 4 }); } catch (e) { console.log(`  ${topic}: ${e.message}`); continue; } // one failed topic must not drop the rest of the city
     if (!pages.length) console.log(`  ${topic}: no fetchable pages, used web tools`);
     const md = res.content.filter((b) => b.type === "text").map((b) => b.text).join("\n").trim();
     if (!/^## /m.test(md)) { console.log(`  ${topic}: model returned no sections`); continue; }

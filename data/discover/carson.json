@@ -30,12 +30,24 @@
    }
   ]
  },
- "hub": null,
+ "hub": [
+  {
+   "org": "Home  Carson City, Nevada",
+   "url": "https://data-CarsonCity.opendata.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "GIS_Admin_CC"
+  },
+  {
+   "org": "City of Carson - Urban Forestry Benefits",
+   "url": "https://carson-urbanforest.wca.app/api/feed/dcat-us/1.1.json",
+   "owner": "andpineda"
+  }
+ ],
  "youtube": [
   {
    "id": "UC3ethohaz3fuapOdycVAmWg",
    "channel": "City of Carson, California - Official YouTube Page",
    "example": "City of Carson CA. Council Meeting (Tuesday 7/21/2026 5PM)"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:24:38.427Z"
 }

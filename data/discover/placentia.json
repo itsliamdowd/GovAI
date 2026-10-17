@@ -1,0 +1,16 @@
+{
+ "id": "placentia",
+ "probed_at": "2026-10-17T21:20:12.749Z",
+ "site": null,
+ "legistar": null,
+ "granicus": null,
+ "hub": [
+  {
+   "org": "City of Placentia - Spatial",
+   "url": "https://data-placentia.opendata.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "PlacentiaIT"
+  }
+ ],
+ "youtube": null,
+ "hub_probed_at": "2026-10-17T21:27:47.476Z"
+}

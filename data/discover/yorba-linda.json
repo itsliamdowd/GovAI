@@ -1,0 +1,21 @@
+{
+ "id": "yorba-linda",
+ "probed_at": "2026-10-17T21:19:59.397Z",
+ "site": null,
+ "legistar": null,
+ "granicus": null,
+ "hub": [
+  {
+   "org": "City of Yorba Linda - Urban Forestry Benefits",
+   "url": "https://city-of-covina-urban-forestry-benefits-1-ArborAccess.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "andpineda"
+  },
+  {
+   "org": "Top Yorba Linda Restaurant Site",
+   "url": "https://top-yorba-linda-restaurant-site-CSULB.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "015314414_CSULB"
+  }
+ ],
+ "youtube": null,
+ "hub_probed_at": "2026-10-17T21:28:24.562Z"
+}

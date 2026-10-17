@@ -1,0 +1,19 @@
+{
+ "id": "la-mesa",
+ "probed_at": "2026-10-17T21:14:08.976Z",
+ "site": {
+  "url": "https://www.cityoflamesa.gov/",
+  "title": "La Mesa, CA - Official Website | Official Website"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCB4uZ_ORCVXIfaOAZeVSHeg",
+   "channel": "City of La Mesa",
+   "example": "City of La Mesa City Council Regular Meeting - July 28, 2026"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:25:46.658Z"
+}

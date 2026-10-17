@@ -1,0 +1,30 @@
+{
+ "id": "santee",
+ "probed_at": "2026-10-17T21:11:29.894Z",
+ "site": {
+  "url": "https://www.cityofsanteeca.gov/",
+  "title": "Santee, California - Do More Due East"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": [
+  {
+   "org": "City of Santee - Urban Forestry Benefits",
+   "url": "https://city-of-santee-urban-forestry-benefits-arboraccess.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "andpineda"
+  },
+  {
+   "org": "City of Santee GIS Hub",
+   "url": "https://maps-cityofsanteeca.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "ddugal_cityofsanteeca"
+  }
+ ],
+ "youtube": [
+  {
+   "id": "UCW_D0ZNNppy1zEu3X64VXVA",
+   "channel": "City of Santee",
+   "example": "Santee City Council Meeting 1-28-26"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:27:05.217Z"
+}

@@ -1,0 +1,16 @@
+{
+ "id": "san-diego",
+ "hub": [
+  {
+   "org": "San Diego Open Data Portal",
+   "url": "https://sdgis-SANDAG.opendata.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "SANDAG_Admin"
+  },
+  {
+   "org": "City of San Diego - Trees For Communities",
+   "url": "https://san-diego-street-tree-inventory-arboraccess.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "andpineda"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:26:54.768Z"
+}

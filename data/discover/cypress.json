@@ -1,0 +1,32 @@
+{
+ "id": "cypress",
+ "probed_at": "2026-10-17T21:13:15.654Z",
+ "site": null,
+ "legistar": null,
+ "granicus": null,
+ "hub": [
+  {
+   "org": "CR 362 - McMillan Road at Cypress Creek - Bridge Replacement - PI 0019076",
+   "url": "https://mcmillan-rd-bridge-replacement-0019076-gdot.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "ECaddell_gdot2"
+  },
+  {
+   "org": "SR 87 at Little Branch Cypress River - Culvert Replacement - PI 0017226",
+   "url": "https://sr-87-culvert-replacements-0017226-gdot.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "ECaddell_gdot2"
+  }
+ ],
+ "youtube": [
+  {
+   "id": "UCWk1dQ1qu-8JHKFg5wff5AA",
+   "channel": "CityofCypress",
+   "example": "Cypress CVRA 2/26 Public Forum Meeting Recording"
+  },
+  {
+   "id": "UC1QNMzbJ1txHt_ZU6cHOcwg",
+   "channel": "Cypress College",
+   "example": "2016 Cypress City Council Forum"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:27:53.054Z"
+}

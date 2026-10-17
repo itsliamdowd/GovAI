@@ -16,12 +16,24 @@
    }
   ]
  },
- "hub": null,
+ "hub": [
+  {
+   "org": "GISHUB",
+   "url": "https://gishub-Oceanside.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "saeidn"
+  },
+  {
+   "org": "Oceanside CRA-SOC Hub",
+   "url": "https://oceanside-cra-soc-hub-Oceanside.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "saeidn"
+  }
+ ],
  "youtube": [
   {
    "id": "UCJWgKHYqp2ov1yo-c5unwFA",
    "channel": "KOCT Television - The Voice of North County",
    "example": "Oceanside City Council Meeting: September 2, 2026"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:26:49.511Z"
 }

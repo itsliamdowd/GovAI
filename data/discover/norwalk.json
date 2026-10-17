@@ -7,7 +7,18 @@
  },
  "legistar": null,
  "granicus": null,
- "hub": null,
+ "hub": [
+  {
+   "org": "Norwalk Air Quality Monitor Hub",
+   "url": "https://norwalk-air-quality-monitor-norwalk.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "BWeeks_Norwalk"
+  },
+  {
+   "org": "Norwalk Open Data",
+   "url": "https://data-warrenia.opendata.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "eklimowski"
+  }
+ ],
  "youtube": [
   {
    "id": "UCNNvw-AUAw-DxCLYhyFcefw",
@@ -19,5 +30,6 @@
    "channel": "City of Norwalk, Iowa",
    "example": "October 1, 2026 Norwalk City Council Meeting"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:24:26.211Z"
 }

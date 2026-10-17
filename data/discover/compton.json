@@ -4,12 +4,19 @@
  "site": null,
  "legistar": null,
  "granicus": null,
- "hub": null,
+ "hub": [
+  {
+   "org": "Dillon Compton - Final Project",
+   "url": "https://dillon-compton-final-project-ColumbusState.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "dcompton3_ColumbusState"
+  }
+ ],
  "youtube": [
   {
    "id": "UCMkF3Ct0pHOFxECslmU4qcg",
    "channel": "City of Compton, CA - Official Youtube Page ",
    "example": "City of Compton Council Meeting 9-22-2026"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:24:12.160Z"
 }

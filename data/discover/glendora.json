@@ -7,12 +7,19 @@
  },
  "legistar": null,
  "granicus": null,
- "hub": null,
+ "hub": [
+  {
+   "org": "Glendora Mapping Solutions",
+   "url": "https://gishub.cityofglendora.org/api/feed/dcat-us/1.1.json",
+   "owner": "glendora"
+  }
+ ],
  "youtube": [
   {
    "id": "UCQVXk5L__r9wqma0jlbox5A",
    "channel": "City of Glendora",
    "example": "City Council Meeting, 7/14/26"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:24:36.572Z"
 }

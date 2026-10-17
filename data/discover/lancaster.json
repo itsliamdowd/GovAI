@@ -16,7 +16,18 @@
    }
   ]
  },
- "hub": null,
+ "hub": [
+  {
+   "org": "Lancaster GIS",
+   "url": "https://lancaster-gis-home-LancasterGIS.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "LancasterGIS"
+  },
+  {
+   "org": "Lancaster County Stormwater Request Center",
+   "url": "https://citizen-problem-reporter-1-LANCOGIS.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "acrockett_lancogis"
+  }
+ ],
  "youtube": [
   {
    "id": "UCTZlT_pCX2A_9q2MdbXL9Zw",
@@ -33,5 +44,6 @@
    "channel": "City of Lancaster, PA",
    "example": "City Council Meeting - October 13, 2026"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:24:26.427Z"
 }

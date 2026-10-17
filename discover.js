@@ -27,12 +27,22 @@ async function granicus(j) {
   return null;
 }
 async function hub(j) {
-  const r = await ok(`https://hub.arcgis.com/api/v3/datasets?${new URLSearchParams({ q: j.short, "page[size]": "50" })}`, 30000); if (!r) return null;
-  const { data = [] } = await r.json().catch(() => ({}));
-  const sites = new Map();
-  for (const d of data) { const a = d.attributes ?? {}; if (!new RegExp(j.short, "i").test(`${a.orgName} ${a.source}`)) continue; for (const s of a.sites ?? []) sites.set(s, a.orgName); }
+  // ArcGIS Online item search for the city's Hub sites (type "Hub Site Application"), then verify each has a DCAT feed.
+  // hub.arcgis.com/api/v3/datasets?q= returns unrelated orgs for common city names, so it's not used.
+  const city = new RegExp(j.short.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i");
+  const bad = /universit|college|school|transit|church|\bnj\b|texas|\btx\b|florida|esri\.com|geoxc|realt|water district/i;
+  const r = await ok(`https://www.arcgis.com/sharing/rest/search?${new URLSearchParams({ f: "json", num: "12", q: `type:"Hub Site Application" AND (${j.short})` })}`, 30000);
+  if (!r) return null;
+  const { results = [] } = await r.json().catch(() => ({}));
   const out = [];
-  for (const [site, org] of sites) { const u = `${site.replace(/\/$/, "")}/api/feed/dcat-us/1.1.json`; if (await ok(u, 30000)) out.push({ org, url: u }); }
+  for (const it of results) {
+    const hay = `${it.title} ${it.url} ${it.owner}`;
+    if (!city.test(hay) || bad.test(hay) || !it.url) continue;
+    if (!/city of|open data|gis|data portal|hub/i.test(it.title) && !/cityof|gis/i.test(`${it.url} ${it.owner}`)) continue;
+    const u = `${it.url.replace(/\/$/, "")}/api/feed/dcat-us/1.1.json`;
+    if (await ok(u, 30000)) out.push({ org: it.title, url: u, owner: it.owner });
+    if (out.length >= 2) break;
+  }
   return out.length ? out : null;
 }
 async function youtube(j) {
@@ -45,11 +55,20 @@ async function youtube(j) {
 }
 async function site(j) { const r = await ok(j.site, 15000); return r ? { url: r.url, title: (await r.text()).match(/<title[^>]*>([^<]*)/i)?.[1]?.trim() } : null; }
 
-const ids = process.argv.slice(2);
-const targets = ids.length ? ids.map(jurById).filter(Boolean) : SERVED.filter((j) => j.draft);
+//   node discover.js --hub [ids...]   # re-run only the Hub probe and merge it into existing data/discover/<id>.json
+const hubOnly = process.argv.includes("--hub");
+const ids = process.argv.slice(2).filter((a) => !a.startsWith("--"));
+const targets = ids.length ? ids.map(jurById).filter(Boolean) : hubOnly ? SERVED : SERVED.filter((j) => j.draft);
 fs.mkdirSync("./data/discover", { recursive: true });
 for (const j of targets) {
   const t0 = Date.now();
+  if (hubOnly) {
+    let prev = { id: j.id }; try { prev = JSON.parse(fs.readFileSync(`./data/discover/${j.id}.json`, "utf8")); } catch {}
+    const h = await hub(j);
+    fs.writeFileSync(`./data/discover/${j.id}.json`, JSON.stringify({ ...prev, hub: h, hub_probed_at: new Date().toISOString() }, null, 1));
+    console.log(`${j.id}: ${h ? h.map((x) => x.url).join(" ") : "no hub"} (${Math.round((Date.now() - t0) / 1000)}s)`);
+    continue;
+  }
   const found = { id: j.id, probed_at: new Date().toISOString(), site: await site(j), legistar: await legistar(j), granicus: await granicus(j), hub: await hub(j), youtube: await youtube(j) };
   fs.writeFileSync(`./data/discover/${j.id}.json`, JSON.stringify(found, null, 1));
   const council = found.legistar ? `council: { platform: "legistar", client: "${found.legistar.client}", body: "<pick from ${found.legistar.bodies.slice(0, 3).join(" | ")}>", label: "City Council", limit: 200 }`

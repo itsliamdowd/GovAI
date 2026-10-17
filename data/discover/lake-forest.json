@@ -1,0 +1,16 @@
+{
+ "id": "lake-forest",
+ "probed_at": "2026-10-17T21:15:05.477Z",
+ "site": null,
+ "legistar": null,
+ "granicus": null,
+ "hub": [
+  {
+   "org": "City of Lake Forest Park Open Data Portal",
+   "url": "https://city-of-lake-forest-park-open-data-portal-lfp.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "gisintern_LFP"
+  }
+ ],
+ "youtube": null,
+ "hub_probed_at": "2026-10-17T21:26:57.311Z"
+}

@@ -1,0 +1,31 @@
+{
+ "id": "solana-beach",
+ "probed_at": "2026-10-17T21:12:43.509Z",
+ "site": {
+  "url": "https://cityofsolanabeach.ca.gov/en",
+  "title": "Home | Solana Beach"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "solanabeach.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "City of Solana Beach: Streaming Media Archive (Agenda Feed)"
+   },
+   {
+    "view_id": 5,
+    "title": "City of Solana Beach: Redesign View (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCw7kPQ6zKXxdhkzzCP0t6uQ",
+   "channel": "City of Solana Beach Official",
+   "example": "City of Solana Beach City Council Meeting - 5/6/2026"
+  }
+ ],
+ "hub_probed_at": "2026-10-17T21:25:58.240Z"
+}

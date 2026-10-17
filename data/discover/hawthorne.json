@@ -4,12 +4,19 @@
  "site": null,
  "legistar": null,
  "granicus": null,
- "hub": null,
+ "hub": [
+  {
+   "org": "Hopkins Village Belize Open Data Mapping Site",
+   "url": "https://hopkinsvillage-ucfonline.opendata.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "timothy.hawthorne_UCF"
+  }
+ ],
  "youtube": [
   {
    "id": "UCpr2tWobeX17Ut3i9t3EWbg",
    "channel": "Hawthorne Community Television",
    "example": "City Council Regular Meeting 6/23/26"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:24:20.297Z"
 }

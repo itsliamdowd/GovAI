@@ -31,7 +31,18 @@
    }
   ]
  },
- "hub": null,
+ "hub": [
+  {
+   "org": "City of Azusa - Urban Forestry Benefits",
+   "url": "https://azusa-urbanforest.wca.app/api/feed/dcat-us/1.1.json",
+   "owner": "andpineda"
+  },
+  {
+   "org": "Azusa Open Data Site",
+   "url": "https://data-AzusaGIS.opendata.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "AzusaGIS"
+  }
+ ],
  "youtube": [
   {
    "id": "UC__9XVRmwnZT03jDXvUAeRg",
@@ -53,5 +64,6 @@
    "channel": "Foothill Community Network",
    "example": "Foothill Community Network Ep 4  - 2022 Azusa City Council Candidates Forum 10/11/22"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:24:54.246Z"
 }

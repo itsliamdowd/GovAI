@@ -113,8 +113,9 @@ export async function loadGisCatalog(log = console.error, refresh = false, j = S
       const { dataset } = await getJson(cat.url, { timeout: 60000 });
       const seen = new Map(); // same layer is often published twice (MapServer + FeatureServer); keep one, prefer FeatureServer
       for (const d of dataset) {
-        const rest = (d.distribution ?? []).find((x) => /GeoServices/i.test(x.format ?? ""))?.accessURL;
-        if (!rest || !/\/(FeatureServer|MapServer)\/\d+$/.test(rest) || isJunkLayer(d.title ?? "")) continue;
+        // Hub feeds list several GeoServices distributions per dataset (an Experience Builder app, a web map, the layer); take the layer
+        const rest = (d.distribution ?? []).map((x) => x.accessURL ?? "").find((u) => /\/(FeatureServer|MapServer)\/\d+$/.test(u));
+        if (!rest || isJunkLayer(d.title ?? "")) continue;
         const key = `${d.title.trim()}|${rest.replace(/\/(FeatureServer|MapServer)\//, "/")}`;
         if (seen.has(key) && !/FeatureServer/.test(rest)) continue;
         seen.set(key, { kind: "gis", jur: j.id, org: cat.org, title: d.title.trim(), url: d.landingPage ?? rest, service: rest, notes: strip(d.description ?? "").slice(0, 500), keywords: d.keyword ?? [], modified: d.modified?.slice(0, 10) });

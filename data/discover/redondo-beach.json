@@ -7,12 +7,19 @@
  },
  "legistar": null,
  "granicus": null,
- "hub": null,
+ "hub": [
+  {
+   "org": "Redondo Beach Blvd Active Transportation Corridor",
+   "url": "https://redondo-beach-blvd-active-transportation-corridor-LAMetro.hub.arcgis.com/api/feed/dcat-us/1.1.json",
+   "owner": "ArellanoAssociates_Consultant"
+  }
+ ],
  "youtube": [
   {
    "id": "UCixOCrY4J6zCwJ2xP2TO1Mw",
    "channel": "City of Redondo Beach",
    "example": "REDONDO BEACH CITY COUNCIL MEETING - MAY 5, 2026"
   }
- ]
+ ],
+ "hub_probed_at": "2026-10-17T21:24:50.556Z"
 }
