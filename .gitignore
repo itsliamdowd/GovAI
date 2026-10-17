@@ -1,3 +1,8 @@
 node_modules
 .env
-data/
+data/*
+!data/catalog.json
+!data/gis.json
+!data/news.json
+!data/council/
+!data/transcripts/
