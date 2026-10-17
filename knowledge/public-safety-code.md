@@ -26,9 +26,9 @@ Source: https://www.santamonica.gov/programs/noise
 
 ## Leaf Blower Ban
 
-Leaf blowers are banned citywide in Santa Monica. Violators can be cited. Use rakes, brooms, or hand tools instead. Report illegal leaf blower use to 311 or Code Enforcement at (310) 458-4984.
+Gas-powered leaf blowers are prohibited in Santa Monica. Since a July 2023 noise-ordinance update (SMMC 4.12.180), electric leaf blowers with a manufacturer's noise rating of 70 decibels or less may be used, within the permitted hours for powered equipment. Report violations to 311 or Code Enforcement at (310) 458-4984.
 
-Source: https://www.santamonica.gov/topic-explainers/code-enforcement
+Source: https://www.santamonica.gov/programs/noise
 
 ## Smoking Ban — Beaches & Public Spaces
 

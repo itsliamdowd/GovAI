@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "start": "node --env-file=.env server.js",
-    "test": "node test.js"
+    "test": "node test.js",
+    "dev": "node --watch --env-file=.env server.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "latest"

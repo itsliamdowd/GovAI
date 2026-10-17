@@ -6,14 +6,20 @@ import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 
 const run = promisify(execFile);
-const CHANNEL = process.env.COUNCIL_YT_CHANNEL || "https://www.youtube.com/channel/UC4V0jOEL4JMCcElkGA7AJpA";
+// Every channel that has ever carried a council meeting (found by searching YouTube, 2026-10-17). Oldest on YouTube: July 8, 2014.
+const CHANNELS = (process.env.COUNCIL_YT_CHANNELS ?? [
+  "UC4V0jOEL4JMCcElkGA7AJpA", // City of Santa Monica: 2017 -> now (+ one 2014)
+  "UC8x0GS29SP-IbeiLRxMNlaw", // City of Santa Monica Meeting Coverage: Nov 2015 -> Mar 2017
+  "UCrlsaKRGJhbvnJbvRpQWykA", // SMUpdateCityTV16: July 2014
+].join(",")).split(",").map((c) => c.trim()).filter(Boolean);
+const COOKIES = process.env.YT_COOKIES_FROM_BROWSER ? ["--cookies-from-browser", process.env.YT_COOKIES_FROM_BROWSER] : []; // e.g. "chrome" if YouTube bot-checks the server's IP
 const TABS = ["streams", "videos"]; // council meetings are livestreamed, so most live under /streams
 const DIR = "./data/transcripts";
 const LIST_TTL_MS = 24 * 3600 * 1000;
 const MONTHS = { january: 1, february: 2, march: 3, april: 4, may: 5, june: 6, july: 7, august: 8, september: 9, october: 10, november: 11, december: 12, jan: 1, feb: 2, mar: 3, apr: 4, jun: 6, jul: 7, aug: 8, sep: 9, sept: 9, oct: 10, nov: 11, dec: 12 };
 
 export function dateFromTitle(title) {
-  const m = title.match(/([A-Za-z]{3,9})\.?\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(\d{4})/) ?? title.match(/(\d{1,2})\/(\d{1,2})\/(\d{2,4})/);
+  const m = title.match(/([A-Za-z]{3,9})\.?\s+(\d{1,2})(?:st|nd|rd|th)?\s*[,.]?\s+(\d{4})/) ?? title.match(/(\d{1,2})\/(\d{1,2})\/(\d{2,4})/);
   if (!m) return null;
   let y, mo, d;
   if (isNaN(m[1])) { mo = MONTHS[m[1].toLowerCase()]; d = +m[2]; y = +m[3]; } else { mo = +m[1]; d = +m[2]; y = +m[3]; if (y < 100) y += 2000; }
@@ -21,23 +27,32 @@ export function dateFromTitle(title) {
   return `${y}-${String(mo).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
 }
 
-async function listVideos(log) {
+const ymd = (s) => (/^\d{8}$/.test(s) ? `${s.slice(0, 4)}-${s.slice(4, 6)}-${s.slice(6, 8)}` : null);
+/** Broadcast date of one video (livestream release date, else upload date), for titles with no date in them. */
+async function uploadDate(id) {
+  try { return ymd((await run("yt-dlp", ["--print", "%(release_date,upload_date)s", `https://www.youtube.com/watch?v=${id}`])).stdout.trim()); } catch { return null; }
+}
+
+export async function listVideos(log = console.error) {
   const file = `${DIR}/videos.json`;
-  try { const c = JSON.parse(fs.readFileSync(file, "utf8")); if (Date.now() - c.fetched_at < LIST_TTL_MS) return c.videos; } catch {}
+  const key = CHANNELS.join();
+  try { const c = JSON.parse(fs.readFileSync(file, "utf8")); if (c.key === key && Date.now() - c.fetched_at < LIST_TTL_MS) return c.videos; } catch {}
   let stdout = "";
-  for (const tab of TABS) {
-    try { stdout += (await run("yt-dlp", ["--flat-playlist", "--print", "%(id)s\t%(title)s", `${CHANNEL}/${tab}`], { maxBuffer: 50e6 })).stdout + "\n"; }
-    catch (e) { log(`yt-dlp ${tab}: ${e.stderr?.split("\n").find((l) => l.includes("ERROR")) ?? e.message}`); }
+  for (const ch of CHANNELS) for (const tab of TABS) {
+    try { stdout += (await run("yt-dlp", ["--flat-playlist", "--print", "%(id)s\t%(title)s", `https://www.youtube.com/channel/${ch}/${tab}`], { maxBuffer: 50e6 })).stdout + "\n"; }
+    catch (e) { log(`yt-dlp ${ch}/${tab}: ${e.stderr?.split("\n").find((l) => l.includes("ERROR")) ?? e.message}`); }
   }
-  const isMeeting = (t) => /council/i.test(t) && /meeting|city council .*\d{4}/i.test(t) && !/planning|rent control|candidate|forum|budget study|workshop|retreat|proclamation|covid|booster|mask|message/i.test(t);
+  const isMeeting = (t) => /council/i.test(t) && /meeting|city council\b/i.test(t) && !/planning|rent control|candidate|forum|budget study|workshop|retreat|proclamation|covid|booster|mask|message|election|statement|squirm/i.test(t);
   const all = stdout.split("\n").map((l) => l.split("\t")).filter(([id, t]) => id && isMeeting(t))
-    .map(([id, title]) => ({ id, title: title.trim(), date: dateFromTitle(title) })).filter((v) => v.date);
+    .map(([id, title]) => ({ id, title: title.trim(), date: dateFromTitle(title) }));
+  for (const v of all) if (!v.date) v.date = await uploadDate(v.id); // e.g. "City Council Meeting" with no date in the title
+  all.splice(0, all.length, ...all.filter((v) => v.date));
   // one video per meeting date: prefer the captioned upload, then anything that isn't a "Copy of"
   const rank = (v) => (/with captions/i.test(v.title) ? 2 : 0) + (/^copy of/i.test(v.title) ? 0 : 1);
   const byDate = new Map();
   for (const v of all) if (!byDate.has(v.date) || rank(v) > rank(byDate.get(v.date))) byDate.set(v.date, v);
   const videos = [...byDate.values()];
-  fs.writeFileSync(file, JSON.stringify({ fetched_at: Date.now(), videos }, null, 1));
+  fs.writeFileSync(file, JSON.stringify({ fetched_at: Date.now(), key, videos }, null, 1));
   log(`YouTube: ${videos.length} council meeting videos listed`);
   return videos;
 }
@@ -56,14 +71,22 @@ export function vttToSegments(vtt) {
 
 async function fetchTranscript(v, log) {
   const file = `${DIR}/${v.id}.json`;
-  try { return JSON.parse(fs.readFileSync(file, "utf8")); } catch {}
-  const out = `${DIR}/${v.id}`;
   try {
-    await run("yt-dlp", ["--skip-download", "--write-subs", "--write-auto-subs", "--sub-langs", "en,en-orig", "--sub-format", "vtt", "--sleep-subtitles", "1", "-o", out, `https://www.youtube.com/watch?v=${v.id}`], { maxBuffer: 50e6 });
-  } catch (e) { log(`captions ${v.date} ${v.id}: ${e.stderr?.split("\n").find((l) => l.includes("ERROR")) ?? e.message}`); }
-  const vttFile = [`${out}.en.vtt`, `${out}.en-orig.vtt`].find((f) => fs.existsSync(f));
-  const rec = { ...v, segments: vttFile ? vttToSegments(fs.readFileSync(vttFile, "utf8")) : [] };
-  for (const f of [`${out}.en.vtt`, `${out}.en-orig.vtt`]) fs.rmSync(f, { force: true });
+    const c = JSON.parse(fs.readFileSync(file, "utf8"));
+    // keep a captioned result forever; re-check an uncaptioned one weekly (captions can appear later, or the pull may have failed)
+    if (c.segments.length || Date.now() - (c.checked_at ?? 0) < 7 * 86400e3) return c;
+  } catch {}
+  const out = `${DIR}/${v.id}`;
+  let vttFile = null, failed = false;
+  for (const lang of ["en", "en-orig"]) { // one track per call: asking for both races on the same .part file
+    try {
+      await run("yt-dlp", ["--skip-download", "--write-subs", "--write-auto-subs", "--sub-langs", lang, "--sub-format", "vtt", "--sleep-subtitles", "1", ...COOKIES, "-o", out, `https://www.youtube.com/watch?v=${v.id}`], { maxBuffer: 50e6 });
+    } catch (e) { failed = true; log(`captions ${v.date} ${v.id}: ${e.stderr?.split("\n").find((l) => l.includes("ERROR")) ?? e.message}`); }
+    if (fs.existsSync(`${out}.${lang}.vtt`)) { vttFile = `${out}.${lang}.vtt`; break; }
+  }
+  // a yt-dlp error (bot check, 429) is not "no captions": checked_at 0 makes the next run retry immediately instead of in a week
+  const rec = { ...v, checked_at: failed && !vttFile ? 0 : Date.now(), segments: vttFile ? vttToSegments(fs.readFileSync(vttFile, "utf8")) : [] };
+  for (const f of [`${out}.en.vtt`, `${out}.en-orig.vtt`, `${out}.en.vtt.part`, `${out}.en-orig.vtt.part`]) fs.rmSync(f, { force: true });
   fs.writeFileSync(file, JSON.stringify(rec));
   return rec;
 }

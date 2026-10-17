@@ -1,6 +1,6 @@
 {
-  "name": "Santa Monica Assistant",
-  "short_name": "Santa Monica",
+  "name": "Ask Santa Monica",
+  "short_name": "Ask SM",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000c1f",

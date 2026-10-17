@@ -3,13 +3,22 @@
 import fs from "node:fs";
 
 const CKAN = "https://data.santamonica.gov/api/3/action";
+const PORTALS = { santamonica: CKAN, california: "https://data.ca.gov/api/3/action" };
 const CATALOG_FILE = "./data/catalog.json";
 const CATALOG_TTL_MS = 24 * 3600 * 1000;
 
-const tokenize = (s) => (s.toLowerCase().match(/[a-z0-9]+/g) ?? []).filter((t) => t.length > 1);
+// Tokens = light-stemmed words + bigrams of adjacent content words ("block_party", "dog_license"), so a distinctive phrase
+// outweighs generic words like "permit" or "street" that match half the corpus. ponytail: suffix-strip stemmer, no NLP lib.
+const STOP = new Set("a an the and or of to in on for with my i me you your is are be can do how what which when where who why it its this that at by from as about into over under up out if we our us they their there here any all get need want help please santa monica city".split(" "));
+const stem = (t) => t.length > 3 && t.endsWith("s") && !t.endsWith("ss") ? (t.endsWith("ies") ? t.slice(0, -3) + "y" : /(sh|ch|x|z)es$/.test(t) ? t.slice(0, -2) : t.slice(0, -1)) : t;
+const tokenize = (s) => {
+  const w = (s.toLowerCase().match(/[a-z0-9]+/g) ?? []).filter((t) => t.length > 1 && !STOP.has(t)).map(stem), out = [...w];
+  for (let i = 0; i < w.length - 1; i++) out.push(w[i] + "_" + w[i + 1]);
+  return out;
+};
 
-export async function ckan(action, params) {
-  const url = `${CKAN}/${action}?` + new URLSearchParams(params);
+export async function ckan(action, params, base = CKAN) {
+  const url = `${base}/${action}?` + new URLSearchParams(params);
   const r = await fetch(url, { signal: AbortSignal.timeout(15000) });
   const j = await r.json();
   if (!j.success) throw new Error(j.error?.message ?? `CKAN ${action} failed`);
@@ -47,14 +56,18 @@ function chunkMarkdown(file) {
   let heading = "";
   for (const block of text.split(/\n(?=## )/)) {
     const m = block.match(/^## (.*)/);
-    if (m) heading = m[1];
+    if (!m) continue; // file title / preamble: not a citable section
+    heading = m[1];
+    // The section's "Source: <url>" line becomes the url of EVERY chunk cut from it (so split sections still cite correctly).
+    const url = block.match(/^Source: (https?:\/\/\S+)/m)?.[1] ?? "";
+    const push = (text) => chunks.push({ kind: "knowledge", title: heading, text, source: file, url });
     // split long sections at bullet boundaries so each chunk stays ~<900 chars
     let cur = "";
-    for (const line of block.split("\n")) {
-      if (cur.length + line.length > 900 && cur) { chunks.push({ kind: "knowledge", title: heading, text: cur.trim(), source: file }); cur = ""; }
+    for (const line of block.replace(/^Source: .*$/m, "").split("\n")) {
+      if (cur.length + line.length > 900 && cur.trim()) { push(cur.trim()); cur = ""; }
       cur += line + "\n";
     }
-    if (cur.trim()) chunks.push({ kind: "knowledge", title: heading, text: cur.trim(), source: file });
+    if (cur.trim()) push(cur.trim());
   }
   return chunks;
 }
@@ -97,10 +110,18 @@ export async function buildIndex() {
   ];
   let index = new BM25(docs);
   const strip = ({ searchText, ...d }) => d;
+  const since = (days) => new Date(Date.now() - days * 864e5).toISOString().slice(0, 10);
+  const byResource = new Map(datasets.flatMap((d) => d.resources.map((r) => [r.resource_id, { kind: "dataset", title: d.title, url: d.url, org: d.org }])));
   return {
     datasetCount: datasets.length,
+    datasetFor(resource_id) { return byResource.get(resource_id); },
     catalogSummary: datasets.map((d) => `- ${d.title} (${d.modified})`).join("\n"),
-    search(query, k = 6) { return index.search(query, k, (d) => d.kind !== "council_meeting").map(strip); },
+    // general search: knowledge + datasets + GIS layers, plus up to 2 recent news hits so current events surface without a second call
+    search(query, k = 6) {
+      const main = index.search(query, k, (d) => d.kind !== "council_meeting" && d.kind !== "news");
+      return [...main, ...index.search(query, 2, (d) => d.kind === "news" && d.date >= since(60))].map(strip);
+    },
+    searchNews(query, k = 10, days = 0) { return index.search(query, k, (d) => d.kind === "news" && (!days || d.date >= since(days))).map(strip); },
     searchCouncil(query, k = 8, year = "", doc = "") {
       const want = (d) => d.kind === "council_meeting" && (!year || d.meeting_date.startsWith(year)) && (!doc || d.doc === doc);
       if (doc) return index.search(query, k, want).map(strip);
@@ -117,15 +138,15 @@ export async function buildIndex() {
 }
 
 const rowCache = new Map(); // ponytail: in-memory, 10-min TTL, unbounded; swap for an LRU/KV if it grows past RAM
-export async function queryDataset({ resource_id, q = "", filters = "", limit = 20, sort = "" }) {
+export async function queryDataset({ resource_id, q = "", filters = "", limit = 20, sort = "", portal = "santamonica" }) {
   const params = { resource_id, limit: Math.min(Math.max(1, limit), 100) };
   if (q) params.q = q;
   if (sort) params.sort = sort;
   if (filters) { JSON.parse(filters); params.filters = filters; }
-  const key = JSON.stringify(params);
+  const key = JSON.stringify({ ...params, portal });
   const hit = rowCache.get(key);
   if (hit && Date.now() - hit.t < 600e3) return hit.v;
-  const r = await ckan("datastore_search", params);
+  const r = await ckan("datastore_search", params, PORTALS[portal] ?? CKAN);
   const v = { total: r.total, fields: r.fields.map((f) => `${f.id}:${f.type}`), records: r.records };
   rowCache.set(key, { t: Date.now(), v });
   return v;

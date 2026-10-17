@@ -20,13 +20,13 @@ Source: https://www.santamonica.gov/places/parking-lots/beach-parking-lot-1-nort
 
 ## Parking Citations — Payment & Contest
 
-Parking citations can be paid online through the Finance Department or by mail. To contest a citation, follow the appeal process outlined on your citation or on santamonica.gov. Payment and contest submissions go through the city's online Finance portal. For questions, contact Finance at (310) 458-8220.
+A parking ticket is a parking citation. Parking citations can be paid online through the Finance Department or by mail. To contest a citation, follow the appeal process outlined on your citation or on santamonica.gov. Payment and contest submissions go through the city's online Finance portal. For questions, contact Finance at (310) 458-8220.
 
 Source: https://www.santamonica.gov/process-explainers/how-to-pay-a-parking-citation
 
 ## Preferential Parking (Residential) Permits
 
-Residents may apply for preferential parking permits in residential zones (Zones 1–5) throughout the city. Rates effective July 1, 2026: 1st permit $41, 2nd $51, 3rd $95, 4th and higher $148, visitor passes $72. Zone terms vary: Zones 1 & 3 Oct 1–Sep 30; Zone 2 Jul 1–Jun 30; Zone 4 Apr 1–Mar 31; Zone 5 Jan 1–Dec 31. Half-term purchases are prorated. Permits do not exempt you from street sweeping, meters, or curb markings. Not enforced on New Year's Day, July 4, Thanksgiving, or Christmas. Apply through the One-Stop Permits Center at santamonica.gov/process-explainers/how-to-obtain-a-preferential-parking-permit.
+Residents (tenants or owners living at the address) in preferential parking zones (Zones 1–5) can buy two kinds of permits with the same privileges: Residential permits, tied to one specific vehicle (no maximum), and Visitor permits, usable in any vehicle (maximum 2 per household). Rates effective July 1, 2026: 1st residential permit $41, 2nd $51, 3rd $95, 4th and higher $148; visitor $72 each. Required documents: a valid government-issued photo ID and proof of residency dated within the last 30 days in your name at the Santa Monica address (utility, cable or internet bill, or a bank, credit card or mortgage statement); residential permits also need DMV vehicle registration matching your name and address (if it doesn't match, you can still buy up to 2 visitor permits). Apply online through the parking permit portal or in person at the GoSaMo Center (1444 4th St, 8–11:30 a.m. and 1–4:30 p.m. Mon–Thu and every other Friday); allow 3–5 business days, then pay by emailed link and print a 30-day temporary permit while the permanent one is mailed (up to 2 weeks). Zone terms: Zones 1 & 3 Oct 1–Sep 30; Zone 2 Jul 1–Jun 30; Zone 4 Apr 1–Mar 31; Zone 5 Jan 1–Dec 31; second-half-of-term purchases are prorated. Permits do not exempt you from street sweeping, meters, curb markings or the 2-Block Parking Rule; not enforced on New Year's Day, July 4, Thanksgiving or Christmas. ADA placard holders don't need one. Questions: parking@santamonica.gov.
 
 Source: https://www.santamonica.gov/process-explainers/how-to-obtain-a-preferential-parking-permit
 

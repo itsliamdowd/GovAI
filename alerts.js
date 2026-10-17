@@ -10,6 +10,7 @@ import { queryDataset } from "./rag.js";
 const FILE = "./data/alerts.json";
 const OUTBOX = "./data/outbox";
 const JUDGE_MODEL = process.env.JUDGE_MODEL || "claude-haiku-5-5"; // ponytail: cheap yes/no judge; raise to sonnet if it misses real changes
+try { process.loadEnvFile(); } catch {} // this module is imported before server.js's body runs, so it must load .env itself
 const client = new Anthropic();
 
 const load = () => { try { return JSON.parse(fs.readFileSync(FILE, "utf8")); } catch { return {}; } };

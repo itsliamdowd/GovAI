@@ -74,7 +74,7 @@ Source: https://www.santamonica.gov/process-explainers/how-to-obtain-a-community
 
 ## Block Party Permit
 
-Block parties have a separate, simpler process: apply online only, provide at least 14 calendar days' notice (30 days for holidays), gather neighbor petition signatures, and pay a $72.99 fee. Events on private property only (no street use) may need a Temporary Use Permit instead, filed at least 2 weeks ahead.
+Block parties (closing a residential street for a neighborhood gathering) have their own simpler process, separate from Community Event Permits, run by Transportation Planning (transportation.planning@santamonica.gov). Applications are accepted online only, through the City Grows/Clearforms portal, at least 14 calendar days before the street closure (30 calendar days for events around holidays). Steps: (1) confirm the street is eligible on the city's block party map and pick a date/time that works for most neighbors; (2) start the online application with event details and contact information; (3) collect neighbor petition signatures (online or paper, uploaded by the applicant): at least 51% of residents/businesses on the block if the block is mostly R-1 single-unit residential, otherwise at least 25%; (4) once all departments approve, pay the $100.95 permit fee and download the permit. The applicant picks up and returns signs and barricades at City Yards (2500 Michigan Ave) with a refundable deposit, must give all residents and businesses on the block 3 or 5 calendar days' notice (depending on zoning), must post the permit, signs and barricades during the event, and must keep emergency vehicle access open. Events on private property only (no street use) may need a Temporary Use Permit instead.
 
 Source: https://www.santamonica.gov/process-explainers/how-to-get-a-block-party-permit
 
@@ -98,42 +98,43 @@ Source: https://www.santamonica.gov/process-explainers/how-to-film-in-santa-moni
 
 ## Encroachment & Use of Public Property Permit
 
-Any work or temporary use in the public right-of-way—sidewalk, street, alley, dumpsters, scaffolding, cranes, sidewalk dining, construction staging—requires an encroachment permit. Apply through the One-Stop Permits Center or directly with Public Works. Sidewalk dining requires a separate encroachment permit and a business license. Street encroachments must comply with traffic and pedestrian flow requirements.
+Any work or temporary use in the public right-of-way—sidewalk, street, alley, dumpsters, scaffolding, cranes, sidewalk dining, construction staging, utility excavation—requires an encroachment permit from Public Works Civil Engineering, issued at the Permit Services Center counter. Work in the roadway may also need an approved Temporary Traffic Control Plan (reviewed separately by Traffic Engineering; the plan alone does not authorize work), and any excavation needs a utility excavation permit. Sidewalk dining requires its own encroachment permit plus a business license.
 
-Source: https://www.santamonica.gov/process-explainers/how-to-obtain-a-community-event-permit
+Source: https://www.santamonica.gov/categories/services/building-and-land-use-permits
 
 ## Short-Term Rental / Home-Sharing License
 
-Only hosted home-sharing is allowed (entire-unit vacation rentals are prohibited). Hosts must live in the unit during guest stays of fewer than 31 days. A business license and home-sharing license are required. Application fee is $44 for estimated annual revenue under $100,000 and $119 above. Licenses expire June 30 each year and must be renewed annually. The city publishes a list of licensed properties and enforces the home-sharing and vacation rental ordinances. Report violations to code.enforcement@santamonica.gov or www.smgov.net/homeshare.
+Only hosted home-sharing is allowed: the host must live on site during guest stays of fewer than 31 days; renting out an entire unit as a vacation rental is prohibited. Hosts need both a home-sharing permit and a business license, applied for together; the initial application carries a non-refundable $100 fee, and both must be renewed annually. The city publishes the list of licensed home-shares and enforces the ordinance; report suspected vacation rentals to code.enforcement@santamonica.gov.
 
-Source: https://www.santamonica.gov/press/2019/12/10/settlement-with-airbnb-guarantees-compliance-with-home-sharing-ordinance
+Source: https://www.santamonica.gov/media/Document%20Library/Business%20License%20Forms/INFO-Home-Share%20Admin%20Regs.pdf
 
 ## Sidewalk Vending Permit
 
-Sidewalk vendors must have a city vending permit and a county health permit (for food). Obtain the vending permit through the city's One-Stop Permits Center. County health permits come from the Los Angeles County Department of Public Health.
+Sidewalk vendors must hold both a Santa Monica business license and a sidewalk vending permit before vending, plus a Los Angeles County Department of Public Health permit for food. Permits and licenses are valid through June 30 and renew each July 1; the program has no cap on the number of vendors. Vending locations and conduct are governed by the Sidewalk Vending Program Administrative Regulations (revised July 2024).
 
-Source: https://www.santamonica.gov/process-explainers/how-to-obtain-a-community-event-permit
+Source: https://www.santamonica.gov/process-explainers/how-to-get-a-sidewalk-vending-permit
 
 ## Temporary Use & Conditional Use Permits (TUP/CUP)
 
-Projects needing design review, zoning variances, or special use approvals go through TUP (Temporary Use Permit) or CUP (Conditional Use Permit). Apply through the One-Stop Permits Center via santamonica.gov/topic-explainers/onestop. Timelines vary; private-property events typically need 2 weeks' notice.
+Land use entitlements such as Temporary Use Permits (short-term uses or events on private property), Conditional Use Permits, variances and design review go through the Planning Division at the Permit Services Center (City Hall, 1685 Main St, 8 a.m.–3 p.m. Mon–Thu). Timelines vary; private-property events typically need at least 2 weeks' notice for a TUP.
 
-Source: https://www.santamonica.gov/process-explainers/how-to-obtain-a-community-event-permit
+Source: https://www.santamonica.gov/categories/services/building-and-land-use-permits
 
 ## Dog License
 
-Dog licenses are administered by SMPD's Animal Control unit. Proof of current rabies vaccination is required. Apply at the police non-emergency line (310) 458-8491 or through City Hall.
+Dog licenses are issued by Santa Monica Animal Services (Santa Monica Animal Shelter, 1640 9th St, (310) 458-8594), part of SMPD. Licensing is required by Santa Monica Municipal Code 4.04.170 and dogs must wear a current rabies tag (SMMC 4.04.340); administrative citations run about $100 per violation. Apply online or at the shelter with a current rabies vaccination certificate. Annual fee: $37.26 for spayed/neutered dogs ($25 late charge), $74.52 for unaltered dogs ($80 late charge); verify current fees with the shelter.
 
-Source: https://www.santamonica.gov/permits-licenses
+Source: https://www.santamonica.gov/categories/services/animal-services
 
 ## Alarm System Permit
 
-Residential and commercial alarm systems require a permit. Apply through the city or directly to SMPD at (310) 458-8491.
+Burglar/security alarm registration for homes and businesses is handled by the Santa Monica Police Department; call the non-emergency line (310) 458-8491 for the current process. Separately, installing or modifying a fire alarm *system* requires a Fire Prevention permit from the Santa Monica Fire Department (plan submittal through the Fire Department's fire protection systems process).
 
-Source: https://www.santamonica.gov/permits-licenses
+Source: https://www.santamonica.gov/police
 
 ## Taxi, Pedicab, Newsrack, Banner, Tree Removal, & Sign Permits
 
-Each of these permit types has its own application and requirements. Routes to the applicable department or the One-Stop Permits Center at santamonica.gov/topic-explainers/onestop.
+Each of these permit types has its own application and requirements; business-related permits route through the Business License office and the Permit Services Center (City Hall, 1685 Main St, 8 a.m.–3 p.m. Mon–Thu).
 
-Source: https://www.santamonica.gov/permits-licenses
+Source: https://www.santamonica.gov/categories/business/licenses-and-permits
+

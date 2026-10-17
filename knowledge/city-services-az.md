@@ -20,9 +20,9 @@ Source: https://www.santamonica.gov/solid-waste-rates
 
 ## Trash — Bulky Item Pickup
 
-Three free bulky-item pickups per year are included in your rate. Request through 311; allow 7–10 days. Mattresses, furniture, appliances, e-waste accepted. Additional pickups beyond three/year are billed hourly at approximately $253.37/hour (as of July 2025; verify current rate). Extra trash container is $153.10/month (July 2026–June 2027).
+Resource Recovery & Recycling collects bulky items (anything too large for your container: mattresses, furniture, large appliances, bundled tree trimmings) Monday–Friday for residential and commercial customers, up to 5 items per request. Request through 311: call (866) 311-7266, email 311@santamonica.gov, or use the online 311 portal; give your address, unit number (apartments/condos), phone number, a description of the items, and whether they are at the curb or in the alley. Move items to the front curb or alley and label them "For City Pick-up" first; crews do not enter private property. Allow 7–10 days. Refrigerators and freezers go on a separate truck. No construction debris or hazardous waste. Abandoned items left on a street or alley can be reported the same way. An extra pickup of your regular trash container costs $153.10 (July 2026–June 2027).
 
-Source: https://www.santamonica.gov/topic-explainers/residential-collection-services
+Source: https://www.santamonica.gov/process-explainers/how-to-request-bulky-and-abandoned-item-collection
 
 ## Water Billing & Conservation Rules
 

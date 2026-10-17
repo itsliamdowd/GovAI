@@ -11,7 +11,7 @@
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/icon.svg">
 <link rel="apple-touch-icon" href="/icon.svg">
-<title>SantaMonica.gov</title>
+<title>Ask Santa Monica</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -21,60 +21,84 @@
     --sat:env(safe-area-inset-top); --sab:env(safe-area-inset-bottom);
   }
   * { box-sizing:border-box } html { -webkit-text-size-adjust:100% }
-  body { margin:0; background:var(--bg); color:var(--ink); font:17px/1.6 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif; min-height:100dvh }
+  /* Scale: type 12/13/14/16/20 · space 4/8/12/16/24/32 · radius 10/14/999 · one accent (blue), one reading column (720px) */
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif; min-height:100dvh; -webkit-font-smoothing:antialiased }
   button { font-family:inherit }
-  header { position:sticky; top:0; z-index:5; background:linear-gradient(var(--bg) 70%, transparent); padding:calc(18px + var(--sat)) 28px 18px; display:flex; align-items:center; justify-content:space-between }
-  .brand { display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink) }
-  .brand .flag { width:30px; height:20px; flex:none; background:linear-gradient(#b22234 0 50%,#fff 50% 100%) 0 0/100% 6px repeat-y,#fff; position:relative; border-radius:1px }
-  .brand .flag::before { content:""; position:absolute; left:0; top:0; width:13px; height:10px; background:#3c3b6e }
-  .brand b { font:600 26px/1 Georgia,"Times New Roman",serif; letter-spacing:-.01em }
-  .menu { background:var(--blue); color:#fff; border:0; border-radius:999px; padding:14px 26px; font-size:17px; font-weight:500; cursor:pointer }
-  .menu:hover { background:var(--blue-2) }
-  main { max-width:1000px; margin:0 auto; padding:24px 20px calc(160px + var(--sab)) }
-  .msg { margin:28px 0; animation:pop .18s ease-out } @keyframes pop { from { opacity:0; transform:translateY(6px) } }
-  .me { background:var(--pill); border-radius:32px; padding:16px 26px; max-width:75%; margin-left:auto; width:fit-content; white-space:pre-wrap; word-wrap:break-word }
+  header { position:sticky; top:0; z-index:5; background:color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); padding:calc(10px + var(--sat)) 20px 10px }
+  .hrow { max-width:720px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:12px }
+  .brand { display:flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink) }
+  .brand .flag { width:18px; height:12px; flex:none; background:linear-gradient(#b22234 0 50%,#fff 50% 100%) 0 0/100% 3.4px repeat-y,#fff; position:relative; border-radius:1px; opacity:.9 }
+  .brand .flag::before { content:""; position:absolute; left:0; top:0; width:8px; height:6px; background:#3c3b6e }
+  .brand b { font:600 17px/1 Georgia,"Times New Roman",serif; letter-spacing:-.01em } .brand small { color:var(--muted); font-size:12px; margin-left:4px; padding-left:10px; border-left:1px solid var(--line) }
+  .menu { background:transparent; color:var(--ink); border:1px solid var(--line); border-radius:999px; height:34px; padding:0 14px; font-size:13px; font-weight:500; cursor:pointer; transition:background .12s }
+  .menu:hover { background:var(--pill) }
+  main { max-width:720px; margin:0 auto; padding:32px 20px calc(140px + var(--sab)) }
+  .msg { margin:24px 0; animation:pop .18s ease-out } @keyframes pop { from { opacity:0; transform:translateY(4px) } }
+  .me { background:var(--pill); border-radius:18px 18px 4px 18px; padding:10px 16px; max-width:72%; margin-left:auto; width:fit-content; white-space:pre-wrap; word-wrap:break-word; font-size:15.5px }
   .bot { max-width:100% } .bot > :first-child { margin-top:0 } .bot > :last-child { margin-bottom:0 }
-  .bot p { margin:.9em 0 } .bot ul,.bot ol { margin:.7em 0; padding-left:1.5em } .bot ul { list-style:square } .bot li { margin:.3em 0 }
-  .bot a { color:var(--link); text-decoration:underline; text-underline-offset:3px } .bot a::after { content:" ↗"; text-decoration:none; display:inline-block; font-size:.9em }
-  .bot h1,.bot h2,.bot h3 { font-size:1.05em; font-weight:600; margin:1.3em 0 .4em }
-  .bot code { background:var(--pill); padding:1px 6px; border-radius:6px; font-size:.9em } .bot strong { font-weight:600 }
-  .tblwrap { overflow-x:auto; margin:.6em 0; -webkit-overflow-scrolling:touch }
-  .bot table { border-collapse:collapse; font-size:15px; min-width:100% } .bot th,.bot td { border-bottom:1px solid var(--line); padding:8px 10px; text-align:left; white-space:nowrap } .bot th { color:var(--muted); font-weight:500; font-size:13px; text-transform:uppercase; letter-spacing:.04em }
-  .status { display:flex; align-items:center; gap:10px; color:var(--muted); font-size:15px; margin:16px 0 }
-  .dots { display:inline-flex; gap:4px } .dots i { width:6px; height:6px; border-radius:50%; background:var(--muted); animation:b 1s infinite } .dots i:nth-child(2){animation-delay:.15s} .dots i:nth-child(3){animation-delay:.3s}
+  .bot p { margin:.75em 0 } .bot ul,.bot ol { margin:.6em 0; padding-left:1.4em } .bot li { margin:.25em 0 } .bot li::marker { color:var(--muted) }
+  .bot a { color:var(--link); text-decoration:underline; text-decoration-color:color-mix(in srgb, var(--link) 40%, transparent); text-underline-offset:3px } .bot a:hover { text-decoration-color:var(--link) }
+  .bot h1,.bot h2,.bot h3 { font-size:1em; font-weight:600; margin:1.2em 0 .35em; letter-spacing:-.005em }
+  .bot code { background:var(--pill); padding:1px 6px; border-radius:6px; font-size:.88em } .bot strong { font-weight:600 }
+  .tblwrap { overflow-x:auto; margin:.8em 0; -webkit-overflow-scrolling:touch; border:1px solid var(--line); border-radius:10px }
+  .bot table { border-collapse:collapse; font-size:14px; width:100% } .bot th,.bot td { border-bottom:1px solid var(--line); padding:8px 12px; text-align:left; vertical-align:top } .bot th { color:var(--muted); font-weight:500; font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; background:var(--pill) }
+  .bot tr:last-child td { border-bottom:0 } .bot td.num,.bot th.num { text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums } .bot td.num { font-weight:600 }
+  .status { display:flex; align-items:center; gap:10px; color:var(--muted); font-size:13.5px; margin:12px 0 }
+  .dots { display:inline-flex; gap:4px } .dots i { width:5px; height:5px; border-radius:50%; background:var(--muted); animation:b 1s infinite } .dots i:nth-child(2){animation-delay:.15s} .dots i:nth-child(3){animation-delay:.3s}
   @keyframes b { 0%,80%,100% { opacity:.25 } 40% { opacity:1 } }
   /* action row under a reply: Sources pill, thumbs, copy */
-  .acts { display:flex; gap:10px; margin:18px 0 0; flex-wrap:wrap }
-  .pill { display:inline-flex; align-items:center; gap:8px; background:var(--pill); border:1px solid transparent; border-radius:999px; padding:0 18px; height:58px; color:var(--ink); font-size:16px; cursor:pointer; transition:background .12s }
-  .pill:hover { background:var(--pill-2) } .pill.icons { padding:0 6px; gap:0 } .pill.icons button { background:none; border:0; color:var(--ink); width:46px; height:46px; border-radius:50%; cursor:pointer; display:grid; place-items:center } .pill.icons button:hover,.pill.icons button.on { background:var(--pill-2) }
-  .pill svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round }
-  .pill.src { border-color:#fff; padding:0 18px 0 10px } .pill.src .stack { display:flex } .pill.src .stack img { width:32px; height:32px; border-radius:50%; border:2px solid var(--pill); background:#fff; object-fit:cover; margin-right:-10px } .pill.src .stack img:last-child { margin-right:0 }
-  .chips { display:flex; flex-direction:column; align-items:flex-start; gap:12px; margin:24px 0 }
-  .chip { background:transparent; border:1px solid var(--line); color:var(--ink); border-radius:999px; padding:0 30px; height:72px; font-size:19px; cursor:pointer; text-align:left; transition:background .12s } .chip:hover { background:var(--pill) }
-  .card { border:1px solid var(--ok-line); background:var(--ok-bg); color:var(--ok); border-radius:20px; padding:16px 20px; margin:16px 0; max-width:560px }
-  .card .num { font-size:24px; font-weight:600; letter-spacing:1px; display:flex; align-items:center; gap:10px; margin:4px 0 }
-  .card button { background:transparent; border:1px solid var(--ok-line); color:inherit; border-radius:8px; padding:3px 9px; font:inherit; font-size:12px; cursor:pointer }
-  .card small { display:block; opacity:.9; font-size:14px }
-  .error { color:var(--err); font-size:15px }
+  .acts { display:flex; gap:6px; margin:14px 0 0; flex-wrap:wrap; align-items:center }
+  .pill { display:inline-flex; align-items:center; gap:8px; background:transparent; border:1px solid var(--line); border-radius:999px; padding:0 12px; height:34px; color:var(--ink); font-size:13px; cursor:pointer; transition:background .12s }
+  .pill:hover { background:var(--pill) } .pill.icons { padding:0 2px; gap:0; border-color:transparent } .pill.icons button { background:none; border:0; color:var(--muted); width:30px; height:30px; border-radius:50%; cursor:pointer; display:grid; place-items:center } .pill.icons button:hover,.pill.icons button.on { background:var(--pill); color:var(--ink) }
+  .pill svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round }
+  .pill.src { padding:0 12px 0 6px } .pill.src .stack { display:flex } .pill.src .stack img { width:22px; height:22px; border-radius:50%; border:2px solid var(--bg); background:#fff; object-fit:cover; margin-right:-7px } .pill.src .stack img:last-child { margin-right:0 }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin:20px 0 }
+  .chip { background:transparent; border:1px solid var(--line); color:var(--ink); border-radius:999px; padding:9px 16px; font-size:14px; line-height:1.3; cursor:pointer; text-align:left; transition:background .12s, border-color .12s } .chip:hover { background:var(--pill); border-color:#3a414b }
+  .card { border:1px solid var(--ok-line); background:var(--ok-bg); color:var(--ok); border-radius:14px; padding:14px 16px; margin:12px 0; max-width:480px }
+  .card .num { font-size:20px; font-weight:600; letter-spacing:.5px; display:flex; align-items:center; gap:10px; margin:2px 0 4px; font-variant-numeric:tabular-nums }
+  .card button { background:transparent; border:1px solid var(--ok-line); color:inherit; border-radius:999px; padding:2px 10px; font:inherit; font-size:12px; cursor:pointer }
+  .card small { display:block; opacity:.9; font-size:13px }
+  /* application form card: one question per step → ✓ submitted */
+  .form { border:1px solid var(--line); background:var(--pill); border-radius:14px; padding:16px 18px; margin:12px 0; max-width:480px; animation:pop .18s ease-out }
+  .form h3 { margin:0 0 4px; font-size:15px; font-weight:600 } .form .sub { color:var(--muted); font-size:13px; margin:0 0 12px; line-height:1.45 } .form .sub a { color:var(--link) }
+  .form .step { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.06em }
+  .form .bar { height:3px; background:var(--line); border-radius:2px; overflow:hidden; margin:6px 0 14px } .form .bar i { display:block; height:100%; background:var(--blue); transition:width .25s }
+  .form label { display:block; font-size:15px; font-weight:500; margin:0 0 6px } .form .hint { color:var(--muted); font-size:13px; margin:-2px 0 10px; line-height:1.45 }
+  .form input,.form select,.form textarea { width:100%; background:var(--bg); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:10px 12px; font:inherit; font-size:15px; outline:none } .form :is(input,select,textarea):focus { border-color:var(--blue-2) } .form textarea { min-height:84px; resize:vertical }
+  .form .nav { display:flex; gap:8px; justify-content:space-between; margin-top:14px } .form .nav button { border:1px solid var(--line); border-radius:999px; height:34px; padding:0 16px; font:inherit; font-size:13px; font-weight:500; cursor:pointer; background:transparent; color:var(--ink) } .form .nav .next { background:var(--blue); border-color:var(--blue); color:#fff } .form .nav .next:hover { background:var(--blue-2) } .form .nav button:disabled { opacity:.35; cursor:default }
+  .form.done { border-color:var(--ok-line); background:var(--ok-bg); color:var(--ok); text-align:center } .form.done .num { font-size:20px; font-weight:600; letter-spacing:.5px; display:flex; align-items:center; justify-content:center; gap:10px; margin:2px 0 6px; font-variant-numeric:tabular-nums } .form.done .num button { background:transparent; border:1px solid var(--ok-line); color:inherit; border-radius:999px; padding:2px 10px; font:inherit; font-size:12px; cursor:pointer } .form.done small { display:block; opacity:.9; font-size:13px }
+  .form .check { width:52px; height:52px; border-radius:50%; background:var(--ok); color:var(--ok-bg); display:grid; place-items:center; font-size:28px; font-weight:700; margin:2px auto 8px; animation:pop .35s ease-out }
+  .error { color:var(--err); font-size:14px }
+  /* council video moment: thumbnail → player at the cited second */
+  .clip { border:1px solid var(--line); border-radius:14px; margin:12px 0; max-width:480px; overflow:hidden; background:var(--pill) }
+  .clip .thumb { position:relative; aspect-ratio:16/9; background:#000 center/cover no-repeat; cursor:pointer; display:grid; place-items:center }
+  .clip .thumb::after { content:"▶"; width:44px; height:44px; border-radius:50%; background:rgba(0,0,0,.6); color:#fff; display:grid; place-items:center; font-size:16px; padding-left:3px; transition:background .12s }
+  .clip .thumb:hover::after { background:var(--blue) }
+  .clip .ts { position:absolute; left:8px; bottom:8px; background:rgba(0,0,0,.75); color:#fff; font:500 11px/1 ui-monospace,monospace; padding:4px 6px; border-radius:4px }
+  .clip iframe { width:100%; aspect-ratio:16/9; border:0; display:block }
+  .clip .body { padding:10px 14px 12px } .clip .body b { font-size:13px } .clip .body p { margin:4px 0 8px; font-size:13.5px; color:var(--muted); max-height:4.6em; overflow:hidden; line-height:1.5 } .clip .body p.open { max-height:none }
+  .clip .cacts { display:flex; gap:6px; flex-wrap:wrap } .clip .cacts a,.clip .cacts button { font:inherit; font-size:12.5px; color:var(--ink); background:transparent; border:1px solid var(--line); border-radius:999px; padding:4px 10px; text-decoration:none; cursor:pointer } .clip .cacts a:hover,.clip .cacts button:hover { background:var(--pill-2) }
   /* composer */
-  form { position:fixed; left:0; right:0; bottom:0; padding:12px 16px calc(14px + var(--sab)); background:linear-gradient(transparent, var(--bg) 35%); z-index:5 }
-  .row { max-width:1000px; margin:0 auto; display:flex; gap:6px; align-items:flex-end; background:var(--bg); border:1px solid var(--line); border-radius:40px; padding:12px 12px 12px 30px }
-  .row:focus-within { border-color:#3a414b }
-  textarea { flex:1; resize:none; border:0; background:transparent; color:var(--ink); font:inherit; font-size:19px; padding:14px 0; max-height:180px; outline:none; line-height:1.4 } textarea::placeholder { color:#8a9099 }
-  .ib { width:54px; height:54px; border-radius:50%; border:0; display:grid; place-items:center; cursor:pointer; flex:none; background:transparent; color:var(--ink) }
-  .ib svg { width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round }
-  #send { background:var(--blue); color:#fff } #send:disabled { background:var(--pill); color:#6b7280 } #send.stop svg { width:16px; height:16px; fill:#fff; stroke:none }
-  .fine { max-width:1000px; margin:8px auto 0; color:var(--muted); font-size:12px; text-align:center }
-  #down { position:fixed; left:50%; transform:translateX(-50%); bottom:calc(126px + var(--sab)); width:56px; height:56px; border-radius:50%; border:1px solid var(--line); background:var(--pill); color:var(--ink); display:none; place-items:center; cursor:pointer; z-index:6 } #down.show { display:grid } #down svg { width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round }
+  form { position:fixed; left:0; right:0; bottom:0; padding:12px 16px calc(12px + var(--sab)); background:linear-gradient(transparent, var(--bg) 40%); z-index:5 }
+  .row { max-width:720px; margin:0 auto; display:flex; gap:4px; align-items:flex-end; background:var(--pill); border:1px solid var(--line); border-radius:26px; padding:6px 6px 6px 18px; transition:border-color .12s }
+  .row:focus-within { border-color:#4a515b }
+  textarea { flex:1; resize:none; border:0; background:transparent; color:var(--ink); font:inherit; font-size:16px; padding:10px 0; max-height:160px; outline:none; line-height:1.4 } textarea::placeholder { color:#7d848d }
+  .ib { width:40px; height:40px; border-radius:50%; border:0; display:grid; place-items:center; cursor:pointer; flex:none; background:transparent; color:var(--muted) } .ib:hover { color:var(--ink) }
+  .ib svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round }
+  #send { background:var(--blue); color:#fff } #send:hover { background:var(--blue-2); color:#fff } #send:disabled { background:var(--pill-2); color:#6b7280 } #send.stop svg { width:14px; height:14px; fill:#fff; stroke:none }
+  .fine { max-width:720px; margin:8px auto 0; color:var(--muted); font-size:11.5px; text-align:center }
+  #down { position:fixed; left:50%; transform:translateX(-50%); bottom:calc(100px + var(--sab)); width:38px; height:38px; border-radius:50%; border:1px solid var(--line); background:var(--pill); color:var(--ink); display:none; place-items:center; cursor:pointer; z-index:6 } #down.show { display:grid } #down svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round }
   /* sheets */
   .sheet { position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; z-index:10; align-items:flex-end; justify-content:center }
   .sheet.open { display:flex } .panel { background:#12161c; color:var(--ink); width:100%; max-width:600px; border-radius:24px 24px 0 0; padding:22px 22px calc(24px + var(--sab)); max-height:82dvh; overflow:auto; animation:up .22s ease-out; border:1px solid var(--line) }
   @media (min-width:640px) { .sheet { align-items:center } .panel { border-radius:24px } }
   @keyframes up { from { transform:translateY(30px); opacity:0 } }
-  .panel h2 { margin:0 0 14px; font-size:20px; font-weight:600 }
-  .panel .app { border:1px solid var(--line); border-radius:14px; padding:12px 14px; margin:8px 0; font-size:15px } .panel .app b { font-family:ui-monospace,monospace } .panel .app .st { float:right; font-size:11px; text-transform:uppercase; color:var(--ok); background:var(--ok-bg); padding:2px 8px; border-radius:999px }
-  .panel .empty { color:var(--muted); font-size:15px }
-  .panel .close { margin-top:14px; width:100%; padding:14px; border:0; border-radius:999px; background:var(--blue); color:#fff; font:inherit; font-weight:500; cursor:pointer }
+  .panel h2 { margin:0 0 12px; font-size:18px; font-weight:600; letter-spacing:-.01em }
+  .panel h3 { font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:18px 0 6px; font-weight:500 }
+  .panel .app { border:1px solid var(--line); border-radius:12px; padding:10px 12px; margin:6px 0; font-size:14px } .panel .app b { font-family:ui-monospace,monospace } .panel .app .st { float:right; font-size:10.5px; text-transform:uppercase; color:var(--ok); background:var(--ok-bg); padding:2px 8px; border-radius:999px }
+  .panel .mom { display:flex; gap:10px; align-items:center; border:1px solid var(--line); border-radius:12px; padding:8px 10px; margin:6px 0; font-size:13.5px; cursor:pointer } .panel .mom:hover { background:var(--pill) } .panel .mom img { width:64px; aspect-ratio:16/9; object-fit:cover; border-radius:6px; flex:none } .panel .mom small { color:var(--muted); display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
+  .panel .empty { color:var(--muted); font-size:14px }
+  .panel .close { margin-top:14px; width:100%; padding:12px; border:1px solid var(--line); border-radius:999px; background:transparent; color:var(--ink); font:inherit; font-size:14px; font-weight:500; cursor:pointer } .panel .close:hover { background:var(--pill) }
   .srcitem { display:flex; gap:14px; align-items:center; padding:12px 0; border-bottom:1px solid var(--line); text-decoration:none; color:inherit } .srcitem:last-of-type { border:0 }
   .srcitem img { width:44px; height:44px; border-radius:50%; background:#fff; object-fit:cover; flex:none; border:1px solid var(--line) }
   .srcitem b { display:block; font-weight:600; font-size:15px } .srcitem span { display:block; color:var(--muted); font-size:14px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap } .srcitem i { margin-left:auto; color:var(--muted); font-style:normal }
@@ -93,13 +117,15 @@
   .vbtns { position:absolute; bottom:calc(44px + var(--sab)); display:flex; gap:30px }
   .vbtn { width:66px; height:66px; border-radius:50%; border:0; background:var(--pill); color:var(--ink); font-size:26px; display:grid; place-items:center; cursor:pointer }
   .vbtn:active { transform:scale(.94) } .vbtn.end { background:#dc2626; color:#fff }
-  @media (max-width:640px) { header { padding-left:16px; padding-right:16px } .brand b { font-size:22px } .menu { padding:11px 20px; font-size:15px } body { font-size:16px } .me { max-width:85% } .chip { height:60px; font-size:16px; padding:0 22px } .pill { height:50px } .row { padding-left:22px } textarea { font-size:17px } }
+  @media (max-width:640px) { header { padding-left:16px; padding-right:16px } .brand small { display:none } main { padding-top:20px } body { font-size:15.5px } .me { max-width:85% } .chip { font-size:13.5px; padding:8px 14px } .row { padding-left:16px } textarea { font-size:16px } .clip,.card { max-width:100% } }
 </style>
 </head>
 <body>
 <header>
-  <a class="brand" href="/"><span class="flag" aria-hidden="true"></span><b>SantaMonica.gov</b></a>
-  <button class="menu" id="appsBtn" aria-label="Menu"><span id="appsCount">Menu</span></button>
+  <div class="hrow">
+    <a class="brand" href="/"><span class="flag" aria-hidden="true"></span><b>Ask Santa Monica</b></a>
+    <button class="menu" id="appsBtn" aria-label="Menu"><span id="appsCount">Menu</span></button>
+  </div>
 </header>
 
 <main id="log">
@@ -126,8 +152,11 @@
 
 <div class="sheet" id="sheet" role="dialog" aria-label="Menu">
   <div class="panel">
-    <h2>My applications</h2>
+    <h2>My stuff</h2>
+    <h3>Applications &amp; watches</h3>
     <div id="appsList"></div>
+    <h3>Saved council moments</h3>
+    <div id="momList"></div>
     <button class="close" id="closeSheet">Close</button>
   </div>
 </div>
@@ -155,7 +184,19 @@
 const $ = (id) => document.getElementById(id);
 const log = $("log"), input = $("in"), form = $("f"), sendBtn = $("send"), mic = $("mic");
 const sessionId = crypto.randomUUID();
-const md = (t) => DOMPurify.sanitize(marked.parse(t, { breaks: true }), { ADD_ATTR: ["target"] }).replace(/<table>/g, '<div class="tblwrap"><table>').replace(/<\/table>/g, "</table></div>");
+const NUM = /^[~≈$€£]?\s?\d[\d,.]*\s?(%|\/\s?\w+)?$/; // "$233.15", "2,500", "12%", "$251.50/hour"
+function md(t) {
+  const d = document.createElement("div"); d.innerHTML = DOMPurify.sanitize(marked.parse(t, { breaks: true }), { ADD_ATTR: ["target"] });
+  for (const tbl of d.querySelectorAll("table")) {
+    const w = document.createElement("div"); w.className = "tblwrap"; tbl.replaceWith(w); w.appendChild(tbl);
+    const rows = [...tbl.rows], cols = Math.max(0, ...rows.map((r) => r.cells.length));
+    for (let c = 0; c < cols; c++) { // a column is numeric when every filled body cell is a number → right-aligned, tabular figures
+      const body = rows.map((r) => r.cells[c]).filter((x) => x && x.tagName === "TD" && x.textContent.trim());
+      if (body.length && body.every((x) => NUM.test(x.textContent.trim()))) for (const r of rows) r.cells[c]?.classList.add("num");
+    }
+  }
+  return d.innerHTML;
+}
 const ICONS = {
   up: '<svg viewBox="0 0 24 24"><path d="M7 11v10H3V11zM7 11l4-8a2.5 2.5 0 0 1 2.5 2.5V9H19a2 2 0 0 1 2 2.3l-1.2 7A2 2 0 0 1 17.8 20H7"/></svg>',
   down: '<svg viewBox="0 0 24 24"><path d="M17 13V3h4v10zM17 13l-4 8a2.5 2.5 0 0 1-2.5-2.5V15H5a2 2 0 0 1-2-2.3l1.2-7A2 2 0 0 1 6.2 4H17"/></svg>',
@@ -169,6 +210,39 @@ const CITY_ICON = "https://www.santamonica.gov/SantaMonica.Gov.Theme/Icons/favic
 const fav = (d) => `https://www.google.com/s2/favicons?sz=128&domain=${d}`;
 const DEPTS = [
   [/youtube\.com/i, "City Council · meeting video", fav("youtube.com")],
+  // local news & community
+  [/smdp\.com/i, "Santa Monica Daily Press", fav("smdp.com")],
+  [/smmirror\.com/i, "Santa Monica Mirror", fav("smmirror.com")],
+  [/santamonicanext\.org/i, "Santa Monica Next", fav("santamonicanext.org")],
+  [/smobserved\.com/i, "Santa Monica Observer", fav("smobserved.com")],
+  [/surfsantamonica\.com|Santa Monica Lookout/i, "Santa Monica Lookout", fav("surfsantamonica.com")],
+  [/westsidecurrent\.com|Westside Current/i, "Westside Current", fav("westsidecurrent.com")],
+  [/patch\.com/i, "Patch Santa Monica", fav("patch.com")],
+  [/latimes\.com|Los Angeles Times/i, "Los Angeles Times", fav("latimes.com")],
+  [/kcrw\.com|KCRW/i, "KCRW", fav("kcrw.com")],
+  [/laist\.com|LAist/i, "LAist", fav("laist.com")],
+  [/canyon-news\.com/i, "Canyon News", fav("canyon-news.com")],
+  [/reddit\.com/i, "r/SantaMonica", fav("reddit.com")],
+  [/granicus\.com|CityTV/i, "Santa Monica CityTV", fav("santamonica.granicus.com")],
+  [/news\.google\.com|bing\.com/i, (s) => s.publisher || "News", fav("news.google.com")],
+  // maps & county / state / federal data
+  [/gis\.santamonica\.gov|gis-smgov|smgov\.maps\.arcgis|ntb1ZybmOdA9GyKm/i, "City GIS · Information Services", fav("gis.santamonica.gov")],
+  [/assessor\.lacounty\.gov|RmCCgQtiZLDCtblq/i, "LA County Assessor", fav("assessor.lacounty.gov")],
+  [/lacounty\.gov|lacounty\.hub|lacounty\.maps/i, "LA County", fav("lacounty.gov")],
+  [/weather\.gov/i, "National Weather Service", fav("weather.gov")],
+  [/tidesandcurrents\.noaa\.gov/i, "NOAA Tides & Currents", fav("noaa.gov")],
+  [/usgs\.gov/i, "USGS", fav("usgs.gov")],
+  [/airnow\.gov/i, "AirNow · EPA / South Coast AQMD", fav("airnow.gov")],
+  [/beachreportcard|healthebay/i, "Heal the Bay", fav("healthebay.org")],
+  [/li\.me|lime\.bike/i, "Lime", fav("li.me")],
+  [/adsbexchange|opensky/i, "OpenSky Network · ADS-B", fav("opensky-network.org")],
+  [/dot\.ca\.gov/i, "Caltrans District 7", fav("dot.ca.gov")],
+  [/cdc\.gov/i, "CDC PLACES", fav("cdc.gov")],
+  [/bls\.gov/i, "Bureau of Labor Statistics", fav("bls.gov")],
+  [/census\.gov/i, "US Census Bureau", fav("census.gov")],
+  [/wikipedia\.org/i, "Wikipedia", fav("wikipedia.org")],
+  [/data\.ca\.gov/i, "California Open Data", fav("data.ca.gov")],
+  [/arcgis\.com/i, "GIS layer", fav("arcgis.com")],
   [/city council|agenda|minutes/i, "City Council"],
   [/data\.santamonica\.gov/i, (s) => s.org ? `Open Data · ${s.org}` : "Open Data Portal", fav("data.santamonica.gov")],
   [/bigbluebus|big blue bus/i, "Big Blue Bus", fav("bigbluebus.com")],
@@ -219,7 +293,12 @@ const renderApps = () => {
   $("appsCount").textContent = apps.length ? `Menu · ${apps.length}` : "Menu";
   $("appsList").innerHTML = apps.length ? apps.map((a) => `<div class="app"><span class="st">${esc(a.status)}</span><b>${esc(a.confirmation_number)}</b><br>${esc(a.summary)}<br><small style="color:var(--muted)">${esc(a.department)} · ${new Date(a.submitted_at).toLocaleDateString()}</small></div>`).join("") : `<p class="empty">Nothing filed yet. Ask me to apply for a permit or report an issue and it will show up here.</p>`;
 };
-renderApps();
+let moments = []; try { moments = JSON.parse(localStorage.getItem("sm_moments") || "[]"); } catch {}
+const renderMoments = () => {
+  $("momList").innerHTML = moments.length ? moments.map((c, i) => `<div class="mom" data-i="${i}"><img src="https://i.ytimg.com/vi/${esc(c.video_id)}/mqdefault.jpg" alt=""><div style="min-width:0"><b>Council ${esc(c.meeting_date)}</b> · ${esc(c.hms)}<small>${esc(c.text.slice(0, 100))}</small></div></div>`).join("") : `<p class="empty">When an answer cites a council video, save the clip and it lands here.</p>`;
+};
+$("momList").onclick = (e) => { const el = e.target.closest(".mom"); if (!el) return; $("sheet").classList.remove("open"); clipCard(moments[+el.dataset.i], true); scroll(); };
+renderApps(); renderMoments();
 $("appsBtn").onclick = () => $("sheet").classList.add("open");
 $("closeSheet").onclick = () => $("sheet").classList.remove("open");
 $("closeSrc").onclick = () => $("srcSheet").classList.remove("open");
@@ -250,12 +329,32 @@ else {
     const reply = (await send(text)).innerText.trim();
     if (!active) return;
     if (!reply) return listen();
-    speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(reply); u.lang = "en-US"; u.rate = 1.05;
-    u.onend = u.onerror = () => listen();
     setState("speaking", ""); vtext.textContent = reply;
-    speechSynthesis.speak(u);
+    speak(reply, listen);
   };
+  // Server voice (ElevenLabs via /tts) when configured; else the most human-sounding voice the browser has.
+  let audio = null;
+  const stopSpeaking = () => { speechSynthesis.cancel(); if (audio) { audio.pause(); audio.src = ""; audio = null; } };
+  async function speak(text, done) {
+    stopSpeaking();
+    try {
+      const r = await fetch("/tts", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text }) });
+      if (r.ok) {
+        audio = new Audio(URL.createObjectURL(await r.blob()));
+        audio.onended = audio.onerror = () => { audio = null; done(); };
+        await audio.play(); return;
+      }
+    } catch {}
+    if (!active) return;
+    const u = new SpeechSynthesisUtterance(text); u.lang = "en-US"; u.rate = 1; u.pitch = 1;
+    const vs = speechSynthesis.getVoices().filter((v) => v.lang.startsWith("en"));
+    u.voice = vs.find((v) => /Samantha|Ava|Zoe|Allison|Evan|Nathan|Tom/.test(v.name) && /Premium|Enhanced/.test(v.name)) // macOS/iOS neural voices
+      ?? vs.find((v) => /Google US English|Natural|Neural|Online/.test(v.name)) // Chrome / Edge cloud voices
+      ?? vs.find((v) => /Samantha|Ava|Zoe|Allison/.test(v.name)) ?? vs.find((v) => v.lang === "en-US") ?? null;
+    u.onend = u.onerror = () => done();
+    speechSynthesis.speak(u);
+  }
+  speechSynthesis.getVoices(); // warm the voice list (Chrome populates it async)
   // Orb swells with mic level while listening.
   async function meter() {
     let stream, ac; try { stream = await navigator.mediaDevices.getUserMedia({ audio: true }); ac = new AudioContext(); } catch { return; }
@@ -268,7 +367,7 @@ else {
     })();
   }
   mic.onclick = () => { active = true; muted = false; voice.classList.add("open"); voice.classList.remove("muted"); vmute.textContent = "🎙️"; meter(); listen(); };
-  $("vend").onclick = () => { active = false; rec.abort(); speechSynthesis.cancel(); voice.classList.remove("open"); };
+  $("vend").onclick = () => { active = false; rec.abort(); stopSpeaking(); voice.classList.remove("open"); };
   vmute.onclick = () => {
     muted = !muted; vmute.textContent = muted ? "🔇" : "🎙️"; voice.classList.toggle("muted", muted);
     if (muted) rec.abort();
@@ -293,8 +392,26 @@ async function send(text) {
   const bot = add("bot"); let buf = "";
   const status = document.createElement("div"); status.className = "status"; status.innerHTML = `<span class="dots"><i></i><i></i><i></i></span><span>Thinking…</span>`; log.appendChild(status); scroll();
   const sources = new Map();
-  try {
+  // Token-by-token rendering. The API streams first turns live but delivers the turn after a tool result
+  // as one burst (measured: ~15 deltas within 5ms on every request shape), so queue deltas and let a frame
+  // loop reveal ~2 chars/frame (~120 chars/s), speeding up only when the backlog is large.
+  let pending = "", raf = 0, thought = "";
+  const drain = () => {
+    raf = 0; if (!pending) return;
+    const n = Math.max(2, Math.ceil(pending.length / 90));
+    buf += pending.slice(0, n); pending = pending.slice(n);
+    bot.innerHTML = md(buf); status.remove(); if (atBottom()) scroll();
+    if (pending) raf = requestAnimationFrame(drain);
+  };
+  const flush = () => { if (raf) cancelAnimationFrame(raf); raf = 0; if (pending) { buf += pending; pending = ""; bot.innerHTML = md(buf); status.remove(); } };
+  // A form / application / alert card IS the reply: drop any text already streamed and ignore the rest (bot bubble is removed at the end if empty).
+  let card = false;
+  const cardOnly = () => { if (raf) cancelAnimationFrame(raf); raf = 0; pending = ""; buf = ""; bot.innerHTML = ""; status.remove(); card = true; };
+  // The dev server (node --watch) restarts on every file save, killing in-flight requests and refusing new ones for a few
+  // seconds while the index rebuilds. If nothing has streamed yet, wait for it to come back and resend once instead of failing.
+  for (let attempt = 0; ; attempt++) try {
     const res = await fetch("/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sessionId, message: text }), signal: ctrl.signal });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const reader = res.body.getReader(), dec = new TextDecoder(); let carry = "";
     while (true) {
       const { value, done } = await reader.read(); if (done) break;
@@ -303,31 +420,103 @@ async function send(text) {
       for (const p of parts) {
         if (!p.startsWith("data: ")) continue;
         const ev = JSON.parse(p.slice(6));
-        if (ev.type === "text") { buf += ev.text; bot.innerHTML = md(buf); status.remove(); }
-        else if (ev.type === "status") { status.lastChild.textContent = ev.text; log.appendChild(status); }
+        if (ev.type === "text") { if (!card) { pending += ev.text; if (!raf) raf = requestAnimationFrame(drain); } } // once a card is up, the card is the whole reply
+        else if (ev.type === "thinking") { thought = (thought + ev.text).slice(-90); status.lastChild.textContent = "Thinking… " + thought.replace(/\s+/g, " "); if (!bot.textContent) log.appendChild(status); }
+        else if (ev.type === "reset") { flush(); buf = ""; bot.innerHTML = ""; thought = ""; }
+        else if (ev.type === "status") { flush(); thought = ""; status.lastChild.textContent = ev.text; log.appendChild(status); }
         else if (ev.type === "sources") { for (const s of ev.data) if (s.url && !sources.has(s.url)) sources.set(s.url, s); }
-        else if (ev.type === "application") { apps.unshift(ev.data); try { localStorage.setItem("sm_apps", JSON.stringify(apps)); } catch {} renderApps(); appCard(ev.data); }
-        else if (ev.type === "error") { const d = document.createElement("div"); d.className = "error"; d.textContent = ev.text; bot.appendChild(d); }
+        else if (ev.type === "clips") { for (const c of ev.data) clipCard(c); }
+        else if (ev.type === "form") { cardOnly(); formCard(ev.data); }
+        else if (ev.type === "application" || ev.type === "alert") { cardOnly(); apps.unshift(ev.data); try { localStorage.setItem("sm_apps", JSON.stringify(apps)); } catch {} renderApps(); appCard(ev.data, ev.type === "alert" ? "🔔 Daily watch on" : "✅ Application received"); }
+        else if (ev.type === "error") { flush(); const d = document.createElement("div"); d.className = "error"; d.textContent = ev.text; bot.appendChild(d); }
         scroll();
       }
     }
-  } catch (err) { if (err.name !== "AbortError") { const d = document.createElement("div"); d.className = "error"; d.textContent = "Connection lost. Try again."; bot.appendChild(d); } }
-  status.remove(); if (!bot.textContent) bot.remove();
+    break;
+  } catch (err) {
+    if (err.name === "AbortError") break;
+    if (attempt === 0 && !buf && !pending && !card) {
+      status.lastChild.textContent = "Server restarted, reconnecting…"; log.appendChild(status);
+      for (let i = 0; i < 20 && !ctrl.signal.aborted; i++) { await new Promise((r) => setTimeout(r, 1000)); if (await fetch("/", { method: "HEAD", cache: "no-store" }).then((r) => r.ok, () => false)) break; }
+      if (!ctrl.signal.aborted) continue;
+    }
+    flush(); const d = document.createElement("div"); d.className = "error"; d.textContent = "Connection lost. Try again."; bot.appendChild(d); break;
+  }
+  flush(); status.remove(); if (!bot.textContent) bot.remove();
   for (const a of bot.querySelectorAll("a")) { a.target = "_blank"; a.rel = "noopener"; }
   if (bot.isConnected) bot.appendChild(actionRow(bot, [...sources.values()]));
   ctrl = null; sendBtn.classList.remove("stop"); sendBtn.innerHTML = ICONS.send; sendBtn.setAttribute("aria-label", "Send");
   if (!/Mobi|Android/i.test(navigator.userAgent) && !$("voice").classList.contains("open")) input.focus(); scroll();
   return bot;
 }
-function appCard(a) {
+// A cited council moment: thumbnail with timestamp, tap to play from that second, excerpt, save.
+function clipCard(c, autoplay = false) {
+  const d = document.createElement("div"); d.className = "clip";
+  const saved = moments.some((m) => m.id === c.id);
+  d.innerHTML = `<div class="thumb" style="background-image:url(https://i.ytimg.com/vi/${esc(c.video_id)}/hqdefault.jpg)"><span class="ts">${esc(c.hms)}</span></div>
+    <div class="body"><b>City Council · ${esc(c.meeting_date)}</b><p>“${esc(c.text)}”</p>
+    <div class="cacts"><button type="button" data-a="more">Full excerpt</button><button type="button" data-a="save">${saved ? "Saved ✓" : "Save moment"}</button><a href="${esc(c.url)}" target="_blank" rel="noopener">YouTube ↗</a></div></div>`;
+  const play = () => { d.querySelector(".thumb").outerHTML = `<iframe src="${esc(c.embed)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="Council meeting ${esc(c.meeting_date)} at ${esc(c.hms)}"></iframe>`; };
+  d.querySelector(".thumb").onclick = play;
+  d.querySelector(".cacts").onclick = (e) => {
+    const a = e.target.dataset.a; if (!a) return;
+    if (a === "more") e.target.parentElement.previousElementSibling.classList.toggle("open");
+    if (a === "save" && !moments.some((m) => m.id === c.id)) { moments.unshift(c); try { localStorage.setItem("sm_moments", JSON.stringify(moments)); } catch {} renderMoments(); e.target.textContent = "Saved ✓"; }
+  };
+  log.appendChild(d); if (autoplay) play();
+}
+function appCard(a, label) {
   const c = document.createElement("div"); c.className = "card";
-  c.innerHTML = `<small>✅ Application received</small><div class="num">${esc(a.confirmation_number)} <button type="button">Copy</button></div><small><b>Routed to:</b> ${esc(a.department)}</small><small>${esc(a.next_steps)}</small>`;
+  c.innerHTML = `<small>${label}</small><div class="num">${esc(a.confirmation_number)} <button type="button">Copy</button></div><small><b>Routed to:</b> ${esc(a.department)}</small><small>${esc(a.next_steps)}</small>`;
   c.querySelector("button").onclick = (e) => { navigator.clipboard?.writeText(a.confirmation_number); e.target.textContent = "Copied"; };
   log.appendChild(c);
+}
+// Step-by-step application card: one question, Back/Next, Submit on the last one, then ✓ with the confirmation number.
+function formCard(f) {
+  const c = document.createElement("div"); c.className = "form"; c.setAttribute("role", "form"); c.setAttribute("aria-label", f.title); log.appendChild(c);
+  const vals = {}; let i = 0;
+  function render() {
+    const fld = f.fields[i], last = i === f.fields.length - 1;
+    c.innerHTML = `<h3>${esc(f.title)}</h3><p class="sub">${esc(f.intro)} <a href="${esc(f.source)}" target="_blank" rel="noopener">Official page ↗</a></p>
+      <div class="step">Question ${i + 1} of ${f.fields.length}</div><div class="bar"><i style="width:${(i / f.fields.length) * 100}%"></i></div>
+      <label for="ff">${esc(fld.label)}${fld.optional ? ' <span style="color:var(--muted);font-weight:400">(optional)</span>' : ""}</label>${fld.hint ? `<div class="hint">${esc(fld.hint)}</div>` : ""}
+      <div class="ffwrap"></div><div class="error" style="margin-top:8px"></div>
+      <div class="nav"><button type="button" class="back"${i ? "" : " disabled"}>Back</button><button type="button" class="next">${last ? "Submit" : "Next"}</button></div>`;
+    let el;
+    if (fld.type === "select") { el = document.createElement("select"); el.innerHTML = `<option value="">Choose…</option>` + fld.options.map((o) => `<option>${esc(o)}</option>`).join(""); }
+    else if (fld.type === "textarea") el = document.createElement("textarea");
+    else { el = document.createElement("input"); el.type = fld.type || "text"; if (fld.type === "number") el.min = "1"; }
+    el.id = "ff"; el.required = !fld.optional; if (fld.placeholder) el.placeholder = fld.placeholder; if (vals[fld.key] != null) el.value = vals[fld.key];
+    c.querySelector(".ffwrap").appendChild(el); el.focus();
+    const go = (d) => {
+      if (d > 0 && !el.checkValidity()) { c.querySelector(".error").textContent = el.validationMessage || "This one is required."; return; }
+      vals[fld.key] = el.value.trim(); i += d;
+      i >= f.fields.length ? submit() : render();
+    };
+    el.onkeydown = (e) => { if (e.key === "Enter" && fld.type !== "textarea") { e.preventDefault(); go(1); } };
+    c.querySelector(".back").onclick = () => go(-1); c.querySelector(".next").onclick = () => go(1);
+  }
+  async function submit() {
+    c.innerHTML = `<div class="status" style="margin:0"><span class="dots"><i></i><i></i><i></i></span><span>Submitting application…</span></div>`;
+    try {
+      const r = await fetch("/api/applications", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sessionId, type: f.type, fields: vals }) });
+      const a = await r.json(); if (!r.ok) throw new Error(a.error || "Could not submit");
+      apps.unshift(a); try { localStorage.setItem("sm_apps", JSON.stringify(apps)); } catch {} renderApps();
+      c.classList.add("done");
+      c.innerHTML = `<div class="check">✓</div><h3>Application submitted</h3><div class="num">${esc(a.confirmation_number)} <button type="button">Copy</button></div><small><b>Routed to:</b> ${esc(a.department)}</small><small>${esc(a.next_steps)}</small><small style="margin-top:8px;color:var(--muted)">Track it any time under Menu, top right.</small>`;
+      c.querySelector("button").onclick = (e) => { navigator.clipboard?.writeText(a.confirmation_number); e.target.textContent = "Copied"; };
+    } catch (e) {
+      c.innerHTML = `<h3>${esc(f.title)}</h3><div class="error">${esc(e.message)}</div><div class="nav"><span></span><button type="button" class="next">Back to form</button></div>`;
+      c.querySelector(".next").onclick = () => { i = f.fields.length - 1; render(); };
+    }
+    scroll();
+  }
+  render(); scroll();
 }
 function add(cls) { const d = document.createElement("div"); d.className = "msg " + cls; log.appendChild(d); scroll(); return d; }
 function esc(s) { return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
 function scroll() { requestAnimationFrame(() => window.scrollTo({ top: document.body.scrollHeight })); }
+if (location.hostname === "localhost") { const es = new EventSource("/dev"); let first = true; es.onopen = () => { if (!first) location.reload(); first = false; }; es.onmessage = () => location.reload(); }
 </script>
 </body>
 </html>

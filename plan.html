@@ -16,11 +16,216 @@
        Status badge classes: planned | progress | done | blocked.
        Do NOT log changes to ~/.claude/, plan.html itself, or the changelog server. -->
 
+  <article class="entry" id="e-2026-10-17-1152">
+    <header>
+      <time>2026-10-17 11:52</time>
+      <h2>Voice mode: human-sounding TTS</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "text-to-speech should be less robotic, sound like a real human". Default <code>speechSynthesis</code> picked whatever voice came first.</p>
+    <ul>
+      <li><code>server.js</code> — <code>POST /tts {text}</code> proxies to ElevenLabs streaming TTS (<code>ELEVENLABS_API_KEY</code>, <code>ELEVENLABS_VOICE</code> default Rachel, <code>ELEVENLABS_MODEL</code> default <code>eleven_turbo_v2_5</code>), streams <code>audio/mpeg</code>. Returns 404 when no key so the client falls back.</li>
+      <li><code>public/index.html</code> — <code>speak(text, done)</code>: fetch <code>/tts</code> &rarr; play via <code>Audio</code>; on 404/error fall back to <code>speechSynthesis</code> with the best available voice (macOS/iOS Premium/Enhanced Siri voices &rarr; Chrome/Edge "Google US English"/Natural/Online voices &rarr; Samantha/Ava &rarr; any en-US). <code>stopSpeaking()</code> also halts server audio when the user ends voice mode.</li>
+      <li><code>.env.example</code> — the three ElevenLabs vars.</li>
+    </ul>
+    <p><b>Verified:</b> <code>node --check</code> on both files; <code>/tts</code> returns 404 without a key (fallback path). <b>Not verified:</b> ElevenLabs audio (no key on this machine that I can see) and in-browser playback (Chrome MCP still locked by another session).</p>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1400">
     <header>
       <time>2026-10-17 14:00</time>
-      <h2>Daily watch alerts: "track this address" &rarr; judge model &rarr; email on change</h2>
+      <h2>Card-only replies: when a form / application / watch card appears, no text reply is shown</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "if a card appears for permits etc the full response should not be provided, only the card". Previously the model wrote a fee/deadline paragraph under the form card, and a confirmation paragraph under the application card, duplicating what the card already says.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>public/index.html</code> <code>send()</code> — new <code>card</code> flag + <code>cardOnly()</code>: on a <code>form</code>, <code>application</code> or <code>alert</code> event it cancels the reveal loop, clears streamed text and the bubble, removes the status line and ignores every later <code>text</code> frame. The empty bubble is already removed at the end (<code>if (!bot.textContent) bot.remove()</code>), so no Sources pill either; the form card carries its own "Official page" link. Deterministic: works even if the model still talks.</li>
+      <li><code>server.js</code> system prompt — the three card paths (open_application_form, submit_application, create_alert) now say "end your turn with no text; anything after the card is not displayed". For watches, the explanation moves <i>before</i> the create_alert call so it is still seen. Saves tokens and the trailing stream.</li>
+    </ul>
+    <p><b>Verified.</b> curl "help me apply for a block party": event sequence <code>status › sources › status › form:block_party_permit › done</code>, zero text before the card and one 42-char sentence after it ("The block party permit form is open above."), which the page now discards. Inline script and <code>server.js</code> pass <code>node --check</code>. The small trailing sentence is the model ignoring "no text" once; the client-side guard makes that harmless.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1142">
+    <header>
+      <time>2026-10-17 11:42</time>
+      <h2>Scope guardrail: Santa Monica only</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: refuse anything not about Santa Monica. Other places (Orange County, LA, Malibu…) &rarr; "I can't help with that. I only cover the City of Santa Monica." Unrelated topics (coding, trivia, chit-chat) &rarr; "Sorry, I can't help with that. I only focus on Santa Monica city services."</p>
+    <ul>
+      <li><code>server.js</code> — new "Scope (hard rule)" section in <code>SYSTEM</code> just before Style: in/out-of-scope definitions, the two canned refusals, no tool calls on refusals, and an allowance for county/state/federal/regional matters as they apply inside Santa Monica (so the news, GIS and live-data tools added by the parallel session still work).</li>
+    </ul>
+    <p>Prompt-only guardrail; skipped a separate classifier call (doubles cost per turn). Add one if the model slips past the rule.</p>
+    <p><b>Verified 11:46</b> on a temp server (port 8798): Huntington Beach parking &rarr; "I can't help with that. I only cover the City of Santa Monica." + offer of Santa Monica beach parking; "write a python function" &rarr; "Sorry, I can't help with that. I only focus on Santa Monica city services."; bulky pickup question answered normally (3 free/year).</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1350">
+    <header>
+      <time>2026-10-17 13:50</time>
+      <h2>"Could not resolve authentication method" fixed: modules load .env themselves</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Cause.</b> The SDK throws that error when <code>new Anthropic()</code> runs with no <code>ANTHROPIC_API_KEY</code> in the environment. Only <code>npm start</code> / <code>npm run dev</code> pass <code>--env-file=.env</code>; anything else that imports <code>server.js</code> or <code>alerts.js</code> (<code>node warm.js</code>, <code>node -e 'import("./server.js")'</code> probes, cron-style runs) got no key. <code>alerts.js</code> builds its client at import time, before <code>server.js</code>'s body runs, so a fix in <code>server.js</code> alone would not cover it.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>server.js:15</code> and <code>alerts.js:13</code> — <code>try { process.loadEnvFile(); } catch {}</code> immediately before <code>new Anthropic()</code>. Node ≥ 21.7 built-in, reads <code>./.env</code> from cwd, does not override variables already set, no-ops if the file is missing (so <code>test.js</code>'s dummy key still works). No new dependency.</li>
+    </ul>
+    <p><b>Verified.</b> <code>env -u ANTHROPIC_API_KEY node -e 'import("./alerts.js")'</code> now imports cleanly; before the change this was the failing path. <code>node --check</code> passes on both files. The <code>--env-file</code> flags in <code>package.json</code> are left in place; they are now redundant but harmless.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1138">
+    <header>
+      <time>2026-10-17 11:38</time>
+      <h2>Rename wordmark: SantaMonica.gov &rarr; Ask Santa Monica</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "call it something other than santamonica.gov". Picked "Ask Santa Monica" (product name, not a domain, so it doesn't claim to be the official site).</p>
+    <ul>
+      <li><code>public/index.html</code> — <code>&lt;title&gt;</code> and header <code>.brand</code>: <b>Ask Santa Monica</b> / small "City services".</li>
+      <li><code>public/manifest.webmanifest</code> — name "Ask Santa Monica", short_name "Ask SM".</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1152">
+    <header>
+      <time>2026-10-17 11:52</time>
+      <h2>Live research: stop the assistant answering from a stale training cutoff</h2>
       <span class="badge progress">in-progress</span>
+    </header>
+    <p><b>Goal.</b> User: "users are getting hit with a knowledge cutoff of February 2023". Residents asking about anything recent get "as of my knowledge cutoff&hellip;" instead of a searched answer.</p>
+    <h3>Root cause (read <code>server.js</code> 11:50)</h3>
+    <ul>
+      <li>The <code>SYSTEM</code> prompt (<code>server.js:54</code>&ndash;) never states today's date, so the model assumes its training date is "now" and treats anything later as unknown.</li>
+      <li><code>web_search</code> is only step 7 of retrieval, framed as a last resort for "current officeholders, exact hours", with <code>max_uses: 3</code>; nothing tells the model that current events must be searched, never recalled.</li>
+      <li>No <code>web_fetch</code> tool, so it can't read a page it found or a URL a resident pastes.</li>
+    </ul>
+    <h3>Intended change (files)</h3>
+    <ul>
+      <li><code>server.js</code> &mdash; second system block (uncached, after the cached <code>SYSTEM</code> prefix) with today's local date; a "Live research" rule in <code>SYSTEM</code>: never mention a knowledge cutoff or training data, treat anything after it as unknown-until-searched, use <code>search_local_news</code> then <code>web_search</code>/<code>web_fetch</code>, and always date what was found; <code>web_search max_uses</code> 3 &rarr; 5; add the server-side <code>web_fetch</code> tool with the same domain allow-list; Sources pill picks up <code>web_fetch</code> citations like <code>web_search</code> ones.</li>
+      <li><code>public/index.html</code> &mdash; nothing unless the SSE event for web tools needs a new label.</li>
+    </ul>
+    <h3>Done (12:05)</h3>
+    <ul>
+      <li><code>server.js</code> &mdash; retrieval step 7 rewritten as the "Live research (hard rule)"; second uncached system block <code>Today is &lt;weekday, date&gt; (Pacific time)</code>; <code>WEB_DOMAINS</code> const shared by <code>web_search</code> (<code>max_uses</code> 5) and the new <code>web_fetch_20260209</code> tool (<code>max_uses</code> 3, citations on, 20k content tokens); status line names web_search/web_fetch (skips the empty-input block the stream emits first); Sources pill also lists pages read by <code>web_fetch</code>.</li>
+      <li><code>transcripts.js</code> &mdash; <code>COUNCIL_YT_CHANNELS=""</code> now means "no YouTube pull" (<code>??</code> instead of <code>||</code>), used by the smoke test to avoid worsening the bot block.</li>
+    </ul>
+    <h3>Smoke test (temp server :8798, 12:00)</h3>
+    <ul>
+      <li>"What is your knowledge cutoff? Who is the mayor right now?" &rarr; "I don't have a knowledge cutoff to report. I look up current information live&hellip;", searched news, council and web, named Caroline Torosis from the City site with a caveat. <b>No cutoff disclaimer.</b></li>
+      <li>"What happened at the most recent council meeting?" &rarr; searched council/news/web, reported nothing found (cold temp server: council index still loading; web search returned no hits for the October 2026 query).</li>
+      <li><b>Open:</b> both answers said web search "returned nothing" and the Sources pill was empty, so the model may be getting thin web results under the domain allow-list. Probing <code>web_search</code> directly next.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1136">
+    <header>
+      <time>2026-10-17 11:36</time>
+      <h2>Council transcripts: every meeting ever posted to YouTube (back to July 2014)</h2>
+      <span class="badge progress">in-progress</span>
+    </header>
+    <p><b>Goal.</b> User: "every single Santa Monica City Council meeting that's ever been reported on YouTube", not just 2015+. The lister only walked the main city channel, whose council meetings start in 2017 (plus one 2014 stream), so 2014&ndash;2016 was missing.</p>
+    <h3>What exists on YouTube (searched 2026-10-17 with <code>yt-dlp ytsearch</code>, 5 phrasings &times; 40 results)</h3>
+    <table>
+      <tr><th>Channel</th><th>Council meetings</th><th>Span</th></tr>
+      <tr><td>City of Santa Monica <code>UC4V0jOEL4JMCcElkGA7AJpA</code></td><td>258 (after per-date dedupe)</td><td>2017 &rarr; now, + 2014-07-08</td></tr>
+      <tr><td>City of Santa Monica Meeting Coverage <code>UC8x0GS29SP-IbeiLRxMNlaw</code></td><td>~20</td><td>2015-11-24 &rarr; 2017-03-07 (some titled just "City Council Meeting", no date)</td></tr>
+      <tr><td>SMUpdateCityTV16 <code>UCrlsaKRGJhbvnJbvRpQWykA</code></td><td>2</td><td>2014-07-08, 2014-07-22</td></tr>
+      <tr><td>SMDailyPress, Santa Monica Votes, others</td><td>0</td><td>candidate forums / "Squirm Night" only &mdash; excluded</td></tr>
+    </table>
+    <p><b>Floor (confirmed by a second sweep, 5 phrasings &times; 100 results, filtered to pre-2015 uploads):</b> no full council meeting recording earlier than 2014-07-08 exists on YouTube from any channel. What does exist before that is third-party clips of single items (jetairpollution "June 26 SM City Council item 8D" 2012, partialpro "Council Mtg 10/02/12: ONE Vote", a 2013 public-comment clip, a 1998 vacancy-vote clip on mfeinsteintube). Not ingested: they're excerpts, not meetings. Pre-2014 meetings exist only in the city's Granicus archive (video, no captions) &mdash; same open question as the 11:30 entry.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>transcripts.js</code> &mdash; <code>CHANNELS</code> list (env <code>COUNCIL_YT_CHANNELS</code>, comma-separated ids) replaces single <code>COUNCIL_YT_CHANNEL</code>; <code>listVideos</code> (now exported) walks streams+videos of every channel; titles with no date fall back to <code>uploadDate()</code> (<code>yt-dlp --print release_date,upload_date</code>); <code>isMeeting</code> accepts "City Council" without "Meeting" and also excludes election/statement/squirm; <code>dateFromTitle</code> handles "June 11. 2019" and "May 24 , 2016" (2 main-channel videos were silently dropped before); <code>videos.json</code> cache keyed by channel list so the change invalidates it.</li>
+      <li><code>test.js</code> &mdash; three new <code>dateFromTitle</code> cases.</li>
+      <li><code>server.js</code> &mdash; prompt + tool description say 2014-present.</li>
+    </ul>
+    <h3>Status</h3>
+    <ul>
+      <li>Code patched. <code>node warm.js</code> from the 11:22 run (old 258-video list) is still pulling captions; the new channels get pulled on the next <code>node warm.js</code> / server start (per-video cache skips what's done).</li>
+      <li><b>Verified 11:45:</b> relisted across the 3 channels &rarr; 269 meetings (was 258): 2014:2, 2015:3, 2016:4, 2017:22, then 2018&ndash;2026 unchanged. <code>dateFromTitle</code> cases pass. <code>npm test</code> currently fails earlier at <code>test.js:40</code> (<code>pertinentSources</code> block-party assertion from a parallel session's knowledge edits), unrelated to this change.</li>
+      <li><b>11:50 &mdash; YouTube bot-check hit.</b> The pull for the 11 new videos got "Sign in to confirm you're not a bot" on every one. Cause: 10 concurrent <code>yt-dlp</code> processes from <b>four</b> <code>node --env-file=.env server.js</code> instances (started 11:41&ndash;11:43, other sessions) plus <code>node warm.js</code>, each ingesting transcripts in parallel. The block is still active (single probe 11:50). Those processes keep writing empty "no captions" records while blocked.</li>
+      <li><code>transcripts.js fetchTranscript</code> patched: a yt-dlp error now stores <code>checked_at: 0</code> so the next run retries immediately (the parallel session's weekly re-check would have waited 7 days); optional <code>YT_COOKIES_FROM_BROWSER=chrome</code> env passes <code>--cookies-from-browser</code> if the block persists. Deleted 70 empty cache records written during the blocked window so they get re-pulled.</li>
+      <li><b>Pending:</b> stop the duplicate servers (user's call &mdash; other sessions own them), wait for the block to lift, then one <code>node warm.js</code>. 2014&ndash;2017 captions are not in the index until then.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1150">
+    <header>
+      <time>2026-10-17 11:50</time>
+      <h2>UI tightened: compact header, 720px column, consistent scale; clip cards restored</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "make the icon smaller and use good design principles." Base was the ChatGPT-style dark layout already in <code>public/index.html</code> (voice mode, sources pill, alerts kept intact).</p>
+    <ul>
+      <li><code>public/index.html</code> — design tokens in a comment at the top of the stylesheet: type 12/13/14/16/20, space 4/8/12/16/24/32, radius 10/14/999, one accent. Header: 18×12 flag, 17px serif wordmark + muted "Assistant" label, ghost 34px Menu button, hairline bottom border with blur. Reading column 1000→720px. Chips: flex-wrap row, 14px, 9×16 padding (was 72px-tall stacked pills at 19px). Composer: 26px radius, 40px buttons, 16px text. Action pills 34px/13px with 22px source avatars. Tables 14px/10px radius. Scroll-to-bottom button 38px. Mobile overrides updated.</li>
+      <li>Re-added the council clip cards (<code>clipCard()</code>, <code>clips</code> SSE handler) and the "Saved council moments" section in the menu sheet — they had been dropped when the file was rewritten in parallel.</li>
+      <li>Verified in Chrome at 1280×800 and 390×760: no console errors, no overflow, composer and status line aligned to the column.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1335">
+    <header>
+      <time>2026-10-17 13:35</time>
+      <h2>Sources only in the Sources pill, never inline in the reply text</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User screenshot showed "Source: Fees and Rates, data.santamonica.gov" written inside the answer. The page already collects <code>sources</code> SSE events into the Sources pill under each reply (<code>index.html</code> <code>sourcesPill()</code> / <code>actionRow()</code>), so inline attributions are duplicate noise.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>server.js</code> system prompt — removed "Cite the dataset by title with its URL" and "Link the page"; added a Style rule: sources are never written in the text (no "Source:" lines, dataset names as attribution, URLs, footnotes or markdown links). One exception kept: the timestamped YouTube link for a quoted council moment, because <code>saveClipsFor()</code> parses it out of the text to render the clip player.</li>
+      <li><code>server.js</code> <code>chat()</code> — on the final turn, web pages the model actually cited (<code>citations[].type === "web_search_result_location"</code> on text blocks) are sent as a <code>sources</code> event with <code>kind: "web"</code>, so web_search answers still show their pages in the pill without links in the prose. <code>deptOf()</code> already maps any url/title to a department badge, so no frontend change.</li>
+    </ul>
+    <p><b>Verified.</b> curl, "How much is a building permit for a $40,000 kitchen remodel": final text has no "Source" and no URL; a <code>sources</code> frame listed Fees and Rates, Active Building &amp; Safety Permits and the building-permit knowledge chunks. Web-search citation path not exercised by that question (model answered from the index); it is a 2-line map over <code>citations</code>.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1210">
+    <header>
+      <time>2026-10-17 12:10</time>
+      <h2>Step-by-step application cards for predefined permits + pertinent, accurate RAG sources</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal (user).</b> (1) Predefined applications (block party etc.) carry a saved list of required information. When a resident asks about one, a card pops up in the chat: one question at a time, <i>Next</i>, then <i>Submit</i>; the server files it and the card shows a check mark "Application submitted". Applications are tracked in the top-right Menu (already existed). (2) The Sources pill showed wrong sources for the block-party question ("Water Usage" dataset, "Street Sweeping"); sources must be pertinent and accurate for everything.</p>
+    <h3>Root causes found</h3>
+    <ul>
+      <li><b>All 6 BM25 hits were forwarded as sources</b> (<code>server.js</code> sources event), including tail hits and datasets never queried. Reproduced with <code>rag.search()</code> on the block-party chip: hits #2–#6 were parking permits, street sweeping, building permits, community events, Water Usage.</li>
+      <li><b>Retrieval itself was noisy.</b> <code>rag.js</code> tokenizer had no stemming ("pothole" ≠ "potholes") and indexed stopwords, so long natural-language questions ("I want to host… on my street… can you help me apply?") scored on <i>my / on / street / permit / apply</i> and matched half the corpus.</li>
+      <li><b>Chunk URL was regex-extracted from chunk text</b> (<code>Source: …</code>); long sections split into several chunks and only the last carried the URL, the rest fell back to <code>santamonica.gov</code>. <code>knowledge/santa-monica.md</code> had no Source lines at all.</li>
+      <li><b>Knowledge Source URLs were wrong or dead</b> (audited against the live site via curl with a browser UA — santamonica.gov bot-walls WebFetch): <code>/permits-licenses</code> is a <b>404</b> (cited by Dog License, Alarm, Taxi…); Encroachment / Sidewalk Vending / TUP cited the community-event page; Leaf Blower cited code-enforcement; Home-share cited a 2019 press release. <b>Content errors:</b> block party fee is <b>$100.95</b> (file said $72.99); leaf blowers are <b>not</b> banned outright (electric ≤70 dB allowed, SMMC 4.12.180, since July 2023); bulky pickup has its own page, a 5-item cap and no "3 free/yr" language; dog licenses are through the Animal Shelter (1640 9th St), not SMPD dispatch.</li>
+    </ul>
+    <h3>What changed</h3>
+    <ul>
+      <li><code>forms.js</code> (new) — <code>FORMS[type]</code> for <code>block_party_permit</code>, <code>preferential_parking_permit</code>, <code>bulky_item_pickup</code>, <code>business_license</code>, <code>dog_license</code>, <code>community_event_permit</code>, <code>311_service_request</code>: title, one-line intro (fee/deadline), the city <code>source</code> URL, ordered <code>fields[]</code> ({key,label,type,hint,options,optional}). Fields mirror the city page: block party = date, hours, block, R-1 zoning (51%/25% petition), petition status, attendance, address + contact; parking = permit kind, quantity, address, zone, vehicle/plate, gov-ID type, residency-proof type; bulky = address, unit, items (≤5), curb/alley. <code>toApplication(type, fields)</code> validates required fields + email and maps to the <code>submitApplication</code> shape (address/date lifted, the rest as "Label: value" lines in <code>details</code>).</li>
+      <li><code>server.js</code> — tool <code>open_application_form{type}</code> → SSE <code>{type:"form", data}</code>; SYSTEM prompt tells the model to search, open the form, then write a short note (fee, deadline, documents, source link) and never collect form fields in chat; <code>submit_application</code> now only for non-form types; <code>block_party_permit</code> added to the enum and <code>ROUTING</code> (Transportation Planning, $100.95). <code>POST /api/applications</code> {sessionId,type,fields} files it and appends a user/assistant pair to the session so the model knows the confirmation number. <code>pertinentSources(hits)</code>: knowledge hits only, within 75% of the top score, max 3, single source when the top score itself is weak (&lt;8), deduped by URL; dataset sources emitted only when <code>query_dataset</code> actually runs (<code>rag.datasetFor(resource_id)</code>).</li>
+      <li><code>rag.js</code> — tokenizer: stopword removal (incl. <i>santa, monica, city</i>), suffix stemmer, and bigrams of adjacent content words ("block_party", "dog_license") so distinctive phrases dominate; <code>chunkMarkdown</code> parses each section's <code>Source:</code> into <code>url</code> on every chunk of that section (line stripped from text) and skips un-headed file preambles; <code>datasetFor()</code>.</li>
+      <li><code>public/index.html</code> — <code>formCard(def)</code>: one field per step with progress bar, Back/Next/Submit, native validation (<code>type=date/email/tel/number</code>, selects), Enter advances, success state ✓ "Application submitted" + confirmation + routing, pushes into <code>sm_apps</code> so the Menu count updates; on the <code>form</code> event the card is placed first and the assistant's note streams under it.</li>
+      <li><code>knowledge/*.md</code> — rewrote Block Party (verified process, petition %, $100.95, City Yards materials, notice), Preferential Parking (required documents, GoSaMo Center, 3–5 days, 30-day temp permit), Bulky Item (own page, 5 items, what to include), Dog License (Animal Shelter, fees), Leaf Blower (electric ≤70 dB), Encroachment/TUP (Building &amp; Land Use Permits page), Sidewalk Vending (own page), Home-share (admin regs PDF), Alarm (SMPD), Taxi… (Licenses &amp; Permits); added a verified Source line to every <code>santa-monica.md</code> section; "parking ticket" synonym on the citations section.</li>
+      <li><code>test.js</code> — form definitions sanity (contact fields, select options, city source), validation + mapping, chunk-URL attachment, <code>pertinentSources</code> on the block-party question must equal exactly the block-party URL, datasets/url-less chunks never appear. <b><code>npm test</code> passes.</b></li>
+      <li><code>README.md</code> — tools list + <code>forms.js</code> paragraph.</li>
+    </ul>
+    <h3>Retrieval before → after (block-party chip)</h3>
+    <pre><code>before: 29.0 Block Party | 15.3 Preferential Parking | 14.8 Street Sweeping | 14.5 Building Permits | 12.4 Community Event | 10.9 Water Usage (dataset)   → all 6 shown as sources
+after:  25.3 Block Party | 20.8 Block Party (2nd chunk) | 16.5 Permits &amp; Licenses overview | 10.9 … | 8.9 Preferential Parking             → sources: Block Party Permit only</code></pre>
+    <h3>Verification (12:55)</h3>
+    <ul>
+      <li><b><code>npm test</code> passes</b> (forms, chunk URLs, source filter, existing suites).</li>
+      <li><b>Smoke on a temp server (port 8799):</b> <code>POST /api/applications</code> with block-party answers → <code>SM-xxxxxx</code>, status <code>received</code>, routed to Transportation Planning, readable via <code>GET /api/applications/:id</code>; missing field → 400 <code>"Breed, color and age is required"</code>. Test record deleted afterwards.</li>
+      <li><b>Live chat turn</b> on the block-party chip: the model called <code>search_city_knowledge</code> then <code>open_application_form</code>; SSE carried exactly one <code>form</code> event (block_party_permit) and one <code>sources</code> event containing only the Block Party Permit page; the reply quoted the verified $100.95 fee, 14/30-day deadlines, 51%/25% petition rule and pointed to the card below. No applicant details were asked in chat.</li>
+      <li><b>Not verified in a browser:</b> the card's rendering/Next/Submit flow. All three Chrome DevTools MCP servers were unreachable this session (stale profile lock / Chrome not running); the inline JS parses and the handler/payload contract matches. Open <code>npm start</code> → click "How do I get a permit for a block party?" to eyeball it.</li>
+    </ul>
+    <h3>Notes</h3>
+    <ul>
+      <li>Alarm permit: no SMPD alarm page exists on santamonica.gov; the section now only points to the non-emergency line. Dog license fees come from the city fee schedule found via search, marked "verify" in the text.</li>
+      <li>Another session edited <code>public/index.html</code> (header/"My stuff"/clips redesign) and added <code>sources.js</code> concurrently; this change was applied as anchored inserts on top of the current file, not a rewrite.</li>
+      <li>Skipped: per-type fee lookups from a live source, file uploads (petitions, rabies certificate, ID scans) — the card records which document the resident will bring. Add when the city portal integration exists.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1120">
+    <header>
+      <time>2026-10-17 11:20</time>
+      <h2>Daily watch alerts: "track this address" &rarr; judge model &rarr; email on change</h2>
+      <span class="badge done">done</span>
     </header>
     <p><b>Goal.</b> User: residents can say "let's track a specific address" (or any topic). The assistant creates an alert; a daily job gathers what the RAG index (knowledge + council agendas/minutes/transcripts) and data.santamonica.gov datasets currently say about it, diffs against what was already seen, asks a decision ("judge") model <i>has something changed for this query? yes/no</i>, and if yes compiles and sends an email. If no, nothing happens.</p>
     <p><b>Assumption.</b> "Jev as a decision model" read as an LLM-as-judge step; implemented as <code>JUDGE_MODEL</code> env (default <code>claude-haiku-5-5</code>, cheap yes/no) with a forced <code>decide</code> tool returning <code>{changed, reason, subject, body}</code>.</p>
@@ -29,7 +234,7 @@
       <li><code>alerts.js</code> (new) — <code>createAlert(rag, input)</code> (snapshots baseline evidence keys so day 1 only reports new things), <code>cancelAlert</code>, <code>gatherEvidence(rag, topic)</code> (council excerpts + knowledge chunks + rows from the top 3 matching datastore resources via <code>queryDataset(q=topic)</code>), pure <code>diffEvidence(seenKeys, items)</code>, <code>judge()</code>, <code>sendEmail()</code> (Resend HTTP API when <code>RESEND_API_KEY</code> set, else writes <code>data/outbox/*.txt</code>), <code>runAlerts(rag)</code>. Store: <code>data/alerts.json</code>.</li>
       <li><code>server.js</code> — tools <code>create_alert</code> / <code>cancel_alert</code>; SYSTEM prompt paragraph on when to offer a watch; <code>refreshCouncil()</code> factored out of startup so the daily job re-ingests new agendas/minutes/transcripts before checking; <code>scheduleDaily()</code> fires at <code>ALERT_HOUR</code> (default 07:00 local) every 24h; <code>POST /api/alerts/run</code> triggers a run now (demo/cron hook); SSE event <code>{type:"alert"}</code>.</li>
       <li><code>rag.js</code> — <code>addDocs</code> dedupes by <code>url#part</code> so daily re-ingest doesn't duplicate council chunks.</li>
-      <li><code>public/index.html</code> — handles the <code>alert</code> event: card "Daily watch on", and the alert appears in the My applications sheet with status <code>watching</code>.</li>
+      <li><code>public/index.html</code> — handles the <code>alert</code> event: <code>appCard(a, label)</code> shows "🔔 Daily watch on"; the alert also lists in the Menu sheet with status <code>watching</code>.</li>
       <li><code>test.js</code> — <code>createAlert</code> round-trip + <code>diffEvidence</code> check (no API call).</li>
       <li><code>.env.example</code>, <code>README.md</code> — <code>JUDGE_MODEL</code>, <code>ALERT_HOUR</code>, <code>RESEND_API_KEY</code>, <code>ALERT_FROM</code>.</li>
     </ul>
@@ -42,14 +247,15 @@ daily 07:00 → refreshCouncil() → for each alert:
        some → judge(topic, fresh) → {changed:false} → mark seen, no email
                                   → {changed:true,subject,body} → sendEmail → mark seen</code></pre>
     <h3>Acceptance</h3>
-    <ul><li><code>npm test</code> passes; alert created via chat shows card + sheet entry; <code>curl -X POST :8787/api/alerts/run</code> returns per-alert <code>{id, new, changed}</code>; email lands in <code>data/outbox/</code> without Resend configured.</li></ul>
+    <ul><li><b>Verified 11:25:</b> <code>npm test</code> passes (diff + create/cancel round-trip). Smoke on a temp server (port 8799): empty run &rarr; <code>[]</code>; created a pier-parking watch (baseline 5 keys), cleared <code>seen</code>, ran &rarr; <code>{new:5, changed:false, reason:"…downtown parking structure and beach lot rates… none mention the Pier"}</code>, no email (correct). <code>sendEmail</code> without <code>RESEND_API_KEY</code> wrote to <code>data/outbox/</code>. Test alert cancelled, outbox removed.</li>
+      <li><b>Not verified:</b> the chat flow end to end (model asking for email then calling <code>create_alert</code>) and a real Resend send.</li></ul>
   </article>
 
   <article class="entry" id="e-2026-10-17-1140">
     <header>
       <time>2026-10-17 11:40</time>
       <h2>Cited council video moments are cached and playable in the app</h2>
-      <span class="badge progress">in-progress</span>
+      <span class="badge done">done</span>
     </header>
     <p><b>Goal.</b> When an answer cites a council video at a timestamp, that exact moment is stored server-side and shown to the resident as a playable clip they can save and come back to.</p>
     <h3>Files</h3>
@@ -58,7 +264,7 @@ daily 07:00 → refreshCouncil() → for each alert:
       <li><code>server.js</code> — after the final assistant text of a turn, <code>saveClipsFor(text)</code> persists each cited moment to <code>data/clips.json</code> (keyed <code>VIDEO-SECONDS</code>, with <code>cited_at</code>) and streams a <code>clips</code> SSE event. Routes: <code>GET /api/clips</code> (newest first), <code>GET /api/clips/:id</code>. Prompt now tells the model to include the exact transcript excerpt url when quoting a meeting.</li>
       <li><code>public/index.html</code> — <code>clipCard()</code>: thumbnail with timestamp badge → click swaps in the embedded player at that second; excerpt (expandable), "Save moment", "Open on YouTube". Sheet renamed "My stuff": Applications + Saved council moments (localStorage <code>sm_moments</code>); tapping a saved moment re-renders the clip and autoplays.</li>
       <li><code>test.js</code> — citation parsing incl. dedupe/entity-escaped ampersand; path-injection guard on <code>clipWindow</code>.</li>
-      <li><code>transcripts.js</code> — <code>listVideos()</code> now walks <code>/streams</code> and <code>/videos</code> (council meetings are livestreams). Caption pull for ~248 streams re-running via <code>node warm.js</code>; per-video JSON cache means already-fetched videos are skipped.</li>
+      <li><code>transcripts.js</code> — <code>listVideos()</code> now walks <code>/streams</code> and <code>/videos</code> (council meetings are livestreams). Full pull done (<code>node warm.js</code>, 882 s): <b>258 council meeting videos listed, 162 have an English caption track → 26,723 transcript chunks, 2017-05-24 → 2026-10-13</b> (per year: 2017:5 · 2018:5 · 2019:11 · 2020:19 · 2021:18 · 2022:20 · 2023:25 · 2024:19 · 2025:22 · 2026:18). 96 videos have no caption track on YouTube (older streams, "lost audio" uploads). Minutes archive: 395 meetings → 9,273 chunks. Cache: <code>data/transcripts</code> 56 MB.</li>
     </ul>
     <h3>Design notes</h3>
     <ul>
@@ -67,12 +273,13 @@ daily 07:00 → refreshCouncil() → for each alert:
     </ul>
   </article>
 
-  <article class="entry" id="e-2026-10-17-1330">
+  <article class="entry" id="e-2026-10-17-1112">
     <header>
-      <time>2026-10-17 13:30</time>
+      <time>2026-10-17 11:12</time>
       <h2>Soften chrome: GPT &times; america.gov blend</h2>
       <span class="badge done">done</span>
     </header>
+    <p><b>Superseded 11:22.</b> A parallel Claude session rewrote <code>public/index.html</code> (dark GPT-style redesign: <code>--bg:#0b0e13</code>, pill composer, Menu button, clips). The SVG sprite and america.gov palette from this entry are no longer in the file; only <code>public/icon.svg</code> and <code>manifest.webmanifest</code> changes survive. Re-apply on top of the new file if still wanted.</p>
     <p><b>Goal.</b> User: "less blocky, more modern, like a cross with gpt and america.gov". Keeps the navy/red palette and solid Material icons from the previous entry, but restores ChatGPT-style geometry.</p>
     <h3>Files</h3>
     <ul>
@@ -112,12 +319,13 @@ daily 07:00 → refreshCouncil() → for each alert:
     </ul>
   </article>
 
-  <article class="entry" id="e-2026-10-17-1315">
+  <article class="entry" id="e-2026-10-17-1105">
     <header>
-      <time>2026-10-17 13:15</time>
+      <time>2026-10-17 11:05</time>
       <h2>Icons &amp; chrome restyled to match america.gov</h2>
       <span class="badge done">done</span>
     </header>
+    <p><b>Superseded 11:22.</b> A parallel Claude session rewrote <code>public/index.html</code> (dark GPT-style redesign: <code>--bg:#0b0e13</code>, pill composer, Menu button, clips). The SVG sprite and america.gov palette from this entry are no longer in the file; only <code>public/icon.svg</code> and <code>manifest.webmanifest</code> changes survive. Re-apply on top of the new file if still wanted.</p>
     <p><b>Goal.</b> User: "make the icons etc look more like america.gov". Inspected america.gov (WebFetch, Chrome MCP was down): icons are solid-filled Material-style SVG paths (the location icon is Material <code>my_location</code>, the plus is Material <code>add</code>) in near-black navy <code>#000C1F</code>; red accent <code>#D80007</code>; cards use ~4px corners with a large soft shadow; no emoji anywhere.</p>
     <h3>Files</h3>
     <ul>
@@ -153,6 +361,120 @@ daily 07:00 → refreshCouncil() → for each alert:
     <h3>To use Opus again</h3>
     <p>console.anthropic.com → workspace <i>Hackathon</i> → Limits → raise the per-model input-tokens-per-minute for claude-opus-5-5, then add <code>MODEL=claude-opus-5-5</code> to <code>.env</code> and restart.</p>
     <p><b>Verified (curl -N against the restarted server).</b> Fresh session "hi": first token at 2.0 s, then word-by-word. Warm session dataset question: <code>search_city_knowledge</code> status at 1.6 s, <code>query_dataset</code> at 3.8 s, first text at 5.7 s, deltas every ~5 ms. Very first request after boot took 22 s to its first frame (prompt-cache write + cold path); later requests are 2–6 s. Row cache was not exercised by the model's query sequence (each call used different params); logic is a 4-line memo, covered by inspection.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1155">
+    <header>
+      <time>2026-10-17 11:55</time>
+      <h2>"Connection lost" on every file save: chat waits for the dev server to come back and resends once</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Cause.</b> User: "keep getting connection lost". The app runs under <code>npm run dev</code> (<code>node --watch</code>), and two Claude sessions were saving <code>server.js</code>/<code>rag.js</code>/<code>sources.js</code>/<code>transcripts.js</code> every minute or two (mtimes 11:40–11:46). Each save restarts the process: in-flight <code>/chat</code> streams die and the port refuses connections for the ~5–15 s the RAG index rebuilds. The client showed its generic "Connection lost. Try again." for both. Verified via curl that <code>/chat</code> itself works (weather answer streamed end to end, pid 92397 stayed up).</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>public/index.html</code> — <code>send()</code>: the fetch/stream block is now a one-retry loop. On a network error (or non-2xx) before any text, card or form has arrived, it shows "Server restarted, reconnecting…", polls <code>HEAD /</code> once a second for up to 20 s, then resends the same message. Partial replies and user-initiated stops behave as before. Note: sessions are in-memory, so the retried turn starts a fresh server-side history.</li>
+    </ul>
+    <p><b>Not changed.</b> The restarts themselves: for a demo, run <code>npm start</code> (no watch) or stop editing while testing. Index rebuild on boot could be made lazy later if the restart gap still hurts.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1130">
+    <header>
+      <time>2026-10-17 11:30</time>
+      <h2>Every Santa Monica source: local news, city &amp; county GIS, state/federal live data</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "All Santa Monica sources, including local news and everything, should be referenced… every dataset possible, maybe at the county level as well… think outside the box." The assistant currently retrieves from <code>knowledge/*.md</code>, the 82-dataset CKAN catalog, and council agendas/minutes/transcripts. This adds three new source classes, each probed live on 2026-10-17 before being wired in.</p>
+    <h3>Probe results (what actually answers)</h3>
+    <table>
+      <tr><th>Class</th><th>Works (integrated)</th><th>Blocked / skipped</th></tr>
+      <tr><td>Local news</td><td>Santa Monica Daily Press (Ghost RSS, full text), SM Mirror, SM Next, SM Observer, Patch Santa Monica, Canyon News, r/SantaMonica (Atom), LA Times California RSS, Bing News RSS, Google News RSS queries (general, <code>site:surfsantamonica.com</code> for the Lookout, westsidecurrent, latimes, kcrw, laist, santamonica.gov releases, SMC/SMMUSD, BBB/Pier/Promenade), Granicus CityTV video feeds (views 2–8: council + boards)</td><td>Lookout direct (403), Westside Current (429), KCRW (429), SMMUSD/SMC (403/no feed), santamonica.gov news (Imperva), Nixle, Bluesky (403), Reddit JSON (403)</td></tr>
+      <tr><td>City GIS</td><td><code>gis-smgov.opendata.arcgis.com</code> DCAT: 438 datasets → ~250 real layers (zoning, LUCE land use, parcels, preferential parking zones, street sweeping routes, bike network, trees, historic resources, fault/liquefaction/tsunami/flood zones, evacuation zones, airport noise contours, BBB &amp; Metro stops, vote precincts, BIDs, fire run districts, census 2020…) served from <code>gis.santamonica.gov/server/rest/services</code></td><td>Address_Points field names unknown until layer JSON is read (done lazily)</td></tr>
+      <tr><td>County</td><td>LA County eGIS hub DCAT (949 datasets, filtered to data layers), LA County Political Boundaries MapServer (supervisorial/congressional/assembly/senate by address), LA County Assessor portal API (parcel search + detail by address)</td><td>data.lacounty.gov Socrata is gone (domain removed), LAHSA/lavote/Public Health are HTML-only → web_search domains</td></tr>
+      <tr><td>State / federal live</td><td>NWS forecast+alerts (grid LOX/146,45, zone CAZ366), NOAA tides &amp; water temp (station 9410840), USGS quakes 50 km, AirNow reporting-area API, Heal the Bay Beach Report Card, Lime GBFS (scooter/bike availability), Big Blue Bus GTFS-RT service alerts (protobuf decoded in-house), OpenSky aircraft over SMO, Caltrans D7 traffic cameras (13 near SM), CDC PLACES city health measures, BLS LAUS unemployment (series LAUCT0670000…), Wikipedia search/extracts, data.ca.gov CKAN (HCD housing APR etc.), Census ACS (only if <code>CENSUS_API_KEY</code> set)</td><td>Census without key, OpenAQ/PurpleAir/HUD (keys), Overpass (406), EPA ECHO (too broad), Redfin (1 GB file), Metro GTFS-RT (Swiftly key)</td></tr>
+    </table>
+    <h3>Files</h3>
+    <ul>
+      <li><code>sources.js</code> (new) — <code>parseFeed()</code> RSS/Atom → items; <code>FEEDS</code> registry; <code>ingestNews(onDocs)</code> merges into <code>data/news.json</code> and emits <code>kind:"news"</code> docs; <code>loadGisCatalog()</code> city + county DCAT → <code>kind:"gis"</code> docs cached in <code>data/gis.json</code>; <code>queryGis()</code> ArcGIS REST query by <code>where</code> and/or address (Nominatim geocode bounded to the city); <code>decodePb()</code> minimal protobuf reader for GTFS-RT alerts; <code>live</code> map of named fetchers with a 5-min cache.</li>
+      <li><code>rag.js</code> — <code>searchNews(query, k, since)</code>; <code>search()</code> excludes news/council but appends up to 2 recent news hits; <code>addDocs()</code> dedupes by <code>url#part</code> so the 30-min news refresh doesn't duplicate; <code>queryDataset()</code> takes <code>portal</code> (santamonica | california).</li>
+      <li><code>server.js</code> — tools <code>search_local_news</code>, <code>query_gis</code>, <code>get_live_data</code>; GIS catalog indexed at boot; news ingested at boot and every 30 min; <code>web_search</code> domains widened to news/county/state sites; SYSTEM prompt retrieval steps 4–7; Sources SSE events for the new tools.</li>
+      <li><code>public/index.html</code> — <code>DEPTS</code> badge map gains every new publisher (SMDP, Mirror, Next, Observer, Patch, Lookout, LA Times, KCRW, Reddit, CityTV, City GIS, LA County, Assessor, NWS, NOAA, USGS, AirNow, Heal the Bay, Lime, Caltrans, CDC, BLS, Wikipedia, CA Open Data).</li>
+      <li><code>test.js</code> — feed parsing (RSS + Atom double-escaped HTML + Bing redirect unwrap), protobuf decode, news dedupe in <code>addDocs</code>, GIS junk-title filter, <code>queryGis</code> host allow-list.</li>
+      <li><code>README.md</code> — "Sources" section listing every feed/API and the optional <code>CENSUS_API_KEY</code> (not added to <code>.env.example</code>: that file is read-protected in this session).</li>
+    </ul>
+    <h3>Deviations from the plan</h3>
+    <ul>
+      <li>LA County Assessor: the portal search API ignores the city, so <code>property</code> queries the county's "Assessor Parcel Data Roll 2026" ArcGIS table instead (house number + street + <code>SitusCity LIKE 'SANTA MONICA%'</code>, falling back to a 90 m box around the geocoded point for public parcels with a blank situs). Verified: 1109 Centinela Ave → SFR, built 1937, 2,856 sq ft, assessed $931,456; 1685 Main St → civic parking-lot parcel.</li>
+      <li>Heal the Bay's API ignores lat/lng; all LA County sites are pulled and filtered to within 5 km (9 Santa Monica sites, e.g. Pier dry/wet F, Wilshire drain B, Pico-Kenter D on 2026-10-16).</li>
+      <li>Zoning/parcel polygons exclude the street, where Nominatim drops the point: <code>queryGis</code> retries at 40 m (1685 Main St → CC Civic Center / OS).</li>
+      <li>BLS v2 (unregistered) rejects multi-series GETs: four single-series calls, cached 24 h. Santa Monica unemployment Aug 2026: 4.9% (prelim).</li>
+      <li>GIS catalog keeps only real layer URLs (<code>/FeatureServer|MapServer/N</code>), drops MapServer duplicates of FeatureServer layers and sublayer noise: 803 layers (147 city, 656 county) instead of 1,004.</li>
+    </ul>
+    <h3>Verified</h3>
+    <ul>
+      <li>Boot on a spare port: <code>GIS: 803 city/county layers indexed</code>, <code>News: 0 new, 1696 total items from 26 feeds</code> (first run indexed 1,668 items from 26/26 feeds, zero feed errors), council 395 meetings. The dev server on :8787 (<code>node --watch</code>) picked the changes up automatically.</li>
+      <li>Smoke script: all 15 <code>live.*</code> kinds return data (weather incl. a Heat Advisory, tides, 15 quakes, AQI, 9 beach sites, 18 Lime vehicles, 4+ BBB alerts, 9 aircraft near SMO, 13 Caltrans cams, CDC measures, BLS, Wikipedia, assessor, data.ca.gov HCD APR resource ids; census returns the no-key note).</li>
+      <li>Retrieval: "what zoning is my house in" → Zoning layer; "street sweeping day" → Street Sweeping; "murder suicide ocean park" → Mirror/Patch/Yo! Venice articles; "rent control board" → CityTV Rent Control Board meeting videos.</li>
+      <li>My test block passes (run in isolation via a scratch runner). <b>Caveat:</b> <code>npm test</code> as a whole currently stops earlier at another session's in-progress assertion on <code>pertinentSources</code> for the block-party query (line ~40), which predates and is independent of these changes.</li>
+    </ul>
+    <h3>Not done (deliberately)</h3>
+    <ul>
+      <li>Boards &amp; commissions agendas/minutes from IQM2 (the Agendas &amp; Minutes dataset only has City Council; other bodies only via CityTV video titles). Add when a Planning Commission question misses.</li>
+      <li>Article bodies are the feed excerpt/content only (SMDP ships full text; others a paragraph). Fetching article pages would hit bot walls; add per-publisher if excerpts prove too thin.</li>
+      <li>Blocked sources are reached via Google News proxies (Lookout, Westside Current, KCRW, LAist) rather than directly; Reddit via RSS only.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1455">
+    <header>
+      <time>2026-10-17 14:55</time>
+      <h2>Auth error fixed: stray test process was serving :8787 without a key</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Symptom.</b> Chat replies fail with the SDK error "Could not resolve authentication method. Expected one of apiKey, authToken, …". That error means the server process has neither <code>ANTHROPIC_API_KEY</code> nor <code>ANTHROPIC_AUTH_TOKEN</code> in its environment when it makes the request. The server starts with <code>--env-file=.env</code>, so the file exists but the key line is missing, empty, misnamed, or malformed (quotes / spaces around <code>=</code>).</p>
+    <h3>Files</h3>
+    <ul><li><code>server.js</code> — startup guard before <code>new Anthropic()</code>: exits with a plain message naming the fix instead of letting every chat fail later.</li></ul>
+    <p><b>Root cause.</b> The key in <code>.env</code> is fine (the new guard did not fire). A one-off <code>node -e</code> script from another session imported <code>server.js</code> to test <code>pertinentSources</code>; importing the module called <code>.listen(8787)</code>, and because that script ran without <code>--env-file</code> it had no key. It grabbed :8787 while the watch-mode server was restarting, so the browser talked to a key-less server. The watch server then logged <code>EADDRINUSE</code> and waited.</p>
+    <p><b>Fix.</b> Killed the stray process (pid 56896). <code>server.js</code> now assigns the server to a const and only calls <code>listen</code> when <code>import.meta.main</code> (Node 25), so importing it from <code>test.js</code> or ad-hoc scripts never binds the port. Guard against a missing key kept.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1440">
+    <header>
+      <time>2026-10-17 14:40</time>
+      <h2>Header: drop "City services" tagline</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><code>public/index.html</code> — removed the <code>&lt;small&gt;City services&lt;/small&gt;</code> after the "Ask Santa Monica" wordmark (added outside this session's earlier edits). Wordmark only now.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1400">
+    <header>
+      <time>2026-10-17 14:00</time>
+      <h2>Concise numeric answers: tighter style prompt, proper number tables, no leaked scratch text</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User screenshot of a fee answer: it opened with leaked model scratch ("Fees and Rates dataset wasn't returned; search for it.Use direct calls."), ran long, and the table had the amount column left in a plain wrapped layout. Make tables/numbers read cleanly and answers short and pertinent.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>server.js</code> — Style section of <code>SYSTEM</code> rewritten: answer-first with the key number bold, under ~120 words, ONE table (label first, amount last, unit per row, only applicable rows), one caveat sentence, one "confirm with" line, never narrate process/tools. In <code>chat()</code>, when a round ends in <code>tool_use</code> and contained text blocks, a <code>{type:"reset"}</code> event is sent so the client discards that pre-tool text (the "search for it" leak) — text still streams live for the final round.</li>
+      <li><code>public/index.html</code> — <code>md()</code> now builds a DOM, wraps tables, and marks a column <code>.num</code> when every filled body cell matches <code>NUM</code> (money, counts, %, "/hour"). CSS: bordered rounded table card (max 720px), header strip, numeric columns right-aligned with tabular figures and bold amounts, long labels wrap. Client handles <code>reset</code> by clearing the bubble.</li>
+    </ul>
+    <p><b>Verify.</b> <code>node --check</code> on server.js and the inline script. Dev server auto-restarts; page auto-reloads. Re-ask the kitchen-remodel fee question to compare.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1345">
+    <header>
+      <time>2026-10-17 13:45</time>
+      <h2>Dev live reload: server auto-restarts, browser auto-reloads</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: changes were not showing up live; the app server on :8787 had to be restarted by hand for <code>server.js</code>/<code>rag.js</code> edits and the page reloaded by hand for <code>public/</code> edits.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>package.json</code> — new <code>dev</code> script: <code>node --watch --env-file=.env server.js</code> (Node 25; restarts on any change to server.js or its imports).</li>
+      <li><code>server.js</code> — <code>GET /dev</code> SSE endpoint that <code>fs.watch</code>es <code>public/</code> and pushes <code>reload</code>.</li>
+      <li><code>public/index.html</code> — on localhost only, an <code>EventSource("/dev")</code> reloads the page on a message, and on every reconnect after the first (which is what happens when <code>--watch</code> restarts the server).</li>
+    </ul>
+    <p><b>State.</b> The hand-started <code>npm start</code> process (pid 18745) was stopped and replaced by <code>npm run dev</code> running in the background from this session. Rebuilding the RAG index on each restart takes a few seconds; the page reloads once the new process is listening.</p>
   </article>
 
   <article class="entry" id="e-2026-10-17-1320">
