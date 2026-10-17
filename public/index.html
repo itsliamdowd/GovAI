@@ -376,21 +376,28 @@ else {
     setState("speaking", ""); vtext.textContent = reply;
     speak(reply, listen);
   };
-  // Server voice (ElevenLabs via /tts) when configured; else the most human-sounding voice the browser has.
-  let audio = null;
-  const stopSpeaking = () => { speechSynthesis.cancel(); if (audio) { audio.pause(); audio.src = ""; audio = null; } };
+  // Server voice (local Kokoro via /tts), spoken sentence-by-sentence so the first words start in ~1s while the rest generates;
+  // falls back to the most human-sounding voice the browser has if /tts is off or fails.
+  let audio = null, speakGen = 0;
+  const stopSpeaking = () => { speakGen++; speechSynthesis.cancel(); if (audio) { audio.pause(); audio.src = ""; audio = null; } };
+  const sentences = (t) => { const out = []; let cur = ""; for (const s of t.match(/[^.!?\n]+[.!?]*\s*/g) ?? [t]) { if (cur && (!out.length || cur.length + s.length > 220)) { out.push(cur); cur = ""; } cur += s; } if (cur.trim()) out.push(cur); return out; };
+  const fetchWav = (text) => fetch("/tts", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text }) }).then((r) => r.ok ? r.blob() : null).catch(() => null);
   async function speak(text, done) {
     stopSpeaking();
-    try {
-      const r = await fetch("/tts", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text }) });
-      if (r.ok) {
-        audio = new Audio(URL.createObjectURL(await r.blob()));
-        audio.onended = audio.onerror = () => { audio = null; done(); };
-        await audio.play(); return;
-      }
-    } catch {}
+    const gen = speakGen, parts = sentences(text);
+    let next = fetchWav(parts[0]), played = 0;
+    for (let i = 0; i < parts.length; i++) {
+      const blob = await next; if (gen !== speakGen || !active) return;
+      if (!blob) break;
+      if (i + 1 < parts.length) next = fetchWav(parts[i + 1]); // generate the next chunk while this one plays
+      await new Promise((res) => { audio = new Audio(URL.createObjectURL(blob)); audio.onended = audio.onerror = res; audio.play().catch(res); });
+      if (gen !== speakGen) return;
+      played++;
+    }
+    audio = null;
+    if (played === parts.length) return done();
     if (!active) return;
-    const u = new SpeechSynthesisUtterance(text); u.lang = "en-US"; u.rate = 1; u.pitch = 1;
+    const u = new SpeechSynthesisUtterance(parts.slice(played).join("")); u.lang = "en-US"; u.rate = 1; u.pitch = 1;
     const vs = speechSynthesis.getVoices().filter((v) => v.lang.startsWith("en"));
     u.voice = vs.find((v) => /Samantha|Ava|Zoe|Allison|Evan|Nathan|Tom/.test(v.name) && /Premium|Enhanced/.test(v.name)) // macOS/iOS neural voices
       ?? vs.find((v) => /Google US English|Natural|Neural|Online/.test(v.name)) // Chrome / Edge cloud voices
@@ -529,6 +536,7 @@ function formCard(f) {
       <p class="sub">${esc(f.intro)} <a href="${esc(f.source)}" target="_blank" rel="noopener">Official page ↗</a></p>`;
     let el, read = () => el.value.trim(), invalid = () => el.checkValidity() ? "" : (el.validationMessage || "This one is required.");
     const go = (d) => {
+      document.activeElement?.blur?.(); // Safari commits date/time segments on blur
       const msg = d > 0 && invalid(); if (msg) { c.querySelector(".error").textContent = msg; return; }
       vals[fld.key] = read(); i += d;
       i >= f.fields.length ? submit() : render();

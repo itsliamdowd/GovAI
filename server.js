@@ -7,6 +7,7 @@ import { buildIndex, queryDataset } from "./rag.js";
 import { ingestCouncil } from "./council.js";
 import { ingestTranscripts, clipWindow, citedMoments } from "./transcripts.js";
 import { createAlert, cancelAlert, runAlerts } from "./alerts.js";
+import { loadTTS, speakWav } from "./tts.js";
 import { FORMS, FORM_TYPES, toApplication } from "./forms.js";
 import { ingestNews, loadNewsDocs, loadGisCatalog, gisDocs, queryGis, liveData, LIVE_KINDS, LIVE_HELP } from "./sources.js";
 
@@ -45,6 +46,7 @@ function scheduleDaily(fn) {
   console.log(`Daily watch scheduled for ${next.toLocaleString()}`);
 }
 scheduleDaily(runWatch);
+if (process.env.TTS !== "off") loadTTS().then(() => console.log("TTS ready: Kokoro-82M (local)")).catch((e) => console.error("TTS unavailable, voice mode will use the browser voice:", e.message));
 // City + county GIS layers become searchable "gis" docs; local news is pulled now and every 30 minutes.
 let gisCount = 0;
 loadGisCatalog().then((layers) => { rag.addDocs(gisDocs(layers)); gisCount = layers.length; console.log(`GIS: ${gisCount} city/county layers indexed`); }).catch((e) => console.error("gis catalog failed:", e.message));
@@ -455,22 +457,12 @@ const server = http.createServer(async (req, res) => {
     } catch (e) { res.writeHead(400, { "Content-Type": "application/json" }).end(JSON.stringify({ error: e.message })); }
     return;
   }
-  if (req.method === "POST" && req.url === "/tts") { // natural voice for voice mode; 404 when no key so the client falls back to the browser voice
-    if (!process.env.ELEVENLABS_API_KEY) { res.writeHead(404).end(); return; }
+  if (req.method === "POST" && req.url === "/tts") { // local Kokoro voice for voice mode; 404 when TTS=off so the client falls back to the browser voice
+    if (process.env.TTS === "off") { res.writeHead(404).end(); return; }
     let text = "";
     try { let b = ""; for await (const c of req) b += c; ({ text } = JSON.parse(b)); if (typeof text !== "string" || !text.trim()) throw 0; } catch { res.writeHead(400).end("bad request"); return; }
-    try {
-      const voice = process.env.ELEVENLABS_VOICE || "21m00Tcm4TlvDq8ikWAM"; // Rachel
-      const r = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voice}/stream?output_format=mp3_44100_128`, {
-        method: "POST", headers: { "xi-api-key": process.env.ELEVENLABS_API_KEY, "Content-Type": "application/json" },
-        body: JSON.stringify({ text: text.slice(0, 2500), model_id: process.env.ELEVENLABS_MODEL || "eleven_turbo_v2_5", voice_settings: { stability: 0.4, similarity_boost: 0.8, style: 0.2, use_speaker_boost: true } }),
-        signal: AbortSignal.timeout(30000),
-      });
-      if (!r.ok) throw new Error(`elevenlabs ${r.status}: ${(await r.text()).slice(0, 200)}`);
-      res.writeHead(200, { "Content-Type": "audio/mpeg", "Cache-Control": "no-store" });
-      for await (const chunk of r.body) res.write(chunk);
-      res.end();
-    } catch (e) { console.error("tts:", e.message); if (!res.headersSent) res.writeHead(502).end(); else res.end(); }
+    try { res.writeHead(200, { "Content-Type": "audio/wav", "Cache-Control": "no-store" }).end(await speakWav(text)); }
+    catch (e) { console.error("tts:", e.message); if (!res.headersSent) res.writeHead(502).end(); else res.end(); }
     return;
   }
   if (req.method === "POST" && req.url === "/api/feedback") { // thumbs up/down on an answer → data/feedback.jsonl

@@ -6,68 +6,69 @@
 <title>Staff Desk</title>
 <meta name="description" content="City of Santa Monica staff view of submitted applications: department queue, applicant search, status and notes.">
 <link rel="icon" href="/icon.svg">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#f3f6fa; --card:#ffffff; --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --blue:#0b5fb3; --blue-2:#0a4f95; --me:#e3eefc; --pill:#eef2f7;
-    --ok:#166534; --ok-bg:#ecfdf5; --warn:#92400e; --warn-bg:#fffbeb; --err:#b91c1c; --err-bg:#fef2f2; --info:#1e40af; --info-bg:#eff6ff; }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#0b1118; --card:#131b25; --ink:#e6edf5; --muted:#94a3b8; --line:#243040; --blue:#3b8ff0; --blue-2:#2f7bd6; --me:#1a2a40; --pill:#182230;
-    --ok:#86efac; --ok-bg:#0f2a1c; --warn:#fcd34d; --warn-bg:#2a1f0a; --err:#fca5a5; --err-bg:#2a1111; --info:#93c5fd; --info-bg:#0f1f3a; } }
-  :root[data-theme="dark"] { --bg:#0b1118; --card:#131b25; --ink:#e6edf5; --muted:#94a3b8; --line:#243040; --blue:#3b8ff0; --blue-2:#2f7bd6; --me:#1a2a40; --pill:#182230;
-    --ok:#86efac; --ok-bg:#0f2a1c; --warn:#fcd34d; --warn-bg:#2a1f0a; --err:#fca5a5; --err-bg:#2a1111; --info:#93c5fd; --info-bg:#0f1f3a; }
-  * { box-sizing:border-box } body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif; min-height:100dvh }
-  header { position:sticky; top:0; z-index:5; background:var(--card); border-bottom:3px solid var(--blue-2) }
-  .govbar { background:var(--me); font-size:12px; padding:5px 16px } .govbar div { max-width:960px; margin:0 auto; display:flex; align-items:center; gap:8px }
-  .flag { width:16px; height:11px; flex:none; background:linear-gradient(#b22234 0 50%,#fff 50% 100%) 0 0/100% 4px repeat-y,#fff; position:relative; border:1px solid #0003 } .flag::before { content:""; position:absolute; left:0; top:0; width:7px; height:6px; background:#3c3b6e }
-  .hrow { max-width:960px; margin:0 auto; display:flex; align-items:center; gap:12px; padding:10px 16px } .hrow img { width:40px; height:40px; border-radius:50%; border:2px solid var(--blue-2) }
-  .hrow h1 { font-size:18px; margin:0; font-weight:700; color:var(--blue-2) } .hrow small { color:var(--muted); font-size:12px; display:block }
-  .hrow .who { margin-left:auto; text-align:right; font-size:13px } .hrow .who button { background:none; border:0; color:var(--blue); font:inherit; font-size:12px; cursor:pointer; padding:0 }
-  main { max-width:960px; margin:0 auto; padding:16px }
-  .box { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 18px }
-  label { display:block; font-size:13px; font-weight:600; margin:10px 0 4px } input,select,textarea { width:100%; background:var(--bg); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:9px 12px; font:inherit; outline:none } :is(input,select,textarea):focus { border-color:var(--blue) } textarea { min-height:70px; resize:vertical }
-  button.primary { background:var(--blue-2); color:#fff; border:0; border-radius:6px; padding:9px 16px; font:inherit; font-weight:600; cursor:pointer } button.primary:hover { background:var(--blue) }
-  button.ghost { background:transparent; color:var(--ink); border:1px solid var(--line); border-radius:999px; padding:5px 12px; font:inherit; font-size:13px; cursor:pointer } button.ghost:hover { background:var(--pill) }
-  .error { color:var(--err); font-size:13px; margin-top:8px; min-height:1em }
-  .bar { display:flex; gap:10px; flex-wrap:wrap; align-items:end; margin-bottom:14px } .bar > div { flex:1 1 220px } .bar label { margin-top:0 }
-  .count { color:var(--muted); font-size:13px; margin:0 0 10px }
-  .app { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 16px; margin:0 0 10px; cursor:pointer } .app:hover { border-color:var(--blue) }
+  /* Same tokens, header, type scale and controls as index.html (resident view) */
+  :root { --bg:#0b0e13; --ink:#e8eaed; --muted:#9aa0a6; --line:#2a2f37; --pill:#1b1f26; --pill-2:#232830; --blue:#2b6fe6; --blue-2:#3b82f6; --link:#7cb0ff;
+    --ok:#86efac; --ok-bg:#0f2a1c; --warn:#fcd34d; --warn-bg:#2a1f0a; --err:#fca5a5; --err-bg:#2a1111; --info:#93c5fd; --info-bg:#0f1f3a; --sat:env(safe-area-inset-top) }
+  * { box-sizing:border-box } html { -webkit-text-size-adjust:100% }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif; min-height:100dvh; -webkit-font-smoothing:antialiased }
+  button { font-family:inherit }
+  header { position:sticky; top:0; z-index:5; background:color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); padding:calc(10px + var(--sat)) 20px 10px }
+  .hrow { max-width:720px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:12px }
+  .brand { display:flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink) }
+  .brand .mark { width:24px; height:24px; flex:none; color:var(--ink) } .brand .mark * { fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round } .brand .mark .spark { fill:#fbbf24; stroke:none }
+  .brand b { font:600 17px/1 Georgia,"Times New Roman",serif; letter-spacing:-.01em } .brand small { color:var(--muted); font-size:12px; margin-left:4px; padding-left:10px; border-left:1px solid var(--line) }
+  .who { display:flex; align-items:center; gap:10px; font-size:13px; text-align:right } .who[hidden],[hidden] { display:none } .who b { font-weight:600 } .who span { color:var(--muted) }
+  .menu,button.ghost { background:transparent; color:var(--ink); border:1px solid var(--line); border-radius:999px; height:34px; padding:0 14px; font:inherit; font-size:13px; font-weight:500; cursor:pointer; transition:background .12s } .menu:hover,button.ghost:hover { background:var(--pill) }
+  main { max-width:720px; margin:0 auto; padding:32px 20px 60px }
+  h2 { margin:0 0 6px; font-size:15px; font-weight:600 } .sub { margin:0 0 14px; color:var(--muted); font-size:12.5px; line-height:1.45 }
+  .box { border:1px solid var(--line); background:var(--pill); border-radius:14px; padding:16px 18px; max-width:480px; animation:pop .18s ease-out } @keyframes pop { from { opacity:0; transform:translateY(4px) } }
+  /* sign-in card: full column width, roomier type and controls */
+  #login { max-width:none; padding:32px 36px; margin-top:24px } #login h2 { font-size:24px; margin-bottom:8px } #login .sub { font-size:15px; margin-bottom:22px }
+  #login label { font-size:16px; margin:18px 0 8px } #login :is(input,select) { font-size:17px; padding:14px 16px; border-radius:12px } #login button.primary { height:44px; padding:0 24px; font-size:15px; margin-top:22px !important }
+  @media (max-width:640px) { #login { padding:22px 18px } }
+  label { display:block; font-size:15px; font-weight:500; margin:12px 0 6px } input,select,textarea { width:100%; background:var(--bg); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:10px 12px; font:inherit; font-size:15px; outline:none } :is(input,select,textarea):focus { border-color:var(--blue-2) } textarea { min-height:84px; resize:vertical }
+  button.primary { background:var(--blue); color:#fff; border:1px solid var(--blue); border-radius:999px; height:34px; padding:0 16px; font:inherit; font-size:13px; font-weight:500; cursor:pointer } button.primary:hover { background:var(--blue-2) }
+  .error { color:var(--err); font-size:14px; margin-top:8px; min-height:1em }
+  .bar { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px } .bar input { flex:1 1 240px } .bar select { flex:0 1 230px; width:auto }
+  .app { border:1px solid var(--line); border-radius:14px; padding:12px 16px; margin:0 0 10px; cursor:pointer; transition:background .12s, border-color .12s } .app:hover { background:var(--pill); border-color:#3a414b } .app.open { background:var(--pill) }
   .app .top { display:flex; gap:10px; align-items:center; flex-wrap:wrap } .app .id { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-weight:600 } .app .name { font-weight:600 } .app .meta { color:var(--muted); font-size:13px; flex:1 1 100% }
   .st { font-size:11px; text-transform:uppercase; letter-spacing:.04em; padding:2px 9px; border-radius:999px; margin-left:auto; white-space:nowrap }
-  .st.received { color:var(--info); background:var(--info-bg) } .st.in_review { color:var(--warn); background:var(--warn-bg) } .st.needs_info { color:var(--warn); background:var(--warn-bg) } .st.approved { color:var(--ok); background:var(--ok-bg) } .st.denied { color:var(--err); background:var(--err-bg) }
+  .st.received { color:var(--info); background:var(--info-bg) } .st.in_review,.st.needs_info { color:var(--warn); background:var(--warn-bg) } .st.approved { color:var(--ok); background:var(--ok-bg) } .st.denied { color:var(--err); background:var(--err-bg) }
   .detail { display:none; margin-top:12px; border-top:1px solid var(--line); padding-top:12px; cursor:default } .app.open .detail { display:block }
   .detail dl { display:grid; grid-template-columns:140px 1fr; gap:4px 12px; margin:0 0 10px; font-size:14px } .detail dt { color:var(--muted) } .detail dd { margin:0; white-space:pre-wrap; word-break:break-word }
   .acts { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px } .acts button[data-s="approved"] { border-color:var(--ok); color:var(--ok) } .acts button[data-s="denied"] { border-color:var(--err); color:var(--err) }
   .empty { color:var(--muted); padding:30px 0; text-align:center }
-  .fine { color:var(--muted); font-size:12px; margin-top:16px; text-align:center }
+  @media (max-width:640px) { header { padding-left:16px; padding-right:16px } .brand small { display:none } main { padding-top:20px } .box { max-width:100% } .who span { display:none } }
 </style>
 </head>
 <body>
 <header>
-  <div class="govbar"><div><span class="flag" aria-hidden="true"></span>An official website of the City of Santa Monica · Staff only</div></div>
   <div class="hrow">
-    <img src="/icon.svg" alt="">
-    <div><h1>Staff Desk</h1><small>Applications routed to your department</small></div>
-    <div class="who" id="who" hidden><div id="whoDept"></div><button type="button" id="signout">Sign out</button></div>
+    <a class="brand" href="/staff.html"><svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10l8.5-5 8.5 5"/><path d="M6 11.5v7M10 11.5v7M14 11.5v7M18 11.5v7"/><path d="M4 20.5h16"/><path class="spark" d="M19.5 1.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z"/></svg><b>GovAI</b></a>
+    <div class="who" id="who" hidden><div id="whoDept"></div><button type="button" class="menu" id="signout">Sign out</button></div>
   </div>
 </header>
 <main>
   <section class="box" id="login">
-    <h2 style="margin:0 0 4px;font-size:17px">Sign in</h2>
-    <p style="margin:0;color:var(--muted);font-size:13px">Pick your department and enter the staff code. This desk has no access to the resident assistant.</p>
+    <h2>Sign in</h2>
+    <p class="sub">Pick your department and enter the staff code. This desk has no access to the resident assistant.</p>
     <label for="dept">Department</label><select id="dept"></select>
     <label for="name">Your name</label><input id="name" placeholder="Shown on the notes you leave" autocomplete="name">
     <label for="code">Staff code</label><input id="code" type="password" autocomplete="current-password">
     <div class="error" id="loginErr"></div>
-    <button class="primary" id="signin" type="button" style="margin-top:6px">Open my queue</button>
+    <button class="primary" id="signin" type="button" style="margin-top:10px">Open my queue</button>
   </section>
 
   <section id="desk" hidden>
     <div class="bar">
-      <div><label for="view">Showing</label><select id="view"></select></div>
-      <div><label for="q">Applicant name, email or number</label><input id="q" placeholder="e.g. Maria Lopez" autocomplete="off"></div>
-      <div style="flex:0 0 auto"><button class="ghost" id="refresh" type="button">Refresh</button></div>
+      <input id="q" placeholder="Search by name, email or number" autocomplete="off" aria-label="Search applications">
+      <select id="view" aria-label="Department"></select>
     </div>
-    <p class="count" id="count"></p>
     <div id="list"></div>
-    <p class="fine">Status changes and notes are visible to the applicant in their menu on the resident site.</p>
   </section>
 </main>
 <script>
@@ -100,8 +101,8 @@ async function signin(session) {
   catch (e) { me = null; $("loginErr").textContent = e.message; return; }
   sessionStorage.setItem("sm_staff", JSON.stringify(me));
   $("login").hidden = true; $("desk").hidden = false; $("who").hidden = false;
-  $("whoDept").innerHTML = `<b>${esc(me.name || "Staff")}</b><br><span style="color:var(--muted)">${esc(me.dept)}</span>`;
-  $("view").innerHTML = `<option value="${esc(me.dept)}">My department · ${esc(me.dept)}</option><option value="all">All departments</option>` + depts.filter((d) => d !== me.dept).map((d) => `<option value="${esc(d)}">${esc(d)}</option>`).join("");
+  $("whoDept").innerHTML = `<b>${esc(me.name || "Staff")}</b><br><span>${esc(me.dept)}</span>`;
+  $("view").innerHTML = `<option value="${esc(me.dept)}">${esc(me.dept)}</option><option value="all">All departments</option>` + depts.filter((d) => d !== me.dept).map((d) => `<option value="${esc(d)}">${esc(d)}</option>`).join("");
   load();
 }
 
@@ -113,9 +114,8 @@ async function load() {
   render();
 }
 function render() {
-  const dept = $("view").value;
-  $("count").textContent = `${apps.length} application${apps.length === 1 ? "" : "s"} · ${dept === "all" ? "all departments" : dept}${$("q").value.trim() ? ` · matching “${$("q").value.trim()}”` : ""}`;
-  if (!apps.length) { $("list").innerHTML = `<p class="empty">Nothing in this queue.</p>`; return; }
+  const dept = $("view").value, q = $("q").value.trim();
+  if (!apps.length) { $("list").innerHTML = `<p class="empty">No applications${q ? ` matching “${esc(q)}”` : ""}${dept === "all" ? "" : ` for ${esc(dept)}`}.</p>`; return; }
   $("list").innerHTML = apps.map((a) => `
     <article class="app${a.confirmation_number === openId ? " open" : ""}" data-id="${esc(a.confirmation_number)}">
       <div class="top"><span class="id">${esc(a.confirmation_number)}</span><span class="name">${esc(a.applicant_name)}</span><span class="st ${esc(a.status)}">${esc(LABEL[a.status] || a.status)}</span>
@@ -159,7 +159,7 @@ $("signin").onclick = () => signin({ dept: $("dept").value, name: $("name").valu
 $("code").onkeydown = (e) => { if (e.key === "Enter") $("signin").click(); };
 $("code").onchange = fillDeptSelect;
 $("signout").onclick = signout;
-$("view").onchange = load; $("refresh").onclick = load;
+$("view").onchange = load;
 let t; $("q").oninput = () => { clearTimeout(t); t = setTimeout(load, 250); };
 setInterval(() => { if (me && document.visibilityState === "visible") load(); }, 20000); // ponytail: polling; SSE if the queue gets busy
 

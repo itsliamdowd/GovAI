@@ -16,6 +16,23 @@
        Status badge classes: planned | progress | done | blocked.
        Do NOT log changes to ~/.claude/, plan.html itself, or the changelog server. -->
 
+  <article class="entry" id="e-2026-10-17-1222">
+    <header>
+      <time>2026-10-17 12:22</time>
+      <h2>Voice mode TTS: free, local Kokoro-82M replaces ElevenLabs</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "don't use ElevenLabs, I don't want to pay for anything, completely free, open-source, not robotic". Picked Kokoro-82M (Apache 2.0, top of the open TTS leaderboards for its size) via <code>kokoro-js</code>, running on CPU inside the Node server. Source: <a href="https://github.com/hexgrad/kokoro">github.com/hexgrad/kokoro</a>.</p>
+    <ul>
+      <li><code>tts.js</code> (new) — <code>loadTTS()</code> lazy-imports kokoro-js and loads <code>onnx-community/Kokoro-82M-v1.0-ONNX</code> (q8, ~90 MB, cached after first download); <code>speakWav(text)</code> &rarr; WAV buffer. Voice <code>TTS_VOICE</code> (default <code>af_heart</code>, grade A), <code>TTS_SPEED</code>.</li>
+      <li><code>server.js</code> — <code>/tts</code> now returns <code>audio/wav</code> from Kokoro; 404 only when <code>TTS=off</code> (browser-voice fallback). Model warms in the background at startup. ElevenLabs code removed.</li>
+      <li><code>package.json</code> — <code>kokoro-js</code> dependency (pulls <code>@huggingface/transformers</code> + <code>phonemizer</code>).</li>
+      <li><code>.env.example</code> — ElevenLabs vars replaced by <code>TTS</code>, <code>TTS_VOICE</code>, <code>TTS_SPEED</code>.</li>
+      <li><code>public/index.html</code> — <code>speak()</code> now splits the reply into ~220-char sentence chunks, requests <code>/tts</code> per chunk and prefetches the next while the current one plays (first words in ~1 s instead of waiting for the whole reply). <code>speakGen</code> token cancels in-flight chunks when voice mode ends. Browser-voice fallback covers any chunks the server failed on.</li>
+    </ul>
+    <p><b>Verified:</b> <code>node --check</code>; direct calls: one sentence &rarr; 3.6 s of 24 kHz float32 WAV; three sentences (8.8 s audio) generated in 6.8 s on CPU (~1.3&times; realtime), model load 0.5 s warm. First attempt crashed inside the phonemizer bundle (one-off during first model download; second run clean). <b>Not verified:</b> in-browser playback (Chrome MCP locked by another session). Server still generates whole chunks; move to <code>tts.stream()</code> if per-chunk latency is still noticeable.</p>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1212">
     <header>
       <time>2026-10-17 12:12</time>
@@ -99,6 +116,20 @@
     </ul>
   </article>
 
+  <article class="entry" id="e-2026-10-17-1335b">
+    <header>
+      <time>2026-10-17 13:35</time>
+      <h2>Staff desk: strip the queue chrome down to search + department</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User (screenshot of <code>/staff</code>): "make this less complicated". The queue header had two labelled controls, a Refresh button, a count line and a footer note, for a list that is usually empty.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>public/staff.html</code> &mdash; the bar is now one unlabelled search box ("Search by name, email or number") and the department select beside it; Refresh button removed (search is live and the list already polls every 20 s); count line removed; footer note removed; department option reads just the name instead of "My department · name"; empty state says "No applications for Planning Division" (adds "matching &lsquo;q&rsquo;" when searching). Card detail, note and status buttons unchanged.</li>
+    </ul>
+    <p>Served statically, so the running servers show it on reload.</p>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1320">
     <header>
       <time>2026-10-17 13:20</time>
@@ -135,6 +166,7 @@
       <h2>Voice mode: human-sounding TTS</h2>
       <span class="badge done">done</span>
     </header>
+    <p><b>Superseded 12:22</b> — ElevenLabs path removed; see the Kokoro entry above. Browser-voice fallback kept.</p>
     <p><b>Goal.</b> User: "text-to-speech should be less robotic, sound like a real human". Default <code>speechSynthesis</code> picked whatever voice came first.</p>
     <ul>
       <li><code>server.js</code> — <code>POST /tts {text}</code> proxies to ElevenLabs streaming TTS (<code>ELEVENLABS_API_KEY</code>, <code>ELEVENLABS_VOICE</code> default Rachel, <code>ELEVENLABS_MODEL</code> default <code>eleven_turbo_v2_5</code>), streams <code>audio/mpeg</code>. Returns 404 when no key so the client falls back.</li>
@@ -333,6 +365,7 @@
       <li><b>13:05 follow-up (user):</b> icon changed from the ferris wheel to a government building (pediment + columns) with an AI spark: <code>public/icon.svg</code> (app/PWA icon) and the inline header <code>.mark</code> SVG.</li>
       <li><b>13:08 follow-up (user):</b> icon colors: app icon now a blue→navy gradient tile, white building, amber spark; header mark uses ink-colored building with an amber filled spark instead of the all-blue stroke.</li>
       <li><b>13:12 follow-up (user):</b> thumbs and copy were effectively dead (thumbs toggled a class only; copy wrote <code>bot.innerText</code> incl. the "Sources" pill with no visible confirmation). Now: thumbs POST <code>/api/feedback</code> {sessionId, vote, answer} → appended to <code>data/feedback.jsonl</code> (new route in <code>server.js</code>), with a "Thanks…" note and toggle-off support; copy copies only the answer text (<code>answerText()</code> strips <code>.acts</code>), has an <code>execCommand</code> fallback, and flips the icon to a check for 1.5s.</li>
+      <li><b>13:16 follow-up (user):</b> removed the "Staff desk" subtitle from the <code>public/staff.html</code> header brand.</li>
     </ul>
     <h3>Retrieval before → after (block-party chip)</h3>
     <pre><code>before: 29.0 Block Party | 15.3 Preferential Parking | 14.8 Street Sweeping | 14.5 Building Permits | 12.4 Community Event | 10.9 Water Usage (dataset)   → all 6 shown as sources
@@ -494,6 +527,18 @@ daily 07:00 → refreshCouncil() → for each alert:
     <p><b>Verified (curl -N against the restarted server).</b> Fresh session "hi": first token at 2.0 s, then word-by-word. Warm session dataset question: <code>search_city_knowledge</code> status at 1.6 s, <code>query_dataset</code> at 3.8 s, first text at 5.7 s, deltas every ~5 ms. Very first request after boot took 22 s to its first frame (prompt-cache write + cold path); later requests are 2–6 s. Row cache was not exercised by the model's query sequence (each call used different params); logic is a 4-line memo, covered by inspection.</p>
   </article>
 
+  <article class="entry" id="e-2026-10-17-1218">
+    <header>
+      <time>2026-10-17 12:18</time>
+      <h2>Staff desk: larger sign-in card</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User screenshot of <code>/staff.html</code>: the sign-in card was a 480 px box with 15 px type floating in a 720 px column. Make it larger.</p>
+    <ul>
+      <li><code>public/staff.html</code> — <code>#login</code> overrides on the shared <code>.box</code>: full 720 px column width, 32/36 px padding, 24 px heading, 15 px subtitle, 16 px labels, 17 px inputs with 14/16 px padding, 44 px button. Other <code>.box</code> panels (queue, notes) unchanged. Mobile keeps the tighter padding.</li>
+    </ul>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1155">
     <header>
       <time>2026-10-17 11:55</time>
@@ -555,6 +600,20 @@ daily 07:00 → refreshCouncil() → for each alert:
     </ul>
   </article>
 
+  <article class="entry" id="e-2026-10-17-1530">
+    <header>
+      <time>2026-10-17 15:30</time>
+      <h2>Staff desk restyled to match the resident view</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: the staff page (<code>public/staff.html</code>, added by another session) still had the old USWDS light/dark banner theme. Make it look like the resident page.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>public/staff.html</code> — <code>&lt;style&gt;</code> replaced with the resident page's tokens (dark only, <code>color-scheme: dark</code>, Inter), the same sticky blurred header with the GovAI wordmark + a "Staff desk" tag, 720px column, <code>.box</code>/<code>.app</code> cards styled like <code>.form</code>/<code>.chip</code>, pill buttons (blue primary, ghost secondary), identical input styling. Header markup swapped (govbar + seal removed; sign-out is a ghost pill). JS untouched except the who-label no longer needs an inline colour. All element ids preserved.</li>
+    </ul>
+    <p><b>Verify.</b> Screenshot of the sign-in card via chrome-profile MCP matches the resident page (header, card, pill button). First pass showed "Sign out" while logged out because <code>display:flex</code> on <code>.who</code> beat the <code>hidden</code> attribute; added a <code>[hidden] { display:none }</code> rule. Queue view not screenshotted (no staff code in this session); it uses the same classes.</p>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1510">
     <header>
       <time>2026-10-17 15:10</time>
@@ -568,6 +627,7 @@ daily 07:00 → refreshCouncil() → for each alert:
       <li><code>public/index.html</code> <code>formCard()</code> — per-field <code>read()</code>/<code>invalid()</code> instead of relying on one input's constraint validation. <code>timerange</code> renders two native <code>&lt;input type="time" step="900"&gt;</code> (15-min steps, dark pickers via <code>color-scheme</code>), validates end &gt; start, stores "2:00 PM – 8:00 PM" so <code>toApplication()</code> and department details are unchanged; raw values kept for Back. <code>date</code> inputs get <code>min</code> = today + <code>minDays</code>. Selects with ≤4 options render as tap-to-choose pills that advance immediately (Back keeps the highlight); longer lists stay a <code>&lt;select&gt;</code>. CSS: <code>.form .range</code>, <code>.form .choices</code>.</li>
     </ul>
     <p><b>Verify.</b> <code>node --check</code> on forms.js and the inline script; <code>npm test</code>. Dev server auto-restarts, page auto-reloads; open the block party form and step to question 2.</p>
+    <p><b>Follow-up bug (fixed).</b> User (Safari) entered 1:20 PM – 6:30 PM and got "Enter both a start and an end time." Cause: <code>step="900"</code> on the time inputs; Safari sanitises a value that doesn't fall on a 15-minute step to "". Removed the step attribute, and <code>go()</code> now blurs the active element before reading so Safari commits typed segments. Verified in Chrome via the chrome-profile MCP: typed 1:20 PM / 6:30 PM → advanced to question 3; Back restores both values.</p>
   </article>
 
   <article class="entry" id="e-2026-10-17-1455">
