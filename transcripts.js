@@ -31,6 +31,12 @@ export function dateFromTitle(title) {
   return `${y}-${String(mo).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
 }
 
+/** "Budget and Finance Committee - October 14, 2026 (with captions)" -> "Budget and Finance Committee". */
+export function bodyOf(title) {
+  return title.replace(/\(?with captions\)?|^copy of/gi, "").replace(/\b(january|february|march|april|may|june|july|august|september|october|november|december|jan|feb|mar|apr|jun|jul|aug|sept?|oct|nov|dec)\b\.?\s*\d{1,2}(st|nd|rd|th)?\s*[,.]?\s*\d{4}/gi, "")
+    .replace(/\b\d{1,2}\/\d{1,2}\/\d{2,4}\b/g, "").replace(/\b(mon|tues|wednes|thurs|fri|satur|sun)day\b/gi, "").replace(/\b(regular|special|adjourned)?\s*meeting\b/gi, "")
+    .replace(/[\s\-–—:,|]+$/g, "").replace(/^[\s\-–—:,|]+/g, "").replace(/\s+/g, " ").trim() || "City Council";
+}
 const ymd = (s) => (/^\d{8}$/.test(s) ? `${s.slice(0, 4)}-${s.slice(4, 6)}-${s.slice(6, 8)}` : null);
 /** Broadcast date of one video (livestream release date, else upload date), for titles with no date in them. */
 async function uploadDate(id) {
@@ -51,11 +57,15 @@ export async function listVideos(log = console.error, j = SM) {
     .map(([id, title]) => ({ id, title: title.trim(), date: dateFromTitle(title) }));
   for (const v of all) if (!v.date) v.date = await uploadDate(v.id); // e.g. "City Council Meeting" with no date in the title
   all.splice(0, all.length, ...all.filter((v) => v.date));
-  // one video per meeting date: prefer the captioned upload, then anything that isn't a "Copy of"
+  // one video per meeting (date + body): prefer the captioned upload, then anything that isn't a "Copy of".
+  // Single-body channels (Santa Monica) collapse to one per date; multi-body channels (LA CityView 35: council + committees + commissions
+  // on the same day) keep one per body, and the body name rides along into the transcript titles.
   const rank = (v) => (/with captions/i.test(v.title) ? 2 : 0) + (/^copy of/i.test(v.title) ? 0 : 1);
-  const byDate = new Map();
-  for (const v of all) if (!byDate.has(v.date) || rank(v) > rank(byDate.get(v.date))) byDate.set(v.date, v);
-  const videos = [...byDate.values()];
+  const multi = !!j.council?.titleRe;
+  if (multi) for (const v of all) v.body = bodyOf(v.title);
+  const byKey = new Map();
+  for (const v of all) { const k = multi ? `${v.date}|${v.body.toLowerCase()}` : v.date; if (!byKey.has(k) || rank(v) > rank(byKey.get(k))) byKey.set(k, v); }
+  const videos = [...byKey.values()];
   fs.writeFileSync(file, JSON.stringify({ fetched_at: Date.now(), key, videos }, null, 1));
   log(`YouTube: ${videos.length} council meeting videos listed`);
   return videos;
@@ -73,6 +83,11 @@ export function vttToSegments(vtt) {
   return segs;
 }
 
+// Global gate between yt-dlp caption pulls (all jurisdictions, all workers): YT_MIN_GAP_MS, default 30 s ≈ 120 pulls/hour/IP.
+// ponytail: single-process gate; a shared token bucket is only needed if several collectors run on one IP.
+const YT_GAP = Number(process.env.YT_MIN_GAP_MS) || 30000;
+let lastPull = 0, gateChain = Promise.resolve();
+const gate = () => (gateChain = gateChain.then(async () => { const wait = lastPull + YT_GAP - Date.now(); if (wait > 0) await new Promise((r) => setTimeout(r, wait)); lastPull = Date.now(); }));
 async function fetchTranscript(v, log, j = SM) {
   const DIR = dirFor(j);
   const file = `${DIR}/${v.id}.json`;
@@ -85,6 +100,7 @@ async function fetchTranscript(v, log, j = SM) {
   let vttFile = null, failed = false;
   for (const lang of ["en", "en-orig"]) { // one track per call: asking for both races on the same .part file
     try {
+      await gate();
       await run("yt-dlp", ["--skip-download", "--write-subs", "--write-auto-subs", "--sub-langs", lang, "--sub-format", "vtt", "--sleep-subtitles", "1", ...COOKIES, "-o", out, `https://www.youtube.com/watch?v=${v.id}`], { maxBuffer: 50e6 });
     } catch (e) { failed = true; log(`captions ${v.date} ${v.id}: ${e.stderr?.split("\n").find((l) => l.includes("ERROR")) ?? e.message}`); }
     if (fs.existsSync(`${out}.${lang}.vtt`)) { vttFile = `${out}.${lang}.vtt`; break; }
@@ -99,7 +115,7 @@ async function fetchTranscript(v, log, j = SM) {
 const hms = (s) => `${String(Math.floor(s / 3600)).padStart(2, "0")}:${String(Math.floor(s / 60) % 60).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
 
 export function toDocs(rec, size = 1500, j = SM) {
-  const docs = [], label = j.council?.label ?? "City Council"; let cur = "", start = null, part = 0;
+  const docs = [], label = rec.body || j.council?.label || "City Council"; let cur = "", start = null, part = 0;
   const flush = () => { if (cur.trim()) docs.push({
     kind: "council_meeting", jur: j.id, doc: "transcript", meeting_date: rec.date, part: ++part,
     title: `${label} ${rec.date} — transcript @${hms(start)}`, url: `https://www.youtube.com/watch?v=${rec.id}&t=${start}s`,

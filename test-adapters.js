@@ -49,4 +49,12 @@ const page = { url: "https://www.example.gov/clerk/agendas", body: "City Council
 const pl = pdflist.parseLinks(`<a href="/docs/CC-Agenda-10-13-2026.pdf">Agenda October 13, 2026</a> <a href="/docs/cc_minutes_10132026.pdf">Minutes - October 13, 2026</a>
   <a href="/docs/agenda-2019.pdf">Agenda January 5, 2019</a> <a href="/about">About us</a>`, page, P);
 assert.equal(pl.length, 1); assert.equal(pl[0].date, "2026-10-13"); assert.equal(pl[0].agenda_url, "https://www.example.gov/docs/CC-Agenda-10-13-2026.pdf"); assert.match(pl[0].minutes_url, /minutes/);
+
+// transcripts: multi-body channels keep one video per (date, body) and title the chunks by body
+const T = await import("./transcripts.js");
+assert.equal(T.bodyOf("Budget and Finance Committee - October 14, 2026 (with captions)"), "Budget and Finance Committee");
+assert.equal(T.bodyOf("Los Angeles City Council Meeting 10/14/26"), "Los Angeles City Council");
+assert.equal(T.bodyOf("City Council Meeting February 10, 2026"), "City Council");
+const tdocs = T.toDocs({ id: "abc", date: "2026-02-10", body: "Public Safety Committee", segments: [{ t: 0, text: "hello" }] }, 1500, { id: "los-angeles", council: { label: "City Council" } });
+assert.match(tdocs[0].title, /^Public Safety Committee 2026-02-10 — transcript/); assert.equal(tdocs[0].jur, "los-angeles");
 console.log("adapters ok");

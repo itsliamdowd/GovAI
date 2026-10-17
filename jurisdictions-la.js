@@ -109,7 +109,7 @@ export const LA_CITIES = [
 // Legistar Web API open for pomona, cityofsignalhill, lacounty, metro, mwdh2o. Everything else stays a draft until tools/discover.mjs confirms it.
 const WIRING = {
   "los-angeles": {
-    council: { platform: "multi", label: "City Council", limit: 30000, sources: [
+    council: { platform: "multi", label: "City Council", limit: 30000, titleRe: /council|committee|commission|board/i, sources: [
       { platform: "primegov", client: "lacity", since: "2016" }, // all ~110 bodies: council, 15 committees, commissions
       { platform: "granicus", client: "lacity", views: [{ id: 129, body: "City Council" }, { id: 46, body: "Council Committee" }] }, // 2008-2021 archive; agenda/journal hosts are unreachable off-net, transcripts work
     ] },

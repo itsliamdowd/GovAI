@@ -39,6 +39,7 @@ Env: `ANTHROPIC_API_KEY` (required), `PORT` (default 8787), `COUNCIL_MEETINGS` (
 - `council.js` — pulls City Council meetings from the Agendas & Minutes dataset, fetches agenda text (IQM2) and minutes (PDF → text), chunks and indexes them. Cached in `data/council/`.
 - `sources.js` — everything else Santa Monica (see below): local news feeds, city + county GIS layers, live federal/state/county APIs.
 - `public/` — single-page PWA (installable, dark mode, voice input, "My applications" tracker in localStorage).
+- `phones.js` — collector for each city's main phone number (homepage/contact-page `tel:` links and "City Hall" proximity) → `data/phones.json`, read by `jurisdictions*.js` for the footer, the prompt's contact line and application routing. `node phones.js` fills gaps; `node phones.js <id>` re-pulls one city.
 - `tts.js` — voice mode speech: Kokoro-82M (free, Apache-2.0, runs locally on CPU via `kokoro-js`, no API key). fp32 by default (`TTS_DTYPE`), voice `af_heart` (`TTS_VOICE`), warmed at startup; `speechText()` rewrites phone numbers, confirmation IDs, street/day/month abbreviations, emails and URLs so they read naturally. `TTS=off` falls back to the browser voice. First start downloads ~330 MB into `node_modules/@huggingface/transformers/.cache`.
 - Applications persist to `data/applications.json`.
 
