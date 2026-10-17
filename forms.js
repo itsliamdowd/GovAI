@@ -13,8 +13,8 @@ export const FORMS = {
     intro: "Fee $100.95, paid after approval. Apply at least 14 calendar days ahead (30 around holidays). Transportation Planning reviews it.",
     source: "https://www.santamonica.gov/process-explainers/how-to-get-a-block-party-permit",
     fields: [
-      { key: "event_date", label: "Date of the block party", type: "date", hint: "At least 14 calendar days from today; 30 if it's around a holiday." },
-      { key: "event_hours", label: "Start and end time", type: "text", placeholder: "e.g. 2:00 PM – 8:00 PM" },
+      { key: "event_date", label: "Date of the block party", type: "date", minDays: 14, hint: "At least 14 calendar days from today; 30 if it's around a holiday." },
+      { key: "event_hours", label: "Start and end time", type: "timerange" },
       { key: "street_block", label: "Street and block to close", type: "text", placeholder: "e.g. 1100 block of Euclid St, between Wilshire and California", hint: "Must be an eligible street on the city's block party map." },
       { key: "zoning", label: "Is your block mostly single-family (R-1) homes?", type: "select", options: ["Yes — 51% of residents/businesses must sign the petition", "No — 25% must sign", "Not sure"] },
       { key: "petition", label: "Neighbor petition signatures", type: "select", options: ["Already collected", "Will collect through the online petition", "Need the paper petition form"] },
@@ -85,7 +85,7 @@ export const FORMS = {
     fields: [
       { key: "event_name", label: "Event name", type: "text" },
       { key: "event_date", label: "Event date", type: "date" },
-      { key: "event_hours", label: "Start and end time (including setup and cleanup)", type: "text" },
+      { key: "event_hours", label: "Start and end time (including setup and cleanup)", type: "timerange" },
       { key: "address", label: "Location (park, beach, street or venue)", type: "text" },
       { key: "expected_attendance", label: "Expected attendance", type: "number" },
       { key: "street_closure", label: "Will any street or sidewalk be closed?", type: "select", options: yesNo },

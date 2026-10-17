@@ -12,6 +12,8 @@ import { ingestNews, loadNewsDocs, loadGisCatalog, gisDocs, queryGis, liveData, 
 
 const PORT = Number(process.env.PORT) || 8787;
 const APPS_FILE = "./data/applications.json";
+const STAFF_CODE = process.env.STAFF_CODE || "planning"; // ponytail: one shared code gates /api/staff/*; swap for SSO when real staff use it
+const STATUSES = ["received", "in_review", "needs_info", "approved", "denied"];
 try { process.loadEnvFile(); } catch {} // load .env ourselves so `node server.js`, warm.js, one-off scripts and tests all work without --env-file
 if (!process.env.ANTHROPIC_API_KEY && !process.env.ANTHROPIC_AUTH_TOKEN) {
   console.error("Missing ANTHROPIC_API_KEY. Add a line ANTHROPIC_API_KEY=sk-ant-... to the .env file in the project root (no quotes, no spaces around =), then restart npm run dev.");
@@ -487,13 +489,52 @@ const server = http.createServer(async (req, res) => {
     req.on("close", () => w.close());
     return;
   }
+  const json = (code, o) => res.writeHead(code, { "Content-Type": "application/json" }).end(JSON.stringify(o));
+  // Resident self-service: edit an application they filed. Ownership = the email on the record; only while staff haven't picked it up.
+  if (req.method === "PATCH" && req.url.startsWith("/api/applications/")) {
+    let body = ""; for await (const chunk of req) body += chunk;
+    let patch; try { patch = JSON.parse(body); } catch { return json(400, { error: "bad request" }); }
+    const apps = loadApps(), app = apps[decodeURIComponent(req.url.slice(18)).trim().toUpperCase()];
+    if (!app) return json(404, { error: "No application found with that confirmation number." });
+    if (String(patch.email ?? "").trim().toLowerCase() !== String(app.email ?? "").toLowerCase()) return json(403, { error: "Email does not match this application." });
+    if (app.status !== "received") return json(409, { error: `This application is already ${app.status.replace("_", " ")} and can no longer be edited. Contact ${app.department}.` });
+    for (const k of ["applicant_name", "phone", "address", "requested_date", "details"]) if (typeof patch[k] === "string") app[k] = patch[k].trim().slice(0, 4000);
+    app.updated_at = new Date().toISOString(); saveApps(apps);
+    return json(200, app);
+  }
+  // Staff desk (/staff): a department's queue, search by applicant name, set status + note. No AI here.
+  if (req.url.startsWith("/api/staff/")) {
+    if (req.headers["x-staff-code"] !== STAFF_CODE) return json(401, { error: "Staff code required." });
+    const u = new URL(req.url, "http://x");
+    if (req.method === "GET" && u.pathname === "/api/staff/departments") return json(200, [...new Set(Object.values(ROUTING).map(([d]) => d))].sort());
+    if (req.method === "GET" && u.pathname === "/api/staff/applications") {
+      const dept = u.searchParams.get("department") || "all", q = (u.searchParams.get("q") || "").trim().toLowerCase();
+      const list = Object.values(loadApps())
+        .filter((a) => a.type && (dept === "all" || a.department === dept) && (!q || [a.applicant_name, a.email, a.confirmation_number, a.summary].join(" ").toLowerCase().includes(q)))
+        .sort((a, b) => String(b.submitted_at).localeCompare(String(a.submitted_at)));
+      return json(200, list);
+    }
+    if (req.method === "PATCH" && u.pathname.startsWith("/api/staff/applications/")) {
+      let body = ""; for await (const chunk of req) body += chunk;
+      let patch; try { patch = JSON.parse(body); } catch { return json(400, { error: "bad request" }); }
+      const apps = loadApps(), app = apps[decodeURIComponent(u.pathname.slice(24)).trim().toUpperCase()];
+      if (!app) return json(404, { error: "not found" });
+      if (patch.status != null && !STATUSES.includes(patch.status)) return json(400, { error: `status must be one of ${STATUSES.join(", ")}` });
+      if (patch.status) app.status = patch.status;
+      if (typeof patch.note === "string") app.staff_note = patch.note.trim().slice(0, 2000);
+      if (typeof patch.reviewer === "string" && patch.reviewer.trim()) app.reviewed_by = patch.reviewer.trim().slice(0, 120);
+      app.updated_at = new Date().toISOString(); saveApps(apps);
+      return json(200, app);
+    }
+    return json(404, { error: "not found" });
+  }
   if (req.method === "GET" && req.url.startsWith("/api/applications/")) {
     const r = checkStatus(decodeURIComponent(req.url.slice(18)));
     res.writeHead(r.error ? 404 : 200, { "Content-Type": "application/json" }).end(JSON.stringify(r));
     return;
   }
   const pub = path.resolve("public");
-  const file = path.resolve(pub, "." + (req.url === "/" ? "/index.html" : req.url.split("?")[0]));
+  const file = path.resolve(pub, "." + (req.url === "/" ? "/index.html" : req.url === "/staff" ? "/staff.html" : req.url.split("?")[0]));
   if (!file.startsWith(pub + path.sep)) return res.writeHead(404).end("not found");
   fs.readFile(file, (err, data) => {
     if (err) return res.writeHead(404).end("not found");

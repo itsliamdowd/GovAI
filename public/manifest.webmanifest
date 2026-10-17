@@ -1,6 +1,6 @@
 {
-  "name": "Ask Santa Monica",
-  "short_name": "Ask SM",
+  "name": "GovAI",
+  "short_name": "GovAI",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000c1f",

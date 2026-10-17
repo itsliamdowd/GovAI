@@ -11,7 +11,7 @@
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/icon.svg">
 <link rel="apple-touch-icon" href="/icon.svg">
-<title>Ask Santa Monica</title>
+<title>GovAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -27,8 +27,7 @@
   header { position:sticky; top:0; z-index:5; background:color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); padding:calc(10px + var(--sat)) 20px 10px }
   .hrow { max-width:720px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:12px }
   .brand { display:flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink) }
-  .brand .flag { width:18px; height:12px; flex:none; background:linear-gradient(#b22234 0 50%,#fff 50% 100%) 0 0/100% 3.4px repeat-y,#fff; position:relative; border-radius:1px; opacity:.9 }
-  .brand .flag::before { content:""; position:absolute; left:0; top:0; width:8px; height:6px; background:#3c3b6e }
+  .brand .mark { width:24px; height:24px; flex:none; color:var(--ink) } .brand .mark * { fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round } .brand .mark .spark { fill:#fbbf24; stroke:none }
   .brand b { font:600 17px/1 Georgia,"Times New Roman",serif; letter-spacing:-.01em } .brand small { color:var(--muted); font-size:12px; margin-left:4px; padding-left:10px; border-left:1px solid var(--line) }
   .menu { background:transparent; color:var(--ink); border:1px solid var(--line); border-radius:999px; height:34px; padding:0 14px; font-size:13px; font-weight:500; cursor:pointer; transition:background .12s }
   .menu:hover { background:var(--pill) }
@@ -60,11 +59,13 @@
   .card small { display:block; opacity:.9; font-size:13px }
   /* application form card: one question per step → ✓ submitted */
   .form { border:1px solid var(--line); background:var(--pill); border-radius:14px; padding:16px 18px; margin:12px 0; max-width:480px; animation:pop .18s ease-out }
-  .form h3 { margin:0 0 4px; font-size:15px; font-weight:600 } .form .sub { color:var(--muted); font-size:13px; margin:0 0 12px; line-height:1.45 } .form .sub a { color:var(--link) }
+  .form h3 { margin:0 0 6px; font-size:15px; font-weight:600 } .form .sub { color:var(--muted); font-size:12.5px; margin:14px 0 0; padding-top:12px; border-top:1px solid var(--line); line-height:1.45 } .form .sub a { color:var(--link) }
   .form .step { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.06em }
   .form .bar { height:3px; background:var(--line); border-radius:2px; overflow:hidden; margin:6px 0 14px } .form .bar i { display:block; height:100%; background:var(--blue); transition:width .25s }
   .form label { display:block; font-size:15px; font-weight:500; margin:0 0 6px } .form .hint { color:var(--muted); font-size:13px; margin:-2px 0 10px; line-height:1.45 }
   .form input,.form select,.form textarea { width:100%; background:var(--bg); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:10px 12px; font:inherit; font-size:15px; outline:none } .form :is(input,select,textarea):focus { border-color:var(--blue-2) } .form textarea { min-height:84px; resize:vertical }
+  .form .range { display:flex; align-items:center; gap:10px } .form .range input { flex:1; min-width:0 } .form .range span { color:var(--muted); font-size:14px }
+  .form .choices { display:flex; flex-wrap:wrap; gap:8px } .form .choices button { border:1px solid var(--line); background:var(--bg); color:var(--ink); border-radius:999px; padding:10px 16px; font:inherit; font-size:14px; cursor:pointer; text-align:left } .form .choices button:hover { border-color:var(--blue-2) } .form .choices button.on { border-color:var(--blue); background:#16243a }
   .form .nav { display:flex; gap:8px; justify-content:space-between; margin-top:14px } .form .nav button { border:1px solid var(--line); border-radius:999px; height:34px; padding:0 16px; font:inherit; font-size:13px; font-weight:500; cursor:pointer; background:transparent; color:var(--ink) } .form .nav .next { background:var(--blue); border-color:var(--blue); color:#fff } .form .nav .next:hover { background:var(--blue-2) } .form .nav button:disabled { opacity:.35; cursor:default }
   .form.done { border-color:var(--ok-line); background:var(--ok-bg); color:var(--ok); text-align:center } .form.done .num { font-size:20px; font-weight:600; letter-spacing:.5px; display:flex; align-items:center; justify-content:center; gap:10px; margin:2px 0 6px; font-variant-numeric:tabular-nums } .form.done .num button { background:transparent; border:1px solid var(--ok-line); color:inherit; border-radius:999px; padding:2px 10px; font:inherit; font-size:12px; cursor:pointer } .form.done small { display:block; opacity:.9; font-size:13px }
   .form .check { width:52px; height:52px; border-radius:50%; background:var(--ok); color:var(--ok-bg); display:grid; place-items:center; font-size:28px; font-weight:700; margin:2px auto 8px; animation:pop .35s ease-out }
@@ -98,6 +99,7 @@
   .panel .app { border:1px solid var(--line); border-radius:12px; padding:10px 12px; margin:6px 0; font-size:14px } .panel .app b { font-family:ui-monospace,monospace } .panel .app .st { float:right; font-size:10.5px; text-transform:uppercase; color:var(--ok); background:var(--ok-bg); padding:2px 8px; border-radius:999px }
   .panel .mom { display:flex; gap:10px; align-items:center; border:1px solid var(--line); border-radius:12px; padding:8px 10px; margin:6px 0; font-size:13.5px; cursor:pointer } .panel .mom:hover { background:var(--pill) } .panel .mom img { width:64px; aspect-ratio:16/9; object-fit:cover; border-radius:6px; flex:none } .panel .mom small { color:var(--muted); display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
   .panel .empty { color:var(--muted); font-size:14px }
+  .panel .app .edit { display:block; margin-top:8px; background:transparent; border:1px solid var(--line); border-radius:999px; padding:4px 12px; font:inherit; font-size:12px; color:var(--ink); cursor:pointer } .panel .app .edit:hover { border-color:var(--blue) }
   .panel .close { margin-top:14px; width:100%; padding:12px; border:1px solid var(--line); border-radius:999px; background:transparent; color:var(--ink); font:inherit; font-size:14px; font-weight:500; cursor:pointer } .panel .close:hover { background:var(--pill) }
   .srcitem { display:flex; gap:14px; align-items:center; padding:12px 0; border-bottom:1px solid var(--line); text-decoration:none; color:inherit } .srcitem:last-of-type { border:0 }
   .srcitem img { width:44px; height:44px; border-radius:50%; background:#fff; object-fit:cover; flex:none; border:1px solid var(--line) }
@@ -123,7 +125,7 @@
 <body>
 <header>
   <div class="hrow">
-    <a class="brand" href="/"><span class="flag" aria-hidden="true"></span><b>Ask Santa Monica</b></a>
+    <a class="brand" href="/"><svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10l8.5-5 8.5 5"/><path d="M6 11.5v7M10 11.5v7M14 11.5v7M18 11.5v7"/><path d="M4 20.5h16"/><path class="spark" d="M19.5 1.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z"/></svg><b>GovAI</b></a>
     <button class="menu" id="appsBtn" aria-label="Menu"><span id="appsCount">Menu</span></button>
   </div>
 </header>
@@ -291,15 +293,39 @@ function actionRow(bot, sources) {
 let apps = []; try { apps = JSON.parse(localStorage.getItem("sm_apps") || "[]"); } catch {}
 const renderApps = () => {
   $("appsCount").textContent = apps.length ? `Menu · ${apps.length}` : "Menu";
-  $("appsList").innerHTML = apps.length ? apps.map((a) => `<div class="app"><span class="st">${esc(a.status)}</span><b>${esc(a.confirmation_number)}</b><br>${esc(a.summary)}<br><small style="color:var(--muted)">${esc(a.department)} · ${new Date(a.submitted_at).toLocaleDateString()}</small></div>`).join("") : `<p class="empty">Nothing filed yet. Ask me to apply for a permit or report an issue and it will show up here.</p>`;
+  $("appsList").innerHTML = apps.length ? apps.map((a, i) => `<div class="app" data-i="${i}"><span class="st">${esc(String(a.status).replace(/_/g, " "))}</span><b>${esc(a.confirmation_number)}</b><br>${esc(a.summary)}<br><small style="color:var(--muted)">${esc(a.department)} · ${new Date(a.submitted_at).toLocaleDateString()}</small>${a.staff_note ? `<small style="display:block;margin-top:4px">📝 ${esc(a.department)}: ${esc(a.staff_note)}</small>` : ""}${a.type && a.status === "received" ? `<button type="button" class="edit">Edit application</button>` : ""}</div>`).join("") : `<p class="empty">Nothing filed yet. Ask me to apply for a permit or report an issue and it will show up here.</p>`;
 };
+const saveApps = () => { try { localStorage.setItem("sm_apps", JSON.stringify(apps)); } catch {} };
+// Resident self-service: pull current status + staff notes when the menu opens; edit while the application is still "received".
+async function syncApps() {
+  apps = await Promise.all(apps.map(async (a) => { if (!a.type) return a; try { const r = await fetch(`/api/applications/${encodeURIComponent(a.confirmation_number)}`); return r.ok ? { ...a, ...(await r.json()) } : a; } catch { return a; } }));
+  saveApps(); renderApps();
+}
+function editApp(i) {
+  const a = apps[i], box = $("appsList").children[i];
+  const f = (k, label, type = "text") => `<label>${label}</label><input name="${k}" type="${type}" value="${esc(a[k] ?? "")}">`;
+  box.innerHTML = `<form class="form" style="margin:0;max-width:none;animation:none"><h3>Edit ${esc(a.confirmation_number)}</h3><p class="sub">${esc(a.summary)}. You can change these until ${esc(a.department)} starts reviewing.</p>
+    ${f("applicant_name", "Full name")}${f("phone", "Phone", "tel")}${f("address", "Address")}${f("requested_date", "Requested date", "date")}<label>Details</label><textarea name="details">${esc(a.details ?? "")}</textarea>
+    <div class="error" style="margin-top:8px"></div><div class="nav"><button type="button" class="back">Cancel</button><button type="submit" class="next">Save changes</button></div></form>`;
+  const form = box.firstElementChild;
+  form.querySelector(".back").onclick = renderApps;
+  form.onsubmit = async (e) => {
+    e.preventDefault();
+    const patch = Object.fromEntries(new FormData(form)); patch.email = a.email;
+    const r = await fetch(`/api/applications/${encodeURIComponent(a.confirmation_number)}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(patch) });
+    const j = await r.json().catch(() => ({ error: "Could not save." }));
+    if (!r.ok) { form.querySelector(".error").textContent = j.error; return; }
+    apps[i] = { ...a, ...j }; saveApps(); renderApps();
+  };
+}
+$("appsList").onclick = (e) => { const b = e.target.closest("button.edit"); if (b) editApp(+b.closest(".app").dataset.i); };
 let moments = []; try { moments = JSON.parse(localStorage.getItem("sm_moments") || "[]"); } catch {}
 const renderMoments = () => {
   $("momList").innerHTML = moments.length ? moments.map((c, i) => `<div class="mom" data-i="${i}"><img src="https://i.ytimg.com/vi/${esc(c.video_id)}/mqdefault.jpg" alt=""><div style="min-width:0"><b>Council ${esc(c.meeting_date)}</b> · ${esc(c.hms)}<small>${esc(c.text.slice(0, 100))}</small></div></div>`).join("") : `<p class="empty">When an answer cites a council video, save the clip and it lands here.</p>`;
 };
 $("momList").onclick = (e) => { const el = e.target.closest(".mom"); if (!el) return; $("sheet").classList.remove("open"); clipCard(moments[+el.dataset.i], true); scroll(); };
 renderApps(); renderMoments();
-$("appsBtn").onclick = () => $("sheet").classList.add("open");
+$("appsBtn").onclick = () => { $("sheet").classList.add("open"); syncApps(); };
 $("closeSheet").onclick = () => $("sheet").classList.remove("open");
 $("closeSrc").onclick = () => $("srcSheet").classList.remove("open");
 for (const id of ["sheet", "srcSheet"]) $(id).onclick = (e) => { if (e.target === $(id)) $(id).classList.remove("open"); };
@@ -474,25 +500,44 @@ function appCard(a, label) {
 // Step-by-step application card: one question, Back/Next, Submit on the last one, then ✓ with the confirmation number.
 function formCard(f) {
   const c = document.createElement("div"); c.className = "form"; c.setAttribute("role", "form"); c.setAttribute("aria-label", f.title); log.appendChild(c);
-  const vals = {}; let i = 0;
+  const vals = {}, raw = {}; let i = 0;
   function render() {
     const fld = f.fields[i], last = i === f.fields.length - 1;
-    c.innerHTML = `<h3>${esc(f.title)}</h3><p class="sub">${esc(f.intro)} <a href="${esc(f.source)}" target="_blank" rel="noopener">Official page ↗</a></p>
+    c.innerHTML = `<h3>${esc(f.title)}</h3>
       <div class="step">Question ${i + 1} of ${f.fields.length}</div><div class="bar"><i style="width:${(i / f.fields.length) * 100}%"></i></div>
       <label for="ff">${esc(fld.label)}${fld.optional ? ' <span style="color:var(--muted);font-weight:400">(optional)</span>' : ""}</label>${fld.hint ? `<div class="hint">${esc(fld.hint)}</div>` : ""}
       <div class="ffwrap"></div><div class="error" style="margin-top:8px"></div>
-      <div class="nav"><button type="button" class="back"${i ? "" : " disabled"}>Back</button><button type="button" class="next">${last ? "Submit" : "Next"}</button></div>`;
-    let el;
-    if (fld.type === "select") { el = document.createElement("select"); el.innerHTML = `<option value="">Choose…</option>` + fld.options.map((o) => `<option>${esc(o)}</option>`).join(""); }
-    else if (fld.type === "textarea") el = document.createElement("textarea");
-    else { el = document.createElement("input"); el.type = fld.type || "text"; if (fld.type === "number") el.min = "1"; }
-    el.id = "ff"; el.required = !fld.optional; if (fld.placeholder) el.placeholder = fld.placeholder; if (vals[fld.key] != null) el.value = vals[fld.key];
-    c.querySelector(".ffwrap").appendChild(el); el.focus();
+      <div class="nav"><button type="button" class="back"${i ? "" : " disabled"}>Back</button><button type="button" class="next">${last ? "Submit" : "Next"}</button></div>
+      <p class="sub">${esc(f.intro)} <a href="${esc(f.source)}" target="_blank" rel="noopener">Official page ↗</a></p>`;
+    let el, read = () => el.value.trim(), invalid = () => el.checkValidity() ? "" : (el.validationMessage || "This one is required.");
     const go = (d) => {
-      if (d > 0 && !el.checkValidity()) { c.querySelector(".error").textContent = el.validationMessage || "This one is required."; return; }
-      vals[fld.key] = el.value.trim(); i += d;
+      const msg = d > 0 && invalid(); if (msg) { c.querySelector(".error").textContent = msg; return; }
+      vals[fld.key] = read(); i += d;
       i >= f.fields.length ? submit() : render();
     };
+    if (fld.type === "select" && fld.options.length <= 4) { // few options: tap a pill, it advances
+      el = document.createElement("div"); el.className = "choices"; el.id = "ff";
+      el.innerHTML = fld.options.map((o) => `<button type="button"${vals[fld.key] === o ? ' class="on"' : ""}>${esc(o)}</button>`).join("");
+      for (const b of el.querySelectorAll("button")) b.onclick = () => { vals[fld.key] = b.textContent; go(1); };
+      read = () => vals[fld.key] ?? ""; invalid = () => read() ? "" : "Pick one.";
+    } else if (fld.type === "select") { el = document.createElement("select"); el.innerHTML = `<option value="">Choose…</option>` + fld.options.map((o) => `<option>${esc(o)}</option>`).join(""); }
+    else if (fld.type === "timerange") { // two native time pickers, 15-minute steps; stored as "2:00 PM – 8:00 PM"
+      el = document.createElement("div"); el.className = "range";
+      const [s0 = "", e0 = ""] = raw[fld.key] ?? [];
+      el.innerHTML = `<input type="time" id="ff" step="900" required value="${s0}"><span>to</span><input type="time" step="900" required value="${e0}">`;
+      const [a, b] = el.querySelectorAll("input");
+      const fmt = (t) => { const [h, m] = t.split(":").map(Number); return `${h % 12 || 12}:${String(m).padStart(2, "0")} ${h < 12 ? "AM" : "PM"}`; };
+      read = () => { raw[fld.key] = [a.value, b.value]; return `${fmt(a.value)} – ${fmt(b.value)}`; };
+      invalid = () => !a.value || !b.value ? "Enter both a start and an end time." : b.value <= a.value ? "End time must be after the start time." : "";
+      for (const x of [a, b]) x.onkeydown = (e) => { if (e.key === "Enter") { e.preventDefault(); go(1); } };
+    }
+    else if (fld.type === "textarea") el = document.createElement("textarea");
+    else {
+      el = document.createElement("input"); el.type = fld.type || "text"; if (fld.type === "number") el.min = "1";
+      if (fld.type === "date") { const d = new Date(); d.setDate(d.getDate() + (fld.minDays ?? 0)); el.min = d.toISOString().slice(0, 10); } // no past dates; lead time per field
+    }
+    if (el.tagName !== "DIV") { el.id = "ff"; el.required = !fld.optional; if (fld.placeholder) el.placeholder = fld.placeholder; if (vals[fld.key] != null) el.value = vals[fld.key]; }
+    c.querySelector(".ffwrap").appendChild(el); (el.querySelector?.("input,button") ?? el).focus();
     el.onkeydown = (e) => { if (e.key === "Enter" && fld.type !== "textarea") { e.preventDefault(); go(1); } };
     c.querySelector(".back").onclick = () => go(-1); c.querySelector(".next").onclick = () => go(1);
   }

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Staff Desk</title>
+<meta name="description" content="City of Santa Monica staff view of submitted applications: department queue, applicant search, status and notes.">
+<link rel="icon" href="/icon.svg">
+<style>
+  :root { --bg:#f3f6fa; --card:#ffffff; --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --blue:#0b5fb3; --blue-2:#0a4f95; --me:#e3eefc; --pill:#eef2f7;
+    --ok:#166534; --ok-bg:#ecfdf5; --warn:#92400e; --warn-bg:#fffbeb; --err:#b91c1c; --err-bg:#fef2f2; --info:#1e40af; --info-bg:#eff6ff; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#0b1118; --card:#131b25; --ink:#e6edf5; --muted:#94a3b8; --line:#243040; --blue:#3b8ff0; --blue-2:#2f7bd6; --me:#1a2a40; --pill:#182230;
+    --ok:#86efac; --ok-bg:#0f2a1c; --warn:#fcd34d; --warn-bg:#2a1f0a; --err:#fca5a5; --err-bg:#2a1111; --info:#93c5fd; --info-bg:#0f1f3a; } }
+  :root[data-theme="dark"] { --bg:#0b1118; --card:#131b25; --ink:#e6edf5; --muted:#94a3b8; --line:#243040; --blue:#3b8ff0; --blue-2:#2f7bd6; --me:#1a2a40; --pill:#182230;
+    --ok:#86efac; --ok-bg:#0f2a1c; --warn:#fcd34d; --warn-bg:#2a1f0a; --err:#fca5a5; --err-bg:#2a1111; --info:#93c5fd; --info-bg:#0f1f3a; }
+  * { box-sizing:border-box } body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif; min-height:100dvh }
+  header { position:sticky; top:0; z-index:5; background:var(--card); border-bottom:3px solid var(--blue-2) }
+  .govbar { background:var(--me); font-size:12px; padding:5px 16px } .govbar div { max-width:960px; margin:0 auto; display:flex; align-items:center; gap:8px }
+  .flag { width:16px; height:11px; flex:none; background:linear-gradient(#b22234 0 50%,#fff 50% 100%) 0 0/100% 4px repeat-y,#fff; position:relative; border:1px solid #0003 } .flag::before { content:""; position:absolute; left:0; top:0; width:7px; height:6px; background:#3c3b6e }
+  .hrow { max-width:960px; margin:0 auto; display:flex; align-items:center; gap:12px; padding:10px 16px } .hrow img { width:40px; height:40px; border-radius:50%; border:2px solid var(--blue-2) }
+  .hrow h1 { font-size:18px; margin:0; font-weight:700; color:var(--blue-2) } .hrow small { color:var(--muted); font-size:12px; display:block }
+  .hrow .who { margin-left:auto; text-align:right; font-size:13px } .hrow .who button { background:none; border:0; color:var(--blue); font:inherit; font-size:12px; cursor:pointer; padding:0 }
+  main { max-width:960px; margin:0 auto; padding:16px }
+  .box { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 18px }
+  label { display:block; font-size:13px; font-weight:600; margin:10px 0 4px } input,select,textarea { width:100%; background:var(--bg); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:9px 12px; font:inherit; outline:none } :is(input,select,textarea):focus { border-color:var(--blue) } textarea { min-height:70px; resize:vertical }
+  button.primary { background:var(--blue-2); color:#fff; border:0; border-radius:6px; padding:9px 16px; font:inherit; font-weight:600; cursor:pointer } button.primary:hover { background:var(--blue) }
+  button.ghost { background:transparent; color:var(--ink); border:1px solid var(--line); border-radius:999px; padding:5px 12px; font:inherit; font-size:13px; cursor:pointer } button.ghost:hover { background:var(--pill) }
+  .error { color:var(--err); font-size:13px; margin-top:8px; min-height:1em }
+  .bar { display:flex; gap:10px; flex-wrap:wrap; align-items:end; margin-bottom:14px } .bar > div { flex:1 1 220px } .bar label { margin-top:0 }
+  .count { color:var(--muted); font-size:13px; margin:0 0 10px }
+  .app { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 16px; margin:0 0 10px; cursor:pointer } .app:hover { border-color:var(--blue) }
+  .app .top { display:flex; gap:10px; align-items:center; flex-wrap:wrap } .app .id { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-weight:600 } .app .name { font-weight:600 } .app .meta { color:var(--muted); font-size:13px; flex:1 1 100% }
+  .st { font-size:11px; text-transform:uppercase; letter-spacing:.04em; padding:2px 9px; border-radius:999px; margin-left:auto; white-space:nowrap }
+  .st.received { color:var(--info); background:var(--info-bg) } .st.in_review { color:var(--warn); background:var(--warn-bg) } .st.needs_info { color:var(--warn); background:var(--warn-bg) } .st.approved { color:var(--ok); background:var(--ok-bg) } .st.denied { color:var(--err); background:var(--err-bg) }
+  .detail { display:none; margin-top:12px; border-top:1px solid var(--line); padding-top:12px; cursor:default } .app.open .detail { display:block }
+  .detail dl { display:grid; grid-template-columns:140px 1fr; gap:4px 12px; margin:0 0 10px; font-size:14px } .detail dt { color:var(--muted) } .detail dd { margin:0; white-space:pre-wrap; word-break:break-word }
+  .acts { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px } .acts button[data-s="approved"] { border-color:var(--ok); color:var(--ok) } .acts button[data-s="denied"] { border-color:var(--err); color:var(--err) }
+  .empty { color:var(--muted); padding:30px 0; text-align:center }
+  .fine { color:var(--muted); font-size:12px; margin-top:16px; text-align:center }
+</style>
+</head>
+<body>
+<header>
+  <div class="govbar"><div><span class="flag" aria-hidden="true"></span>An official website of the City of Santa Monica · Staff only</div></div>
+  <div class="hrow">
+    <img src="/icon.svg" alt="">
+    <div><h1>Staff Desk</h1><small>Applications routed to your department</small></div>
+    <div class="who" id="who" hidden><div id="whoDept"></div><button type="button" id="signout">Sign out</button></div>
+  </div>
+</header>
+<main>
+  <section class="box" id="login">
+    <h2 style="margin:0 0 4px;font-size:17px">Sign in</h2>
+    <p style="margin:0;color:var(--muted);font-size:13px">Pick your department and enter the staff code. This desk has no access to the resident assistant.</p>
+    <label for="dept">Department</label><select id="dept"></select>
+    <label for="name">Your name</label><input id="name" placeholder="Shown on the notes you leave" autocomplete="name">
+    <label for="code">Staff code</label><input id="code" type="password" autocomplete="current-password">
+    <div class="error" id="loginErr"></div>
+    <button class="primary" id="signin" type="button" style="margin-top:6px">Open my queue</button>
+  </section>
+
+  <section id="desk" hidden>
+    <div class="bar">
+      <div><label for="view">Showing</label><select id="view"></select></div>
+      <div><label for="q">Applicant name, email or number</label><input id="q" placeholder="e.g. Maria Lopez" autocomplete="off"></div>
+      <div style="flex:0 0 auto"><button class="ghost" id="refresh" type="button">Refresh</button></div>
+    </div>
+    <p class="count" id="count"></p>
+    <div id="list"></div>
+    <p class="fine">Status changes and notes are visible to the applicant in their menu on the resident site.</p>
+  </section>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const LABEL = { received: "Received", in_review: "In review", needs_info: "Needs info", approved: "Approved", denied: "Denied" };
+let me = null; try { me = JSON.parse(sessionStorage.getItem("sm_staff") || "null"); } catch {}
+let depts = [], apps = [], openId = null;
+
+const api = async (path, opts = {}) => {
+  const r = await fetch(path, { ...opts, headers: { "Content-Type": "application/json", "x-staff-code": me?.code ?? "", ...(opts.headers || {}) } });
+  const j = await r.json().catch(() => ({}));
+  if (r.status === 401) { signout(); throw new Error(j.error || "Sign in again."); }
+  if (!r.ok) throw new Error(j.error || `Request failed (${r.status})`);
+  return j;
+};
+
+// Department list comes from the server once the code is typed; a static subset shows before that.
+async function fillDeptSelect() {
+  const r = await fetch("/api/staff/departments", { headers: { "x-staff-code": $("code").value } }).catch(() => null);
+  const list = r?.ok ? await r.json() : ["Planning Division", "Building & Safety, Permit Services Center", "Transportation Planning (Mobility Division)", "Public Works, Resource Recovery & Recycling", "Finance, Business License Office", "Santa Monica 311"];
+  const cur = $("dept").value;
+  $("dept").innerHTML = list.map((d) => `<option${d === (cur || "Planning Division") ? " selected" : ""}>${esc(d)}</option>`).join("");
+}
+
+function signout() { me = null; sessionStorage.removeItem("sm_staff"); $("desk").hidden = true; $("who").hidden = true; $("login").hidden = false; }
+async function signin(session) {
+  me = session;
+  try { depts = await api("/api/staff/departments"); }
+  catch (e) { me = null; $("loginErr").textContent = e.message; return; }
+  sessionStorage.setItem("sm_staff", JSON.stringify(me));
+  $("login").hidden = true; $("desk").hidden = false; $("who").hidden = false;
+  $("whoDept").innerHTML = `<b>${esc(me.name || "Staff")}</b><br><span style="color:var(--muted)">${esc(me.dept)}</span>`;
+  $("view").innerHTML = `<option value="${esc(me.dept)}">My department · ${esc(me.dept)}</option><option value="all">All departments</option>` + depts.filter((d) => d !== me.dept).map((d) => `<option value="${esc(d)}">${esc(d)}</option>`).join("");
+  load();
+}
+
+async function load() {
+  if (!me) return;
+  const dept = $("view").value || me.dept, q = $("q").value.trim();
+  try { apps = await api(`/api/staff/applications?department=${encodeURIComponent(dept)}&q=${encodeURIComponent(q)}`); }
+  catch (e) { $("list").innerHTML = `<p class="error">${esc(e.message)}</p>`; return; }
+  render();
+}
+function render() {
+  const dept = $("view").value;
+  $("count").textContent = `${apps.length} application${apps.length === 1 ? "" : "s"} · ${dept === "all" ? "all departments" : dept}${$("q").value.trim() ? ` · matching “${$("q").value.trim()}”` : ""}`;
+  if (!apps.length) { $("list").innerHTML = `<p class="empty">Nothing in this queue.</p>`; return; }
+  $("list").innerHTML = apps.map((a) => `
+    <article class="app${a.confirmation_number === openId ? " open" : ""}" data-id="${esc(a.confirmation_number)}">
+      <div class="top"><span class="id">${esc(a.confirmation_number)}</span><span class="name">${esc(a.applicant_name)}</span><span class="st ${esc(a.status)}">${esc(LABEL[a.status] || a.status)}</span>
+        <span class="meta">${esc(a.summary)} · ${new Date(a.submitted_at).toLocaleString()}${dept === "all" ? ` · ${esc(a.department)}` : ""}</span></div>
+      <div class="detail">
+        <dl>
+          <dt>Type</dt><dd>${esc(a.type)}</dd>
+          <dt>Applicant</dt><dd>${esc(a.applicant_name)} · ${esc(a.email)} · ${esc(a.phone)}</dd>
+          ${a.address ? `<dt>Address</dt><dd>${esc(a.address)}</dd>` : ""}
+          ${a.requested_date ? `<dt>Requested date</dt><dd>${esc(a.requested_date)}</dd>` : ""}
+          <dt>Details</dt><dd>${esc(a.details || "—")}</dd>
+          <dt>Routed to</dt><dd>${esc(a.department)}</dd>
+          ${a.reviewed_by ? `<dt>Last reviewed by</dt><dd>${esc(a.reviewed_by)} · ${new Date(a.updated_at).toLocaleString()}</dd>` : ""}
+        </dl>
+        <label for="note-${esc(a.confirmation_number)}">Note to applicant</label>
+        <textarea id="note-${esc(a.confirmation_number)}" placeholder="e.g. Please upload the signed neighbor petition.">${esc(a.staff_note || "")}</textarea>
+        <div class="acts">
+          <button type="button" class="ghost" data-s="in_review">Start review</button>
+          <button type="button" class="ghost" data-s="needs_info">Needs info</button>
+          <button type="button" class="ghost" data-s="approved">Approve</button>
+          <button type="button" class="ghost" data-s="denied">Deny</button>
+          <button type="button" class="ghost" data-s="">Save note only</button>
+        </div>
+        <div class="error"></div>
+      </div>
+    </article>`).join("");
+}
+
+$("list").onclick = async (e) => {
+  const card = e.target.closest(".app"); if (!card) return;
+  const btn = e.target.closest("button[data-s]");
+  if (!btn) { if (e.target.closest(".detail")) return; openId = card.classList.contains("open") ? null : card.dataset.id; render(); return; }
+  const id = card.dataset.id, note = card.querySelector("textarea").value;
+  btn.disabled = true;
+  try {
+    const upd = await api(`/api/staff/applications/${encodeURIComponent(id)}`, { method: "PATCH", body: JSON.stringify({ status: btn.dataset.s || undefined, note, reviewer: me.name ? `${me.name} (${me.dept})` : me.dept }) });
+    apps = apps.map((a) => a.confirmation_number === id ? upd : a); render();
+  } catch (err) { card.querySelector(".error").textContent = err.message; btn.disabled = false; }
+};
+$("signin").onclick = () => signin({ dept: $("dept").value, name: $("name").value.trim(), code: $("code").value });
+$("code").onkeydown = (e) => { if (e.key === "Enter") $("signin").click(); };
+$("code").onchange = fillDeptSelect;
+$("signout").onclick = signout;
+$("view").onchange = load; $("refresh").onclick = load;
+let t; $("q").oninput = () => { clearTimeout(t); t = setTimeout(load, 250); };
+setInterval(() => { if (me && document.visibilityState === "visible") load(); }, 20000); // ponytail: polling; SSE if the queue gets busy
+
+fillDeptSelect();
+if (me) signin(me);
+</script>
+</body>
+</html>

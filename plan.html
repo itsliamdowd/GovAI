@@ -16,6 +16,50 @@
        Status badge classes: planned | progress | done | blocked.
        Do NOT log changes to ~/.claude/, plan.html itself, or the changelog server. -->
 
+  <article class="entry" id="e-2026-10-17-1420">
+    <header>
+      <time>2026-10-17 14:20</time>
+      <h2>Two sides of the counter: residents edit their applications; staff desk (/staff) works the queue, no AI</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal (user).</b> Residents see and modify the forms they submitted from the menu. A government employee (e.g. Planning) sees the applications routed to their department, can look up a specific applicant by name, can switch to other departments' queues, and has no access to the assistant.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>server.js</code>
+        <ul>
+          <li><code>STAFF_CODE</code> (env, default <code>planning</code>) gates every <code>/api/staff/*</code> call via the <code>x-staff-code</code> header. <code>STATUSES</code> = received · in_review · needs_info · approved · denied.</li>
+          <li><code>PATCH /api/applications/:id</code> — resident edit. Ownership check: body <code>email</code> must equal the record's email. Allowed only while <code>status === "received"</code> (409 otherwise, message names the department). Editable: applicant_name, phone, address, requested_date, details. Sets <code>updated_at</code>.</li>
+          <li><code>GET /api/staff/departments</code> — distinct departments from <code>ROUTING</code>.</li>
+          <li><code>GET /api/staff/applications?department=&lt;name|all&gt;&amp;q=&lt;text&gt;</code> — newest first; <code>q</code> matches applicant name, email, confirmation number or summary (case-insensitive substring). Alerts (WATCH-…) excluded via the <code>type</code> field.</li>
+          <li><code>PATCH /api/staff/applications/:id</code> — <code>{status?, note?, reviewer?}</code> → <code>status</code>, <code>staff_note</code>, <code>reviewed_by</code>, <code>updated_at</code>.</li>
+          <li>Static alias <code>/staff</code> → <code>public/staff.html</code>.</li>
+        </ul>
+      </li>
+      <li><code>public/staff.html</code> (new, self-contained, same USWDS header, light + dark tokens) — sign-in (department, name, staff code; kept in <code>sessionStorage</code>), toolbar (Showing: <i>My department</i> / All / any other department; live applicant search), queue list with status chips, click to expand: all fields, note-to-applicant textarea, buttons Start review / Needs info / Approve / Deny / Save note only. Polls every 20 s while visible. No chat, no link to the assistant.</li>
+      <li><code>public/index.html</code> — menu "Applications &amp; watches": opening the menu re-fetches each application's live status and shows the department's note; while still <i>received</i> an "Edit application" button opens an inline editor (name, phone, address, date, details) that PATCHes with the stored email. <code>saveApps()</code> helper dedupes the localStorage writes.</li>
+    </ul>
+    <h3>Decisions</h3>
+    <ul>
+      <li>Identity stays lightweight (hackathon): residents are identified by the confirmation numbers already in their browser + the email on the record; staff by one shared code per deployment. <code>ponytail:</code> swap for SSO / per-user accounts when real staff use it.</li>
+      <li>Edits lock once staff start review, so a reviewer never reads a record that changes under them.</li>
+      <li>Store unchanged: <code>data/applications.json</code>, now with <code>staff_note</code> / <code>reviewed_by</code> / <code>updated_at</code> fields.</li>
+    </ul>
+    <p><b>Verified (curl against the live server).</b> Filed SM-858084 (Maria Lopez, block party → Transportation Planning) and SM-871450 (Dev Patel, bulky pickup → Public Works RRR). Resident PATCH: wrong email 403, right email (different case) 200 with phone/details updated. Staff: no code 401; Transportation queue lists only Maria; Public Works queue only Dev; <code>q=patel</code> across all departments returns only Dev; PATCH to in_review with note + reviewer persists and is visible on the resident GET; resident PATCH afterwards 409 with the department named; bad status 400; <code>/staff</code> serves text/html. Inline JS of both pages and <code>server.js</code> pass <code>node --check</code>. Those two test records remain in <code>data/applications.json</code> so the staff desk has something to show. Browser screenshot not possible (Chrome MCP still held by another session).</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1245">
+    <header>
+      <time>2026-10-17 12:45</time>
+      <h2>Logo: Pacific Wheel (Santa Monica Pier Ferris wheel) replaces the US flag</h2>
+      <span class="badge done">done</span>
+    </header>
+    <ul>
+      <li><code>public/index.html</code> — header mark is now an inline 24×24 line-icon SVG of a Ferris wheel (rim, hub, 8 spokes, A-frame legs), stroked in the accent blue via <code>currentColor</code> so it tracks the theme. <code>.brand .flag</code> CSS removed.</li>
+      <li><code>public/icon.svg</code> — matching app/PWA icon: navy rounded square, white wheel, yellow sun, cyan wave. Manifest unchanged (already points at <code>/icon.svg</code>).</li>
+      <li>Why the wheel: it's the one silhouette people associate with Santa Monica specifically (the pier's Pacific Wheel), unlike palms or waves which read as "any beach city". Checked in Chrome at 1280 wide; first pass with a wave line under the wheel was too busy at 22px, simplified.</li>
+    </ul>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1230">
     <header>
       <time>2026-10-17 12:30</time>
@@ -236,6 +280,10 @@
       <li><code>knowledge/*.md</code> — rewrote Block Party (verified process, petition %, $100.95, City Yards materials, notice), Preferential Parking (required documents, GoSaMo Center, 3–5 days, 30-day temp permit), Bulky Item (own page, 5 items, what to include), Dog License (Animal Shelter, fees), Leaf Blower (electric ≤70 dB), Encroachment/TUP (Building &amp; Land Use Permits page), Sidewalk Vending (own page), Home-share (admin regs PDF), Alarm (SMPD), Taxi… (Licenses &amp; Permits); added a verified Source line to every <code>santa-monica.md</code> section; "parking ticket" synonym on the citations section.</li>
       <li><code>test.js</code> — form definitions sanity (contact fields, select options, city source), validation + mapping, chunk-URL attachment, <code>pertinentSources</code> on the block-party question must equal exactly the block-party URL, datasets/url-less chunks never appear. <b><code>npm test</code> passes.</b></li>
       <li><code>README.md</code> — tools list + <code>forms.js</code> paragraph.</li>
+      <li><b>12:58 follow-up (user):</b> fee/deadline/"Official page" line moved from the top of the card to a footer under the Next/Submit buttons (<code>formCard()</code> render + <code>.form .sub</code> CSS).</li>
+      <li><b>13:02 follow-up (user):</b> app renamed "Ask Santa Monica" → <b>GovAI</b> in <code>&lt;title&gt;</code>, header brand, and <code>manifest.webmanifest</code> name/short_name.</li>
+      <li><b>13:05 follow-up (user):</b> icon changed from the ferris wheel to a government building (pediment + columns) with an AI spark: <code>public/icon.svg</code> (app/PWA icon) and the inline header <code>.mark</code> SVG.</li>
+      <li><b>13:08 follow-up (user):</b> icon colors: app icon now a blue→navy gradient tile, white building, amber spark; header mark uses ink-colored building with an amber filled spark instead of the all-blue stroke.</li>
     </ul>
     <h3>Retrieval before → after (block-party chip)</h3>
     <pre><code>before: 29.0 Block Party | 15.3 Preferential Parking | 14.8 Street Sweeping | 14.5 Building Permits | 12.4 Community Event | 10.9 Water Usage (dataset)   → all 6 shown as sources
@@ -456,6 +504,21 @@ daily 07:00 → refreshCouncil() → for each alert:
       <li>Article bodies are the feed excerpt/content only (SMDP ships full text; others a paragraph). Fetching article pages would hit bot walls; add per-publisher if excerpts prove too thin.</li>
       <li>Blocked sources are reached via Google News proxies (Lookout, Westside Current, KCRW, LAist) rather than directly; Reddit via RSS only.</li>
     </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1510">
+    <header>
+      <time>2026-10-17 15:10</time>
+      <h2>Application wizard: native pickers instead of typed strings</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "Start and end time" asked for a free-text string like "2:00 PM – 8:00 PM"; date/time/choice fields should be picked, not typed.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>forms.js</code> — new field type <code>timerange</code> used by both <code>event_hours</code> fields (block party, community event); block party <code>event_date</code> gets <code>minDays: 14</code>.</li>
+      <li><code>public/index.html</code> <code>formCard()</code> — per-field <code>read()</code>/<code>invalid()</code> instead of relying on one input's constraint validation. <code>timerange</code> renders two native <code>&lt;input type="time" step="900"&gt;</code> (15-min steps, dark pickers via <code>color-scheme</code>), validates end &gt; start, stores "2:00 PM – 8:00 PM" so <code>toApplication()</code> and department details are unchanged; raw values kept for Back. <code>date</code> inputs get <code>min</code> = today + <code>minDays</code>. Selects with ≤4 options render as tap-to-choose pills that advance immediately (Back keeps the highlight); longer lists stay a <code>&lt;select&gt;</code>. CSS: <code>.form .range</code>, <code>.form .choices</code>.</li>
+    </ul>
+    <p><b>Verify.</b> <code>node --check</code> on forms.js and the inline script; <code>npm test</code>. Dev server auto-restarts, page auto-reloads; open the block party form and step to question 2.</p>
   </article>
 
   <article class="entry" id="e-2026-10-17-1455">
