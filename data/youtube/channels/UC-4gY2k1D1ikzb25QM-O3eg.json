@@ -1,0 +1,38 @@
+{
+  "kind": "youtube#channel",
+  "etag": "cXUkffx6jk6WrembykIXmxz9j8Q",
+  "id": "UC-4gY2k1D1ikzb25QM-O3eg",
+  "snippet": {
+    "title": "City of San Diego Public Meetings",
+    "description": "",
+    "customUrl": "@cityofsandiegopublicmeetin5034",
+    "publishedAt": "2020-04-13T23:13:24.557866Z",
+    "thumbnails": {
+      "default": {
+        "url": "https://yt3.ggpht.com/ytc/AIdro_k4nGSnvGKYOqER2Fe8Fp3exjVSYTkwoyfToEHXwMoYrw=s88-c-k-c0x00ffffff-no-rj",
+        "width": 88,
+        "height": 88
+      },
+      "medium": {
+        "url": "https://yt3.ggpht.com/ytc/AIdro_k4nGSnvGKYOqER2Fe8Fp3exjVSYTkwoyfToEHXwMoYrw=s240-c-k-c0x00ffffff-no-rj",
+        "width": 240,
+        "height": 240
+      },
+      "high": {
+        "url": "https://yt3.ggpht.com/ytc/AIdro_k4nGSnvGKYOqER2Fe8Fp3exjVSYTkwoyfToEHXwMoYrw=s800-c-k-c0x00ffffff-no-rj",
+        "width": 800,
+        "height": 800
+      }
+    },
+    "localized": {
+      "title": "City of San Diego Public Meetings",
+      "description": ""
+    }
+  },
+  "contentDetails": {
+    "relatedPlaylists": {
+      "likes": "",
+      "uploads": "UU-4gY2k1D1ikzb25QM-O3eg"
+    }
+  }
+}

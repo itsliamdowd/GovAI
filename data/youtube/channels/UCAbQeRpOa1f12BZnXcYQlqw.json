@@ -1,0 +1,38 @@
+{
+  "kind": "youtube#channel",
+  "etag": "eZbxp5tdYsbB51tezLwx3WOJdUE",
+  "id": "UCAbQeRpOa1f12BZnXcYQlqw",
+  "snippet": {
+    "title": "City of San Diego",
+    "description": "This is the official YouTube Channel for the City of San Diego, California.\n\nThe City of San Diego's use of external social media is provided as a public service. The City disclaims liability for advertisements, videos, promoted content, or comments accessible from any external web page. The responsibility for external content of comments rests with the organizations or individuals providing them. Any inclusion of external content or comments on social media sites does not imply endorsement by the City of San Diego.",
+    "customUrl": "@thecityofsandiego",
+    "publishedAt": "2012-09-25T05:24:23Z",
+    "thumbnails": {
+      "default": {
+        "url": "https://yt3.ggpht.com/tPhwPQB6I6cx68RNLU5U8htH7NV-Z9vXPVbu_NHazkBrTGxdIsva0uksRL4Gb5VoRVU-GpX2rA=s88-c-k-c0x00ffffff-no-rj",
+        "width": 88,
+        "height": 88
+      },
+      "medium": {
+        "url": "https://yt3.ggpht.com/tPhwPQB6I6cx68RNLU5U8htH7NV-Z9vXPVbu_NHazkBrTGxdIsva0uksRL4Gb5VoRVU-GpX2rA=s240-c-k-c0x00ffffff-no-rj",
+        "width": 240,
+        "height": 240
+      },
+      "high": {
+        "url": "https://yt3.ggpht.com/tPhwPQB6I6cx68RNLU5U8htH7NV-Z9vXPVbu_NHazkBrTGxdIsva0uksRL4Gb5VoRVU-GpX2rA=s800-c-k-c0x00ffffff-no-rj",
+        "width": 800,
+        "height": 800
+      }
+    },
+    "localized": {
+      "title": "City of San Diego",
+      "description": "This is the official YouTube Channel for the City of San Diego, California.\n\nThe City of San Diego's use of external social media is provided as a public service. The City disclaims liability for advertisements, videos, promoted content, or comments accessible from any external web page. The responsibility for external content of comments rests with the organizations or individuals providing them. Any inclusion of external content or comments on social media sites does not imply endorsement by the City of San Diego."
+    }
+  },
+  "contentDetails": {
+    "relatedPlaylists": {
+      "likes": "",
+      "uploads": "UUAbQeRpOa1f12BZnXcYQlqw"
+    }
+  }
+}

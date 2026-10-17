@@ -46,7 +46,7 @@
   .dots { display:inline-flex; gap:4px } .dots i { width:5px; height:5px; border-radius:50%; background:var(--muted); animation:b 1s infinite } .dots i:nth-child(2){animation-delay:.15s} .dots i:nth-child(3){animation-delay:.3s}
   @keyframes b { 0%,80%,100% { opacity:.25 } 40% { opacity:1 } }
   /* action row under a reply: Sources pill, thumbs, copy */
-  .acts { display:flex; gap:6px; margin:14px 0 0; flex-wrap:wrap; align-items:center }
+  .acts { display:flex; gap:6px; margin:14px 0 0; flex-wrap:wrap; align-items:center } .fbnote { color:var(--muted); font-size:12.5px; margin-left:4px }
   .pill { display:inline-flex; align-items:center; gap:8px; background:transparent; border:1px solid var(--line); border-radius:999px; padding:0 12px; height:34px; color:var(--ink); font-size:13px; cursor:pointer; transition:background .12s }
   .pill:hover { background:var(--pill) } .pill.icons { padding:0 2px; gap:0; border-color:transparent } .pill.icons button { background:none; border:0; color:var(--muted); width:30px; height:30px; border-radius:50%; cursor:pointer; display:grid; place-items:center } .pill.icons button:hover,.pill.icons button.on { background:var(--pill); color:var(--ink) }
   .pill svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round }
@@ -57,6 +57,12 @@
   .card .num { font-size:20px; font-weight:600; letter-spacing:.5px; display:flex; align-items:center; gap:10px; margin:2px 0 4px; font-variant-numeric:tabular-nums }
   .card button { background:transparent; border:1px solid var(--ok-line); color:inherit; border-radius:999px; padding:2px 10px; font:inherit; font-size:12px; cursor:pointer }
   .card small { display:block; opacity:.9; font-size:13px }
+  .contact { border:1px solid var(--line); background:var(--pill); border-radius:14px; padding:14px 16px; margin:12px 0; max-width:480px; animation:pop .18s ease-out }
+  .contact b { display:block; font-size:16px } .contact .role { color:var(--muted); font-size:13px; margin:2px 0 8px }
+  .contact .rows { display:grid; gap:4px; font-size:14px } .contact .rows div { display:flex; gap:8px; align-items:baseline } .contact .rows span:first-child { color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.04em; flex:0 0 58px } .contact .rows a { color:var(--link); text-decoration:none; word-break:break-word }
+  .contact .note { color:var(--muted); font-size:13px; margin-top:8px }
+  .contact .cta { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px } .contact .cta a { display:inline-flex; align-items:center; gap:6px; background:var(--blue); color:#fff; border-radius:999px; height:34px; padding:0 14px; font-size:13px; font-weight:500; text-decoration:none } .contact .cta a:hover { background:var(--blue-2) } .contact .cta a.alt { background:transparent; color:var(--ink); border:1px solid var(--line) }
+  .contact .cta svg { width:15px; height:15px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round }
   /* application form card: one question per step → ✓ submitted */
   .form { border:1px solid var(--line); background:var(--pill); border-radius:14px; padding:16px 18px; margin:12px 0; max-width:480px; animation:pop .18s ease-out }
   .form h3 { margin:0 0 6px; font-size:15px; font-weight:600 } .form .sub { color:var(--muted); font-size:12.5px; margin:14px 0 0; padding-top:12px; border-top:1px solid var(--line); line-height:1.45 } .form .sub a { color:var(--link) }
@@ -64,7 +70,10 @@
   .form .bar { height:3px; background:var(--line); border-radius:2px; overflow:hidden; margin:6px 0 14px } .form .bar i { display:block; height:100%; background:var(--blue); transition:width .25s }
   .form label { display:block; font-size:15px; font-weight:500; margin:0 0 6px } .form .hint { color:var(--muted); font-size:13px; margin:-2px 0 10px; line-height:1.45 }
   .form input,.form select,.form textarea { width:100%; background:var(--bg); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:10px 12px; font:inherit; font-size:15px; outline:none } .form :is(input,select,textarea):focus { border-color:var(--blue-2) } .form textarea { min-height:84px; resize:vertical }
-  .form .range { display:flex; align-items:center; gap:10px } .form .range input { flex:1; min-width:0 } .form .range span { color:var(--muted); font-size:14px }
+  /* native time/date pickers: one highlight only — the focused segment takes the field's accent, the field border stays quiet */
+  .form input:is([type=time],[type=date]) { color-scheme:dark } .form input:is([type=time],[type=date]):focus { border-color:var(--line); box-shadow:0 0 0 2px var(--blue) }
+  .form input:is([type=time],[type=date])::-webkit-datetime-edit-hour-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-minute-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-ampm-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-month-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-day-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-year-field:focus { background:var(--blue); color:#fff; border-radius:4px; outline:none }
+  .form .range { display:flex; align-items:center; gap:10px } .form .range :is(input,select) { flex:1; min-width:0 } .form .range span { color:var(--muted); font-size:14px }
   .form .choices { display:flex; flex-wrap:wrap; gap:8px } .form .choices button { border:1px solid var(--line); background:var(--bg); color:var(--ink); border-radius:999px; padding:10px 16px; font:inherit; font-size:14px; cursor:pointer; text-align:left } .form .choices button:hover { border-color:var(--blue-2) } .form .choices button.on { border-color:var(--blue); background:#16243a }
   .form .nav { display:flex; gap:8px; justify-content:space-between; margin-top:14px } .form .nav button { border:1px solid var(--line); border-radius:999px; height:34px; padding:0 16px; font:inherit; font-size:13px; font-weight:500; cursor:pointer; background:transparent; color:var(--ink) } .form .nav .next { background:var(--blue); border-color:var(--blue); color:#fff } .form .nav .next:hover { background:var(--blue-2) } .form .nav button:disabled { opacity:.35; cursor:default }
   .form.done { border-color:var(--ok-line); background:var(--ok-bg); color:var(--ok); text-align:center } .form.done .num { font-size:20px; font-weight:600; letter-spacing:.5px; display:flex; align-items:center; justify-content:center; gap:10px; margin:2px 0 6px; font-variant-numeric:tabular-nums } .form.done .num button { background:transparent; border:1px solid var(--ok-line); color:inherit; border-radius:999px; padding:2px 10px; font:inherit; font-size:12px; cursor:pointer } .form.done small { display:block; opacity:.9; font-size:13px }
@@ -79,8 +88,11 @@
   .clip iframe { width:100%; aspect-ratio:16/9; border:0; display:block }
   .clip .body { padding:10px 14px 12px } .clip .body b { font-size:13px } .clip .body p { margin:4px 0 8px; font-size:13.5px; color:var(--muted); max-height:4.6em; overflow:hidden; line-height:1.5 } .clip .body p.open { max-height:none }
   .clip .cacts { display:flex; gap:6px; flex-wrap:wrap } .clip .cacts a,.clip .cacts button { font:inherit; font-size:12.5px; color:var(--ink); background:transparent; border:1px solid var(--line); border-radius:999px; padding:4px 10px; text-decoration:none; cursor:pointer } .clip .cacts a:hover,.clip .cacts button:hover { background:var(--pill-2) }
+  /* address autocomplete (official city address points) */
+  .sugg { position:absolute; z-index:30; background:var(--card,#12161c); border:1px solid var(--line); border-radius:12px; padding:4px; box-shadow:0 12px 32px -8px rgba(0,0,0,.6); min-width:240px; max-width:min(92vw,420px); display:none }
+  .sugg.open { display:block } .sugg div { padding:8px 10px; border-radius:8px; font-size:14px; cursor:pointer; display:flex; justify-content:space-between; gap:12px } .sugg div span { color:var(--muted); font-size:12px } .sugg div.on,.sugg div:hover { background:var(--pill) }
   /* composer */
-  form { position:fixed; left:0; right:0; bottom:0; padding:12px 16px calc(12px + var(--sab)); background:linear-gradient(transparent, var(--bg) 40%); z-index:5 }
+  #f { position:fixed; left:0; right:0; bottom:0; padding:12px 16px calc(12px + var(--sab)); background:linear-gradient(transparent, var(--bg) 40%); z-index:5 } /* composer only: a bare `form` selector also pinned the menu's watch form to the viewport */
   .row { max-width:720px; margin:0 auto; display:flex; gap:4px; align-items:flex-end; background:var(--pill); border:1px solid var(--line); border-radius:26px; padding:6px 6px 6px 18px; transition:border-color .12s }
   .row:focus-within { border-color:#4a515b }
   textarea { flex:1; resize:none; border:0; background:transparent; color:var(--ink); font:inherit; font-size:16px; padding:10px 0; max-height:160px; outline:none; line-height:1.4 } textarea::placeholder { color:#7d848d }
@@ -95,10 +107,14 @@
   @media (min-width:640px) { .sheet { align-items:center } .panel { border-radius:24px } }
   @keyframes up { from { transform:translateY(30px); opacity:0 } }
   .panel h2 { margin:0 0 12px; font-size:18px; font-weight:600; letter-spacing:-.01em }
+  .hbtns { display:flex; gap:6px } .menu .n:not(:empty) { margin-left:6px; background:var(--blue); color:#fff; border-radius:999px; font-size:11px; padding:1px 7px; vertical-align:1px }
   .panel h3 { font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:18px 0 6px; font-weight:500 }
   .panel .app { border:1px solid var(--line); border-radius:12px; padding:10px 12px; margin:6px 0; font-size:14px } .panel .app b { font-family:ui-monospace,monospace } .panel .app .st { float:right; font-size:10.5px; text-transform:uppercase; color:var(--ok); background:var(--ok-bg); padding:2px 8px; border-radius:999px }
-  .panel .mom { display:flex; gap:10px; align-items:center; border:1px solid var(--line); border-radius:12px; padding:8px 10px; margin:6px 0; font-size:13.5px; cursor:pointer } .panel .mom:hover { background:var(--pill) } .panel .mom img { width:64px; aspect-ratio:16/9; object-fit:cover; border-radius:6px; flex:none } .panel .mom small { color:var(--muted); display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
   .panel .empty { color:var(--muted); font-size:14px }
+  .panel .watch { display:grid; gap:8px; margin:4px 0 2px } .panel .watch input { width:100%; background:var(--bg); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:10px 12px; font:inherit; font-size:14px; outline:none } .panel .watch input:focus { border-color:var(--blue-2) }
+  .panel .watch .hint { color:var(--muted); font-size:13px; line-height:1.45; margin:0 0 4px } .panel .watch .go { width:100%; background:var(--blue); color:#fff; border:0; border-radius:999px; height:40px; padding:0 16px; font:inherit; font-size:14px; font-weight:500; cursor:pointer } .panel .watch .go:hover { background:var(--blue-2) } .panel .watch .go:disabled { opacity:.5 }
+  .panel .app.watching { border-color:#2b3a55; background:#0f1626 } .panel .app.watching b { font-family:inherit; font-size:15px } .panel .app.watching .st { color:var(--info); background:var(--info-bg) } .panel .app .stop,.panel .app .edit { margin-top:8px; background:transparent; color:var(--ink); border:1px solid var(--line); border-radius:999px; height:30px; padding:0 12px; font:inherit; font-size:12.5px; cursor:pointer } .panel .app .stop:hover { border-color:var(--err); color:var(--err) }
+  .panel .app .stop { display:inline-block; margin:8px 6px 0 0; background:transparent; border:1px solid var(--line); border-radius:999px; padding:4px 12px; font:inherit; font-size:12px; color:var(--ink); cursor:pointer } .panel .app .stop:hover { border-color:var(--err); color:var(--err) }
   .panel .app .edit { display:block; margin-top:8px; background:transparent; border:1px solid var(--line); border-radius:999px; padding:4px 12px; font:inherit; font-size:12px; color:var(--ink); cursor:pointer } .panel .app .edit:hover { border-color:var(--blue) }
   .panel .close { margin-top:14px; width:100%; padding:12px; border:1px solid var(--line); border-radius:999px; background:transparent; color:var(--ink); font:inherit; font-size:14px; font-weight:500; cursor:pointer } .panel .close:hover { background:var(--pill) }
   .srcitem { display:flex; gap:14px; align-items:center; padding:12px 0; border-bottom:1px solid var(--line); text-decoration:none; color:inherit } .srcitem:last-of-type { border:0 }
@@ -107,11 +123,12 @@
   /* voice mode */
   .voice { position:fixed; inset:0; z-index:20; background:var(--bg); color:var(--ink); display:none; flex-direction:column; align-items:center; justify-content:center; gap:26px; padding:24px }
   .voice.open { display:flex }
-  .orb { width:min(52vw,220px); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle at 38% 35%, #fff 0%, #d7ecff 30%, #56c1e8 62%, #0b5fb3 100%); box-shadow:0 0 50px 8px rgba(86,193,232,.45), 0 0 140px 40px rgba(59,143,240,.22); transition:transform .07s linear; animation:breathe 3.2s ease-in-out infinite }
+  body:has(.voice.open) { overflow:hidden } /* voice mode: the chat keeps updating underneath, but the page scrollbar must not move */
+  .orb { width:min(52vw,220px); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle at 38% 35%, #fff 0%, #d7ecff 30%, #56c1e8 62%, #0b5fb3 100%); box-shadow:0 0 50px 8px rgba(86,193,232,.45), 0 0 140px 40px rgba(59,143,240,.22); transition:transform .3s ease-out; animation:breathe 4s ease-in-out infinite }
   @keyframes breathe { 50% { box-shadow:0 0 70px 14px rgba(86,193,232,.55), 0 0 160px 50px rgba(59,143,240,.28) } }
   .voice[data-state="thinking"] .orb { background:conic-gradient(from 0deg, #fff, #56c1e8, #0b5fb3, #d7ecff, #fff); filter:blur(14px); animation:spin 1.1s linear infinite; transform:scale(.8) }
   @keyframes spin { to { rotate:360deg } }
-  .voice[data-state="speaking"] .orb { animation:talk .55s ease-in-out infinite alternate }
+  .voice[data-state="speaking"] .orb { animation:talk 1.1s ease-in-out infinite alternate }
   @keyframes talk { from { transform:scale(.92) } to { transform:scale(1.12); box-shadow:0 0 80px 18px rgba(86,193,232,.6), 0 0 180px 60px rgba(59,143,240,.3) } }
   .voice.muted .orb { filter:grayscale(1); opacity:.55; animation:none }
   .vstate { font-size:15px; color:var(--muted); min-height:1.4em }
@@ -119,19 +136,25 @@
   .vbtns { position:absolute; bottom:calc(44px + var(--sab)); display:flex; gap:30px }
   .vbtn { width:66px; height:66px; border-radius:50%; border:0; background:var(--pill); color:var(--ink); font-size:26px; display:grid; place-items:center; cursor:pointer }
   .vbtn:active { transform:scale(.94) } .vbtn.end { background:#dc2626; color:#fff }
-  @media (max-width:640px) { header { padding-left:16px; padding-right:16px } .brand small { display:none } main { padding-top:20px } body { font-size:15.5px } .me { max-width:85% } .chip { font-size:13.5px; padding:8px 14px } .row { padding-left:16px } textarea { font-size:16px } .clip,.card { max-width:100% } }
+  .vctl { display:flex; flex-direction:column; align-items:center; gap:8px; font-size:13px; font-weight:500; color:var(--muted) }
+  .vbtn svg { width:28px; height:28px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round } .vbtn .i-off { display:none }
+  .voice.muted #vmute { background:#fff; color:#0b0e13 } .voice.muted #vmute .i-on { display:none } .voice.muted #vmute .i-off { display:block } .voice.muted #vmuteLabel { color:var(--ink) }
+  @media (max-width:640px) { header { padding-left:16px; padding-right:16px } .menu { padding:0 10px; font-size:12.5px } .brand small { display:none } main { padding-top:20px } body { font-size:15.5px } .me { max-width:85% } .chip { font-size:13.5px; padding:8px 14px } .row { padding-left:16px } textarea { font-size:16px } .clip,.card,.contact { max-width:100% } }
 </style>
 </head>
 <body>
 <header>
   <div class="hrow">
     <a class="brand" href="/"><svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10l8.5-5 8.5 5"/><path d="M6 11.5v7M10 11.5v7M14 11.5v7M18 11.5v7"/><path d="M4 20.5h16"/><path class="spark" d="M19.5 1.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z"/></svg><b>GovAI</b></a>
-    <button class="menu" id="appsBtn" aria-label="Menu"><span id="appsCount">Menu</span></button>
+    <div class="hbtns">
+      <button class="menu" id="alertsBtn" aria-haspopup="dialog">Alerts<span class="n" id="watchN"></span></button>
+      <button class="menu" id="appsBtn" aria-haspopup="dialog">Applications<span class="n" id="appsN"></span></button>
+    </div>
   </div>
 </header>
 
 <main id="log">
-  <div class="msg bot"><p>Hello. I am the City of Santa Monica's assistant, an official city service for information, permits and 311 requests.</p><p>How can I help you today?</p></div>
+  <div class="msg bot" id="greet"><p>Hello. I am GovAI, the local-government assistant for every city and county in Los Angeles, Orange and San Diego counties.</p><p>Tell me your city or address and ask away: services, permits, fees, council decisions, 311 requests.</p></div>
   <div class="chips" id="hero">
     <button class="chip" data-q="I want to host a block party on my street. What permit do I need and can you help me apply?">How do I get a permit for a block party?</button>
     <button class="chip" data-q="Help me apply for a residential preferential parking permit.">Apply for a residential parking permit</button>
@@ -147,19 +170,32 @@
   <div class="row">
     <textarea id="in" rows="1" placeholder="Ask anything..." autocomplete="off" required></textarea>
     <button type="button" class="ib" id="mic" aria-label="Voice chat" title="Voice chat"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"/></svg></button>
-    <button type="submit" class="ib" id="send" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <button type="submit" class="ib" id="send" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
   </div>
-  <div class="fine">Not for emergencies. Call 911. Non-emergency: 311 or (310) 458-8411.</div>
+  <div class="fine" id="fine">Not for emergencies. Call 911. Non-emergency: your city's 311 or main line.</div>
 </form>
 
-<div class="sheet" id="sheet" role="dialog" aria-label="Menu">
+<div class="sheet" id="sheet" role="dialog" aria-label="Applications">
   <div class="panel">
-    <h2>My stuff</h2>
-    <h3>Applications &amp; watches</h3>
+    <h2>Applications</h2>
     <div id="appsList"></div>
-    <h3>Saved council moments</h3>
-    <div id="momList"></div>
     <button class="close" id="closeSheet">Close</button>
+  </div>
+</div>
+<div class="sheet" id="alertSheet" role="dialog" aria-label="Alerts">
+  <div class="panel">
+    <h2>Alerts</h2>
+    <div id="watchList"></div>
+    <h3>New alert</h3>
+    <form class="watch" id="watchForm" novalidate>
+      <p class="hint">Checked daily against council records and city data. You're emailed only when something new concerns it.</p>
+      <input id="wTopic" type="text" required maxlength="300" placeholder="What to watch, e.g. 1685 Main St or pier parking rates" autocomplete="off">
+      <input id="wAddress" type="text" maxlength="200" placeholder="Address (optional)" autocomplete="street-address">
+      <input id="wEmail" type="email" required placeholder="Your email" autocomplete="email">
+      <button type="submit" class="go">Start alerts</button>
+      <div class="error" id="wErr"></div>
+    </form>
+    <button class="close" id="closeAlerts">Close</button>
   </div>
 </div>
 <div class="sheet" id="srcSheet" role="dialog" aria-label="Sources">
@@ -175,8 +211,8 @@
   <div class="vstate" id="vstate"></div>
   <div class="vtext" id="vtext"></div>
   <div class="vbtns">
-    <button type="button" class="vbtn" id="vmute" aria-label="Mute">🎙️</button>
-    <button type="button" class="vbtn end" id="vend" aria-label="End voice chat">✕</button>
+    <div class="vctl"><button type="button" class="vbtn" id="vmute" aria-label="Mute microphone" aria-pressed="false"><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15a4 4 0 0 0 4-4V6a4 4 0 0 0-8 0v5a4 4 0 0 0 4 4z"/><path d="M19 11a7 7 0 0 1-14 0M12 18v3M8 21h8"/></svg><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15a4 4 0 0 0 4-4V6a4 4 0 0 0-8 0v5a4 4 0 0 0 4 4z"/><path d="M19 11a7 7 0 0 1-14 0M12 18v3M8 21h8"/><path d="M3 3l18 18"/></svg></button><span id="vmuteLabel">Mute</span></div>
+    <div class="vctl"><button type="button" class="vbtn end" id="vend" aria-label="End voice chat">✕</button><span>End</span></div>
   </div>
 </div>
 
@@ -205,10 +241,22 @@ const ICONS = {
   copy: '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg>',
   send: '<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
   stop: '<svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="3"/></svg>',
+  check: '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
 };
+// The answer's own text, without the action row (Sources / thumbs / copy) that lives inside the same bubble.
+function answerText(bot) { const c = bot.cloneNode(true); c.querySelector(".acts")?.remove(); return c.innerText.trim(); }
 
 // Official department badges: each source is mapped to the city department that published it and that department's own icon.
-const CITY_ICON = "https://www.santamonica.gov/SantaMonica.Gov.Theme/Icons/favicon/apple-icon-180x180.png";
+let CITY_ICON = "/icon.svg", CITY_NAME = "Local government"; // replaced by the server's `jurisdiction` event once the conversation names a city or county
+let JUR = null;
+// Device location → the server picks the nearest covered city/county when the resident hasn't named one. Asked once, cached 10 min, silently skipped if denied.
+let geo = null;
+navigator.geolocation?.getCurrentPosition((p) => { geo = { lat: p.coords.latitude, lon: p.coords.longitude }; }, () => {}, { maximumAge: 600000, timeout: 8000 });
+function setJurisdiction(j) {
+  JUR = j; CITY_ICON = j?.icon || "/icon.svg"; CITY_NAME = j?.name || "Local government";
+  $("fine").textContent = j ? `Not for emergencies. Call 911. ${j.name}: ${j.phone || j.contact || j.site}.` : "Not for emergencies. Call 911. Non-emergency: your city's 311 or main line.";
+  document.title = j ? `GovAI · ${j.short}` : "GovAI";
+}
 const fav = (d) => `https://www.google.com/s2/favicons?sz=128&domain=${d}`;
 const DEPTS = [
   [/youtube\.com/i, "City Council · meeting video", fav("youtube.com")],
@@ -265,7 +313,8 @@ const DEPTS = [
 function deptOf(s) {
   const hay = `${s.url} ${s.title}`;
   for (const [re, name, icon] of DEPTS) if (re.test(hay)) return { name: typeof name === "function" ? name(s) : name, icon: icon ?? CITY_ICON };
-  return { name: "City of Santa Monica", icon: CITY_ICON };
+  if (s.org) return { name: s.org, icon: CITY_ICON }; // datasets/GIS layers carry their publishing department
+  return { name: CITY_NAME, icon: CITY_ICON };
 }
 const badge = (icon, cls = "") => `<img class="${cls}" src="${esc(icon)}" alt="" onerror="this.onerror=null;this.src='/icon.svg'">`;
 function sourcesPill(list) {
@@ -283,18 +332,35 @@ function actionRow(bot, sources) {
   if (sources.length) row.appendChild(sourcesPill(sources));
   const fb = document.createElement("div"); fb.className = "pill icons";
   fb.innerHTML = `<button type="button" aria-label="Good response">${ICONS.up}</button><button type="button" aria-label="Bad response">${ICONS.down}</button>`;
-  for (const btn of fb.querySelectorAll("button")) btn.onclick = () => { for (const o of fb.querySelectorAll("button")) o.classList.toggle("on", o === btn && !o.classList.contains("on")); }; // ponytail: visual only, no feedback endpoint
+  const [upBtn, downBtn] = fb.querySelectorAll("button");
+  for (const btn of [upBtn, downBtn]) btn.onclick = () => {
+    const vote = btn.classList.contains("on") ? null : btn === upBtn ? "up" : "down";
+    upBtn.classList.toggle("on", vote === "up"); downBtn.classList.toggle("on", vote === "down");
+    fetch("/api/feedback", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sessionId, vote, answer: answerText(bot).slice(0, 4000) }) }).catch(() => {});
+    note.textContent = vote ? (vote === "up" ? "Thanks for the feedback" : "Thanks, we'll review this answer") : ""; note.style.display = vote ? "" : "none";
+  };
   const cp = document.createElement("div"); cp.className = "pill icons"; cp.innerHTML = `<button type="button" aria-label="Copy">${ICONS.copy}</button>`;
-  cp.firstChild.onclick = () => navigator.clipboard?.writeText(bot.innerText);
-  row.append(fb, cp);
+  cp.firstChild.onclick = async (e) => {
+    const b = e.currentTarget, text = answerText(bot);
+    try { await navigator.clipboard.writeText(text); }
+    catch { const ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); }
+    b.innerHTML = ICONS.check; b.classList.add("on"); setTimeout(() => { b.innerHTML = ICONS.copy; b.classList.remove("on"); }, 1500);
+  };
+  const note = document.createElement("span"); note.className = "fbnote"; note.style.display = "none";
+  row.append(fb, cp, note);
   return row;
 }
 
 let apps = []; try { apps = JSON.parse(localStorage.getItem("sm_apps") || "[]"); } catch {}
+const isWatch = (a) => a.status === "watching" || !!a.topic;
 const renderApps = () => {
-  $("appsCount").textContent = apps.length ? `Menu · ${apps.length}` : "Menu";
-  $("appsList").innerHTML = apps.length ? apps.map((a, i) => `<div class="app" data-i="${i}"><span class="st">${esc(String(a.status).replace(/_/g, " "))}</span><b>${esc(a.confirmation_number)}</b><br>${esc(a.summary)}<br><small style="color:var(--muted)">${esc(a.department)} · ${new Date(a.submitted_at).toLocaleDateString()}</small>${a.staff_note ? `<small style="display:block;margin-top:4px">📝 ${esc(a.department)}: ${esc(a.staff_note)}</small>` : ""}${a.type && a.status === "received" ? `<button type="button" class="edit">Edit application</button>` : ""}</div>`).join("") : `<p class="empty">Nothing filed yet. Ask me to apply for a permit or report an issue and it will show up here.</p>`;
+  const nW = apps.filter(isWatch).length, nA = apps.length - nW;
+  $("appsN").textContent = nA ? nA : ""; $("watchN").textContent = nW ? nW : "";
+  const watchCard = (a, i) => `<div class="app watching" data-i="${i}"><span class="st">Alert on</span><b>${esc(a.topic || a.summary)}</b>${a.address ? `<br>${esc(a.address)}` : ""}<br><small style="color:var(--muted)">Checked every morning · emails ${esc(a.email || "you")} when something changes · ${esc(a.confirmation_number)}</small><br><button type="button" class="stop">Stop alerts</button></div>`;
+  $("watchList").innerHTML = nW ? apps.map((a, i) => isWatch(a) ? watchCard(a, i) : "").join("") : `<p class="empty">No alerts yet.</p>`;
+  $("appsList").innerHTML = nA ? apps.map((a, i) => isWatch(a) ? "" : `<div class="app" data-i="${i}"><span class="st">${esc(String(a.status).replace(/_/g, " "))}</span><b>${esc(a.confirmation_number)}</b><br>${esc(a.summary)}<br><small style="color:var(--muted)">${esc(a.department)} · ${new Date(a.submitted_at).toLocaleDateString()}</small>${a.staff_note ? `<small style="display:block;margin-top:4px">📝 ${esc(a.department)}: ${esc(a.staff_note)}</small>` : ""}${a.type && a.status === "received" ? `<br><button type="button" class="edit">Edit application</button>` : ""}</div>`).join("") : `<p class="empty">Nothing filed yet. Ask me to apply for a permit or report an issue and it will show up here.</p>`;
 };
+
 const saveApps = () => { try { localStorage.setItem("sm_apps", JSON.stringify(apps)); } catch {} };
 // Resident self-service: pull current status + staff notes when the menu opens; edit while the application is still "received".
 async function syncApps() {
@@ -302,7 +368,7 @@ async function syncApps() {
   saveApps(); renderApps();
 }
 function editApp(i) {
-  const a = apps[i], box = $("appsList").children[i];
+  const a = apps[i], box = $("appsList").querySelector(`.app[data-i="${i}"]`);
   const f = (k, label, type = "text") => `<label>${label}</label><input name="${k}" type="${type}" value="${esc(a[k] ?? "")}">`;
   box.innerHTML = `<form class="form" style="margin:0;max-width:none;animation:none"><h3>Edit ${esc(a.confirmation_number)}</h3><p class="sub">${esc(a.summary)}. You can change these until ${esc(a.department)} starts reviewing.</p>
     ${f("applicant_name", "Full name")}${f("phone", "Phone", "tel")}${f("address", "Address")}${f("requested_date", "Requested date", "date")}<label>Details</label><textarea name="details">${esc(a.details ?? "")}</textarea>
@@ -318,21 +384,97 @@ function editApp(i) {
     apps[i] = { ...a, ...j }; saveApps(); renderApps();
   };
 }
-$("appsList").onclick = (e) => { const b = e.target.closest("button.edit"); if (b) editApp(+b.closest(".app").dataset.i); };
-let moments = []; try { moments = JSON.parse(localStorage.getItem("sm_moments") || "[]"); } catch {}
-const renderMoments = () => {
-  $("momList").innerHTML = moments.length ? moments.map((c, i) => `<div class="mom" data-i="${i}"><img src="https://i.ytimg.com/vi/${esc(c.video_id)}/mqdefault.jpg" alt=""><div style="min-width:0"><b>Council ${esc(c.meeting_date)}</b> · ${esc(c.hms)}<small>${esc(c.text.slice(0, 100))}</small></div></div>`).join("") : `<p class="empty">When an answer cites a council video, save the clip and it lands here.</p>`;
+$("appsList").onclick = $("watchList").onclick = (e) => {
+  const b = e.target.closest("button.edit"); if (b) editApp(+b.closest(".app").dataset.i);
+  const s = e.target.closest("button.stop"); if (s) stopWatch(+s.closest(".app").dataset.i, s);
 };
-$("momList").onclick = (e) => { const el = e.target.closest(".mom"); if (!el) return; $("sheet").classList.remove("open"); clipCard(moments[+el.dataset.i], true); scroll(); };
-renderApps(); renderMoments();
+async function stopWatch(i, btn) {
+  const a = apps[i]; if (!a || !confirm(`Stop watching "${a.topic || a.summary}"?`)) return;
+  btn.disabled = true;
+  const r = await fetch(`/api/alerts/${encodeURIComponent(a.confirmation_number)}`, { method: "DELETE" }).catch(() => null);
+  if (r && (r.ok || r.status === 404)) { apps.splice(i, 1); saveApps(); renderApps(); } else { btn.disabled = false; btn.textContent = "Try again"; }
+}
+// Menu → Watch a topic: same daily-watch store the chat's create_alert uses.
+try { $("wEmail").value = localStorage.getItem("sm_email") || ""; } catch {}
+$("watchForm").onsubmit = async (e) => {
+  e.preventDefault();
+  const topic = $("wTopic").value.trim(), address = $("wAddress").value.trim(), email = $("wEmail").value.trim(), err = $("wErr"), go = e.target.querySelector(".go");
+  err.textContent = "";
+  if (topic.length < 3) return err.textContent = "Describe what to watch in a few words.";
+  if (!$("wEmail").checkValidity() || !email) return err.textContent = "Enter a valid email for the alerts.";
+  go.disabled = true; go.textContent = "Starting…";
+  try {
+    const r = await fetch("/api/alerts", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ topic, address, email }) });
+    const a = await r.json(); if (!r.ok) throw new Error(a.error || "Could not start the watch.");
+    apps.unshift(a); saveApps(); renderApps();
+    try { localStorage.setItem("sm_email", email); } catch {}
+    $("wTopic").value = ""; $("wAddress").value = "";
+    go.textContent = "Alert added ✓"; setTimeout(() => { go.textContent = "Start alerts"; go.disabled = false; }, 1500);
+    $("watchList").firstElementChild?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  } catch (ex) { err.textContent = ex.message; go.textContent = "Start alerts"; go.disabled = false; }
+};
+renderApps();
 $("appsBtn").onclick = () => { $("sheet").classList.add("open"); syncApps(); };
+$("alertsBtn").onclick = () => $("alertSheet").classList.add("open");
 $("closeSheet").onclick = () => $("sheet").classList.remove("open");
+$("closeAlerts").onclick = () => $("alertSheet").classList.remove("open");
 $("closeSrc").onclick = () => $("srcSheet").classList.remove("open");
-for (const id of ["sheet", "srcSheet"]) $(id).onclick = (e) => { if (e.target === $(id)) $(id).classList.remove("open"); };
+for (const id of ["sheet", "alertSheet", "srcSheet"]) $(id).onclick = (e) => { if (e.target === $(id)) $(id).classList.remove("open"); };
 
 $("hero").onclick = (e) => { const t = e.target.closest(".chip"); if (t) { input.value = t.dataset.q; form.requestSubmit(); } };
 input.addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey && !/Mobi|Android/i.test(navigator.userAgent)) { e.preventDefault(); form.requestSubmit(); } });
 input.addEventListener("input", () => { input.style.height = "auto"; input.style.height = Math.min(input.scrollHeight, 180) + "px"; });
+
+// Address autocomplete. One popover, attached to whichever field is active. For the chat box only the
+// address-looking tail of the text ("…permit for 1685 ma|") is matched and replaced, the rest is left alone.
+const sugg = document.createElement("div"); sugg.className = "sugg"; document.body.appendChild(sugg);
+let suggItems = [], suggIdx = -1, suggEl = null, suggApply = null, suggTimer = 0, suggSeq = 0;
+const closeSugg = () => { sugg.classList.remove("open"); suggItems = []; suggIdx = -1; };
+function placeSugg(el) {
+  const r = el.getBoundingClientRect(), h = sugg.offsetHeight || 200, above = r.top > window.innerHeight - r.bottom;
+  sugg.style.left = Math.max(8, Math.min(r.left, window.innerWidth - sugg.offsetWidth - 8)) + "px";
+  sugg.style.top = (above ? r.top - h - 6 : r.bottom + 6) + window.scrollY + "px";
+}
+function showSugg(el, items, apply) {
+  suggEl = el; suggApply = apply; suggItems = items; suggIdx = -1;
+  if (!items.length) return closeSugg();
+  sugg.innerHTML = items.map((a, i) => `<div data-i="${i}">${esc(a.address)}<span>${esc(a.city)} ${esc(a.zip)}</span></div>`).join("");
+  sugg.classList.add("open"); placeSugg(el);
+}
+sugg.onmousedown = (e) => { e.preventDefault(); const d = e.target.closest("[data-i]"); if (d) pickSugg(+d.dataset.i); };
+function pickSugg(i) { const a = suggItems[i]; if (!a) return; suggApply(a); closeSugg(); suggEl?.dispatchEvent(new Event("input", { bubbles: true })); }
+// tail of a text that looks like the start of an address: "1685", "1685 ma", "2600 ocean park bl"
+const ADDR_TAIL = /(?:^|[\s,(])(\d{1,5}\s+[A-Za-z][A-Za-z.]*(?:\s+[A-Za-z][A-Za-z.]*){0,3}\s*)$/; // number + at least one street word, so "311" alone doesn't pop
+function addressSuggest(el, { whole = true } = {}) {
+  const query = () => {
+    if (whole) return { q: el.value, start: 0 };
+    const head = el.value.slice(0, el.selectionStart ?? el.value.length), m = head.match(ADDR_TAIL);
+    return m ? { q: m[1], start: head.length - m[1].length } : null;
+  };
+  el.addEventListener("input", () => {
+    clearTimeout(suggTimer); const cur = query();
+    if (!cur || cur.q.trim().length < 2) return closeSugg();
+    const seq = ++suggSeq;
+    suggTimer = setTimeout(async () => {
+      let items = []; try { items = await (await fetch(`/api/addresses?q=${encodeURIComponent(cur.q)}`)).json(); } catch {}
+      if (seq !== suggSeq || document.activeElement !== el) return;
+      showSugg(el, items, (a) => {
+        const text = whole ? a.address : el.value.slice(0, cur.start) + a.address + " " + el.value.slice(el.selectionStart ?? el.value.length).replace(/^\s+/, "");
+        el.value = text; const pos = whole ? text.length : cur.start + a.address.length + 1; el.setSelectionRange(pos, pos);
+      });
+    }, 120);
+  });
+  el.addEventListener("keydown", (e) => {
+    if (!sugg.classList.contains("open") || suggEl !== el) return;
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); suggIdx = (suggIdx + (e.key === "ArrowDown" ? 1 : -1) + suggItems.length) % suggItems.length; [...sugg.children].forEach((d, i) => d.classList.toggle("on", i === suggIdx)); }
+    else if ((e.key === "Enter" || e.key === "Tab") && suggIdx >= 0) { e.preventDefault(); e.stopImmediatePropagation(); pickSugg(suggIdx); }
+    else if (e.key === "Escape") closeSugg();
+  }, true); // capture: runs before the chat box's own Enter-to-send handler
+  el.addEventListener("blur", () => setTimeout(closeSugg, 150));
+}
+addressSuggest(input, { whole: false });
+for (const id of ["wTopic", "wAddress"]) if ($(id)) addressSuggest($(id));
+window.addEventListener("scroll", () => { if (sugg.classList.contains("open") && suggEl) placeSugg(suggEl); }, { passive: true });
 const atBottom = () => window.innerHeight + window.scrollY >= document.body.scrollHeight - 80;
 window.addEventListener("scroll", () => $("down").classList.toggle("show", !atBottom()), { passive: true });
 $("down").onclick = scroll;
@@ -344,35 +486,55 @@ else {
   const voice = $("voice"), orb = $("orb"), vstate = $("vstate"), vtext = $("vtext"), vmute = $("vmute");
   const rec = new SR(); rec.lang = "en-US"; rec.interimResults = true;
   let active = false, muted = false;
-  const setState = (s, label) => { voice.dataset.state = s; vstate.textContent = label; };
+  const setState = (s) => { voice.dataset.state = s; vstate.textContent = ""; }; // the orb shows the state; the label only ever carries the mic-denied error
   const listen = () => { if (!active) return; vtext.textContent = ""; if (muted) return setState("listening", "Muted"); setState("listening", "Listening…"); try { rec.start(); } catch {} };
-  rec.onresult = (e) => { vtext.textContent = [...e.results].map((r) => r[0].transcript).join(""); };
+  let replyWords = new Set(); // words of the reply being spoken, so the mic hearing our own voice doesn't count as an interruption
+  rec.onresult = (e) => {
+    const t = [...e.results].map((r) => r[0].transcript).join("");
+    if (voice.dataset.state === "speaking") { // barge-in: the resident talks over the reply → stop it and take the question
+      const w = t.toLowerCase().match(/[a-z']+/g) || [];
+      if (w.length < 2 || w.filter((x) => replyWords.has(x)).length / w.length > 0.6) return; // ponytail: echo guard = short, or mostly words from the reply we're speaking; swap for AEC/VAD if speakers still self-interrupt
+      stopSpeaking(); setState("listening", "Listening…");
+    }
+    vtext.textContent = t;
+  };
   rec.onerror = (e) => { if (e.error === "not-allowed") { vstate.textContent = "Microphone access denied"; active = false; } };
+  const spoken = (bot) => { const c = bot.cloneNode(true); c.querySelectorAll(".acts,.sources").forEach((x) => x.remove()); return c.innerText.replace(/https?:\/\/\S+/g, "").trim(); }; // never read the Sources pill or links aloud
   rec.onend = async () => {
     if (!active || muted) return;
+    if (voice.dataset.state === "speaking") { try { rec.start(); } catch {} return; } // keep listening while we talk so the resident can interrupt
     const text = vtext.textContent.trim(); if (!text) return listen();
     setState("thinking", "Thinking…");
-    const reply = (await send(text)).innerText.trim();
+    const reply = spoken(await send(text, true)); // voice: true → server asks for a one-or-two-sentence spoken answer with no sources
     if (!active) return;
     if (!reply) return listen();
     setState("speaking", ""); vtext.textContent = reply;
-    speak(reply, listen);
+    replyWords = new Set(reply.toLowerCase().match(/[a-z']+/g) || []);
+    try { rec.start(); } catch {}
+    speak(reply, () => { if (voice.dataset.state === "speaking") listen(); }); // interrupted → the barge-in already switched state
   };
-  // Server voice (ElevenLabs via /tts) when configured; else the most human-sounding voice the browser has.
-  let audio = null;
-  const stopSpeaking = () => { speechSynthesis.cancel(); if (audio) { audio.pause(); audio.src = ""; audio = null; } };
+  // Server voice (local Kokoro via /tts), spoken sentence-by-sentence so the first words start in ~1s while the rest generates;
+  // falls back to the most human-sounding voice the browser has if /tts is off or fails.
+  let audio = null, speakGen = 0;
+  const stopSpeaking = () => { speakGen++; speechSynthesis.cancel(); if (audio) { audio.pause(); audio.src = ""; audio = null; } };
+  const sentences = (t) => { const out = []; let cur = ""; for (const s of t.match(/[^.!?\n]+[.!?]*\s*/g) ?? [t]) { if (cur && (!out.length || cur.length + s.length > 220)) { out.push(cur); cur = ""; } cur += s; } if (cur.trim()) out.push(cur); return out; };
+  const fetchWav = (text) => fetch("/tts", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text }) }).then((r) => r.ok ? r.blob() : null).catch(() => null);
   async function speak(text, done) {
     stopSpeaking();
-    try {
-      const r = await fetch("/tts", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text }) });
-      if (r.ok) {
-        audio = new Audio(URL.createObjectURL(await r.blob()));
-        audio.onended = audio.onerror = () => { audio = null; done(); };
-        await audio.play(); return;
-      }
-    } catch {}
+    const gen = speakGen, parts = sentences(text);
+    let next = fetchWav(parts[0]), played = 0;
+    for (let i = 0; i < parts.length; i++) {
+      const blob = await next; if (gen !== speakGen || !active) return;
+      if (!blob) break;
+      if (i + 1 < parts.length) next = fetchWav(parts[i + 1]); // generate the next chunk while this one plays
+      await new Promise((res) => { audio = new Audio(URL.createObjectURL(blob)); audio.onended = audio.onerror = res; audio.play().catch(res); });
+      if (gen !== speakGen) return;
+      played++;
+    }
+    audio = null;
+    if (played === parts.length) return done();
     if (!active) return;
-    const u = new SpeechSynthesisUtterance(text); u.lang = "en-US"; u.rate = 1; u.pitch = 1;
+    const u = new SpeechSynthesisUtterance(parts.slice(played).join("")); u.lang = "en-US"; u.rate = 1; u.pitch = 1;
     const vs = speechSynthesis.getVoices().filter((v) => v.lang.startsWith("en"));
     u.voice = vs.find((v) => /Samantha|Ava|Zoe|Allison|Evan|Nathan|Tom/.test(v.name) && /Premium|Enhanced/.test(v.name)) // macOS/iOS neural voices
       ?? vs.find((v) => /Google US English|Natural|Neural|Online/.test(v.name)) // Chrome / Edge cloud voices
@@ -392,10 +554,11 @@ else {
       requestAnimationFrame(tick);
     })();
   }
-  mic.onclick = () => { active = true; muted = false; voice.classList.add("open"); voice.classList.remove("muted"); vmute.textContent = "🎙️"; meter(); listen(); };
-  $("vend").onclick = () => { active = false; rec.abort(); stopSpeaking(); voice.classList.remove("open"); };
+  const setMuteUI = (m) => { vmute.setAttribute("aria-pressed", String(m)); vmute.setAttribute("aria-label", m ? "Unmute microphone" : "Mute microphone"); $("vmuteLabel").textContent = m ? "Unmute" : "Mute"; voice.classList.toggle("muted", m); };
+  mic.onclick = () => { active = true; muted = false; voice.classList.add("open"); setMuteUI(false); meter(); listen(); };
+  $("vend").onclick = () => { active = false; rec.abort(); stopSpeaking(); voice.classList.remove("open"); scroll(); };
   vmute.onclick = () => {
-    muted = !muted; vmute.textContent = muted ? "🔇" : "🎙️"; voice.classList.toggle("muted", muted);
+    muted = !muted; setMuteUI(muted);
     if (muted) rec.abort();
     if (voice.dataset.state === "listening") listen();
   };
@@ -410,7 +573,7 @@ form.onsubmit = (e) => {
   send(text);
 };
 // Sends one user message, streams the reply into the log, resolves with the bot element.
-async function send(text) {
+async function send(text, voice = false) {
   $("hero")?.remove();
   add("me").textContent = text;
   ctrl = new AbortController(); sendBtn.classList.add("stop"); sendBtn.innerHTML = ICONS.stop; sendBtn.setAttribute("aria-label", "Stop");
@@ -436,7 +599,7 @@ async function send(text) {
   // The dev server (node --watch) restarts on every file save, killing in-flight requests and refusing new ones for a few
   // seconds while the index rebuilds. If nothing has streamed yet, wait for it to come back and resend once instead of failing.
   for (let attempt = 0; ; attempt++) try {
-    const res = await fetch("/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sessionId, message: text }), signal: ctrl.signal });
+    const res = await fetch("/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sessionId, message: text, voice, geo }), signal: ctrl.signal });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const reader = res.body.getReader(), dec = new TextDecoder(); let carry = "";
     while (true) {
@@ -451,8 +614,10 @@ async function send(text) {
         else if (ev.type === "reset") { flush(); buf = ""; bot.innerHTML = ""; thought = ""; }
         else if (ev.type === "status") { flush(); thought = ""; status.lastChild.textContent = ev.text; log.appendChild(status); }
         else if (ev.type === "sources") { for (const s of ev.data) if (s.url && !sources.has(s.url)) sources.set(s.url, s); }
+        else if (ev.type === "jurisdiction") setJurisdiction(ev.data);
         else if (ev.type === "clips") { for (const c of ev.data) clipCard(c); }
         else if (ev.type === "form") { cardOnly(); formCard(ev.data); }
+        else if (ev.type === "contact") { flush(); contactCard(ev.data); }
         else if (ev.type === "application" || ev.type === "alert") { cardOnly(); apps.unshift(ev.data); try { localStorage.setItem("sm_apps", JSON.stringify(apps)); } catch {} renderApps(); appCard(ev.data, ev.type === "alert" ? "🔔 Daily watch on" : "✅ Application received"); }
         else if (ev.type === "error") { flush(); const d = document.createElement("div"); d.className = "error"; d.textContent = ev.text; bot.appendChild(d); }
         scroll();
@@ -475,21 +640,29 @@ async function send(text) {
   if (!/Mobi|Android/i.test(navigator.userAgent) && !$("voice").classList.contains("open")) input.focus(); scroll();
   return bot;
 }
-// A cited council moment: thumbnail with timestamp, tap to play from that second, excerpt, save.
+// A cited council moment: thumbnail with timestamp, tap to play from that second, excerpt.
 function clipCard(c, autoplay = false) {
   const d = document.createElement("div"); d.className = "clip";
-  const saved = moments.some((m) => m.id === c.id);
   d.innerHTML = `<div class="thumb" style="background-image:url(https://i.ytimg.com/vi/${esc(c.video_id)}/hqdefault.jpg)"><span class="ts">${esc(c.hms)}</span></div>
     <div class="body"><b>City Council · ${esc(c.meeting_date)}</b><p>“${esc(c.text)}”</p>
-    <div class="cacts"><button type="button" data-a="more">Full excerpt</button><button type="button" data-a="save">${saved ? "Saved ✓" : "Save moment"}</button><a href="${esc(c.url)}" target="_blank" rel="noopener">YouTube ↗</a></div></div>`;
+    <div class="cacts"><button type="button" data-a="more">Full excerpt</button><a href="${esc(c.url)}" target="_blank" rel="noopener">YouTube ↗</a></div></div>`;
   const play = () => { d.querySelector(".thumb").outerHTML = `<iframe src="${esc(c.embed)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="Council meeting ${esc(c.meeting_date)} at ${esc(c.hms)}"></iframe>`; };
   d.querySelector(".thumb").onclick = play;
   d.querySelector(".cacts").onclick = (e) => {
     const a = e.target.dataset.a; if (!a) return;
     if (a === "more") e.target.parentElement.previousElementSibling.classList.toggle("open");
-    if (a === "save" && !moments.some((m) => m.id === c.id)) { moments.unshift(c); try { localStorage.setItem("sm_moments", JSON.stringify(moments)); } catch {} renderMoments(); e.target.textContent = "Saved ✓"; }
   };
   log.appendChild(d); if (autoplay) play();
+}
+// Contact card: who to call, with tap-to-call / email / directions / website. Rendered next to the text, not instead of it.
+function contactCard(c) {
+  const d = document.createElement("div"); d.className = "contact";
+  const tel = (c.phone || "").replace(/[^\d+]/g, ""), maps = c.address ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(c.address)}` : "";
+  const I = { phone: '<svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>', mail: '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>', pin: '<svg viewBox="0 0 24 24"><path d="M12 22s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>', link: '<svg viewBox="0 0 24 24"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>' };
+  const rows = [c.phone && `<div><span>Phone</span><a href="tel:${esc(tel)}">${esc(c.phone)}</a></div>`, c.email && `<div><span>Email</span><a href="mailto:${esc(c.email)}">${esc(c.email)}</a></div>`, c.address && `<div><span>Address</span><a href="${esc(maps)}" target="_blank" rel="noopener">${esc(c.address)}</a></div>`, c.hours && `<div><span>Hours</span><span style="flex:1;color:var(--ink);font-size:14px;text-transform:none;letter-spacing:0">${esc(c.hours)}</span></div>`].filter(Boolean).join("");
+  const cta = [c.phone && `<a href="tel:${esc(tel)}">${I.phone}Call</a>`, c.email && `<a class="alt" href="mailto:${esc(c.email)}">${I.mail}Email</a>`, c.address && `<a class="alt" href="${esc(maps)}" target="_blank" rel="noopener">${I.pin}Directions</a>`, c.url && `<a class="alt" href="${esc(c.url)}" target="_blank" rel="noopener">${I.link}Website</a>`].filter(Boolean).join("");
+  d.innerHTML = `<b>${esc(c.name)}</b>${c.role ? `<div class="role">${esc(c.role)}</div>` : ""}<div class="rows">${rows}</div>${c.note ? `<div class="note">${esc(c.note)}</div>` : ""}${cta ? `<div class="cta">${cta}</div>` : ""}`;
+  log.appendChild(d);
 }
 function appCard(a, label) {
   const c = document.createElement("div"); c.className = "card";
@@ -521,15 +694,15 @@ function formCard(f) {
       for (const b of el.querySelectorAll("button")) b.onclick = () => { vals[fld.key] = b.textContent; go(1); };
       read = () => vals[fld.key] ?? ""; invalid = () => read() ? "" : "Pick one.";
     } else if (fld.type === "select") { el = document.createElement("select"); el.innerHTML = `<option value="">Choose…</option>` + fld.options.map((o) => `<option>${esc(o)}</option>`).join(""); }
-    else if (fld.type === "timerange") { // two native time pickers, 15-minute steps; stored as "2:00 PM – 8:00 PM"
+    else if (fld.type === "timerange") { // two dropdowns in 15-minute steps (native <input type=time> misreports typed values in Safari); stored as "2:00 PM – 8:00 PM"
       el = document.createElement("div"); el.className = "range";
-      const [s0 = "", e0 = ""] = raw[fld.key] ?? [];
-      el.innerHTML = `<input type="time" id="ff" step="900" required value="${s0}"><span>to</span><input type="time" step="900" required value="${e0}">`;
-      const [a, b] = el.querySelectorAll("input");
-      const fmt = (t) => { const [h, m] = t.split(":").map(Number); return `${h % 12 || 12}:${String(m).padStart(2, "0")} ${h < 12 ? "AM" : "PM"}`; };
-      read = () => { raw[fld.key] = [a.value, b.value]; return `${fmt(a.value)} – ${fmt(b.value)}`; };
-      invalid = () => !a.value || !b.value ? "Enter both a start and an end time." : b.value <= a.value ? "End time must be after the start time." : "";
-      for (const x of [a, b]) x.onkeydown = (e) => { if (e.key === "Enter") { e.preventDefault(); go(1); } };
+      const fmt = (m) => `${(Math.floor(m / 60) % 12) || 12}:${String(m % 60).padStart(2, "0")} ${m < 720 ? "AM" : "PM"}`;
+      const [s0, e0] = raw[fld.key] ?? [];
+      const sel = (first, v) => `<select${first ? ' id="ff"' : ""} required><option value="">${first ? "Start" : "End"}</option>${Array.from({ length: 96 }, (_, i) => i * 15).map((m) => `<option value="${m}"${v === m ? " selected" : ""}>${fmt(m)}</option>`).join("")}</select>`;
+      el.innerHTML = sel(true, s0) + `<span>to</span>` + sel(false, e0);
+      const [a, b] = el.querySelectorAll("select");
+      read = () => { raw[fld.key] = [+a.value, +b.value]; return `${fmt(+a.value)} – ${fmt(+b.value)}`; };
+      invalid = () => !a.value || !b.value ? "Pick both a start and an end time." : +b.value <= +a.value ? "End time must be after the start time." : "";
     }
     else if (fld.type === "textarea") el = document.createElement("textarea");
     else {
@@ -537,7 +710,9 @@ function formCard(f) {
       if (fld.type === "date") { const d = new Date(); d.setDate(d.getDate() + (fld.minDays ?? 0)); el.min = d.toISOString().slice(0, 10); } // no past dates; lead time per field
     }
     if (el.tagName !== "DIV") { el.id = "ff"; el.required = !fld.optional; if (fld.placeholder) el.placeholder = fld.placeholder; if (vals[fld.key] != null) el.value = vals[fld.key]; }
+    if (el.tagName === "INPUT" && /address|location/i.test(fld.key + " " + fld.label)) { el.autocomplete = "off"; addressSuggest(el); }
     c.querySelector(".ffwrap").appendChild(el); (el.querySelector?.("input,button") ?? el).focus();
+    el.addEventListener("input", () => { c.querySelector(".error").textContent = ""; }); // a stale "required" message shouldn't sit under a field being filled
     el.onkeydown = (e) => { if (e.key === "Enter" && fld.type !== "textarea") { e.preventDefault(); go(1); } };
     c.querySelector(".back").onclick = () => go(-1); c.querySelector(".next").onclick = () => go(1);
   }
@@ -560,8 +735,13 @@ function formCard(f) {
 }
 function add(cls) { const d = document.createElement("div"); d.className = "msg " + cls; log.appendChild(d); scroll(); return d; }
 function esc(s) { return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
-function scroll() { requestAnimationFrame(() => window.scrollTo({ top: document.body.scrollHeight })); }
-if (location.hostname === "localhost") { const es = new EventSource("/dev"); let first = true; es.onopen = () => { if (!first) location.reload(); first = false; }; es.onmessage = () => location.reload(); }
+function scroll() { if ($("voice").classList.contains("open")) return; requestAnimationFrame(() => window.scrollTo({ top: document.body.scrollHeight })); }
+if (location.hostname === "localhost") { // dev live-reload: never yank a resident out of a voice conversation; reload when they end it
+  const es = new EventSource("/dev"); let first = true, pending = false;
+  const reload = () => { if ($("voice").classList.contains("open")) pending = true; else location.reload(); };
+  es.onopen = () => { if (!first) reload(); first = false; }; es.onmessage = reload;
+  $("vend").addEventListener("click", () => { if (pending) location.reload(); });
+}
 </script>
 </body>
 </html>

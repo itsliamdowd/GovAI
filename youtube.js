@@ -1,6 +1,7 @@
 // Optional offline Python importer -> the existing in-process BM25 document format.
 import fs from "node:fs";
 import path from "node:path";
+import { JURS } from "./jurisdictions.js";
 import { pathToFileURL } from "node:url";
 export const YOUTUBE_DIR = new URL("./data/youtube/", import.meta.url);
 const directoryURL = (dir) => dir instanceof URL ? dir : pathToFileURL(path.resolve(dir) + path.sep);
@@ -23,7 +24,9 @@ export function loadYouTubeDocs(dir = YOUTUBE_DIR, log = console.error) {
       seen.add(c.chunk_id);
       // Derive links from validated IDs/times, never a cached arbitrary URL.
       const url = `https://www.youtube.com/watch?v=${c.video_id}&t=${Math.floor(c.start)}s`;
-      docs.push({ ...c, kind: "youtube_video", doc: "transcript", part: c.chunk_id, url,
+      const jur = JURS.find((j) => j.id === c.jur || j.name === c.jurisdiction)?.id;
+      if (!jur) throw new Error("unknown jurisdiction");
+      docs.push({ ...c, jur, meeting_date: c.published_at?.slice(0, 10), kind: "youtube_video", doc: "transcript", part: c.chunk_id, url,
         title: `${c.channel_name}: ${c.title}`,
         searchText: `${c.region ?? ""} ${c.jurisdiction ?? ""} ${c.channel_name} ${c.title} ${c.published_at ?? ""} ${c.text}` });
     } catch { log(`YouTube cache: skipping invalid chunk on line ${i + 1}`); }

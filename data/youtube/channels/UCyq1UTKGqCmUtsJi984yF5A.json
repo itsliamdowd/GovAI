@@ -1,0 +1,39 @@
+{
+  "kind": "youtube#channel",
+  "etag": "db6dwcdrZFVJGzNIp3VCqZcc7EE",
+  "id": "UCyq1UTKGqCmUtsJi984yF5A",
+  "snippet": {
+    "title": "Santa Monica Police Department",
+    "description": "Welcome to the Santa Monica Police Department YouTube Channel! Our mission is to safeguard our community by improving quality of life and upholding public trust.  At SMPD, we endeavor to be law enforcement's benchmark for excellence as we seek to eliminate crime and social disorder in collaboration with our community partners. \n\nOn this channel, we seek to keep you informed about educational initiatives, community events, and share useful crime and safety information. Subscribe to our channel and also stay up to date with department news, events, crime safety and prevention information by connecting with us on social media: \n\nWebsite: santamonicapd.org\nFacebook: www.facebook/SantaMonicaPD\nTwitter: @SantaMonicaPD\nNextdoor",
+    "customUrl": "@santamonicapd",
+    "publishedAt": "2011-03-07T19:50:55Z",
+    "thumbnails": {
+      "default": {
+        "url": "https://yt3.ggpht.com/ytc/AIdro_kuAWA33nWAlMKcVKC1ZGRvICNMIpZ9r2nj3qZaZRCNiPE=s88-c-k-c0x00ffffff-no-rj",
+        "width": 88,
+        "height": 88
+      },
+      "medium": {
+        "url": "https://yt3.ggpht.com/ytc/AIdro_kuAWA33nWAlMKcVKC1ZGRvICNMIpZ9r2nj3qZaZRCNiPE=s240-c-k-c0x00ffffff-no-rj",
+        "width": 240,
+        "height": 240
+      },
+      "high": {
+        "url": "https://yt3.ggpht.com/ytc/AIdro_kuAWA33nWAlMKcVKC1ZGRvICNMIpZ9r2nj3qZaZRCNiPE=s800-c-k-c0x00ffffff-no-rj",
+        "width": 800,
+        "height": 800
+      }
+    },
+    "localized": {
+      "title": "Santa Monica Police Department",
+      "description": "Welcome to the Santa Monica Police Department YouTube Channel! Our mission is to safeguard our community by improving quality of life and upholding public trust.  At SMPD, we endeavor to be law enforcement's benchmark for excellence as we seek to eliminate crime and social disorder in collaboration with our community partners. \n\nOn this channel, we seek to keep you informed about educational initiatives, community events, and share useful crime and safety information. Subscribe to our channel and also stay up to date with department news, events, crime safety and prevention information by connecting with us on social media: \n\nWebsite: santamonicapd.org\nFacebook: www.facebook/SantaMonicaPD\nTwitter: @SantaMonicaPD\nNextdoor"
+    },
+    "country": "US"
+  },
+  "contentDetails": {
+    "relatedPlaylists": {
+      "likes": "",
+      "uploads": "UUyq1UTKGqCmUtsJi984yF5A"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "kind": "youtube#channel",
+  "etag": "sQG8biU2z_yX_xMGudtD144OnqE",
+  "id": "UCCmNDSuvxPBLP09_0QLd7Yw",
+  "snippet": {
+    "title": "Orange County Registrar of Voters",
+    "description": "The County of Orange welcomes you, please read our Site Disclaimer and Comment Policy.\n\nSite Disclaimer: https://ocgov.com/contact/social\n\nComment Policy:\n\nThe purpose of this discussion is to present information relevant to the stated purpose of this site, regarding matters of public interest in the County of Orange, including its many residents, businesses and visitors. We encourage you to submit your comments, but please note this is a moderated online discussion site and not a public forum. Click here to read the County's entire Comment Policy: https://ocgov.com/contact/comment\n",
+    "customUrl": "@ocrov",
+    "publishedAt": "2008-08-18T15:03:00Z",
+    "thumbnails": {
+      "default": {
+        "url": "https://yt3.ggpht.com/KHalq_9scs5KlB2mSuN74BvUTiNIFTy4NzD6qiE3ZlhNpygVI_77T6cgJx8JtRQ_IKBqCt1q=s88-c-k-c0x00ffffff-no-rj",
+        "width": 88,
+        "height": 88
+      },
+      "medium": {
+        "url": "https://yt3.ggpht.com/KHalq_9scs5KlB2mSuN74BvUTiNIFTy4NzD6qiE3ZlhNpygVI_77T6cgJx8JtRQ_IKBqCt1q=s240-c-k-c0x00ffffff-no-rj",
+        "width": 240,
+        "height": 240
+      },
+      "high": {
+        "url": "https://yt3.ggpht.com/KHalq_9scs5KlB2mSuN74BvUTiNIFTy4NzD6qiE3ZlhNpygVI_77T6cgJx8JtRQ_IKBqCt1q=s800-c-k-c0x00ffffff-no-rj",
+        "width": 800,
+        "height": 800
+      }
+    },
+    "localized": {
+      "title": "Orange County Registrar of Voters",
+      "description": "The County of Orange welcomes you, please read our Site Disclaimer and Comment Policy.\n\nSite Disclaimer: https://ocgov.com/contact/social\n\nComment Policy:\n\nThe purpose of this discussion is to present information relevant to the stated purpose of this site, regarding matters of public interest in the County of Orange, including its many residents, businesses and visitors. We encourage you to submit your comments, but please note this is a moderated online discussion site and not a public forum. Click here to read the County's entire Comment Policy: https://ocgov.com/contact/comment\n"
+    },
+    "country": "US"
+  },
+  "contentDetails": {
+    "relatedPlaylists": {
+      "likes": "",
+      "uploads": "UUCmNDSuvxPBLP09_0QLd7Yw"
+    }
+  }
+}

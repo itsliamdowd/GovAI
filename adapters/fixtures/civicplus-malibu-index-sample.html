@@ -1,0 +1,3216 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<!-- Google Tag Manager for GA4 -->
+				<script>(function(w,d,s,l,i){w.GAMeasurementID='G-9TP0H8C26H';w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+				j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+				'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+				})(window,document,'script','cpDataLayerGA4','GTM-K73C5PS');</script>
+				<!-- End Google Tag Manager for GA4 -->
+				<script type='text/javascript'>
+					var enableTelemetry = 'false'
+					var aiConfig = {
+					instrumentationKey: '1cde048e-3185-4906-aa46-c92a7312b60f'						
+					}
+					var appInsights = window.appInsights || function (a) { function b(a) { c[a] = function () { var b = arguments; c.queue.push(function () { c[a].apply(c, b) }) } } var c = { config: a }, d = document, e = window; setTimeout(function () { var b = d.createElement('script'); b.src = a.url || 'https://js.monitor.azure.com/scripts/a/ai.0.js', d.getElementsByTagName('script')[0].parentNode.appendChild(b) }); try { c.cookie = d.cookie } catch (a) { } c.queue = []; for (var f = ['Event', 'Exception', 'Metric', 'PageView', 'Trace', 'Dependency']; f.length;)b('track' + f.pop()); if (b('setAuthenticatedUserContext'), b('clearAuthenticatedUserContext'), b('startTrackEvent'), b('stopTrackEvent'), b('startTrackPage'), b('stopTrackPage'), b('flush'), !a.disableExceptionTracking) { f = 'onerror', b('_' + f); var g = e[f]; e[f] = function (a, b, d, e, h) { var i = g && g(a, b, d, e, h); return !0 !== i && c['_' + f](a, b, d, e, h), i } } return c }(aiConfig);
+					window.appInsights = appInsights, appInsights.queue && 0 === appInsights.queue.length;
+					// Add telemetry initializer
+					appInsights.queue.push(function() {
+						appInsights.context.addTelemetryInitializer(function(envelope) {
+							var telemetryItem = envelope.data.baseData;
+							// To check the telemetry item’s type:
+							if (!false)
+							{
+								//If the telemetry is not enabled, we still want to capture Google map custom event, so only allow that
+								if (envelope.name.indexOf('.Event') == -1)
+									return false;
+							}
+						});
+					});						
+					appInsights.trackPageView();
+				</script>
+	<script>
+		function populateAntiForgery(token) {
+			var input = document.createElement("input");
+			input.name = "__RequestVerificationToken";
+			input.type = "hidden";
+			input.value = token;
+			var absPat = /^https?:\/\/|^\/\//i;
+			var forms = document.getElementsByTagName("form");
+			for (var i = 0; i < forms.length; i++) {
+				if (forms[i].method == "post" &&
+					!forms[i].querySelector('[name="__RequestVerificationToken"]') &&
+					!absPat.test(forms[i].getAttribute("action"))) {
+					forms[i].appendChild(input.cloneNode());
+				}
+			}
+		}
+
+		function getAntiForgeryToken(callback, error) {
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", "/antiforgery");
+			xhr.addEventListener("load", function() {
+				try {
+					if (this.status !== 200) {
+						throw Error("Invalid status. Could not retrieve antiforgery token.");
+					}
+					var obj = JSON.parse(this.responseText);
+					callback(obj.token);
+				} catch (e) {
+					typeof error === "function" && error(e);
+				}
+			});
+			xhr.send();
+		}
+
+		getAntiForgeryToken(function(token) {
+			if (document.readyState === "complete"
+				|| document.readyState === "loaded" 
+				|| document.readyState === "interactive") {
+				populateAntiForgery(token);
+				return;
+			}
+			document.addEventListener("DOMContentLoaded", function() {
+				populateAntiForgery(token);
+			}, false);
+		}, console.error);
+	</script>
+			
+
+	<script type="text/javascript">
+		window.departmentHeader = {};
+		window.pageSectionTracker = {};
+		window.isResponsiveEnabled = true;
+		window.isRemoveSetHeights= true;
+		if (window.isRemoveSetHeights) {
+			document.documentElement.className += ' removeSetHeights';
+		}
+		window.mainMenuMediaQuery = 'screen and (max-width: 45em)';
+		window.isMobileBrowserIncludingTablets = false;
+		window.fixedResponsiveMenu = false;
+		window.fullWidthResponsiveMenu = false;
+		window.responsiveMenuHeight = '';
+		window.responsiveMenuFontSize = '';
+		window.isContentAdvisor = false;
+		(function () {
+			window.setSizeCookie = function () {
+				document.cookie = "dpi=" + window.devicePixelRatio + "; path=/";
+				document.cookie = "viewportWidth=" + window.innerWidth + "; path=/";
+				document.cookie = "viewportHeight=" + window.innerHeight + "; path=/";
+				if (screen && screen.width && screen.height) {
+					document.cookie = "screenWidth=" + screen.width + "; path=/";
+					document.cookie = "screenHeight=" + screen.height + "; path=/";
+				}
+				document.cookie = "responsiveGhost=1; path=/";
+			};
+
+			setSizeCookie();
+		}());
+	</script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script async src="https://docaccess.com/docbox.js"></script>
+	
+	
+	
+	<meta name="theme-color" content="#478b91">
+	<link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+		<title>Agenda Center • Malibu, CA • CivicEngage</title>
+
+			<script src="/Assets/Scripts/jQuery/jquery-3.7.1.min.js"></script>
+	<script src="/Assets/Scripts/jQuery/jquery-migrate-3.6.0.min.js" type="text/javascript"></script>
+	
+
+	<!--[if IE 6]><script language="JavaScript" type="text/javascript"> var isie6 = true; </script><![endif]-->
+	<!--[if IE 7]><script language="JavaScript" type="text/javascript"> var isie7 = true; </script><![endif]-->
+	<!--[if IE 8]><script language="JavaScript" type="text/javascript"> var isie8 = true; </script><![endif]-->
+	<!--[if IE 9]><script language="JavaScript" type="text/javascript"> var isie8 = true; </script><![endif]-->
+	<script type="text/javascript"><!--
+	var intCountryCode = 840;
+	var order = '';
+//--></script>
+	
+<link href="/-681783051.css" rel="stylesheet" type="text/css" />	<link href="/-2140275272.css" rel="stylesheet" type="text/css" />	<link href="/-1686575258.css" rel="stylesheet" type="text/css" />
+
+	<link rel="stylesheet" type="text/css" href="/Assets/Styles/Print.css" media="print">
+	<script type="text/javascript">
+		window.Pages = window.Pages || {};
+		// FrontEnd RWD initialization
+		window.Pages.rwdReady = $.Deferred();
+		window.Pages.toolBarDeferred = $.Deferred();
+		window.Pages.rwdSetupComplete = $.Deferred();
+		window.Pages.megaMenuLoaded = $.Deferred();
+		window.Pages.angularToolbarComplete = $.Deferred();
+		window.Pages.frontEndToolbarComplete = $.Deferred();
+	</script>
+	<!--CPHeadContent-->
+	<script src="/739942322.js" type="text/javascript"></script>
+	
+	
+	
+<script type="text/javascript" src="/Scripts/HtmlExtensionSupport.js"></script>
+
+<link type="text/css" href="/asset.axd?id=kgAAAB-LCAAAAAAABABVjTEKhDAURO8ydYj5K1qk9RiLxRIjiCZZzF8RJHf34xZiN_PewBwYYN8HvrDoUmQfGQrjxaIw9otfp1m7FEKK2uUsOsGaop6Dbcr8uT2VvvQKjq_JztXfbFJfhkjXmogaIU7-67aRAMvrz5cTeII6tJIAAAA%3d" rel="stylesheet"/>
+
+	<link href="/718583105.css" rel="stylesheet" type="text/css" />
+	<script src="/-981222267.js" type="text/javascript" defer></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('body').append('<div id="cpDatePickerWrapper" class="bottom leftEdge" style="position:absolute; width: 300px"></div>');
+			cp.datetimepicker.createDatePicker('#StartDatePicker', {format:'mm/dd/yyyy'});
+			cp.datetimepicker.createDatePicker('#EndDatePicker', { format: 'mm/dd/yyyy' });
+			$('#StartDatePicker').addClass('cpDatePickerElevate');
+			$('#EndDatePicker').addClass('cpDatePickerElevate');
+			$('.popoutContainer > a').click(function (e) {
+				e.preventDefault();
+			});
+
+            timePeriodEventBinder();
+			todayDate = new Date();
+
+			$('#searchButton').click(function () {
+				doSearch();
+				return false;
+			});
+
+			$('#searchField').keypress(function (e) {
+				if (e.which == 13 || e.keyCode == 13) {
+					$('#searchButton').trigger('click');
+				}
+			});
+
+			checkUncheckAllCategoriesCB();
+
+			$('#submittedIn').change(function () {
+				updateSubmittedRangeDates();
+				return false;
+			});
+
+			var match = RegExp('[?&]' + 'dateSelector' + '=([^&]*)')
+					.exec(window.location.search);
+
+			var dateRangeVal = null;
+			if (match != null)
+				dateRangeVal = decodeURIComponent(match[1].replace(/\+/g, ' '));
+			if (dateRangeVal != null) {
+				switch (dateRangeVal) {
+					case "":
+						$('#timePeriod').html('<span>Time Period</span>');
+						break;
+					case "1":
+						$('#timePeriod').html('<span>Last Week</span>');
+						break;
+					case "2":
+						$('#timePeriod').html('<span>Last Month</span>');
+						break;
+					case "3":
+						$('#timePeriod').html('<span>Last 6 Months</span>');
+						break;
+					case "4":
+						$('#timePeriod').html('<span>Last Year</span>');
+						break;
+				}
+			}
+		});
+
+		function checkUncheckAllCategoriesCB() {
+			if ($('input:not(:checked)[name=chkCategoryID]').length == 0)
+				attrOrProps($('#allCategories'), "checked", true);
+			else
+				removeAttrOrProps($('#allCategories'), "checked");
+		}
+
+		function checkUncheckAll(checked) {
+			var $cbs = $('input[name=chkCategoryID]');
+			if (checked) {
+				$cbs.each(function () {
+					$(this).prop('checked', true);
+				});
+			}
+			else {
+				$cbs.each(function () {
+					$(this).prop('checked', false);
+				});
+			}
+		}
+
+		function doSearch() {
+			var term = $('#searchField').val();
+
+			var startDate = $('#StartDatePicker').val();
+			var endDate = $('#EndDatePicker').val();
+			var dt = $('input[name=dateRange]').val();
+			var dateSelector = $('#submittedIn').val();
+
+			if (startDate!='' && endDate!='' && dt == '')
+				dateSelector = '';
+
+			var $cbs = $('input:checked[name=chkCategoryID]');
+			var cids = '';
+			$cbs.each(function () {
+				cids += $(this).val() + ',';
+			});
+
+			if ($('#allCategories').is(':checked'))
+				cids = 'all';
+
+			document.location = '/AgendaCenter/Search/?term=' + escape(term.trim()) + '&CIDs=' + cids.trim() + '&startDate=' + startDate + '&endDate=' + endDate + '&dateRange=' + dt + '&dateSelector=' + dateSelector;
+
+		}
+
+		function validSearchTerm(term) {
+			return (term && term != null && term.trim() != '' && term.trim() != $('#searchField').attr('placeholder'));
+		}
+
+		function getDatePicker(id) {
+			var datePicker = $('#' + id);
+			return datePicker;
+		}
+
+		function updateSubmittedRangeDates() {
+			var value = $('#submittedIn').val();
+			var myDate = new Date();
+			myDate.setFullYear(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
+
+			if (value != '') {
+				$(".submittedEnd").each(function () {
+					getDatePicker($(this).attr('id')).val(
+						myDate.getMonth()+1+"/"+myDate.getDate()+"/"+myDate.getFullYear());
+				});
+			}
+			else
+				$('input[name=EndDatePicker]').val('');
+
+			switch (value) {
+				case "1":
+					$('input[name=dateRange]').val('1 week');
+					myDate.setDate(myDate.getDate() - 7);
+					break;
+				case "2":
+					$('input[name=dateRange]').val('1 month');
+					myDate.setMonth(myDate.getMonth() - 1);
+					break;
+				case "3":
+					$('input[name=dateRange]').val('6 months');
+					myDate.setMonth(myDate.getMonth() - 6);
+					break;
+				case "4":
+					$('input[name=dateRange]').val('1 year');
+					myDate.setMonth(myDate.getMonth() - 12);
+					break;
+				default:
+					$('input[name=StartDatePicker]').val('');
+			}
+			if (value != '') {
+				$(".submittedStart").each(function () {
+					getDatePicker($(this).attr('id')).val(
+					  myDate.getMonth()+1 + "/" + myDate.getDate() + "/" + myDate.getFullYear());
+				});
+			}
+		}
+
+        function changeDateRange(rangeVal, displayText) {
+            $('#timePeriod').html('<span>' + displayText + '</span>');
+            $('#liTimePeriod').show();
+            $('#liTimePeriod button').attr("aria-hidden", "false");
+            $('#submittedIn').val(rangeVal);
+            $('#dateRangePopup').hide();
+            $('#timePeriod').removeClass('open').attr('aria-expanded', 'false').focus();
+            updateSubmittedRangeDates();
+        }
+
+        function displayDateRangePopup() {
+            $('#dateRangePopup').toggle();
+            var isOpen = $('#dateRangePopup').is(':visible');
+            $('#timePeriod').toggleClass('open').attr('aria-expanded', isOpen ? 'true' : 'false');
+            return false;
+        }
+
+        function resetDateDefaults() {
+            $('#liTimePeriod').hide();
+            $('#liTimePeriod button').attr("aria-hidden", "true");
+            $('#timePeriod').html('<span>Time Period</span>');
+            $('input[name=StartDatePicker]').val('');
+            $('input[name=EndDatePicker]').val('');
+            $('#dateRangePopup').hide();
+            $('#timePeriod').removeClass('open').attr('aria-expanded', 'false').focus();
+        }
+
+        function timePeriodEventBinder() {
+            $('#timePeriod').on('click keydown', function (e) {
+                // Handle Enter, Space, or click - open/close
+                if (e.type === 'click' || e.keyCode === 13 || e.keyCode === 32) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var isOpen = $('#dateRangePopup').is(':visible');
+                    if (!isOpen) {
+                        $('#dateRangePopup').show();
+                        $('#timePeriod').addClass('open').attr('aria-expanded', 'true');
+                        // Focus the container to enter focus mode
+                        $('#dateRangePopup')[0].focus();
+                    } else {
+                        $('#dateRangePopup').hide();
+                        $('#timePeriod').removeClass('open').attr('aria-expanded', 'false');
+                    }
+                    return false;
+                }
+                // Arrow Down - focus first option (excluding Time Period option)
+                if (e.keyCode === 40) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (!$('#dateRangePopup').is(':visible')) {
+                        $('#dateRangePopup').show();
+                        $('#timePeriod').addClass('open').attr('aria-expanded', 'true');
+                    }
+                    var $firstOption = $('#submittedIn li:visible:not(#liTimePeriod) button').first();
+                    if ($firstOption.length) {
+                        $firstOption[0].focus();
+                    }
+                    return false;
+                }
+                // Arrow Up - focus last option (excluding Time Period option)
+                if (e.keyCode === 38) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (!$('#dateRangePopup').is(':visible')) {
+                        $('#dateRangePopup').show();
+                        $('#timePeriod').addClass('open').attr('aria-expanded', 'true');
+                    }
+                    var $lastOption = $('#submittedIn li:visible:not(#liTimePeriod) button').last();
+                    if ($lastOption.length) {
+                        $lastOption[0].focus();
+                    }
+                    return false;
+                }
+                // Escape - close if open
+                if (e.keyCode === 27) {
+                    if ($('#dateRangePopup').is(':visible')) {
+                        e.preventDefault();
+                        $('#dateRangePopup').hide();
+                        $('#timePeriod').removeClass('open').attr('aria-expanded', 'false');
+                    }
+                }
+            });
+
+            // Handle arrow keys on the popup container itself
+            $('#dateRangePopup').on('keydown', function (e) {
+                if (e.target.id === 'dateRangePopup') {
+                    if (e.keyCode === 40) { // Arrow Down - focus first option
+                        e.preventDefault();
+                        e.stopPropagation();
+                        var $firstOption = $('#submittedIn li:visible:not(#liTimePeriod) button').first();
+                        if ($firstOption.length) {
+                            $firstOption[0].focus();
+                        }
+                    }
+                    if (e.keyCode === 38) { // Arrow Up - focus last option
+                        e.preventDefault();
+                        e.stopPropagation();
+                        var $lastOption = $('#submittedIn li:visible:not(#liTimePeriod) button').last();
+                        if ($lastOption.length) {
+                            $lastOption[0].focus();
+                        }
+                    }
+                    if (e.keyCode === 27) { // Escape
+                        e.preventDefault();
+                        $('#dateRangePopup').hide();
+                        $('#timePeriod').removeClass('open').attr('aria-expanded', 'false');
+                        $('#timePeriod')[0].focus();
+                    }
+                    if (e.keyCode === 9) { // Tab - close popup
+                        $('#dateRangePopup').hide();
+                        $('#timePeriod').removeClass('open').attr('aria-expanded', 'false');
+                    }
+                }
+            });
+
+            // Arrow key navigation within dropdown options
+            $('#submittedIn').on('keydown', 'button[role="option"]', function (e) {
+                var $options = $('#submittedIn li:visible:not(#liTimePeriod) button');
+                var currentIndex = $options.index(this);
+                var $target = null;
+
+                switch (e.keyCode) {
+                    case 40: // Arrow Down
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (currentIndex < $options.length - 1) {
+                            $target = $options.eq(currentIndex + 1);
+                        } else {
+                            $target = $options.first();
+                        }
+                        break;
+                    case 38: // Arrow Up
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (currentIndex > 0) {
+                            $target = $options.eq(currentIndex - 1);
+                        } else {
+                            $target = $options.last();
+                        }
+                        break;
+                    case 27: // Escape
+                        e.preventDefault();
+                        e.stopPropagation();
+                        $('#dateRangePopup').hide();
+                        $('#timePeriod').removeClass('open').attr('aria-expanded', 'false');
+                        $('#timePeriod')[0].focus();
+                        break;
+                    case 9: // Tab
+                        var isLastOption = (currentIndex === $options.length - 1);
+                        var isFirstOption = (currentIndex === 0);
+
+                        // Close popup when tabbing forward from last option or backward from first
+                        if ((isLastOption && !e.shiftKey) || (isFirstOption && e.shiftKey)) {
+                            $('#dateRangePopup').hide();
+                            $('#timePeriod').removeClass('open').attr('aria-expanded', 'false');
+                        }
+                        break;
+                }
+
+                if ($target && $target.length) {
+                    $target[0].focus();
+                }
+            });
+
+            $(document).on('click', function (e) {
+                if (!$(e.target).closest('.popoutContainer.timePeriod').length) {
+                    if ($('#dateRangePopup').is(':visible')) {
+                        $('#dateRangePopup').hide();
+                        $('#timePeriod').removeClass('open').attr('aria-expanded', 'false');
+                    }
+                }
+            });
+        }
+    </script>
+	
+	<script src="/2068681422.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+	$(document).ready(function (e) {
+		//Trying to go to a particular agenda.
+		if (window.location.href.indexOf('/?#') != -1) {
+			var dateYearInfo = findCatIDAgendaIDAndYearFromUrl();
+			var year = dateYearInfo.year;
+			var catID = dateYearInfo.catID;
+			var agendaID = dateYearInfo.agendaID;
+			var rowAgendaID = "tr[id^=row" + agendaID + "]";
+
+			$.ajax({
+				type: 'POST',
+				url: '/AgendaCenter/UpdateCategoryList',
+				data: { year: year, catID: catID },
+				success: function (response) {
+					//Changing the arrow display.
+					var $elem1 = $('#span' + catID);
+					$elem1.html('&#9660');
+					$('#section' + catID).replaceWith(response);
+					$('ul.years li').removeClass('current');
+					$('ul.years li').each(function (e) {
+						if ($(this).text() == year.toString())
+							$(this).addClass('current');
+					});
+					//$('ul.years').html($('<li class="current"><a>' + year + '</a></li>'));
+					$('.catAgendaRow').hide();
+					var row = $(rowAgendaID);
+					row.show();
+					row.length && row[0].scrollIntoView(true);
+				}
+			});
+		}
+	});
+
+	function findCatIDAgendaIDAndYearFromUrl() {
+		var url = window.location.href;
+		var urlBreakpoint = url.indexOf('/?#');
+		var hashIndex = urlBreakpoint + 3;
+		var indexOfHyphenBeforeAgendaID = url.lastIndexOf('-');
+		var indexOfHyphenBeforeCatID = url.substring(0, urlBreakpoint).lastIndexOf('-');
+		var agendaID = parseInt(url.substring(indexOfHyphenBeforeAgendaID + 1));
+		var catID = parseInt(url.substring(indexOfHyphenBeforeCatID + 1, urlBreakpoint));
+		var dateString = url.substring(hashIndex, indexOfHyphenBeforeAgendaID);
+		var year = dateString.substring(dateString.length - 4);
+		return { year: year, catID: catID, agendaID: agendaID };
+	}
+</script>
+<meta property="og:title" content="Agenda Center" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.malibucity.org/AgendaCenter" />
+<meta property="og:description" content="Agenda Center" />
+
+
+
+
+	<!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="/App_Themes/ie8.css"><![endif]-->
+	<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="/App_Themes/ie7.css"><![endif]-->
+	<!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="/App_Themes/ie6.css"><![endif]-->
+	<!--[if lt IE 9]><script type="text/javascript" src="/Scripts/html5.js"></script><![endif]-->
+
+	<script type="text/javascript">
+		setEditorVariables(false, 840);
+		function getPrintPreviewType() { return 0; } function printPreview() {pPreview(getPrintPreviewType()); }
+	</script>
+	<script src="/Assets/Scripts/AlpineJS/3.14.1/alpine.min.js" type="text/javascript" defer="defer"></script>
+</head>
+<body class="wide " >
+
+    <script>jQuery(document).click(function (event) {
+	var target = jQuery(event.target);
+	if (target.attr('src') && target.parents('.image').length && target.parents('.widget').length) {
+		var text = target.attr('title');
+		
+		if (!text.length) {
+			text = "N/A";
+		}
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'Image',
+				eventAction: 'Image - ' + text,
+				eventLabel: window.location.href
+			});
+	}
+	if (target.is('button') || target.hasClass('button') || target.parents().hasClass('button')) {
+		var text = "";
+		if (target.parents('.button')[0]) {
+			text = target.parents('.button').first().text();
+		} else if (target.text().length) {
+			text = target.text();
+		} else if (target.attr('title').length) {
+			text = target.attr('title');
+		}
+		if (!text.length) {
+			text = "N/A";
+		}
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'Button',
+				eventAction: 'Button - ' + text,
+				eventLabel: window.location.href
+			});
+	}
+	if (target.parents('.widgetCustomHtml').length) {
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'Custom Html',
+				eventAction: 'Custom Html Clicked',
+				eventLabel: window.location.href
+			});
+	}
+	if (target.parents('.editor').length) {
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'Editor',
+				eventAction: 'Editor Link Clicked',
+				eventLabel: window.location.href
+			});
+	}
+	if (target.parents('.GraphicLinks').length) {
+		var text = "";
+		var targetGraphicLink = target;
+		if (target.hasClass('widgetGraphicLinksLink')) {
+			targetGraphicLink = jQuery(target.children()[0]);
+		}
+		if (targetGraphicLink.hasClass('text')) {
+			text = targetGraphicLink.text();
+		} else if (targetGraphicLink.attr('src').length) {
+			if (targetGraphicLink.attr('alt').length) {
+				text = targetGraphicLink.attr('alt');
+			} else {
+				text = targetGraphicLink.attr('src');
+			}
+		} else {
+			text = "N/A";
+		}
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'Graphic Links',
+				eventAction: 'Graphic Link - ' + text,
+				eventLabel: window.location.href
+			});
+	}
+	if (target.parents('.InfoAdvanced').length) {
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'Info Advanced',
+				eventAction: 'Info Advanced Clicked',
+				eventLabel: window.location.href
+			});
+	}
+	if (target.parents('.list').length) {
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'List',
+				eventAction: 'List Clicked',
+				eventLabel: window.location.href
+			});
+	}
+	if (target.parents('.megaMenuItem').length || target.parents('.topMenuItem').length) {
+		var megaMenuText = jQuery('.topMenuItem.mouseover').find('span').text();
+		var breadCrumbs = [];
+		jQuery('.breadCrumbs > li').each(function () {
+			 breadCrumbs.push(this.textContent);
+		});
+		var pageTitle = breadCrumbs.join('>');
+		var subTitleText = target.parents('.megaMenuItem').children('.widgetTitle').children().text();
+		var text = "";
+		if (pageTitle) {
+			text += pageTitle + " | ";
+		} else {
+			text += document.title + ' - ';
+		}
+		if (target.text() == "" && megaMenuText == "") {
+			text += "N/A";
+		} else if (target.text().length && megaMenuText.length) {
+			if (megaMenuText == target.text()) {
+				text += megaMenuText;
+			} else {
+				text += megaMenuText + " - " + subTitleText + " - " + target.text();
+			}
+		} else if (target.text() == "") {
+			text += megaMenuText;
+		} else {
+			text += target.text();
+		}
+		if (!text.length) {
+			text = "N/A";
+		}
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'Mega Menu',
+				eventAction: 'Mega Menu : ' + text,
+				eventLabel: window.location.href
+			});
+	}
+	if (target.parents('.widgetNewsFlash').length && target.parents('.widgetItem').length) {
+		var text = jQuery(target.parents('.widgetItem')[0]).find('.widgetTitle').children().text();
+		if (!text.length) {
+			text = "N/A";
+		}
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'News Flash',
+				eventAction: 'News Flash - ' + text,
+				eventLabel: window.location.href
+			});
+	}
+	if (target.hasClass('widgetQuickLinksLink') || target.find('.widgetQuickLinksLink').length) {
+		var text = target.text();
+		if (!text.length) {
+			text = "N/A";
+		}
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'Quick Links',
+				eventAction: 'Quick Links - ' + text,
+				eventLabel: window.location.href
+			});
+	}
+	if (target.attr('src') && target.parents('.cpSlideshow').length) {
+		var text = target.attr('title');
+		if (!text.length) {
+			text = "N/A";
+		}
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'Slideshow',
+				eventAction: 'Slideshow - ' + text,
+				eventLabel: window.location.href
+			});
+	}
+	if (target.parents('.widgetText').length) {
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'Text',
+				eventAction: 'Text Link Clicked',
+				eventLabel: window.location.href
+			});
+	}
+});</script>
+	<div id="popoverModal" class="cp-PopOver cp-PopOver--modal cp-AdminWrap" style="position: fixed; display: none;">
+	<div class="cp-PopOver-header">
+		<h3 class="cp-PopOver-title"></h3>
+		<button class="cp-Btn cp-PopOver-close" onclick="closePopOverModal(event)">
+			<svg class="cp-Icon--close" alt="close" title="close">
+				<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#iconClose"></use>
+			</svg>
+		</button>
+	</div>
+	<div id="cpPopOverBody" class="cp-PopOver-body">
+		<form id="cpPopOverForm" name="cpPopOverForm" novalidate></form>
+	</div>
+	<div id="cpPopOverFooter" class="cp-PopOver-footer">
+		<div class="cp-BtnGroup" id="actionButtons">
+			<!-- Action buttons will be dynamically added here -->
+		</div>
+	</div>
+</div>
+    <div id="fb-root"></div>
+<div id=skipToContentLinks>
+<a href="#contentarea" target="_self" class="skipToContentLink">Skip to Main Content</a>
+</div>
+    <form id="frmReferenceFormForTelerikEditorDialogs"></form>
+
+        <input type="hidden" id="GoogleMapsKey" value="AIzaSyDWUuE-ifkbhxblF920N8MjpBdTg1Wt784" />
+
+
+
+    <input type="hidden" id="cpcDomain" value="https://cp-civicplusuniversity2.civicplus.com">
+    <input type="hidden" id="hdnStructureID" value="2" />
+    <input type="hidden" id="hdnContentCollectionID" value="edc74670-0db3-40f4-86a5-90d806e5cdff" />
+    <input type="hidden" id="hdnWorkingCopyID" value="00000000-0000-0000-0000-000000000000" />
+    <input type="hidden" id="hdnThemeID" value="2" />
+    <input type="hidden" id="pageIsFrontEnd" value="true" />
+    <input type="hidden" id="pageModuleID" value="65" />
+    <input type="hidden" id="pagePageID" />
+
+        <input type="hidden" id="hdnModuleID" value="65" />
+    <div id="stickyPlaceholder"></div>
+    <div id="outer-wrap" class="outer-wrap">
+        <div id="inner-wrap" class="inner-wrap">
+                <div id="divToolbars" class="cpToolbars newCP mui-fixed" style="">
+                    
+<style>
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700); 
+.alertText .customAlert {
+    color: #EAEAEA;
+    display: inline-block;
+    font-family: 'Open Sans Condensed', sans-serif; 
+    text-transform: uppercase;
+    font-weight: bold;
+    height: 27px;
+    left: 57px;
+    line-height: 27px;
+    overflow: hidden;
+    position: absolute;
+    top: 15px;
+    white-space: nowrap;
+    width: 268px;
+}
+</style>
+  <div id="352_divAlertBar" class="alertToolbar cpToolbar" style="background: #222222;">
+    <div id="352_divAlertToolbarInner" class="alertToolbarInner" style="font-size: 16px;">
+        <a href="/AlertCenter.aspx" id="352_lnkAlertText" class="alertText" style="border-right: 1px solid #000000;">
+            <img src="/Common/Images/AlertCenter/alertBarBlink.svg" id="352_imgDot" alt="Emergency Alert" class="redDot" />
+            <span id="352_customAlert" class="customAlert">EMERGENCY ALERT</span>
+        </a>
+        <span id="352_spnAlertContainer" class="alertContainer"><a href="/AlertCenter.aspx?AID=Bryson-Fire-Update-1017-1000-AM-the-fire-3706" target="_self" class="alert" style="border-left: 1px solid #635e65; border-right: 1px solid #000000;background: #030303 url(/Common/images/AlertCenter/alertBarBlackTextBckg.png) repeat-x; color: #FFFFFF;">
+	Bryson Fire Update 10/17 10:00 AM- the fire is 52% contained. Evacuation warnings and road closures remain in place. SCE inspecting circuits.
+	<span style="color: #FC4C2F;">Read On...</span>
+</a>
+</span>
+    </div>
+  </div>
+  <div id="352_divAlertBarEmpty" class="alertBarEmpty"></div>
+  
+
+
+
+<!-- Begin Signed Out Bar -->
+<div class="cpToolbar user public">
+    <div class="inner selfClear">
+        <p class="dropdown"><a href="/MyAccount/ProfileCreate" class="myConnections" id="signedOutToolbarCreateProfileButton">Create a Website Account</a> <span class="welcomeMessage">- Manage notification subscriptions, save form progress and more. &nbsp;&nbsp;</span></p>
+        <ul class="nav secondary">
+	        <li><a href="/MyAccount" class="button" id="loggedOutToolbarSignInButton">Website Sign In</a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#signedOutToolbarCreateProfileButton').click(function (event) {
+            event.preventDefault();
+            window.location.href = '/MyAccount/ProfileCreate?from=url&url=/&dn=' + window.location.origin;
+        });
+
+			
+				$('#loggedOutToolbarSignInButton').click(function (event) {
+					event.preventDefault();
+					window.location.href = '/MyAccount/?from=url&url=' + encodeURIComponent(window.location.href.replace(window.location.origin, '')) + '&dn=' + window.location.host;
+				});
+			
+
+		if ('False' == 'True') {
+            $('#loggedOutToolbarSignInButton').hide();
+		}
+    })
+</script>
+<!-- End Signed Out Bar -->
+
+                </div>
+            <div id="bodyWrapper">
+                <div id="mainNavHolderMobile" class="mainNavHolderMobile"></div>
+                
+<div data-cpRole="structuralContainer" id="structuralContainer1">
+<div data-cpRole="banner" id="banner1"><div data-cpRole="stickyStructuralContainer" id="stickyStructuralContainer"><div id="stickyStructuralContainer_14efcb8b-7d4b-4206-aadf-e23fad598b1d" class="stickyInnerDiv sticky  ">
+<div class="siteWrap"><nav data-cpRole="nav" id="mainNav" class="siteNav mainNav" role="navigation">
+<ol id="mainNavMenu" data-parent="1" class="rootNavMenu" role="menu"><!--
+--><li id="MainItem118" class="topMenuItem" role="none" data-pageid="118" data-displaymegamenu="True"><!--
+			--><!--
+			--> <a role = "menuitem"  aria-haspopup=true aria-expanded='false' aria-controls="mainNavMegaMenu118" id = "mainNavHowDoI" class="navMainItem mainNavItem mainNavItem1 " href="/118/How-Do-I" target = "_self" >   How Do I...?  </a>			<!--
+			--><!--
+			--></li><!----><li id="MainItem452" class="topMenuItem" role="none" data-pageid="452" data-displaymegamenu="True"><!--
+			--><!--
+			--> <a role = "menuitem"  aria-haspopup=true aria-expanded='false' aria-controls="mainNavMegaMenu452" id = "mainNavServices" class="navMainItem mainNavItem mainNavItem2 " href="/452/Services" target = "_self" >   Services  </a>			<!--
+			--><!--
+			--></li><!----><li id="MainItem173" class="topMenuItem" role="none" data-pageid="173" data-displaymegamenu="True"><!--
+			--><!--
+			--> <a role = "menuitem"  aria-haspopup=true aria-expanded='false' aria-controls="mainNavMegaMenu173" id = "mainNavCityGovernment" class="navMainItem mainNavItem mainNavItem3 " href="/173/City-Government" target = "_self" >   City Government  </a>			<!--
+			--><!--
+			--></li><!----><li id="MainItem92" class="topMenuItem" role="none" data-pageid="92" data-displaymegamenu="True"><!--
+			--><!--
+			--> <a role = "menuitem"  aria-haspopup=true aria-expanded='false' aria-controls="mainNavMegaMenu92" id = "mainNavResources" class="navMainItem mainNavItem mainNavItem4 " href="/92/Resources" target = "_self" >   Resources  </a>			<!--
+			--><!--
+			--></li><!---->
+</ol>
+
+
+	<script type="text/javascript">
+		(function () {
+			function setupMenu() {
+				const menuID = 'mainNavMenu';
+				const menuType = MAIN_MENU;
+
+				//setup menu manager properties for main menu
+				if (!menuManager.mobileMainNav && false)
+					menuManager.adjustMainItemsWidth('#' + menuID);
+				menuManager.isMainMenuEditable = false;
+				menuManager.mainMenuMaxSubMenuLevels = 4;
+				menuManager.setMOMMode(2, menuType);
+
+				//Init main menu
+				const setupDraggable = menuManager.isMainMenuEditable;
+				const urlToGetHiddenMenus = '/Pages/MenuMain/HiddenMainSubMenus?pageID=1&moduleID=65&themeID=2&menuContainerID=mainNav';
+
+				menuManager.setupMenu(menuID, 'mainNav', menuType, setupDraggable, urlToGetHiddenMenus);
+				menuManager.mainMenuInit = true;
+				menuManager.mainMenuTextResizer = true;
+				if (0.99 > 0)
+					menuManager.mainMenuTextResizerRatio = 0.99;
+				if (window.isResponsiveEnabled)
+					menuManager.mainMenuReady.resolve();
+
+			}
+
+			if (document.readyState === "complete"
+				|| document.readyState === "loaded"
+				|| document.readyState === "interactive") {
+				setupMenu();
+				return;
+			}
+
+			document.addEventListener("DOMContentLoaded", setupMenu);
+		})();
+	</script>
+
+
+<aside data-cpRole="megaMenu" id="megaMenu" class="megaMenu" style="display: none;"><input type="hidden" id="megaMenuPopupDirection" value="0"><input type="hidden" id="megaMenuWidthReference" value="1"><aside role="menu" data-cpRole="contentContainer" id="mainNavMegaMenu118" class="contentTop mainNavMegaMenu megaMenuContainer pageID_118 hidden" data-orientation="horizontal">	<div id="cc3ba262e3-1ed5-46e9-a73e-fca3ca3c4e24" data-containerid="3ba262e3-1ed5-46e9-a73e-fca3ca3c4e24" class="pageContent cpGrid cpGrid24 showInMobile">
+				                
+
+
+
+	</div>
+</aside><aside role="menu" data-cpRole="contentContainer" id="mainNavMegaMenu452" class="contentTop mainNavMegaMenu megaMenuContainer pageID_452 hidden" data-orientation="horizontal">	<div id="ccff5fa153-5246-4e21-b8b3-e34361da8c03" data-containerid="ff5fa153-5246-4e21-b8b3-e34361da8c03" class="pageContent cpGrid cpGrid24 showInMobile">
+				                
+
+
+
+	</div>
+</aside><aside role="menu" data-cpRole="contentContainer" id="mainNavMegaMenu173" class="contentTop mainNavMegaMenu megaMenuContainer pageID_173 hidden" data-orientation="horizontal">	<div id="cc431c93b2-6926-41de-9cb3-0ba759360f85" data-containerid="431c93b2-6926-41de-9cb3-0ba759360f85" class="pageContent cpGrid cpGrid24 showInMobile">
+				                
+
+
+
+	</div>
+</aside><aside role="menu" data-cpRole="contentContainer" id="mainNavMegaMenu92" class="contentTop mainNavMegaMenu megaMenuContainer pageID_92 hidden" data-orientation="horizontal">	<div id="cc6f3abfc8-0012-4fe4-b76f-1c00f12958ca" data-containerid="6f3abfc8-0012-4fe4-b76f-1c00f12958ca" class="pageContent cpGrid cpGrid24 showInMobile">
+				                
+
+
+
+	</div>
+</aside></aside></nav></div></div>
+</div><div data-cpRole="structuralContainer" id="structuralContainer3">
+<div class="siteWrap2"><div data-cpRole="banner" id="banner2" class="logo empty">
+
+
+
+
+				<a id="banner2-3" style="			display: block; text-align: center;
+" class="bannerObject" href="/" target="_self"><img alt="Site ID" class="bannerObject" height="149" src="/ImageRepository/Document?documentID=15691" width="522" /></a>
+</div><aside data-cpRole="contentContainer" id="contentContainer1" class="search_ts">	<div id="cc0e3fa710-8f9e-41ee-abcb-99a16d6ad512" data-containerid="0e3fa710-8f9e-41ee-abcb-99a16d6ad512" class="pageContent cpGrid cpGrid24 isLockedContainer showInMobile">
+				                
+
+		<div class="row outer wide"><!--
+--><div class="outer col col24 first last" style="" data-widgetcontainerid="9a24ecc2-3138-4cb8-8322-f8e045a96d65">				
+	<div class="row nest first last wide">
+	
+	<div class="inner col col24 first last id14776e10-3358-4bfa-bf86-a3ae65e9f1fa" style="" data-widgetcontainerid="14776e10-3358-4bfa-bf86-a3ae65e9f1fa">	
+<div data-widget-id="3c92aa8e-f870-4af2-bd82-34aa506aa12f" data-widget-controller-path="/Layout/WidgetSearch">
+	
+	<script defer type="text/javascript" src="/Common/Controls/jquery-ui-1.14.2/jquery-ui.min.js"></script>
+	<script defer src="/Areas/Layout/Assets/Scripts/Search.js" type="text/javascript"></script>
+	<script defer type="text/javascript">
+
+		$(document).ready(function () {
+			try {
+				// Minimum characters required before performing a search/autocomplete
+				var minPrefixLength = 3;
+				var autoCompleteDebounceDelay = 500;
+				var searchFieldSelector = "#searchField" + '3c92aa8e-f870-4af2-bd82-34aa506aa12f';
+				var checkboxSelector = "#ysnSearchOnlyDept" + '3c92aa8e-f870-4af2-bd82-34aa506aa12f';
+				var buttonSelector = ".widgetSearchButton" + '3c92aa8e-f870-4af2-bd82-34aa506aa12f';
+				var autoCompleteCache = {};
+				var autoCompleteCacheKeys = [];
+				var autoCompleteCacheLimit = 25;
+				var currentAutoCompleteRequest = null;
+				var currentAutoCompleteRequestKey = null;
+				var autoCompleteDebounceTimer = null;
+				var autoCompleteDebounceKey = null;
+				var pendingAutoCompleteResponses = [];
+
+				function normalizeAutoCompleteTerm(term) {
+					return $.trim((term || "") + "").replace(/\s+/g, " ");
+				}
+
+				function shouldSearch(term) {
+					return normalizeAutoCompleteTerm(term).length >= minPrefixLength;
+				}
+
+				function getAutoCompleteUrl() {
+					return '/Search/AutoComplete' + ($(checkboxSelector).is(':checked') || false? '?departmentId=0' : '');
+				}
+
+				function getAutoCompleteCacheKey(requestUrl, term) {
+					return requestUrl + "|" + term.toLowerCase();
+				}
+
+				function cacheAutoCompleteResult(cacheKey, data) {
+					if (!Object.prototype.hasOwnProperty.call(autoCompleteCache, cacheKey)) {
+						autoCompleteCacheKeys.push(cacheKey);
+						if (autoCompleteCacheKeys.length > autoCompleteCacheLimit) {
+							delete autoCompleteCache[autoCompleteCacheKeys.shift()];
+						}
+					}
+					autoCompleteCache[cacheKey] = data;
+				}
+
+				function respondToPendingAutoComplete(data) {
+					var responses = pendingAutoCompleteResponses;
+					pendingAutoCompleteResponses = [];
+					for (var i = 0; i < responses.length; i++) {
+						responses[i](data);
+					}
+				}
+
+				function cancelPendingAutoComplete() {
+					clearTimeout(autoCompleteDebounceTimer);
+					autoCompleteDebounceKey = null;
+					if (currentAutoCompleteRequest != null) {
+						currentAutoCompleteRequest.abort();
+						currentAutoCompleteRequest = null;
+					}
+					currentAutoCompleteRequestKey = null;
+					respondToPendingAutoComplete([]);
+				}
+
+				function createWidgetAutoCompleteSource(options) {
+					return function (request, response) {
+						var term = normalizeAutoCompleteTerm(request.term);
+						if (!options.shouldSearch(term)) {
+							response([]);
+							return;
+						}
+
+						var requestUrl = options.url();
+						var cacheKey = getAutoCompleteCacheKey(requestUrl, term);
+						if (Object.prototype.hasOwnProperty.call(autoCompleteCache, cacheKey)) {
+							response(autoCompleteCache[cacheKey]);
+							if (options.success) {
+								options.success(autoCompleteCache[cacheKey]);
+							}
+							return;
+						}
+
+						if (currentAutoCompleteRequestKey === cacheKey || autoCompleteDebounceKey === cacheKey) {
+							pendingAutoCompleteResponses.push(response);
+							return;
+						}
+
+						cancelPendingAutoComplete();
+						autoCompleteDebounceKey = cacheKey;
+						pendingAutoCompleteResponses.push(response);
+						autoCompleteDebounceTimer = setTimeout(function () {
+							autoCompleteDebounceKey = null;
+							currentAutoCompleteRequestKey = cacheKey;
+							currentAutoCompleteRequest = $.ajax({
+								url: requestUrl,
+								dataType: "json",
+								timeout: options.timeout,
+								data: {
+									term: term,
+								},
+								success: function (data) {
+									if (currentAutoCompleteRequestKey === cacheKey) {
+										cacheAutoCompleteResult(cacheKey, data);
+										respondToPendingAutoComplete(data);
+										if (options.success) {
+											options.success(data);
+										}
+									}
+								},
+								error: function (xmlhttprequest, textstatus, message) {
+									if (textstatus === "abort") {
+										return;
+									}
+
+									if (options.error) {
+										options.error(xmlhttprequest, textstatus, message);
+									}
+
+									respondToPendingAutoComplete([]);
+								},
+								complete: function (xmlhttprequest) {
+									if (currentAutoCompleteRequest === xmlhttprequest) {
+										currentAutoCompleteRequest = null;
+										currentAutoCompleteRequestKey = null;
+									}
+								}
+							});
+						}, options.delay);
+					};
+				}
+
+				// click handler for search buttons
+				$(buttonSelector).click(function (e) {
+					e.preventDefault();
+					var $btn = $(this);
+					var $field = $btn.siblings(".widgetSearchBox");
+					var term = $field.val() + "";
+					if (!shouldSearch(term)) {
+						// do nothing until user types enough characters
+						$field.focus();
+						return;
+					}
+
+					if ($(checkboxSelector).is(':checked') || false)
+					{
+						doWidgetSearch($.trim(term), Number(0));
+					}
+					else {
+						doWidgetSearch($.trim(term), 0);
+					}
+				});
+
+				// enter key handler for the search field
+				$(searchFieldSelector).keypress(function (e) {
+					var code = e.which || e.keyCode;
+					if (code === 13) {
+						e.preventDefault();
+						var $this = $(this);
+						var term = $this.val() + "";
+						if (!shouldSearch(term)) {
+							// do nothing until user types enough characters
+							$this.focus();
+							return false;
+						}
+
+						if ($(checkboxSelector).is(':checked') || false) {
+							doWidgetSearch($.trim(term), Number(0));
+						} else {
+							doWidgetSearch($.trim(term), 0);
+						}
+						return false;
+					}
+					return true;
+				});
+
+				// autocomplete: set minLength and guard source
+				if (false) {
+					var $searchField = $(searchFieldSelector).autocomplete({
+						minLength: minPrefixLength,
+						source: createWidgetAutoCompleteSource({
+							delay: autoCompleteDebounceDelay,
+							timeout: 10000,
+							shouldSearch: shouldSearch,
+							url: getAutoCompleteUrl,
+							success: function () {
+								$('.autoCompleteError').remove();
+							},
+							error: function (xmlhttprequest, textstatus, message) {
+								if (textstatus === "timeout") {
+									if ($(searchFieldSelector).siblings('.autoCompleteError').length == 0)
+										$('<span class="autoCompleteError"><p class="alert error">Search autocomplete is currently not responding. Please try again later.</p></span>').insertAfter($(searchFieldSelector));
+								}
+							}
+						}),
+						html: true,
+						delay: 0,
+						select: function (event, ui) {
+							$(this).val(ui.item.value);
+							$(this).next().click();
+						}
+					});
+
+					$searchField.data("ui-autocomplete")._renderItem = function (ul, item) {
+						return $("<li class=\"itemList\"></li>")
+							.data("ui-autocomplete-item", item)
+							.append("<a>" + item.label + "</a>")
+							.appendTo(ul);
+					};
+				}
+
+				// keep searchBtnApplyQuery consistent with prefix rule
+				window.searchBtnApplyQuery = function() {
+					var $field = $(searchFieldSelector);
+					var term = $field.val() + "";
+					if (shouldSearch(term)) {
+						// update href for the icon/button (if present)
+						var btn = document.getElementById("btnSearchIcon");
+						if (btn) btn.href = "/Search?searchPhrase=" + encodeURIComponent($.trim(term));
+					} else {
+						var btn = document.getElementById("btnSearchIcon");
+						if (btn) btn.href = "#";
+					}
+				};
+			}
+			catch(e) {} //we're going to eat this error. Autocomplete won't work but we dont wan't to break anything else on the page.
+		});
+	</script>
+
+	<section id="widgetPreviewSearch" class="widget widgetSearch skin6 widgetOptionSet12" style="display: block;" aria-label="Search">
+				<!-- For the button right and inside -->
+		<div class="widgetBody buttonRightInside">
+			<input class="widgetSearchBox widgetSearchBox3c92aa8e-f870-4af2-bd82-34aa506aa12f" cp5ph="true" id="searchField3c92aa8e-f870-4af2-bd82-34aa506aa12f" name="searchField" onchange="searchBtnApplyQuery();" placeholder="SEARCH..." type="text" value="" />
+						<a href="/Search/Results" id="btnSearchIcon" class="widgetSearchButton widgetSearchButton3c92aa8e-f870-4af2-bd82-34aa506aa12f" role="button"><img alt="Search Icon" class="imageHover" data-hover="/ImageRepository/Document?documentID=15534" data-image="/ImageRepository/Document?documentID=15533" src="/ImageRepository/Document?documentID=15533" /></a>
+
+			<label class="searchLabel" aria-hidden="true" for="searchField3c92aa8e-f870-4af2-bd82-34aa506aa12f">Search</label>
+		</div>
+
+	</section>
+
+
+<style scoped>
+	  
+		.widgetSearch ::-webkit-input-placeholder {
+		color: #414042;
+	  }
+		.widgetSearch :-moz-placeholder { /* Firefox 18- */
+	   color: #414042;
+	}
+		.widgetSearch ::-moz-placeholder {  /* Firefox 19+ */
+	   color: #414042;
+	}
+	.widgetSearch :-ms-input-placeholder {
+	   color: #414042;
+	}
+	
+
+	.widgetSearch .widgetBody .widgetSearchBox3c92aa8e-f870-4af2-bd82-34aa506aa12f
+	{
+		color: #414042;
+		background-color: rgba(255,255,255,.8); height: 70px; border: none; border-radius: 35px; padding-left: 2em;  font-family: Josefin Sans;
+	}
+	.widgetSearch .widgetBody .widgetSearchButton3c92aa8e-f870-4af2-bd82-34aa506aa12f
+	{
+		margin: 8px;
+	}
+	.widgetSearch .widgetSearch-onlyDept3c92aa8e-f870-4af2-bd82-34aa506aa12f
+	{
+		display: inline-block;
+		color: #333;
+		
+		
+		 padding-top: 10px;
+	}
+	#ysnSearchOnlyDept3c92aa8e-f870-4af2-bd82-34aa506aa12f
+	{
+		position: relative;
+		top: .125em;
+	}
+
+</style>
+
+<link rel="stylesheet" href="/Common/Controls/jquery-ui-1.14.2/jquery-ui.min.css">
+<link rel="stylesheet" href="/Common/Controls/jquery-ui-1.14.2/jquery-ui.theme.min.css">
+
+
+
+<script type="text/javascript">
+	//Updates search icons href to have the correct queryString
+	function searchBtnApplyQuery() {
+		document.getElementById("btnSearchIcon").href = "/Search?searchPhrase=" + document.getElementById("searchField3c92aa8e-f870-4af2-bd82-34aa506aa12f").value;
+	}
+</script>
+
+</div>
+
+	</div> <!-- inner column -->
+
+	</div> <!-- inner row -->
+
+			</div><!-- outer column --><!--		--></div> <!-- outer row -->
+
+
+	</div>
+</aside></div>
+</div>
+
+
+
+
+		<div id="banner1-4" style="display: none"></div>
+			<script type="text/javascript">
+				$(window).on("load", function () {
+					$.when(window.Pages.rwdSetupComplete)
+						.done(function () {
+							renderBanner('banner1-4',
+								'banner1',
+								{"BannerOptionID":4,"ThemeID":2,"SlotName":"banner1","Name":"Default","IsDefault":true,"BannerMode":1,"SlideShowSlideTiming":"5","SlideshowTransition":0,"SlideShowTransitionTiming":"1","ImageScale":false,"ImageAlignment":2,"ImageScroll":true,"MuteSound":true,"VideoType":0,"Status":40,"SlideshowControlsPosition":0,"SlideshowControlsAlignment":0,"SlideshowBannerControlsColorScheme":0,"DisplayVideoPauseButton":false,"VideoPauseButtonAlignment":1,"VideoPauseButtonControlsAlignment":0,"VideoPauseButtonStyle":"#FFFFFF","VideoPauseButtonBackgroundStyle":"#000000","VideoPauseButtonAlignmentClass":"alignRight viewport","DisplaySlideshowPauseButton":true,"SlideshowControlsColor":"#FFFFFF","SlideshowControlsBackgroundColor":"#000000","SlideshowPauseButtonClass":"isHidden","BannerImages":[{"BannerImageID":47,"BannerOptionID":4,"FileName":"/ImageRepository/Document?documentID=15736","Height":500,"Width":1920,"StartingOn":null,"StoppingOn":null,"IsLink":false,"LinkAddress":null,"Sequence":2,"RecordStatus":0,"ModifiedBy":0,"ModifiedOn":"\/Date(-62135575200000)\/","AltText":null}],"BannerVideos":[{"BannerVideoID":4,"BannerOptionID":4,"VideoFileName":"","ImageFileName":"EmptyBannerBkg201712211700200261.png","IsLink":false,"LinkAddress":null,"ModifiedBy":0,"ModifiedOn":"\/Date(-62135575200000)\/","VideoFileID":"00000000-0000-0000-0000-000000000000","ImageFileID":"00000000-0000-0000-0000-000000000000","VideoWidth":0,"VideoHeight":0,"ImageWidth":0,"ImageHeight":0,"LinkedVideoUrl":"","RecordStatus":0,"AltText":null}],"RecordStatus":0,"ModifiedBy":0,"ModifiedOn":"\/Date(-62135575200000)\/"},
+								{"BannerImageID":47,"BannerOptionID":4,"FileName":"/ImageRepository/Document?documentID=15736","Height":500,"Width":1920,"StartingOn":null,"StoppingOn":null,"IsLink":false,"LinkAddress":null,"Sequence":2,"RecordStatus":0,"ModifiedBy":0,"ModifiedOn":"\/Date(-62135575200000)\/","AltText":null},
+								'/App_Themes/Interior/Images/',
+								'<img alt="" class="bannerObject" src="/ImageRepository/Document?documentID=15736" />');
+						});
+				});
+			</script>
+
+</div><!-- banner --><div data-cpRole="structuralContainer" id="structuralContainer4">
+<div class="siteWrap2"><div data-cpRole="structuralContainer" id="structuralContainer5" class="mainWrap" role="main">
+<div data-cpRole="structuralContainer" id="structuralContainer6" class="outerContentWrap">
+<div data-cpRole="structuralContainer" id="structuralContainer7" class="contentWrap">
+<div data-cpRole="breadCrumbs" class="breadCrumbContainer" id="breadCrumbs">		<ol class="semanticList breadCrumbs">
+			<li><a class="breadCrumb" href="/">Home</a></li><li><a href class="breadCrumb" aria-current="page">Agenda Center</a></li>
+		</ol>
+
+	   
+    
+</div><div data-cpRole="mainContentContainer" id="moduleContent">
+	<div id="contentarea"></div>
+	
+<!-- BEGIN AgendaCenterContent.aspx ***** -->
+
+<input type="hidden" name="dateRange" />
+	<div id="AgendaCenterContent" class="agendaCenterContent newCP moduleContentNew ">
+		<div class="contentMain selfClear">
+			<div class="header selfClear" style="z-index: 21;">
+
+				<div class="text">
+					
+						<h1>Agenda Center</h1>
+					  View the current and previous two years’ agendas and minutes for the City Council and all commissions, committees and boards. Prior agendas and minutes can be found in <a href="/onbase">OnBase</a>, the City’s records management program.</br></br>   Live web-streaming of City Council and Planning Commission meetings in progress, as well as videos from past meetings,   are available in the <a href="/videoarchive">Video Center</a>.</br><br>Please check the agenda for instructions on how to participate in the meeting or you can find more information on our <a href="1223//Open-Meetings-Public-Participation">Open Meetings Public Participation</a> page.  
+				</div>
+
+				
+				<div class="tools">
+					<h3>Tools</h3>
+					<ul>
+						
+								<li><a href="/rss.aspx#agendaCenter" aria-label="AgendaCenterRSS" class="RSS">RSS</a></li>
+						<li><a href="/list.aspx#agendaCenter" class="notifyMe">Notify Me</a></li>
+						
+					</ul>
+				</div>
+				
+				<section class="search selfClear" aria-label="Agenda Center Module Search">
+					<h3 id="moduleSearchHeader">Search Agendas by:</h3>
+					<div class="noWrap">
+						<div class="popoutContainer timePeriod">
+							<label class="screenRead" for="timePeriod">Time Period</label>
+							<button type="button" id="timePeriod" class="button donotactivate" data-cp-toggle="dropdown" aria-controls="dateRangePopup" aria-expanded="false" aria-haspopup="true"><span>Time Period</span></button>
+							<div class="popout" style="display:none;" id="dateRangePopup" aria-labelledby="timePeriod" role="listbox" tabindex="-1">
+								<div class="popoutTop">
+									<div class="popoutBtm">
+										<ol name="quickDateRange" id="submittedIn">
+											<li id="liTimePeriod" style="display:none;"><button type="button" role="option" onclick="resetDateDefaults(); return false;" tabindex="-1" aria-hidden="true">Time Period</button></li>
+											<li><button type="button" role="option" onclick="changeDateRange('1', 'Last Week'); return false;">Last Week</button></li>
+											<li><button type="button" role="option" onclick="changeDateRange('2', 'Last Month'); return false;">Last Month</button></li>
+											<li><button type="button" role="option" onclick="changeDateRange('3', 'Last 6 Months'); return false;">Last 6 Months</button></li>
+											<li><button type="button" role="option" onclick="changeDateRange('4', 'Last Year'); return false;">Last Year</button></li>
+										</ol>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="date">
+							<div class="t-widget t-datepicker">
+								<div class="t-picker-wrap">
+									<label class="screenRead" for="StartDatePicker">Start Date</label>
+									<input class="submittedStart" cp5ph="true" id="StartDatePicker" maxlength="10" name="StartDate" placeholder="Start Date" title="Start Date Picker" type="text" value="" />
+								</div>
+							</div>
+						</div>
+						<div class="date">
+							<div class="t-widget t-datepicker">
+								<div class="t-picker-wrap">
+									<label class="screenRead" for="EndDatePicker">End Date</label>
+								  <input class="submittedEnd" cp5ph="true" id="EndDatePicker" maxlength="10" name="EndDate" placeholder="End Date" title="End Date Picker" type="text" value="" />
+							   </div>
+							 </div>
+						</div>
+					</div>
+					<div class="noWrap">
+						<label class="screenRead" for="searchField">Enter Search Terms</label>
+						<input cp5ph="true" id="searchField" name="searchField" placeholder="Word or Phrase" title="Search Terms" type="text" value="" />
+					</div>
+					<!--[if lte IE 7]><span style="display:none;">&nbsp;</span><![endif]-->
+					<a href="#categoryList" id="selectCategoryButton" class="button mega" role="button" tabindex="0" data-cp-toggle="dropdown" aria-controls="categoryList" aria-haspopup="true" aria-expanded="false"><span>Select a Category</span></a>
+					<div id="categoryList" style="display:none; " class="categoryList">
+					<div>
+							
+									 <ol>
+									 
+										 <li>
+											 <label for="allCategories" tabindex="-1">
+												 <input type="checkbox" onkeydown="this.onclick(e);" onclick="checkUncheckAll(this.checked);" id="allCategories" checked>
+												 All Categories
+											 </label>
+										 </li>
+								
+										<li>
+											<label for="8" tabindex="-1">
+											 <input type="checkbox" id="8" onkeydown="this.onclick(e);" onclick="checkUncheckAllCategoriesCB()" name="chkCategoryID" value="8"
+											 
+												 checked="checked"
+										 
+											 >
+								City Council
+											
+										</label>
+									</li>
+								
+										<li>
+											<label for="9" tabindex="-1">
+											 <input type="checkbox" id="9" onkeydown="this.onclick(e);" onclick="checkUncheckAllCategoriesCB()" name="chkCategoryID" value="9"
+											 
+												 checked="checked"
+										 
+											 >
+								City Council Subcommittee - Administration & Finance
+											
+										</label>
+									</li>
+								
+										<li>
+											<label for="18" tabindex="-1">
+											 <input type="checkbox" id="18" onkeydown="this.onclick(e);" onclick="checkUncheckAllCategoriesCB()" name="chkCategoryID" value="18"
+											 
+												 checked="checked"
+										 
+											 >
+								City Council Subcommittee - Environmental Sustainability
+											
+										</label>
+									</li>
+								
+										<li>
+											<label for="17" tabindex="-1">
+											 <input type="checkbox" id="17" onkeydown="this.onclick(e);" onclick="checkUncheckAllCategoriesCB()" name="chkCategoryID" value="17"
+											 
+												 checked="checked"
+										 
+											 >
+								City Council Subcommittee - Library
+											
+										</label>
+									</li>
+								
+										<li>
+											<label for="10" tabindex="-1">
+											 <input type="checkbox" id="10" onkeydown="this.onclick(e);" onclick="checkUncheckAllCategoriesCB()" name="chkCategoryID" value="10"
+											 
+												 checked="checked"
+										 
+											 >
+								City Council Subcommittee - Parks & Recreation
+											
+										</label>
+									</li>
+								
+										<li>
+											<label for="11" tabindex="-1">
+											 <input type="checkbox" id="11" onkeydown="this.onclick(e);" onclick="checkUncheckAllCategoriesCB()" name="chkCategoryID" value="11"
+											 
+												 checked="checked"
+										 
+											 >
+								City Council Subcommittee - Public Safety
+											
+										</label>
+									</li>
+								
+										<li>
+											<label for="24" tabindex="-1">
+											 <input type="checkbox" id="24" onkeydown="this.onclick(e);" onclick="checkUncheckAllCategoriesCB()" name="chkCategoryID" value="24"
+											 
+												 checked="checked"
+										 
+											 >
+								City Council Subcommittee - Public Works
+											
+										</label>
+									</li>
+								
+							</ol>
+						
+									 <ol>
+									 
+										<li>
+											<label for="12" tabindex="-1">
+											 <input type="checkbox" id="12" onkeydown="this.onclick(e);" onclick="checkUncheckAllCategoriesCB()" name="chkCategoryID" value="12"
+											 
+												 checked="checked"
+										 
+											 >
+								City Council Subcommittee - Zoning Ordinance Revisions & Code Enforcement Subcommittee (ZORACES)
+											
+										</label>
+									</li>
+								
+										<li>
+											<label for="21" tabindex="-1">
+											 <input type="checkbox" id="21" onkeydown="this.onclick(e);" onclick="checkUncheckAllCategoriesCB()" name="chkCategoryID" value="21"
+											 
+												 checked="checked"
+										 
+											 >
+								Disaster Council
+											
+										</label>
+									</li>
+								
+										<li>
+											<label for="16" tabindex="-1">
+											 <input type="checkbox" id="16" onkeydown="this.onclick(e);" onclick="checkUncheckAllCategoriesCB()" name="chkCategoryID" value="16"
+											 
+												 checked="checked"
+										 
+											 >
+								Environmental Review Board
+											
+										</label>
+									</li>
+								
+										<li>
+											<label for="2" tabindex="-1">
+											 <input type="checkbox" id="2" onkeydown="this.onclick(e);" onclick="checkUncheckAllCategoriesCB()" name="chkCategoryID" value="2"
+											 
+												 checked="checked"
+										 
+											 >
+								Harry Barovsky Memorial Youth Commission
+											
+										</label>
+									</li>
+								
+										<li>
+											<label for="22" tabindex="-1">
+											 <input type="checkbox" id="22" onkeydown="this.onclick(e);" onclick="checkUncheckAllCategoriesCB()" name="chkCategoryID" value="22"
+											 
+												 checked="checked"
+										 
+											 >
+								Homelessness Task Force
+											
+										</label>
+									</li>
+								
+										<li>
+											<label for="1" tabindex="-1">
+											 <input type="checkbox" id="1" onkeydown="this.onclick(e);" onclick="checkUncheckAllCategoriesCB()" name="chkCategoryID" value="1"
+											 
+												 checked="checked"
+										 
+											 >
+								Malibu Arts Commission
+											
+										</label>
+									</li>
+								
+										<li>
+											<label for="13" tabindex="-1">
+											 <input type="checkbox" id="13" onkeydown="this.onclick(e);" onclick="checkUncheckAllCategoriesCB()" name="chkCategoryID" value="13"
+											 
+												 checked="checked"
+										 
+											 >
+								Malibu Public Facilities Authority
+											
+										</label>
+									</li>
+								
+							</ol>
+						
+									 <ol>
+									 
+										<li>
+											<label for="14" tabindex="-1">
+											 <input type="checkbox" id="14" onkeydown="this.onclick(e);" onclick="checkUncheckAllCategoriesCB()" name="chkCategoryID" value="14"
+											 
+												 checked="checked"
+										 
+											 >
+								Malibu Public Financing Corporation
+											
+										</label>
+									</li>
+								
+										<li>
+											<label for="23" tabindex="-1">
+											 <input type="checkbox" id="23" onkeydown="this.onclick(e);" onclick="checkUncheckAllCategoriesCB()" name="chkCategoryID" value="23"
+											 
+												 checked="checked"
+										 
+											 >
+								Mobilehome Park Rent Stabilization Commission
+											
+										</label>
+									</li>
+								
+										<li>
+											<label for="3" tabindex="-1">
+											 <input type="checkbox" id="3" onkeydown="this.onclick(e);" onclick="checkUncheckAllCategoriesCB()" name="chkCategoryID" value="3"
+											 
+												 checked="checked"
+										 
+											 >
+								Parks & Recreation Commission
+											
+										</label>
+									</li>
+								
+										<li>
+											<label for="4" tabindex="-1">
+											 <input type="checkbox" id="4" onkeydown="this.onclick(e);" onclick="checkUncheckAllCategoriesCB()" name="chkCategoryID" value="4"
+											 
+												 checked="checked"
+										 
+											 >
+								Planning Commission
+											
+										</label>
+									</li>
+								
+										<li>
+											<label for="5" tabindex="-1">
+											 <input type="checkbox" id="5" onkeydown="this.onclick(e);" onclick="checkUncheckAllCategoriesCB()" name="chkCategoryID" value="5"
+											 
+												 checked="checked"
+										 
+											 >
+								Public Safety Commission
+											
+										</label>
+									</li>
+								
+										<li>
+											<label for="6" tabindex="-1">
+											 <input type="checkbox" id="6" onkeydown="this.onclick(e);" onclick="checkUncheckAllCategoriesCB()" name="chkCategoryID" value="6"
+											 
+												 checked="checked"
+										 
+											 >
+								Public Works Commission
+											
+										</label>
+									</li>
+								
+										<li>
+											<label for="7" tabindex="-1">
+											 <input type="checkbox" id="7" onkeydown="this.onclick(e);" onclick="checkUncheckAllCategoriesCB()" name="chkCategoryID" value="7"
+											 
+												 checked="checked"
+										 
+											 >
+								Wastewater Advisory Committee
+											
+										</label>
+									</li>
+								
+							</ol>
+						
+					</div>
+					</div>
+					<label class="screenRead" for="searchButton">Search</label>
+					<input type="image" id="searchButton" src="/Common/images/SearchButton.png" title="Agenda Center Search" alt="Search">
+				</section>
+						</div>
+			
+
+	<!-- Category list starts(when headers are off) -->
+	
+		<!-- Only render the section if there are agendas to display -->
+			
+				<div class="listing listingCollapse noHeader" id="cat8">
+					<h2 tabindex="0" role="button" class="active" data-cp-toggle="collapse" aria-expanded="true" aria-controls="category-panel-8">City Council</h2>
+					
+
+<span id="section8">
+	<script type="text/javascript">
+		//Remove href attribute from the year clicked.
+		$(document).ready(function () {
+			$('.current').children().removeAttr('href');
+		});
+	</script>	
+		<ul class="years">	
+			<li class=current><a id="a08" aria-label="City Council 2026" href="javascript:changeYear(2026, 8,'a0')">2026</a></li>
+			
+				<li ><a id="a18" aria-label="City Council 2025" href="javascript:changeYear(2025, 8, 'a1')">2025</a></li>
+		
+				<li ><a id="a28" aria-label="City Council 2024" href="javascript:changeYear(2024, 8, 'a2')">2024</a></li>
+			
+			<li>
+		
+				<div class="popoutContainer popUpParent">
+					<a href="" id="btnViewMore8" aria-label="View more years of 'City Council'" onkeypress="this.onclick();" onclick="showMoreYears(8, 'yearDD8', event); return false;">View More</a>
+					<div id="yearDD8" class="popout popUp" style="display:none;">
+						<div class="popoutTop">
+							<div class="popoutBtm">
+								<ol>
+							
+									<li><a id="anchYearDD38" aria-label="City Council 2023" href="javascript:changeYear(2023, 8,'anchYearDD3')">2023</a></li>
+						
+								</ol>
+							</div>
+						</div>
+					</div>
+				</div>
+		
+			</li>
+		</ul>
+	<!--The table needs a position-relative to avoid weird issues with IE where the controls would just dissapear. -->
+	<div id="category-panel-8" >
+	<table id="table8" summary="List of Agendas" >
+		<thead>
+			<tr>
+				<th scope="col">
+					Agenda
+				</th>
+					<th scope="col" class="minutes">
+						Minutes
+					</th>
+				
+				<th scope="col" class="downloads">
+					Download
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+		<!-- Agendas for a category starts -->
+	
+
+<tr id="row28079a5fc5ad" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h411182026-2807">
+			<a id="_11182026-2807" name="_11182026-2807"></a>
+			<strong aria-label="Agenda for November 18, 2026"><abbr title="November">Nov</abbr> 18, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="11182026-2807" name="2807" href="/AgendaCenter/ViewFile/Agenda/_11182026-2807?html=true" target="_blank" aria-describedby="h411182026-2807">
+		November 18, 2026 Special Meeting
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2807" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2807" data-cp-toggle="dropdown" aria-controls="agendaDD2807" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2807">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2807" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="November 18, 2026, November 18, 2026 Special Meeting. HTML" href="/AgendaCenter/ViewFile/Agenda/_11182026-2807?html=true" id="anch128079a5fc5ad" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="November 18, 2026, November 18, 2026 Special Meeting. PDF" href="/AgendaCenter/ViewFile/Agenda/_11182026-2807" id="anch228079a5fc5ad" target="_blank">PDF</a></li>
+									
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row2808c3845b7b" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h410262026-2808">
+			<a id="_10262026-2808" name="_10262026-2808"></a>
+			<strong aria-label="Agenda for October 26, 2026"><abbr title="October">Oct</abbr> 26, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="10262026-2808" name="2808" href="/AgendaCenter/ViewFile/Agenda/_10262026-2808?html=true" target="_blank" aria-describedby="h410262026-2808">
+		October 26, 2026 Regular Meeting
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2808" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2808" data-cp-toggle="dropdown" aria-controls="agendaDD2808" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2808">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2808" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="October 26, 2026, October 26, 2026 Regular Meeting. HTML" href="/AgendaCenter/ViewFile/Agenda/_10262026-2808?html=true" id="anch12808c3845b7b" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="October 26, 2026, October 26, 2026 Regular Meeting. PDF" href="/AgendaCenter/ViewFile/Agenda/_10262026-2808" id="anch22808c3845b7b" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="October 26, 2026, October 26, 2026 Regular Meeting. Packet" href="/AgendaCenter/ViewFile/Agenda/_10262026-2808?packet=true" id="anch32808c3845b7b" target="_blank">Packet</a></li>
+									
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row27921c15c483" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h410212026-2792">
+			<a id="_10212026-2792" name="_10212026-2792"></a>
+			<strong aria-label="Agenda for October 21, 2026"><abbr title="October">Oct</abbr> 21, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="10212026-2792" name="2792" href="/AgendaCenter/ViewFile/Agenda/_10212026-2792?html=true" target="_blank" aria-describedby="h410212026-2792">
+		October 21, 2026 Special Meeting
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2792" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2792" data-cp-toggle="dropdown" aria-controls="agendaDD2792" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2792">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2792" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="October 21, 2026, October 21, 2026 Special Meeting. HTML" href="/AgendaCenter/ViewFile/Agenda/_10212026-2792?html=true" id="anch127921c15c483" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="October 21, 2026, October 21, 2026 Special Meeting. PDF" href="/AgendaCenter/ViewFile/Agenda/_10212026-2792" id="anch227921c15c483" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="October 21, 2026, October 21, 2026 Special Meeting. Packet" href="/AgendaCenter/ViewFile/Agenda/_10212026-2792?packet=true" id="anch327921c15c483" target="_blank">Packet</a></li>
+									
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row279949b9bd54" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h410122026-2799">
+			<a id="_10122026-2799" name="_10122026-2799"></a>
+			<strong aria-label="Agenda for October 12, 2026"><abbr title="October">Oct</abbr> 12, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="10122026-2799" name="2799" href="/AgendaCenter/ViewFile/Agenda/_10122026-2799?html=true" target="_blank" aria-describedby="h410122026-2799">
+		October 12, 2026 Regular Meeting
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2799" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2799" data-cp-toggle="dropdown" aria-controls="agendaDD2799" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2799">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2799" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="October 12, 2026, October 12, 2026 Regular Meeting. HTML" href="/AgendaCenter/ViewFile/Agenda/_10122026-2799?html=true" id="anch1279949b9bd54" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="October 12, 2026, October 12, 2026 Regular Meeting. PDF" href="/AgendaCenter/ViewFile/Agenda/_10122026-2799" id="anch2279949b9bd54" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="October 12, 2026, October 12, 2026 Regular Meeting. Packet" href="/AgendaCenter/ViewFile/Agenda/_10122026-2799?packet=true" id="anch3279949b9bd54" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="October 12, 2026, October 12, 2026 Regular Meeting. Previous Version" id="anch4279949b9bd54" class="previous" href="/AgendaCenter/PreviousVersions/_10122026-2799">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row2794ed8d181d" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h409282026-2794">
+			<a id="_09282026-2794" name="_09282026-2794"></a>
+			<strong aria-label="Agenda for September 28, 2026"><abbr title="September">Sep</abbr> 28, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="09282026-2794" name="2794" href="/AgendaCenter/ViewFile/Agenda/_09282026-2794?html=true" target="_blank" aria-describedby="h409282026-2794">
+		September 28, 2026 Regular meeting - Amended Agenda
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2794" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2794" data-cp-toggle="dropdown" aria-controls="agendaDD2794" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2794">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2794" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="September 28, 2026, September 28, 2026 Regular meeting - Amended Agenda. HTML" href="/AgendaCenter/ViewFile/Agenda/_09282026-2794?html=true" id="anch12794ed8d181d" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="September 28, 2026, September 28, 2026 Regular meeting - Amended Agenda. PDF" href="/AgendaCenter/ViewFile/Agenda/_09282026-2794" id="anch22794ed8d181d" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="September 28, 2026, September 28, 2026 Regular meeting - Amended Agenda. Packet" href="/AgendaCenter/ViewFile/Agenda/_09282026-2794?packet=true" id="anch32794ed8d181d" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="September 28, 2026, September 28, 2026 Regular meeting - Amended Agenda. Previous Version" id="anch42794ed8d181d" class="previous" href="/AgendaCenter/PreviousVersions/_09282026-2794">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row27786c35ac9c" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h409232026-2778">
+			<a id="_09232026-2778" name="_09232026-2778"></a>
+			<strong aria-label="Agenda for September 23, 2026"><abbr title="September">Sep</abbr> 23, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="09232026-2778" name="2778" href="/AgendaCenter/ViewFile/Agenda/_09232026-2778?html=true" target="_blank" aria-describedby="h409232026-2778">
+		September 23, 2026 Special Meeting - Amended Agenda
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2778" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2778" data-cp-toggle="dropdown" aria-controls="agendaDD2778" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2778">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2778" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="September 23, 2026, September 23, 2026 Special Meeting - Amended Agenda. HTML" href="/AgendaCenter/ViewFile/Agenda/_09232026-2778?html=true" id="anch127786c35ac9c" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="September 23, 2026, September 23, 2026 Special Meeting - Amended Agenda. PDF" href="/AgendaCenter/ViewFile/Agenda/_09232026-2778" id="anch227786c35ac9c" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="September 23, 2026, September 23, 2026 Special Meeting - Amended Agenda. Packet" href="/AgendaCenter/ViewFile/Agenda/_09232026-2778?packet=true" id="anch327786c35ac9c" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="September 23, 2026, September 23, 2026 Special Meeting - Amended Agenda. Previous Version" id="anch427786c35ac9c" class="previous" href="/AgendaCenter/PreviousVersions/_09232026-2778">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row27864f4c9346" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h409142026-2786">
+			<a id="_09142026-2786" name="_09142026-2786"></a>
+			<strong aria-label="Agenda for September 14, 2026"><abbr title="September">Sep</abbr> 14, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="09142026-2786" name="2786" href="/AgendaCenter/ViewFile/Agenda/_09142026-2786?html=true" target="_blank" aria-describedby="h409142026-2786">
+		September 14, 2026 Regular Meeting - Amended Agenda
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2786" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2786" data-cp-toggle="dropdown" aria-controls="agendaDD2786" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2786">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2786" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="September 14, 2026, September 14, 2026 Regular Meeting - Amended Agenda. HTML" href="/AgendaCenter/ViewFile/Agenda/_09142026-2786?html=true" id="anch127864f4c9346" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="September 14, 2026, September 14, 2026 Regular Meeting - Amended Agenda. PDF" href="/AgendaCenter/ViewFile/Agenda/_09142026-2786" id="anch227864f4c9346" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="September 14, 2026, September 14, 2026 Regular Meeting - Amended Agenda. Packet" href="/AgendaCenter/ViewFile/Agenda/_09142026-2786?packet=true" id="anch327864f4c9346" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="September 14, 2026, September 14, 2026 Regular Meeting - Amended Agenda. Previous Version" id="anch427864f4c9346" class="previous" href="/AgendaCenter/PreviousVersions/_09142026-2786">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row2772a1a45e59" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h408242026-2772">
+			<a id="_08242026-2772" name="_08242026-2772"></a>
+			<strong aria-label="Agenda for August 24, 2026"><abbr title="August">Aug</abbr> 24, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="08242026-2772" name="2772" href="/AgendaCenter/ViewFile/Agenda/_08242026-2772?html=true" target="_blank" aria-describedby="h408242026-2772">
+		August 24, 2026 Regular Meeting - Amended Agenda
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2772" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2772" data-cp-toggle="dropdown" aria-controls="agendaDD2772" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2772">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2772" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="August 24, 2026, August 24, 2026 Regular Meeting - Amended Agenda. HTML" href="/AgendaCenter/ViewFile/Agenda/_08242026-2772?html=true" id="anch12772a1a45e59" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="August 24, 2026, August 24, 2026 Regular Meeting - Amended Agenda. PDF" href="/AgendaCenter/ViewFile/Agenda/_08242026-2772" id="anch22772a1a45e59" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="August 24, 2026, August 24, 2026 Regular Meeting - Amended Agenda. Packet" href="/AgendaCenter/ViewFile/Agenda/_08242026-2772?packet=true" id="anch32772a1a45e59" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="August 24, 2026, August 24, 2026 Regular Meeting - Amended Agenda. Previous Version" id="anch42772a1a45e59" class="previous" href="/AgendaCenter/PreviousVersions/_08242026-2772">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row27611f5ce7cf" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h408192026-2761">
+			<a id="_08192026-2761" name="_08192026-2761"></a>
+			<strong aria-label="Agenda for August 19, 2026"><abbr title="August">Aug</abbr> 19, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="08192026-2761" name="2761" href="/AgendaCenter/ViewFile/Agenda/_08192026-2761" target="_blank" aria-describedby="h408192026-2761">
+		August 19, 2026 Special Meeting - Notice of Cancellation
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2761" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2761" data-cp-toggle="dropdown" aria-controls="agendaDD2761" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2761">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2761" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a aria-label="August 19, 2026, August 19, 2026 Special Meeting - Notice of Cancellation. Agenda" class="pdf" href="/AgendaCenter/ViewFile/Agenda/_08192026-2761" id="anch227611f5ce7cf" target="_blank">Agenda</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row2754ff692775" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h408192026-2754">
+			<a id="_08192026-2754" name="_08192026-2754"></a>
+			<strong aria-label="Agenda for August 19, 2026"><abbr title="August">Aug</abbr> 19, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="08192026-2754" name="2754" href="/AgendaCenter/ViewFile/Agenda/_08192026-2754?html=true" target="_blank" aria-describedby="h408192026-2754">
+		August 19, 2026 Special Meeting - Amended Agenda (Cancelled)
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2754" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2754" data-cp-toggle="dropdown" aria-controls="agendaDD2754" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2754">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2754" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="August 19, 2026, August 19, 2026 Special Meeting - Amended Agenda (Cancelled). HTML" href="/AgendaCenter/ViewFile/Agenda/_08192026-2754?html=true" id="anch12754ff692775" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="August 19, 2026, August 19, 2026 Special Meeting - Amended Agenda (Cancelled). PDF" href="/AgendaCenter/ViewFile/Agenda/_08192026-2754" id="anch22754ff692775" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="August 19, 2026, August 19, 2026 Special Meeting - Amended Agenda (Cancelled). Packet" href="/AgendaCenter/ViewFile/Agenda/_08192026-2754?packet=true" id="anch32754ff692775" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="August 19, 2026, August 19, 2026 Special Meeting - Amended Agenda (Cancelled). Previous Version" id="anch42754ff692775" class="previous" href="/AgendaCenter/PreviousVersions/_08192026-2754">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row2764579c23dc" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h408102026-2764">
+			<a id="_08102026-2764" name="_08102026-2764"></a>
+			<strong aria-label="Agenda for August 10, 2026"><abbr title="August">Aug</abbr> 10, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="08102026-2764" name="2764" href="/AgendaCenter/ViewFile/Agenda/_08102026-2764?html=true" target="_blank" aria-describedby="h408102026-2764">
+		August 10, 2026 Regular Meeting - Amended Agenda
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2764" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2764" data-cp-toggle="dropdown" aria-controls="agendaDD2764" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2764">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2764" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="August 10, 2026, August 10, 2026 Regular Meeting - Amended Agenda. HTML" href="/AgendaCenter/ViewFile/Agenda/_08102026-2764?html=true" id="anch12764579c23dc" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="August 10, 2026, August 10, 2026 Regular Meeting - Amended Agenda. PDF" href="/AgendaCenter/ViewFile/Agenda/_08102026-2764" id="anch22764579c23dc" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="August 10, 2026, August 10, 2026 Regular Meeting - Amended Agenda. Packet" href="/AgendaCenter/ViewFile/Agenda/_08102026-2764?packet=true" id="anch32764579c23dc" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="August 10, 2026, August 10, 2026 Regular Meeting - Amended Agenda. Previous Version" id="anch42764579c23dc" class="previous" href="/AgendaCenter/PreviousVersions/_08102026-2764">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row2755815d0c17" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h407272026-2755">
+			<a id="_07272026-2755" name="_07272026-2755"></a>
+			<strong aria-label="Agenda for July 27, 2026"><abbr title="July">Jul</abbr> 27, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="07272026-2755" name="2755" href="/AgendaCenter/ViewFile/Agenda/_07272026-2755" target="_blank" aria-describedby="h407272026-2755">
+		July 27, 2026 Regular Meeting - Notice of Cancellation
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2755" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2755" data-cp-toggle="dropdown" aria-controls="agendaDD2755" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2755">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2755" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a aria-label="July 27, 2026, July 27, 2026 Regular Meeting - Notice of Cancellation. Agenda" class="pdf" href="/AgendaCenter/ViewFile/Agenda/_07272026-2755" id="anch22755815d0c17" target="_blank">Agenda</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row274489cec7c7" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h407222026-2744">
+			<a id="_07222026-2744" name="_07222026-2744"></a>
+			<strong aria-label="Agenda for July 22, 2026"><abbr title="July">Jul</abbr> 22, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="07222026-2744" name="2744" href="/AgendaCenter/ViewFile/Agenda/_07222026-2744?html=true" target="_blank" aria-describedby="h407222026-2744">
+		July 22, 2026  Special Meeting
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2744" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2744" data-cp-toggle="dropdown" aria-controls="agendaDD2744" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2744">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2744" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="July 22, 2026, July 22, 2026  Special Meeting. HTML" href="/AgendaCenter/ViewFile/Agenda/_07222026-2744?html=true" id="anch1274489cec7c7" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="July 22, 2026, July 22, 2026  Special Meeting. PDF" href="/AgendaCenter/ViewFile/Agenda/_07222026-2744" id="anch2274489cec7c7" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="July 22, 2026, July 22, 2026  Special Meeting. Packet" href="/AgendaCenter/ViewFile/Agenda/_07222026-2744?packet=true" id="anch3274489cec7c7" target="_blank">Packet</a></li>
+									
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row27491c29df2b" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h407132026-2749">
+			<a id="_07132026-2749" name="_07132026-2749"></a>
+			<strong aria-label="Agenda for July 13, 2026"><abbr title="July">Jul</abbr> 13, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="07132026-2749" name="2749" href="/AgendaCenter/ViewFile/Agenda/_07132026-2749?html=true" target="_blank" aria-describedby="h407132026-2749">
+		July 13, 2026 Regular Meeting - Amended Agenda
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2749" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2749" data-cp-toggle="dropdown" aria-controls="agendaDD2749" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2749">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2749" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="July 13, 2026, July 13, 2026 Regular Meeting - Amended Agenda. HTML" href="/AgendaCenter/ViewFile/Agenda/_07132026-2749?html=true" id="anch127491c29df2b" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="July 13, 2026, July 13, 2026 Regular Meeting - Amended Agenda. PDF" href="/AgendaCenter/ViewFile/Agenda/_07132026-2749" id="anch227491c29df2b" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="July 13, 2026, July 13, 2026 Regular Meeting - Amended Agenda. Packet" href="/AgendaCenter/ViewFile/Agenda/_07132026-2749?packet=true" id="anch327491c29df2b" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="July 13, 2026, July 13, 2026 Regular Meeting - Amended Agenda. Previous Version" id="anch427491c29df2b" class="previous" href="/AgendaCenter/PreviousVersions/_07132026-2749">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row2742bb482a5f" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h406222026-2742">
+			<a id="_06222026-2742" name="_06222026-2742"></a>
+			<strong aria-label="Agenda for June 22, 2026"><abbr title="June">Jun</abbr> 22, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="06222026-2742" name="2742" href="/AgendaCenter/ViewFile/Agenda/_06222026-2742?html=true" target="_blank" aria-describedby="h406222026-2742">
+		June 22, 2026 Regular Meeting - Amended Agenda
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2742" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2742" data-cp-toggle="dropdown" aria-controls="agendaDD2742" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2742">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2742" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="June 22, 2026, June 22, 2026 Regular Meeting - Amended Agenda. HTML" href="/AgendaCenter/ViewFile/Agenda/_06222026-2742?html=true" id="anch12742bb482a5f" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="June 22, 2026, June 22, 2026 Regular Meeting - Amended Agenda. PDF" href="/AgendaCenter/ViewFile/Agenda/_06222026-2742" id="anch22742bb482a5f" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="June 22, 2026, June 22, 2026 Regular Meeting - Amended Agenda. Packet" href="/AgendaCenter/ViewFile/Agenda/_06222026-2742?packet=true" id="anch32742bb482a5f" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="June 22, 2026, June 22, 2026 Regular Meeting - Amended Agenda. Previous Version" id="anch42742bb482a5f" class="previous" href="/AgendaCenter/PreviousVersions/_06222026-2742">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row2734d01d8c37" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h406082026-2734">
+			<a id="_06082026-2734" name="_06082026-2734"></a>
+			<strong aria-label="Agenda for June 8, 2026"><abbr title="June">Jun</abbr> 8, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="06082026-2734" name="2734" href="/AgendaCenter/ViewFile/Agenda/_06082026-2734?html=true" target="_blank" aria-describedby="h406082026-2734">
+		June 8, 2026 - Regular Meeting - Amended Agenda
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2734" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2734" data-cp-toggle="dropdown" aria-controls="agendaDD2734" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2734">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2734" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="June 08, 2026, June 8, 2026 - Regular Meeting - Amended Agenda. HTML" href="/AgendaCenter/ViewFile/Agenda/_06082026-2734?html=true" id="anch12734d01d8c37" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="June 08, 2026, June 8, 2026 - Regular Meeting - Amended Agenda. PDF" href="/AgendaCenter/ViewFile/Agenda/_06082026-2734" id="anch22734d01d8c37" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="June 08, 2026, June 8, 2026 - Regular Meeting - Amended Agenda. Packet" href="/AgendaCenter/ViewFile/Agenda/_06082026-2734?packet=true" id="anch32734d01d8c37" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="June 08, 2026, June 8, 2026 - Regular Meeting - Amended Agenda. Previous Version" id="anch42734d01d8c37" class="previous" href="/AgendaCenter/PreviousVersions/_06082026-2734">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row2727139529c8" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h405262026-2727">
+			<a id="_05262026-2727" name="_05262026-2727"></a>
+			<strong aria-label="Agenda for May 26, 2026"><abbr title="May">May</abbr> 26, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="05262026-2727" name="2727" href="/AgendaCenter/ViewFile/Agenda/_05262026-2727?html=true" target="_blank" aria-describedby="h405262026-2727">
+		May 26, 2026 Regular Meeting - Amended Agenda
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2727" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2727" data-cp-toggle="dropdown" aria-controls="agendaDD2727" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2727">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2727" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="May 26, 2026, May 26, 2026 Regular Meeting - Amended Agenda. HTML" href="/AgendaCenter/ViewFile/Agenda/_05262026-2727?html=true" id="anch12727139529c8" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="May 26, 2026, May 26, 2026 Regular Meeting - Amended Agenda. PDF" href="/AgendaCenter/ViewFile/Agenda/_05262026-2727" id="anch22727139529c8" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="May 26, 2026, May 26, 2026 Regular Meeting - Amended Agenda. Packet" href="/AgendaCenter/ViewFile/Agenda/_05262026-2727?packet=true" id="anch32727139529c8" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="May 26, 2026, May 26, 2026 Regular Meeting - Amended Agenda. Previous Version" id="anch42727139529c8" class="previous" href="/AgendaCenter/PreviousVersions/_05262026-2727">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row27124f8c3a7a" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h405202026-2712">
+			<a id="_05202026-2712" name="_05202026-2712"></a>
+			<strong aria-label="Agenda for May 20, 2026"><abbr title="May">May</abbr> 20, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="05202026-2712" name="2712" href="/AgendaCenter/ViewFile/Agenda/_05202026-2712?html=true" target="_blank" aria-describedby="h405202026-2712">
+		May 20, 2026 Special Meeting
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2712" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2712" data-cp-toggle="dropdown" aria-controls="agendaDD2712" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2712">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2712" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="May 20, 2026, May 20, 2026 Special Meeting. HTML" href="/AgendaCenter/ViewFile/Agenda/_05202026-2712?html=true" id="anch127124f8c3a7a" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="May 20, 2026, May 20, 2026 Special Meeting. PDF" href="/AgendaCenter/ViewFile/Agenda/_05202026-2712" id="anch227124f8c3a7a" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="May 20, 2026, May 20, 2026 Special Meeting. Packet" href="/AgendaCenter/ViewFile/Agenda/_05202026-2712?packet=true" id="anch327124f8c3a7a" target="_blank">Packet</a></li>
+									
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row272094850474" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h405112026-2720">
+			<a id="_05112026-2720" name="_05112026-2720"></a>
+			<strong aria-label="Agenda for May 11, 2026"><abbr title="May">May</abbr> 11, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="05112026-2720" name="2720" href="/AgendaCenter/ViewFile/Agenda/_05112026-2720?html=true" target="_blank" aria-describedby="h405112026-2720">
+		May 11, 2026 Regular Meeting - Amended Agenda
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2720" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2720" data-cp-toggle="dropdown" aria-controls="agendaDD2720" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2720">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2720" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="May 11, 2026, May 11, 2026 Regular Meeting - Amended Agenda. HTML" href="/AgendaCenter/ViewFile/Agenda/_05112026-2720?html=true" id="anch1272094850474" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="May 11, 2026, May 11, 2026 Regular Meeting - Amended Agenda. PDF" href="/AgendaCenter/ViewFile/Agenda/_05112026-2720" id="anch2272094850474" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="May 11, 2026, May 11, 2026 Regular Meeting - Amended Agenda. Packet" href="/AgendaCenter/ViewFile/Agenda/_05112026-2720?packet=true" id="anch3272094850474" target="_blank">Packet</a></li>
+									
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row271616b7e872" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h404302026-2716">
+			<a id="_04302026-2716" name="_04302026-2716"></a>
+			<strong aria-label="Agenda for April 30, 2026"><abbr title="April">Apr</abbr> 30, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="04302026-2716" name="2716" href="/AgendaCenter/ViewFile/Agenda/_04302026-2716?html=true" target="_blank" aria-describedby="h404302026-2716">
+		April 30, 2026 Special Meeting
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2716" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2716" data-cp-toggle="dropdown" aria-controls="agendaDD2716" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2716">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2716" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="April 30, 2026, April 30, 2026 Special Meeting. HTML" href="/AgendaCenter/ViewFile/Agenda/_04302026-2716?html=true" id="anch1271616b7e872" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="April 30, 2026, April 30, 2026 Special Meeting. PDF" href="/AgendaCenter/ViewFile/Agenda/_04302026-2716" id="anch2271616b7e872" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="April 30, 2026, April 30, 2026 Special Meeting. Packet" href="/AgendaCenter/ViewFile/Agenda/_04302026-2716?packet=true" id="anch3271616b7e872" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="April 30, 2026, April 30, 2026 Special Meeting. Previous Version" id="anch4271616b7e872" class="previous" href="/AgendaCenter/PreviousVersions/_04302026-2716">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row27134d936e78" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h404272026-2713">
+			<a id="_04272026-2713" name="_04272026-2713"></a>
+			<strong aria-label="Agenda for April 27, 2026"><abbr title="April">Apr</abbr> 27, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="04272026-2713" name="2713" href="/AgendaCenter/ViewFile/Agenda/_04272026-2713?html=true" target="_blank" aria-describedby="h404272026-2713">
+		April 27, 2026 Regular Meeting - Amended Agenda
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2713" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2713" data-cp-toggle="dropdown" aria-controls="agendaDD2713" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2713">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2713" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="April 27, 2026, April 27, 2026 Regular Meeting - Amended Agenda. HTML" href="/AgendaCenter/ViewFile/Agenda/_04272026-2713?html=true" id="anch127134d936e78" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="April 27, 2026, April 27, 2026 Regular Meeting - Amended Agenda. PDF" href="/AgendaCenter/ViewFile/Agenda/_04272026-2713" id="anch227134d936e78" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="April 27, 2026, April 27, 2026 Regular Meeting - Amended Agenda. Packet" href="/AgendaCenter/ViewFile/Agenda/_04272026-2713?packet=true" id="anch327134d936e78" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="April 27, 2026, April 27, 2026 Regular Meeting - Amended Agenda. Previous Version" id="anch427134d936e78" class="previous" href="/AgendaCenter/PreviousVersions/_04272026-2713">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row270696ee5c74" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h404152026-2706">
+			<a id="_04152026-2706" name="_04152026-2706"></a>
+			<strong aria-label="Agenda for April 15, 2026"><abbr title="April">Apr</abbr> 15, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="04152026-2706" name="2706" href="/AgendaCenter/ViewFile/Agenda/_04152026-2706?html=true" target="_blank" aria-describedby="h404152026-2706">
+		April 15, 2026 Special Meeting
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2706" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2706" data-cp-toggle="dropdown" aria-controls="agendaDD2706" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2706">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2706" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="April 15, 2026, April 15, 2026 Special Meeting. HTML" href="/AgendaCenter/ViewFile/Agenda/_04152026-2706?html=true" id="anch1270696ee5c74" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="April 15, 2026, April 15, 2026 Special Meeting. PDF" href="/AgendaCenter/ViewFile/Agenda/_04152026-2706" id="anch2270696ee5c74" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="April 15, 2026, April 15, 2026 Special Meeting. Packet" href="/AgendaCenter/ViewFile/Agenda/_04152026-2706?packet=true" id="anch3270696ee5c74" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="April 15, 2026, April 15, 2026 Special Meeting. Previous Version" id="anch4270696ee5c74" class="previous" href="/AgendaCenter/PreviousVersions/_04152026-2706">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row2702b7637d4b" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h404132026-2702">
+			<a id="_04132026-2702" name="_04132026-2702"></a>
+			<strong aria-label="Agenda for April 13, 2026"><abbr title="April">Apr</abbr> 13, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="04132026-2702" name="2702" href="/AgendaCenter/ViewFile/Agenda/_04132026-2702?html=true" target="_blank" aria-describedby="h404132026-2702">
+		April 13, 2026 Regular Meeting
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2702" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2702" data-cp-toggle="dropdown" aria-controls="agendaDD2702" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2702">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2702" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="April 13, 2026, April 13, 2026 Regular Meeting. HTML" href="/AgendaCenter/ViewFile/Agenda/_04132026-2702?html=true" id="anch12702b7637d4b" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="April 13, 2026, April 13, 2026 Regular Meeting. PDF" href="/AgendaCenter/ViewFile/Agenda/_04132026-2702" id="anch22702b7637d4b" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="April 13, 2026, April 13, 2026 Regular Meeting. Packet" href="/AgendaCenter/ViewFile/Agenda/_04132026-2702?packet=true" id="anch32702b7637d4b" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="April 13, 2026, April 13, 2026 Regular Meeting. Previous Version" id="anch42702b7637d4b" class="previous" href="/AgendaCenter/PreviousVersions/_04132026-2702">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row26959350d38d" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h403232026-2695">
+			<a id="_03232026-2695" name="_03232026-2695"></a>
+			<strong aria-label="Agenda for March 23, 2026"><abbr title="March">Mar</abbr> 23, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="03232026-2695" name="2695" href="/AgendaCenter/ViewFile/Agenda/_03232026-2695?html=true" target="_blank" aria-describedby="h403232026-2695">
+		March 23, 2026 Regular Meeting - Amended Agenda
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2695" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2695" data-cp-toggle="dropdown" aria-controls="agendaDD2695" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2695">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2695" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="March 23, 2026, March 23, 2026 Regular Meeting - Amended Agenda. HTML" href="/AgendaCenter/ViewFile/Agenda/_03232026-2695?html=true" id="anch126959350d38d" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="March 23, 2026, March 23, 2026 Regular Meeting - Amended Agenda. PDF" href="/AgendaCenter/ViewFile/Agenda/_03232026-2695" id="anch226959350d38d" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="March 23, 2026, March 23, 2026 Regular Meeting - Amended Agenda. Packet" href="/AgendaCenter/ViewFile/Agenda/_03232026-2695?packet=true" id="anch326959350d38d" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="March 23, 2026, March 23, 2026 Regular Meeting - Amended Agenda. Previous Version" id="anch426959350d38d" class="previous" href="/AgendaCenter/PreviousVersions/_03232026-2695">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row267763b436fb" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h403182026-2677">
+			<a id="_03182026-2677" name="_03182026-2677"></a>
+			<strong aria-label="Agenda for March 18, 2026"><abbr title="March">Mar</abbr> 18, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="03182026-2677" name="2677" href="/AgendaCenter/ViewFile/Agenda/_03182026-2677?html=true" target="_blank" aria-describedby="h403182026-2677">
+		March 18, 2026 Special Meeting
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2677" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2677" data-cp-toggle="dropdown" aria-controls="agendaDD2677" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2677">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2677" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="March 18, 2026, March 18, 2026 Special Meeting. HTML" href="/AgendaCenter/ViewFile/Agenda/_03182026-2677?html=true" id="anch1267763b436fb" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="March 18, 2026, March 18, 2026 Special Meeting. PDF" href="/AgendaCenter/ViewFile/Agenda/_03182026-2677" id="anch2267763b436fb" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="March 18, 2026, March 18, 2026 Special Meeting. Packet" href="/AgendaCenter/ViewFile/Agenda/_03182026-2677?packet=true" id="anch3267763b436fb" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="March 18, 2026, March 18, 2026 Special Meeting. Previous Version" id="anch4267763b436fb" class="previous" href="/AgendaCenter/PreviousVersions/_03182026-2677">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row2694346bfe8d" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h403162026-2694">
+			<a id="_03162026-2694" name="_03162026-2694"></a>
+			<strong aria-label="Agenda for March 16, 2026"><abbr title="March">Mar</abbr> 16, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="03162026-2694" name="2694" href="/AgendaCenter/ViewFile/Agenda/_03162026-2694" target="_blank" aria-describedby="h403162026-2694">
+		March 16, 2026 Special Meeting
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2694" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2694" data-cp-toggle="dropdown" aria-controls="agendaDD2694" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2694">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2694" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a aria-label="March 16, 2026, March 16, 2026 Special Meeting. Agenda" class="pdf" href="/AgendaCenter/ViewFile/Agenda/_03162026-2694" id="anch22694346bfe8d" target="_blank">Agenda</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row2685920d1fca" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h403092026-2685">
+			<a id="_03092026-2685" name="_03092026-2685"></a>
+			<strong aria-label="Agenda for March 9, 2026"><abbr title="March">Mar</abbr> 9, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="03092026-2685" name="2685" href="/AgendaCenter/ViewFile/Agenda/_03092026-2685?html=true" target="_blank" aria-describedby="h403092026-2685">
+		March 9, 2026 Regular Meeting
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2685" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2685" data-cp-toggle="dropdown" aria-controls="agendaDD2685" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2685">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2685" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="March 09, 2026, March 9, 2026 Regular Meeting. HTML" href="/AgendaCenter/ViewFile/Agenda/_03092026-2685?html=true" id="anch12685920d1fca" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="March 09, 2026, March 9, 2026 Regular Meeting. PDF" href="/AgendaCenter/ViewFile/Agenda/_03092026-2685" id="anch22685920d1fca" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="March 09, 2026, March 9, 2026 Regular Meeting. Packet" href="/AgendaCenter/ViewFile/Agenda/_03092026-2685?packet=true" id="anch32685920d1fca" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="March 09, 2026, March 9, 2026 Regular Meeting. Previous Version" id="anch42685920d1fca" class="previous" href="/AgendaCenter/PreviousVersions/_03092026-2685">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row2676ba0055fb" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h402232026-2676">
+			<a id="_02232026-2676" name="_02232026-2676"></a>
+			<strong aria-label="Agenda for February 23, 2026"><abbr title="February">Feb</abbr> 23, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="02232026-2676" name="2676" href="/AgendaCenter/ViewFile/Agenda/_02232026-2676?html=true" target="_blank" aria-describedby="h402232026-2676">
+		February 23, 2026 Regular Meeting - Amended
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2676" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2676" data-cp-toggle="dropdown" aria-controls="agendaDD2676" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2676">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2676" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="February 23, 2026, February 23, 2026 Regular Meeting - Amended. HTML" href="/AgendaCenter/ViewFile/Agenda/_02232026-2676?html=true" id="anch12676ba0055fb" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="February 23, 2026, February 23, 2026 Regular Meeting - Amended. PDF" href="/AgendaCenter/ViewFile/Agenda/_02232026-2676" id="anch22676ba0055fb" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="February 23, 2026, February 23, 2026 Regular Meeting - Amended. Packet" href="/AgendaCenter/ViewFile/Agenda/_02232026-2676?packet=true" id="anch32676ba0055fb" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="February 23, 2026, February 23, 2026 Regular Meeting - Amended. Previous Version" id="anch42676ba0055fb" class="previous" href="/AgendaCenter/PreviousVersions/_02232026-2676">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row266272b5d35d" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h402182026-2662">
+			<a id="_02182026-2662" name="_02182026-2662"></a>
+			<strong aria-label="Agenda for February 18, 2026"><abbr title="February">Feb</abbr> 18, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="02182026-2662" name="2662" href="/AgendaCenter/ViewFile/Agenda/_02182026-2662?html=true" target="_blank" aria-describedby="h402182026-2662">
+		February 18, 2025 Special Meeting
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2662" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2662" data-cp-toggle="dropdown" aria-controls="agendaDD2662" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2662">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2662" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="February 18, 2026, February 18, 2025 Special Meeting. HTML" href="/AgendaCenter/ViewFile/Agenda/_02182026-2662?html=true" id="anch1266272b5d35d" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="February 18, 2026, February 18, 2025 Special Meeting. PDF" href="/AgendaCenter/ViewFile/Agenda/_02182026-2662" id="anch2266272b5d35d" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="February 18, 2026, February 18, 2025 Special Meeting. Packet" href="/AgendaCenter/ViewFile/Agenda/_02182026-2662?packet=true" id="anch3266272b5d35d" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="February 18, 2026, February 18, 2025 Special Meeting. Previous Version" id="anch4266272b5d35d" class="previous" href="/AgendaCenter/PreviousVersions/_02182026-2662">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row2667cbed09a8" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h402092026-2667">
+			<a id="_02092026-2667" name="_02092026-2667"></a>
+			<strong aria-label="Agenda for February 9, 2026"><abbr title="February">Feb</abbr> 9, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="02092026-2667" name="2667" href="/AgendaCenter/ViewFile/Agenda/_02092026-2667?html=true" target="_blank" aria-describedby="h402092026-2667">
+		February 9, 2026 Regular Meeting - Amended
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"><a href="/AgendaCenter/ViewFile/Minutes/_02092026-2667" aria-label="February 09, 2026, February 9, 2026 Regular Meeting - Amended. Minutes" target="_blank"><img src="/Areas/AgendaCenter/Assets/Images/HomeIconMinutes.png" alt="Minutes"></a></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2667" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2667" data-cp-toggle="dropdown" aria-controls="agendaDD2667" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2667">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2667" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="February 09, 2026, February 9, 2026 Regular Meeting - Amended. HTML" href="/AgendaCenter/ViewFile/Agenda/_02092026-2667?html=true" id="anch12667cbed09a8" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="February 09, 2026, February 9, 2026 Regular Meeting - Amended. PDF" href="/AgendaCenter/ViewFile/Agenda/_02092026-2667" id="anch22667cbed09a8" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="February 09, 2026, February 9, 2026 Regular Meeting - Amended. Packet" href="/AgendaCenter/ViewFile/Agenda/_02092026-2667?packet=true" id="anch32667cbed09a8" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="February 09, 2026, February 9, 2026 Regular Meeting - Amended. Previous Version" id="anch42667cbed09a8" class="previous" href="/AgendaCenter/PreviousVersions/_02092026-2667">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row266046ab800f" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h401262026-2660">
+			<a id="_01262026-2660" name="_01262026-2660"></a>
+			<strong aria-label="Agenda for January 26, 2026"><abbr title="January">Jan</abbr> 26, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="01262026-2660" name="2660" href="/AgendaCenter/ViewFile/Agenda/_01262026-2660?html=true" target="_blank" aria-describedby="h401262026-2660">
+		January 26, 2026 Regular Meeting - Amended Agenda
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"><a href="/AgendaCenter/ViewFile/Minutes/_01262026-2660" aria-label="January 26, 2026, January 26, 2026 Regular Meeting - Amended Agenda. Minutes" target="_blank"><img src="/Areas/AgendaCenter/Assets/Images/HomeIconMinutes.png" alt="Minutes"></a></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2660" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2660" data-cp-toggle="dropdown" aria-controls="agendaDD2660" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2660">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2660" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="January 26, 2026, January 26, 2026 Regular Meeting - Amended Agenda. HTML" href="/AgendaCenter/ViewFile/Agenda/_01262026-2660?html=true" id="anch1266046ab800f" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="January 26, 2026, January 26, 2026 Regular Meeting - Amended Agenda. PDF" href="/AgendaCenter/ViewFile/Agenda/_01262026-2660" id="anch2266046ab800f" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="January 26, 2026, January 26, 2026 Regular Meeting - Amended Agenda. Packet" href="/AgendaCenter/ViewFile/Agenda/_01262026-2660?packet=true" id="anch3266046ab800f" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="January 26, 2026, January 26, 2026 Regular Meeting - Amended Agenda. Previous Version" id="anch4266046ab800f" class="previous" href="/AgendaCenter/PreviousVersions/_01262026-2660">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+
+<tr id="row2652ab8d3dd4" class="catAgendaRow">
+	<td>
+		<h3 class="noMargin" id="h401122026-2652">
+			<a id="_01122026-2652" name="_01122026-2652"></a>
+			<strong aria-label="Agenda for January 12, 2026"><abbr title="January">Jan</abbr> 12, 2026</strong>
+			
+			</h3>
+	<p>
+	
+			<a id="01122026-2652" name="2652" href="/AgendaCenter/ViewFile/Agenda/_01122026-2652?html=true" target="_blank" aria-describedby="h401122026-2652">
+		January 12, 2026 Regular Meeting
+	</a></p>
+		
+	</td>
+		<!--This TD actually needs to be empty of all whitespace for matching :empty css selector.-->
+		<td class="minutes"><a href="/AgendaCenter/ViewFile/Minutes/_01122026-2652" aria-label="January 12, 2026, January 12, 2026 Regular Meeting. Minutes" target="_blank"><img src="/Areas/AgendaCenter/Assets/Images/HomeIconMinutes.png" alt="Minutes"></a></td>
+	
+	</td>
+	<td class="downloads">
+		
+		<div id="downloadContainer2652" class="popoutContainer">
+			<button type="button" id="btnAgendaDD2652" data-cp-toggle="dropdown" aria-controls="agendaDD2652" aria-haspopup="true" aria-expanded="false" class="button"><span id="spanDD2652">Download&nbsp;&#9660;</span></button>
+			<div class="popout popUp" id="agendaDD2652" style="display:none;">
+		
+				<div class="popoutTop">
+					<div class="popoutBtm">
+						<ol>
+								
+									<li><a class="html" aria-label="January 12, 2026, January 12, 2026 Regular Meeting. HTML" href="/AgendaCenter/ViewFile/Agenda/_01122026-2652?html=true" id="anch12652ab8d3dd4" target="_blank">HTML</a></li>
+									
+									<li><a class="pdf" aria-label="January 12, 2026, January 12, 2026 Regular Meeting. PDF" href="/AgendaCenter/ViewFile/Agenda/_01122026-2652" id="anch22652ab8d3dd4" target="_blank">PDF</a></li>
+									
+									<li><a class="pdf" aria-label="January 12, 2026, January 12, 2026 Regular Meeting. Packet" href="/AgendaCenter/ViewFile/Agenda/_01122026-2652?packet=true" id="anch32652ab8d3dd4" target="_blank">Packet</a></li>
+									
+									<li><a aria-label="January 12, 2026, January 12, 2026 Regular Meeting. Previous Version" id="anch42652ab8d3dd4" class="previous" href="/AgendaCenter/PreviousVersions/_01122026-2652">Previous Versions</a></li>
+								
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>
+
+		
+		<!-- Agendas for a category ends -->
+		</tbody>
+	</table>
+	</div>
+</span>
+				</div>
+		
+		<!-- Only render the section if there are agendas to display -->
+			
+				<div class="listing listingCollapse noHeader" id="cat9">
+					<h2 tabindex="0" role="button" class="active" data-cp-toggle="collapse" aria-expanded="true" aria-controls="category-panel-9">City Council Subcommittee - Administration & Finance</h2>
+					
+
+<span id="section9">
+	<script type="text/javascript">
+		//Remove href attribute from the year clicked.
+		$(document).ready(function () {
+			$('.current').children().removeAttr('href');
+		});
+	</script>	
+		<ul class="years">	
+			<li class=current><a id="a09" aria-label="City Council Subcommittee - Administration & Finance 2026" href="javascript:changeYear(2026, 9,'a0')">2026</a></li>
+			
+				<li ><a id="a19" aria-label="City Council Subcommittee - Administration & Finance 2025" href="javascript:changeYear(2025, 9, 'a1')">2025</a></li>
+		
+				<li ><a id="a29" aria-label="City Council Subcommittee - Administration & Finance 2024" href="javascript:changeYear(2024, 9, 'a2')">2024</a></li>
+			
+			<li>
+		
+				<div class="popoutContainer popUpParent">
+					<a href="" id="btnViewMore9" aria-label="View more years of 'City Council Subcommittee - Administration & Finance'" onkeypress="this.onclick();" onclick="showMoreYears(9, 'yearDD9', event); return false;">View More</a>
+					<div id="yearDD9" class="popout popUp" style="display:none;">
+						<div class="popoutTop">
+							<div class="popoutBtm">
+								<ol>
+							
+									<li><a id="anchYearDD39" aria-label="City Council Subcommittee - Administration & Finance 2023" href="javascript:changeYear(2023, 9,'anchYearDD3')">2023</a></li>
+						
+									<li><a id="anchYearDD49" aria-label="City Council Subcommittee - Administration & Finance 2022" href="javascript:changeYear(2022, 9,'anchYearDD4')">2022</a></li>
+						
+								</ol>
+							</div>
+						</div>
+					</div>
+				</div>
+		
+			</li>
+		</ul>
+	<!--The table needs a position-relative to avoid weird issues with IE where the controls would just dissapear. -->
+	<div id="category-panel-9" >
+	<table id="table9" summary="List of Agendas" >
+		<thead>
+			<tr>
+				<th scope="col">
+					Agenda
+				</th>
+					<th scope="col" class="minutes">
+						Minu

@@ -1,5 +1,18 @@
 node_modules
 .env
-data/
+# resident data stays local; collected city data (catalog, council, transcripts, gis, news) is committed
+data/applications.json
+data/clips.json
+data/alerts.json
+data/feedback.jsonl
+data/outbox/
+data/transcripts/*.vtt
+data/transcripts/*.part
+# SQLite FTS5 index (built locally by the collector; too big for git at county scale)
+data/govai.db*
+data/knowledge/
+data/_discover/
 __pycache__/
 .venv/
+data/youtube/.ingest.lock
+data/youtube/request-state.json

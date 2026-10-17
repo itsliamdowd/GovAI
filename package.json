@@ -4,12 +4,13 @@
   "type": "module",
   "scripts": {
     "start": "node --env-file=.env server.js",
-    "test": "node test.js",
+    "test": "GOVAI_DB=:memory: TTS=off node test.js",
     "ingest:youtube": "node scripts/run_youtube.js",
     "test:youtube": "python3 -m unittest discover -s tests -p 'test_youtube.py' && node --test tests/youtube.test.js",
     "dev": "node --watch --env-file=.env server.js"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "latest"
+    "@anthropic-ai/sdk": "latest",
+    "kokoro-js": "^1.2.1"
   }
 }

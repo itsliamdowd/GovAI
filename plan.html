@@ -16,6 +16,396 @@
        Status badge classes: planned | progress | done | blocked.
        Do NOT log changes to ~/.claude/, plan.html itself, or the changelog server. -->
 
+  <article class="entry" id="e-2026-10-17-1605">
+    <header>
+      <time>2026-10-17 16:05</time>
+      <h2>Every city's main phone number in the footer and contact line (collected from each city's site)</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal (user).</b> The footer read "City of Diamond Bar: the city's main line (see https://www.diamondbarca.gov)". It should show the city's actual number, for all cities.</p>
+    <p><b>Why.</b> <code>city()</code> in <code>jurisdictions.js</code> / <code>jurisdictions-la.js</code> creates 140 cities with <code>contact.phone: ""</code>; only Santa Monica and San Diego had numbers. The footer, the system prompt's "contact for anything you can't verify" line, and application routing all read <code>contact.line</code>.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>phones.js</code> (new collector, run with <code>node phones.js [id…]</code>) — for each city without a phone, fetches the official site's homepage and common contact paths with a browser UA; picks a number by signal strength: <code>tel:</code> links (+6), proximity to "City Hall" / "main" / "phone" (+2 each), repetition (+1); skips fax/TTY, toll-free, 311/911. Writes <code>data/phones.json</code> {id: {phone, url, score, alt, name, at}} incrementally; re-runs only fill gaps unless ids are given.</li>
+      <li><code>jurisdictions.js</code>, <code>jurisdictions-la.js</code> — <code>city()</code> reads <code>data/phones.json</code> at load; <code>contact.phone</code> and <code>contact.line</code> ("(909) 839-7000 (City Hall main line)") come from it, with the old "see &lt;site&gt;" text only when no number was found.</li>
+    </ul>
+    <ul>
+      <li><code>server.js</code> / <code>public/index.html</code> — the <code>jurisdiction</code> event now carries <code>phone</code>; the footer shows "City of Diamond Bar: (909) 839-7000." (bare number when known, the contact line otherwise).</li>
+    </ul>
+    <p><b>16:50 follow-up (user, staff desk):</b> search box and department dropdown were stacking because the native <code>select</code> keeps its intrinsic (longest option) width as <code>min-width:auto</code>; <code>public/staff.html</code> <code>.bar</code> now gives the select a fixed 240px with <code>min-width:0</code> and only wraps below 560px.</p>
+    <p><b>Result 16:40:</b> collector found 118 of 138 from the cities' own sites. 20 sites were bot-walled or had no number in reach (Whittier, Burbank, Santa Fe Springs, Lynwood, Arcadia, Montebello, Claremont, Paramount, South El Monte, Sierra Madre, Duarte, Coronado, Vista, Anaheim, El Cajon, Brea, Villa Park, San Juan Capistrano, Orange, Cudahy) and 8 scraped numbers were wrong or department lines (Azusa printed a typo'd 826 area code; National City had a placeholder 456-7890; Imperial Beach, Torrance, Glendale, Long Beach, Newport Beach, Chula Vista picked a clerk/district line). All 28 were looked up by web search and written into <code>data/phones.json</code> with <code>method: "verified-by-search"</code> and the source URL. <b>140 / 140 cities now have a main number</b>; <code>npm test</code> passes. Least certain: Burbank (818) 238-5850 and San Juan Capistrano (949) 493-1171 came from third-party directories, Whittier's city directory lists 567-9403 for City Hall while the county/211 list 567-9999 as the main line (kept 9999).</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1520">
+    <header>
+      <time>2026-10-17 15:20</time>
+      <h2>Voice mode: make the free local voice sound human (Kokoro fp32 + speech normalizer + warm-up)</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal (user).</b> "The text-to-voice doesn't work super well and sounds super robotic… find a free alternative (not ElevenLabs) and make it sound like a human."</p>
+    <h3>Findings</h3>
+    <ul>
+      <li>A free local engine was already wired: <b>Kokoro-82M</b> (Apache-2.0, <code>kokoro-js</code>, CPU, no key) in <code>tts.js</code> behind <code>POST /tts</code>, with the browser's <code>speechSynthesis</code> as fallback. That fallback is the robotic voice.</li>
+      <li>Why the fallback was being heard: the model loaded lazily and <b>the first generate paid ~4 s of graph init</b> (6 s for an 8 s sentence), long enough that the first voice turn often dropped to the browser voice; <code>q8</code> quantization also adds a faint metallic edge.</li>
+      <li>Written city text reads badly aloud: phone numbers, <code>SM-749311</code>, "Blvd", "Mon–Thu", "a.m.–p.m.", emails, URLs, markdown asterisks.</li>
+      <li>Benchmarked precisions warm on a 10-core Mac: fp32 2.1 s / fp16 2.3 s / q4 2.0 s per 7.7 s of audio, all ~3.5× realtime; q8 cold was 5.9 s. fp32 is the cleanest and costs nothing in speed once warm.</li>
+    </ul>
+    <h3>What changed</h3>
+    <ul>
+      <li><code>tts.js</code> — default <code>TTS_DTYPE=fp32</code>; <code>loadTTS()</code> runs a warm-up generate at startup; new <code>speechText()</code> normalizer: phone numbers and confirmation IDs spelled digit by digit, street abbreviations (Blvd/Ave/Rd/Hwy/Ste, "Main St"), day/month abbreviations and ranges ("Mon–Thu" → "Monday through Thursday", "Jul 1–Jun 30" → "July 1 to June 30", "7:30 a.m.–5:30 p.m." → "7:30 AM to 5:30 PM"), emails/URLs → "311 at santamonica dot gov", PCH/ADU/SMPD/SMFD, "24/7", "&amp;", "%", slashes, markdown leftovers. Voice stays <code>af_heart</code> (Kokoro's only A-graded voice; <code>TTS_VOICE</code> to change).</li>
+      <li><code>test.js</code> — three <code>speechText()</code> golden cases. <code>package.json</code> — <code>npm test</code> runs with <code>TTS=off</code>: importing <code>server.js</code> otherwise starts the warm-up and the test's <code>process.exit</code> aborted inside onnxruntime ("mutex lock failed").</li>
+      <li><code>README.md</code> — <code>tts.js</code> line.</li>
+    </ul>
+    <p><b>Verified 15:40:</b> <code>npm test</code> passes incl. the normalizer cases. fp32 load + warm-up from cache: 1.1 s; a 4-sentence block-party reply (18 s of speech, float32 WAV) rendered in 5.1 s ≈ 3.5× realtime, so the sentence-by-sentence pipeline starts speaking in ~1 s and shouldn't fall back to the browser voice. Not verified by ear in this session (agent has no audio); sample WAV saved in this session's scratchpad. If it still sounds off after <code>npm start</code>: try <code>TTS_VOICE=af_bella</code> (warmer) or <code>bf_emma</code>, and <code>TTS_SPEED=0.95</code>.</p>
+    <p><b>15:50 follow-up (user, prompt only):</b> "descriptions can be a little less concise if more info is needed" — replaced the hard 80-word cap in the SYSTEM Style rules with length-follows-the-question: simple facts stay 1–3 sentences; how-to / eligibility / process questions get full steps, requirements, deadlines, costs and exceptions (~200 words), never dropping a requirement or fee to stay short. <code>server.js</code> Style bullet 1.</p>
+    <p><b>Skipped:</b> larger neural models (Chatterbox / XTTS / Orpheus): they need a GPU or several GB and 5–20× more compute per sentence; Kokoro is the best free CPU option. Revisit when there's a GPU box to deploy on.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1400">
+    <header>
+      <time>2026-10-17 14:10</time>
+      <h2>Address autocomplete from the city's official Address Points layer</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "for addresses when typed in it should autofill." Done against real Santa Monica addresses, offline, no third-party geocoder.</p>
+    <ul>
+      <li><code>addresses.js</code> (new) — <code>ingestAddresses(j)</code> finds the "Address Points" FeatureServer in the city's collected <code>gis.json</code> (no hardcoded URL), pages it 5,000 rows at a time, normalizes to "1685 Main St" / "1685 Main St #101" (building row always present before its units; unit prefixes like APARTMENT/STE stripped), writes <code>data/&lt;jur&gt;/addresses.json</code>. <code>loadAddresses()</code> + <code>suggestAddresses(q, limit, jur)</code>: normalized prefix match; a query starting with a digit matches the full address, otherwise the street name. Santa Monica: 57,063 points → ~57k entries, 2 MB, committed.</li>
+      <li><code>warm.js</code> — <code>addresses</code> job (runs after <code>gis</code> since it reads gis.json). <code>server.js</code> — loads the book at start, <code>GET /api/addresses?q=&amp;jur=</code> returns up to 8 <code>{address, city, zip}</code>.</li>
+      <li><code>public/index.html</code> — one shared <code>.sugg</code> popover (keyboard ↑↓ Enter Tab Esc, mouse, repositions on scroll, 120 ms debounce, stale-response guard). Attached to: the chat box (matches only an address-looking tail — number + street word — and replaces just that span, so "311" alone doesn't pop); every form-card input whose key/label mentions address or location; the Menu's watch-topic and watch-address inputs.</li>
+      <li><code>test.js</code> — building-before-units ordering, street-name matching, short-query guard.</li>
+    </ul>
+    <h3>Verified</h3><ul><li>Chrome on :8788: typing "…permit for 1685 ma" opens the popover above the composer with "1685 Main St" first, then units; ↓ Enter replaces only the address span (caret after it), the message is not sent. <code>/api/addresses?q=1</code> → []. After the building-row change: 61,717 entries. <code>npm test</code> passes.</li></ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1500">
+    <header>
+      <time>2026-10-17 15:00</time>
+      <h2>Fix 400 "Schema is too complex" (strict tool grammars over the per-request cap)</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Symptom (user).</b> Every chat turn failed with <code>invalid_request_error: Schema is too complex</code>.</p>
+    <p><b>Cause.</b> 12 of the 13 custom tools carried <code>strict: true</code>. Strict schemas are compiled into constrained-decoding grammars and their combined complexity is capped per request; the tool list had grown (jurisdiction, GIS, live data, news, contact card, forms) past it. An earlier change had already un-stricted <code>show_contact</code> for the same reason, which bought headroom only until the next tool was added.</p>
+    <h3>Fix (<code>server.js</code>)</h3>
+    <ul>
+      <li><code>strict: true</code> kept only on the tools that file records and need exact enums/required fields: <code>submit_application</code>, <code>open_application_form</code>, <code>create_alert</code>. Removed from the 9 search/lookup tools (<code>search_city_knowledge</code>, <code>query_dataset</code>, <code>search_local_news</code>, <code>query_gis</code>, <code>get_live_data</code>, <code>search_council_meetings</code>, <code>set_jurisdiction</code>, <code>cancel_alert</code>, <code>check_application_status</code>). Their handlers already default every field the model might omit (<code>year</code>/<code>doc</code>/<code>days</code> falsy, <code>queryDataset</code>/<code>queryGis</code>/<code>liveData</code> parameter defaults).</li>
+      <li>Comment above the tool list explains the cap so the next tool added doesn't reintroduce it.</li>
+    </ul>
+    <p><b>Verified 15:06</b> on a temp server (port 8799), two turns in one session: library hours (non-strict tools: set_jurisdiction, search_city_knowledge, show_contact all called, sources + contact card streamed) and a daily alert (strict <code>create_alert</code> filed WATCH-xxxxxx). No errors. Test alert removed from <code>data/alerts.json</code>.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1330">
+    <header>
+      <time>2026-10-17 13:30</time>
+      <h2>Voice mode: page scrollbar no longer moves behind the overlay</h2>
+      <span class="badge done">done</span>
+    </header>
+    <ul>
+      <li><code>public/index.html</code> — <code>body:has(.voice.open) { overflow:hidden }</code> hides the document scrollbar while the full-screen voice overlay is up; <code>scroll()</code> returns early when voice mode is open so streaming replies don't drive the page position; ending voice mode calls <code>scroll()</code> once so the chat view lands on the latest exchange.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1445">
+    <header>
+      <time>2026-10-17 14:45</time>
+      <h2>Fix 400 "Invalid signature in thinking block… bound to a different conversation"</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Symptom (user).</b> Second turn in a session failed: <code>messages.1.content.0: Invalid signature in thinking block. The block is bound to a different conversation… The system prompt and the tools list both differ from when this block was created.</code></p>
+    <p><b>Cause.</b> Preserved thinking: each thinking block the model returns is signed against the exact <code>system</code> + <code>tools</code> + prior messages. <code>chat()</code> in <code>server.js</code> rebuilt <code>system</code> per request with parts that change between turns — the voice rule was appended only when <code>voice</code> was true, "Today is …" was recomputed, and <code>jurContext()</code> / <code>toolsFor()</code> change when the session's jurisdiction switches. Replaying the earlier turn's thinking block under a different prefix is rejected (enforced by default for accounts created after 2026-08-31).</p>
+    <h3>Fix (<code>server.js</code>)</h3>
+    <ul>
+      <li>Voice: <code>VOICE_RULE</code> is now always in the system prompt, conditioned on the user message starting with <code>[voice]</code>; voice turns are tagged in the user text instead of toggling the prompt.</li>
+      <li>Date: computed once per session (<code>session.today</code>) so the system block is byte-stable for the session's life.</li>
+      <li>Jurisdiction switches are a legitimate prefix change, so the request now opts into <code>thinking.block_binding.prefix_mismatch_behavior: "drop_block"</code> under beta <code>thinking-binding-controls-2026-08-01</code>: stale blocks are dropped (unbilled) instead of failing the turn. Per the Claude API migration guide this is the production "degrade, don't fail" setting.</li>
+    </ul>
+    <p><b>Verified 14:52</b> on a temp server (port 8799), three turns in one session: turn 1 text-only (model asked for the city, no tools yet); turn 2 with <code>voice:true</code> — which also set the jurisdiction mid-session, i.e. <i>both</i> system and tools changed, the exact failing case — streamed thinking + sources + text with no error; turn 3 back to non-voice, fine. Previously turn 2 returned the 400 above.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1510">
+    <header>
+      <time>2026-10-17 15:10</time>
+      <h2>LA County expansion: scrape every jurisdiction (LA City, 88 cities, County, regional agencies) into a SQLite FTS5 store that keeps the Santa Monica quality bar</h2>
+      <span class="badge progress">in-progress</span>
+    </header>
+    <p><b>Goal (user).</b> Replicate what exists for Santa Monica (council agendas, minutes, YouTube transcripts, open data, GIS, news, knowledge) for the entire county, leaving no source type out, in a RAG that scales and keeps the same citation standard. Full plan with per-city seed inventory: <code>~/.claude/plans/reactive-moseying-pumpkin.md</code>. Research: 3 codebase audits + 7 web-research agents + 2 design agents, 2026-10-17.</p>
+
+    <h3>Why the current index cannot scale (measured)</h3>
+    <table>
+      <tr><th></th><th>today</th><th>county (~5M chunks)</th></tr>
+      <tr><td>docs</td><td>41,825 (council 9,273 · transcripts 30,042 · news 1,707 · gis 803 · datasets 82 · knowledge ~106)</td><td>3–8M</td></tr>
+      <tr><td>BM25 heap (<code>rag.js:75-97</code>)</td><td>~1 GB</td><td>~100 GB → OOM</td></tr>
+      <tr><td>rebuild on every <code>addDocs</code> (<code>rag.js:132-136</code>, 4× at boot + every 30 min)</td><td>5.5 s blocking</td><td>~10 min blocking</td></tr>
+      <tr><td>one scoring pass</td><td>50–70 ms</td><td>5–7 s, ×2 per tool call</td></tr>
+    </table>
+    <ul>
+      <li>No <code>city</code> field on any doc; STOP list drops <code>santa monica city</code> (<code>rag.js:12</code>); one video per date (<code>transcripts.js:52-53</code>) collides across cities; SYSTEM refuses LA/Malibu/Venice (<code>server.js:77-81</code>).</li>
+      <li>Bugs fixed on the way: dedupe key <code>url#part</code> drops 3 county GIS layers (<code>rag.js:133</code>); failed agenda fetch never retried (<code>council.js:56</code>); catalogs load once per process.</li>
+    </ul>
+
+    <h3>Architecture</h3>
+    <pre><code>jurisdictions/*.json ─┐                        ┌─ server.js (read-only; per-jurisdiction prompt/tool bundle, /status)
+adapters/* (agendas) ──┤                        │
+transcripts/* ─────────┼─► ingest.js (jobs, sole writer) ─► data/govai.db (SQLite FTS5, node:sqlite) ◄┘
+crawl.js + distill.js ─┤                        ▲
+codes.js ──────────────┤   data/council/&lt;jur&gt;/*.json · data/transcripts/&lt;id&gt;.json (raw layer kept; clipWindow reads it)
+catalogs.js ───────────┘</code></pre>
+    <ul>
+      <li><b><code>store.js</code></b> (new) replaces the BM25 class behind the unchanged <code>rag.js</code> API. One FTS5 table <code>chunk_fts(body, facets)</code> (<code>content=''</code>, <code>contentless_delete</code>, unicode61) + <code>chunks</code> meta table + <code>meetings/videos/jobs/sources/datasets/settings</code>. <b>Parity trick:</b> every producer keeps its exact <code>searchText</code>; <code>normalize()</code> = today's tokenizer (minus city STOP words); bigrams become FTS5 phrases; facets <code>jur… kind… doc… year… body…</code> in a zero-weight column. Retrieval contract preserved (6 + 2 news ≤60 d; half official/half transcript; year/doc filters). Upsert by <code>chunk_id</code> + content hash. <code>WEAK_TOP</code> becomes <code>(8/ln 42000)·ln N</code>. Verified FTS5 features on the bundled SQLite 3.54.</li>
+      <li><b><code>jurisdictions/*.json</code></b> one per city/agency; <code>santa_monica.json</code> carries every constant hardcoded today (<code>server.js:58-104,193,254-274</code>, <code>sources.js:10,29-50,98-111,205-324</code>, <code>council.js:12,31,47</code>, <code>transcripts.js:10-14,45</code>, <code>forms.js</code>, <code>public/index.html:137-274</code>). <code>index.js</code>: gazetteer <code>detect()</code> (Venice/Hollywood → LA City; Marina del Rey/Altadena → County) + <code>stripPlace()</code>.</li>
+      <li><b><code>adapters/</code></b> <code>listMeetings(cfg,a) → [{meeting_id, body, date, agenda_url, minutes_url, packet_url, video_url}]</code>, <code>fetchDoc(url,{start_marker})</code>. Adapters: legistar (webapi OData; County BOS, Metro, MWD, Pomona, Signal Hill, Long Beach history), granicus (ViewPublisherRSS/AgendaViewer/MinutesViewer/TranscriptViewer; LA City 2008-21, Hermosa, La Puente, RPV, Pasadena), primegov (LA City + 15 committees, Long Beach; Burbank/Glendale/Torrance/Culver suspected), ckan_agendas (Santa Monica today; IQM2 sunsets 2026-12-31 → <code>until/then</code> swap), civicclerk, civicplus, agendalink, destiny, civiclive, boarddocs (LAUSD/LACCD/school districts), pdflist (~35 small cities, county commissions, Port/LAWA/SCAG/AQMD, 99 Neighborhood Councils via ens.lacity.org). <code>_http.js</code>: per-host semaphore, robots.txt, UA with contact, backoff, Cloudflare-403 → blocked (no hammering), pdftotext pool.</li>
+      <li><b><code>transcripts/</code></b> youtube (UU uploads playlist; global bucket ≤90 caption pulls/h/IP; cookies/PO-token; bot-check pause), granicus (player caption JSON → segments), whisper (budget-gated, newest-first; full backlog ≈ $11k at $0.003/min). Video key <code>(jurisdiction, body, date)</code>. <code>transcript_source</code> on every chunk; roster surname correction in <code>searchText</code> only.</li>
+      <li><b><code>crawl.js</code> + <code>distill.js</code></b> replace hand-written knowledge for 89 cities: sitemap → scored pages (≤600/city) → main-content sections <code>## H1 — h2</code> ≤900 chars → Haiku 5.5 Batches distillation into the exact <code>## heading … Source: url</code> format <code>chunkMarkdown</code> parses, deterministic guardrail (every $, phone, day-count must appear in page text). ≈ $14 one-time. Output <code>data/knowledge/&lt;jur&gt;/site.md</code>; hand-written files move to <code>knowledge/&lt;jur&gt;/</code>.</li>
+      <li><b><code>codes.js</code></b> Municode / American Legal (LAMC) / Code Publishing / Qcode → one chunk per section with title path; <code>kind:"code"</code> citable. <b><code>catalogs.js</code></b> Socrata Discovery (data.lacity.org ~360, data.lacounty.gov, Long Beach, Carson), CKAN (SM, data.ca.gov), ArcGIS Hub DCAT for every hub (geohub, eGIS, SCAG LDX zoning for 197 jurisdictions); <code>queryDataset</code> dispatches CKAN vs Socrata.</li>
+      <li><b><code>server.js</code> / UI</b>: city picker → <code>jurisdiction</code> on <code>/chat</code>; <code>bundleFor(cfg)</code> memoizes SYSTEM/tools/STATUS/ROUTING/WEB_DOMAINS; search tools gain <code>jurisdiction</code> ('' | id | 'all'); scope rule rewritten for the county with an honest per-request <b>coverage block</b>; server stops ingesting; <code>/status</code> SLO table (503 on P1 breach).</li>
+      <li><b>Quality</b>: <code>addDocs</code> throws without <code>jurisdiction</code>; scope is a facet never a boost; <code>evals/&lt;jur&gt;.jsonl</code> golden questions (block party, bulky pickup, business license, dog license, parking permit, trash day, 311, council schedule, rent control, STR) asserted exactly like <code>test.js:39-40</code>; <code>evals/run.mjs</code> in <code>npm test</code>; weekly Haiku judge. SLOs: agendas 24 h, minutes 48 h, transcripts 72 h, news 30 min.</li>
+    </ul>
+
+    <h3>Progress</h3>
+    <ul>
+      <li><b>Repo state found at start of implementation:</b> a peer session (<i>multi-jurisdiction-coverage-expansion</i>) had already landed <code>jurisdictions.js</code> (registry with <code>jur</code> tagging, <code>detect()</code>, <code>scopeIds</code>), per-jurisdiction <code>data/&lt;jur&gt;/</code> caches, a "no runtime collection" policy (server reads committed <code>data/</code>; <code>warm.js</code> collects) and inline LA city rows. Decisions with the user: gitignore the big store (<code>data/govai.db*</code>), I own new files and coordinate on shared ones.</li>
+      <li><b>Step 1 done (SQLite FTS5 store).</b> <code>store.js</code> (new): <code>Store</code> with <code>chunks</code> + <code>chunk_fts(body, facets)</code> (contentless, unicode61, <code>rank=bm25(1,0)</code>), same stemmer/stop list as before minus city names, adjacent-word bigrams as FTS5 phrases, facets <code>jur/kind/doc/year</code>, upsert by <code>keyOf = jur|url#(part ?? service)</code> with content-hash skip, 1000-row transactions, <code>busy_timeout</code> 30 s. <code>rag.js</code>: BM25 class + tokenizer removed; <code>buildIndex()</code> keeps its API (search/searchNews/searchCouncil/addDocs/datasetFor/catalogSummary/memo) and delegates to the store; <code>rag.store</code> exposed. <code>package.json</code> test script runs on <code>GOVAI_DB=:memory:</code>; <code>.gitignore</code> +<code>data/govai.db*</code>; <code>test.js</code> news fixture gained <code>jur</code>. Measured on the SM corpus (41,575 chunks): heap 1 GB → 190 MB, <code>search</code> 15 ms, <code>searchCouncil</code> 38 ms, block-party exact-source test holds (33.2 vs 23.8), all 803 GIS layers indexed (3 county district layers were previously dropped). Dev server rebuilt <code>data/govai.db</code> (≈108 MB) on reload.</li>
+      <li><b>Registry split:</b> the 87 inline LA city rows moved to <code>jurisdictions-la.js</code> (<code>LA_CITIES</code>, spread into <code>JURS</code>); bare-word alias rule for Bell/Commerce/Industry/Walnut/Vernon/Paramount lives there.</li>
+      <li><b>Step 3 (adapters) landed, live-verified.</b> Peer's <code>council.js</code> now dispatches <code>j.council.platform</code> → <code>adapters/&lt;platform&gt;.js</code> exporting <code>listMeetings(j)</code> and optional <code>meetingText(m, j)</code>. New: <code>adapters/_http.js</code> (per-host polite fetch, browser-like UA with GovAI token, backoff, 403 → <code>BlockedError</code>, content-sniffing <code>fetchText</code> PDF→pdftotext / HTML→text, <code>toYmd</code>), <code>adapters/primegov.js</code> (public JSON API <code>/api/v2/PublicPortal/ListArchivedMeetings?year=</code> + <code>ListUpcomingMeetings</code>; documents via <code>/Public/CompiledDocument?meetingTemplateId=&amp;compileOutputType=1|3</code>; LA City: 110 bodies, 2016→, 221 council meetings in 2026, YouTube link per meeting; HTML agenda 41k chars in 5 s), <code>adapters/granicus.js</code> (ViewPublisher table → 1,614 LA council meetings 2008-2021, 577 with <code>TranscriptViewer</code>; RSS fallback; LA's clkrep.lacity.org agenda host times out from outside, so that era yields transcripts only), <code>adapters/civicplus.js</code> (AgendaCenter categories + <code>UpdateCategoryList?catID=&amp;year=</code>; Malibu 105 council meetings 2025→; ViewFile PDFs sniffed), <code>adapters/pdflist.js</code> (generic dated-link page), <code>adapters/multi.js</code> (several sources per jurisdiction). <code>test-adapters.js</code> fixture tests (in <code>npm test</code>); fixtures trimmed to 240 KB. <code>council.js</code>: doc title now uses the record's <code>body</code> (one line). Legistar probes: open without token for lacounty (only 27 BOS events, 2022→), metro, mwdh2o, pomona, cityofsignalhill, longbeach (history); whittier is not a Legistar client.</li>
+      <li><b>Registry wiring</b> (<code>jurisdictions-la.js</code> <code>WIRING</code>): los-angeles = multi(primegov lacity 2016→ all bodies + granicus views 129/46) + YouTube LA CityView35 <code>UCC2hfJIf4FjXXL9ZBP-EXwA</code> + LA domains + MyLA311 contact; long-beach primegov; pomona / signal-hill legistar; malibu, el-monte, inglewood, alhambra, avalon, la-verne civicplus; YouTube ids for arcadia, bellflower, carson, glendora, san-marino. <code>jurisdictions.js</code> LA County BOS → legistar lacounty. Known gap: <code>transcripts.js</code> keeps one video per date and requires "council" in the title, so same-day committee videos are dropped (fix pending).</li>
+      <li><b>Live ingest verified</b> (<code>warm.js council</code>, limited): los-angeles 25 meetings / 505 chunks (council + 9 committees, agenda + journal text, body-named titles, LA scope only), malibu 12 / 82 (CivicPlus incl. Arts Commission and subcommittees), pomona 12 / 253 (Legistar, agenda + minutes), los-angeles-county 12 / 152 (BOS via Legistar). <code>council.js</code> <code>bodyLabel()</code> title-cases shouting Legistar bodies and keeps the configured label prefix.</li>
+      <li><b>Transcripts at LA scale</b> (<code>transcripts.js</code>): one video per (date, body) when <code>j.council.titleRe</code> is set (LA City: council/committee/commission/board), <code>bodyOf(title)</code>, chunk titles by body, global <code>YT_MIN_GAP_MS</code> gate (30 s ≈ 120 caption pulls/h) so a 1,500-video channel does not trip YouTube's bot check.</li>
+      <li><b>Config:</b> LA City portal <code>data.lacity.org/data.json</code> (dcat → SODA), LA County <code>data.lacounty.gov/data.json</code>, Long Beach <code>data.longbeach.gov/data.json</code>; LA City GIS = GeoHub DCAT (9.6 MB catalog); verified RSS for LA Times local, LAist, KTLA, NBC LA, Knock LA, Crosstown, LA Public Press, Streetsblog, Urbanize, r/LosAngeles, Long Beach Post, WeHo Times, Burbank Leader, Glendale News-Press, Pasadena Now, Easy Reader; SCNG papers (Daily News, Daily Breeze, Star-News, SGV Tribune, Press-Telegram, Whittier DN) return 403 to bots → Google News <code>site:</code> queries. LA County is now a served jurisdiction (<code>detect("LA County …")</code> → los-angeles-county).</li>
+      <li><b>Running in the background on this machine:</b> full LA City council backfill (<code>COUNCIL_MEETINGS=30000 node warm.js council los-angeles</code>: PrimeGov 2016→ every body + Granicus 2008-2021), LA CityView 35 transcripts (<code>node warm.js transcripts los-angeles</code>), catalogs + LA GeoHub + LA/Long Beach news. Results land in <code>data/los-angeles/</code>; the server picks them up on restart.</li>
+    </ul>
+
+    <h3>Steps (each shippable, <code>npm test</code> green, tests on <code>GOVAI_DB=:memory:</code>)</h3>
+    <ol>
+      <li><code>store.js</code> behind <code>rag.js</code> (SM only). Parity test: block-party exact source, <code>searchCouncil("call to order")</code> date, idempotent addDocs, 4 county layers survive.</li>
+      <li><code>jurisdictions/</code> + facets + per-jurisdiction bundles + UI picker; SM/LA/County configs.</li>
+      <li><code>adapters/</code> + <code>_http.js</code> + <code>ingest.js</code> (jobs); server read-only; <code>warm.js</code> deleted; SM re-ingested = 395 meetings / 9,273 chunks.</li>
+      <li><code>transcripts/</code> split (bucket, granicus, whisper gate, videos table).</li>
+      <li><code>catalogs.js</code> + Socrata-aware <code>queryDataset</code>.</li>
+      <li><code>crawl.js</code> + <code>distill.js</code> + <code>codes.js</code> + <code>evals/</code>; pilot Burbank, Long Beach, La Habra Heights.</li>
+      <li>Rollout tiers: County → LA City → top-10 cities → agencies → remaining 78; <code>tools/discover.mjs</code> re-probes the ~11 cities that 403'd research fetches; <code>ingest.js --daemon</code>; backfill ≈ 8–10 days (YouTube caption bucket is the bottleneck), usable after day 1; DB ≈ 12–18 GB.</li>
+    </ol>
+
+    <h3>Decisions (user, 2026-10-17)</h3>
+    <ul>
+      <li><b>No paid ASR.</b> Transcripts only from YouTube captions and Granicus caption tracks; <code>transcripts/whisper.js</code> and <code>WHISPER_*</code> dropped. Uncaptioned bodies report "no transcripts" in coverage.</li>
+      <li><b>Keep building our own RAG</b> on SQLite FTS5 (no MongoDB).</li>
+      <li><b>One agent with all the data, no city picker.</b> <code>/chat</code> unchanged; one cached SYSTEM prompt with the county-wide scope rule and the 90-jurisdiction id list; search tools take <code>jurisdiction</code> (id | 'all'), resolved as <code>param || detect(query) || 'all'</code>; per-jurisdiction coverage/upcoming/roster returned inside tool results, not the prompt; the assistant asks once when "LA" is ambiguous. Step 2 becomes "jurisdictions/ + facets + county-wide prompt + jurisdiction tool params".</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1248">
+    <header>
+      <time>2026-10-17 12:48</time>
+      <h2>Remove "Saved council moments" from the Menu sheet</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User screenshot: "Get rid of this section."</p>
+    <ul>
+      <li><code>public/index.html</code> — removed the <code>&lt;h3&gt;</code> + <code>#momList</code> block from the Menu sheet, the <code>moments</code> localStorage store, <code>renderMoments()</code>, the list click handler, the <code>.panel .mom</code> CSS, and the "Save moment" button on clip cards (it only fed this list). Clip cards keep "Full excerpt" and the YouTube link.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1400">
+    <header>
+      <time>2026-10-17 14:00</time>
+      <h2>RAG: incremental inverted index, query cache, council cache actually loads</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal (user).</b> "Improve the RAG system… we're not efficiently caching this information. Make it readily available and streamline."</p>
+    <h3>Measured before (node script, cached data only)</h3>
+    <ul>
+      <li><code>rag.addDocs()</code> rebuilt the whole BM25 from scratch on every call: <b>4.2 s each</b>, called 4× at startup (council+transcripts, GIS, news, news-again) ≈ 17 s, and again on every daily/30-min refresh.</li>
+      <li>Per-doc token <code>Map</code>s for ~32k docs: <b>2.7 GB heap</b>.</li>
+      <li><code>search()</code> scanned every doc for every query: <b>50–70 ms</b> per call, 2–3 calls per tool invocation, no result reuse.</li>
+      <li><b>Council minutes/agendas were not indexed at all:</b> <code>loadCouncilCache()</code> required <code>data/council/meetings.json</code>, which doesn't exist, so it returned 0 docs although 395 meeting files (11 MB) are cached. Council search was answering from transcripts only.</li>
+    </ul>
+    <h3>What changed</h3>
+    <ul>
+      <li><code>rag.js</code> — <code>BM25</code> is now an <b>incremental inverted index</b>: <code>post: Map&lt;term,{ids,tfs}&gt;</code> + <code>len[]</code>; <code>add()</code> appends postings, <code>search()</code> scores only docs in the query terms' postings, then applies the kind/date filter and sorts the candidates. <code>addDocs()</code> appends (dedupe set kept across calls, returns the number added) — no rebuilds. <code>searchText</code> is dropped after indexing. <b>Result cache</b>: 256-entry LRU keyed by (method, k, filters, query), cleared when docs are added. <code>queryDataset</code> row cache capped at 500 entries. Council chunks index unigrams only (bigram vocabulary of 30k transcript chunks was most of the heap). <code>rag.docCount</code> getter.</li>
+      <li><code>council.js</code> — <code>loadCouncilCache()</code> falls back to scanning <code>data/council/city_council_*.json</code> when <code>meetings.json</code> is absent, deriving the ingested list from the files.</li>
+      <li><code>test.js</code> — <code>addDocs</code> returns count / re-add is a no-op; identical queries hit the cache.</li>
+    </ul>
+    <h3>Measured after</h3>
+    <pre><code>startup:       2.5 s total for 41,765 docs (council+transcripts 2.0 s once · gis 43 ms · news 67 ms · re-add 0 new)   — was ≈17 s of rebuilds
+search:        2–20 ms (was 50–70) · cache hit 0.02 ms
+council index: 395 meetings / 9,273 agenda+minutes chunks (was 0) + 29,784 transcript chunks
+heap:          239 MB after GC (was 2.7 GB)
+npm test:      passes (14:05)</code></pre>
+    <h3>Not done (ceilings)</h3>
+    <ul>
+      <li>The one-time tokenize of ~40k chunks (~2 s) still runs at every start. Next step if it matters: persist postings from <code>warm.js</code> and load them instead. Skipped: 2 s once per process is acceptable.</li>
+      <li>Ranking mix: for "block party" the GIS layer "Block Party Eligible Streets" now edges the knowledge chunk (42 vs 39); still within the 75% source band so citations are unchanged, but GIS titles are short and score high on BM25. Watch for GIS layers crowding knowledge on other topics.</li>
+      <li>No embeddings / vector store; BM25 with stemming + bigrams is doing the ranking. Add a reranker when questions get paraphrase-heavy.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1240">
+    <header>
+      <time>2026-10-17 12:40</time>
+      <h2>Scope expansion study: LA County, Orange County, San Diego — city, county, state &amp; federal data</h2>
+      <span class="badge planned">planned</span>
+    </header>
+    <p><b>Goal.</b> User: "expand the scope: all the data we can collect for LA County, Orange County and San Diego — city-level, county-level, and federal data that pertains to the specific area; think outside the box." This entry is the source inventory (every URL marked ✓ answered on 2026-10-17 via WebFetch) plus the architecture changes needed so the assistant can serve ~200 cities across three counties instead of one. No code touched yet.</p>
+
+    <h3>Where the code is today (what has to generalize)</h3>
+    <ul>
+      <li><code>rag.js</code> — one CKAN portal (data.santamonica.gov) catalog; BM25 over knowledge/*.md + datasets + council + news + GIS docs.</li>
+      <li><code>sources.js</code> — <code>CATALOGS</code> = 2 ArcGIS DCAT feeds (SM GIS, LA County eGIS); <code>geocode()</code> is Nominatim <b>bounded to the Santa Monica bbox</b>; every <code>live[]</code> kind hardcodes SM lat/lon, NWS grid, NOAA station, BLS series, Census place code; <code>FEEDS</code> are SM news outlets.</li>
+      <li><code>council.js</code> / <code>transcripts.js</code> — SM "Agendas &amp; Minutes" dataset + SM YouTube channel only.</li>
+      <li><code>server.js</code> — SYSTEM prompt "Scope (hard rule)" refuses anything outside Santa Monica (entry 11:42). Must become "LA / Orange / San Diego counties".</li>
+      <li><code>alerts.js</code> — jurisdiction-agnostic already (it just calls rag + queryDataset); works unchanged once the index is wider.</li>
+    </ul>
+
+    <h3>Source inventory (adapter type in brackets)</h3>
+    <details open><summary><b>County level</b></summary>
+    <table>
+      <tr><th>County</th><th>Open data</th><th>GIS</th><th>Legislative body</th><th>Other county feeds</th></tr>
+      <tr><td><b>Los Angeles</b></td><td>✓ <code>data.lacounty.gov/api/feed/dcat-us/1.1.json</code> [ArcGIS Hub DCAT, publisher "County of Los Angeles": park needs, fire damage, income/AMI by tract, vulnerability indexes]</td><td>✓ already in <code>CATALOGS</code> (eGIS hub); Assessor roll FeatureServer already used by <code>live.property</code> — it covers <b>all 88 cities + unincorporated</b>, only the <code>SitusCity</code> filter is SM-specific</td><td>✓ <code>webapi.legistar.com/v1/lacounty/…</code> [Legistar Web API: Bodies, Events, Matters, Votes]</td><td>lavote.gov results/registrar; LA County Public Health dashboards; LASD crime (data.lacounty.gov); LACoFD; Metro GTFS + GTFS-RT (api.metro.net); LAHSA homeless count</td></tr>
+      <tr><td><b>Orange</b></td><td>✓ <code>data-ocpw.opendata.arcgis.com/api/feed/dcat-us/1.1.json</code> [ArcGIS Hub DCAT, publisher "OC Public Works": parcels w/ attributes, maintained roads, channels, outfalls, unclaimed property]. County-wide (non-PW) portal: <b>not found</b> — <code>data.ocgov.com</code> no longer resolves; <code>ceo.oc.gov/reports-and-data</code> exists (dashboards)</td><td>OC Survey / ocgis.com parcel fabric — hub URL unverified</td><td>Legistar client <code>ocgov</code> ✗ (500). OC Clerk of the Board publishes agendas on its own site (PDF/HTML) — needs the <code>council.js</code>-style HTML/PDF scraper, not Legistar</td><td>ocvote.gov; OCTA GTFS/GTFS-RT; OC Health Care Agency; OC Sheriff; OC Assessor parcel lookup</td></tr>
+      <tr><td><b>San Diego</b></td><td>✓ <code>data.sandiegocounty.gov</code> [Socrata/Tyler: SODA API <code>/resource/{4x4}.json</code>, discovery via <code>/api/catalog/v1</code>]</td><td><code>sdgis-sandag.opendata.arcgis.com</code> DCAT answers but is <b>empty</b>; SanGIS regional warehouse (rdw.sandag.org) is download-only</td><td>Legistar client <code>sandiego</code> ✗ (500). County BOS agendas go out as GovDelivery bulletins + PDF per session [PDF scraper, same as SM minutes]</td><td>sdvote.com; MTS + NCTD GTFS/GTFS-RT; County Public Health; SD Sheriff; SANDAG (opendata.sandag.org — <b>platform unknown</b>, not Socrata-discoverable, not ArcGIS DCAT at the usual path)</td></tr>
+    </table></details>
+
+    <details open><summary><b>City level (the ~200 cities)</b></summary>
+    <table>
+      <tr><th>City</th><th>Open data</th><th>GIS</th><th>Council records</th><th>311 / permits</th></tr>
+      <tr><td><b>Los Angeles</b></td><td>data.lacity.gov [Socrata; DNS failed from the fetch tool here, verify from a browser] — crime, 311 (MyLA311), LADBS permits, budget, business licenses</td><td>✓ <code>geohub.lacity.org/api/feed/dcat-us/1.1.json</code> [ArcGIS Hub DCAT, 9.6 MB catalog — needs the same <code>JUNK</code> filtering]</td><td>Council File Management System (cityclerk.lacity.org/lacityclerkconnect) — own HTML, no Legistar; LA CityView YouTube captions via existing <code>transcripts.js</code></td><td>MyLA311 dataset on Socrata; LADBS permit dataset</td></tr>
+      <tr><td><b>Long Beach</b></td><td>data.longbeach.gov [ArcGIS Hub DCAT, unverified]</td><td>same hub</td><td>✓ <code>webapi.legistar.com/v1/longbeach/…</code> (first body: "City Council")</td><td>Go Long Beach 311</td></tr>
+      <tr><td><b>San Diego (city)</b></td><td>✓ data.sandiego.gov — 122 datasets, DCAT <code>raw.githubusercontent.com/COSD-PANDA/data-inventory/refs/heads/master/data.json</code> [DCAT → direct CSV/GeoJSON downloads, no query API: ingest CSV into a local SQLite/JSON table]. Get It Done 311, police calls, parking meters/citations, collisions, fire/EMS calls, hate crimes, budgets, street sweeping, traffic counts</td><td>in the same catalog (GeoJSON)</td><td>Legistar client unknown; city clerk uses its own portal — scrape</td><td>Get It Done dataset; DSD permits dataset</td></tr>
+      <tr><td><b>Anaheim, Irvine, Santa Ana, Huntington Beach, Pasadena, Glendale, Burbank, Torrance, Chula Vista, Oceanside, Carlsbad…</b></td><td>Most are ArcGIS Hub (<code>&lt;x&gt;.opendata.arcgis.com/api/feed/dcat-us/1.1.json</code>) or Socrata — one adapter each, then a registry row per city. Legistar <code>anaheim</code> ✗; probe each city's clerk once and record the system in the registry.</td><td>per-city hub</td><td>per-city (Legistar / Granicus / PrimeGov / IQM2 / PDF)</td><td>per-city 311 vendor (SeeClickFix has an open API; Accela/Tyler portals do not)</td></tr>
+    </table>
+    <p>Rule of thumb: <b>ArcGIS Hub DCAT</b> (already supported) + <b>Socrata SODA</b> (new, ~40 lines) + <b>CKAN</b> (already supported) cover &gt;90% of SoCal municipal portals. Everything else is a scraper.</p></details>
+
+    <details open><summary><b>State (data.ca.gov is already wired; add the ones that localize)</b></summary>
+    <ul>
+      <li>data.ca.gov [CKAN ✓ in <code>live.ca_open_data</code>] — HCD Housing Element Annual Progress Reports (every city), EDD labor market, DOJ OpenJustice crime by agency, CDPH, CalFire perimeters, Caltrans PeMS traffic, CPUC outages, Cal OES, Sec. of State election results, CalEnviroScreen 4.0 (tract scores), CA Dept. of Education (school performance by district), HCAI hospital data, ABC liquor licenses, CSLB contractor lookup, DMV.</li>
+      <li>Caltrans CCTV ✓ (already D7; D12 = Orange, D11 = San Diego — same JSON shape, change the district in the URL).</li>
+      <li>CA Legislature: leginfo.legislature.ca.gov bill search (HTML) + OpenStates API (free key) for who represents an address at the state level.</li>
+    </ul></details>
+
+    <details open><summary><b>Federal, localized to a point / FIPS / district (mostly keyless)</b></summary>
+    <ul>
+      <li><b>Census Geocoder</b> <code>geocoding.geo.census.gov/geocoder/geographies/onelineaddress</code> — one free call returns county, place (city), tract, block, congressional/state districts for any US address. <b>This is the jurisdiction resolver</b> that replaces the SM-bounded Nominatim call.</li>
+      <li>Census ACS ✓ (already; parameterize <code>place:</code>/<code>county:</code> FIPS from the geocoder).</li>
+      <li>NWS ✓ (<code>api.weather.gov/points/{lat},{lon}</code> gives the grid + zone for any point — drop the hardcoded LOX/146,45 and CAZ366).</li>
+      <li>NOAA tides ✓ (station lookup by lat/lon via CO-OPS metadata API: SM Pier 9410840, LA Harbor 9410660, Newport 9410580, La Jolla 9410230, San Diego 9410170).</li>
+      <li>USGS quakes ✓ (already point-based). AirNow ✓ (already point-based). BLS LAUS ✓ (series id per city/county from the <code>LAUCT06xxxxx</code> pattern). CDC PLACES ✓ (filter by <code>locationname</code>).</li>
+      <li>New: <b>FEMA</b> OpenFEMA (disaster declarations by county, NFIP claims), NFHL flood zones (ArcGIS REST); <b>EPA</b> Envirofacts/ECHO (facilities, violations near a point), Superfund; <b>HUD</b> Fair Market Rents + Income Limits by county/zip, LIHTC properties; <b>FCC</b> National Broadband Map availability by address; <b>FAA</b> airport status (LAX/SNA/SAN/BUR/LGB/ONT) + NOTAMs; <b>USDA</b> SNAP retailer locator; <b>SBA</b> loan data; <b>SSA/IRS/USCIS/VA</b> office locators; <b>NPS/USFS/BLM</b> recreation + fire closures; <b>FBI</b> Crime Data Explorer API (agency-level); <b>USAspending</b> (federal awards by county/district); <b>congress.gov</b> API (what your rep sponsored); <b>Federal Register</b> (rules mentioning the area); <b>NHTSA</b> recalls; <b>OpenSky</b> ✓ (any bbox); <b>NOAA NDBC</b> buoys (surf); <b>USGS water</b> (stream gauges).</li>
+    </ul></details>
+
+    <details><summary><b>Outside the box (non-government but about the place)</b></summary>
+    <ul>
+      <li>Transit in real time: GTFS-RT for Metro, OCTA, MTS, NCTD, Big Blue Bus ✓, Culver CityBus, LADOT DASH — the protobuf reader in <code>sources.js</code> already handles alerts; add trip updates/vehicle positions.</li>
+      <li>Micromobility GBFS feeds (Lime ✓, Bird, Metro Bike Share, Veo) per city.</li>
+      <li>Utilities: SCE / SDG&amp;E / LADWP outage maps (JSON endpoints behind their maps), PSPS notices; water quality consumer confidence reports.</li>
+      <li>Schools: CDE DataQuest + NCES; school board agendas (BoardDocs has a JSON API).</li>
+      <li>Health: hospital ER wait times (some systems publish), County restaurant inspection grades (LA County DPH dataset; SD County "Food Facility" dataset).</li>
+      <li>Courts: LA Superior Court case access is closed; traffic citations via county datasets instead.</li>
+      <li>Housing: Zillow/Redfin are not free; use HUD FMR + Assessor roll + Rent Registry (SM, LA RSO) datasets.</li>
+      <li>Civic: OpenStates (state reps), Google Civic Information API (polling place / reps by address, free key), Ballotpedia (HTML).</li>
+      <li>Community: Nextdoor has no public API; Reddit RSS per city sub ✓ pattern exists; Patch per-city feeds ✓ pattern exists; Google News per-city queries ✓ pattern exists (<code>FEEDS</code> becomes a template).</li>
+      <li>Events: city calendars (iCal feeds), Eventbrite public search, library calendars (Communico/LibCal JSON).</li>
+      <li>Wikipedia/Wikidata ✓ for any place; OpenStreetMap Overpass for POIs (parks, clinics, EV chargers) anywhere.</li>
+    </ul></details>
+
+    <h3>Architecture change (proposed)</h3>
+    <pre><code>jurisdictions.js      registry: { id, name, type: city|county, county, fips, bbox, portals: [{kind: ckan|socrata|arcgis-dcat|dcat-json, url}],
+                                 council: {kind: legistar|html|pdf|none, client|url}, youtube, feeds: [...] , transit: [...] }
+adapters/             ckan.js (exists in rag.js)   socrata.js (new: catalog + SODA rows)   arcgis.js (exists in sources.js)   dcat-json.js (SD city: CSV → local table)
+resolve(address)      Census Geocoder → {county, place, tract, districts} → jurisdiction ids → scope every tool call
+live[kind](point)     every live kind takes {lat, lon, fips} instead of SM constants
+SYSTEM prompt         scope = LA / Orange / San Diego counties; the model is told which jurisdiction the resident is in (from their address or stated city)
+index                 one BM25 is fine to ~100k docs; beyond that, shard per county or move to SQLite FTS5</code></pre>
+    <h3>Phases</h3>
+    <ol>
+      <li><b>Resolver + registry</b> (1 day): Census Geocoder, <code>jurisdictions.js</code> with LA County, OC, SD County + the 5 biggest cities each; scope prompt widened. Tools unchanged in shape; they just take a <code>jurisdiction</code>.</li>
+      <li><b>Adapters</b> (1 day): Socrata catalog+SODA; DCAT-JSON downloader for SD city; Legistar client (lacounty, longbeach, + whatever else probes OK). Add the 4 verified DCAT hubs to <code>CATALOGS</code>.</li>
+      <li><b>Parameterize live[]</b> (½ day): NWS points, NOAA station lookup, BLS id pattern, Census FIPS, Caltrans district, AirNow/USGS already fine.</li>
+      <li><b>News + council per city</b> (½ day): <code>FEEDS</code> template per city (Google/Bing News + Patch + Reddit + city site), YouTube channel per city in the registry.</li>
+      <li><b>Federal extras</b> (ongoing, one function each in <code>live</code>): FEMA, HUD, EPA, FCC, FAA, congress.gov, USAspending.</li>
+    </ol>
+    <h3>Open questions</h3>
+    <ul>
+      <li>County of Orange county-wide open data portal: which URL is current? (OC Public Works hub ✓; county CEO dashboards exist; <code>data.ocgov.com</code> is dead.)</li>
+      <li>SANDAG opendata.sandag.org platform/API — Tyler case study suggests Socrata but the discovery API returns 0 for the domain.</li>
+      <li>Legistar clients for SD County, SD City, OC, Anaheim all failed; which agenda systems do they use (Granicus/PrimeGov/IQM2/BoardDocs)?</li>
+      <li>Rate limits: Nominatim 1 req/s and BLS 25/day already bite; Census Geocoder has no published cap but batch endpoint exists. Socrata unauthenticated = throttled; app token is free.</li>
+      <li>Product: does the Santa Monica-only guardrail flip to "SoCal only", or does the deployment pick ONE jurisdiction per instance (white-label per city)? Changes whether the registry is a runtime lookup or a config.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1310">
+    <header>
+      <time>2026-10-17 13:20</time>
+      <h2>No runtime data collection: server reads committed data/, warm.js is the only collector</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: a cloned repo must not pull YouTube/CKAN/IQM2/GIS/news from other people's machines. Collection happens on the maintainer's side; the collected data ships in the repo.</p>
+    <ul>
+      <li><code>server.js</code> — <code>COLLECT</code> env gate (default off). Startup now calls <code>loadCouncilCache()</code> + <code>loadTranscriptCache()</code> (disk only), <code>loadGisCatalog(log, COLLECT)</code>, <code>loadNewsDocs()</code>. <code>refreshCouncil()</code> is a no-op, the news 30-min interval is skipped, and the daily watch doesn't re-pull unless <code>COLLECT=1</code>. Runtime per-question lookups (query_dataset, web_search, queryGis, Big Blue Bus live) are unchanged — they answer one question, they don't crawl.</li>
+      <li><code>council.js</code> — <code>ingestCouncil</code> writes <code>data/council/meetings.json</code> (ingested + upcoming); new <code>loadCouncilCache()</code>. <code>transcripts.js</code> — new <code>loadTranscriptCache()</code>.</li>
+      <li><code>rag.js</code> — <code>loadCatalog(refresh=false)</code> returns disk cache at any age, throws a "run node warm.js" hint if absent; <code>refreshCatalog()</code> exported. <code>sources.js</code> — <code>loadGisCatalog(log, refresh=false)</code> same pattern.</li>
+      <li><code>warm.js</code> — rewritten as the single collector: catalog, council, transcripts, gis, news; <code>node warm.js &lt;one&gt;</code> for a single job.</li>
+      <li><code>.gitignore</code> — <code>data/</code> is now committed except resident data (<code>applications.json</code>, <code>clips.json</code>, <code>alerts.json</code>, <code>feedback.jsonl</code>, <code>outbox/</code>) and transient <code>.vtt/.part</code> files. Committed size ≈ 82 MB (transcripts 69, council 11, news 1.5, gis 0.6, catalog 0.1).</li>
+      <li><code>README.md</code> — "Data collection (maintainer only)" section.</li>
+    </ul>
+    <h3>Verified</h3>
+    <ul>
+      <li>Booted on :8788 with <code>COLLECT</code> unset: "Council (from data/): 395 meetings, 9,273 chunks; transcripts: 201 meetings, 29,784 chunks", "GIS (from data/): 803 layers", 82 datasets. <code>lsof</code> on the process: 0 outbound TCP connections after startup.</li>
+      <li><code>git check-ignore</code>: applications/clips ignored; transcripts and council caches tracked. <code>data/</code> is 83 MB. <code>npm test</code> passes.</li>
+      <li>Note: Kokoro TTS still downloads its model on first start unless <code>TTS=off</code> — that's a model file, not city data; left as-is.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1325">
+    <header>
+      <time>2026-10-17 13:25</time>
+      <h2>Menu: "Watch a topic" form to add / stop daily alerts without chatting</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal (user).</b> In the Menu, the resident can add an alert for a specific issue they want to track and get emails about, and stop one. Previously watches could only be created through the chat (<code>create_alert</code> tool); the Menu only listed them.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>server.js</code> — <code>POST /api/alerts</code> {topic, address?, email, name?} validates (topic ≥3 chars, email shape) and calls the existing <code>createAlert(rag, …)</code> from <code>alerts.js</code> (same store <code>data/alerts.json</code>, same baseline snapshot, same daily judge/email job), returning the watch without <code>seen</code>. <code>DELETE /api/alerts/:id</code> → <code>cancelAlert</code>.</li>
+      <li><code>public/index.html</code> — Menu panel gains a <b>Watch a topic</b> form (topic, optional address, email; email remembered in <code>localStorage sm_email</code>) under the Applications &amp; watches list; submitting adds the watch to the list (status <code>watching</code>) and bumps the Menu count. Each watching row gets a <b>Stop watching</b> button (confirm → DELETE → removed from the list). CSS: <code>.panel .watch</code>, <code>.panel .app .stop</code>.</li>
+    </ul>
+    <h3>Acceptance</h3>
+    <ul><li>Open Menu → type a topic + email → "Start watching" → row appears with WATCH-xxxxxx; <code>data/alerts.json</code> has it; "Stop watching" removes it and the server returns <code>cancelled</code>. Chat-created watches show the same Stop button.</li></ul>
+    <p><b>14:25 follow-up (user, supersedes 14:20):</b> no single Menu any more. The header has two buttons, <b>Alerts</b> and <b>Applications</b>, each opening its own sheet (<code>#alertSheet</code> with active alerts + "Add an alert" form; <code>#sheet</code> with filed applications). Count badges on each button. Watch wording renamed to "alerts" in the UI; the API/store are unchanged.</p>
+    <p><b>14:30 follow-up (user):</b> Alerts sheet copy boiled down: dropped the "Active alerts" subheading, empty state is "No alerts yet.", form heading "New alert", hint cut to one sentence.</p>
+    <p><b>14:20 (superseded):</b> Menu split into two tab buttons — <b>Applications</b> and <b>Watches</b> — each populating its own pane. Applications pane: filed applications (edit while "received"). Watches pane: active watches with Stop buttons + the "Watch a topic" form. Tab labels carry counts. Rows keep their index into the shared <code>sm_apps</code> array so edit/stop handlers are unchanged; <code>editApp</code> now finds its row by <code>data-i</code> instead of child position.</p>
+    <p><b>Verified 13:34</b> on a temp server (port 8799): bad email → 400 with message; create → <code>WATCH-xxxxxx</code> with status <code>watching</code>, present in <code>data/alerts.json</code>, <code>seen</code> not leaked to the client; DELETE → <code>cancelled</code>, second DELETE → 404, removed from the store. Test watch deleted. Menu form UI not opened in a browser (Chrome MCP unavailable this session); inline JS parses.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1222">
+    <header>
+      <time>2026-10-17 12:22</time>
+      <h2>Voice mode TTS: free, local Kokoro-82M replaces ElevenLabs</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "don't use ElevenLabs, I don't want to pay for anything, completely free, open-source, not robotic". Picked Kokoro-82M (Apache 2.0, top of the open TTS leaderboards for its size) via <code>kokoro-js</code>, running on CPU inside the Node server. Source: <a href="https://github.com/hexgrad/kokoro">github.com/hexgrad/kokoro</a>.</p>
+    <ul>
+      <li><code>tts.js</code> (new) — <code>loadTTS()</code> lazy-imports kokoro-js and loads <code>onnx-community/Kokoro-82M-v1.0-ONNX</code> (q8, ~90 MB, cached after first download); <code>speakWav(text)</code> &rarr; WAV buffer. Voice <code>TTS_VOICE</code> (default <code>af_heart</code>, grade A), <code>TTS_SPEED</code>.</li>
+      <li><code>server.js</code> — <code>/tts</code> now returns <code>audio/wav</code> from Kokoro; 404 only when <code>TTS=off</code> (browser-voice fallback). Model warms in the background at startup. ElevenLabs code removed.</li>
+      <li><code>package.json</code> — <code>kokoro-js</code> dependency (pulls <code>@huggingface/transformers</code> + <code>phonemizer</code>).</li>
+      <li><code>.env.example</code> — ElevenLabs vars replaced by <code>TTS</code>, <code>TTS_VOICE</code>, <code>TTS_SPEED</code>.</li>
+      <li><code>public/index.html</code> — <code>speak()</code> now splits the reply into ~220-char sentence chunks, requests <code>/tts</code> per chunk and prefetches the next while the current one plays (first words in ~1 s instead of waiting for the whole reply). <code>speakGen</code> token cancels in-flight chunks when voice mode ends. Browser-voice fallback covers any chunks the server failed on.</li>
+    </ul>
+    <p><b>Verified:</b> <code>node --check</code>; direct calls: one sentence &rarr; 3.6 s of 24 kHz float32 WAV; three sentences (8.8 s audio) generated in 6.8 s on CPU (~1.3&times; realtime), model load 0.5 s warm. First attempt crashed inside the phonemizer bundle (one-off during first model download; second run clean). <b>Not verified:</b> in-browser playback (Chrome MCP locked by another session). Server still generates whole chunks; move to <code>tts.stream()</code> if per-chunk latency is still noticeable.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1212">
+    <header>
+      <time>2026-10-17 12:12</time>
+      <h2>Form wizard: single highlight on time/date fields, clear stale errors</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User screenshot: typing into the native <code>&lt;input type="time"&gt;</code> showed two highlights at once — the field's blue focus border plus WebKit's pale-blue selected-segment background — and "Enter both a start and an end time." stayed visible after both were filled.</p>
+    <ul>
+      <li><code>public/index.html</code> CSS — time/date inputs: <code>color-scheme:dark</code>; on focus the border stays neutral with a 2px accent ring, and the focused <code>::-webkit-datetime-edit-*-field</code> segment uses the same accent (<code>--blue</code> bg, white text), so it reads as one highlight.</li>
+      <li><code>public/index.html</code> JS — wizard step clears the <code>.error</code> text on any <code>input</code> event in the field.</li>
+    </ul>
+    <p>Not visually verified (Chrome MCP still locked by another session); the pseudo-elements are WebKit/Blink-only, Firefox keeps its own segment style.</p>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1420">
     <header>
       <time>2026-10-17 14:20</time>
@@ -85,12 +475,184 @@
     </ul>
   </article>
 
+  <article class="entry" id="e-2026-10-17-1600">
+    <header><time>2026-10-17 16:00</time><h2>Composer: send arrow points up</h2><span class="badge done">done</span></header>
+    <p><b>16:05:</b> staff desk empty state "No applications for Planning Division" &rarr; "Planning Division has no applications" ("No applications" when viewing all; "… matching ‘q’" appended when searching). <code>public/staff.html</code>.</p>
+    <p>User (screenshot): "the arrow should be up". <code>public/index.html</code> send button SVG path changed from a right arrow (<code>M5 12h14M13 6l6 6-6 6</code>) to an up arrow (<code>M12 19V5M6 11l6-6 6 6</code>); the stop-square state is unchanged.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1545">
+    <header>
+      <time>2026-10-17 15:45</time>
+      <h2>Staff desk: department dropdowns grouped by county, then city</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User (screenshot): since the jurisdiction registry, <code>/api/staff/departments</code> returned one flat alphabetical list mixing Santa Monica's departments with 140 "City of …" entries. "Break the dropdown down by county and then the cities."</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>server.js</code> &mdash; <code>/api/staff/departments</code> now returns <code>[{ county, cities: [{ city, isCounty, departments }] }]</code>: grouped by the jurisdiction's county (<code>countyOf</code>), county government first, cities alphabetical, departments sorted; jurisdictions with no routing are skipped.</li>
+      <li><code>public/staff.html</code> &mdash; <code>deptOptions()</code> renders an <code>&lt;optgroup&gt;</code> per county; a draft city's single "City of X" department shows as just "X", a jurisdiction with real departments shows "Santa Monica · Planning Division". Used by both the sign-in department picker and the queue's view select (which keeps "my department" and "All departments" on top). Option values are unchanged, so the applications filter still works. County governments read "Orange County (county government)".</li>
+    </ul>
+    <p><b>Verified 15:55</b> on a temp server: payload has 3 groups (LA County 89 entries incl. Santa Monica's 12 departments, Orange County 35, San Diego County 19), county government first in each; <code>deptOptions()</code> run in node against the live payload renders 3 optgroups and keeps "Planning Division" selected. Chrome on :9223 was closed, so no screenshot of the native dropdown.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1525">
+    <header>
+      <time>2026-10-17 15:25</time>
+      <h2>Contact cards: tap-to-call / email / directions for any office the assistant points to</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "for contact people, make a card that provides their phone number or email or whatever, like the other cards." Phone numbers and emails were plain text in the reply.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>server.js</code> &mdash; new strict tool <code>show_contact</code> {name, role, phone, email, address, hours, url, note} (unknowns as ""); <code>runTool</code> returns a note telling the model not to repeat the details in text; <code>STATUS</code> line "Adding contact: …"; the tool call is streamed as SSE <code>{type:"contact", data}</code>. Prompt ("What you do"): whenever the answer points to an office/department/hotline/person, call <code>show_contact</code> with details verified from an official page, then one line on who and why; max two cards per reply.</li>
+      <li><code>public/index.html</code> &mdash; <code>contactCard()</code> renders name, role, Phone/Email/Address/Hours rows (phone &rarr; <code>tel:</code>, email &rarr; <code>mailto:</code>, address &rarr; Google Maps search) and a CTA row: Call (primary), Email, Directions, Website. Rendered next to the reply text (not <code>cardOnly</code>), same width/radius as the other cards; stacks full-width on phones.</li>
+    </ul>
+    <h3>Verified 15:40</h3>
+    <ul>
+      <li>First attempt as a <code>strict</code> tool failed every request with API 400 "Schema is too complex" (strict schemas count against a per-request cap and the existing tools were near it). Made it non-strict with <code>required: ["name"]</code>; client tolerates missing fields.</li>
+      <li>Temp server: "Who do I call about a noisy neighbor in Santa Monica?" &rarr; two <code>contact</code> events (Santa Monica 311 with phone/email/url/note; Police/Fire Non-Emergency Dispatch (310) 458-8491) and a 37-word reply that names them without repeating the numbers. Screenshot in Chrome: cards render with Call / Email / Directions / Website pills.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1500">
+    <header>
+      <time>2026-10-17 15:00</time>
+      <h2>Scope: LA County and its 88 cities join the jurisdiction registry (SoCal = LA + OC + SD)</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "drop the protection that restricts it to Santa Monica — you are a bot who focuses on Southern Californian government data: LA, OC, SD." A parallel session had already replaced the Santa Monica-only scope with a jurisdiction registry (<code>jurisdictions.js</code>, <code>set_jurisdiction</code> tool, per-jurisdiction context block and web domains) covering Santa Monica + Orange County + San Diego County and their cities, but it listed Los Angeles city and Malibu as <em>out</em> of scope. This entry adds LA on top of that work, in its shape.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>jurisdictions.js</code> &mdash; <code>LA_COUNTY</code> is now a served jurisdiction (<code>draft: true</code> instead of <code>context: true</code>) with unincorporated-community aliases (Marina del Rey, Altadena, East LA, Topanga, Rowland Heights, Hacienda Heights, Castaic, Stevenson Ranch, …). All 87 other LA County cities added to <code>CITIES</code> via the existing <code>city()</code> helper (Santa Monica keeps its full entry): id, site, centroid, and neighbourhood aliases (LA City gets ~100: Hollywood, Venice, San Pedro, Van Nuys, Koreatown, DTLA, …). Ordinary-word city names (Bell, Commerce, Industry, Walnut, Vernon, Paramount) only match explicit aliases, same rule the other session used for Orange.</li>
+      <li><code>server.js</code> <code>SYSTEM</code> &mdash; identity line names all three counties; the out-of-scope example list no longer says "Los Angeles city, Malibu" (now Ventura, Riverside, San Bernardino, other states).</li>
+      <li><code>public/index.html</code> &mdash; greeting introduces GovAI for the three counties and invites the resident to name their city.</li>
+    </ul>
+    <h3>Verified 15:05</h3>
+    <ul>
+      <li>Registry: 144 jurisdictions, 143 served, 89 in LA County. <code>detect()</code>: "Pasadena" &rarr; pasadena; "LA City Council" / "Venice" &rarr; los-angeles; "Marina del Rey" / "Rowland Heights" &rarr; los-angeles-county; "the industry is growing" and "my doorbell" &rarr; nothing; "Riverside" &rarr; nothing.</li>
+      <li>Temp server: "How do I report a pothole in Pasadena?" &rarr; web search, 95 words, Pasadena Service Center number and hours. "Who is on the LA City Council for Venice?" &rarr; CD11, Traci Park, with the open primary caveat. No refusal either time.</li>
+    </ul>
+    <p><b>15:15:</b> user: "never mention that Santa Monica has the most records". Removed the "(Santa Monica has the deepest first-hand records; the rest are researched live)" clause from the identity line and added a Style rule: never compare or rank jurisdictions' coverage, never say any city has more/deeper/first-hand records or is "researched live"; same voice for every city, and point to where to get something locally when it isn't available. The depth difference below is an internal note for this plan only.</p>
+    <p><b>Depth caveat (internal).</b> Every non-Santa-Monica entry is a <code>draft</code>: name, site, centroid, news query. Council records, open data and GIS for LA City and the other 87 cities are the separate planned 15:10 entry (SQLite FTS5 store). Until then those cities are answered by live web research on their official sites.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1440">
+    <header>
+      <time>2026-10-17 14:40</time>
+      <h2>System prompt: tighter length cap on typed answers</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User (screenshot of a ~250-word "what does council do" answer with a 6-item bullet list, an example and a closing offer): "responses should be a little bit more concise", saved in the system prompt.</p>
+    <h3>Files</h3>
+    <ul><li><code>server.js</code> <code>SYSTEM</code> &rarr; Style: "aim for under 120 words" became a hard cap of ~80 words / 4 sentences (120 only on request or for applications), plus explicit trims: no unasked background, category lists of 3&ndash;4 items max, no worked examples unless asked, no closing offer, no restating the question, no summary sentence.</li></ul>
+    <h3>Smoke (temp server :8798, 14:45)</h3>
+    <ul>
+      <li>"What does the city council do?" &rarr; 96 words, 3 short paragraphs (was ~250 words with a 6-item list). Still ends with a one-line offer; acceptable.</li>
+      <li>"How much does a block party permit cost?" &rarr; first pass over-trimmed to "The form is open above." with no fee. Added: "The direct answer is never what gets cut: a cost question always states the fee, a deadline question the date, even when a form card is open." Re-run &rarr; 55 words, leads with <b>$100.95</b>, deadline, deposit.</li>
+    </ul>
+    <p>Running servers need a restart to pick up the prompt.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1425">
+    <header>
+      <time>2026-10-17 14:25</time>
+      <h2>Menu: "Watch a topic" form rendered outside the sheet; alert cards made readable</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User (screenshot): "the alert view needs to be a lot better". The three inputs and the "Start watching" button were pinned full-width to the bottom of the viewport, outside the "My stuff" sheet, with the helper sentence floating at the page edge.</p>
+    <h3>Cause</h3>
+    <p><code>public/index.html</code> styled the chat composer with a bare <code>form { position:fixed; left:0; right:0; bottom:0 … }</code> selector, which also matched <code>#watchForm</code> inside the sheet.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>public/index.html</code> &mdash; composer rule scoped to <code>#f</code>. Watch form rebuilt as a stacked block: one plain-language hint above, three inputs, full-width "Start watching" button, error line (the old side-by-side <code>.wrow</code> is gone). Active watches render as distinct blue-tinted cards ("Watching · topic · address · emails to …") with a Stop watching button; application cards get the same pill-style Edit button.</li>
+    </ul>
+    <p><b>Verified 14:35</b> in Chrome with a sample watch injected into <code>localStorage</code>: form sits inside the sheet, card reads "Pier parking rates / 1685 Main St / Checked every morning · emails … · WATCH-7K2Q9A / Stop watching". Topic title uses the body font (the monospace rule was meant for confirmation numbers).</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1415">
+    <header>
+      <time>2026-10-17 14:15</time>
+      <h2>Voice mode no longer gets kicked back to the chat by dev live-reload</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "sometimes with the voice dictation, instead of answering a question, it'll just drop me back to the main chat interface".</p>
+    <h3>Cause</h3>
+    <p>On localhost the page subscribes to <code>/dev</code> and calls <code>location.reload()</code> on every message (any edit to <code>public/</code>) and on every reconnect (server restart). With several sessions editing <code>public/index.html</code> this afternoon, the page reloaded mid-conversation and the voice overlay, which is client state, vanished. Nothing in the voice flow itself closes the overlay except the End button and a denied-mic error.</p>
+    <h3>Files</h3>
+    <ul><li><code>public/index.html</code> &mdash; the reload is deferred while <code>#voice</code> is open (<code>pending</code> flag) and runs when the resident presses End. Non-localhost builds don't have this subscription at all.</li></ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1410">
+    <header><time>2026-10-17 14:10</time><h2>Voice orb: slower swell</h2><span class="badge done">done</span></header>
+    <p>User: "make the voice feature a little slower with how the animation expands". <code>public/index.html</code>: orb mic-level swell transition <code>.07s linear</code> &rarr; <code>.3s ease-out</code>; speaking pulse <code>talk .55s</code> &rarr; <code>1.1s</code>; idle breathe 3.2 s &rarr; 4 s.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1345">
+    <header>
+      <time>2026-10-17 13:45</time>
+      <h2>Voice mode: mute button reads as a mute button</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User (screenshot): the voice-mode control was a bare 🎙️ emoji in a grey circle, which reads as "record", not "mute".</p>
+    <h3>Files</h3>
+    <ul>
+      <li><b>13:50:</b> user: "get rid of the listening text". <code>setState()</code> no longer writes "Listening…/Thinking…/Muted" under the orb (the orb's animation already shows the state); the label element stays only for the "Microphone access denied" error.</li>
+      <li><code>public/index.html</code> &mdash; emoji replaced with a stroked mic SVG; a "Mute" caption sits under the button (and "End" under the red ✕); muted state flips to a slashed-mic icon on a white button with the caption "Unmute"; <code>aria-pressed</code> + <code>aria-label</code> track the state (<code>setMuteUI()</code> replaces the two <code>textContent</code> emoji swaps).</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1335b">
+    <header>
+      <time>2026-10-17 13:35</time>
+      <h2>Staff desk: strip the queue chrome down to search + department</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User (screenshot of <code>/staff</code>): "make this less complicated". The queue header had two labelled controls, a Refresh button, a count line and a footer note, for a list that is usually empty.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>public/staff.html</code> &mdash; the bar is now one unlabelled search box ("Search by name, email or number") and the department select beside it; Refresh button removed (search is live and the list already polls every 20 s); count line removed; footer note removed; department option reads just the name instead of "My department · name"; empty state says "No applications for Planning Division" (adds "matching &lsquo;q&rsquo;" when searching). Card detail, note and status buttons unchanged.</li>
+    </ul>
+    <p>Served statically, so the running servers show it on reload.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1320">
+    <header>
+      <time>2026-10-17 13:20</time>
+      <h2>Voice mode: one-or-two-sentence spoken answers, human voice</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: in the talk feature the assistant "shouldn't talk in full paragraphs", one or two sentences like a person; and the voice "sounds super robotic", find a better text-to-speech.</p>
+    <h3>Findings</h3>
+    <ul>
+      <li>Voice turns went through the same <code>/chat</code> as typed ones, so the model wrote its normal multi-paragraph, bulleted answer and the client read the whole thing aloud (<code>public/index.html</code> <code>rec.onend</code> &rarr; <code>send(text)</code> &rarr; <code>speak(reply)</code>).</li>
+      <li>The robotic voice is the browser's <code>speechSynthesis</code> fallback. A natural-voice path already exists: <code>POST /tts</code> &rarr; ElevenLabs (<code>server.js</code>), used automatically when <code>ELEVENLABS_API_KEY</code> is set. <b>No key is set in <code>.env</code></b>, so <code>/tts</code> returns 404 and the client falls back to the browser voice.</li>
+    </ul>
+    <h3>Files</h3>
+    <ul>
+      <li><code>public/index.html</code> &mdash; <code>send(text, voice)</code> posts <code>voice: true</code> from voice mode.</li>
+      <li><code>server.js</code> &mdash; <code>/chat</code> reads <code>voice</code>; <code>chat()</code> adds a <code>VOICE_RULE</code> system block (after the cached prefix) only on voice turns: one or two spoken sentences, lead with the fact, no lists/markdown/links/citations, still use tools.</li>
+      <li><code>.env.example</code> &mdash; documents <code>ELEVENLABS_API_KEY</code>, <code>ELEVENLABS_VOICE</code>, <code>ELEVENLABS_MODEL</code>.</li>
+    </ul>
+    <h3>Verified (13:30, temp server :8798)</h3>
+    <ul>
+      <li>"How do I get a permit for a block party on my street?" with <code>voice:true</code> &rarr; 1 sentence, 66 chars ("I've opened the block party permit application for you to fill in."). Same question without the flag &rarr; 11 sentences, 636 chars with bullets. The form card still opens on both.</li>
+      <li><code>.env.example</code> already documented the ElevenLabs vars (parallel session); nothing added.</li>
+    </ul>
+    <h3>Voice quality: nothing more to build, needs a key</h3>
+    <ul>
+      <li>The ElevenLabs path is wired and streams MP3 to the client; the browser voice only plays because <code>ELEVENLABS_API_KEY</code> is empty. Add the key to <code>.env</code> and restart.</li>
+      <li>Model choice (ElevenLabs docs + aggregator listings, 2026-10-17): <code>eleven_flash_v2_5</code> ~75 ms latency, best for back-and-forth conversation; <code>eleven_turbo_v2_5</code> (current default) ~275 ms, better quality; <code>eleven_v3</code> most expressive, slower, 5k-char limit. Newer "v4 Turbo" (~100 ms) is mentioned in a Sept 2026 article but its model id isn't confirmed in official docs, so the default stays <code>eleven_turbo_v2_5</code>; set <code>ELEVENLABS_MODEL=eleven_flash_v2_5</code> if latency matters more than polish. Sources: <a href="https://elevenlabs.io/docs/models">elevenlabs.io/docs/models</a>, <a href="https://elevenlabs.io/docs/api-reference/reducing-latency">reducing latency</a>, <a href="https://codesota.com/speech/elevenlabs-vs-cartesia">codesota comparison</a>, <a href="https://propakistani.pk/2026/09/29/elevenlabs-unveils-its-fastest-most-expressive-voice-ai-models-yet/amp/">ProPakistani on v4</a>.</li>
+    </ul>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1152">
     <header>
       <time>2026-10-17 11:52</time>
       <h2>Voice mode: human-sounding TTS</h2>
       <span class="badge done">done</span>
     </header>
+    <p><b>Superseded 12:22</b> — ElevenLabs path removed; see the Kokoro entry above. Browser-voice fallback kept.</p>
     <p><b>Goal.</b> User: "text-to-speech should be less robotic, sound like a real human". Default <code>speechSynthesis</code> picked whatever voice came first.</p>
     <ul>
       <li><code>server.js</code> — <code>POST /tts {text}</code> proxies to ElevenLabs streaming TTS (<code>ELEVENLABS_API_KEY</code>, <code>ELEVENLABS_VOICE</code> default Rachel, <code>ELEVENLABS_MODEL</code> default <code>eleven_turbo_v2_5</code>), streams <code>audio/mpeg</code>. Returns 404 when no key so the client falls back.</li>
@@ -199,7 +761,7 @@
     <header>
       <time>2026-10-17 11:36</time>
       <h2>Council transcripts: every meeting ever posted to YouTube (back to July 2014)</h2>
-      <span class="badge progress">in-progress</span>
+      <span class="badge done">done</span>
     </header>
     <p><b>Goal.</b> User: "every single Santa Monica City Council meeting that's ever been reported on YouTube", not just 2015+. The lister only walked the main city channel, whose council meetings start in 2017 (plus one 2014 stream), so 2014&ndash;2016 was missing.</p>
     <h3>What exists on YouTube (searched 2026-10-17 with <code>yt-dlp ytsearch</code>, 5 phrasings &times; 40 results)</h3>
@@ -224,7 +786,11 @@
       <li><b>11:50 &mdash; YouTube bot-check hit.</b> The pull for the 11 new videos got "Sign in to confirm you're not a bot" on every one. Cause: 10 concurrent <code>yt-dlp</code> processes from <b>four</b> <code>node --env-file=.env server.js</code> instances (started 11:41&ndash;11:43, other sessions) plus <code>node warm.js</code>, each ingesting transcripts in parallel. The block is still active (single probe 11:50). Those processes keep writing empty "no captions" records while blocked.</li>
       <li><code>transcripts.js fetchTranscript</code> patched: a yt-dlp error now stores <code>checked_at: 0</code> so the next run retries immediately (the parallel session's weekly re-check would have waited 7 days); optional <code>YT_COOKIES_FROM_BROWSER=chrome</code> env passes <code>--cookies-from-browser</code> if the block persists. Deleted 70 empty cache records written during the blocked window so they get re-pulled.</li>
       <li><b>12:15:</b> block lifted (probe returns the title again); <code>warm.js</code> from 11:38 finished; one server instance still pulling. Queued a background job: wait until no <code>yt-dlp</code> is running &rarr; delete empty records written during the block &rarr; one <code>node warm.js</code> (2 concurrent) with the new code, which pulls the 11 new 2014&ndash;2017 videos and re-checks the rest. Result lands in this entry when it finishes.</li>
-      <li><b>Still pending:</b> the four duplicate <code>server.js</code> instances (other sessions) &mdash; each one re-ingests transcripts at boot, which is what tripped the bot check. Run one.</li>
+      <li><b>12:40 re-warm result:</b> 275 videos listed, 28,812 transcript chunks; YouTube re-blocked partway through the oldest videos, leaving 6 captioned meetings unpulled (2015-11-24 &rarr; 2016-06-28).</li>
+      <li><b>12:45&ndash;13:05 Chrome pass (user: "use the live Chrome tab").</b> Attached to the Chrome the user launched on port 9223 (<code>chrome-profile</code> MCP). In one tab, fetched all 106 then-unresolved watch pages inside the browser session and read each page's <code>ytInitialPlayerResponse.captions</code>: <b>32 have an English auto-caption track, 74 have none</b> (YouTube's own player says "Subtitles/closed captions unavailable" on them, e.g. the March 10, 2026 meeting). The caption URL can't be fetched from the page (needs a player token, returns 0 bytes), but the on-page transcript panel can be read: expand description &rarr; "Show transcript" &rarr; panel <code>PAmodern_transcript_view</code> renders every <code>transcript-segment-view-model</code> (timestamp + text, not virtualised). Pulled the 6 remaining meetings that way in parallel background tabs and saved them straight to <code>data/transcripts/&lt;id&gt;.json</code> in the same shape yt-dlp produces (<code>toDocs()</code> chunks them: 121&ndash;233 docs each).</li>
+      <li><b>Final coverage (13:05):</b> 275 council meeting videos on YouTube &rarr; <b>201 have a transcript indexed; 74 have no captions on YouTube at all</b>, so nothing to pull. By year (videos / with transcript): 2014 2/0, 2015 3/3, 2016 5/3, 2017 27/8, 2018 22/7, 2019 27/14, 2020 31/26, 2021 32/25, 2022 33/27, 2023 27/26, 2024 23/21, 2025 24/23, 2026 19/18. The newest meetings (Oct 13, Sep 22, Sep 8, 2026) have full transcripts (8k&ndash;11k cues).</li>
+      <li><b>Why the app said "we don't have the latest meeting":</b> the four servers started 11:41&ndash;11:43 built their index before the pull finished (and with the empty-news-index bug). <b>Restart one server</b> and every transcript above is indexed at boot.</li>
+      <li><b>The 74 without captions</b> (mostly 2017&ndash;2019, plus 2026-03-10 "Lost some Audio", 2025-10-20, 2024-03-19/26, 2023-01-24, most of 2022 H1) can only be transcribed from the Granicus/YouTube audio with a speech-to-text job &mdash; same open decision as the 11:30 entry.</li>
     </ul>
   </article>
 
@@ -284,6 +850,8 @@
       <li><b>13:02 follow-up (user):</b> app renamed "Ask Santa Monica" → <b>GovAI</b> in <code>&lt;title&gt;</code>, header brand, and <code>manifest.webmanifest</code> name/short_name.</li>
       <li><b>13:05 follow-up (user):</b> icon changed from the ferris wheel to a government building (pediment + columns) with an AI spark: <code>public/icon.svg</code> (app/PWA icon) and the inline header <code>.mark</code> SVG.</li>
       <li><b>13:08 follow-up (user):</b> icon colors: app icon now a blue→navy gradient tile, white building, amber spark; header mark uses ink-colored building with an amber filled spark instead of the all-blue stroke.</li>
+      <li><b>13:12 follow-up (user):</b> thumbs and copy were effectively dead (thumbs toggled a class only; copy wrote <code>bot.innerText</code> incl. the "Sources" pill with no visible confirmation). Now: thumbs POST <code>/api/feedback</code> {sessionId, vote, answer} → appended to <code>data/feedback.jsonl</code> (new route in <code>server.js</code>), with a "Thanks…" note and toggle-off support; copy copies only the answer text (<code>answerText()</code> strips <code>.acts</code>), has an <code>execCommand</code> fallback, and flips the icon to a check for 1.5s.</li>
+      <li><b>13:16 follow-up (user):</b> removed the "Staff desk" subtitle from the <code>public/staff.html</code> header brand.</li>
     </ul>
     <h3>Retrieval before → after (block-party chip)</h3>
     <pre><code>before: 29.0 Block Party | 15.3 Preferential Parking | 14.8 Street Sweeping | 14.5 Building Permits | 12.4 Community Event | 10.9 Water Usage (dataset)   → all 6 shown as sources
@@ -445,6 +1013,18 @@ daily 07:00 → refreshCouncil() → for each alert:
     <p><b>Verified (curl -N against the restarted server).</b> Fresh session "hi": first token at 2.0 s, then word-by-word. Warm session dataset question: <code>search_city_knowledge</code> status at 1.6 s, <code>query_dataset</code> at 3.8 s, first text at 5.7 s, deltas every ~5 ms. Very first request after boot took 22 s to its first frame (prompt-cache write + cold path); later requests are 2–6 s. Row cache was not exercised by the model's query sequence (each call used different params); logic is a 4-line memo, covered by inspection.</p>
   </article>
 
+  <article class="entry" id="e-2026-10-17-1218">
+    <header>
+      <time>2026-10-17 12:18</time>
+      <h2>Staff desk: larger sign-in card</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User screenshot of <code>/staff.html</code>: the sign-in card was a 480 px box with 15 px type floating in a 720 px column. Make it larger.</p>
+    <ul>
+      <li><code>public/staff.html</code> — <code>#login</code> overrides on the shared <code>.box</code>: full 720 px column width, 32/36 px padding, 24 px heading, 15 px subtitle, 16 px labels, 17 px inputs with 14/16 px padding, 44 px button. Other <code>.box</code> panels (queue, notes) unchanged. Mobile keeps the tighter padding.</li>
+    </ul>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1155">
     <header>
       <time>2026-10-17 11:55</time>
@@ -506,6 +1086,103 @@ daily 07:00 → refreshCouncil() → for each alert:
     </ul>
   </article>
 
+  <article class="entry" id="e-2026-10-17-1935">
+    <header>
+      <time>2026-10-17 19:35</time>
+      <h2>Jurisdiction from device location instead of asking</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "instead of always asking for where the user is pull the location".</p>
+    <ul>
+      <li><code>public/index.html</code> — asks <code>navigator.geolocation</code> once on load (10-min cache, 8 s timeout, denial ignored) and sends <code>geo</code> with every <code>/chat</code> message.</li>
+      <li><code>server.js</code> — validates <code>geo</code> (California bounds only); in <code>chat()</code>, when no jurisdiction is set and nothing in the message names one, <code>nearest(lon, lat)</code> picks the city (bbox hit, else nearest centroid within 12 km, else county bbox) and sets the session with <code>via:"location"</code>. Explicit mentions and <code>set_jurisdiction</code> still override. Session now tracks <code>via</code> (message | location | tool).</li>
+      <li><code>jurisdictions.js</code> <code>contextFor(..., {via})</code> — when inferred from location the model is told to answer for that place without asking and to mention the assumption once.</li>
+    </ul>
+    <p><b>Follow-up (user: "when you need to access a location you should pull the user's location").</b> The session keeps the latest device coordinates (<code>session.geo</code>); <code>query_gis</code> with an empty address, <code>get_live_data scooters</code> with an empty query and <code>property</code> with no address now use them (results say "your current location"). <code>sources.js</code> <code>queryGis</code>/<code>liveData</code> take a <code>point</code>/<code>here</code> argument; the system prompt's new rule 5 tells the model not to ask for an address for "my street / near me" questions.</p>
+    <p><b>Limits.</b> Browser permission is required (HTTPS or localhost); cities without a bbox resolve by centroid distance until <code>discover.js</code> fills boundaries; outside California nothing is inferred and the model asks as before.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1920">
+    <header>
+      <time>2026-10-17 19:20</time>
+      <h2>Staff desk: department dropdown styled like the text inputs</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Follow-up.</b> Safari clipped the selected text at the top (vertical padding + fixed height on a custom-appearance select). Now zero vertical padding with <code>line-height:normal</code>; the 46px height centres the text.</p>
+    <p><code>public/staff.html</code> — the native <code>&lt;select&gt;</code> ignored the shared padding/height in Safari and painted its own stepper and focus ring, so it sat shorter and looked foreign next to the inputs. Now <code>appearance:none</code>, 46px height matching the inputs, an inline SVG chevron on the right, dark option list, same border/focus as the inputs.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1700">
+    <header>
+      <time>2026-10-17 17:00</time>
+      <h2>Multi-jurisdiction: Orange County + San Diego (all cities + both counties), jurisdiction auto-detected</h2>
+      <span class="badge progress">in-progress</span>
+    </header>
+    <p><b>Goal.</b> User: "include data at the same quality for Orange County, San Diego" — clarified to all 18 San Diego County cities, all 34 Orange County cities, both county governments, plus Santa Monica (55 jurisdictions), and the assistant must infer the jurisdiction from the conversation (no selector). Decisions: generated per-city knowledge files treated as final; council depth ~4 years per body (<code>COUNCIL_MEETINGS=200</code>, Santa Monica keeps 1000); delivery A → B → C → D.</p>
+    <h3>Approach</h3>
+    <ul>
+      <li><b>Registry</b> <code>jurisdictions.js</code> (new): one entry per jurisdiction (id, name, kind, county, aliases, center/bbox, portals, council platform, youtube, feeds, gis hubs, live-API ids, contact, forms, routing, domains, icon, prefix) + helpers <code>jurById</code>, <code>countyOf</code>, <code>scopeIds</code>, <code>detect(text)</code>, <code>contextFor(jur)</code>. Santa Monica migrated verbatim; other entries filled per phase.</li>
+      <li><b>Tagging/scoping</b>: every doc carries <code>jur</code>; <code>rag.search/searchNews/searchCouncil</code> take <code>{jur}</code> and filter to city + county + state; caches namespaced <code>data/&lt;jur&gt;/…</code>; knowledge in <code>knowledge/&lt;jur&gt;/</code>.</li>
+      <li><b>Detection</b>: server-side alias match on each message + <code>set_jurisdiction</code> tool + geocode fallback; per-turn system block from <code>contextFor</code>; tools (web_search domains/user_location, query_dataset portal, query_gis bbox, live ids, forms, routing, id prefix) all read the session's jurisdiction; SSE <code>jurisdiction</code> event updates greeting/footer/badges.</li>
+      <li><b>Adapters</b>: <code>loadCatalog</code> ckan | dcat (ArcGIS Hub feeds, SD GitHub data.json, Socrata) | hubsearch; <code>queryDataset</code> ckan | socrata | dcat-file (cached CSV, in-memory filter) | arcgis; <code>ingestCouncil(jur)</code> ckan-iqm2 | legistar | granicus | ocboard | hyland; <code>ingestTranscripts(jur)</code>; <code>discover.js</code> probes per-city platforms; <code>knowledge-gen.js</code> drafts per-city knowledge files.</li>
+    </ul>
+    <h3>Phases</h3>
+    <ol>
+      <li><b>A</b> registry + tagging + detection, Santa Monica behaviour unchanged, tests green — <i>in progress</i>.</li>
+      <li><b>B</b> County of San Diego (Legistar API verified), City of San Diego (DCAT data.json on GitHub, Hyland dockets, YouTube), County of Orange (board.oc.gov archive, OCPW ArcGIS Hub).</li>
+      <li><b>C</b> remaining 50 cities via <code>discover.js</code> + adapters.</li>
+      <li><b>D</b> per-city forms, routing, contacts.</li>
+    </ol>
+    <h3>Files (Phase A)</h3>
+    <ul><li><code>jurisdictions.js</code> (new), <code>rag.js</code>, <code>council.js</code>, <code>transcripts.js</code>, <code>sources.js</code>, <code>alerts.js</code>, <code>forms.js</code>, <code>server.js</code>, <code>public/index.html</code>, <code>public/staff.html</code>, <code>test.js</code>, <code>warm.js</code>, <code>README.md</code>; <code>knowledge/*.md</code> → <code>knowledge/santa-monica/</code>; <code>data/*</code> → <code>data/santa-monica/</code>.</li></ul>
+    <p><b>Verified upstream (2026-10-17).</b> <code>webapi.legistar.com/v1/sdcounty</code> answers without a token; City of San Diego DCAT catalog at <code>raw.githubusercontent.com/COSD-PANDA/data-inventory/…/data.json</code> (122 datasets, file distributions only); ArcGIS Hub DCAT feed path <code>/api/feed/dcat-us/1.1.json</code>; Hub search <code>hub.arcgis.com/api/v3/datasets?q=</code> works but needs an orgName allowlist; OC Board archive at <code>board.oc.gov</code> (HTML, no API); OCPW Hub <code>data-ocpw.opendata.arcgis.com</code>.</p>
+    <p><b>Status log.</b></p>
+    <ul>
+      <li>17:40 — Phase A landed: <code>jurisdictions.js</code> (57 entries: 55 served + LA County + California context; <code>detect</code>, <code>scopeIds</code>, <code>nearest</code>, <code>contextFor</code>); <code>rag.js</code> per-portal catalogs under <code>data/&lt;jur&gt;/catalog-&lt;portal&gt;.json</code>, <code>jur</code> on every doc, scoped <code>search/searchNews/searchCouncil(…, jur)</code>, <code>catalogSummary(jur)</code>, result memo kept; <code>council.js</code>/<code>transcripts.js</code>/<code>sources.js</code> take a jurisdiction entry (dirs <code>data/&lt;jur&gt;/…</code>, live APIs read ids from <code>j.live</code> and degrade with a clear error); <code>alerts.js</code> stores/scopes <code>jur</code>; <code>forms.js</code> tags forms with <code>jur</code> + <code>formsFor</code>; <code>server.js</code> sessions carry <code>jur</code>, server-side <code>detect()</code> on each message, <code>set_jurisdiction</code> tool, per-jurisdiction cached system block, per-jurisdiction web_search domains/location, routing + id prefix from the registry, SSE <code>jurisdiction</code> event; client updates greeting/footer/badge fallback; staff desk shows the jurisdiction; <code>warm.js</code> loops jurisdictions. Knowledge moved to <code>knowledge/santa-monica/</code>, caches to <code>data/santa-monica/</code> (+ <code>data/los-angeles-county/gis.json</code>). <code>npm test</code> green incl. new registry/detection/scope/prefix tests.</li>
+      <li>Concurrency note: another session was editing the same files during this work (incremental BM25, result cache, COLLECT policy); those were preserved/re-implemented. Re-read before every edit.</li>
+      <li>17:55 — End-to-end verified on :8787: "block party permit in Irvine" → <code>jurisdiction</code> event for Irvine, web search on cityofirvine.org, honest caveats; "preferential parking permit fee in Santa Monica" → same fee table + knowledge source as before; "when is trash pickup?" with no city → exactly "Which city are you in? An address works too." Fixed: the API rejects allowed_domains that block its crawler (latimes, ocregister, union-tribune) — now filtered out.</li>
+      <li>Coordination: session "scale-govai-to-la-county" is adding LA County cities to the registry (143 served now) and plans an FTS5 <code>store.js</code> behind the same rag API; the exact-55 test was relaxed to per-county counts.</li>
+      <li>18:30 — Phase B (code): <code>rag.js</code> <code>dcatDatasets()</code> maps ArcGIS Hub / Socrata / City of San Diego DCAT catalogs to the dataset shape (Socrata 4x4 ids from the identifier → SODA); <code>queryDataset</code> dispatches ckan | file (download once, 25 MB cap, local filter/sort, <code>parseCsv</code>) | soda | arcgis; <code>council.js</code> Legistar adapter (<code>legistarMeetings</code>, event items + actions appended as the searchable record, PDF agendas via pdftotext); registry: SANDAG portal on County of San Diego, OCPW on County of Orange, City of San Diego inventory. New maintainer scripts <code>discover.js</code> (probes Legistar/Granicus/Hub/YouTube per city) and <code>knowledge-gen.js</code> (drafts <code>knowledge/&lt;id&gt;/*.md</code> from the city's sitemap pages). Unit tests for the mappers and CSV parser. <code>node warm.js catalog</code> collected 2,449 datasets across the four portals.</li>
+      <li>Phase B (data) running: <code>node warm.js council san-diego-county</code> and <code>node knowledge-gen.js san-diego</code> in the background. Not possible from this session: yt-dlp / curl probes were declined at the permission prompt, so YouTube channel ids and the OC board archive (JS-rendered, no API found) stay for <code>discover.js</code> / a human.</li>
+      <li>19:05 — Phase B (data) results: catalogs for all four portals (82 Santa Monica CKAN, ~120 City of San Diego, SANDAG, OCPW; 2,449 datasets indexed; the server logs the count). Verified in chat: "City of San Diego budget accounts" → <code>query_dataset</code> downloaded the CSV (1,833 rows) and answered with the Department of Finance badge; "SANDAG crime datasets" → SODA rows from <code>opendata.sandag.org</code>. <code>knowledge-gen.js san-diego</code> produced 6 files / 32 sections (permits file thin: sitemap keyword picking is crude — improve by scoring page titles). <code>warm.js council san-diego-county</code> (Legistar, 200 meetings, PDFs via pdftotext) still running in the background; some <code>eventitems</code> calls returned "fetch failed" (retry on the next run). Council adapters now dispatch to <code>adapters/&lt;platform&gt;.js</code> (interface: <code>listMeetings(j)</code>, optional <code>meetingText(m, j)</code>) so the LA County session's platform adapters plug in. <code>set_jurisdiction</code> takes a free string (the 143-id enum hit the API's schema-complexity limit).</li>
+      <li>Teammate session "scale-govai-to-la-county" replaced the in-memory BM25 with SQLite FTS5 (<code>store.js</code>) behind the same rag contract; tests set <code>GOVAI_DB=:memory:</code>. The libc++ "mutex lock failed" line at the end of <code>npm test</code> comes from the Kokoro TTS teardown in the test process (run with <code>TTS=off</code>), not from the suite.</li>
+      <li>Open: OC Board archive (<code>board.oc.gov</code>) is script-rendered with no API found — needs a browser-driven fetch or a human to locate the data source; City of San Diego dockets are on Hyland (JS) — transcripts via YouTube are the practical route once <code>discover.js</code> finds the channel id (yt-dlp was declined at the permission prompt in this session). Phase C (50 cities via <code>discover.js</code>) and Phase D (per-city forms/routing) not started.</li>
+      <li>19:20 — County of San Diego Legistar collection finished: 200 Board of Supervisors meetings, agenda + minutes text for all 200 (PDF via pdftotext), item-by-item actions/votes for 198, 28,847 chunks in <code>data/san-diego-county/council/</code>. Two <code>eventitems</code> fetches failed and will retry on the next <code>warm.js</code> run.</li>
+      <li>Next: Phase B adapters (Legistar for County of San Diego, DCAT catalogs for City of San Diego + OCPW, OC board scrape, Hyland dockets) and per-city knowledge generation.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1600">
+    <header>
+      <time>2026-10-17 16:00</time>
+      <h2>Voice mode: interrupt the assistant mid-reply; spoken answers never mention sources</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: while the voice assistant is speaking, the resident should be able to talk over it and ask something else; and the spoken answer must not say anything about sources or where information came from.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>public/index.html</code> — recognition now keeps running during the <code>speaking</code> state (<code>rec.start()</code> after the reply starts; <code>onend</code> restarts it while still speaking). <code>onresult</code> during speaking with ≥2 words calls <code>stopSpeaking()</code> (Kokoro audio + speechSynthesis) and flips to listening with that transcript; the normal <code>onend → send</code> path then handles it. The speak-done callback only returns to listening if the state is still <code>speaking</code>, so an interrupted reply doesn't clobber the new question. New <code>spoken(bot)</code> clones the reply bubble, drops <code>.acts</code>/<code>.sources</code> (the Sources pill used to be read aloud as "Sources") and strips URLs before TTS.</li>
+      <li><code>server.js</code> — <code>VOICE_RULE</code> adds: never mention sources, datasets, documents, records, minutes, transcripts, searches, or "according to"; state the answer as fact.</li>
+    </ul>
+    <p><b>Known limit.</b> Barge-in relies on the mic not transcribing the assistant's own voice; the 2-word threshold filters most echo. If it self-interrupts on speakers, raise the threshold or require a mic-level spike from <code>meter()</code>.</p>
+    <p><b>14:00 (second session):</b> echo guard strengthened. While speaking, an interim transcript is ignored when it has fewer than 2 words <em>or</em> more than 60% of its words are words of the reply currently being spoken (<code>replyWords</code> set when the reply starts). Genuine interruptions ("wait, stop", "what about parking") pass; the speaker leaking "the block party permit costs" back into the mic does not.</p>
+    <p><b>Verify.</b> <code>node --check</code> on server.js and the inline script. Live voice test needs a mic; not automatable here.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1530">
+    <header>
+      <time>2026-10-17 15:30</time>
+      <h2>Staff desk restyled to match the resident view</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: the staff page (<code>public/staff.html</code>, added by another session) still had the old USWDS light/dark banner theme. Make it look like the resident page.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>public/staff.html</code> — <code>&lt;style&gt;</code> replaced with the resident page's tokens (dark only, <code>color-scheme: dark</code>, Inter), the same sticky blurred header with the GovAI wordmark + a "Staff desk" tag, 720px column, <code>.box</code>/<code>.app</code> cards styled like <code>.form</code>/<code>.chip</code>, pill buttons (blue primary, ghost secondary), identical input styling. Header markup swapped (govbar + seal removed; sign-out is a ghost pill). JS untouched except the who-label no longer needs an inline colour. All element ids preserved.</li>
+    </ul>
+    <p><b>Verify.</b> Screenshot of the sign-in card via chrome-profile MCP matches the resident page (header, card, pill button). First pass showed "Sign out" while logged out because <code>display:flex</code> on <code>.who</code> beat the <code>hidden</code> attribute; added a <code>[hidden] { display:none }</code> rule. Queue view not screenshotted (no staff code in this session); it uses the same classes.</p>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1510">
     <header>
       <time>2026-10-17 15:10</time>
@@ -519,6 +1196,8 @@ daily 07:00 → refreshCouncil() → for each alert:
       <li><code>public/index.html</code> <code>formCard()</code> — per-field <code>read()</code>/<code>invalid()</code> instead of relying on one input's constraint validation. <code>timerange</code> renders two native <code>&lt;input type="time" step="900"&gt;</code> (15-min steps, dark pickers via <code>color-scheme</code>), validates end &gt; start, stores "2:00 PM – 8:00 PM" so <code>toApplication()</code> and department details are unchanged; raw values kept for Back. <code>date</code> inputs get <code>min</code> = today + <code>minDays</code>. Selects with ≤4 options render as tap-to-choose pills that advance immediately (Back keeps the highlight); longer lists stay a <code>&lt;select&gt;</code>. CSS: <code>.form .range</code>, <code>.form .choices</code>.</li>
     </ul>
     <p><b>Verify.</b> <code>node --check</code> on forms.js and the inline script; <code>npm test</code>. Dev server auto-restarts, page auto-reloads; open the block party form and step to question 2.</p>
+    <p><b>Follow-up bug (fixed).</b> User (Safari) entered 1:20 PM – 6:30 PM and got "Enter both a start and an end time." Cause: <code>step="900"</code> on the time inputs; Safari sanitises a value that doesn't fall on a 15-minute step to "". Removed the step attribute, and <code>go()</code> now blurs the active element before reading so Safari commits typed segments. Verified in Chrome via the chrome-profile MCP: typed 1:20 PM / 6:30 PM → advanced to question 3; Back restores both values.</p>
+    <p><b>Second report (fixed).</b> Still failing for the user in Safari with 1:02 PM – 5:05 PM shown in both fields: Safari leaves <code>value</code> empty until the AM/PM segment is explicitly set, so visible digits don't mean a committed value. Replaced the native time inputs with two <code>&lt;select&gt;</code>s (Start / End, 15-minute steps, 12:00 AM – 11:45 PM); values are minutes-since-midnight, stored as "1:00 PM – 5:00 PM". No browser-specific behaviour left; blur workaround removed.</p>
   </article>
 
   <article class="entry" id="e-2026-10-17-1455">
@@ -610,7 +1289,7 @@ daily 07:00 → refreshCouncil() → for each alert:
     <p><b>Verify.</b> Inline script extracted and passes <code>node --check</code>. Browser check pending by user (Chrome MCP still locked by another session). Known limits: TTS uses the OS default voice; recognition quality depends on the browser's engine (Chrome/Safari); muting mid-reply lets the reply finish, then shows "Muted".</p>
   </article>
 
-  <article class="entry" id="e-2026-10-17-1210">
+  <article class="entry" id="e-2026-10-17-1210-header">
     <header>
       <time>2026-10-17 12:10</time>
       <h2>Header restyled to look like a .gov site (America.gov / USWDS banner)</h2>

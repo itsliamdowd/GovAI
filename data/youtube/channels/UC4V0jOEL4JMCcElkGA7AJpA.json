@@ -1,0 +1,39 @@
+{
+  "kind": "youtube#channel",
+  "etag": "6VoV1XIsy_RQ9v7QMIjmDHKAOgg",
+  "id": "UC4V0jOEL4JMCcElkGA7AJpA",
+  "snippet": {
+    "title": "City of Santa Monica",
+    "description": "Official account of the City of Santa Monica, CA.\n\nCityTV is the government community cable channel for the City of Santa Monica. It is funded, programmed and operated by the City of Santa Monica. The channel is available to every cable television subscriber within the City of Santa Monica and reaches approximately 37,000 households. CityTV is known across the country for its quality programming and its innovative uses of its channel. The channel has been recognized with nine Emmy awards and been awarded a SCAN NATOA STAR Award as the best channel in the state for six of the last eight years.\n\nWHERE SANTA MONICA LIVES: CityTV's flagship station provides live coverage of public meetings, news, series, live call-in programming and more!  To learn more about what's happening in Santa Monica, watch CityTV!",
+    "customUrl": "@citytv16santamonica",
+    "publishedAt": "2009-02-02T23:42:43Z",
+    "thumbnails": {
+      "default": {
+        "url": "https://yt3.ggpht.com/ytc/AIdro_nSjrrLZM5byksNKAOgV6vz8kV8wdf1R13a5foOQnDcxLM=s88-c-k-c0x00ffffff-no-rj",
+        "width": 88,
+        "height": 88
+      },
+      "medium": {
+        "url": "https://yt3.ggpht.com/ytc/AIdro_nSjrrLZM5byksNKAOgV6vz8kV8wdf1R13a5foOQnDcxLM=s240-c-k-c0x00ffffff-no-rj",
+        "width": 240,
+        "height": 240
+      },
+      "high": {
+        "url": "https://yt3.ggpht.com/ytc/AIdro_nSjrrLZM5byksNKAOgV6vz8kV8wdf1R13a5foOQnDcxLM=s800-c-k-c0x00ffffff-no-rj",
+        "width": 800,
+        "height": 800
+      }
+    },
+    "localized": {
+      "title": "City of Santa Monica",
+      "description": "Official account of the City of Santa Monica, CA.\n\nCityTV is the government community cable channel for the City of Santa Monica. It is funded, programmed and operated by the City of Santa Monica. The channel is available to every cable television subscriber within the City of Santa Monica and reaches approximately 37,000 households. CityTV is known across the country for its quality programming and its innovative uses of its channel. The channel has been recognized with nine Emmy awards and been awarded a SCAN NATOA STAR Award as the best channel in the state for six of the last eight years.\n\nWHERE SANTA MONICA LIVES: CityTV's flagship station provides live coverage of public meetings, news, series, live call-in programming and more!  To learn more about what's happening in Santa Monica, watch CityTV!"
+    },
+    "country": "US"
+  },
+  "contentDetails": {
+    "relatedPlaylists": {
+      "likes": "",
+      "uploads": "UU4V0jOEL4JMCcElkGA7AJpA"
+    }
+  }
+}

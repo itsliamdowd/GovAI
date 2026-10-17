@@ -1,0 +1,39 @@
+{
+  "kind": "youtube#channel",
+  "etag": "Y1FEHECiCgXfW4HiiaSaSfee63w",
+  "id": "UCfSvAuffMZHPhojAOdBQLCA",
+  "snippet": {
+    "title": "City of Los Angeles",
+    "description": "This is the official City of Los Angeles YouTube page.\n\nThe best City in which to live, work, and play.\n\nThe City of Los Angeles' \nInformation Technology Agency \nmanages this social media account.\n",
+    "customUrl": "@lacity",
+    "publishedAt": "2023-04-16T20:17:39.459456Z",
+    "thumbnails": {
+      "default": {
+        "url": "https://yt3.ggpht.com/q-2_HNn3KNlPH4UmKGsDQY-mbugaOUJ7LhuO4PHZpSErIkMjb4FBWy3tjRwjNus_h1LPI6Al=s88-c-k-c0x00ffffff-no-rj",
+        "width": 88,
+        "height": 88
+      },
+      "medium": {
+        "url": "https://yt3.ggpht.com/q-2_HNn3KNlPH4UmKGsDQY-mbugaOUJ7LhuO4PHZpSErIkMjb4FBWy3tjRwjNus_h1LPI6Al=s240-c-k-c0x00ffffff-no-rj",
+        "width": 240,
+        "height": 240
+      },
+      "high": {
+        "url": "https://yt3.ggpht.com/q-2_HNn3KNlPH4UmKGsDQY-mbugaOUJ7LhuO4PHZpSErIkMjb4FBWy3tjRwjNus_h1LPI6Al=s800-c-k-c0x00ffffff-no-rj",
+        "width": 800,
+        "height": 800
+      }
+    },
+    "localized": {
+      "title": "City of Los Angeles",
+      "description": "This is the official City of Los Angeles YouTube page.\n\nThe best City in which to live, work, and play.\n\nThe City of Los Angeles' \nInformation Technology Agency \nmanages this social media account.\n"
+    },
+    "country": "US"
+  },
+  "contentDetails": {
+    "relatedPlaylists": {
+      "likes": "",
+      "uploads": "UUfSvAuffMZHPhojAOdBQLCA"
+    }
+  }
+}

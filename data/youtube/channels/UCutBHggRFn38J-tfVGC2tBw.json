@@ -1,0 +1,39 @@
+{
+  "kind": "youtube#channel",
+  "etag": "O-Zmh1czSpSGL2mp6nyNCbuCQYk",
+  "id": "UCutBHggRFn38J-tfVGC2tBw",
+  "snippet": {
+    "title": "County of Los Angeles",
+    "description": "Welcome to the County of Los Angeles' official YouTube channel.",
+    "customUrl": "@countyoflosangelesnewsroom",
+    "publishedAt": "2017-07-10T17:27:38Z",
+    "thumbnails": {
+      "default": {
+        "url": "https://yt3.ggpht.com/ytc/AIdro_kHVfvPL-QHSMkvEV0vR39vM_hJDRZJWErYjYzOWJtf2g=s88-c-k-c0x00ffffff-no-rj",
+        "width": 88,
+        "height": 88
+      },
+      "medium": {
+        "url": "https://yt3.ggpht.com/ytc/AIdro_kHVfvPL-QHSMkvEV0vR39vM_hJDRZJWErYjYzOWJtf2g=s240-c-k-c0x00ffffff-no-rj",
+        "width": 240,
+        "height": 240
+      },
+      "high": {
+        "url": "https://yt3.ggpht.com/ytc/AIdro_kHVfvPL-QHSMkvEV0vR39vM_hJDRZJWErYjYzOWJtf2g=s800-c-k-c0x00ffffff-no-rj",
+        "width": 800,
+        "height": 800
+      }
+    },
+    "localized": {
+      "title": "County of Los Angeles",
+      "description": "Welcome to the County of Los Angeles' official YouTube channel."
+    },
+    "country": "US"
+  },
+  "contentDetails": {
+    "relatedPlaylists": {
+      "likes": "",
+      "uploads": "UUutBHggRFn38J-tfVGC2tBw"
+    }
+  }
+}

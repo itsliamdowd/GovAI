@@ -1,0 +1,40 @@
+{
+  "kind": "youtube#channel",
+  "etag": "IN_LGQAv5dpEyaahW86jypJxcuk",
+  "id": "UCuIy75GqrnaeHNC4lHNWVhQ",
+  "snippet": {
+    "title": "countysandiego",
+    "description": "Official YouTube page for the County of San Diego government, including programs that are cablecast & shown on CountyNewsCenter.com and CNC TV.",
+    "customUrl": "@countysandiego",
+    "publishedAt": "2009-03-30T17:34:55Z",
+    "thumbnails": {
+      "default": {
+        "url": "https://yt3.ggpht.com/nt7j2xquQ2OkD75GxuAyCGyLGW5XA4fJuQ2R7K3JwMRmlKjH9KwLrWmheetzevWMLQ4aUxzElA=s88-c-k-c0x00ffffff-no-rj",
+        "width": 88,
+        "height": 88
+      },
+      "medium": {
+        "url": "https://yt3.ggpht.com/nt7j2xquQ2OkD75GxuAyCGyLGW5XA4fJuQ2R7K3JwMRmlKjH9KwLrWmheetzevWMLQ4aUxzElA=s240-c-k-c0x00ffffff-no-rj",
+        "width": 240,
+        "height": 240
+      },
+      "high": {
+        "url": "https://yt3.ggpht.com/nt7j2xquQ2OkD75GxuAyCGyLGW5XA4fJuQ2R7K3JwMRmlKjH9KwLrWmheetzevWMLQ4aUxzElA=s800-c-k-c0x00ffffff-no-rj",
+        "width": 800,
+        "height": 800
+      }
+    },
+    "defaultLanguage": "en",
+    "localized": {
+      "title": "countysandiego",
+      "description": "Official YouTube page for the County of San Diego government, including programs that are cablecast & shown on CountyNewsCenter.com and CNC TV."
+    },
+    "country": "US"
+  },
+  "contentDetails": {
+    "relatedPlaylists": {
+      "likes": "",
+      "uploads": "UUuIy75GqrnaeHNC4lHNWVhQ"
+    }
+  }
+}

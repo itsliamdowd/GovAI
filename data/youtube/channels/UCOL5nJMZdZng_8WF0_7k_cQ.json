@@ -1,0 +1,39 @@
+{
+  "kind": "youtube#channel",
+  "etag": "RLJ9BqT_XIfKIuDqH0VVWtAPP8E",
+  "id": "UCOL5nJMZdZng_8WF0_7k_cQ",
+  "snippet": {
+    "title": "Los Angeles County - Board of Supervisors",
+    "description": "The Board of Supervisors is the five-member governing body of the County of Los Angeles, a charter county. Members are elected by voters in their respective districts and are limited to three four-year terms.\n\nCreated by the state Legislature in 1852, the Board has executive, legislative and quasi-judicial roles, and it has the unique function of serving as head of the largest and most complex county government in the entire US.\n\nTune in here to watch the livestream of the Board of Supervisors meetings on most Tuesdays at 9:30am.\n",
+    "customUrl": "@lacountybos",
+    "publishedAt": "2020-02-19T00:15:46.668437Z",
+    "thumbnails": {
+      "default": {
+        "url": "https://yt3.ggpht.com/ytc/AIdro_k1t6p5e7Nkm_mF3Fzq7xYlHZbXM1LJ7nFlZJMCHy01u8g=s88-c-k-c0x00ffffff-no-rj",
+        "width": 88,
+        "height": 88
+      },
+      "medium": {
+        "url": "https://yt3.ggpht.com/ytc/AIdro_k1t6p5e7Nkm_mF3Fzq7xYlHZbXM1LJ7nFlZJMCHy01u8g=s240-c-k-c0x00ffffff-no-rj",
+        "width": 240,
+        "height": 240
+      },
+      "high": {
+        "url": "https://yt3.ggpht.com/ytc/AIdro_k1t6p5e7Nkm_mF3Fzq7xYlHZbXM1LJ7nFlZJMCHy01u8g=s800-c-k-c0x00ffffff-no-rj",
+        "width": 800,
+        "height": 800
+      }
+    },
+    "localized": {
+      "title": "Los Angeles County - Board of Supervisors",
+      "description": "The Board of Supervisors is the five-member governing body of the County of Los Angeles, a charter county. Members are elected by voters in their respective districts and are limited to three four-year terms.\n\nCreated by the state Legislature in 1852, the Board has executive, legislative and quasi-judicial roles, and it has the unique function of serving as head of the largest and most complex county government in the entire US.\n\nTune in here to watch the livestream of the Board of Supervisors meetings on most Tuesdays at 9:30am.\n"
+    },
+    "country": "US"
+  },
+  "contentDetails": {
+    "relatedPlaylists": {
+      "likes": "",
+      "uploads": "UUOL5nJMZdZng_8WF0_7k_cQ"
+    }
+  }
+}
