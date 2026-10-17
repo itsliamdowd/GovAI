@@ -90,7 +90,7 @@ export async function buildIndex() {
   const docs = [
     ...knowledge.map((c) => ({ ...c, searchText: `${c.title} ${c.text}` })),
     ...datasets.map((d) => ({
-      kind: "dataset", title: d.title, url: d.url, notes: d.notes, modified: d.modified,
+      kind: "dataset", title: d.title, url: d.url, org: d.org, notes: d.notes, modified: d.modified,
       resources: d.resources.filter((r) => r.datastore).map(({ resource_id, name, fields }) => ({ resource_id, name, fields })),
       searchText: `${d.title} ${d.name.replace(/-/g, " ")} ${d.notes} ${d.tags.join(" ")} ${d.resources.flatMap((r) => [r.name, ...r.fields]).join(" ")}`,
     })),
@@ -108,15 +108,25 @@ export async function buildIndex() {
       const half = Math.ceil(k / 2);
       return [...index.search(query, half, (d) => want(d) && d.doc !== "transcript"), ...index.search(query, k - half, (d) => want(d) && d.doc === "transcript")].map(strip);
     },
-    addDocs(more) { docs.push(...more); index = new BM25(docs); }, // ponytail: full rebuild, fine for <100k docs
+    addDocs(more) { // dedupe by url#part so a daily re-ingest doesn't double-index; ponytail: full rebuild, fine for <100k docs
+      const key = (d) => `${d.url}#${d.part}`, seen = new Set(docs.map(key));
+      for (const d of more) if (!seen.has(key(d))) { seen.add(key(d)); docs.push(d); }
+      index = new BM25(docs);
+    },
   };
 }
 
+const rowCache = new Map(); // ponytail: in-memory, 10-min TTL, unbounded; swap for an LRU/KV if it grows past RAM
 export async function queryDataset({ resource_id, q = "", filters = "", limit = 20, sort = "" }) {
   const params = { resource_id, limit: Math.min(Math.max(1, limit), 100) };
   if (q) params.q = q;
   if (sort) params.sort = sort;
   if (filters) { JSON.parse(filters); params.filters = filters; }
+  const key = JSON.stringify(params);
+  const hit = rowCache.get(key);
+  if (hit && Date.now() - hit.t < 600e3) return hit.v;
   const r = await ckan("datastore_search", params);
-  return { total: r.total, fields: r.fields.map((f) => `${f.id}:${f.type}`), records: r.records };
+  const v = { total: r.total, fields: r.fields.map((f) => `${f.id}:${f.type}`), records: r.records };
+  rowCache.set(key, { t: Date.now(), v });
+  return v;
 }

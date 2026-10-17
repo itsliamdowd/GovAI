@@ -39,5 +39,7 @@ assert.ok(tdocs.length >= 2 && tdocs[0].url === "https://www.youtube.com/watch?v
 rag.addDocs(tdocs);
 assert.ok(rag.searchCouncil("word", 8, "", "transcript").every((d) => d.doc === "transcript"));
 assert.ok(rag.searchCouncil("call to order", 8, "", "minutes").every((d) => d.doc === "minutes"));
+assert.deepEqual(T.citedMoments("see [this](https://www.youtube.com/watch?v=HgCGwBwrNP8&t=364s) and https://www.youtube.com/watch?v=HgCGwBwrNP8&amp;t=364s dup, plus https://www.youtube.com/watch?v=abc123xyz&t=10"), [{ videoId: "HgCGwBwrNP8", t: 364 }, { videoId: "abc123xyz", t: 10 }]);
+assert.equal(T.clipWindow("../etc", 0), null);
 console.log(`ok (${rag.datasetCount} datasets indexed)`);
 process.exit(0);

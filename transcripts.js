@@ -6,7 +6,8 @@ import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 
 const run = promisify(execFile);
-const CHANNEL = process.env.COUNCIL_YT_CHANNEL || "https://www.youtube.com/channel/UC4V0jOEL4JMCcElkGA7AJpA/videos";
+const CHANNEL = process.env.COUNCIL_YT_CHANNEL || "https://www.youtube.com/channel/UC4V0jOEL4JMCcElkGA7AJpA";
+const TABS = ["streams", "videos"]; // council meetings are livestreamed, so most live under /streams
 const DIR = "./data/transcripts";
 const LIST_TTL_MS = 24 * 3600 * 1000;
 const MONTHS = { january: 1, february: 2, march: 3, april: 4, may: 5, june: 6, july: 7, august: 8, september: 9, october: 10, november: 11, december: 12, jan: 1, feb: 2, mar: 3, apr: 4, jun: 6, jul: 7, aug: 8, sep: 9, sept: 9, oct: 10, nov: 11, dec: 12 };
@@ -23,7 +24,11 @@ export function dateFromTitle(title) {
 async function listVideos(log) {
   const file = `${DIR}/videos.json`;
   try { const c = JSON.parse(fs.readFileSync(file, "utf8")); if (Date.now() - c.fetched_at < LIST_TTL_MS) return c.videos; } catch {}
-  const { stdout } = await run("yt-dlp", ["--flat-playlist", "--print", "%(id)s\t%(title)s", CHANNEL], { maxBuffer: 50e6 });
+  let stdout = "";
+  for (const tab of TABS) {
+    try { stdout += (await run("yt-dlp", ["--flat-playlist", "--print", "%(id)s\t%(title)s", `${CHANNEL}/${tab}`], { maxBuffer: 50e6 })).stdout + "\n"; }
+    catch (e) { log(`yt-dlp ${tab}: ${e.stderr?.split("\n").find((l) => l.includes("ERROR")) ?? e.message}`); }
+  }
   const isMeeting = (t) => /council/i.test(t) && /meeting|city council .*\d{4}/i.test(t) && !/planning|rent control|candidate|forum|budget study|workshop|retreat|proclamation|covid|booster|mask|message/i.test(t);
   const all = stdout.split("\n").map((l) => l.split("\t")).filter(([id, t]) => id && isMeeting(t))
     .map(([id, title]) => ({ id, title: title.trim(), date: dateFromTitle(title) })).filter((v) => v.date);
@@ -92,4 +97,20 @@ export async function ingestTranscripts(onDocs, log = console.error) {
   }));
   onDocs(docs, videos);
   return docs.length;
+}
+
+/** Transcript window around a cited moment, from the local cache. Returns null if that video isn't cached. */
+export function clipWindow(videoId, t, before = 10, after = 90) {
+  if (!/^[\w-]{6,20}$/.test(videoId)) return null;
+  let rec; try { rec = JSON.parse(fs.readFileSync(`${DIR}/${videoId}.json`, "utf8")); } catch { return null; }
+  const segs = rec.segments.filter((s) => s.t >= t - before && s.t <= t + after);
+  return { id: `${videoId}-${t}`, video_id: videoId, t, hms: hms(t), meeting_date: rec.date, title: rec.title,
+    url: `https://www.youtube.com/watch?v=${videoId}&t=${t}s`, embed: `https://www.youtube-nocookie.com/embed/${videoId}?start=${t}&autoplay=1`,
+    text: segs.map((s) => s.text).join(" ").trim() };
+}
+/** Every YouTube link with a timestamp in a piece of text -> [{videoId, t}]. */
+export function citedMoments(text) {
+  const out = new Map();
+  for (const m of text.matchAll(/youtube\.com\/watch\?v=([\w-]{6,20})(?:&(?:amp;)?[^\s)&]*)*?&(?:amp;)?t=(\d+)s?/g)) out.set(`${m[1]}-${m[2]}`, { videoId: m[1], t: +m[2] });
+  return [...out.values()];
 }

@@ -5,11 +5,14 @@ import crypto from "node:crypto";
 import Anthropic from "@anthropic-ai/sdk";
 import { buildIndex, queryDataset } from "./rag.js";
 import { ingestCouncil } from "./council.js";
-import { ingestTranscripts } from "./transcripts.js";
+import { ingestTranscripts, clipWindow, citedMoments } from "./transcripts.js";
 
 const PORT = Number(process.env.PORT) || 8787;
 const APPS_FILE = "./data/applications.json";
 const client = new Anthropic(); // ANTHROPIC_API_KEY from .env (npm start loads it)
+// Default is Sonnet: the "Hackathon" workspace caps claude-opus-5-5 at 1 input token/min, so Opus 429s on every call.
+// Raise that limit in console.anthropic.com → Settings → Limits, then set MODEL=claude-opus-5-5 in .env.
+const MODEL = process.env.MODEL || "claude-sonnet-5-5";
 
 const rag = await buildIndex();
 console.log(`RAG index ready: ${rag.datasetCount} open datasets indexed`);
@@ -29,7 +32,7 @@ What you do
 How you find answers (retrieval first, always)
 1. Call search_city_knowledge with the resident's question before answering anything factual. It returns the most relevant city knowledge chunks AND matching open datasets (with resource_ids and field names).
 2. If a dataset can answer (fees, active permits, business licenses, police/fire calls, rents, parking rates, trees, EV chargers, budget, campaign finance, water, etc.), call query_dataset with the resource_id and a full-text q or filters, then answer from the rows. Cite the dataset by title with its URL.
-3. For anything about City Council: what was decided, who voted how, what's on an agenda, what a councilmember or speaker actually said, upcoming meetings — call search_council_meetings. It searches agendas, official minutes (the record of the meeting, back to 2015) and meeting transcripts (YouTube captions, recent years) and returns dated excerpts with links. Use doc="minutes" for votes/decisions, doc="transcript" for quotes/what was said, empty for both. Quote dates; cite the minutes link or the timestamped video link. Transcripts are auto-captions and may misspell names.
+3. For anything about City Council: what was decided, who voted how, what's on an agenda, what a councilmember or speaker actually said, upcoming meetings — call search_council_meetings. It searches agendas, official minutes (the record of the meeting, back to 2015) and meeting transcripts (YouTube captions, recent years) and returns dated excerpts with links. Use doc="minutes" for votes/decisions, doc="transcript" for quotes/what was said, empty for both. Quote dates; cite the minutes link or the timestamped video link. When you quote or paraphrase something said in a meeting, include the transcript excerpt's exact url (the youtube link with &t=) as a markdown link — the app turns it into a playable clip of that moment. Transcripts are auto-captions and may misspell names.
 4. For anything time-sensitive the index doesn't cover (news, closures, current officeholders, meeting agendas, exact current hours), use web_search on santamonica.gov. Link the page.
 5. Never invent fees, phone numbers, addresses or legal requirements. If you can't verify, say so and point to 311 ((310) 458-8411 / 311@santamonica.gov) or the owning department.
 
@@ -149,6 +152,18 @@ export function submitApplication(input) {
   saveApps(apps);
   return apps[id];
 }
+// Cited video moments, cached so a resident can come back to the exact clip later.
+const CLIPS_FILE = "./data/clips.json";
+function loadClips() { try { return JSON.parse(fs.readFileSync(CLIPS_FILE, "utf8")); } catch { return {}; } }
+export function saveClipsFor(text) {
+  const clips = loadClips(); const found = [];
+  for (const { videoId, t } of citedMoments(text)) {
+    const c = clipWindow(videoId, t); if (!c) continue;
+    clips[c.id] = { ...c, cited_at: new Date().toISOString() }; found.push(c);
+  }
+  if (found.length) fs.writeFileSync(CLIPS_FILE, JSON.stringify(clips, null, 1));
+  return found;
+}
 export function checkStatus(id) { return loadApps()[id.trim().toUpperCase()] ?? { error: "No application found with that confirmation number." }; }
 
 const runTool = {
@@ -187,7 +202,7 @@ async function chat(sessionId, userText, send) {
 
   for (;;) {
     const stream = client.beta.messages.stream({
-      model: "claude-opus-5-5",
+      model: MODEL,
       max_tokens: 16000,
       betas: ["server-side-fallback-2026-07-01"],
       fallbacks: "default",
@@ -195,7 +210,7 @@ async function chat(sessionId, userText, send) {
       system: [{ type: "text", text: SYSTEM, cache_control: { type: "ephemeral" } }],
       tools,
       messages,
-    });
+    }, { maxRetries: 0, timeout: 120000 }); // no silent retry sleeps: a 429/529 surfaces to the user in <1s instead of a 2-minute "Thinking…"
     stream.on("text", (delta) => send({ type: "text", text: delta }));
     stream.on("contentBlock", (block) => {
       if (block.type === "server_tool_use") send({ type: "status", text: `Searching santamonica.gov: ${block.input?.query ?? ""}` });
@@ -207,14 +222,18 @@ async function chat(sessionId, userText, send) {
     if (message.stop_reason === "pause_turn") continue;
     if (message.stop_reason === "refusal") { send({ type: "text", text: "\n\nI can't help with that request. For city services, call 311." }); return; }
     const toolUses = message.content.filter((b) => b.type === "tool_use");
-    if (message.stop_reason !== "tool_use" || toolUses.length === 0) return;
+    if (message.stop_reason !== "tool_use" || toolUses.length === 0) {
+      const clips = saveClipsFor(message.content.filter((b) => b.type === "text").map((b) => b.text).join("\n"));
+      if (clips.length) send({ type: "clips", data: clips });
+      return;
+    }
 
     const results = await Promise.all(toolUses.map(async (t) => {
       try {
         const out = await runTool[t.name](t.input);
         if (t.name === "submit_application") send({ type: "application", data: JSON.parse(out) });
-        if (t.name === "search_city_knowledge") send({ type: "sources", data: JSON.parse(out).filter((d) => d.kind === "dataset").map(({ title, url }) => ({ title, url })) });
-        if (t.name === "search_council_meetings") send({ type: "sources", data: [...new Map(JSON.parse(out).excerpts.map((d) => [d.url, { title: d.title, url: d.url }])).values()] });
+        if (t.name === "search_city_knowledge") send({ type: "sources", data: JSON.parse(out).map((d) => d.kind === "dataset" ? { kind: "dataset", title: d.title, url: d.url, org: d.org } : { kind: "knowledge", title: d.title, url: d.text?.match(/Source: (https?:\/\/\S+)/)?.[1] ?? "https://www.santamonica.gov" }) });
+        if (t.name === "search_council_meetings") send({ type: "sources", data: [...new Map(JSON.parse(out).excerpts.map((d) => [d.url, { kind: "council", title: d.title, url: d.url }])).values()] });
         return { type: "tool_result", tool_use_id: t.id, content: out };
       } catch (e) {
         return { type: "tool_result", tool_use_id: t.id, is_error: true, content: String(e.message) };
@@ -252,6 +271,15 @@ http.createServer(async (req, res) => {
     }
     send({ type: "done" });
     res.end();
+    return;
+  }
+  if (req.method === "GET" && req.url === "/api/clips") {
+    res.writeHead(200, { "Content-Type": "application/json" }).end(JSON.stringify(Object.values(loadClips()).sort((a, b) => b.cited_at.localeCompare(a.cited_at))));
+    return;
+  }
+  if (req.method === "GET" && req.url.startsWith("/api/clips/")) {
+    const c = loadClips()[decodeURIComponent(req.url.slice(11))];
+    res.writeHead(c ? 200 : 404, { "Content-Type": "application/json" }).end(JSON.stringify(c ?? { error: "clip not found" }));
     return;
   }
   if (req.method === "GET" && req.url.startsWith("/api/applications/")) {

@@ -16,6 +16,57 @@
        Status badge classes: planned | progress | done | blocked.
        Do NOT log changes to ~/.claude/, plan.html itself, or the changelog server. -->
 
+  <article class="entry" id="e-2026-10-17-1400">
+    <header>
+      <time>2026-10-17 14:00</time>
+      <h2>Daily watch alerts: "track this address" &rarr; judge model &rarr; email on change</h2>
+      <span class="badge progress">in-progress</span>
+    </header>
+    <p><b>Goal.</b> User: residents can say "let's track a specific address" (or any topic). The assistant creates an alert; a daily job gathers what the RAG index (knowledge + council agendas/minutes/transcripts) and data.santamonica.gov datasets currently say about it, diffs against what was already seen, asks a decision ("judge") model <i>has something changed for this query? yes/no</i>, and if yes compiles and sends an email. If no, nothing happens.</p>
+    <p><b>Assumption.</b> "Jev as a decision model" read as an LLM-as-judge step; implemented as <code>JUDGE_MODEL</code> env (default <code>claude-haiku-5-5</code>, cheap yes/no) with a forced <code>decide</code> tool returning <code>{changed, reason, subject, body}</code>.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>alerts.js</code> (new) — <code>createAlert(rag, input)</code> (snapshots baseline evidence keys so day 1 only reports new things), <code>cancelAlert</code>, <code>gatherEvidence(rag, topic)</code> (council excerpts + knowledge chunks + rows from the top 3 matching datastore resources via <code>queryDataset(q=topic)</code>), pure <code>diffEvidence(seenKeys, items)</code>, <code>judge()</code>, <code>sendEmail()</code> (Resend HTTP API when <code>RESEND_API_KEY</code> set, else writes <code>data/outbox/*.txt</code>), <code>runAlerts(rag)</code>. Store: <code>data/alerts.json</code>.</li>
+      <li><code>server.js</code> — tools <code>create_alert</code> / <code>cancel_alert</code>; SYSTEM prompt paragraph on when to offer a watch; <code>refreshCouncil()</code> factored out of startup so the daily job re-ingests new agendas/minutes/transcripts before checking; <code>scheduleDaily()</code> fires at <code>ALERT_HOUR</code> (default 07:00 local) every 24h; <code>POST /api/alerts/run</code> triggers a run now (demo/cron hook); SSE event <code>{type:"alert"}</code>.</li>
+      <li><code>rag.js</code> — <code>addDocs</code> dedupes by <code>url#part</code> so daily re-ingest doesn't duplicate council chunks.</li>
+      <li><code>public/index.html</code> — handles the <code>alert</code> event: card "Daily watch on", and the alert appears in the My applications sheet with status <code>watching</code>.</li>
+      <li><code>test.js</code> — <code>createAlert</code> round-trip + <code>diffEvidence</code> check (no API call).</li>
+      <li><code>.env.example</code>, <code>README.md</code> — <code>JUDGE_MODEL</code>, <code>ALERT_HOUR</code>, <code>RESEND_API_KEY</code>, <code>ALERT_FROM</code>.</li>
+    </ul>
+    <h3>Flow</h3>
+    <pre><code>chat: "track 1685 Main St" → ask email → create_alert{topic,address,email}
+       → baseline = keys(gatherEvidence)            (stored, nothing sent)
+daily 07:00 → refreshCouncil() → for each alert:
+       fresh = diffEvidence(alert.seen, gatherEvidence(topic))
+       none → skip (no email)
+       some → judge(topic, fresh) → {changed:false} → mark seen, no email
+                                  → {changed:true,subject,body} → sendEmail → mark seen</code></pre>
+    <h3>Acceptance</h3>
+    <ul><li><code>npm test</code> passes; alert created via chat shows card + sheet entry; <code>curl -X POST :8787/api/alerts/run</code> returns per-alert <code>{id, new, changed}</code>; email lands in <code>data/outbox/</code> without Resend configured.</li></ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1140">
+    <header>
+      <time>2026-10-17 11:40</time>
+      <h2>Cited council video moments are cached and playable in the app</h2>
+      <span class="badge progress">in-progress</span>
+    </header>
+    <p><b>Goal.</b> When an answer cites a council video at a timestamp, that exact moment is stored server-side and shown to the resident as a playable clip they can save and come back to.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>transcripts.js</code> — <code>citedMoments(text)</code> extracts every <code>youtube.com/watch?v=ID&amp;t=Ns</code> link (handles <code>&amp;amp;</code>, dedupes). <code>clipWindow(videoId, t)</code> reads the cached transcript and returns the −10s/+90s window as text plus <code>url</code>, <code>embed</code> (youtube-nocookie, <code>start=</code>), <code>hms</code>, meeting date. Video id validated against <code>^[\w-]{6,20}$</code> so it can't become a path.</li>
+      <li><code>server.js</code> — after the final assistant text of a turn, <code>saveClipsFor(text)</code> persists each cited moment to <code>data/clips.json</code> (keyed <code>VIDEO-SECONDS</code>, with <code>cited_at</code>) and streams a <code>clips</code> SSE event. Routes: <code>GET /api/clips</code> (newest first), <code>GET /api/clips/:id</code>. Prompt now tells the model to include the exact transcript excerpt url when quoting a meeting.</li>
+      <li><code>public/index.html</code> — <code>clipCard()</code>: thumbnail with timestamp badge → click swaps in the embedded player at that second; excerpt (expandable), "Save moment", "Open on YouTube". Sheet renamed "My stuff": Applications + Saved council moments (localStorage <code>sm_moments</code>); tapping a saved moment re-renders the clip and autoplays.</li>
+      <li><code>test.js</code> — citation parsing incl. dedupe/entity-escaped ampersand; path-injection guard on <code>clipWindow</code>.</li>
+      <li><code>transcripts.js</code> — <code>listVideos()</code> now walks <code>/streams</code> and <code>/videos</code> (council meetings are livestreams). Caption pull for ~248 streams re-running via <code>node warm.js</code>; per-video JSON cache means already-fetched videos are skipped.</li>
+    </ul>
+    <h3>Design notes</h3>
+    <ul>
+      <li>"Cache" = the transcript window text + metadata in <code>data/clips.json</code>; the full caption JSON per video already lives in <code>data/transcripts/</code>. We don't download video. The embed loads only on tap (thumbnail first) so answers with several citations stay light on phones.</li>
+      <li>Moments are detected from the model's final text, not from the tool results, so only what the answer actually cites becomes a clip.</li>
+    </ul>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1330">
     <header>
       <time>2026-10-17 13:30</time>
@@ -33,9 +84,9 @@
 
   <article class="entry" id="e-2026-10-17-1120">
     <header>
-      <time>2026-10-17 11:20</time>
+      <time>2026-10-17 11:30</time>
       <h2>Council records: full minutes archive (2015→) + YouTube caption transcripts; strict-schema fix</h2>
-      <span class="badge progress">in-progress</span>
+      <span class="badge done">done</span>
     </header>
     <p><b>Goal.</b> User asked whether every council meeting's transcript is stored. Answer was no (30 recent meetings, agendas+minutes only). This entry widens coverage to everything that is actually obtainable and adds real spoken-word transcripts where they exist.</p>
     <h3>Files</h3>
@@ -51,8 +102,8 @@
     <h3>Coverage reality (measured 2026-10-17)</h3>
     <table>
       <tr><th>Source</th><th>What it is</th><th>Coverage</th></tr>
-      <tr><td>Agendas &amp; Minutes dataset → IQM2</td><td>Agenda item text + official minutes PDF (roll call, motions, votes, speakers listed)</td><td>2015–2026: ~440 meetings, 373 with minutes. All ingested.</td></tr>
-      <tr><td>YouTube captions</td><td>Verbatim auto-captions of the full meeting</td><td>Only ~29 meetings are on YouTube (2017–2026, mostly 2025–26). All ingested.</td></tr>
+      <tr><td>Agendas &amp; Minutes dataset → IQM2</td><td>Agenda item text + official minutes PDF (roll call, motions, votes, speakers listed)</td><td>Ingested 395 past meetings → 9,232 chunks (<code>node warm.js</code>, 306 s). Two 2019 minutes PDFs timed out; cache logic retries them on next start.</td></tr>
+      <tr><td>YouTube captions</td><td>Verbatim auto-captions of the full meeting</td><td>First pass listed only the <code>/videos</code> tab (27 meetings). Council meetings are livestreamed, so the archive is under <code>/streams</code>: 641 streams, ~248 council-related. <code>transcripts.js</code> now lists both tabs; full caption pull running (see next entry).</td></tr>
       <tr><td>Granicus/IQM2 video archive</td><td>HLS video of every meeting</td><td>No caption/transcript track exposed; <code>video_url</code> empty in dataset. Not ingested.</td></tr>
     </table>
     <h3>Open question for user</h3>
@@ -82,6 +133,43 @@
     <h3>Acceptance</h3>
     <ul><li>No emoji in <code>public/index.html</code>; <code>grep -P '[\x{1F300}-\x{1FAFF}\x{2600}-\x{27BF}]'</code> returns nothing. Page renders in light + dark; mute toggle still works.</li>
       <li><b>Verified:</b> emoji grep returns 0; inline script passes <code>node --check</code>; mute toggle swaps <code>use[href]</code>. <b>Not verified:</b> visual render — both Chrome DevTools MCP servers were unreachable this session (browser lock / port 9223 refused).</li></ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1300">
+    <header>
+      <time>2026-10-17 13:00</time>
+      <h2>Chat "Thinking… forever" fixed: Opus is rate-capped in this workspace; default to Sonnet, no silent retries, cache dataset rows</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Symptom.</b> Every chat hung on "Thinking…" with zero SSE events for 110+ s, then (if at all) the whole answer appeared at once. Retrieval was not the cause: BM25 is in-RAM and the server answered static requests in &lt;1 ms during the hang.</p>
+    <p><b>Root cause (measured with a throwaway SDK probe, since deleted).</b> <code>claude-opus-5-5</code> returns <code>429 rate_limit_error: "would exceed the rate limit you configured in workspace Hackathon of 1 input tokens per minute"</code> on every call. The SDK's default <code>maxRetries: 2</code> honours <code>retry-after</code> and sleeps up to 60 s per retry with no events, so the browser saw nothing for ~2 min. <code>claude-haiku-5-5</code> and <code>claude-sonnet-5-5</code> answer in 0.7–1.0 s, and streaming via <code>messages.stream</code> delivers tokens incrementally (first event at 0.6 s). <code>models.list</code> and base URL are normal; no proxy env.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>server.js</code> — <code>MODEL = process.env.MODEL || "claude-sonnet-5-5"</code> (comment explains the Opus cap and how to lift it); stream call takes <code>{ maxRetries: 0, timeout: 120000 }</code> so a 429/529 reaches the existing error handler (<code>"Rate limited, try again in a moment."</code>) in under a second instead of hanging.</li>
+      <li><code>rag.js</code> — <code>queryDataset()</code> memoises CKAN <code>datastore_search</code> results in a <code>Map</code> keyed by the exact params, 10-min TTL (<code>ponytail:</code> unbounded; LRU/KV if it grows). Repeated demo questions skip the 0.3–15 s network hop.</li>
+    </ul>
+    <h3>Streaming (user asked for tokens to appear as generated)</h3>
+    <p>Already true end to end: server forwards each <code>text</code> delta as an SSE frame; <code>public/index.html</code> <code>send()</code> reads the body with <code>getReader()</code> and re-renders the bubble per frame (<code>index.html:246-249</code>). The "all at once" look was the retry stall. No frontend change.</p>
+    <h3>To use Opus again</h3>
+    <p>console.anthropic.com → workspace <i>Hackathon</i> → Limits → raise the per-model input-tokens-per-minute for claude-opus-5-5, then add <code>MODEL=claude-opus-5-5</code> to <code>.env</code> and restart.</p>
+    <p><b>Verified (curl -N against the restarted server).</b> Fresh session "hi": first token at 2.0 s, then word-by-word. Warm session dataset question: <code>search_city_knowledge</code> status at 1.6 s, <code>query_dataset</code> at 3.8 s, first text at 5.7 s, deltas every ~5 ms. Very first request after boot took 22 s to its first frame (prompt-cache write + cold path); later requests are 2–6 s. Row cache was not exercised by the model's query sequence (each call used different params); logic is a 4-line memo, covered by inspection.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1320">
+    <header>
+      <time>2026-10-17 13:20</time>
+      <h2>America.gov dark restyle + Sources pill with official department badges</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User shared two America.gov screenshots: near-black page, flag + serif wordmark top-left, blue "Menu" pill top-right, user messages as dark grey pills on the right, assistant replies as plain text in a centered column, a <b>Sources</b> pill (stacked circular badges) + thumbs/copy pills under each reply, suggestion pills, and a big rounded "Ask anything..." bar with mic and a blue circular send/stop button. Make this app look like that, and make the Sources pill show badges of the official Santa Monica departments the answer drew on.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>public/index.html</code> — full restyle (dark-only tokens, no bubbles for bot text, pill chips replace tiles, pill composer, stop button via <code>AbortController</code>, scroll-to-bottom button, Sources sheet). Sources are accumulated per turn (deduped by URL) and mapped to a department name + badge image by <code>deptOf()</code>. Badge images load from the departments' own public icon URLs (santamonica.gov apple-touch icon; favicon service for bigbluebus.com, data.santamonica.gov, filmsantamonica.com, youtube.com) with <code>/icon.svg</code> fallback — the user declined downloading them into the repo.</li>
+      <li><code>server.js</code> — <code>search_city_knowledge</code> sources now include knowledge-base chunks (URL parsed from the chunk's "Source:" line) and pass the dataset's publishing organisation as <code>org</code>; council sources tagged <code>kind:"council"</code>.</li>
+      <li><code>rag.js</code> — dataset docs carry <code>org</code> (CKAN organisation title) so it can be shown as the badge label.</li>
+    </ul>
+    <p><b>Not done (deliberately).</b> Thumbs up/down are visual only (no feedback endpoint). Follow-up suggestion pills after each reply would need the model to emit them; skipped.</p>
+    <p><b>Verify.</b> Inline script, <code>server.js</code> and <code>rag.js</code> all pass <code>node --check</code>. Screenshot not possible: chrome-devtools MCP profile is locked by another session, chrome-authed has no DevToolsActivePort. Server must be restarted (<code>npm start</code>) to pick up the <code>server.js</code>/<code>rag.js</code> source changes; the page itself is served fresh on reload.</p>
   </article>
 
   <article class="entry" id="e-2026-10-17-1240">
