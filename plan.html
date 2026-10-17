@@ -16,6 +16,20 @@
        Status badge classes: planned | progress | done | blocked.
        Do NOT log changes to ~/.claude/, plan.html itself, or the changelog server. -->
 
+  <article class="entry" id="e-2026-10-17-1212">
+    <header>
+      <time>2026-10-17 12:12</time>
+      <h2>Form wizard: single highlight on time/date fields, clear stale errors</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User screenshot: typing into the native <code>&lt;input type="time"&gt;</code> showed two highlights at once — the field's blue focus border plus WebKit's pale-blue selected-segment background — and "Enter both a start and an end time." stayed visible after both were filled.</p>
+    <ul>
+      <li><code>public/index.html</code> CSS — time/date inputs: <code>color-scheme:dark</code>; on focus the border stays neutral with a 2px accent ring, and the focused <code>::-webkit-datetime-edit-*-field</code> segment uses the same accent (<code>--blue</code> bg, white text), so it reads as one highlight.</li>
+      <li><code>public/index.html</code> JS — wizard step clears the <code>.error</code> text on any <code>input</code> event in the field.</li>
+    </ul>
+    <p>Not visually verified (Chrome MCP still locked by another session); the pseudo-elements are WebKit/Blink-only, Firefox keeps its own segment style.</p>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1420">
     <header>
       <time>2026-10-17 14:20</time>
@@ -82,6 +96,36 @@
     <h3>Not changed</h3>
     <ul>
       <li>Server-side SSE path (<code>res.write</code> per delta) — verified not the bottleneck. <code>npm test</code> still fails on the parallel work's <code>pertinentSources</code> assertion (test.js:40), untouched here.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1320">
+    <header>
+      <time>2026-10-17 13:20</time>
+      <h2>Voice mode: one-or-two-sentence spoken answers, human voice</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: in the talk feature the assistant "shouldn't talk in full paragraphs", one or two sentences like a person; and the voice "sounds super robotic", find a better text-to-speech.</p>
+    <h3>Findings</h3>
+    <ul>
+      <li>Voice turns went through the same <code>/chat</code> as typed ones, so the model wrote its normal multi-paragraph, bulleted answer and the client read the whole thing aloud (<code>public/index.html</code> <code>rec.onend</code> &rarr; <code>send(text)</code> &rarr; <code>speak(reply)</code>).</li>
+      <li>The robotic voice is the browser's <code>speechSynthesis</code> fallback. A natural-voice path already exists: <code>POST /tts</code> &rarr; ElevenLabs (<code>server.js</code>), used automatically when <code>ELEVENLABS_API_KEY</code> is set. <b>No key is set in <code>.env</code></b>, so <code>/tts</code> returns 404 and the client falls back to the browser voice.</li>
+    </ul>
+    <h3>Files</h3>
+    <ul>
+      <li><code>public/index.html</code> &mdash; <code>send(text, voice)</code> posts <code>voice: true</code> from voice mode.</li>
+      <li><code>server.js</code> &mdash; <code>/chat</code> reads <code>voice</code>; <code>chat()</code> adds a <code>VOICE_RULE</code> system block (after the cached prefix) only on voice turns: one or two spoken sentences, lead with the fact, no lists/markdown/links/citations, still use tools.</li>
+      <li><code>.env.example</code> &mdash; documents <code>ELEVENLABS_API_KEY</code>, <code>ELEVENLABS_VOICE</code>, <code>ELEVENLABS_MODEL</code>.</li>
+    </ul>
+    <h3>Verified (13:30, temp server :8798)</h3>
+    <ul>
+      <li>"How do I get a permit for a block party on my street?" with <code>voice:true</code> &rarr; 1 sentence, 66 chars ("I've opened the block party permit application for you to fill in."). Same question without the flag &rarr; 11 sentences, 636 chars with bullets. The form card still opens on both.</li>
+      <li><code>.env.example</code> already documented the ElevenLabs vars (parallel session); nothing added.</li>
+    </ul>
+    <h3>Voice quality: nothing more to build, needs a key</h3>
+    <ul>
+      <li>The ElevenLabs path is wired and streams MP3 to the client; the browser voice only plays because <code>ELEVENLABS_API_KEY</code> is empty. Add the key to <code>.env</code> and restart.</li>
+      <li>Model choice (ElevenLabs docs + aggregator listings, 2026-10-17): <code>eleven_flash_v2_5</code> ~75 ms latency, best for back-and-forth conversation; <code>eleven_turbo_v2_5</code> (current default) ~275 ms, better quality; <code>eleven_v3</code> most expressive, slower, 5k-char limit. Newer "v4 Turbo" (~100 ms) is mentioned in a Sept 2026 article but its model id isn't confirmed in official docs, so the default stays <code>eleven_turbo_v2_5</code>; set <code>ELEVENLABS_MODEL=eleven_flash_v2_5</code> if latency matters more than polish. Sources: <a href="https://elevenlabs.io/docs/models">elevenlabs.io/docs/models</a>, <a href="https://elevenlabs.io/docs/api-reference/reducing-latency">reducing latency</a>, <a href="https://codesota.com/speech/elevenlabs-vs-cartesia">codesota comparison</a>, <a href="https://propakistani.pk/2026/09/29/elevenlabs-unveils-its-fastest-most-expressive-voice-ai-models-yet/amp/">ProPakistani on v4</a>.</li>
     </ul>
   </article>
 
@@ -199,7 +243,7 @@
     <header>
       <time>2026-10-17 11:36</time>
       <h2>Council transcripts: every meeting ever posted to YouTube (back to July 2014)</h2>
-      <span class="badge progress">in-progress</span>
+      <span class="badge done">done</span>
     </header>
     <p><b>Goal.</b> User: "every single Santa Monica City Council meeting that's ever been reported on YouTube", not just 2015+. The lister only walked the main city channel, whose council meetings start in 2017 (plus one 2014 stream), so 2014&ndash;2016 was missing.</p>
     <h3>What exists on YouTube (searched 2026-10-17 with <code>yt-dlp ytsearch</code>, 5 phrasings &times; 40 results)</h3>
@@ -224,7 +268,11 @@
       <li><b>11:50 &mdash; YouTube bot-check hit.</b> The pull for the 11 new videos got "Sign in to confirm you're not a bot" on every one. Cause: 10 concurrent <code>yt-dlp</code> processes from <b>four</b> <code>node --env-file=.env server.js</code> instances (started 11:41&ndash;11:43, other sessions) plus <code>node warm.js</code>, each ingesting transcripts in parallel. The block is still active (single probe 11:50). Those processes keep writing empty "no captions" records while blocked.</li>
       <li><code>transcripts.js fetchTranscript</code> patched: a yt-dlp error now stores <code>checked_at: 0</code> so the next run retries immediately (the parallel session's weekly re-check would have waited 7 days); optional <code>YT_COOKIES_FROM_BROWSER=chrome</code> env passes <code>--cookies-from-browser</code> if the block persists. Deleted 70 empty cache records written during the blocked window so they get re-pulled.</li>
       <li><b>12:15:</b> block lifted (probe returns the title again); <code>warm.js</code> from 11:38 finished; one server instance still pulling. Queued a background job: wait until no <code>yt-dlp</code> is running &rarr; delete empty records written during the block &rarr; one <code>node warm.js</code> (2 concurrent) with the new code, which pulls the 11 new 2014&ndash;2017 videos and re-checks the rest. Result lands in this entry when it finishes.</li>
-      <li><b>Still pending:</b> the four duplicate <code>server.js</code> instances (other sessions) &mdash; each one re-ingests transcripts at boot, which is what tripped the bot check. Run one.</li>
+      <li><b>12:40 re-warm result:</b> 275 videos listed, 28,812 transcript chunks; YouTube re-blocked partway through the oldest videos, leaving 6 captioned meetings unpulled (2015-11-24 &rarr; 2016-06-28).</li>
+      <li><b>12:45&ndash;13:05 Chrome pass (user: "use the live Chrome tab").</b> Attached to the Chrome the user launched on port 9223 (<code>chrome-profile</code> MCP). In one tab, fetched all 106 then-unresolved watch pages inside the browser session and read each page's <code>ytInitialPlayerResponse.captions</code>: <b>32 have an English auto-caption track, 74 have none</b> (YouTube's own player says "Subtitles/closed captions unavailable" on them, e.g. the March 10, 2026 meeting). The caption URL can't be fetched from the page (needs a player token, returns 0 bytes), but the on-page transcript panel can be read: expand description &rarr; "Show transcript" &rarr; panel <code>PAmodern_transcript_view</code> renders every <code>transcript-segment-view-model</code> (timestamp + text, not virtualised). Pulled the 6 remaining meetings that way in parallel background tabs and saved them straight to <code>data/transcripts/&lt;id&gt;.json</code> in the same shape yt-dlp produces (<code>toDocs()</code> chunks them: 121&ndash;233 docs each).</li>
+      <li><b>Final coverage (13:05):</b> 275 council meeting videos on YouTube &rarr; <b>201 have a transcript indexed; 74 have no captions on YouTube at all</b>, so nothing to pull. By year (videos / with transcript): 2014 2/0, 2015 3/3, 2016 5/3, 2017 27/8, 2018 22/7, 2019 27/14, 2020 31/26, 2021 32/25, 2022 33/27, 2023 27/26, 2024 23/21, 2025 24/23, 2026 19/18. The newest meetings (Oct 13, Sep 22, Sep 8, 2026) have full transcripts (8k&ndash;11k cues).</li>
+      <li><b>Why the app said "we don't have the latest meeting":</b> the four servers started 11:41&ndash;11:43 built their index before the pull finished (and with the empty-news-index bug). <b>Restart one server</b> and every transcript above is indexed at boot.</li>
+      <li><b>The 74 without captions</b> (mostly 2017&ndash;2019, plus 2026-03-10 "Lost some Audio", 2025-10-20, 2024-03-19/26, 2023-01-24, most of 2022 H1) can only be transcribed from the Granicus/YouTube audio with a speech-to-text job &mdash; same open decision as the 11:30 entry.</li>
     </ul>
   </article>
 
@@ -284,6 +332,7 @@
       <li><b>13:02 follow-up (user):</b> app renamed "Ask Santa Monica" → <b>GovAI</b> in <code>&lt;title&gt;</code>, header brand, and <code>manifest.webmanifest</code> name/short_name.</li>
       <li><b>13:05 follow-up (user):</b> icon changed from the ferris wheel to a government building (pediment + columns) with an AI spark: <code>public/icon.svg</code> (app/PWA icon) and the inline header <code>.mark</code> SVG.</li>
       <li><b>13:08 follow-up (user):</b> icon colors: app icon now a blue→navy gradient tile, white building, amber spark; header mark uses ink-colored building with an amber filled spark instead of the all-blue stroke.</li>
+      <li><b>13:12 follow-up (user):</b> thumbs and copy were effectively dead (thumbs toggled a class only; copy wrote <code>bot.innerText</code> incl. the "Sources" pill with no visible confirmation). Now: thumbs POST <code>/api/feedback</code> {sessionId, vote, answer} → appended to <code>data/feedback.jsonl</code> (new route in <code>server.js</code>), with a "Thanks…" note and toggle-off support; copy copies only the answer text (<code>answerText()</code> strips <code>.acts</code>), has an <code>execCommand</code> fallback, and flips the icon to a check for 1.5s.</li>
     </ul>
     <h3>Retrieval before → after (block-party chip)</h3>
     <pre><code>before: 29.0 Block Party | 15.3 Preferential Parking | 14.8 Street Sweeping | 14.5 Building Permits | 12.4 Community Event | 10.9 Water Usage (dataset)   → all 6 shown as sources

@@ -341,7 +341,10 @@ function withSessionLock(sessionId, fn) {
   return next;
 }
 
-async function chat(sessionId, userText, send) {
+// Voice mode: the resident hears the reply read aloud, so it has to sound like a person talking, not a page.
+const VOICE_RULE = `Voice mode: the resident is speaking to you and will hear your reply read aloud. Answer in one or two short spoken sentences, the way a person answers a question out loud. Lead with the single most useful fact, then at most a short offer of the next step. No lists, bullet points, markdown, headers, links, URLs, phone numbers spelled as digits with dashes, or citations in the text; say "the city's website" rather than reading an address. Still look things up with your tools first; just say the answer briefly.`;
+
+async function chat(sessionId, userText, send, voice = false) {
   const messages = sessions.get(sessionId) ?? [];
   sessions.set(sessionId, messages);
   messages.push({ role: "user", content: userText });
@@ -357,6 +360,7 @@ async function chat(sessionId, userText, send) {
       system: [
         { type: "text", text: SYSTEM, cache_control: { type: "ephemeral" } },
         { type: "text", text: `Today is ${new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric", timeZone: "America/Los_Angeles" })} (Pacific time).` }, // after the cache breakpoint so the prefix stays cached
+        ...(voice ? [{ type: "text", text: VOICE_RULE }] : []),
       ],
       tools,
       messages,
@@ -413,16 +417,16 @@ const server = http.createServer(async (req, res) => {
   if (req.method === "POST" && req.url === "/chat") {
     let body = "";
     for await (const chunk of req) body += chunk;
-    let sessionId, message;
+    let sessionId, message, voice;
     try {
-      ({ sessionId, message } = JSON.parse(body));
+      ({ sessionId, message, voice } = JSON.parse(body));
       if (typeof message !== "string" || !message.trim() || message.length > 8000) throw new Error("bad message");
       if (typeof sessionId !== "string" || !/^[\w-]{1,64}$/.test(sessionId)) throw new Error("bad session");
     } catch { res.writeHead(400).end("bad request"); return; }
     res.writeHead(200, { "Content-Type": "text/event-stream", "Cache-Control": "no-cache", Connection: "keep-alive" });
     const send = (ev) => res.write(`data: ${JSON.stringify(ev)}\n\n`);
     try {
-      await withSessionLock(sessionId, () => chat(sessionId, message.trim(), send));
+      await withSessionLock(sessionId, () => chat(sessionId, message.trim(), send, voice === true));
     } catch (e) {
       const msg = e instanceof Anthropic.AuthenticationError ? "Server is missing a valid ANTHROPIC_API_KEY (see .env.example)."
         : e instanceof Anthropic.RateLimitError ? "Rate limited, try again in a moment."
@@ -467,6 +471,18 @@ const server = http.createServer(async (req, res) => {
       for await (const chunk of r.body) res.write(chunk);
       res.end();
     } catch (e) { console.error("tts:", e.message); if (!res.headersSent) res.writeHead(502).end(); else res.end(); }
+    return;
+  }
+  if (req.method === "POST" && req.url === "/api/feedback") { // thumbs up/down on an answer → data/feedback.jsonl
+    let body = "";
+    for await (const chunk of req) body += chunk;
+    try {
+      const { sessionId, vote, answer } = JSON.parse(body);
+      if (![null, "up", "down"].includes(vote) || typeof answer !== "string") throw new Error("bad feedback");
+      fs.mkdirSync("./data", { recursive: true });
+      fs.appendFileSync("./data/feedback.jsonl", JSON.stringify({ at: new Date().toISOString(), sessionId: String(sessionId).slice(0, 64), vote, answer: answer.slice(0, 4000) }) + "\n");
+      res.writeHead(204).end();
+    } catch { res.writeHead(400).end("bad request"); }
     return;
   }
   if (req.method === "GET" && req.url === "/api/clips") {

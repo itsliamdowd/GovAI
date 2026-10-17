@@ -46,7 +46,7 @@
   .dots { display:inline-flex; gap:4px } .dots i { width:5px; height:5px; border-radius:50%; background:var(--muted); animation:b 1s infinite } .dots i:nth-child(2){animation-delay:.15s} .dots i:nth-child(3){animation-delay:.3s}
   @keyframes b { 0%,80%,100% { opacity:.25 } 40% { opacity:1 } }
   /* action row under a reply: Sources pill, thumbs, copy */
-  .acts { display:flex; gap:6px; margin:14px 0 0; flex-wrap:wrap; align-items:center }
+  .acts { display:flex; gap:6px; margin:14px 0 0; flex-wrap:wrap; align-items:center } .fbnote { color:var(--muted); font-size:12.5px; margin-left:4px }
   .pill { display:inline-flex; align-items:center; gap:8px; background:transparent; border:1px solid var(--line); border-radius:999px; padding:0 12px; height:34px; color:var(--ink); font-size:13px; cursor:pointer; transition:background .12s }
   .pill:hover { background:var(--pill) } .pill.icons { padding:0 2px; gap:0; border-color:transparent } .pill.icons button { background:none; border:0; color:var(--muted); width:30px; height:30px; border-radius:50%; cursor:pointer; display:grid; place-items:center } .pill.icons button:hover,.pill.icons button.on { background:var(--pill); color:var(--ink) }
   .pill svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round }
@@ -64,6 +64,9 @@
   .form .bar { height:3px; background:var(--line); border-radius:2px; overflow:hidden; margin:6px 0 14px } .form .bar i { display:block; height:100%; background:var(--blue); transition:width .25s }
   .form label { display:block; font-size:15px; font-weight:500; margin:0 0 6px } .form .hint { color:var(--muted); font-size:13px; margin:-2px 0 10px; line-height:1.45 }
   .form input,.form select,.form textarea { width:100%; background:var(--bg); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:10px 12px; font:inherit; font-size:15px; outline:none } .form :is(input,select,textarea):focus { border-color:var(--blue-2) } .form textarea { min-height:84px; resize:vertical }
+  /* native time/date pickers: one highlight only — the focused segment takes the field's accent, the field border stays quiet */
+  .form input:is([type=time],[type=date]) { color-scheme:dark } .form input:is([type=time],[type=date]):focus { border-color:var(--line); box-shadow:0 0 0 2px var(--blue) }
+  .form input:is([type=time],[type=date])::-webkit-datetime-edit-hour-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-minute-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-ampm-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-month-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-day-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-year-field:focus { background:var(--blue); color:#fff; border-radius:4px; outline:none }
   .form .range { display:flex; align-items:center; gap:10px } .form .range input { flex:1; min-width:0 } .form .range span { color:var(--muted); font-size:14px }
   .form .choices { display:flex; flex-wrap:wrap; gap:8px } .form .choices button { border:1px solid var(--line); background:var(--bg); color:var(--ink); border-radius:999px; padding:10px 16px; font:inherit; font-size:14px; cursor:pointer; text-align:left } .form .choices button:hover { border-color:var(--blue-2) } .form .choices button.on { border-color:var(--blue); background:#16243a }
   .form .nav { display:flex; gap:8px; justify-content:space-between; margin-top:14px } .form .nav button { border:1px solid var(--line); border-radius:999px; height:34px; padding:0 16px; font:inherit; font-size:13px; font-weight:500; cursor:pointer; background:transparent; color:var(--ink) } .form .nav .next { background:var(--blue); border-color:var(--blue); color:#fff } .form .nav .next:hover { background:var(--blue-2) } .form .nav button:disabled { opacity:.35; cursor:default }
@@ -205,7 +208,10 @@ const ICONS = {
   copy: '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg>',
   send: '<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
   stop: '<svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="3"/></svg>',
+  check: '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
 };
+// The answer's own text, without the action row (Sources / thumbs / copy) that lives inside the same bubble.
+function answerText(bot) { const c = bot.cloneNode(true); c.querySelector(".acts")?.remove(); return c.innerText.trim(); }
 
 // Official department badges: each source is mapped to the city department that published it and that department's own icon.
 const CITY_ICON = "https://www.santamonica.gov/SantaMonica.Gov.Theme/Icons/favicon/apple-icon-180x180.png";
@@ -283,10 +289,22 @@ function actionRow(bot, sources) {
   if (sources.length) row.appendChild(sourcesPill(sources));
   const fb = document.createElement("div"); fb.className = "pill icons";
   fb.innerHTML = `<button type="button" aria-label="Good response">${ICONS.up}</button><button type="button" aria-label="Bad response">${ICONS.down}</button>`;
-  for (const btn of fb.querySelectorAll("button")) btn.onclick = () => { for (const o of fb.querySelectorAll("button")) o.classList.toggle("on", o === btn && !o.classList.contains("on")); }; // ponytail: visual only, no feedback endpoint
+  const [upBtn, downBtn] = fb.querySelectorAll("button");
+  for (const btn of [upBtn, downBtn]) btn.onclick = () => {
+    const vote = btn.classList.contains("on") ? null : btn === upBtn ? "up" : "down";
+    upBtn.classList.toggle("on", vote === "up"); downBtn.classList.toggle("on", vote === "down");
+    fetch("/api/feedback", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sessionId, vote, answer: answerText(bot).slice(0, 4000) }) }).catch(() => {});
+    note.textContent = vote ? (vote === "up" ? "Thanks for the feedback" : "Thanks, we'll review this answer") : ""; note.style.display = vote ? "" : "none";
+  };
   const cp = document.createElement("div"); cp.className = "pill icons"; cp.innerHTML = `<button type="button" aria-label="Copy">${ICONS.copy}</button>`;
-  cp.firstChild.onclick = () => navigator.clipboard?.writeText(bot.innerText);
-  row.append(fb, cp);
+  cp.firstChild.onclick = async (e) => {
+    const b = e.currentTarget, text = answerText(bot);
+    try { await navigator.clipboard.writeText(text); }
+    catch { const ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); }
+    b.innerHTML = ICONS.check; b.classList.add("on"); setTimeout(() => { b.innerHTML = ICONS.copy; b.classList.remove("on"); }, 1500);
+  };
+  const note = document.createElement("span"); note.className = "fbnote"; note.style.display = "none";
+  row.append(fb, cp, note);
   return row;
 }
 
@@ -352,7 +370,7 @@ else {
     if (!active || muted) return;
     const text = vtext.textContent.trim(); if (!text) return listen();
     setState("thinking", "Thinking…");
-    const reply = (await send(text)).innerText.trim();
+    const reply = (await send(text, true)).innerText.trim(); // voice: true → server asks for a one-or-two-sentence spoken answer
     if (!active) return;
     if (!reply) return listen();
     setState("speaking", ""); vtext.textContent = reply;
@@ -410,7 +428,7 @@ form.onsubmit = (e) => {
   send(text);
 };
 // Sends one user message, streams the reply into the log, resolves with the bot element.
-async function send(text) {
+async function send(text, voice = false) {
   $("hero")?.remove();
   add("me").textContent = text;
   ctrl = new AbortController(); sendBtn.classList.add("stop"); sendBtn.innerHTML = ICONS.stop; sendBtn.setAttribute("aria-label", "Stop");
@@ -436,7 +454,7 @@ async function send(text) {
   // The dev server (node --watch) restarts on every file save, killing in-flight requests and refusing new ones for a few
   // seconds while the index rebuilds. If nothing has streamed yet, wait for it to come back and resend once instead of failing.
   for (let attempt = 0; ; attempt++) try {
-    const res = await fetch("/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sessionId, message: text }), signal: ctrl.signal });
+    const res = await fetch("/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sessionId, message: text, voice }), signal: ctrl.signal });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const reader = res.body.getReader(), dec = new TextDecoder(); let carry = "";
     while (true) {
@@ -521,10 +539,10 @@ function formCard(f) {
       for (const b of el.querySelectorAll("button")) b.onclick = () => { vals[fld.key] = b.textContent; go(1); };
       read = () => vals[fld.key] ?? ""; invalid = () => read() ? "" : "Pick one.";
     } else if (fld.type === "select") { el = document.createElement("select"); el.innerHTML = `<option value="">Choose…</option>` + fld.options.map((o) => `<option>${esc(o)}</option>`).join(""); }
-    else if (fld.type === "timerange") { // two native time pickers, 15-minute steps; stored as "2:00 PM – 8:00 PM"
+    else if (fld.type === "timerange") { // two native time pickers; stored as "2:00 PM – 8:00 PM"
       el = document.createElement("div"); el.className = "range";
       const [s0 = "", e0 = ""] = raw[fld.key] ?? [];
-      el.innerHTML = `<input type="time" id="ff" step="900" required value="${s0}"><span>to</span><input type="time" step="900" required value="${e0}">`;
+      el.innerHTML = `<input type="time" id="ff" required value="${s0}"><span>to</span><input type="time" required value="${e0}">`;
       const [a, b] = el.querySelectorAll("input");
       const fmt = (t) => { const [h, m] = t.split(":").map(Number); return `${h % 12 || 12}:${String(m).padStart(2, "0")} ${h < 12 ? "AM" : "PM"}`; };
       read = () => { raw[fld.key] = [a.value, b.value]; return `${fmt(a.value)} – ${fmt(b.value)}`; };
@@ -538,6 +556,7 @@ function formCard(f) {
     }
     if (el.tagName !== "DIV") { el.id = "ff"; el.required = !fld.optional; if (fld.placeholder) el.placeholder = fld.placeholder; if (vals[fld.key] != null) el.value = vals[fld.key]; }
     c.querySelector(".ffwrap").appendChild(el); (el.querySelector?.("input,button") ?? el).focus();
+    el.addEventListener("input", () => { c.querySelector(".error").textContent = ""; }); // a stale "required" message shouldn't sit under a field being filled
     el.onkeydown = (e) => { if (e.key === "Enter" && fld.type !== "textarea") { e.preventDefault(); go(1); } };
     c.querySelector(".back").onclick = () => go(-1); c.querySelector(".next").onclick = () => go(1);
   }
