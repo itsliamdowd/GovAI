@@ -20,7 +20,7 @@ Env: `ANTHROPIC_API_KEY` (required), `PORT` (default 8787), `COUNCIL_MEETINGS` (
 
 - `server.js` — Node http server. Streams Claude responses over SSE to the browser. Tools: `search_city_knowledge`, `query_dataset`, `search_council_meetings`, `web_search` (santamonica.gov only), `open_application_form`, `submit_application`, `check_application_status`, `create_alert`, `cancel_alert`. Sources shown under an answer are only knowledge chunks scoring near the top hit (each carries its section's `Source:` URL) plus datasets actually read via `query_dataset`.
 - `forms.js` — predefined applications (block party, preferential parking, bulky pickup, business license, dog license, community event, 311). Each lists the information the city's own page asks for; the browser renders it as a step-by-step card (Next → Submit → ✓) and files it via `POST /api/applications`.
-- `rag.js` — BM25 index over `knowledge/*.md` chunks and the CKAN dataset catalog (titles, notes, tags, field names). `query_dataset` hits the CKAN datastore live.
+- `rag.js` — incremental BM25 inverted index (stemmed unigrams + content bigrams) over `knowledge/*.md` chunks, the CKAN dataset catalog, council agendas/minutes/transcripts, GIS layers and news. `addDocs()` appends without rebuilding; search results are LRU-cached until docs change; `query_dataset` hits the CKAN datastore live with a capped 10-minute row cache. Everything indexes from committed `data/` at startup (~2.5 s for ~42k chunks).
 - `council.js` — pulls City Council meetings from the Agendas & Minutes dataset, fetches agenda text (IQM2) and minutes (PDF → text), chunks and indexes them. Cached in `data/council/`.
 - `sources.js` — everything else Santa Monica (see below): local news feeds, city + county GIS layers, live federal/state/county APIs.
 - `public/` — single-page PWA (installable, dark mode, voice input, "My applications" tracker in localStorage).
@@ -34,6 +34,24 @@ Beyond `knowledge/*.md`, the 82 data.santamonica.gov datasets and council agenda
 - **GIS layers** (`query_gis`, catalog cached in `data/gis.json`): ~200 City of Santa Monica layers from gis-smgov.opendata.arcgis.com (zoning, land use, parcels, preferential parking, street sweeping, bike network, trees, historic resources, hazard/evacuation zones, airport noise, transit stops, vote precincts, census geography…) and ~800 LA County eGIS layers, queryable by address (geocoded with Nominatim) or SQL `where`. County political-boundary layers answer "who represents this address".
 - **Live & external** (`get_live_data`): NWS forecast/alerts, NOAA tides & water temp (Santa Monica Pier), USGS earthquakes, AirNow AQI, Heal the Bay beach grades, Lime scooter/bike availability (GBFS), Big Blue Bus GTFS-RT service alerts, OpenSky aircraft near SMO, Caltrans I-10/PCH cameras, CDC PLACES health estimates, BLS unemployment, LA County Assessor parcel records, Wikipedia, data.ca.gov datasets (query them with `query_dataset portal=california`), Census ACS profile (set `CENSUS_API_KEY`).
 - **web_search** is allowed on city, county, state and local-news domains.
+
+## Data collection (maintainer only)
+
+The server never collects data at runtime. It serves from the committed `data/` directory: open-data catalog, council agendas and minutes, meeting transcripts, GIS layer catalog, local news items. A fresh clone works offline against those files.
+
+To refresh, run the collector on your own machine and commit the result:
+
+```bash
+node warm.js              # everything (CKAN catalog, IQM2 minutes, YouTube captions via yt-dlp, GIS, news)
+node warm.js transcripts  # just one: catalog | council | transcripts | gis | news
+git add data && git commit -m "refresh city data"
+```
+
+Needs `pdftotext` (poppler) for minutes and `yt-dlp` for captions. Setting `COLLECT=1` in `.env` makes a running server also refresh in the background (daily council re-pull before alerts, news every 30 minutes). Leave it unset anywhere else.
+
+Per-request lookups still go live when a resident asks something (open-data rows, web search on santamonica.gov, GIS address queries, Big Blue Bus alerts). Those answer one question; they don't crawl.
+
+Resident data (`applications.json`, `clips.json`, `alerts.json`, `feedback.jsonl`, `outbox/`) stays local and is gitignored.
 
 ## Daily watch alerts
 

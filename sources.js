@@ -109,8 +109,8 @@ const COUNTY_EXTRA = [
   kind: "gis", org: "LA County eGIS", title: `LA County ${name}`, url: "https://egis-lacounty.hub.arcgis.com/", service: `https://public.gis.lacounty.gov/public/rest/services/LACounty_Dynamic/Political_Boundaries/MapServer/${id}`,
   notes: `Which ${name.replace(/ \(.*\)/, "")} a Santa Monica address falls in (${syn}). Query with an address.`, keywords: ["district", "representative", "elected", "who represents me", "my", ...syn.split(" ")],
 }));
-export async function loadGisCatalog(log = console.error) {
-  try { const c = JSON.parse(fs.readFileSync(GIS_FILE, "utf8")); if (Date.now() - c.fetched_at < 24 * 3600e3) return c.layers; } catch {}
+export async function loadGisCatalog(log = console.error, refresh = false) {
+  try { const c = JSON.parse(fs.readFileSync(GIS_FILE, "utf8")); if (!refresh || Date.now() - c.fetched_at < 24 * 3600e3) return c.layers; } catch { if (!refresh) return []; }
   const layers = [...COUNTY_EXTRA];
   for (const cat of CATALOGS) {
     try {

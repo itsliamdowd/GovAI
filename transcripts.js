@@ -122,6 +122,17 @@ export async function ingestTranscripts(onDocs, log = console.error) {
   return docs.length;
 }
 
+/** Offline: rebuild transcript docs from data/transcripts/ only. No network, no yt-dlp. */
+export function loadTranscriptCache() {
+  let videos = [];
+  try { videos = JSON.parse(fs.readFileSync(`${DIR}/videos.json`, "utf8")).videos; } catch { return { docs: [], count: 0 }; }
+  const docs = []; let count = 0;
+  for (const v of videos) {
+    try { const rec = JSON.parse(fs.readFileSync(`${DIR}/${v.id}.json`, "utf8")); if (rec.segments.length) { count++; docs.push(...toDocs(rec)); } } catch {}
+  }
+  return { docs, count };
+}
+
 /** Transcript window around a cited moment, from the local cache. Returns null if that video isn't cached. */
 export function clipWindow(videoId, t, before = 10, after = 90) {
   if (!/^[\w-]{6,20}$/.test(videoId)) return null;

@@ -83,7 +83,7 @@
   .clip .body { padding:10px 14px 12px } .clip .body b { font-size:13px } .clip .body p { margin:4px 0 8px; font-size:13.5px; color:var(--muted); max-height:4.6em; overflow:hidden; line-height:1.5 } .clip .body p.open { max-height:none }
   .clip .cacts { display:flex; gap:6px; flex-wrap:wrap } .clip .cacts a,.clip .cacts button { font:inherit; font-size:12.5px; color:var(--ink); background:transparent; border:1px solid var(--line); border-radius:999px; padding:4px 10px; text-decoration:none; cursor:pointer } .clip .cacts a:hover,.clip .cacts button:hover { background:var(--pill-2) }
   /* composer */
-  form { position:fixed; left:0; right:0; bottom:0; padding:12px 16px calc(12px + var(--sab)); background:linear-gradient(transparent, var(--bg) 40%); z-index:5 }
+  #f { position:fixed; left:0; right:0; bottom:0; padding:12px 16px calc(12px + var(--sab)); background:linear-gradient(transparent, var(--bg) 40%); z-index:5 } /* composer only: a bare `form` selector also pinned the menu's watch form to the viewport */
   .row { max-width:720px; margin:0 auto; display:flex; gap:4px; align-items:flex-end; background:var(--pill); border:1px solid var(--line); border-radius:26px; padding:6px 6px 6px 18px; transition:border-color .12s }
   .row:focus-within { border-color:#4a515b }
   textarea { flex:1; resize:none; border:0; background:transparent; color:var(--ink); font:inherit; font-size:16px; padding:10px 0; max-height:160px; outline:none; line-height:1.4 } textarea::placeholder { color:#7d848d }
@@ -102,6 +102,10 @@
   .panel .app { border:1px solid var(--line); border-radius:12px; padding:10px 12px; margin:6px 0; font-size:14px } .panel .app b { font-family:ui-monospace,monospace } .panel .app .st { float:right; font-size:10.5px; text-transform:uppercase; color:var(--ok); background:var(--ok-bg); padding:2px 8px; border-radius:999px }
   .panel .mom { display:flex; gap:10px; align-items:center; border:1px solid var(--line); border-radius:12px; padding:8px 10px; margin:6px 0; font-size:13.5px; cursor:pointer } .panel .mom:hover { background:var(--pill) } .panel .mom img { width:64px; aspect-ratio:16/9; object-fit:cover; border-radius:6px; flex:none } .panel .mom small { color:var(--muted); display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
   .panel .empty { color:var(--muted); font-size:14px }
+  .panel .watch { display:grid; gap:8px; margin:4px 0 2px } .panel .watch input { width:100%; background:var(--bg); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:10px 12px; font:inherit; font-size:14px; outline:none } .panel .watch input:focus { border-color:var(--blue-2) }
+  .panel .watch .hint { color:var(--muted); font-size:13px; line-height:1.45; margin:0 0 4px } .panel .watch .go { width:100%; background:var(--blue); color:#fff; border:0; border-radius:999px; height:40px; padding:0 16px; font:inherit; font-size:14px; font-weight:500; cursor:pointer } .panel .watch .go:hover { background:var(--blue-2) } .panel .watch .go:disabled { opacity:.5 }
+  .panel .app.watching { border-color:#2b3a55; background:#0f1626 } .panel .app.watching b { font-family:inherit; font-size:15px } .panel .app.watching .st { color:var(--info); background:var(--info-bg) } .panel .app .stop,.panel .app .edit { margin-top:8px; background:transparent; color:var(--ink); border:1px solid var(--line); border-radius:999px; height:30px; padding:0 12px; font:inherit; font-size:12.5px; cursor:pointer } .panel .app .stop:hover { border-color:var(--err); color:var(--err) }
+  .panel .app .stop { display:inline-block; margin:8px 6px 0 0; background:transparent; border:1px solid var(--line); border-radius:999px; padding:4px 12px; font:inherit; font-size:12px; color:var(--ink); cursor:pointer } .panel .app .stop:hover { border-color:var(--err); color:var(--err) }
   .panel .app .edit { display:block; margin-top:8px; background:transparent; border:1px solid var(--line); border-radius:999px; padding:4px 12px; font:inherit; font-size:12px; color:var(--ink); cursor:pointer } .panel .app .edit:hover { border-color:var(--blue) }
   .panel .close { margin-top:14px; width:100%; padding:12px; border:1px solid var(--line); border-radius:999px; background:transparent; color:var(--ink); font:inherit; font-size:14px; font-weight:500; cursor:pointer } .panel .close:hover { background:var(--pill) }
   .srcitem { display:flex; gap:14px; align-items:center; padding:12px 0; border-bottom:1px solid var(--line); text-decoration:none; color:inherit } .srcitem:last-of-type { border:0 }
@@ -110,11 +114,11 @@
   /* voice mode */
   .voice { position:fixed; inset:0; z-index:20; background:var(--bg); color:var(--ink); display:none; flex-direction:column; align-items:center; justify-content:center; gap:26px; padding:24px }
   .voice.open { display:flex }
-  .orb { width:min(52vw,220px); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle at 38% 35%, #fff 0%, #d7ecff 30%, #56c1e8 62%, #0b5fb3 100%); box-shadow:0 0 50px 8px rgba(86,193,232,.45), 0 0 140px 40px rgba(59,143,240,.22); transition:transform .07s linear; animation:breathe 3.2s ease-in-out infinite }
+  .orb { width:min(52vw,220px); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle at 38% 35%, #fff 0%, #d7ecff 30%, #56c1e8 62%, #0b5fb3 100%); box-shadow:0 0 50px 8px rgba(86,193,232,.45), 0 0 140px 40px rgba(59,143,240,.22); transition:transform .3s ease-out; animation:breathe 4s ease-in-out infinite }
   @keyframes breathe { 50% { box-shadow:0 0 70px 14px rgba(86,193,232,.55), 0 0 160px 50px rgba(59,143,240,.28) } }
   .voice[data-state="thinking"] .orb { background:conic-gradient(from 0deg, #fff, #56c1e8, #0b5fb3, #d7ecff, #fff); filter:blur(14px); animation:spin 1.1s linear infinite; transform:scale(.8) }
   @keyframes spin { to { rotate:360deg } }
-  .voice[data-state="speaking"] .orb { animation:talk .55s ease-in-out infinite alternate }
+  .voice[data-state="speaking"] .orb { animation:talk 1.1s ease-in-out infinite alternate }
   @keyframes talk { from { transform:scale(.92) } to { transform:scale(1.12); box-shadow:0 0 80px 18px rgba(86,193,232,.6), 0 0 180px 60px rgba(59,143,240,.3) } }
   .voice.muted .orb { filter:grayscale(1); opacity:.55; animation:none }
   .vstate { font-size:15px; color:var(--muted); min-height:1.4em }
@@ -163,6 +167,15 @@
     <h2>My stuff</h2>
     <h3>Applications &amp; watches</h3>
     <div id="appsList"></div>
+    <h3>Watch a topic</h3>
+    <form class="watch" id="watchForm" novalidate>
+      <p class="hint">Get an email when the city does something about an address or topic. Checked every morning against council agendas, minutes, meeting transcripts and city data; you only hear from us when something new actually concerns it.</p>
+      <input id="wTopic" type="text" required maxlength="300" placeholder="What to watch, e.g. 1685 Main St or pier parking rates" autocomplete="off">
+      <input id="wAddress" type="text" maxlength="200" placeholder="Address (optional)" autocomplete="street-address">
+      <input id="wEmail" type="email" required placeholder="Your email" autocomplete="email">
+      <button type="submit" class="go">Start watching</button>
+      <div class="error" id="wErr"></div>
+    </form>
     <h3>Saved council moments</h3>
     <div id="momList"></div>
     <button class="close" id="closeSheet">Close</button>
@@ -314,7 +327,8 @@ function actionRow(bot, sources) {
 let apps = []; try { apps = JSON.parse(localStorage.getItem("sm_apps") || "[]"); } catch {}
 const renderApps = () => {
   $("appsCount").textContent = apps.length ? `Menu · ${apps.length}` : "Menu";
-  $("appsList").innerHTML = apps.length ? apps.map((a, i) => `<div class="app" data-i="${i}"><span class="st">${esc(String(a.status).replace(/_/g, " "))}</span><b>${esc(a.confirmation_number)}</b><br>${esc(a.summary)}<br><small style="color:var(--muted)">${esc(a.department)} · ${new Date(a.submitted_at).toLocaleDateString()}</small>${a.staff_note ? `<small style="display:block;margin-top:4px">📝 ${esc(a.department)}: ${esc(a.staff_note)}</small>` : ""}${a.type && a.status === "received" ? `<button type="button" class="edit">Edit application</button>` : ""}</div>`).join("") : `<p class="empty">Nothing filed yet. Ask me to apply for a permit or report an issue and it will show up here.</p>`;
+  const watchCard = (a, i) => `<div class="app watching" data-i="${i}"><span class="st">Watching</span><b>${esc(a.topic || a.summary)}</b>${a.address ? `<br>${esc(a.address)}` : ""}<br><small style="color:var(--muted)">Checked every morning · emails ${esc(a.email || "you")} when something changes · ${esc(a.confirmation_number)}</small><br><button type="button" class="stop">Stop watching</button></div>`;
+  $("appsList").innerHTML = apps.length ? apps.map((a, i) => a.status === "watching" ? watchCard(a, i) : `<div class="app" data-i="${i}"><span class="st">${esc(String(a.status).replace(/_/g, " "))}</span><b>${esc(a.confirmation_number)}</b><br>${esc(a.summary)}<br><small style="color:var(--muted)">${esc(a.department)} · ${new Date(a.submitted_at).toLocaleDateString()}</small>${a.staff_note ? `<small style="display:block;margin-top:4px">📝 ${esc(a.department)}: ${esc(a.staff_note)}</small>` : ""}${a.type && a.status === "received" ? `<br><button type="button" class="edit">Edit application</button>` : ""}</div>`).join("") : `<p class="empty">Nothing filed yet. Ask me to apply for a permit or report an issue and it will show up here.</p>`;
 };
 const saveApps = () => { try { localStorage.setItem("sm_apps", JSON.stringify(apps)); } catch {} };
 // Resident self-service: pull current status + staff notes when the menu opens; edit while the application is still "received".
@@ -339,7 +353,35 @@ function editApp(i) {
     apps[i] = { ...a, ...j }; saveApps(); renderApps();
   };
 }
-$("appsList").onclick = (e) => { const b = e.target.closest("button.edit"); if (b) editApp(+b.closest(".app").dataset.i); };
+$("appsList").onclick = (e) => {
+  const b = e.target.closest("button.edit"); if (b) editApp(+b.closest(".app").dataset.i);
+  const s = e.target.closest("button.stop"); if (s) stopWatch(+s.closest(".app").dataset.i, s);
+};
+async function stopWatch(i, btn) {
+  const a = apps[i]; if (!a || !confirm(`Stop watching "${a.topic || a.summary}"?`)) return;
+  btn.disabled = true;
+  const r = await fetch(`/api/alerts/${encodeURIComponent(a.confirmation_number)}`, { method: "DELETE" }).catch(() => null);
+  if (r && (r.ok || r.status === 404)) { apps.splice(i, 1); saveApps(); renderApps(); } else { btn.disabled = false; btn.textContent = "Try again"; }
+}
+// Menu → Watch a topic: same daily-watch store the chat's create_alert uses.
+try { $("wEmail").value = localStorage.getItem("sm_email") || ""; } catch {}
+$("watchForm").onsubmit = async (e) => {
+  e.preventDefault();
+  const topic = $("wTopic").value.trim(), address = $("wAddress").value.trim(), email = $("wEmail").value.trim(), err = $("wErr"), go = e.target.querySelector(".go");
+  err.textContent = "";
+  if (topic.length < 3) return err.textContent = "Describe what to watch in a few words.";
+  if (!$("wEmail").checkValidity() || !email) return err.textContent = "Enter a valid email for the alerts.";
+  go.disabled = true; go.textContent = "Starting…";
+  try {
+    const r = await fetch("/api/alerts", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ topic, address, email }) });
+    const a = await r.json(); if (!r.ok) throw new Error(a.error || "Could not start the watch.");
+    apps.unshift(a); saveApps(); renderApps();
+    try { localStorage.setItem("sm_email", email); } catch {}
+    $("wTopic").value = ""; $("wAddress").value = "";
+    go.textContent = "Watching ✓"; setTimeout(() => { go.textContent = "Start watching"; go.disabled = false; }, 1500);
+    $("appsList").firstElementChild?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  } catch (ex) { err.textContent = ex.message; go.textContent = "Start watching"; go.disabled = false; }
+};
 let moments = []; try { moments = JSON.parse(localStorage.getItem("sm_moments") || "[]"); } catch {}
 const renderMoments = () => {
   $("momList").innerHTML = moments.length ? moments.map((c, i) => `<div class="mom" data-i="${i}"><img src="https://i.ytimg.com/vi/${esc(c.video_id)}/mqdefault.jpg" alt=""><div style="min-width:0"><b>Council ${esc(c.meeting_date)}</b> · ${esc(c.hms)}<small>${esc(c.text.slice(0, 100))}</small></div></div>`).join("") : `<p class="empty">When an answer cites a council video, save the clip and it lands here.</p>`;
@@ -367,10 +409,12 @@ else {
   let active = false, muted = false;
   const setState = (s) => { voice.dataset.state = s; vstate.textContent = ""; }; // the orb shows the state; the label only ever carries the mic-denied error
   const listen = () => { if (!active) return; vtext.textContent = ""; if (muted) return setState("listening", "Muted"); setState("listening", "Listening…"); try { rec.start(); } catch {} };
+  let replyWords = new Set(); // words of the reply being spoken, so the mic hearing our own voice doesn't count as an interruption
   rec.onresult = (e) => {
     const t = [...e.results].map((r) => r[0].transcript).join("");
     if (voice.dataset.state === "speaking") { // barge-in: the resident talks over the reply → stop it and take the question
-      if (t.trim().split(/\s+/).length < 2) return; // ponytail: 2-word threshold filters the mic hearing our own voice; raise if it self-interrupts
+      const w = t.toLowerCase().match(/[a-z']+/g) || [];
+      if (w.length < 2 || w.filter((x) => replyWords.has(x)).length / w.length > 0.6) return; // ponytail: echo guard = short, or mostly words from the reply we're speaking; swap for AEC/VAD if speakers still self-interrupt
       stopSpeaking(); setState("listening", "Listening…");
     }
     vtext.textContent = t;
@@ -386,6 +430,7 @@ else {
     if (!active) return;
     if (!reply) return listen();
     setState("speaking", ""); vtext.textContent = reply;
+    replyWords = new Set(reply.toLowerCase().match(/[a-z']+/g) || []);
     try { rec.start(); } catch {}
     speak(reply, () => { if (voice.dataset.state === "speaking") listen(); }); // interrupted → the barge-in already switched state
   };
@@ -601,7 +646,12 @@ function formCard(f) {
 function add(cls) { const d = document.createElement("div"); d.className = "msg " + cls; log.appendChild(d); scroll(); return d; }
 function esc(s) { return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
 function scroll() { requestAnimationFrame(() => window.scrollTo({ top: document.body.scrollHeight })); }
-if (location.hostname === "localhost") { const es = new EventSource("/dev"); let first = true; es.onopen = () => { if (!first) location.reload(); first = false; }; es.onmessage = () => location.reload(); }
+if (location.hostname === "localhost") { // dev live-reload: never yank a resident out of a voice conversation; reload when they end it
+  const es = new EventSource("/dev"); let first = true, pending = false;
+  const reload = () => { if ($("voice").classList.contains("open")) pending = true; else location.reload(); };
+  es.onopen = () => { if (!first) reload(); first = false; }; es.onmessage = reload;
+  $("vend").addEventListener("click", () => { if (pending) location.reload(); });
+}
 </script>
 </body>
 </html>

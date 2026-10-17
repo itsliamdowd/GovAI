@@ -16,6 +16,174 @@
        Status badge classes: planned | progress | done | blocked.
        Do NOT log changes to ~/.claude/, plan.html itself, or the changelog server. -->
 
+  <article class="entry" id="e-2026-10-17-1400">
+    <header>
+      <time>2026-10-17 14:00</time>
+      <h2>RAG: incremental inverted index, query cache, council cache actually loads</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal (user).</b> "Improve the RAG system… we're not efficiently caching this information. Make it readily available and streamline."</p>
+    <h3>Measured before (node script, cached data only)</h3>
+    <ul>
+      <li><code>rag.addDocs()</code> rebuilt the whole BM25 from scratch on every call: <b>4.2 s each</b>, called 4× at startup (council+transcripts, GIS, news, news-again) ≈ 17 s, and again on every daily/30-min refresh.</li>
+      <li>Per-doc token <code>Map</code>s for ~32k docs: <b>2.7 GB heap</b>.</li>
+      <li><code>search()</code> scanned every doc for every query: <b>50–70 ms</b> per call, 2–3 calls per tool invocation, no result reuse.</li>
+      <li><b>Council minutes/agendas were not indexed at all:</b> <code>loadCouncilCache()</code> required <code>data/council/meetings.json</code>, which doesn't exist, so it returned 0 docs although 395 meeting files (11 MB) are cached. Council search was answering from transcripts only.</li>
+    </ul>
+    <h3>What changed</h3>
+    <ul>
+      <li><code>rag.js</code> — <code>BM25</code> is now an <b>incremental inverted index</b>: <code>post: Map&lt;term,{ids,tfs}&gt;</code> + <code>len[]</code>; <code>add()</code> appends postings, <code>search()</code> scores only docs in the query terms' postings, then applies the kind/date filter and sorts the candidates. <code>addDocs()</code> appends (dedupe set kept across calls, returns the number added) — no rebuilds. <code>searchText</code> is dropped after indexing. <b>Result cache</b>: 256-entry LRU keyed by (method, k, filters, query), cleared when docs are added. <code>queryDataset</code> row cache capped at 500 entries. Council chunks index unigrams only (bigram vocabulary of 30k transcript chunks was most of the heap). <code>rag.docCount</code> getter.</li>
+      <li><code>council.js</code> — <code>loadCouncilCache()</code> falls back to scanning <code>data/council/city_council_*.json</code> when <code>meetings.json</code> is absent, deriving the ingested list from the files.</li>
+      <li><code>test.js</code> — <code>addDocs</code> returns count / re-add is a no-op; identical queries hit the cache.</li>
+    </ul>
+    <h3>Measured after</h3>
+    <pre><code>startup:       2.5 s total for 41,765 docs (council+transcripts 2.0 s once · gis 43 ms · news 67 ms · re-add 0 new)   — was ≈17 s of rebuilds
+search:        2–20 ms (was 50–70) · cache hit 0.02 ms
+council index: 395 meetings / 9,273 agenda+minutes chunks (was 0) + 29,784 transcript chunks
+heap:          239 MB after GC (was 2.7 GB)
+npm test:      passes (14:05)</code></pre>
+    <h3>Not done (ceilings)</h3>
+    <ul>
+      <li>The one-time tokenize of ~40k chunks (~2 s) still runs at every start. Next step if it matters: persist postings from <code>warm.js</code> and load them instead. Skipped: 2 s once per process is acceptable.</li>
+      <li>Ranking mix: for "block party" the GIS layer "Block Party Eligible Streets" now edges the knowledge chunk (42 vs 39); still within the 75% source band so citations are unchanged, but GIS titles are short and score high on BM25. Watch for GIS layers crowding knowledge on other topics.</li>
+      <li>No embeddings / vector store; BM25 with stemming + bigrams is doing the ranking. Add a reranker when questions get paraphrase-heavy.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1240">
+    <header>
+      <time>2026-10-17 12:40</time>
+      <h2>Scope expansion study: LA County, Orange County, San Diego — city, county, state &amp; federal data</h2>
+      <span class="badge planned">planned</span>
+    </header>
+    <p><b>Goal.</b> User: "expand the scope: all the data we can collect for LA County, Orange County and San Diego — city-level, county-level, and federal data that pertains to the specific area; think outside the box." This entry is the source inventory (every URL marked ✓ answered on 2026-10-17 via WebFetch) plus the architecture changes needed so the assistant can serve ~200 cities across three counties instead of one. No code touched yet.</p>
+
+    <h3>Where the code is today (what has to generalize)</h3>
+    <ul>
+      <li><code>rag.js</code> — one CKAN portal (data.santamonica.gov) catalog; BM25 over knowledge/*.md + datasets + council + news + GIS docs.</li>
+      <li><code>sources.js</code> — <code>CATALOGS</code> = 2 ArcGIS DCAT feeds (SM GIS, LA County eGIS); <code>geocode()</code> is Nominatim <b>bounded to the Santa Monica bbox</b>; every <code>live[]</code> kind hardcodes SM lat/lon, NWS grid, NOAA station, BLS series, Census place code; <code>FEEDS</code> are SM news outlets.</li>
+      <li><code>council.js</code> / <code>transcripts.js</code> — SM "Agendas &amp; Minutes" dataset + SM YouTube channel only.</li>
+      <li><code>server.js</code> — SYSTEM prompt "Scope (hard rule)" refuses anything outside Santa Monica (entry 11:42). Must become "LA / Orange / San Diego counties".</li>
+      <li><code>alerts.js</code> — jurisdiction-agnostic already (it just calls rag + queryDataset); works unchanged once the index is wider.</li>
+    </ul>
+
+    <h3>Source inventory (adapter type in brackets)</h3>
+    <details open><summary><b>County level</b></summary>
+    <table>
+      <tr><th>County</th><th>Open data</th><th>GIS</th><th>Legislative body</th><th>Other county feeds</th></tr>
+      <tr><td><b>Los Angeles</b></td><td>✓ <code>data.lacounty.gov/api/feed/dcat-us/1.1.json</code> [ArcGIS Hub DCAT, publisher "County of Los Angeles": park needs, fire damage, income/AMI by tract, vulnerability indexes]</td><td>✓ already in <code>CATALOGS</code> (eGIS hub); Assessor roll FeatureServer already used by <code>live.property</code> — it covers <b>all 88 cities + unincorporated</b>, only the <code>SitusCity</code> filter is SM-specific</td><td>✓ <code>webapi.legistar.com/v1/lacounty/…</code> [Legistar Web API: Bodies, Events, Matters, Votes]</td><td>lavote.gov results/registrar; LA County Public Health dashboards; LASD crime (data.lacounty.gov); LACoFD; Metro GTFS + GTFS-RT (api.metro.net); LAHSA homeless count</td></tr>
+      <tr><td><b>Orange</b></td><td>✓ <code>data-ocpw.opendata.arcgis.com/api/feed/dcat-us/1.1.json</code> [ArcGIS Hub DCAT, publisher "OC Public Works": parcels w/ attributes, maintained roads, channels, outfalls, unclaimed property]. County-wide (non-PW) portal: <b>not found</b> — <code>data.ocgov.com</code> no longer resolves; <code>ceo.oc.gov/reports-and-data</code> exists (dashboards)</td><td>OC Survey / ocgis.com parcel fabric — hub URL unverified</td><td>Legistar client <code>ocgov</code> ✗ (500). OC Clerk of the Board publishes agendas on its own site (PDF/HTML) — needs the <code>council.js</code>-style HTML/PDF scraper, not Legistar</td><td>ocvote.gov; OCTA GTFS/GTFS-RT; OC Health Care Agency; OC Sheriff; OC Assessor parcel lookup</td></tr>
+      <tr><td><b>San Diego</b></td><td>✓ <code>data.sandiegocounty.gov</code> [Socrata/Tyler: SODA API <code>/resource/{4x4}.json</code>, discovery via <code>/api/catalog/v1</code>]</td><td><code>sdgis-sandag.opendata.arcgis.com</code> DCAT answers but is <b>empty</b>; SanGIS regional warehouse (rdw.sandag.org) is download-only</td><td>Legistar client <code>sandiego</code> ✗ (500). County BOS agendas go out as GovDelivery bulletins + PDF per session [PDF scraper, same as SM minutes]</td><td>sdvote.com; MTS + NCTD GTFS/GTFS-RT; County Public Health; SD Sheriff; SANDAG (opendata.sandag.org — <b>platform unknown</b>, not Socrata-discoverable, not ArcGIS DCAT at the usual path)</td></tr>
+    </table></details>
+
+    <details open><summary><b>City level (the ~200 cities)</b></summary>
+    <table>
+      <tr><th>City</th><th>Open data</th><th>GIS</th><th>Council records</th><th>311 / permits</th></tr>
+      <tr><td><b>Los Angeles</b></td><td>data.lacity.gov [Socrata; DNS failed from the fetch tool here, verify from a browser] — crime, 311 (MyLA311), LADBS permits, budget, business licenses</td><td>✓ <code>geohub.lacity.org/api/feed/dcat-us/1.1.json</code> [ArcGIS Hub DCAT, 9.6 MB catalog — needs the same <code>JUNK</code> filtering]</td><td>Council File Management System (cityclerk.lacity.org/lacityclerkconnect) — own HTML, no Legistar; LA CityView YouTube captions via existing <code>transcripts.js</code></td><td>MyLA311 dataset on Socrata; LADBS permit dataset</td></tr>
+      <tr><td><b>Long Beach</b></td><td>data.longbeach.gov [ArcGIS Hub DCAT, unverified]</td><td>same hub</td><td>✓ <code>webapi.legistar.com/v1/longbeach/…</code> (first body: "City Council")</td><td>Go Long Beach 311</td></tr>
+      <tr><td><b>San Diego (city)</b></td><td>✓ data.sandiego.gov — 122 datasets, DCAT <code>raw.githubusercontent.com/COSD-PANDA/data-inventory/refs/heads/master/data.json</code> [DCAT → direct CSV/GeoJSON downloads, no query API: ingest CSV into a local SQLite/JSON table]. Get It Done 311, police calls, parking meters/citations, collisions, fire/EMS calls, hate crimes, budgets, street sweeping, traffic counts</td><td>in the same catalog (GeoJSON)</td><td>Legistar client unknown; city clerk uses its own portal — scrape</td><td>Get It Done dataset; DSD permits dataset</td></tr>
+      <tr><td><b>Anaheim, Irvine, Santa Ana, Huntington Beach, Pasadena, Glendale, Burbank, Torrance, Chula Vista, Oceanside, Carlsbad…</b></td><td>Most are ArcGIS Hub (<code>&lt;x&gt;.opendata.arcgis.com/api/feed/dcat-us/1.1.json</code>) or Socrata — one adapter each, then a registry row per city. Legistar <code>anaheim</code> ✗; probe each city's clerk once and record the system in the registry.</td><td>per-city hub</td><td>per-city (Legistar / Granicus / PrimeGov / IQM2 / PDF)</td><td>per-city 311 vendor (SeeClickFix has an open API; Accela/Tyler portals do not)</td></tr>
+    </table>
+    <p>Rule of thumb: <b>ArcGIS Hub DCAT</b> (already supported) + <b>Socrata SODA</b> (new, ~40 lines) + <b>CKAN</b> (already supported) cover &gt;90% of SoCal municipal portals. Everything else is a scraper.</p></details>
+
+    <details open><summary><b>State (data.ca.gov is already wired; add the ones that localize)</b></summary>
+    <ul>
+      <li>data.ca.gov [CKAN ✓ in <code>live.ca_open_data</code>] — HCD Housing Element Annual Progress Reports (every city), EDD labor market, DOJ OpenJustice crime by agency, CDPH, CalFire perimeters, Caltrans PeMS traffic, CPUC outages, Cal OES, Sec. of State election results, CalEnviroScreen 4.0 (tract scores), CA Dept. of Education (school performance by district), HCAI hospital data, ABC liquor licenses, CSLB contractor lookup, DMV.</li>
+      <li>Caltrans CCTV ✓ (already D7; D12 = Orange, D11 = San Diego — same JSON shape, change the district in the URL).</li>
+      <li>CA Legislature: leginfo.legislature.ca.gov bill search (HTML) + OpenStates API (free key) for who represents an address at the state level.</li>
+    </ul></details>
+
+    <details open><summary><b>Federal, localized to a point / FIPS / district (mostly keyless)</b></summary>
+    <ul>
+      <li><b>Census Geocoder</b> <code>geocoding.geo.census.gov/geocoder/geographies/onelineaddress</code> — one free call returns county, place (city), tract, block, congressional/state districts for any US address. <b>This is the jurisdiction resolver</b> that replaces the SM-bounded Nominatim call.</li>
+      <li>Census ACS ✓ (already; parameterize <code>place:</code>/<code>county:</code> FIPS from the geocoder).</li>
+      <li>NWS ✓ (<code>api.weather.gov/points/{lat},{lon}</code> gives the grid + zone for any point — drop the hardcoded LOX/146,45 and CAZ366).</li>
+      <li>NOAA tides ✓ (station lookup by lat/lon via CO-OPS metadata API: SM Pier 9410840, LA Harbor 9410660, Newport 9410580, La Jolla 9410230, San Diego 9410170).</li>
+      <li>USGS quakes ✓ (already point-based). AirNow ✓ (already point-based). BLS LAUS ✓ (series id per city/county from the <code>LAUCT06xxxxx</code> pattern). CDC PLACES ✓ (filter by <code>locationname</code>).</li>
+      <li>New: <b>FEMA</b> OpenFEMA (disaster declarations by county, NFIP claims), NFHL flood zones (ArcGIS REST); <b>EPA</b> Envirofacts/ECHO (facilities, violations near a point), Superfund; <b>HUD</b> Fair Market Rents + Income Limits by county/zip, LIHTC properties; <b>FCC</b> National Broadband Map availability by address; <b>FAA</b> airport status (LAX/SNA/SAN/BUR/LGB/ONT) + NOTAMs; <b>USDA</b> SNAP retailer locator; <b>SBA</b> loan data; <b>SSA/IRS/USCIS/VA</b> office locators; <b>NPS/USFS/BLM</b> recreation + fire closures; <b>FBI</b> Crime Data Explorer API (agency-level); <b>USAspending</b> (federal awards by county/district); <b>congress.gov</b> API (what your rep sponsored); <b>Federal Register</b> (rules mentioning the area); <b>NHTSA</b> recalls; <b>OpenSky</b> ✓ (any bbox); <b>NOAA NDBC</b> buoys (surf); <b>USGS water</b> (stream gauges).</li>
+    </ul></details>
+
+    <details><summary><b>Outside the box (non-government but about the place)</b></summary>
+    <ul>
+      <li>Transit in real time: GTFS-RT for Metro, OCTA, MTS, NCTD, Big Blue Bus ✓, Culver CityBus, LADOT DASH — the protobuf reader in <code>sources.js</code> already handles alerts; add trip updates/vehicle positions.</li>
+      <li>Micromobility GBFS feeds (Lime ✓, Bird, Metro Bike Share, Veo) per city.</li>
+      <li>Utilities: SCE / SDG&amp;E / LADWP outage maps (JSON endpoints behind their maps), PSPS notices; water quality consumer confidence reports.</li>
+      <li>Schools: CDE DataQuest + NCES; school board agendas (BoardDocs has a JSON API).</li>
+      <li>Health: hospital ER wait times (some systems publish), County restaurant inspection grades (LA County DPH dataset; SD County "Food Facility" dataset).</li>
+      <li>Courts: LA Superior Court case access is closed; traffic citations via county datasets instead.</li>
+      <li>Housing: Zillow/Redfin are not free; use HUD FMR + Assessor roll + Rent Registry (SM, LA RSO) datasets.</li>
+      <li>Civic: OpenStates (state reps), Google Civic Information API (polling place / reps by address, free key), Ballotpedia (HTML).</li>
+      <li>Community: Nextdoor has no public API; Reddit RSS per city sub ✓ pattern exists; Patch per-city feeds ✓ pattern exists; Google News per-city queries ✓ pattern exists (<code>FEEDS</code> becomes a template).</li>
+      <li>Events: city calendars (iCal feeds), Eventbrite public search, library calendars (Communico/LibCal JSON).</li>
+      <li>Wikipedia/Wikidata ✓ for any place; OpenStreetMap Overpass for POIs (parks, clinics, EV chargers) anywhere.</li>
+    </ul></details>
+
+    <h3>Architecture change (proposed)</h3>
+    <pre><code>jurisdictions.js      registry: { id, name, type: city|county, county, fips, bbox, portals: [{kind: ckan|socrata|arcgis-dcat|dcat-json, url}],
+                                 council: {kind: legistar|html|pdf|none, client|url}, youtube, feeds: [...] , transit: [...] }
+adapters/             ckan.js (exists in rag.js)   socrata.js (new: catalog + SODA rows)   arcgis.js (exists in sources.js)   dcat-json.js (SD city: CSV → local table)
+resolve(address)      Census Geocoder → {county, place, tract, districts} → jurisdiction ids → scope every tool call
+live[kind](point)     every live kind takes {lat, lon, fips} instead of SM constants
+SYSTEM prompt         scope = LA / Orange / San Diego counties; the model is told which jurisdiction the resident is in (from their address or stated city)
+index                 one BM25 is fine to ~100k docs; beyond that, shard per county or move to SQLite FTS5</code></pre>
+    <h3>Phases</h3>
+    <ol>
+      <li><b>Resolver + registry</b> (1 day): Census Geocoder, <code>jurisdictions.js</code> with LA County, OC, SD County + the 5 biggest cities each; scope prompt widened. Tools unchanged in shape; they just take a <code>jurisdiction</code>.</li>
+      <li><b>Adapters</b> (1 day): Socrata catalog+SODA; DCAT-JSON downloader for SD city; Legistar client (lacounty, longbeach, + whatever else probes OK). Add the 4 verified DCAT hubs to <code>CATALOGS</code>.</li>
+      <li><b>Parameterize live[]</b> (½ day): NWS points, NOAA station lookup, BLS id pattern, Census FIPS, Caltrans district, AirNow/USGS already fine.</li>
+      <li><b>News + council per city</b> (½ day): <code>FEEDS</code> template per city (Google/Bing News + Patch + Reddit + city site), YouTube channel per city in the registry.</li>
+      <li><b>Federal extras</b> (ongoing, one function each in <code>live</code>): FEMA, HUD, EPA, FCC, FAA, congress.gov, USAspending.</li>
+    </ol>
+    <h3>Open questions</h3>
+    <ul>
+      <li>County of Orange county-wide open data portal: which URL is current? (OC Public Works hub ✓; county CEO dashboards exist; <code>data.ocgov.com</code> is dead.)</li>
+      <li>SANDAG opendata.sandag.org platform/API — Tyler case study suggests Socrata but the discovery API returns 0 for the domain.</li>
+      <li>Legistar clients for SD County, SD City, OC, Anaheim all failed; which agenda systems do they use (Granicus/PrimeGov/IQM2/BoardDocs)?</li>
+      <li>Rate limits: Nominatim 1 req/s and BLS 25/day already bite; Census Geocoder has no published cap but batch endpoint exists. Socrata unauthenticated = throttled; app token is free.</li>
+      <li>Product: does the Santa Monica-only guardrail flip to "SoCal only", or does the deployment pick ONE jurisdiction per instance (white-label per city)? Changes whether the registry is a runtime lookup or a config.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1310">
+    <header>
+      <time>2026-10-17 13:20</time>
+      <h2>No runtime data collection: server reads committed data/, warm.js is the only collector</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: a cloned repo must not pull YouTube/CKAN/IQM2/GIS/news from other people's machines. Collection happens on the maintainer's side; the collected data ships in the repo.</p>
+    <ul>
+      <li><code>server.js</code> — <code>COLLECT</code> env gate (default off). Startup now calls <code>loadCouncilCache()</code> + <code>loadTranscriptCache()</code> (disk only), <code>loadGisCatalog(log, COLLECT)</code>, <code>loadNewsDocs()</code>. <code>refreshCouncil()</code> is a no-op, the news 30-min interval is skipped, and the daily watch doesn't re-pull unless <code>COLLECT=1</code>. Runtime per-question lookups (query_dataset, web_search, queryGis, Big Blue Bus live) are unchanged — they answer one question, they don't crawl.</li>
+      <li><code>council.js</code> — <code>ingestCouncil</code> writes <code>data/council/meetings.json</code> (ingested + upcoming); new <code>loadCouncilCache()</code>. <code>transcripts.js</code> — new <code>loadTranscriptCache()</code>.</li>
+      <li><code>rag.js</code> — <code>loadCatalog(refresh=false)</code> returns disk cache at any age, throws a "run node warm.js" hint if absent; <code>refreshCatalog()</code> exported. <code>sources.js</code> — <code>loadGisCatalog(log, refresh=false)</code> same pattern.</li>
+      <li><code>warm.js</code> — rewritten as the single collector: catalog, council, transcripts, gis, news; <code>node warm.js &lt;one&gt;</code> for a single job.</li>
+      <li><code>.gitignore</code> — <code>data/</code> is now committed except resident data (<code>applications.json</code>, <code>clips.json</code>, <code>alerts.json</code>, <code>feedback.jsonl</code>, <code>outbox/</code>) and transient <code>.vtt/.part</code> files. Committed size ≈ 82 MB (transcripts 69, council 11, news 1.5, gis 0.6, catalog 0.1).</li>
+      <li><code>README.md</code> — "Data collection (maintainer only)" section.</li>
+    </ul>
+    <h3>Verified</h3>
+    <ul>
+      <li>Booted on :8788 with <code>COLLECT</code> unset: "Council (from data/): 395 meetings, 9,273 chunks; transcripts: 201 meetings, 29,784 chunks", "GIS (from data/): 803 layers", 82 datasets. <code>lsof</code> on the process: 0 outbound TCP connections after startup.</li>
+      <li><code>git check-ignore</code>: applications/clips ignored; transcripts and council caches tracked. <code>data/</code> is 83 MB. <code>npm test</code> passes.</li>
+      <li>Note: Kokoro TTS still downloads its model on first start unless <code>TTS=off</code> — that's a model file, not city data; left as-is.</li>
+    </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1325">
+    <header>
+      <time>2026-10-17 13:25</time>
+      <h2>Menu: "Watch a topic" form to add / stop daily alerts without chatting</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal (user).</b> In the Menu, the resident can add an alert for a specific issue they want to track and get emails about, and stop one. Previously watches could only be created through the chat (<code>create_alert</code> tool); the Menu only listed them.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>server.js</code> — <code>POST /api/alerts</code> {topic, address?, email, name?} validates (topic ≥3 chars, email shape) and calls the existing <code>createAlert(rag, …)</code> from <code>alerts.js</code> (same store <code>data/alerts.json</code>, same baseline snapshot, same daily judge/email job), returning the watch without <code>seen</code>. <code>DELETE /api/alerts/:id</code> → <code>cancelAlert</code>.</li>
+      <li><code>public/index.html</code> — Menu panel gains a <b>Watch a topic</b> form (topic, optional address, email; email remembered in <code>localStorage sm_email</code>) under the Applications &amp; watches list; submitting adds the watch to the list (status <code>watching</code>) and bumps the Menu count. Each watching row gets a <b>Stop watching</b> button (confirm → DELETE → removed from the list). CSS: <code>.panel .watch</code>, <code>.panel .app .stop</code>.</li>
+    </ul>
+    <h3>Acceptance</h3>
+    <ul><li>Open Menu → type a topic + email → "Start watching" → row appears with WATCH-xxxxxx; <code>data/alerts.json</code> has it; "Stop watching" removes it and the server returns <code>cancelled</code>. Chat-created watches show the same Stop button.</li></ul>
+    <p><b>Verified 13:34</b> on a temp server (port 8799): bad email → 400 with message; create → <code>WATCH-xxxxxx</code> with status <code>watching</code>, present in <code>data/alerts.json</code>, <code>seen</code> not leaked to the client; DELETE → <code>cancelled</code>, second DELETE → 404, removed from the store. Test watch deleted. Menu form UI not opened in a browser (Chrome MCP unavailable this session); inline JS parses.</p>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1222">
     <header>
       <time>2026-10-17 12:22</time>
@@ -114,6 +282,40 @@
     <ul>
       <li>Server-side SSE path (<code>res.write</code> per delta) — verified not the bottleneck. <code>npm test</code> still fails on the parallel work's <code>pertinentSources</code> assertion (test.js:40), untouched here.</li>
     </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1425">
+    <header>
+      <time>2026-10-17 14:25</time>
+      <h2>Menu: "Watch a topic" form rendered outside the sheet; alert cards made readable</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User (screenshot): "the alert view needs to be a lot better". The three inputs and the "Start watching" button were pinned full-width to the bottom of the viewport, outside the "My stuff" sheet, with the helper sentence floating at the page edge.</p>
+    <h3>Cause</h3>
+    <p><code>public/index.html</code> styled the chat composer with a bare <code>form { position:fixed; left:0; right:0; bottom:0 … }</code> selector, which also matched <code>#watchForm</code> inside the sheet.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>public/index.html</code> &mdash; composer rule scoped to <code>#f</code>. Watch form rebuilt as a stacked block: one plain-language hint above, three inputs, full-width "Start watching" button, error line (the old side-by-side <code>.wrow</code> is gone). Active watches render as distinct blue-tinted cards ("Watching · topic · address · emails to …") with a Stop watching button; application cards get the same pill-style Edit button.</li>
+    </ul>
+    <p><b>Verified 14:35</b> in Chrome with a sample watch injected into <code>localStorage</code>: form sits inside the sheet, card reads "Pier parking rates / 1685 Main St / Checked every morning · emails … · WATCH-7K2Q9A / Stop watching". Topic title uses the body font (the monospace rule was meant for confirmation numbers).</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1415">
+    <header>
+      <time>2026-10-17 14:15</time>
+      <h2>Voice mode no longer gets kicked back to the chat by dev live-reload</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "sometimes with the voice dictation, instead of answering a question, it'll just drop me back to the main chat interface".</p>
+    <h3>Cause</h3>
+    <p>On localhost the page subscribes to <code>/dev</code> and calls <code>location.reload()</code> on every message (any edit to <code>public/</code>) and on every reconnect (server restart). With several sessions editing <code>public/index.html</code> this afternoon, the page reloaded mid-conversation and the voice overlay, which is client state, vanished. Nothing in the voice flow itself closes the overlay except the End button and a denied-mic error.</p>
+    <h3>Files</h3>
+    <ul><li><code>public/index.html</code> &mdash; the reload is deferred while <code>#voice</code> is open (<code>pending</code> flag) and runs when the resident presses End. Non-localhost builds don't have this subscription at all.</li></ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1410">
+    <header><time>2026-10-17 14:10</time><h2>Voice orb: slower swell</h2><span class="badge done">done</span></header>
+    <p>User: "make the voice feature a little slower with how the animation expands". <code>public/index.html</code>: orb mic-level swell transition <code>.07s linear</code> &rarr; <code>.3s ease-out</code>; speaking pulse <code>talk .55s</code> &rarr; <code>1.1s</code>; idle breathe 3.2 s &rarr; 4 s.</p>
   </article>
 
   <article class="entry" id="e-2026-10-17-1345">
@@ -614,6 +816,33 @@ daily 07:00 → refreshCouncil() → for each alert:
     </ul>
   </article>
 
+  <article class="entry" id="e-2026-10-17-1700">
+    <header>
+      <time>2026-10-17 17:00</time>
+      <h2>Multi-jurisdiction: Orange County + San Diego (all cities + both counties), jurisdiction auto-detected</h2>
+      <span class="badge progress">in-progress</span>
+    </header>
+    <p><b>Goal.</b> User: "include data at the same quality for Orange County, San Diego" — clarified to all 18 San Diego County cities, all 34 Orange County cities, both county governments, plus Santa Monica (55 jurisdictions), and the assistant must infer the jurisdiction from the conversation (no selector). Decisions: generated per-city knowledge files treated as final; council depth ~4 years per body (<code>COUNCIL_MEETINGS=200</code>, Santa Monica keeps 1000); delivery A → B → C → D.</p>
+    <h3>Approach</h3>
+    <ul>
+      <li><b>Registry</b> <code>jurisdictions.js</code> (new): one entry per jurisdiction (id, name, kind, county, aliases, center/bbox, portals, council platform, youtube, feeds, gis hubs, live-API ids, contact, forms, routing, domains, icon, prefix) + helpers <code>jurById</code>, <code>countyOf</code>, <code>scopeIds</code>, <code>detect(text)</code>, <code>contextFor(jur)</code>. Santa Monica migrated verbatim; other entries filled per phase.</li>
+      <li><b>Tagging/scoping</b>: every doc carries <code>jur</code>; <code>rag.search/searchNews/searchCouncil</code> take <code>{jur}</code> and filter to city + county + state; caches namespaced <code>data/&lt;jur&gt;/…</code>; knowledge in <code>knowledge/&lt;jur&gt;/</code>.</li>
+      <li><b>Detection</b>: server-side alias match on each message + <code>set_jurisdiction</code> tool + geocode fallback; per-turn system block from <code>contextFor</code>; tools (web_search domains/user_location, query_dataset portal, query_gis bbox, live ids, forms, routing, id prefix) all read the session's jurisdiction; SSE <code>jurisdiction</code> event updates greeting/footer/badges.</li>
+      <li><b>Adapters</b>: <code>loadCatalog</code> ckan | dcat (ArcGIS Hub feeds, SD GitHub data.json, Socrata) | hubsearch; <code>queryDataset</code> ckan | socrata | dcat-file (cached CSV, in-memory filter) | arcgis; <code>ingestCouncil(jur)</code> ckan-iqm2 | legistar | granicus | ocboard | hyland; <code>ingestTranscripts(jur)</code>; <code>discover.js</code> probes per-city platforms; <code>knowledge-gen.js</code> drafts per-city knowledge files.</li>
+    </ul>
+    <h3>Phases</h3>
+    <ol>
+      <li><b>A</b> registry + tagging + detection, Santa Monica behaviour unchanged, tests green — <i>in progress</i>.</li>
+      <li><b>B</b> County of San Diego (Legistar API verified), City of San Diego (DCAT data.json on GitHub, Hyland dockets, YouTube), County of Orange (board.oc.gov archive, OCPW ArcGIS Hub).</li>
+      <li><b>C</b> remaining 50 cities via <code>discover.js</code> + adapters.</li>
+      <li><b>D</b> per-city forms, routing, contacts.</li>
+    </ol>
+    <h3>Files (Phase A)</h3>
+    <ul><li><code>jurisdictions.js</code> (new), <code>rag.js</code>, <code>council.js</code>, <code>transcripts.js</code>, <code>sources.js</code>, <code>alerts.js</code>, <code>forms.js</code>, <code>server.js</code>, <code>public/index.html</code>, <code>public/staff.html</code>, <code>test.js</code>, <code>warm.js</code>, <code>README.md</code>; <code>knowledge/*.md</code> → <code>knowledge/santa-monica/</code>; <code>data/*</code> → <code>data/santa-monica/</code>.</li></ul>
+    <p><b>Verified upstream (2026-10-17).</b> <code>webapi.legistar.com/v1/sdcounty</code> answers without a token; City of San Diego DCAT catalog at <code>raw.githubusercontent.com/COSD-PANDA/data-inventory/…/data.json</code> (122 datasets, file distributions only); ArcGIS Hub DCAT feed path <code>/api/feed/dcat-us/1.1.json</code>; Hub search <code>hub.arcgis.com/api/v3/datasets?q=</code> works but needs an orgName allowlist; OC Board archive at <code>board.oc.gov</code> (HTML, no API); OCPW Hub <code>data-ocpw.opendata.arcgis.com</code>.</p>
+    <p><b>Status log.</b> (updated as work lands)</p>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1600">
     <header>
       <time>2026-10-17 16:00</time>
@@ -627,6 +856,7 @@ daily 07:00 → refreshCouncil() → for each alert:
       <li><code>server.js</code> — <code>VOICE_RULE</code> adds: never mention sources, datasets, documents, records, minutes, transcripts, searches, or "according to"; state the answer as fact.</li>
     </ul>
     <p><b>Known limit.</b> Barge-in relies on the mic not transcribing the assistant's own voice; the 2-word threshold filters most echo. If it self-interrupts on speakers, raise the threshold or require a mic-level spike from <code>meter()</code>.</p>
+    <p><b>14:00 (second session):</b> echo guard strengthened. While speaking, an interim transcript is ignored when it has fewer than 2 words <em>or</em> more than 60% of its words are words of the reply currently being spoken (<code>replyWords</code> set when the reply starts). Genuine interruptions ("wait, stop", "what about parking") pass; the speaker leaking "the block party permit costs" back into the mic does not.</p>
     <p><b>Verify.</b> <code>node --check</code> on server.js and the inline script. Live voice test needs a mic; not automatable here.</p>
   </article>
 
@@ -750,7 +980,7 @@ daily 07:00 → refreshCouncil() → for each alert:
     <p><b>Verify.</b> Inline script extracted and passes <code>node --check</code>. Browser check pending by user (Chrome MCP still locked by another session). Known limits: TTS uses the OS default voice; recognition quality depends on the browser's engine (Chrome/Safari); muting mid-reply lets the reply finish, then shows "Muted".</p>
   </article>
 
-  <article class="entry" id="e-2026-10-17-1210">
+  <article class="entry" id="e-2026-10-17-1210-header">
     <header>
       <time>2026-10-17 12:10</time>
       <h2>Header restyled to look like a .gov site (America.gov / USWDS banner)</h2>

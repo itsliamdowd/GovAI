@@ -4,8 +4,8 @@ import path from "node:path";
 import crypto from "node:crypto";
 import Anthropic from "@anthropic-ai/sdk";
 import { buildIndex, queryDataset } from "./rag.js";
-import { ingestCouncil } from "./council.js";
-import { ingestTranscripts, clipWindow, citedMoments } from "./transcripts.js";
+import { ingestCouncil, loadCouncilCache } from "./council.js";
+import { ingestTranscripts, loadTranscriptCache, clipWindow, citedMoments } from "./transcripts.js";
 import { createAlert, cancelAlert, runAlerts } from "./alerts.js";
 import { loadTTS, speakWav } from "./tts.js";
 import { FORMS, FORM_TYPES, toApplication } from "./forms.js";
@@ -27,8 +27,18 @@ const MODEL = process.env.MODEL || "claude-sonnet-5-5";
 
 const rag = await buildIndex();
 console.log(`RAG index ready: ${rag.datasetCount} open datasets indexed`);
+// Collection policy: the server reads committed data/ only. Nothing is pulled from CKAN, IQM2, YouTube, GIS or news
+// feeds at runtime unless COLLECT=1 (the maintainer's machine). `node warm.js` is the explicit collector.
+const COLLECT = process.env.COLLECT === "1";
 let council = { ready: false, ingested: [], upcoming: [], transcripts: 0 };
+{
+  const c = loadCouncilCache(), t = loadTranscriptCache();
+  rag.addDocs([...c.docs, ...t.docs]);
+  council = { ready: c.meta.ingested.length > 0, ...c.meta, transcripts: t.count };
+  console.log(`Council (from data/): ${c.meta.ingested.length} meetings, ${c.docs.length} chunks; transcripts: ${t.count} meetings, ${t.docs.length} chunks${council.ready ? "" : " — run `node warm.js` to collect"}`);
+}
 function refreshCouncil() {
+  if (!COLLECT) return Promise.resolve();
   return Promise.all([
     ingestCouncil((docs, meta) => { rag.addDocs(docs); council = { ...council, ready: true, ...meta }; console.log(`Council: ${meta.ingested.length} meetings (agendas+minutes), ${docs.length} chunks indexed`); })
       .catch((e) => console.error("council ingestion failed:", e.message)),
@@ -36,7 +46,7 @@ function refreshCouncil() {
       .catch((e) => console.error("transcript ingestion failed (is yt-dlp installed?):", e.message)),
   ]);
 }
-refreshCouncil();
+if (COLLECT) refreshCouncil();
 // Daily watch: re-pull council records, then diff + judge + email each alert. ALERT_HOUR local, default 07:00.
 const runWatch = () => refreshCouncil().then(() => runAlerts(rag)).catch((e) => console.error("alert run failed:", e.message));
 function scheduleDaily(fn) {
@@ -49,11 +59,11 @@ scheduleDaily(runWatch);
 if (process.env.TTS !== "off") loadTTS().then(() => console.log("TTS ready: Kokoro-82M (local)")).catch((e) => console.error("TTS unavailable, voice mode will use the browser voice:", e.message));
 // City + county GIS layers become searchable "gis" docs; local news is pulled now and every 30 minutes.
 let gisCount = 0;
-loadGisCatalog().then((layers) => { rag.addDocs(gisDocs(layers)); gisCount = layers.length; console.log(`GIS: ${gisCount} city/county layers indexed`); }).catch((e) => console.error("gis catalog failed:", e.message));
+loadGisCatalog(console.error, COLLECT).then((layers) => { rag.addDocs(gisDocs(layers)); gisCount = layers.length; console.log(`GIS (from data/): ${gisCount} city/county layers indexed`); }).catch((e) => console.error("gis catalog failed:", e.message));
 let news = { total: 0, feeds: 0 };
 rag.addDocs(loadNewsDocs()); // index the cached articles now; ingestNews only emits items that are new since the last run, so without this the news index is empty after every restart until a feed yields something new
 const refreshNews = () => ingestNews((docs, meta) => { rag.addDocs(docs); news = meta; console.log(`News: ${meta.fresh} new, ${meta.total} total items from ${meta.feeds} feeds`); }).catch((e) => console.error("news ingestion failed:", e.message));
-refreshNews(); setInterval(refreshNews, 30 * 60e3).unref();
+if (COLLECT) { refreshNews(); setInterval(refreshNews, 30 * 60e3).unref(); }
 
 const SYSTEM = `You are the City of Santa Monica's digital assistant: one front door to every city service, like america.gov but for a city.
 
@@ -484,6 +494,23 @@ const server = http.createServer(async (req, res) => {
   if (req.method === "GET" && req.url.startsWith("/api/clips/")) {
     const c = loadClips()[decodeURIComponent(req.url.slice(11))];
     res.writeHead(c ? 200 : 404, { "Content-Type": "application/json" }).end(JSON.stringify(c ?? { error: "clip not found" }));
+    return;
+  }
+  if (req.method === "POST" && req.url === "/api/alerts") { // "Watch a topic" form in the Menu
+    let body = "";
+    for await (const chunk of req) body += chunk;
+    try {
+      const { topic, address = "", email, name = "" } = JSON.parse(body);
+      if (typeof topic !== "string" || topic.trim().length < 3 || topic.length > 300) throw new Error("Describe what to watch in a few words.");
+      if (typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error("Enter a valid email for the alerts.");
+      const { seen, ...a } = await createAlert(rag, { topic: topic.trim(), address: String(address).trim().slice(0, 200), email: email.trim(), name: String(name).trim().slice(0, 100) });
+      res.writeHead(200, { "Content-Type": "application/json" }).end(JSON.stringify(a));
+    } catch (e) { res.writeHead(400, { "Content-Type": "application/json" }).end(JSON.stringify({ error: e.message })); }
+    return;
+  }
+  if (req.method === "DELETE" && req.url.startsWith("/api/alerts/")) { // "Stop watching" in the Menu
+    const r = cancelAlert(decodeURIComponent(req.url.slice(12)));
+    res.writeHead(r.error ? 404 : 200, { "Content-Type": "application/json" }).end(JSON.stringify(r));
     return;
   }
   if (req.method === "POST" && req.url === "/api/alerts/run") { // run the daily watch now (demo / external cron hook)

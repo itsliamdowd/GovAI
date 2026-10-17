@@ -1,0 +1,3453 @@
+{
+ "fetched_at": 1792259597366,
+ "datasets": [
+  {
+   "name": "permit-inspections-schedule",
+   "title": "Permit Inspections Schedule",
+   "notes": "All permitted projects require an inspection by a Building and Safety Division Inspector. An inspection ensures that the project is constructed according to approved plans. Jobsites must be available for Inspection Services from 8:00 AM to 5:00 PM Monday through Friday.",
+   "tags": [
+    "building -and- safety",
+    "permits"
+   ],
+   "org": "Development",
+   "modified": "2026-10-17",
+   "url": "https://data.santamonica.gov/dataset/permit-inspections-schedule",
+   "resources": [
+    {
+     "resource_id": "8870b481-c698-4d10-b4f6-9fc0b8a7387b",
+     "name": "Permit Inspections Schedule",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "request_id",
+      "permit_number",
+      "inspection_scheduled_date",
+      "estimated_inspection_arrival_time",
+      "address",
+      "inspection_type",
+      "description",
+      "inspector_assigned",
+      "status",
+      "valuation",
+      "class_code",
+      "class_code_description",
+      "inspection_request_date",
+      "inspection_request_time",
+      "permit_issuance_date",
+      "permit_expiration_date",
+      "first_inspector",
+      "last_inspector",
+      "permit_type",
+      "permit_sub_type"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "active-demolition-permits-for-buildings-over-40-years",
+   "title": "Active Demolition Permits for Buildings over 40 Years",
+   "notes": "This dataset shows all demolition permit applications for structures over 40 years old.  As a result, there may be permits listed for accessory structures exempt from demolition review pursuant to SMMC Section 9.25.020.  “Original Construction Age” is pulled from the City’s permit system but may be different than original date of construction found through more detailed research.  To view the most recent applications, please sort by “Date Plan Check Accepted” in Descending order.  This date represents the start of the 75-day waiting period.",
+   "tags": [
+    "building -and- safety",
+    "permits"
+   ],
+   "org": "Development",
+   "modified": "2026-10-17",
+   "url": "https://data.santamonica.gov/dataset/active-demolition-permits-for-buildings-over-40-years",
+   "resources": [
+    {
+     "resource_id": "6fa4177c-ccef-4f7f-976f-83946f1e3afb",
+     "name": "Active Demolition Permits for Buildings over 40 Years",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "permit_number",
+      "date_plancheck_accepted",
+      "site_unit_number",
+      "status",
+      "project_type",
+      "parcel_no",
+      "date_issued",
+      "date_expired",
+      "date_renewed",
+      "class_code_description",
+      "number_of_units",
+      "permit_type",
+      "original_construction_age",
+      "address",
+      "latitude",
+      "longitude"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "building-and-safety-demolition-plan-checks",
+   "title": "Building & Safety Demolition Plan Checks",
+   "notes": "This dataset is a listing of all demolition permit applications currently under review by the City. Due to limitations of prior software used by the City, applications from 2016 and earlier may be erroneously reflected on this list as active and with a status of ‘In Review;’ when in fact the demolition permit may have been issued, or the permit application may have expired altogether prior to any permit issuance.",
+   "tags": [
+    "building -and- safety",
+    "demolition",
+    "permits",
+    "plan checks"
+   ],
+   "org": "Development",
+   "modified": "2026-10-17",
+   "url": "https://data.santamonica.gov/dataset/building-and-safety-demolition-plan-checks",
+   "resources": [
+    {
+     "resource_id": "055bb060-f212-460c-a3cf-0d58a7ca755f",
+     "name": "Building & Safety Demolition Plan Checks",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "permit_number",
+      "permit_type_desc",
+      "permit_sub_type",
+      "address",
+      "site_unit_number",
+      "status",
+      "valuation",
+      "parcel_no",
+      "date_entered",
+      "class_code",
+      "class_code_description",
+      "class_code_section",
+      "number_of_units",
+      "permit_type",
+      "latitude",
+      "longitude"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "active-building-and-safety-permits",
+   "title": "Active Building & Safety Permits",
+   "notes": "Santa Monica requires permits for building, construction, and business activities.",
+   "tags": [
+    "building -and- safety",
+    "permits"
+   ],
+   "org": "Development",
+   "modified": "2026-10-17",
+   "url": "https://data.santamonica.gov/dataset/active-building-and-safety-permits",
+   "resources": [
+    {
+     "resource_id": "d6867c7d-89bc-4975-be35-4d2673a4764b",
+     "name": "Active Building & Safety Permits",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "permit_number",
+      "permit_type_desc",
+      "permit_sub_type",
+      "site_unit_number",
+      "status",
+      "project_type",
+      "valuation",
+      "parcel_no",
+      "date_entered",
+      "date_issued",
+      "date_completed",
+      "date_expired",
+      "date_renewed",
+      "class_code",
+      "class_code_description",
+      "class_code_section",
+      "number_of_units",
+      "permit_type",
+      "description",
+      "address",
+      "latitude",
+      "longitude"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "police-calls-for-service",
+   "title": "Police Calls for Service",
+   "notes": "The Santa Monica Police Department Call for Service information includes requests for police service made by the public, as well as officer-initiated activity. The Call for Service information provided on the Open Data portal dates back to January 1, 2006 and is updated daily. The Police Department continues to make the Daily Calls for Service Report available on their website.",
+   "tags": [
+    "911",
+    "police",
+    "wellbeing"
+   ],
+   "org": "Public Safety",
+   "modified": "2026-10-17",
+   "url": "https://data.santamonica.gov/dataset/police-calls-for-service",
+   "resources": [
+    {
+     "resource_id": "f3a4e0d3-1cbb-4f97-9e52-fa178a133ebe",
+     "name": "Police Calls for Service",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "incident_number",
+      "call_type",
+      "incident_date",
+      "location",
+      "beat",
+      "reporting_district",
+      "received_time",
+      "cleared_time",
+      "disposition",
+      "latitude",
+      "longitude"
+     ]
+    },
+    {
+     "resource_id": "c8237318-2b94-466e-a664-a79de7c7ec84",
+     "name": "Police Calls for Service 2021",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "incident_date",
+      "received_time",
+      "cleared_time",
+      "incident_number",
+      "latitude",
+      "longitude",
+      "call_type",
+      "location",
+      "beat",
+      "reporting_district",
+      "disposition"
+     ]
+    },
+    {
+     "resource_id": "17903b8b-b2fc-42ee-9478-5597a5da378b",
+     "name": "Police Calls for Service 2020",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "incident_date",
+      "received_time",
+      "cleared_time",
+      "incident_number",
+      "latitude",
+      "longitude",
+      "call_type",
+      "location",
+      "beat",
+      "reporting_district",
+      "disposition"
+     ]
+    },
+    {
+     "resource_id": "f417cf66-b61b-41db-9779-421bb3462de4",
+     "name": "Police Calls for Service 2019",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "incident_date",
+      "received_time",
+      "cleared_time",
+      "incident_number",
+      "latitude",
+      "longitude",
+      "call_type",
+      "location",
+      "beat",
+      "reporting_district",
+      "disposition"
+     ]
+    },
+    {
+     "resource_id": "0fc09713-2840-4170-b834-2e5308b792e9",
+     "name": "Police Calls for Service 2018",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "incident_date",
+      "received_time",
+      "cleared_time",
+      "incident_number",
+      "latitude",
+      "longitude",
+      "call_type",
+      "location",
+      "beat",
+      "reporting_district",
+      "disposition"
+     ]
+    },
+    {
+     "resource_id": "9b30eec6-e8c5-4dc5-bc01-99057f33b10b",
+     "name": "Police Calls for Service 2017",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "incident_date",
+      "received_time",
+      "cleared_time",
+      "incident_number",
+      "latitude",
+      "longitude",
+      "call_type",
+      "location",
+      "beat",
+      "reporting_district",
+      "disposition"
+     ]
+    },
+    {
+     "resource_id": "f061ff96-a9b9-4bd5-84a0-a99382c53a27",
+     "name": "Police Calls for Service 2016",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "incident_date",
+      "received_time",
+      "cleared_time",
+      "incident_number",
+      "latitude",
+      "longitude",
+      "call_type",
+      "location",
+      "beat",
+      "reporting_district",
+      "disposition"
+     ]
+    },
+    {
+     "resource_id": "0c31458c-3053-4b2f-9dbf-c62af9e84d95",
+     "name": "Police Calls for Service 2015",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "incident_date",
+      "received_time",
+      "cleared_time",
+      "incident_number",
+      "latitude",
+      "longitude",
+      "call_type",
+      "location",
+      "beat",
+      "reporting_district",
+      "disposition"
+     ]
+    },
+    {
+     "resource_id": "b038ed3f-2f90-4288-bc93-5cf0cc48fdae",
+     "name": "Police Calls for Service 2014",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "incident_date",
+      "received_time",
+      "cleared_time",
+      "incident_number",
+      "latitude",
+      "longitude",
+      "call_type",
+      "location",
+      "beat",
+      "reporting_district",
+      "disposition"
+     ]
+    },
+    {
+     "resource_id": "ff9e500b-bc53-4e93-83e5-c555ffb78476",
+     "name": "Police Calls for Service 2013",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "incident_date",
+      "received_time",
+      "cleared_time",
+      "incident_number",
+      "latitude",
+      "longitude",
+      "call_type",
+      "location",
+      "beat",
+      "reporting_district",
+      "disposition"
+     ]
+    },
+    {
+     "resource_id": "f8a056aa-2e1f-4e0f-80b3-1bc6e062edfe",
+     "name": "Police Calls for Service 2012",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "incident_date",
+      "received_time",
+      "cleared_time",
+      "incident_number",
+      "latitude",
+      "longitude",
+      "call_type",
+      "location",
+      "beat",
+      "reporting_district",
+      "disposition"
+     ]
+    },
+    {
+     "resource_id": "bc79581b-5e60-455d-8d61-98dc53a30759",
+     "name": "Police Calls for Service 2011",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "incident_date",
+      "received_time",
+      "cleared_time",
+      "incident_number",
+      "latitude",
+      "longitude",
+      "call_type",
+      "location",
+      "beat",
+      "reporting_district",
+      "disposition"
+     ]
+    },
+    {
+     "resource_id": "50804c84-d64e-4017-a9fe-c44809998eaa",
+     "name": "Police Calls for Service 2010",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "incident_date",
+      "received_time",
+      "cleared_time",
+      "incident_number",
+      "latitude",
+      "longitude",
+      "call_type",
+      "location",
+      "beat",
+      "reporting_district",
+      "disposition"
+     ]
+    },
+    {
+     "resource_id": "9a6206e5-a351-4d03-8fde-e14da63b9002",
+     "name": "Police Calls for Service 2009",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "incident_date",
+      "received_time",
+      "cleared_time",
+      "incident_number",
+      "latitude",
+      "longitude",
+      "call_type",
+      "location",
+      "beat",
+      "reporting_district",
+      "disposition"
+     ]
+    },
+    {
+     "resource_id": "d2bde904-0a6b-40c1-9305-23fbe75bd82a",
+     "name": "Police Calls for Service 2008",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "incident_date",
+      "received_time",
+      "cleared_time",
+      "incident_number",
+      "latitude",
+      "longitude",
+      "call_type",
+      "location",
+      "beat",
+      "reporting_district",
+      "disposition"
+     ]
+    },
+    {
+     "resource_id": "989134f5-982e-45e6-9a4b-52b638a0ca35",
+     "name": "Police Calls for Service 2007",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "incident_date",
+      "received_time",
+      "cleared_time",
+      "incident_number",
+      "latitude",
+      "longitude",
+      "call_type",
+      "location",
+      "beat",
+      "reporting_district",
+      "disposition"
+     ]
+    },
+    {
+     "resource_id": "6f11849a-86fc-4d6f-bb5f-6473c0f063f4",
+     "name": "Police Calls for Service 2006",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "incident_date",
+      "received_time",
+      "cleared_time",
+      "incident_number",
+      "latitude",
+      "longitude",
+      "call_type",
+      "location",
+      "beat",
+      "reporting_district",
+      "disposition"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "home-sharing-registry",
+   "title": "Home-Sharing Registry",
+   "notes": "Registered Home-Sharing businesses with an active business license in Santa Monica.",
+   "tags": [
+    "home sharing"
+   ],
+   "org": "Business",
+   "modified": "2026-10-17",
+   "url": "https://data.santamonica.gov/dataset/home-sharing-registry",
+   "resources": [
+    {
+     "resource_id": "f41864ef-8976-4fe1-a2ba-93550662fbca",
+     "name": "Home-Sharing Registry",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "license_number",
+      "dba",
+      "address",
+      "city",
+      "state",
+      "zip_code",
+      "business_type",
+      "business_status_id",
+      "license_status_id",
+      "expired",
+      "map_point"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "active-business-licenses",
+   "title": "Active Business Licenses",
+   "notes": "All businesses with an active business license in the City of Santa Monica.",
+   "tags": [
+    "business",
+    "small business"
+   ],
+   "org": "Business",
+   "modified": "2026-10-17",
+   "url": "https://data.santamonica.gov/dataset/active-business-licenses",
+   "resources": [
+    {
+     "resource_id": "484fe63d-a388-43fa-9714-8601254afcf0",
+     "name": "Active Business Licenses",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "license_number",
+      "dba",
+      "address",
+      "city",
+      "state",
+      "zip_code",
+      "business_type",
+      "business_status_id",
+      "business_status",
+      "license_status_id",
+      "license_status"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "registered-special-inspectors",
+   "title": "Registered Special Inspectors",
+   "notes": "In addition to the inspections required by Section 108, some construction projects require that a deputy inspector verifies specific aspects of the construction and that the specifications conform to the approved drawings. The deputy inspector is required to report these observations in writing, on an approved special inspection report form to the building official at regular intervals.\r\n\r\nSpecial (Deputy) Inspections are required for:\r\n\r\n- Concrete Strength > 2,500 psi, Shotcrete\r\n- Reinforcement in structural decks\r\n- Drilled in Anchors\r\n- Field Welding or Shop Welding in a non-approved fabr",
+   "tags": [],
+   "org": "Development",
+   "modified": "2026-10-17",
+   "url": "https://data.santamonica.gov/dataset/registered-special-inspectors",
+   "resources": [
+    {
+     "resource_id": "daee4b73-0b24-4fee-a70c-69ecc160e265",
+     "name": "Registered Special Inspectors",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "record_id",
+      "asi_expiration_date",
+      "applicant_name",
+      "application_type",
+      "applicant_phone_1",
+      "applicant_phone_2",
+      "applicant_email",
+      "asit_license_type",
+      "asit_license_number",
+      "asit_license_expiration_date",
+      "asit_license_agency",
+      "permit_status",
+      "applicant_organization_name",
+      "applicant_address",
+      "applicant_zip",
+      "issue_date"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "police-incidents",
+   "title": "Police Incidents",
+   "notes": "The Santa Monica Police Department Incident information includes crime and incident reports.  The Incident information provided on the Open Data portal dates back to January 1, 2006 and is updated daily. The Police Department continues to provide an online crime mapping system that offers the ability to include data from other surrounding agencies and establish e-mail alerts to crimes in specific areas.",
+   "tags": [],
+   "org": "Public Safety",
+   "modified": "2026-08-04",
+   "url": "https://data.santamonica.gov/dataset/police-incidents",
+   "resources": [
+    {
+     "resource_id": "ff0f4877-3731-4476-b2ca-065f5819bf12",
+     "name": "Police Incidents",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "incident_number",
+      "date_occurred",
+      "ucr",
+      "ucr_description",
+      "location",
+      "gang_related",
+      "latitude",
+      "longitude"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "fees-and-rates",
+   "title": "Fees and Rates",
+   "notes": "Line item fees and rates for City of Santa Monica services and programs, effective fiscal year.",
+   "tags": [],
+   "org": "Finance",
+   "modified": "2026-07-16",
+   "url": "https://data.santamonica.gov/dataset/fees-and-rates",
+   "resources": [
+    {
+     "resource_id": "23515f81-c6e3-4f71-9447-ab570d95d0b6",
+     "name": "Fees and Rates",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "department",
+      "division",
+      "category",
+      "activity",
+      "keywords",
+      "fee_name_description",
+      "fee",
+      "fee_other",
+      "unit",
+      "additional_fee",
+      "additional_fee_unit",
+      "deposit",
+      "rate_tier",
+      "comments",
+      "external_link_s",
+      "notes"
+     ]
+    },
+    {
+     "resource_id": "b67661ac-c2ae-4057-83ee-9b2a5862749b",
+     "name": "Fees and Rates 2025-2026",
+     "format": "CSV",
+     "datastore": false,
+     "fields": []
+    },
+    {
+     "resource_id": "b2454157-af47-41e3-afeb-a2c06ff88a4a",
+     "name": "Fees and Rates 2024-2025",
+     "format": "CSV",
+     "datastore": false,
+     "fields": []
+    },
+    {
+     "resource_id": "2f4fa3ce-85cd-4eb4-b06a-3f31e7ac495c",
+     "name": "Fees and Rates 2023-2024",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "department",
+      "division",
+      "category",
+      "activity",
+      "keywords",
+      "fee_name_description",
+      "fee",
+      "fee_other",
+      "unit",
+      "additional_fee",
+      "additional_fee_unit",
+      "deposit",
+      "rate_tier",
+      "comments",
+      "external_link_s",
+      "notes"
+     ]
+    },
+    {
+     "resource_id": "aad0ecb1-9bb5-48a9-9ed7-fc73d21ed277",
+     "name": "Fees and Rates 2022-2023",
+     "format": "CSV",
+     "datastore": false,
+     "fields": []
+    },
+    {
+     "resource_id": "188e606e-827f-4c16-9436-867da0a59777",
+     "name": "Fees and Rates 2021-2022",
+     "format": "CSV",
+     "datastore": false,
+     "fields": []
+    },
+    {
+     "resource_id": "84c47269-1e24-4c0c-881e-618dc2cef1b8",
+     "name": "Fees and Rates 2019-20",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "department",
+      "division",
+      "category",
+      "activity",
+      "keywords",
+      "fee_name_description",
+      "fee",
+      "fee_other",
+      "unit",
+      "additional_fee",
+      "additional_fee_unit",
+      "deposit",
+      "rate_tier",
+      "comments",
+      "external_links",
+      "notes"
+     ]
+    },
+    {
+     "resource_id": "d767bbe8-7909-4b55-bd02-d2b15aa41b3d",
+     "name": "Fees and Rates 2018-19",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "department",
+      "division",
+      "category",
+      "activity",
+      "keywords",
+      "fee_name_description",
+      "fee",
+      "fee_other",
+      "unit",
+      "additional_fee",
+      "additional_fee_unit",
+      "deposit",
+      "rate_tier",
+      "comments",
+      "external_link_s",
+      "notes"
+     ]
+    },
+    {
+     "resource_id": "3eb3df40-11cd-4a6d-b83e-3837fc8d86d2",
+     "name": "Fees and Rates 2017-18",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "department",
+      "division",
+      "category",
+      "activity",
+      "keywords",
+      "fee_name_description",
+      "fee",
+      "fee_other",
+      "unit",
+      "additional_fee",
+      "additional_fee_unit",
+      "deposit",
+      "rate_tier",
+      "comments",
+      "external_link_s",
+      "notes"
+     ]
+    },
+    {
+     "resource_id": "f7103770-5430-4705-beb9-10bd6ebd4f23",
+     "name": "Fees and Rates 2016-17",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "department",
+      "division",
+      "category",
+      "activity",
+      "keywords",
+      "fee_name_description",
+      "fee",
+      "fee_other",
+      "unit",
+      "additional_fee",
+      "additional_fee_unit",
+      "deposit",
+      "rate_tier",
+      "comments",
+      "external_link_s",
+      "notes"
+     ]
+    },
+    {
+     "resource_id": "0850b7c2-b815-46f1-9d5f-2c8212fdf952",
+     "name": "Fees and Rates 2015-16",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "department",
+      "division",
+      "category",
+      "activity",
+      "keywords",
+      "fee_name_description",
+      "fee",
+      "fee_other",
+      "unit",
+      "additional_fee",
+      "additional_fee_unit",
+      "deposit",
+      "rate_tier",
+      "comments",
+      "external_link",
+      "notes"
+     ]
+    },
+    {
+     "resource_id": "bf6fa190-9014-404a-9bdf-169da005f9cd",
+     "name": "Fees and Rates 2014-15",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "department",
+      "division",
+      "category",
+      "activity",
+      "keywords",
+      "fee_name_description",
+      "fee",
+      "fee_other",
+      "unit",
+      "additional_fee",
+      "additional_fee_unit",
+      "deposit",
+      "rate_tier",
+      "comments",
+      "external_link",
+      "notes"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "fire-calls-for-service",
+   "title": "Fire Calls for Service",
+   "notes": "The Call for Service information provided on the Open Data portal dates back to December, 2008 and is updated Hourly.\r\n\r\n**Note:**  We are currently upgrading our systems. During this time, the data related to calls for service will be temporarily unavailable. We apologize for any inconvenience this may cause and thank you for your patience. ",
+   "tags": [
+    "911",
+    "fire"
+   ],
+   "org": "Public Safety",
+   "modified": "2024-11-08",
+   "url": "https://data.santamonica.gov/dataset/fire-calls-for-service",
+   "resources": [
+    {
+     "resource_id": "20ca4171-80a4-429a-93f6-734211c6ab51",
+     "name": "Fire Calls for Service",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "incident_number",
+      "incident_date",
+      "call_type_description",
+      "location",
+      "reporting_district",
+      "station",
+      "received",
+      "cleared",
+      "disposition",
+      "latitude",
+      "longitude"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "temp",
+   "title": "temp",
+   "notes": "",
+   "tags": [],
+   "org": "Business",
+   "modified": "2024-04-11",
+   "url": "https://data.santamonica.gov/dataset/temp",
+   "resources": [
+    {
+     "resource_id": "52c9cd70-a489-463b-9f74-31894d9ae063",
+     "name": "police_calls_for_service.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "incident_date",
+      "received_time",
+      "cleared_time",
+      "incident_number",
+      "latitude",
+      "longitude",
+      "call_type",
+      "location",
+      "beat",
+      "reporting_district",
+      "disposition"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "eph10-garden-square-footage",
+   "title": "EPH10 Garden Square Footage",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-07-26",
+   "url": "https://data.santamonica.gov/dataset/eph10-garden-square-footage",
+   "resources": [
+    {
+     "resource_id": "f7540c58-a339-4367-91f7-f08f2a4ff561",
+     "name": "EPH10_GardensSquareFootage.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Main Street",
+      "Park Drive S",
+      "Park Drive N",
+      "Euclid",
+      "Ishihara",
+      "Marine",
+      "Total Sq. Ft"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "maximum-allowable-rents",
+   "title": "Maximum Allowable Rents",
+   "notes": "",
+   "tags": [],
+   "org": "Government Bodies",
+   "modified": "2023-07-19",
+   "url": "https://data.santamonica.gov/dataset/maximum-allowable-rents",
+   "resources": [
+    {
+     "resource_id": "5eba0f36-ed1c-417b-a83a-29f050507ff6",
+     "name": "sites.csv",
+     "format": "CSV",
+     "datastore": false,
+     "fields": []
+    },
+    {
+     "resource_id": "c11d1f4e-17c6-4150-a543-f57ba6f2f76e",
+     "name": "units.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "parcel_no",
+      "UNIT_ID",
+      "MAR1",
+      "UNITMASTER_ADDRESS",
+      "UNITMASTER_UNIT_ID",
+      "BEDROOM",
+      "effectivedate"
+     ]
+    },
+    {
+     "resource_id": "a1afb282-5c0c-4f03-b073-207e32a4c3e5",
+     "name": "associatedaddresses.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "siteaddress",
+      "SMAddress",
+      "FULLSTNO",
+      "UMAddress",
+      "Parcel"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "t-signal-sychronizing",
+   "title": "T Signal Sychronizing",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-03-07",
+   "url": "https://data.santamonica.gov/dataset/t-signal-sychronizing",
+   "resources": [
+    {
+     "resource_id": "eac4c044-62b6-4bdc-a6a6-d7746e340137",
+     "name": "Signal_Timing.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "% of total project completed."
+     ]
+    }
+   ]
+  },
+  {
+   "name": "t-bicycle-volumes",
+   "title": "T Bicycle Volumes",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-03-07",
+   "url": "https://data.santamonica.gov/dataset/t-bicycle-volumes",
+   "resources": [
+    {
+     "resource_id": "bc4eabda-b1a7-4d88-a296-9d0e6d388863",
+     "name": "T_1_Bike_Volumes.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Total PM Peak Bicycle Count",
+      "Ocean",
+      "Main",
+      "2nd",
+      "4th",
+      "6th",
+      "11th",
+      "14th",
+      "17th",
+      "Yale/Stewart/28th",
+      "Colorado",
+      "Michigan",
+      "Arizona",
+      "Broadway",
+      "Montana",
+      "Downtown Specific Plan Area IN",
+      "Downtown Specific Plan Area OUT"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "t-avr",
+   "title": "T AVR",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-03-07",
+   "url": "https://data.santamonica.gov/dataset/t-avr",
+   "resources": [
+    {
+     "resource_id": "789d6833-edfd-4eb2-b7f3-cdd40ef3f884",
+     "name": "T1_AVR_2.25.16.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "AVR"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "t_ped_volumes",
+   "title": "T Ped Volumes",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-03-07",
+   "url": "https://data.santamonica.gov/dataset/t_ped_volumes",
+   "resources": [
+    {
+     "resource_id": "b5b8e695-57ba-48ef-a94a-6b6faf75d959",
+     "name": "T_1_Ped_Volumes.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Total PM Peak Pedestrian Count",
+      "Ocean",
+      "Main",
+      "2nd",
+      "4th",
+      "6th",
+      "11th",
+      "14th",
+      "17th",
+      "Yale/Stewart/28th",
+      "Ocean Park",
+      "Colorado",
+      "Michigan",
+      "Arizona",
+      "Broadway",
+      "Montana",
+      "Downtown Specific Plan Area IN",
+      "Downtown Specific Plan Area OUT"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "t-ped-facilities",
+   "title": "T Ped Facilities",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-03-07",
+   "url": "https://data.santamonica.gov/dataset/t-ped-facilities",
+   "resources": [
+    {
+     "resource_id": "3dcfdb87-627e-4d8a-9e8d-84f287fdfff0",
+     "name": "T_4_Ped_Facilities.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Crosswalks Restriped"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "2020-economic-demographics",
+   "title": "QL Economic Demographics",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-03-06",
+   "url": "https://data.santamonica.gov/dataset/2020-economic-demographics",
+   "resources": [
+    {
+     "resource_id": "4b13a110-0ef2-480f-88ad-741966125792",
+     "name": "ql_economicdemographics.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Group",
+      "% Below Poverty Level",
+      "Unemployment Rate",
+      "Median Income"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "2020-education-attainment-demographics",
+   "title": "QL Education Attainment Demographics",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-03-06",
+   "url": "https://data.santamonica.gov/dataset/2020-education-attainment-demographics",
+   "resources": [
+    {
+     "resource_id": "7626e0b3-b486-4ae1-a2f3-0cd3f3c9f8c7",
+     "name": "QL_EducationAttainmentDemographics.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Group",
+      "High School Graduate",
+      "Bachelor Degree"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "2021-graduation-rate",
+   "title": "QL Graduation Rate",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-03-03",
+   "url": "https://data.santamonica.gov/dataset/2021-graduation-rate",
+   "resources": [
+    {
+     "resource_id": "f61f43e2-c9d7-42f1-9a36-80cc2fdc0990",
+     "name": "QL_HighSchoolGraduateDemographics.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Group",
+      "Graduate Rate SMMUSD"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "rc-municipal-energy",
+   "title": "RC Municipal Energy",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-03-03",
+   "url": "https://data.santamonica.gov/dataset/rc-municipal-energy",
+   "resources": [
+    {
+     "resource_id": "4f214f93-a82b-46c5-bb2c-6d6811502cb2",
+     "name": "RC_3_MunicipalEnergyUse.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Total Electricity (SCE)",
+      "Total Electricity (SCE/LADWP)",
+      "Buildings & Facilities - SCE (kWh)",
+      "Streetlights (kWh)",
+      "Traffic Controls (kWh)",
+      "Water Distribution (SCE)",
+      "EV Charging (kWh)",
+      "Water Treatment & Distribution - LADWP accounts(kWh)",
+      "Gas Usage (therms)",
+      "Purchased RECs (kWh)",
+      "City-Owned Solar (kW)",
+      "Estimated Generation (kWh)",
+      "Fleet Vehicle Diesel (gallons)",
+      "Fleet Vehicle CNG (GGE)",
+      "Fleet Vehicle Propane (Gallons)",
+      "Fleet Vehicle Gasoline (gallons)",
+      "Fleet Vehicles Biodiesel (gallons)",
+      "BBB Gasoline (gallons)",
+      "BBB B20 BioDiesel (Gallons)",
+      "BBB LNG (gallons)",
+      "BBB CNG (gge)",
+      "SCE emissions factor (lbs./kWh)",
+      "BBB Diesel (gallons)",
+      "Total Emissions (MTCO2e)",
+      "Buildings & Facilities Electricity (MTCO2e)",
+      "Buildings & Facilities Gas (MTCO2e)",
+      "Streetlights (MTCO2e)",
+      "Water Treatment & Distribution (MTCO2e)",
+      "Vehicle Fleet (MTCO2e)",
+      "BBB (MTCO2e)"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "t-modal-split",
+   "title": "T Modal Split",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-03-03",
+   "url": "https://data.santamonica.gov/dataset/t-modal-split",
+   "resources": [
+    {
+     "resource_id": "f771d079-fc68-47d5-bca6-2fc6526aee92",
+     "name": "T_1_Modal_Split.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Drive Alone",
+      "Sustainable Mode",
+      "Electric Vehicle",
+      "Carpool",
+      "Vanpool",
+      "Transit",
+      "Walk",
+      "Bike",
+      "Telecommute",
+      "Compressed Work Week",
+      "Misc",
+      "Non-commute/Not working in SM",
+      "Total",
+      "SM Residents",
+      "SM Residents % of Total"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "t-vmt",
+   "title": "T VMT",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-03-02",
+   "url": "https://data.santamonica.gov/dataset/t-vmt",
+   "resources": [
+    {
+     "resource_id": "5e08f8ad-cc3c-401a-9e87-544cf27bda49",
+     "name": "T_2_VMT2022.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Gasoline_VMT",
+      "Diesel_VMT",
+      "Electric_VMT",
+      "Total_VMT",
+      "VMT_Emissions",
+      "Total_Emissions",
+      "Pct_Emissions"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "t-street-safety",
+   "title": "T Street Safety",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-03-02",
+   "url": "https://data.santamonica.gov/dataset/t-street-safety",
+   "resources": [
+    {
+     "resource_id": "69094308-e611-4217-ac55-886870d009ec",
+     "name": "T_11_Street_Safety.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Total Car on Car Collisions",
+      "Total Car on Ped Collisions",
+      "Total Car on Bike Collisions",
+      "Total Bike on Ped Collisions"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "eph-asthma",
+   "title": "EPH Asthma",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-03-02",
+   "url": "https://data.santamonica.gov/dataset/eph-asthma",
+   "resources": [
+    {
+     "resource_id": "9ad816fb-a67d-415a-b56f-250e319fcefc",
+     "name": "QL_Asthma2.csv",
+     "format": "CSV",
+     "datastore": false,
+     "fields": []
+    },
+    {
+     "resource_id": "6c6ea398-6f1a-4540-835b-ed8c3e6a86e9",
+     "name": "QL_Asthma2.geojson",
+     "format": "GeoJSON",
+     "datastore": false,
+     "fields": []
+    }
+   ]
+  },
+  {
+   "name": "ql-linguistic-isolation",
+   "title": "QL Linguistic Isolation",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-03-02",
+   "url": "https://data.santamonica.gov/dataset/ql-linguistic-isolation",
+   "resources": [
+    {
+     "resource_id": "47f92c25-7b34-414f-a4c0-2129a96813eb",
+     "name": "QL_LinguisticIsolation.csv",
+     "format": "CSV",
+     "datastore": false,
+     "fields": []
+    }
+   ]
+  },
+  {
+   "name": "oslu-open-space-proximity",
+   "title": "OSLU Open Space Proximity",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-03-01",
+   "url": "https://data.santamonica.gov/dataset/oslu-open-space-proximity",
+   "resources": [
+    {
+     "resource_id": "95075ee2-e9ee-4971-ab5b-6c1ff0ddf436",
+     "name": "OSLU3_Parks_Accessibility2.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Households within 1/4 mile",
+      "% HH within 1/4 mile",
+      "Est. Population within 1/4 mile",
+      "% Population within 1/4 mile",
+      "Households within 1/2 mile",
+      "% HH within 1/2 mile",
+      "Est. Population within 1/2 mile",
+      "% Population within 1/2 mile"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "ql-bc-gender",
+   "title": "QL BC Gender",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-27",
+   "url": "https://data.santamonica.gov/dataset/ql-bc-gender",
+   "resources": [
+    {
+     "resource_id": "dad8a089-4576-47d5-94d4-f520f9e29264",
+     "name": "QL_BCDemographics_Gender.xlsx",
+     "format": "XLSX",
+     "datastore": true,
+     "fields": [
+      "Gender",
+      "Number",
+      "Percent"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "oslu-canopy-coverage",
+   "title": "OSLU Canopy Coverage",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-27",
+   "url": "https://data.santamonica.gov/dataset/oslu-canopy-coverage",
+   "resources": [
+    {
+     "resource_id": "e6fbd2db-b841-4e1c-8013-f7593a5455c5",
+     "name": "OSLU2_CanopyCoverage.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Percentage of Tree Canopy Coverage"
+     ]
+    },
+    {
+     "resource_id": "d5aeed78-607a-45c9-9cc7-278cef3a9e50",
+     "name": "Tree Coverage by Neighborhood",
+     "format": "GeoJSON",
+     "datastore": false,
+     "fields": []
+    }
+   ]
+  },
+  {
+   "name": "h-homelessness",
+   "title": "H Homelessness",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-23",
+   "url": "https://data.santamonica.gov/dataset/h-homelessness",
+   "resources": [
+    {
+     "resource_id": "79aa9cd3-987d-433a-a917-babe99d31bfe",
+     "name": "HD1_Homelessness.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Date",
+      "One-Day Count",
+      "Served by Shelter",
+      "Street Count"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "rc-community-energy-use",
+   "title": "RC Community Energy Use",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-23",
+   "url": "https://data.santamonica.gov/dataset/rc-community-energy-use",
+   "resources": [
+    {
+     "resource_id": "b3f48631-ff7a-4f17-ba6b-f656cf533f72",
+     "name": "Community_Energy_Use.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Residential Electricity (kWh)",
+      "Small Commercial (less than 500 kW) Electricity (kWh)",
+      "Large Commercial (more than 500 kW) Electricity (kWh)",
+      "ALL Commercial Subtotal (kWh)",
+      "Industrial Electricity (kWh)",
+      "Electricity TOTAL (kWh)",
+      "Solar (MW) installed",
+      "Annual solar installations (kWh)",
+      "Generation Potential (GJ)",
+      "Generation Potential (kWh)",
+      "% of total electricity consumption",
+      "Residential Natural Gas (therms)",
+      "Commercial Natural Gas (therms)",
+      "Industrial Natural Gas (therms)",
+      "Commercial/ Industrial Subtotal Natural Gas (therms)",
+      "Transportation Natural Gas (therms)",
+      "Total Community Natural Gas (therms)",
+      "SCE Renewable Portfolio Standard",
+      "Emission Factor lbs./kWh",
+      "Residential emissions from electricity (MTCO2e)",
+      "Small Commercial emissions from electricity (MTCO2e)",
+      "Large Commercial emissions from electricity (MTCO2e)",
+      "ALL Commercial emissions from electricity (MTCO2e) Subtotal",
+      "TOTAL Community emissions from electricity (MTCO2e)",
+      "Residential emissions from natural gas (MTCO2e)",
+      "Commercial emissions from natural gas (MTCO2e)",
+      "Industrial emissions from natural gas (MTCO2e)",
+      "ALL Commercial emissions from natural gas (MTCO2e) Subtotal",
+      "TOTAL Community emissions from natural gas (MTCO2e)",
+      "Residential (MTCO2e)",
+      "Small Commercial (MTCO2e)",
+      "Large Commercial (MTCO2e)",
+      "ALL Commercial Subtotal (MTCO2e)",
+      "Building Sector TOTAL (MTCO2e)",
+      "Municipal Electricity Use (SCE)"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "cecp-community-sustainability-education",
+   "title": "CECP Community Sustainability Education",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-23",
+   "url": "https://data.santamonica.gov/dataset/cecp-community-sustainability-education",
+   "resources": [
+    {
+     "resource_id": "5f254080-1206-4854-a7b2-c7083e02a98d",
+     "name": "CECP6_Sustainable_Community_Involvement.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "# Residents RGB - residential greening",
+      "Cumulative RGB",
+      "# SMC SGP - student greening (Fall)",
+      "# SMC SGP - student greening (Spring)",
+      "# SMC SGP - student greening",
+      "Cumulative SGP",
+      "# Residents CSP - community greening",
+      "Cumulative"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "ql-public-safety",
+   "title": "QL Public Safety",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-23",
+   "url": "https://data.santamonica.gov/dataset/ql-public-safety",
+   "resources": [
+    {
+     "resource_id": "a5ad1c3a-c40b-4625-aa57-446185ef82a9",
+     "name": "HD_2_Public_Safety.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Homicide",
+      "Rape",
+      "Robbery",
+      "Aggravated Assault",
+      "Total Violent",
+      "Burglary",
+      "Motor Veh Theft",
+      "Total Larceny",
+      "Total Property",
+      "Hate Crime",
+      "Population",
+      "Violent Crime Per Capita",
+      "Property Crime Per Capita"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "cecp-youth-education",
+   "title": "CECP Youth Education",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-23",
+   "url": "https://data.santamonica.gov/dataset/cecp-youth-education",
+   "resources": [
+    {
+     "resource_id": "f24505d1-485d-45d7-9c3d-73607bfa8659",
+     "name": "HD_5_Youth_Education.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Grade 3 proficient in Language Arts",
+      "% Graduation Rate (SaMoHi)",
+      "Graduation Rate SMMUSD",
+      "Dropout Rate (SaMoHi)",
+      "Dropout Rate (SMMUSD)",
+      "% Suspension Rate",
+      "Absenteeism Rate",
+      "% Feel Safe at School (G7)",
+      "% Feel Safe at School (G9)",
+      "% Feel Safe at School (G11)",
+      "% Completing college admission requirements",
+      "% Receiving Env. Ed",
+      "Kindergarten Ready"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "cecp-voter-participation",
+   "title": "CECP Voter Participation",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-23",
+   "url": "https://data.santamonica.gov/dataset/cecp-voter-participation",
+   "resources": [
+    {
+     "resource_id": "72ae4a27-3ca0-49b5-8b79-b7b94a12510c",
+     "name": "CECP1_Voter_Participation.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Date",
+      "Year",
+      "SMCity Off Year",
+      "SM City Genl",
+      "SM Special",
+      "La Cnty Genl",
+      "CA Turnout-votes/reg"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "sle-income-diversity",
+   "title": "SLE Income Diversity",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-23",
+   "url": "https://data.santamonica.gov/dataset/sle-income-diversity",
+   "resources": [
+    {
+     "resource_id": "39e4d2e4-0547-415a-9808-88a08bea06c8",
+     "name": "SLE_5_Income_Diversity.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Middle Income",
+      "Households earning less than $35000",
+      "Households earning more than $100,000",
+      "Ratio Low to High",
+      "Total Households",
+      "Pct Less $35K",
+      "Pct Gtr $100K",
+      "Pct Mid Inc",
+      "Ratio as Pct",
+      "Target Ratio"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "sle-sustainable-business",
+   "title": "SLE Sustainable Business",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-23",
+   "url": "https://data.santamonica.gov/dataset/sle-sustainable-business",
+   "resources": [
+    {
+     "resource_id": "423c6765-f3d7-4f31-8938-59c8a0655bab",
+     "name": "SLE9_Sustainable_Business_Community3.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Business Greening Progam",
+      "Green Business Certifications",
+      "Buy local business",
+      "SQA Awards",
+      "Total BGP",
+      "Total CG",
+      "Total SQA"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "sle-economic-health-employees",
+   "title": "SLE Economic Health - Employees",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-23",
+   "url": "https://data.santamonica.gov/dataset/sle-economic-health-employees",
+   "resources": [
+    {
+     "resource_id": "bd6e19f3-8699-4f86-a01e-ff42338dc804",
+     "name": "SLE_6_Economic_Health-Employment.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Total Jobs",
+      "Agriculture, Forestry, Fishing & Hunting",
+      "Mining",
+      "Utilities",
+      "Construction",
+      "Manufacturing",
+      "Wholesale Trade",
+      "Retail Trade",
+      "Transportation & Warehousing",
+      "Information",
+      "Finance & Insurance",
+      "Real Estate & Rental & Leasing",
+      "Professional, Scientific, & Technical Services",
+      "Management Of Companies And Enterprises",
+      "Admin & Support & Waste Mgmt & Remediation",
+      "Educational Services",
+      "Healthcare & Social Assistance",
+      "Arts, Entertainment & Recreation",
+      "Accomodation & Food Services",
+      "Other Services",
+      "Federal Govt",
+      "State Govt",
+      "Local Govt",
+      "Non-classified",
+      "Unemployment"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "sle-economic-health",
+   "title": "SLE Economic Health",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-23",
+   "url": "https://data.santamonica.gov/dataset/sle-economic-health",
+   "resources": [
+    {
+     "resource_id": "63a7bfaa-6281-4f1f-ae39-d1b2bb3b3d9d",
+     "name": "SLE_6_Ecconomic_Health.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Total Businesses",
+      "Agriculture, Forestry, Fishing & Hunting",
+      "Mining",
+      "Utilities",
+      "Construction",
+      "Manufacturing",
+      "Wholesale Trade",
+      "Retail Trade",
+      "Transportation & Warehousing",
+      "Information",
+      "Finance & Insurance",
+      "Real Estate & Rental & Leasing",
+      "Professional, Scientific, & Technical Services",
+      "Management Of Companies And Enterprises",
+      "Admin & Support & Waste Mgmt & Remediation",
+      "Educational Services",
+      "Healthcare & Social Assistance",
+      "Arts, Entertainment & Recreation",
+      "Accomodation & Food Services",
+      "Other Services",
+      "Federal Govt",
+      "State Govt",
+      "Local Govt",
+      "Non-classified"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "sle-cost-of-living",
+   "title": "SLE Cost of Living",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-23",
+   "url": "https://data.santamonica.gov/dataset/sle-cost-of-living",
+   "resources": [
+    {
+     "resource_id": "01dad7da-f6e6-410c-90b8-1af0f5727b6b",
+     "name": "SLE_3_Cost_of_Living_Rent_Burden.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      ">15%",
+      "% of total (>15%)",
+      "15-19.9%",
+      "% of total (15-19.9%)",
+      "20-24.9%",
+      "% of total (20-24.9%)",
+      "25-29.9%",
+      "% of total (25-29.9%)",
+      "30-34.9%",
+      "% of total (30-34.9%)",
+      "35%<",
+      "% of total (35%<)",
+      "% units rent burdened",
+      "Total Units"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "sle-jobs-housing",
+   "title": "SLE Jobs Housing",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-23",
+   "url": "https://data.santamonica.gov/dataset/sle-jobs-housing",
+   "resources": [
+    {
+     "resource_id": "198631cd-cb2a-4718-9698-624003cb0c07",
+     "name": "SLE_2_Jobs_Housing2.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Total Housing",
+      "Total Jobs in SM",
+      "Housing/Jobs Gap",
+      "Housing/Jobs Ratio"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "sle-wages",
+   "title": "SLE Wages",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-22",
+   "url": "https://data.santamonica.gov/dataset/sle-wages",
+   "resources": [
+    {
+     "resource_id": "da11f2e0-7062-4852-954a-29f19eaf47c7",
+     "name": "SLE_1_Wages.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Total Wages",
+      "Top 3 Industry Total Wages",
+      "Top 3 Industries Percent",
+      "Top Industry Wages",
+      "Top Industry Percentage",
+      "Agriculture, Forestry, Fishing & Hunting",
+      "Utilities",
+      "Construction",
+      "Manufacturing",
+      "Wholesale Trade",
+      "Retail Trade",
+      "Transportation & Warehousing",
+      "Information",
+      "Finance & Insurance",
+      "Real Estate & Rental & Leasing",
+      "Professional, Scientific, & Technical Services",
+      "Management Of Companies And Enterprises",
+      "Admin & Support & Waste Mgmt & Remediation",
+      "Educational Services",
+      "Healthcare & Social Assistance",
+      "Arts, Entertainment & Recreation",
+      "Accomodation & Food Services",
+      "Other Services",
+      "Government (Federal/Local)",
+      "Non-classified"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "ac-creative-sector",
+   "title": "AC Creative Sector",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-22",
+   "url": "https://data.santamonica.gov/dataset/ac-creative-sector",
+   "resources": [
+    {
+     "resource_id": "c4c88b01-5cc2-4106-8792-6b11046f3d7c",
+     "name": "AC2_Creative_Sector_Activity.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "employees in the creative sector",
+      "# of establishments",
+      "Total establishments",
+      "Percent Creative",
+      "Total annual payroll",
+      "cvi index"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "oslu-open-space",
+   "title": "OSLU Open Space",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-22",
+   "url": "https://data.santamonica.gov/dataset/oslu-open-space",
+   "resources": [
+    {
+     "resource_id": "8c16ff82-373d-4aa5-bb8b-41b9eeb5af18",
+     "name": "OSLU2_OpenSpace.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Acres"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "oslu-trees",
+   "title": "OSLU Trees",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-22",
+   "url": "https://data.santamonica.gov/dataset/oslu-trees",
+   "resources": [
+    {
+     "resource_id": "6ea07dfc-89a7-4c63-943c-0ef9dc03dc7f",
+     "name": "OSLU2_Trees.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Trees Planted",
+      "Trees Removed",
+      "Net Tree Gain",
+      "Trees - Sunset Park",
+      "Trees - Mid City",
+      "Trees - Mid City/Pico",
+      "Trees - NorthEast",
+      "Trees - NOMA",
+      "Trees - Ocean Park",
+      "Trees - Pico",
+      "Trees - Wilmont",
+      "Number of Trees (estimate)"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "t-bike-lanes",
+   "title": "T Bike Lanes",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-22",
+   "url": "https://data.santamonica.gov/dataset/t-bike-lanes",
+   "resources": [
+    {
+     "resource_id": "e83f1b05-d607-4a56-b44e-b8dfd1d32ba1",
+     "name": "T_6_Bike_Facilities.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Bike Valet - Main St Farmers Market",
+      "Bike Valet - DT Farmers Market",
+      "Bike Valet - VAP Farmers Market",
+      "Bike Valet - SM Bike Center",
+      "Bike Valet - Twilight Concert Series",
+      "Cirque Du Soleil",
+      "Misc",
+      "Bike Valet Participation",
+      "Bike Network (total miles)",
+      "Bike Network % Complete",
+      "Bike Parking",
+      "Bike Mode Share",
+      "Drive Alone Mode Share"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "t-bbb-performance",
+   "title": "T BBB Performance",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-21",
+   "url": "https://data.santamonica.gov/dataset/t-bbb-performance",
+   "resources": [
+    {
+     "resource_id": "07fa2643-4e83-4768-9a92-4b484b0df1c3",
+     "name": "T8_BBB_Performance.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Date",
+      "Miles (BEB)",
+      "Miles (Bus Only Lanes)",
+      "Weekday MPH)"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "t-bbb-ridership",
+   "title": "T BBB Ridership",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-21",
+   "url": "https://data.santamonica.gov/dataset/t-bbb-ridership",
+   "resources": [
+    {
+     "resource_id": "d0ce5366-d8a8-4923-beb6-c1c7eca032a5",
+     "name": "T_8_BBBRidership.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "BBB Ridership",
+      "Pct_PassPrograms",
+      "Pct_CashFare",
+      "Pct_MODE"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "t-alt-fuel-fleet",
+   "title": "T Alt Fuel Fleet",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-21",
+   "url": "https://data.santamonica.gov/dataset/t-alt-fuel-fleet",
+   "resources": [
+    {
+     "resource_id": "70e2a1a1-e4cd-43c3-aeaa-a493562310d6",
+     "name": "T_9_Alt_Fuel_Fleet.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Date",
+      "Gasoline Unleaded",
+      "Flex Fuel",
+      "Propane",
+      "Renewable Diesel",
+      "Renewable Natural Gas",
+      "Electric",
+      "Alternative",
+      "Fossil Fuel",
+      "Total",
+      "% Alternative Fuel Vehicles",
+      "Pct_Zero Emissions (BBB)"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "t-electric-vehicles",
+   "title": "T Electric Vehicles",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-21",
+   "url": "https://data.santamonica.gov/dataset/t-electric-vehicles",
+   "resources": [
+    {
+     "resource_id": "1c8dad7d-01d8-46bb-b943-6d8de2fd41e4",
+     "name": "T_7_ElectricVehicles.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Total Registered Vehicles",
+      "Total Clean Air Vehicles",
+      "Public EV Chargers",
+      "Private EV Chargers",
+      "Total EV Chargers",
+      "Ratio Chargers to EV Owners",
+      "Clean Air Vehicles percentage of Total",
+      "Total Vehicles Registered 90401",
+      "ZEVs 90401",
+      "SULEVs 90401",
+      "Total Vehicles Registered 90402",
+      "ZEVs 90402",
+      "SULEVs 90402",
+      "Total Vehicles Registered 90403",
+      "ZEVs 90403",
+      "SULEVs 90403",
+      "Total Vehicles Registered 90404",
+      "ZEVs 90404",
+      "SULEVs 90404",
+      "Total Vehicles Registered 90405",
+      "ZEVs 90405",
+      "SULEVs 90405",
+      "Population",
+      "Vehicles Per Capita"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "eph-farmers-market",
+   "title": "EPH Farmers Market",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-21",
+   "url": "https://data.santamonica.gov/dataset/eph-farmers-market",
+   "resources": [
+    {
+     "resource_id": "949f3fa1-e6c4-472e-8026-037cd95762cb",
+     "name": "EPH8_FarmersMarkets.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Organic_Sales",
+      "Low_Chemical_Sales",
+      "Conv_Sales",
+      "Organic&LowChem_Sales",
+      "Total_Sales",
+      "Pct_Organic",
+      "Pct_LowChem",
+      "Pct_Organic&LC",
+      "Pct_Conventional",
+      "Index_Totall FM Sales",
+      "Pct_SM_Business",
+      "Cal_Fresh_Sales"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "eph-beach-water-quality",
+   "title": "EPH Beach Water Quality",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-16",
+   "url": "https://data.santamonica.gov/dataset/eph-beach-water-quality",
+   "resources": [
+    {
+     "resource_id": "f8911a59-32d5-4776-83e4-667ccb89e68a",
+     "name": "EPH_BeachQuality.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Wet - 3-1 - Montana",
+      "Wet - 3-2 - Wilshire",
+      "Wet - 3-3 - Pier",
+      "Wet - 3-4 - PicoKenter",
+      "Wet 3-5 - Ashland",
+      "Dry Winter - 3-1 - Montana",
+      "Dry Winter - 3-2 - Wilshire",
+      "Dry Winter - 3-3 - Pier",
+      "Dry Winter - 3-4 - PicoKenter",
+      "Dry Winter - 3-5 - Ashland",
+      "Dry Summer 3-1 - Montana",
+      "Dry Summer 3-2-Wilshire",
+      "Dry Summer 3-3-Pier",
+      "Dry Summer 3-4-PicoKenter",
+      "Dry Summer 3-5-Ashland",
+      "Total Wet Weather",
+      "Average Wet",
+      "Total Dry -Winter",
+      "Average Dry - Winter",
+      "Totatl Dry - Summer",
+      "Average Dry Summer",
+      "Total"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "rc-waste",
+   "title": "RC Waste",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-15",
+   "url": "https://data.santamonica.gov/dataset/rc-waste",
+   "resources": [
+    {
+     "resource_id": "8dad09f6-eb23-447f-8048-978a8348c694",
+     "name": "RC_1_Solid_Waste_2021.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Generated",
+      "Transformed",
+      "Net LF",
+      "Diverted",
+      "Actual Diverted Pct",
+      "Actual SB 1016 per resident Rate",
+      "Actual SB 1016 Per employee Rate",
+      "Derived Per Capita Generation",
+      "Target SB 1016 PC Employees rate",
+      "Target SB 1016 PC Residents rate"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "eph-hazardous-waste",
+   "title": "EPH Hazardous Waste",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-15",
+   "url": "https://data.santamonica.gov/dataset/eph-hazardous-waste",
+   "resources": [
+    {
+     "resource_id": "3d6f8838-73fd-4416-aaf5-8e2b73386426",
+     "name": "EPH_4_Residential_Household_Hazardous_Waste_2.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Date",
+      "HHW_lbs",
+      "HH_Per_Year",
+      "HH_Cume",
+      "E-Waste lbs",
+      "Pct_Ann_HH",
+      "Index_Ann_HH",
+      "Index_Volume",
+      "Pct_Cume_HH",
+      "Index_Cume_HH",
+      "Target_All_HH_Graph"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "rc-2-water-use-2",
+   "title": "RC 2 Water Use-2",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-14",
+   "url": "https://data.santamonica.gov/dataset/rc-2-water-use-2",
+   "resources": [
+    {
+     "resource_id": "dacb5a37-650c-41e9-82c8-399ae80049d0",
+     "name": "RC_2_Water_Use-2.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Demand (MGD)",
+      "Local (MGY)",
+      "Imported (MGY)",
+      "Potable (MGY)",
+      "Non-Potable (MGY)",
+      "Local +Imp",
+      "Annual Res. MG",
+      "Pct Local",
+      "Pct Imported",
+      "Potable_Nonpot",
+      "Pct Potable",
+      "Pct Non-Potable",
+      "Dem Per Cap_GPD",
+      "Res Per Cap",
+      "Population"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "rc-green-building",
+   "title": "RC Green Building",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-14",
+   "url": "https://data.santamonica.gov/dataset/rc-green-building",
+   "resources": [
+    {
+     "resource_id": "3f717ae0-5338-47e5-a8a7-971759d17d2d",
+     "name": "RC_6_Green_Building.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Total Buildings 5000sqft",
+      "LEED Buildings",
+      "% LEED Gold or higher"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "eph-community-gardens",
+   "title": "EPH Community Gardens",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-14",
+   "url": "https://data.santamonica.gov/dataset/eph-community-gardens",
+   "resources": [
+    {
+     "resource_id": "9564fa2f-3fb7-4fa1-b6a5-b2f41b829a67",
+     "name": "EPH10_Community_Gardens (1).csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Date",
+      "# of participants",
+      "Number of new permits",
+      "Pounds of Food Donated"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "eph-urban-runoff",
+   "title": "EPH Urban Runoff",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-13",
+   "url": "https://data.santamonica.gov/dataset/eph-urban-runoff",
+   "resources": [
+    {
+     "resource_id": "92c4fd76-8524-4d21-b29e-bc6efc718c6b",
+     "name": "EPH_6_Urban_Runoff_2.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Annual Gallons Averted",
+      "Gallons Averted Including Previous Years Projects",
+      "Imperm to BMP (treated)",
+      "Permeable Area (treated)",
+      "# of Projects",
+      "Gals Runoff Treated",
+      "Cummulative Water Treated",
+      "Total Rainfall > .1",
+      "Cummulative Gallons",
+      "Cummulative Projects",
+      "Cummulative Imp to BMP",
+      "total land in Santa Monica",
+      "Area of Impervious Buildings",
+      "Area of Impermeable Public Parcels",
+      "Area of Roadway/Sidewalks",
+      "Total Impervious",
+      "Total Pervious",
+      "% Impervious",
+      "% pervious"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "eph_air_quality",
+   "title": "EPH Air Quality",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-13",
+   "url": "https://data.santamonica.gov/dataset/eph_air_quality",
+   "resources": [
+    {
+     "resource_id": "cabbf48e-7e3e-4185-9f48-a7d13b5ec944",
+     "name": "EPH_3_Air_Quality.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Date",
+      "No Days Standard Ex .07 ppm Ozone during 8 hour period",
+      "Days Unhealthy for Sensitive Groups",
+      "AQI Median"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "rc-ghg-emissions",
+   "title": "RC GHG Emissions",
+   "notes": "",
+   "tags": [],
+   "org": "Sustainability",
+   "modified": "2023-02-03",
+   "url": "https://data.santamonica.gov/dataset/rc-ghg-emissions",
+   "resources": [
+    {
+     "resource_id": "fbb8e4af-40e0-4433-badb-9a5eb5a4cd4f",
+     "name": "RC_5_GHG_Emissions.csv",
+     "format": "CSV",
+     "datastore": true,
+     "fields": [
+      "Year",
+      "Residential",
+      "Commercial",
+      "Industrial",
+      "Transportation",
+      "Aviation",
+      "Solid Waste",
+      "Total Community GHG",
+      "Percent below 1990",
+      "Population",
+      "Total GHG Per Capita",
+      "Gov Op Buildings / Facilities - Electricity",
+      "Gov Op Buildings / Facilities - Natural Gas",
+      "Gov Op Buidings Total",
+      "Gov Op Streetlights/ Traffic Signals",
+      "Gov Op Vehicle Fleet",
+      "Gov Op Water Delivery",
+      "Gov Op Big Blue Bus",
+      "Gov Op TOTAL GHG",
+      "Green Power",
+      "Gov Op Less GP TOTAL",
+      "Percent Below 1990"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "biennial-operating-budget",
+   "title": "Biennial Operating Budget",
+   "notes": "Operating Budget. Includes operating budget expenditures and revenues only.  Does not include capital expenditures (CIP).",
+   "tags": [
+    "budget",
+    "expenditures",
+    "expenses",
+    "fees",
+    "finance",
+    "revenue",
+    "salaries",
+    "supplies",
+    "taxes"
+   ],
+   "org": "Finance",
+   "modified": "2022-11-15",
+   "url": "https://data.santamonica.gov/dataset/biennial-operating-budget",
+   "resources": [
+    {
+     "resource_id": "0fea467f-355a-45f1-bd2a-2b352abd94cf",
+     "name": "Biennial Operating Budget",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "ledger_type",
+      "cost_center_type",
+      "fund_id",
+      "fund_name",
+      "department_id",
+      "department_name",
+      "division_id",
+      "division_name",
+      "object",
+      "object_description",
+      "category_code",
+      "category_code_description",
+      "fiscal_year",
+      "july",
+      "august",
+      "september",
+      "october",
+      "november",
+      "december",
+      "january",
+      "february",
+      "march",
+      "april",
+      "may",
+      "june",
+      "total"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "parking-rates",
+   "title": "Parking Rates",
+   "notes": "In addition to the inspections required by Section 108, some construction projects require that a deputy inspector verifies specific aspects of the construction and that the specifications conform to the approved drawings. The deputy inspector is required to report these observations in writing, on an approved special inspection report form to the building official at regular intervals.\r\n\r\nSpecial (Deputy) Inspections are required for:\r\n\r\n- Concrete Strength > 2,500 psi, Shotcrete\r\n- Reinforcement in structural decks\r\n- Drilled in Anchors\r\n- Field Welding or Shop Welding in a non-approved fabr",
+   "tags": [],
+   "org": "Transportation",
+   "modified": "2022-10-26",
+   "url": "https://data.santamonica.gov/dataset/parking-rates",
+   "resources": [
+    {
+     "resource_id": "b1f67095-07b4-48af-a8e5-d237c16e7289",
+     "name": "Parking Rates",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "department",
+      "division",
+      "activity",
+      "keywords",
+      "fee_name_description",
+      "fee",
+      "fee_other",
+      "unit",
+      "additional_fee",
+      "additional_fee_unit",
+      "deposit",
+      "rate_tier",
+      "comments",
+      "external_link",
+      "notes"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "ev-charging-stations",
+   "title": "EV Charging Stations",
+   "notes": "Location and quantity of Electric Vehicle Charging Stations",
+   "tags": [
+    "electric vehicles",
+    "sustainability"
+   ],
+   "org": "Transportation",
+   "modified": "2022-10-26",
+   "url": "https://data.santamonica.gov/dataset/ev-charging-stations",
+   "resources": [
+    {
+     "resource_id": "1c0ee42d-7296-408d-9b73-35cea1348e05",
+     "name": "EV Charging Stations",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "location_notes",
+      "address",
+      "quantity",
+      "notes",
+      "location"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "city-of-santa-monica-employee-trips-with-alternate-transportation",
+   "title": "City of Santa Monica Employee Trips with Alternate Transportation",
+   "notes": "Daily count of trips by transportation mode",
+   "tags": [],
+   "org": "Transportation",
+   "modified": "2022-10-26",
+   "url": "https://data.santamonica.gov/dataset/city-of-santa-monica-employee-trips-with-alternate-transportation",
+   "resources": [
+    {
+     "resource_id": "86256f71-2e32-487f-9d1e-1543c0b386bc",
+     "name": "City of Santa Monica Employee Trips with Alternate Transportation",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "date",
+      "mode",
+      "trips"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "youth-wellbeing",
+   "title": "Youth Wellbeing",
+   "notes": "Operating Budget. Includes operating budget expenditures and revenues only.  Does not include capital expenditures (CIP).",
+   "tags": [],
+   "org": "Youth",
+   "modified": "2022-10-26",
+   "url": "https://data.santamonica.gov/dataset/youth-wellbeing",
+   "resources": [
+    {
+     "resource_id": "4007ddf4-a3bb-4bf8-aec9-be6a2611c963",
+     "name": "Youth Wellbeing",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "domain",
+      "subdomain",
+      "age_group",
+      "indicator",
+      "overall",
+      "gender",
+      "household_income",
+      "race_ethnicity",
+      "special_ed",
+      "grade",
+      "average",
+      "sample_size",
+      "total",
+      "data_source",
+      "data_source_organization",
+      "data_provider_organization",
+      "notes",
+      "indicator_justification",
+      "calculation_method",
+      "findings",
+      "zip_code",
+      "location",
+      "year"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "enterprise-systems-catalog",
+   "title": "Enterprise Systems Catalog",
+   "notes": "In accordance with Senate Bill 272, the City of Santa Monica has released a catalog of its enterprise systems. Approved on October 11, 2015, SB 272 adds a section to the California Public Records Act requiring local agencies to create a catalog of Enterprise Systems by July 1, 2016 with annual updates.\r\n\r\nEnterprise System is defined as: \r\n\r\n- A software application or computer system that collects, stores, exchanges and analyzes information that the agency uses that is both of the following:\r\n\r\n- A multi-departmental system or a system that contains information collected about the public.\r\n\r\n",
+   "tags": [
+    "enterprise software",
+    "sb 272",
+    "software catalog"
+   ],
+   "org": "Technology",
+   "modified": "2022-10-26",
+   "url": "https://data.santamonica.gov/dataset/enterprise-systems-catalog",
+   "resources": [
+    {
+     "resource_id": "6ba413c0-6978-43cd-b2c8-901f85eeeb81",
+     "name": "Enterprise Systems Catalog",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "reporting_period",
+      "vendor",
+      "product",
+      "system_purpose",
+      "types",
+      "custodian",
+      "collection_frequency",
+      "update_frequency"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "community_government-meetings",
+   "title": "Community/Government Meetings",
+   "notes": "Public events appearing on any one of the City's event calendars.",
+   "tags": [],
+   "org": "Government Bodies",
+   "modified": "2022-10-26",
+   "url": "https://data.santamonica.gov/dataset/community_government-meetings",
+   "resources": [
+    {
+     "resource_id": "6a63b6a0-6db0-4ee1-b09b-9c3d9306198f",
+     "name": "Community/Government Meetings",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "calendar",
+      "event_id",
+      "title",
+      "is_cancelled",
+      "start_date",
+      "end_date",
+      "all_day",
+      "description",
+      "location",
+      "address",
+      "contact_name",
+      "contact_email",
+      "contact_phone",
+      "age_groups",
+      "event_types",
+      "detail_url",
+      "signup_url",
+      "image_url",
+      "id"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "campaign-finance-disclosure-e-filings",
+   "title": "Campaign Finance Disclosure E-Filings",
+   "notes": "Contribution, Expenditure, Expense, and Loan filings for FPPC forms 460, 461, 465, 496, and 497.",
+   "tags": [
+    "elections",
+    "fppc",
+    "proposition 9"
+   ],
+   "org": "Government Bodies",
+   "modified": "2022-10-26",
+   "url": "https://data.santamonica.gov/dataset/campaign-finance-disclosure-e-filings",
+   "resources": [
+    {
+     "resource_id": "a9eb99f4-c633-46b7-bbeb-fc0d50b47e1a",
+     "name": "Campaign Finance Disclosure E-Filings",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "filer_id",
+      "filer_name",
+      "filer_type_code",
+      "filer_type",
+      "reporting_year",
+      "reporting_date",
+      "reporting_period_start",
+      "reporting_period_end",
+      "election_date",
+      "report_number",
+      "report_version",
+      "record_code",
+      "record_type",
+      "statement_code",
+      "statement_type",
+      "form_code",
+      "form_name",
+      "form_part_code",
+      "form_part_name",
+      "transaction_id",
+      "transaction_date",
+      "transaction_amount",
+      "transaction_ytd_amount",
+      "transaction_description",
+      "entity_code",
+      "entity_type",
+      "entity_last_name",
+      "entity_first_name",
+      "entity_city",
+      "entity_state",
+      "entity_zip",
+      "entity_employer",
+      "entity_occupation",
+      "entity_self_employed",
+      "committee_id",
+      "check_number",
+      "expenditure_code",
+      "expenditure_type",
+      "beginning_expenses_balance",
+      "expenses_incurred",
+      "expenses_paid",
+      "ending_expenses_balance",
+      "loan_amount_1_description",
+      "loan_amount_1",
+      "loan_amount_2_description",
+      "loan_amount_2",
+      "loan_amount_3_description",
+      "loan_amount_3",
+      "loan_amount_4_description",
+      "loan_amount_4",
+      "loan_amount_5_description",
+      "loan_amount_5",
+      "loan_amount_6_description",
+      "loan_amount_6",
+      "loan_amount_7_description",
+      "loan_amount_7",
+      "loan_amount_8_description",
+      "loan_amount_8",
+      "loan_date_1_description",
+      "loan_date_1",
+      "loan_date_2_description",
+      "loan_date_2",
+      "loan_rate_description",
+      "loan_rate",
+      "summary_line_description",
+      "summary_line_number",
+      "summary_amount_a_description",
+      "summary_amount_a",
+      "summary_amount_b_description",
+      "summary_amount_b",
+      "summary_amount_c_description",
+      "summary_amount_c",
+      "candidate_last_name",
+      "candidate_first_name",
+      "candidate_office_code",
+      "candidate_office",
+      "candidate_office_juristiction",
+      "candidate_office_juristiction_description",
+      "candidate_office_district",
+      "candidate_office_sought_held_code",
+      "candidate_office_sought_held",
+      "ballot_measure_number",
+      "ballot_measure_name",
+      "ballot_measure_juristiction",
+      "support_or_oppose_code",
+      "support_or_oppose",
+      "identifier"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "campaign-finance-disclosure-e-filings-contributions",
+   "title": "Campaign Finance Disclosure E-Filings: Contributions",
+   "notes": "Contribution, Expenditure, Expense, and Loan filings for FPPC forms 460, 461, 465, 496, and 497.",
+   "tags": [
+    "elections",
+    "fppc",
+    "proposition 9"
+   ],
+   "org": "Government Bodies",
+   "modified": "2022-10-26",
+   "url": "https://data.santamonica.gov/dataset/campaign-finance-disclosure-e-filings-contributions",
+   "resources": [
+    {
+     "resource_id": "649cdb93-248b-4ade-9306-4e67cefa3687",
+     "name": "Campaign Finance Disclosure E-Filings: Contributions",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "filer_id",
+      "filer_name",
+      "filer_type_code",
+      "filer_type",
+      "reporting_year",
+      "reporting_date",
+      "reporting_period_start",
+      "reporting_period_end",
+      "election_date",
+      "report_number",
+      "report_version",
+      "record_code",
+      "record_type",
+      "statement_code",
+      "statement_type",
+      "form_code",
+      "form_name",
+      "form_part_code",
+      "form_part_name",
+      "transaction_id",
+      "transaction_date",
+      "transaction_amount",
+      "transaction_ytd_amount",
+      "transaction_description",
+      "entity_code",
+      "entity_type",
+      "entity_last_name",
+      "entity_first_name",
+      "entity_city",
+      "entity_state",
+      "entity_zip",
+      "entity_employer",
+      "entity_occupation",
+      "entity_self_employed",
+      "committee_id",
+      "candidate_last_name",
+      "candidate_first_name",
+      "candidate_office_code",
+      "candidate_office",
+      "candidate_office_juristiction",
+      "candidate_office_juristiction_description",
+      "candidate_office_district",
+      "candidate_office_sought_held",
+      "ballot_measure_number",
+      "ballot_measure_name",
+      "ballot_measure_juristiction",
+      "support_or_oppose",
+      "identifier"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "campaign-finance-disclosure-e-filings-expenses",
+   "title": "Campaign Finance Disclosure E-Filings: Expenses",
+   "notes": "Contribution, Expenditure, Expense, and Loan filings for FPPC forms 460, 461, 465, 496, and 497.",
+   "tags": [
+    "elections",
+    "fppc",
+    "proposition 9"
+   ],
+   "org": "Government Bodies",
+   "modified": "2022-10-26",
+   "url": "https://data.santamonica.gov/dataset/campaign-finance-disclosure-e-filings-expenses",
+   "resources": [
+    {
+     "resource_id": "f27f775c-aa17-4fa7-8a50-07e243c99b3c",
+     "name": "Campaign Finance Disclosure E-Filings: Expenses",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "filer_id",
+      "filer_name",
+      "filer_type_code",
+      "filer_type",
+      "reporting_year",
+      "reporting_date",
+      "reporting_period_start",
+      "reporting_period_end",
+      "election_date",
+      "report_number",
+      "report_version",
+      "record_code",
+      "record_type",
+      "form_code",
+      "form_name",
+      "form_part_code",
+      "form_part_name",
+      "transaction_id",
+      "transaction_description",
+      "entity_code",
+      "entity_type",
+      "entity_last_name",
+      "entity_first_name",
+      "entity_city",
+      "entity_state",
+      "entity_zip",
+      "committee_id",
+      "expenditure_code",
+      "expenditure_type",
+      "beginning_expenses_balance",
+      "expenses_incurred",
+      "expenses_paid",
+      "ending_expenses_balance",
+      "identifier"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "campaign-finance-disclosure-e-filings-loans",
+   "title": "Campaign Finance Disclosure E-Filings: Loans",
+   "notes": "Contribution, Expenditure, Expense, and Loan filings for FPPC forms 460, 461, 465, 496, and 497.",
+   "tags": [
+    "elections",
+    "fppc",
+    "proposition 9"
+   ],
+   "org": "Government Bodies",
+   "modified": "2022-10-26",
+   "url": "https://data.santamonica.gov/dataset/campaign-finance-disclosure-e-filings-loans",
+   "resources": [
+    {
+     "resource_id": "115ac0bd-2c13-4c81-8ab2-e89255f888ac",
+     "name": "Campaign Finance Disclosure E-Filings: Loans",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "filer_id",
+      "filer_name",
+      "filer_type_code",
+      "filer_type",
+      "reporting_year",
+      "reporting_date",
+      "reporting_period_start",
+      "reporting_period_end",
+      "election_date",
+      "report_number",
+      "report_version",
+      "record_code",
+      "record_type",
+      "form_code",
+      "form_name",
+      "form_part_code",
+      "form_part_name",
+      "transaction_id",
+      "entity_code",
+      "entity_type",
+      "entity_last_name",
+      "entity_first_name",
+      "entity_city",
+      "entity_state",
+      "entity_zip",
+      "entity_employer",
+      "entity_occupation",
+      "entity_self_employed",
+      "committee_id",
+      "loan_amount_1_description",
+      "loan_amount_1",
+      "loan_amount_2_description",
+      "loan_amount_2",
+      "loan_amount_3_description",
+      "loan_amount_3",
+      "loan_amount_4_description",
+      "loan_amount_4",
+      "loan_amount_5_description",
+      "loan_amount_5",
+      "loan_amount_6_description",
+      "loan_amount_6",
+      "loan_amount_7_description",
+      "loan_amount_7",
+      "loan_amount_8_description",
+      "loan_amount_8",
+      "loan_date_1_description",
+      "loan_date_1",
+      "loan_date_2_description",
+      "loan_date_2",
+      "loan_rate_description",
+      "loan_rate",
+      "identifier"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "campaign-finance-disclosure-e-filings-summaries",
+   "title": "Campaign Finance Disclosure E-Filings: Summaries",
+   "notes": "Contribution, Expenditure, Expense, and Loan filings for FPPC forms 460, 461, 465, 496, and 497.",
+   "tags": [
+    "elections",
+    "fppc",
+    "proposition 9"
+   ],
+   "org": "Government Bodies",
+   "modified": "2022-10-26",
+   "url": "https://data.santamonica.gov/dataset/campaign-finance-disclosure-e-filings-summaries",
+   "resources": [
+    {
+     "resource_id": "12ec2f82-ee76-49dc-961b-b076f04e9132",
+     "name": "Campaign Finance Disclosure E-Filings: Summaries",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "filer_id",
+      "filer_name",
+      "filer_type_code",
+      "filer_type",
+      "reporting_year",
+      "reporting_date",
+      "reporting_period_start",
+      "reporting_period_end",
+      "election_date",
+      "report_number",
+      "report_version",
+      "record_code",
+      "record_type",
+      "form_code",
+      "form_name",
+      "form_part_code",
+      "form_part_name",
+      "summary_line_description",
+      "summary_line_number",
+      "summary_amount_a_description",
+      "summary_amount_a",
+      "summary_amount_b_description",
+      "summary_amount_b",
+      "summary_amount_c_description",
+      "summary_amount_c",
+      "identifier"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "campaign-finance-disclosure-e-filings-expenditures",
+   "title": "Campaign Finance Disclosure E-Filings: Expenditures",
+   "notes": "Contribution, Expenditure, Expense, and Loan filings for FPPC forms 460, 461, 465, 496, and 497.",
+   "tags": [
+    "elections",
+    "fppc",
+    "proposition 9"
+   ],
+   "org": "Government Bodies",
+   "modified": "2022-10-26",
+   "url": "https://data.santamonica.gov/dataset/campaign-finance-disclosure-e-filings-expenditures",
+   "resources": [
+    {
+     "resource_id": "a406188b-f960-47a2-b98e-136f079a1cb0",
+     "name": "Campaign Finance Disclosure E-Filings: Expenditures",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "filer_id",
+      "filer_name",
+      "filer_type_code",
+      "filer_type",
+      "reporting_year",
+      "reporting_date",
+      "reporting_period_start",
+      "reporting_period_end",
+      "election_date",
+      "report_number",
+      "report_version",
+      "record_code",
+      "record_type",
+      "statement_code",
+      "statement_type",
+      "form_code",
+      "form_name",
+      "form_part_code",
+      "form_part_name",
+      "transaction_id",
+      "transaction_date",
+      "transaction_amount",
+      "transaction_ytd_amount",
+      "transaction_description",
+      "entity_code",
+      "entity_type",
+      "entity_last_name",
+      "entity_first_name",
+      "entity_city",
+      "entity_state",
+      "entity_zip",
+      "entity_employer",
+      "entity_occupation",
+      "entity_self_employed",
+      "committee_id",
+      "check_number",
+      "expenditure_code",
+      "expenditure_type",
+      "beginning_expenses_balance",
+      "expenses_incurred",
+      "expenses_paid",
+      "ending_expenses_balance",
+      "candidate_last_name",
+      "candidate_first_name",
+      "candidate_office_code",
+      "candidate_office",
+      "candidate_office_juristiction",
+      "candidate_office_juristiction_description",
+      "candidate_office_district",
+      "candidate_office_sought_held_code",
+      "candidate_office_sought_held",
+      "ballot_measure_number",
+      "ballot_measure_name",
+      "ballot_measure_juristiction",
+      "support_or_oppose_code",
+      "support_or_oppose",
+      "identifier"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "agendas-and-minutes",
+   "title": "Agendas & Minutes",
+   "notes": "",
+   "tags": [
+    "agendas",
+    "boards",
+    "commissions",
+    "council",
+    "government",
+    "minutes"
+   ],
+   "org": "Government Bodies",
+   "modified": "2022-10-26",
+   "url": "https://data.santamonica.gov/dataset/agendas-and-minutes",
+   "resources": [
+    {
+     "resource_id": "40013cb9-7b56-4059-a7eb-5de5a26f8bac",
+     "name": "Agendas & Minutes",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "agency_name",
+      "meeting_date",
+      "is_canceled",
+      "agenda_url",
+      "minutes_url",
+      "packet_url",
+      "video_url",
+      "id"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "fines",
+   "title": "Fines",
+   "notes": "The datasets, filtered views, and visualizations in the City of Santa Monica's Open Data Portal.",
+   "tags": [],
+   "org": "Finance",
+   "modified": "2022-10-26",
+   "url": "https://data.santamonica.gov/dataset/fines",
+   "resources": [
+    {
+     "resource_id": "0225fe6e-d420-4a24-850b-6fdfc1059ebd",
+     "name": "Fines",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "type",
+      "code",
+      "code_section",
+      "taxicab_rule_number",
+      "violation_description",
+      "penalty_schedule",
+      "city_penalty",
+      "current_state_fee",
+      "fine_penalty",
+      "unit",
+      "additional_cost",
+      "late_penalty_charge",
+      "comments",
+      "notes"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "calendar-events-90401",
+   "title": "Calendar Events 90401",
+   "notes": "Public events appearing on any one of the City's event calendars.",
+   "tags": [],
+   "org": "Events",
+   "modified": "2022-10-26",
+   "url": "https://data.santamonica.gov/dataset/calendar-events-90401",
+   "resources": [
+    {
+     "resource_id": "a8ecb913-330d-4be9-a0cd-9ebbde8650de",
+     "name": "Calendar Events 90401",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "calendar",
+      "event_id",
+      "title",
+      "start_date",
+      "end_date",
+      "all_day",
+      "description",
+      "location",
+      "address",
+      "age_groups",
+      "event_types",
+      "detail_url",
+      "signup_url",
+      "id"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "water-usage",
+   "title": "Water Usage",
+   "notes": "Billing and usage records for Santa Monica water customers.",
+   "tags": [
+    "drought",
+    "water"
+   ],
+   "org": "Environment",
+   "modified": "2022-10-26",
+   "url": "https://data.santamonica.gov/dataset/water-usage",
+   "resources": [
+    {
+     "resource_id": "cb9673d4-deae-4572-9167-d031de9b1667",
+     "name": "Water Usage",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "occupant_code",
+      "debtor_number",
+      "category_code",
+      "category_description",
+      "bill_code",
+      "utility_type",
+      "start_date",
+      "end_date",
+      "current_read_date",
+      "last_read_date",
+      "usage_hcf",
+      "usage_gallons",
+      "net",
+      "bill_date",
+      "batch_number",
+      "street_name",
+      "block_address",
+      "street_side",
+      "zip_code",
+      "census_block_id",
+      "street_centroid_lat",
+      "street_centroid_lon",
+      "street_centroid_wkt",
+      "street_centroid",
+      "street_segment_wkt",
+      "id"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "trees-inventory",
+   "title": "Trees Inventory",
+   "notes": "There are over 35,000 public trees in Santa Monica's Urban Forest",
+   "tags": [
+    "environment",
+    "outdoors",
+    "trees",
+    "urban forest"
+   ],
+   "org": "Environment",
+   "modified": "2022-10-26",
+   "url": "https://data.santamonica.gov/dataset/trees-inventory",
+   "resources": [
+    {
+     "resource_id": "54d5b905-d4b5-4b5d-8e68-823df6c04b2f",
+     "name": "Trees Inventory",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "tree_id",
+      "date_modified",
+      "species_id",
+      "name_botanical",
+      "name_common",
+      "height_group",
+      "height_min",
+      "height_max",
+      "dbh_group",
+      "dbh_min",
+      "dbh_max",
+      "district",
+      "location",
+      "latitude",
+      "longitude",
+      "address",
+      "street",
+      "on_address",
+      "on_street",
+      "tree_number",
+      "location_description"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "civic-center-parks-plant-life",
+   "title": "Civic Center Parks Plant Life",
+   "notes": "Tongva Park & Ken Genser Square's drought-tolerant, native and locally-appropriate plant palette that dynamically changes with the seasons.",
+   "tags": [
+    "environment",
+    "flowers",
+    "plants",
+    "tongva"
+   ],
+   "org": "Environment",
+   "modified": "2022-10-26",
+   "url": "https://data.santamonica.gov/dataset/civic-center-parks-plant-life",
+   "resources": [
+    {
+     "resource_id": "1772cbaf-4b52-4ce4-aebb-49b4dd42f4d4",
+     "name": "Civic Center Parks Plant Life",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "scientific_name",
+      "common_name",
+      "areas",
+      "bloom_seasons",
+      "bloom_color",
+      "type"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "assessor-parcels-data---2015",
+   "title": "Assessor Parcels Data - 2015",
+   "notes": "Los Angeles County Valuation and property description for parcels on the Assessor's annual secured assessment rolls 2006 thru 2016. The default sort is by AssessorID and ascending RollYear within AssessorID. This dataset excludes Cross Reference Rolls (89xx-series AssessorID).",
+   "tags": [
+    "assessor",
+    "parcels",
+    "property",
+    "tax"
+   ],
+   "org": "Development",
+   "modified": "2022-10-26",
+   "url": "https://data.santamonica.gov/dataset/assessor-parcels-data---2015",
+   "resources": [
+    {
+     "resource_id": "195cff5e-bfe4-4f62-af8a-33ae7c2d239d",
+     "name": "Assessor Parcels Data - 2015",
+     "format": "",
+     "datastore": true,
+     "fields": [
+      "zipcode",
+      "taxratearea_city",
+      "ain",
+      "rollyear",
+      "taxratearea",
+      "assessorid",
+      "propertylocation",
+      "propertytype",
+      "propertyusecode",
+      "generalusetype",
+      "specificusetype",
+      "specificusedetail1",
+      "specificusedetail2",
+      "totbuildingdatalines",
+      "yearbuilt",
+      "effectiveyearbuilt",
+      "sqftmain",
+      "bedrooms",
+      "bathrooms",
+      "units",
+      "recordingdate",
+      "landvalue",
+      "landbaseyear",
+      "improvementvalue",
+      "impbaseyear",
+      "totallandimpvalue",
+      "homeownersexemption",
+      "realestateexemption",
+      "fixturevalue",
+      "fixtureexemption",
+      "personalpropertyvalue",
+      "personalpropertyexemption",
+      "istaxableparcel",
+      "totalvalue",
+      "totalexemption",
+      "nettaxablevalue",
+      "specialparcelclassification",
+      "administrativeregion",
+      "cluster",
+      "parcelboundarydescription",
+      "houseno",
+      "housefraction",
+      "streetdirection",
+      "streetname",
+      "unitno",
+      "city",
+      "zipcode5",
+      "rowid",
+      "center_lat",
+      "center_lon",
+      "location_1"
+     ]
+    }
+   ]
+  }
+ ]
+}

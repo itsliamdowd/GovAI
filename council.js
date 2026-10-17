@@ -100,6 +100,24 @@ export async function ingestCouncil(onDocs, log = console.error) {
   await Promise.all(Array.from({ length: 4 }, async () => { // 4 concurrent fetches
     for (let m; (m = queue.shift());) docs.push(...toDocs(await ingestMeeting(m, log)));
   }));
+  fs.writeFileSync(`${DIR}/meetings.json`, JSON.stringify({ fetched_at: Date.now(), ingested: past, upcoming }));
   onDocs(docs, { ingested: past, upcoming });
   return docs.length;
+}
+
+/** Offline: rebuild council docs from data/council/ only. No network. Empty if `node warm.js` has never run. */
+export function loadCouncilCache() {
+  let meta = { ingested: [], upcoming: [] };
+  try { meta = JSON.parse(fs.readFileSync(`${DIR}/meetings.json`, "utf8")); } catch {}
+  const docs = [];
+  if (meta.ingested.length) {
+    for (const m of meta.ingested) { try { docs.push(...toDocs(JSON.parse(fs.readFileSync(`${DIR}/${m.id}.json`, "utf8")))); } catch {} }
+  } else { // no meetings.json (older collector runs): every cached meeting file is the record
+    let files = []; try { files = fs.readdirSync(DIR).filter((f) => /^city_council_\d+\.json$/.test(f)); } catch {}
+    const recs = files.flatMap((f) => { try { return [JSON.parse(fs.readFileSync(`${DIR}/${f}`, "utf8"))]; } catch { return []; } })
+      .filter((r) => r.date && (r.agenda_text || r.minutes_text)).sort((a, b) => b.date.localeCompare(a.date));
+    for (const r of recs) docs.push(...toDocs(r));
+    meta.ingested = recs.map(({ id, date, time, agenda_url, minutes_url }) => ({ id, date, time, agenda_url, minutes_url }));
+  }
+  return { docs, meta: { ingested: meta.ingested, upcoming: meta.upcoming } };
 }
