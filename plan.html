@@ -16,6 +16,31 @@
        Status badge classes: planned | progress | done | blocked.
        Do NOT log changes to ~/.claude/, plan.html itself, or the changelog server. -->
 
+  <article class="entry" id="e-2026-10-17-1230">
+    <header>
+      <time>2026-10-17 12:30</time>
+      <h2>Token-by-token streaming: measured the burst, fixed the client, streamed thinking; unblocked a 400</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "text should stream, not all at once; tokenized, one by one."</p>
+    <h3>What was actually happening (measured with the project key on a second instance, port 8788)</h3>
+    <ul>
+      <li>Server was already forwarding every SDK text delta as its own SSE event. A no-tool answer through the server streams fine (10 deltas, 8 distinct timestamps over 302 ms).</li>
+      <li>Direct API probes: first turns stream in every shape (plain, fallbacks, thinking summarized, web_search, strict/loose tools): 12–18 deltas spread over 300–850 ms.</li>
+      <li><b>The turn after a <code>tool_result</code> arrives as one burst</b>: 15–21 deltas within 5–22 ms, on all seven ablations down to "one strict tool, nothing else" (claude-sonnet-5-5). Since nearly every real answer follows <code>search_city_knowledge</code>, users saw the whole reply appear at once. Opus/Haiku comparison probe still running when this entry was written.</li>
+    </ul>
+    <h3>Files</h3>
+    <ul>
+      <li><code>public/index.html</code> — text deltas go into a queue; a <code>requestAnimationFrame</code> loop reveals ~2 chars/frame (~120 chars/s), scaling up only when the backlog exceeds ~180 chars, so a burst still reads token by token. <code>flush()</code> on reset/status/error/stream end so ordering with tool status lines, cards and the action row is preserved. Thinking summaries render into the status line ("Thinking… …last 90 chars") so the pre-answer pause shows activity.</li>
+      <li><code>server.js</code> — <code>thinking: { type: "adaptive", display: "summarized" }</code> and a <code>streamEvent</code> listener forwarding <code>thinking_delta</code> as <code>{type:"thinking"}</code> events. <code>output_config.effort</code> now reads <code>EFFORT</code> env (default medium). <b>Fix:</b> removed <code>latimes.com</code> from <code>web_search.allowed_domains</code> — Anthropic's crawler can't access it and the API rejected <em>every</em> request with 400 ("The following domains are not accessible to our user agent"). Domain list otherwise untouched (added by parallel work).</li>
+      <li><code>transcripts.js</code> — caption pull race fixed (one caption track per yt-dlp call, <code>en</code> then <code>en-orig</code>); uncaptioned videos cached with <code>checked_at</code> and re-checked weekly. Re-pull result: 275 council videos listed, 163 with captions; the rest have no caption track on YouTube.</li>
+    </ul>
+    <h3>Not changed</h3>
+    <ul>
+      <li>Server-side SSE path (<code>res.write</code> per delta) — verified not the bottleneck. <code>npm test</code> still fails on the parallel work's <code>pertinentSources</code> assertion (test.js:40), untouched here.</li>
+    </ul>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1152">
     <header>
       <time>2026-10-17 11:52</time>
@@ -91,7 +116,7 @@
     <header>
       <time>2026-10-17 11:52</time>
       <h2>Live research: stop the assistant answering from a stale training cutoff</h2>
-      <span class="badge progress">in-progress</span>
+      <span class="badge done">done</span>
     </header>
     <p><b>Goal.</b> User: "users are getting hit with a knowledge cutoff of February 2023". Residents asking about anything recent get "as of my knowledge cutoff&hellip;" instead of a searched answer.</p>
     <h3>Root cause (read <code>server.js</code> 11:50)</h3>
@@ -114,8 +139,16 @@
     <ul>
       <li>"What is your knowledge cutoff? Who is the mayor right now?" &rarr; "I don't have a knowledge cutoff to report. I look up current information live&hellip;", searched news, council and web, named Caroline Torosis from the City site with a caveat. <b>No cutoff disclaimer.</b></li>
       <li>"What happened at the most recent council meeting?" &rarr; searched council/news/web, reported nothing found (cold temp server: council index still loading; web search returned no hits for the October 2026 query).</li>
-      <li><b>Open:</b> both answers said web search "returned nothing" and the Sources pill was empty, so the model may be getting thin web results under the domain allow-list. Probing <code>web_search</code> directly next.</li>
+      <li>Direct <code>web_search</code> probe (SDK, same allow-list): 10 results for "Santa Monica City Council meeting October 2026" with or without the allow-list, so web search was fine; the empty answers were cold-start (indexes not loaded yet).</li>
+      <li><b>Re-run after the news index loaded (12:10):</b> "What happened at the most recent council meeting?" &rarr; searched council + news + web, then <code>web_fetch</code> read the IQM2 agenda for Oct 13, 2026 and the answer listed the agenda items with the date and the caveat that minutes aren't out. Sources pill showed the fetched page.</li>
     </ul>
+    <h3>Bug found on the way: news index empty after every restart</h3>
+    <ul>
+      <li><code>sources.js ingestNews()</code> only emits items that are <em>new since the last run</em> (the "first run" branch indexes everything only when the cache file is empty). <code>server.js</code> never indexed the cached <code>data/news.json</code>, so after a restart <code>search_local_news</code> returned 0 hits until a feed produced something new. Verified: <code>buildIndex()</code> &rarr; 0 hits for "Santa Monica City Council meeting"; after <code>addDocs(loadNewsDocs())</code> &rarr; 5 hits.</li>
+      <li>Fix: <code>server.js</code> imports <code>loadNewsDocs</code> and calls <code>rag.addDocs(loadNewsDocs())</code> at boot before the first <code>ingestNews</code> (dedupe by <code>url#part</code> keeps the later refresh from double-indexing).</li>
+      <li>Not changed: <code>searchNews</code> is plain BM25 with no recency weighting, so "City Council meeting" ranks 2023 CityTV video items above the Oct 15, 2026 Santa Monica Next summary unless the model passes <code>days</code>. Prompt step 7 pushes it to search news for anything current; add a recency tiebreak if residents still get stale articles.</li>
+    </ul>
+    <p><b>Needs a restart to take effect:</b> the four <code>node --env-file=.env server.js</code> instances running since 11:41&ndash;11:43 (other sessions) still run the old code.</p>
   </article>
 
   <article class="entry" id="e-2026-10-17-1136">
@@ -146,7 +179,8 @@
       <li><b>Verified 11:45:</b> relisted across the 3 channels &rarr; 269 meetings (was 258): 2014:2, 2015:3, 2016:4, 2017:22, then 2018&ndash;2026 unchanged. <code>dateFromTitle</code> cases pass. <code>npm test</code> currently fails earlier at <code>test.js:40</code> (<code>pertinentSources</code> block-party assertion from a parallel session's knowledge edits), unrelated to this change.</li>
       <li><b>11:50 &mdash; YouTube bot-check hit.</b> The pull for the 11 new videos got "Sign in to confirm you're not a bot" on every one. Cause: 10 concurrent <code>yt-dlp</code> processes from <b>four</b> <code>node --env-file=.env server.js</code> instances (started 11:41&ndash;11:43, other sessions) plus <code>node warm.js</code>, each ingesting transcripts in parallel. The block is still active (single probe 11:50). Those processes keep writing empty "no captions" records while blocked.</li>
       <li><code>transcripts.js fetchTranscript</code> patched: a yt-dlp error now stores <code>checked_at: 0</code> so the next run retries immediately (the parallel session's weekly re-check would have waited 7 days); optional <code>YT_COOKIES_FROM_BROWSER=chrome</code> env passes <code>--cookies-from-browser</code> if the block persists. Deleted 70 empty cache records written during the blocked window so they get re-pulled.</li>
-      <li><b>Pending:</b> stop the duplicate servers (user's call &mdash; other sessions own them), wait for the block to lift, then one <code>node warm.js</code>. 2014&ndash;2017 captions are not in the index until then.</li>
+      <li><b>12:15:</b> block lifted (probe returns the title again); <code>warm.js</code> from 11:38 finished; one server instance still pulling. Queued a background job: wait until no <code>yt-dlp</code> is running &rarr; delete empty records written during the block &rarr; one <code>node warm.js</code> (2 concurrent) with the new code, which pulls the 11 new 2014&ndash;2017 videos and re-checks the rest. Result lands in this entry when it finishes.</li>
+      <li><b>Still pending:</b> the four duplicate <code>server.js</code> instances (other sessions) &mdash; each one re-ingests transcripts at boot, which is what tripped the bot check. Run one.</li>
     </ul>
   </article>
 

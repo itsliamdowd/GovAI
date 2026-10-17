@@ -8,7 +8,7 @@ import { ingestCouncil } from "./council.js";
 import { ingestTranscripts, clipWindow, citedMoments } from "./transcripts.js";
 import { createAlert, cancelAlert, runAlerts } from "./alerts.js";
 import { FORMS, FORM_TYPES, toApplication } from "./forms.js";
-import { ingestNews, loadGisCatalog, gisDocs, queryGis, liveData, LIVE_KINDS, LIVE_HELP } from "./sources.js";
+import { ingestNews, loadNewsDocs, loadGisCatalog, gisDocs, queryGis, liveData, LIVE_KINDS, LIVE_HELP } from "./sources.js";
 
 const PORT = Number(process.env.PORT) || 8787;
 const APPS_FILE = "./data/applications.json";
@@ -47,6 +47,7 @@ scheduleDaily(runWatch);
 let gisCount = 0;
 loadGisCatalog().then((layers) => { rag.addDocs(gisDocs(layers)); gisCount = layers.length; console.log(`GIS: ${gisCount} city/county layers indexed`); }).catch((e) => console.error("gis catalog failed:", e.message));
 let news = { total: 0, feeds: 0 };
+rag.addDocs(loadNewsDocs()); // index the cached articles now; ingestNews only emits items that are new since the last run, so without this the news index is empty after every restart until a feed yields something new
 const refreshNews = () => ingestNews((docs, meta) => { rag.addDocs(docs); news = meta; console.log(`News: ${meta.fresh} new, ${meta.total} total items from ${meta.feeds} feeds`); }).catch((e) => console.error("news ingestion failed:", e.message));
 refreshNews(); setInterval(refreshNews, 30 * 60e3).unref();
 
