@@ -127,6 +127,9 @@ Required for every application: applicant_name, email, phone. Collect address (p
 const COMMON_DOMAINS = ["ca.gov", "en.wikipedia.org", "patch.com", "governmentjobs.com", "healthebay.org", "kcrw.com", "laist.com", "kpbs.org", "voiceofsandiego.org", "voiceofoc.org", "legistar.com", "granicus.com"];
 const BLOCKS_CRAWLER = new Set(["latimes.com", "ocregister.com", "sandiegouniontribune.com"]); // sites that block Anthropic's fetcher: the API rejects them in allowed_domains
 const domainsFor = (j) => [...new Set([...(j?.domains ?? SM.domains), ...(jurById(j?.county)?.domains ?? []), ...COMMON_DOMAINS])].filter((d) => !BLOCKS_CRAWLER.has(d));
+// A jurisdiction without curated knowledge gets the open web (its services often live on contractor sites: trash haulers, permit
+// portals, transit agencies); the prompt tells the model to prefer official and contracted-provider pages. Fully wired ones stay fenced.
+const webScope = (j) => (!j || j.draft ? {} : { allowed_domains: domainsFor(j) });
 // Only the tools that file records are `strict` (exact enums/required fields matter there). Strict schemas compile to grammars that
 // count against a per-request complexity cap, and 12 of them tipped it ("Schema is too complex"). Handlers default any field the model omits.
 const tools = [
@@ -279,8 +282,8 @@ const toolSets = new Map();
 function toolsFor(j) {
   const key = j?.id ?? "";
   if (!toolSets.has(key)) toolSets.set(key, [...tools,
-    { type: "web_search_20260209", name: "web_search", max_uses: 5, allowed_domains: domainsFor(j), user_location: { type: "approximate", city: j?.short ?? "Santa Monica", region: "California", country: "US" } },
-    { type: "web_fetch_20260209", name: "web_fetch", max_uses: 3, allowed_domains: domainsFor(j), citations: { enabled: true }, max_content_tokens: 20000 },
+    { type: "web_search_20260209", name: "web_search", max_uses: 5, ...webScope(j), user_location: { type: "approximate", city: j?.short ?? "Santa Monica", region: "California", country: "US" } },
+    { type: "web_fetch_20260209", name: "web_fetch", max_uses: 3, ...webScope(j), citations: { enabled: true }, max_content_tokens: 20000 },
   ]);
   return toolSets.get(key);
 }

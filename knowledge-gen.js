@@ -58,7 +58,9 @@ async function generate(j) {
   }
 }
 
-const arg = process.argv[2];
-const targets = arg === "--all" ? SERVED.filter((j) => j.draft && !fs.existsSync(`./knowledge/${j.id}`)) : arg ? [jurById(arg)].filter(Boolean) : [];
-if (!targets.length) { console.error("usage: node knowledge-gen.js <jurisdiction-id> | --all"); process.exit(1); }
-for (const j of targets) await generate(j);
+//   node knowledge-gen.js --all              # every draft jurisdiction without a knowledge folder
+//   node knowledge-gen.js a b c              # several ids (run a few of these in parallel to go faster)
+const args = process.argv.slice(2);
+const targets = args[0] === "--all" ? SERVED.filter((j) => j.draft && !fs.existsSync(`./knowledge/${j.id}`)) : args.map(jurById).filter(Boolean);
+if (!targets.length) { console.error("usage: node knowledge-gen.js <jurisdiction-id>... | --all"); process.exit(1); }
+for (const j of targets) { try { await generate(j); } catch (e) { console.error(`${j.id}: ${e.message}`); } }
