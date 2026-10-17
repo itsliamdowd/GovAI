@@ -51,12 +51,12 @@ const SANTA_MONICA = {
 };
 
 const LA_COUNTY = {
-  id: "los-angeles-county", name: "County of Los Angeles", short: "LA County", kind: "county", county: null, prefix: "LAC", draft: true, // served (county government + unincorporated areas); also context for every LA County city
+  id: "los-angeles-county", name: "County of Los Angeles", short: "LA County", kind: "county", county: null, prefix: "LAC", draft: true, // served: BOS (Legistar) + eGIS + data.lacounty.gov collected 2026-10-17 // served (county government + unincorporated areas); also context for every LA County city
   aliases: ["los angeles county", "la county", "county of los angeles", "la county board of supervisors", "unincorporated los angeles", "marina del rey", "altadena", "east los angeles", "east la", "ladera heights", "view park", "windsor hills", "topanga", "stevenson ranch", "castaic", "rowland heights", "hacienda heights", "florence-firestone", "willowbrook", "lennox", "west athens", "acton", "agua dulce", "quartz hill", "lake los angeles", "littlerock", "valinda", "south whittier", "west whittier", "walnut park", "la crescenta", "universal city", "west carson", "del aire", "west rancho dominguez", "charter oak", "covina hills"], center: [34.05, -118.25], bbox: null,
   site: "https://lacounty.gov", icon: null,
   domains: ["lacounty.gov", "lavote.gov", "lahsa.org", "assessor.lacounty.gov", "publichealth.lacounty.gov", "metro.net"],
   contact: { name: "LA County 211", phone: "211", email: "", line: "211" },
-  portals: [], council: { platform: "legistar", client: "lacounty", body: "Board of Supervisors", label: "Board of Supervisors", limit: 500 }, youtube: [], feeds: [], // Legistar holds only 2022-> BOS meetings; bos.lacounty.gov (Kontent SPA) + Statement of Proceedings are the fuller record — pdflist/SOP adapter pending
+  portals: [{ id: "lacounty", type: "dcat", url: "https://data.lacounty.gov/data.json", site: "https://data.lacounty.gov" }], council: { platform: "legistar", client: "lacounty", body: "Board of Supervisors", label: "Board of Supervisors", limit: 500 }, youtube: [], feeds: [], // Legistar holds only 2022-> BOS meetings; bos.lacounty.gov (Kontent SPA) + Statement of Proceedings are the fuller record — pdflist/SOP adapter pending
   gis: [{ org: "LA County eGIS", url: "https://egis-lacounty.hub.arcgis.com/api/feed/dcat-us/1.1.json" }], gisHosts: ["public.gis.lacounty.gov"],
   gisExtra: [ // political boundaries: "who represents this address"
     [27, "Supervisorial District (Current)", "county supervisor board of supervisors"], [29, "Congressional District (2021)", "congress congressman congresswoman house representative"],

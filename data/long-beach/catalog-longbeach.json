@@ -1,0 +1,805 @@
+{
+ "fetched_at": 1792269141554,
+ "datasets": [
+  {
+   "name": "climate-change-actions",
+   "title": "Climate Change Actions",
+   "notes": "  The Long Beach Climate Action Plan (LB CAP) was adopted by the City Council on August 16, 2022. The implementation of the LB CAP is an ongoing, collaborative process between the City, its partners, and the community to make Long Beach a safer, healthier, and more sustainable place to live, work, and play. The City aims to accomplish this by implementing LB CAP action items that work to reduce greenhouse gas emissions, mitigate the effects of climate change, enhance economic vitality, and improve the quality of life in Long Beach.    Powering the   Climate Portal      2021 GHG Inventory  Repo",
+   "tags": [],
+   "org": "City of Long Beach Office of Sustainability",
+   "modified": "2024-04-17",
+   "url": "https://data.longbeach.gov/explore/dataset/climate-change-actions/",
+   "resources": [
+    {
+     "resource_id": "b54a84fae170",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/climate-change-actions",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "0cc0bb47faae",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/climate-change-actions/exports/json",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "1c83077ab800",
+     "name": "csv",
+     "format": "csv",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/climate-change-actions/exports/csv",
+      "format": "csv"
+     },
+     "fields": []
+    }
+   ]
+  },
+  {
+   "name": "climate-change-municipal-inventory",
+   "title": "Climate Change Municipal Inventory",
+   "notes": "  The Community-Wide Emissions Inventory is a biennial production-based inventory for community-wide greenhouse gas (GHG) emissions within the Long Beach jurisdictional boundary. The emissions sectors include Transportation &amp; Mobile Sources, Commercial Energy, Residential Energy, Industrial Energy, Solid Waste, Water &amp; Wastewater, and Process &amp; Fugitive Emissions. The Local Government Operations (LGO) Inventory is a biennial production-based inventory for municipal operations that identifies greenhouse gas emissions produced by government owned and operated activities such as vehic",
+   "tags": [],
+   "org": "City of Long Beach Office of Sustainability",
+   "modified": "2025-12-02",
+   "url": "https://data.longbeach.gov/explore/dataset/climate-change-municipal-inventory/",
+   "resources": [
+    {
+     "resource_id": "963cdf187753",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/climate-change-municipal-inventory",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "c6a087d5633e",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/climate-change-municipal-inventory/exports/json",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "3723d6cd3d58",
+     "name": "csv",
+     "format": "csv",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/climate-change-municipal-inventory/exports/csv",
+      "format": "csv"
+     },
+     "fields": []
+    }
+   ]
+  },
+  {
+   "name": "sv2030",
+   "title": "Strategic Vision 2030",
+   "notes": "  The Long Beach 2030 Strategic Vision (Strategic Vision) affirms and reframes the City’s commitment to supporting the diverse Long Beach community and resolves to achieve a future in which all residents experience Long Beach as a safe, clean and healthy place to live, learn, work, play and thrive.   ",
+   "tags": [],
+   "org": "City of Long Beach",
+   "modified": "2025-07-15",
+   "url": "https://data.longbeach.gov/explore/dataset/sv2030/",
+   "resources": [
+    {
+     "resource_id": "1377082ef44f",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/sv2030",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "7413131eee76",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/sv2030/exports/json",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "a677562c3196",
+     "name": "csv",
+     "format": "csv",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/sv2030/exports/csv",
+      "format": "csv"
+     },
+     "fields": []
+    }
+   ]
+  },
+  {
+   "name": "employee-demographics",
+   "title": "Employee Demographics",
+   "notes": " Employee demographic data produced by City of Long Beach Human Resources Department. ",
+   "tags": [
+    "Diversity"
+   ],
+   "org": "City of Long Beach Human Resources",
+   "modified": "2026-10-01",
+   "url": "https://data.longbeach.gov/explore/dataset/employee-demographics/",
+   "resources": [
+    {
+     "resource_id": "b7f0c77b77a7",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/employee-demographics",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "8b97c7e51e39",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/employee-demographics/exports/json",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "dd30cc872d08",
+     "name": "csv",
+     "format": "csv",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/employee-demographics/exports/csv",
+      "format": "csv"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "a6d99f65eec0",
+     "name": "geojson",
+     "format": "geojson",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/employee-demographics/exports/geojson",
+      "format": "json"
+     },
+     "fields": []
+    }
+   ]
+  },
+  {
+   "name": "code-violations",
+   "title": "Code Violation Fine Schedule",
+   "notes": "  The following Code Violations list is intended for City of Long Beach property owners to learn more about various code violations and their corresponding citation and late penalty fees. For more information, contact Community Development's Code Enforcement Bureau at 562.570.CODE (2633).  ",
+   "tags": [],
+   "org": "City of Long Beach - Community Development Department",
+   "modified": "2026-04-27",
+   "url": "https://data.longbeach.gov/explore/dataset/code-violations/",
+   "resources": [
+    {
+     "resource_id": "4caaae2a96fd",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/code-violations",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "137ac3f62a01",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/code-violations/exports/json",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "067e9d37b5d4",
+     "name": "csv",
+     "format": "csv",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/code-violations/exports/csv",
+      "format": "csv"
+     },
+     "fields": []
+    }
+   ]
+  },
+  {
+   "name": "elevate-28-investment-plan",
+   "title": "Elevate 28 Investment Plan",
+   "notes": "  The Elevate '28 Infrastructure Investment Plan combines the approved Measure A Five Year Infrastructure plan approved in FY23 along with the three new categories: 2028 Olympic Legacy, Community &amp; Cultural Investments, and Gold Medal Park Refresh projects.    Powers this  dashboard     Embeds in this  website     ",
+   "tags": [],
+   "org": "City of Long Beach Public Works",
+   "modified": "2026-10-12",
+   "url": "https://data.longbeach.gov/explore/dataset/elevate-28-investment-plan/",
+   "resources": [
+    {
+     "resource_id": "16e4978e278e",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/elevate-28-investment-plan",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "28a0f0b78058",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/elevate-28-investment-plan/exports/json",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "fec43801d5b2",
+     "name": "csv",
+     "format": "csv",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/elevate-28-investment-plan/exports/csv",
+      "format": "csv"
+     },
+     "fields": []
+    }
+   ]
+  },
+  {
+   "name": "service-requests",
+   "title": "Go Long Beach Service Requests",
+   "notes": " This dataset captures the requests that are submitted to the city through the 311 - a.k.a Go Long Beach App ",
+   "tags": [
+    "Service Requests",
+    "311 App"
+   ],
+   "org": "City of Long Beach",
+   "modified": "2026-10-17",
+   "url": "https://data.longbeach.gov/explore/dataset/service-requests/",
+   "resources": [
+    {
+     "resource_id": "47c5a18ca920",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/service-requests",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "f961eea3d568",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/service-requests/exports/json",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "190a9c5b2024",
+     "name": "csv",
+     "format": "csv",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/service-requests/exports/csv",
+      "format": "csv"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "3bab5cc7009a",
+     "name": "geojson",
+     "format": "geojson",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/service-requests/exports/geojson",
+      "format": "json"
+     },
+     "fields": []
+    }
+   ]
+  },
+  {
+   "name": "climate-change-inventory",
+   "title": "Climate Change Inventory",
+   "notes": " The Long Beach Climate Action Plan (LB CAP) was adopted by the City Council on August 16, 2022. The implementation of the LB CAP is an ongoing, collaborative process between the City, its partners, and the community to make Long Beach a safer, healthier, and more sustainable place to live, work, and play. The City aims to accomplish this by implementing LB CAP action items that work to reduce greenhouse gas emissions, mitigate the effects of climate change, enhance economic vitality, and improve the quality of life in Long Beach.  Powering the  Climate Portal   With help from  ICLEI   Uses th",
+   "tags": [],
+   "org": "City of Long Beach Office of Sustainability",
+   "modified": "2025-04-22",
+   "url": "https://data.longbeach.gov/explore/dataset/climate-change-inventory/",
+   "resources": [
+    {
+     "resource_id": "401726126af1",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/climate-change-inventory",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "bcbf258ffd60",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/climate-change-inventory/exports/json",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "8d8ccaf053a5",
+     "name": "csv",
+     "format": "csv",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/climate-change-inventory/exports/csv",
+      "format": "csv"
+     },
+     "fields": []
+    }
+   ]
+  },
+  {
+   "name": "police-stop-data-ripa-copy",
+   "title": "Police Stop Data (RIPA) V2",
+   "notes": " This dataset captures information about the stops that were conducted by Long Beach Police Department. LBPD officers conducting stops capture information required by The Racial and Identity Profiling Act of 2015 (AB 953). The data captured are submitted to the State of California annually, and is made available to the public via this dataset. \n\n Some columns are derived from other existing columns to aid in visualization. For example, the field \"All Results of Stop\" has a corresponding \"Result of Stop Simplified\" so that stops with multiple results may be shown as a \"Multi Result Stop\". This ",
+   "tags": [
+    "RIPA",
+    "LBPD",
+    "STOP DATA",
+    "Racial Profiling"
+   ],
+   "org": "Long Beach Police Department",
+   "modified": "2021-12-03",
+   "url": "https://data.longbeach.gov/explore/dataset/police-stop-data-ripa-copy/",
+   "resources": [
+    {
+     "resource_id": "5f88147169aa",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/police-stop-data-ripa-copy",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "19c443f051ee",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/police-stop-data-ripa-copy/exports/json",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "f16860b957dd",
+     "name": "csv",
+     "format": "csv",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/police-stop-data-ripa-copy/exports/csv",
+      "format": "csv"
+     },
+     "fields": []
+    }
+   ]
+  },
+  {
+   "name": "enterprise-application-inventory",
+   "title": "Enterprise Application Inventory",
+   "notes": " This dataset contains the City of Long Beach enterprise application inventory as required by  CA Senate Bill 272.   This dataset is updated annually.  ",
+   "tags": [
+    "SB272",
+    "Senate Bill 272",
+    "Application Inventory",
+    "Enterprise Application Inventory"
+   ],
+   "org": "Technology and Innovation Department, City of Long Beach",
+   "modified": "2021-09-22",
+   "url": "https://data.longbeach.gov/explore/dataset/enterprise-application-inventory/",
+   "resources": [
+    {
+     "resource_id": "be8e817e158e",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/enterprise-application-inventory",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "bb247eeb8402",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/enterprise-application-inventory/exports/json",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "47bbc5cb135d",
+     "name": "csv",
+     "format": "csv",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/enterprise-application-inventory/exports/csv",
+      "format": "csv"
+     },
+     "fields": []
+    }
+   ]
+  },
+  {
+   "name": "lbpd-criminal-incident-data",
+   "title": "LBPD Criminal Incident Data",
+   "notes": " This dataset gives a detailed look at reported incidents and their offenses in the City of Long Beach. Information includes the date and time of the offense, location data (with anonymized block numbers), and the offense type and category. Addresses for sexual assault offenses have been redacted. ",
+   "tags": [
+    "public safety",
+    "police",
+    "offense",
+    "criminal",
+    "incident",
+    "police department",
+    "LBPD",
+    "pd",
+    "crime data"
+   ],
+   "org": "Long Beach Police Department",
+   "modified": "2025-12-04",
+   "url": "https://data.longbeach.gov/explore/dataset/lbpd-criminal-incident-data/",
+   "resources": [
+    {
+     "resource_id": "64bf9b82c0cc",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/lbpd-criminal-incident-data",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "97ae206b3ed4",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/lbpd-criminal-incident-data/exports/json",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "7037953dc586",
+     "name": "csv",
+     "format": "csv",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/lbpd-criminal-incident-data/exports/csv",
+      "format": "csv"
+     },
+     "fields": []
+    }
+   ]
+  },
+  {
+   "name": "tid28",
+   "title": "TID28",
+   "notes": "  The TID 28 IT Strategic Roadmap (TID28) provides a four-year roadmap with 31 actionable recommendations to guide and shape how we deliver innovative, cost-effective, and efficient technology services throughout the organization and to the Long Beach community at large.  ",
+   "tags": [],
+   "org": "Technology and Innovation Department, City of Long Beach",
+   "modified": "2025-07-25",
+   "url": "https://data.longbeach.gov/explore/dataset/tid28/",
+   "resources": [
+    {
+     "resource_id": "0654f165fa3f",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/tid28",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "b42d7f62bc1d",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/tid28/exports/json",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "cb8ff2cbf75c",
+     "name": "csv",
+     "format": "csv",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/tid28/exports/csv",
+      "format": "csv"
+     },
+     "fields": []
+    }
+   ]
+  },
+  {
+   "name": "tree-inventory",
+   "title": "Tree Inventory",
+   "notes": " This dataset shows trees that have been planted since September of 2018 as part of a California Climate Investments Grant Project. Funding for this Project is provided by the Greenhouse Gas Reduction Fund through the California Department of Forestry and Fire Protection (CAL FIRE) Urban and Community Forestry Program. The trees included were planted by the City of Long Beach Office of Sustainability or the Department of Development Services \"I Dig Long Beach\" initiative.      Learn more about  planting trees in Long Beach .   ",
+   "tags": [],
+   "org": "City of Long Beach Office of Sustainability and Long Beach Development Services",
+   "modified": "2021-03-15",
+   "url": "https://data.longbeach.gov/explore/dataset/tree-inventory/",
+   "resources": [
+    {
+     "resource_id": "1c147e53d072",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/tree-inventory",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "9bdcf940fe33",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/tree-inventory/exports/json",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "34857fb28549",
+     "name": "csv",
+     "format": "csv",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/tree-inventory/exports/csv",
+      "format": "csv"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "991be8529584",
+     "name": "geojson",
+     "format": "geojson",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/tree-inventory/exports/geojson",
+      "format": "json"
+     },
+     "fields": []
+    }
+   ]
+  },
+  {
+   "name": "colb-council-districts",
+   "title": "City Council Districts",
+   "notes": " City of Long Beach council district boundaries.  ",
+   "tags": [],
+   "org": "City of Long Beach",
+   "modified": "2026-09-30",
+   "url": "https://data.longbeach.gov/explore/dataset/colb-council-districts/",
+   "resources": [
+    {
+     "resource_id": "d98029f13be7",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/colb-council-districts",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "77ebc8a538bb",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/colb-council-districts/exports/json",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "5f0ffa4c4c6a",
+     "name": "csv",
+     "format": "csv",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/colb-council-districts/exports/csv",
+      "format": "csv"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "eac7f973348c",
+     "name": "geojson",
+     "format": "geojson",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/colb-council-districts/exports/geojson",
+      "format": "json"
+     },
+     "fields": []
+    }
+   ]
+  },
+  {
+   "name": "animal-shelter-intakes-and-outcomes",
+   "title": "Animal Shelter Data",
+   "notes": " This dataset comprises of the intake and outcome record from Long Beach Animal Shelter. ",
+   "tags": [
+    "Animal Shelter",
+    "adoption",
+    "animal rights",
+    "pets",
+    "humane",
+    "no kill",
+    "live release",
+    "save rate",
+    "compassion saves"
+   ],
+   "org": "City of Long Beach Animal Care Services",
+   "modified": "2026-10-17",
+   "url": "https://data.longbeach.gov/explore/dataset/animal-shelter-intakes-and-outcomes/",
+   "resources": [
+    {
+     "resource_id": "2d190247d79d",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/animal-shelter-intakes-and-outcomes",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "49e5b8aa1343",
+     "name": "json",
+     "format": "json",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/animal-shelter-intakes-and-outcomes/exports/json",
+      "format": "json"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "9fea1e238418",
+     "name": "csv",
+     "format": "csv",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/animal-shelter-intakes-and-outcomes/exports/csv",
+      "format": "csv"
+     },
+     "fields": []
+    },
+    {
+     "resource_id": "2cef936a4e53",
+     "name": "geojson",
+     "format": "geojson",
+     "datastore": true,
+     "access": {
+      "type": "file",
+      "url": "https://data.longbeach.gov/api/v2/catalog/datasets/animal-shelter-intakes-and-outcomes/exports/geojson",
+      "format": "json"
+     },
+     "fields": []
+    }
+   ]
+  }
+ ]
+}

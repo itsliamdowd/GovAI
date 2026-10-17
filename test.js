@@ -46,16 +46,16 @@ delete apps[app.confirmation_number]; delete apps[irv.confirmation_number];
 fs.writeFileSync("./data/applications.json", JSON.stringify(apps, null, 2));
 
 const rag = await buildIndex();
-const hits = rag.search("how much is a residential parking permit");
+const hits = rag.search("how much is a residential parking permit", 6, "santa-monica"); // Santa Monica scope: the index now holds other cities too
 assert.ok(hits.length > 0, "retrieval returned nothing");
 assert.ok(hits.filter((h) => h.kind === "knowledge").every((h) => /^https:\/\//.test(h.url) && !/^Source:/m.test(h.text)), "every knowledge chunk carries its section's Source url (and the line is stripped from text)");
 // Sources shown to residents: block-party question must cite only the block party page, not tail hits like Water Usage / Street Sweeping.
-const bpSrc = pertinentSources(rag.search("I want to host a block party on my street. What permit do I need and can you help me apply?"));
+const bpSrc = pertinentSources(rag.search("I want to host a block party on my street. What permit do I need and can you help me apply?", 6, "santa-monica"));
 assert.deepEqual(bpSrc.map((s) => s.url), ["https://www.santamonica.gov/process-explainers/how-to-get-a-block-party-permit"], JSON.stringify(bpSrc));
 assert.deepEqual(pertinentSources([]), []);
 assert.deepEqual(pertinentSources([{ kind: "dataset", score: 9, url: "x" }, { kind: "knowledge", score: 9, url: "" }]), [], "datasets and url-less chunks never appear as sources");
 assert.ok(hits.some((h) => h.kind === "knowledge" && /parking/i.test(h.text)), "knowledge chunk about parking not retrieved");
-if (rag.datasetCount) assert.ok(rag.search("active business licenses").some((h) => h.kind === "dataset" && /business/i.test(h.title)), "dataset not retrieved");
+if (rag.datasetCount) assert.ok(rag.search("active business licenses", 6, "santa-monica").some((h) => h.kind === "dataset" && /business/i.test(h.title)), "dataset not retrieved");
 const { toDocs } = await import("./council.js");
 const docs = toDocs({ date: "2026-09-08", agenda_url: "a", minutes_url: "m", agenda_text: "CALL TO ORDER\n\nitem one", minutes_text: "x ".repeat(2000) });
 assert.equal(docs.filter((d) => d.doc === "agenda").length, 1);
