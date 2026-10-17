@@ -107,8 +107,14 @@ function chunk(text, size = 1500) {
   return out;
 }
 
+/** "BOARD OF SUPERVISORS - LAND USE" with label "Board of Supervisors" -> "Board of Supervisors - Land Use"; shouting Legistar bodies get title case. */
+export function bodyLabel(body, label = "City Council") {
+  const b = (body ?? "").trim(); if (!b) return label || "City Council";
+  if (label && b.toLowerCase().startsWith(label.toLowerCase())) return label + (b === b.toUpperCase() ? b.slice(label.length).toLowerCase().replace(/\b[a-z]/g, (c) => c.toUpperCase()) : b.slice(label.length));
+  return b === b.toUpperCase() ? b.toLowerCase().replace(/\b[a-z]/g, (c) => c.toUpperCase()) : b;
+}
 export function toDocs(rec, j = SM) {
-  const docs = [], label = rec.body?.trim() || j.council?.label || "City Council"; // multi-body platforms (LA City: 110 bodies) name the body per record
+  const docs = [], label = bodyLabel(rec.body, j.council?.label); // multi-body platforms (LA City: 110 bodies) name the body per record
   for (const [type, text, url] of [["agenda", rec.agenda_text, rec.agenda_url], ["minutes", rec.minutes_text, rec.minutes_url]]) {
     if (!text) continue;
     chunk(text).forEach((t, i) => docs.push({
