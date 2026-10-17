@@ -67,7 +67,7 @@
   /* native time/date pickers: one highlight only — the focused segment takes the field's accent, the field border stays quiet */
   .form input:is([type=time],[type=date]) { color-scheme:dark } .form input:is([type=time],[type=date]):focus { border-color:var(--line); box-shadow:0 0 0 2px var(--blue) }
   .form input:is([type=time],[type=date])::-webkit-datetime-edit-hour-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-minute-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-ampm-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-month-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-day-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-year-field:focus { background:var(--blue); color:#fff; border-radius:4px; outline:none }
-  .form .range { display:flex; align-items:center; gap:10px } .form .range input { flex:1; min-width:0 } .form .range span { color:var(--muted); font-size:14px }
+  .form .range { display:flex; align-items:center; gap:10px } .form .range :is(input,select) { flex:1; min-width:0 } .form .range span { color:var(--muted); font-size:14px }
   .form .choices { display:flex; flex-wrap:wrap; gap:8px } .form .choices button { border:1px solid var(--line); background:var(--bg); color:var(--ink); border-radius:999px; padding:10px 16px; font:inherit; font-size:14px; cursor:pointer; text-align:left } .form .choices button:hover { border-color:var(--blue-2) } .form .choices button.on { border-color:var(--blue); background:#16243a }
   .form .nav { display:flex; gap:8px; justify-content:space-between; margin-top:14px } .form .nav button { border:1px solid var(--line); border-radius:999px; height:34px; padding:0 16px; font:inherit; font-size:13px; font-weight:500; cursor:pointer; background:transparent; color:var(--ink) } .form .nav .next { background:var(--blue); border-color:var(--blue); color:#fff } .form .nav .next:hover { background:var(--blue-2) } .form .nav button:disabled { opacity:.35; cursor:default }
   .form.done { border-color:var(--ok-line); background:var(--ok-bg); color:var(--ok); text-align:center } .form.done .num { font-size:20px; font-weight:600; letter-spacing:.5px; display:flex; align-items:center; justify-content:center; gap:10px; margin:2px 0 6px; font-variant-numeric:tabular-nums } .form.done .num button { background:transparent; border:1px solid var(--ok-line); color:inherit; border-radius:999px; padding:2px 10px; font:inherit; font-size:12px; cursor:pointer } .form.done small { display:block; opacity:.9; font-size:13px }
@@ -122,6 +122,9 @@
   .vbtns { position:absolute; bottom:calc(44px + var(--sab)); display:flex; gap:30px }
   .vbtn { width:66px; height:66px; border-radius:50%; border:0; background:var(--pill); color:var(--ink); font-size:26px; display:grid; place-items:center; cursor:pointer }
   .vbtn:active { transform:scale(.94) } .vbtn.end { background:#dc2626; color:#fff }
+  .vctl { display:flex; flex-direction:column; align-items:center; gap:8px; font-size:13px; font-weight:500; color:var(--muted) }
+  .vbtn svg { width:28px; height:28px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round } .vbtn .i-off { display:none }
+  .voice.muted #vmute { background:#fff; color:#0b0e13 } .voice.muted #vmute .i-on { display:none } .voice.muted #vmute .i-off { display:block } .voice.muted #vmuteLabel { color:var(--ink) }
   @media (max-width:640px) { header { padding-left:16px; padding-right:16px } .brand small { display:none } main { padding-top:20px } body { font-size:15.5px } .me { max-width:85% } .chip { font-size:13.5px; padding:8px 14px } .row { padding-left:16px } textarea { font-size:16px } .clip,.card { max-width:100% } }
 </style>
 </head>
@@ -178,8 +181,8 @@
   <div class="vstate" id="vstate"></div>
   <div class="vtext" id="vtext"></div>
   <div class="vbtns">
-    <button type="button" class="vbtn" id="vmute" aria-label="Mute">🎙️</button>
-    <button type="button" class="vbtn end" id="vend" aria-label="End voice chat">✕</button>
+    <div class="vctl"><button type="button" class="vbtn" id="vmute" aria-label="Mute microphone" aria-pressed="false"><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15a4 4 0 0 0 4-4V6a4 4 0 0 0-8 0v5a4 4 0 0 0 4 4z"/><path d="M19 11a7 7 0 0 1-14 0M12 18v3M8 21h8"/></svg><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15a4 4 0 0 0 4-4V6a4 4 0 0 0-8 0v5a4 4 0 0 0 4 4z"/><path d="M19 11a7 7 0 0 1-14 0M12 18v3M8 21h8"/><path d="M3 3l18 18"/></svg></button><span id="vmuteLabel">Mute</span></div>
+    <div class="vctl"><button type="button" class="vbtn end" id="vend" aria-label="End voice chat">✕</button><span>End</span></div>
   </div>
 </div>
 
@@ -362,19 +365,29 @@ else {
   const voice = $("voice"), orb = $("orb"), vstate = $("vstate"), vtext = $("vtext"), vmute = $("vmute");
   const rec = new SR(); rec.lang = "en-US"; rec.interimResults = true;
   let active = false, muted = false;
-  const setState = (s, label) => { voice.dataset.state = s; vstate.textContent = label; };
+  const setState = (s) => { voice.dataset.state = s; vstate.textContent = ""; }; // the orb shows the state; the label only ever carries the mic-denied error
   const listen = () => { if (!active) return; vtext.textContent = ""; if (muted) return setState("listening", "Muted"); setState("listening", "Listening…"); try { rec.start(); } catch {} };
-  rec.onresult = (e) => { vtext.textContent = [...e.results].map((r) => r[0].transcript).join(""); };
+  rec.onresult = (e) => {
+    const t = [...e.results].map((r) => r[0].transcript).join("");
+    if (voice.dataset.state === "speaking") { // barge-in: the resident talks over the reply → stop it and take the question
+      if (t.trim().split(/\s+/).length < 2) return; // ponytail: 2-word threshold filters the mic hearing our own voice; raise if it self-interrupts
+      stopSpeaking(); setState("listening", "Listening…");
+    }
+    vtext.textContent = t;
+  };
   rec.onerror = (e) => { if (e.error === "not-allowed") { vstate.textContent = "Microphone access denied"; active = false; } };
+  const spoken = (bot) => { const c = bot.cloneNode(true); c.querySelectorAll(".acts,.sources").forEach((x) => x.remove()); return c.innerText.replace(/https?:\/\/\S+/g, "").trim(); }; // never read the Sources pill or links aloud
   rec.onend = async () => {
     if (!active || muted) return;
+    if (voice.dataset.state === "speaking") { try { rec.start(); } catch {} return; } // keep listening while we talk so the resident can interrupt
     const text = vtext.textContent.trim(); if (!text) return listen();
     setState("thinking", "Thinking…");
-    const reply = (await send(text, true)).innerText.trim(); // voice: true → server asks for a one-or-two-sentence spoken answer
+    const reply = spoken(await send(text, true)); // voice: true → server asks for a one-or-two-sentence spoken answer with no sources
     if (!active) return;
     if (!reply) return listen();
     setState("speaking", ""); vtext.textContent = reply;
-    speak(reply, listen);
+    try { rec.start(); } catch {}
+    speak(reply, () => { if (voice.dataset.state === "speaking") listen(); }); // interrupted → the barge-in already switched state
   };
   // Server voice (local Kokoro via /tts), spoken sentence-by-sentence so the first words start in ~1s while the rest generates;
   // falls back to the most human-sounding voice the browser has if /tts is off or fails.
@@ -417,10 +430,11 @@ else {
       requestAnimationFrame(tick);
     })();
   }
-  mic.onclick = () => { active = true; muted = false; voice.classList.add("open"); voice.classList.remove("muted"); vmute.textContent = "🎙️"; meter(); listen(); };
+  const setMuteUI = (m) => { vmute.setAttribute("aria-pressed", String(m)); vmute.setAttribute("aria-label", m ? "Unmute microphone" : "Mute microphone"); $("vmuteLabel").textContent = m ? "Unmute" : "Mute"; voice.classList.toggle("muted", m); };
+  mic.onclick = () => { active = true; muted = false; voice.classList.add("open"); setMuteUI(false); meter(); listen(); };
   $("vend").onclick = () => { active = false; rec.abort(); stopSpeaking(); voice.classList.remove("open"); };
   vmute.onclick = () => {
-    muted = !muted; vmute.textContent = muted ? "🔇" : "🎙️"; voice.classList.toggle("muted", muted);
+    muted = !muted; setMuteUI(muted);
     if (muted) rec.abort();
     if (voice.dataset.state === "listening") listen();
   };
@@ -536,7 +550,6 @@ function formCard(f) {
       <p class="sub">${esc(f.intro)} <a href="${esc(f.source)}" target="_blank" rel="noopener">Official page ↗</a></p>`;
     let el, read = () => el.value.trim(), invalid = () => el.checkValidity() ? "" : (el.validationMessage || "This one is required.");
     const go = (d) => {
-      document.activeElement?.blur?.(); // Safari commits date/time segments on blur
       const msg = d > 0 && invalid(); if (msg) { c.querySelector(".error").textContent = msg; return; }
       vals[fld.key] = read(); i += d;
       i >= f.fields.length ? submit() : render();
@@ -547,15 +560,15 @@ function formCard(f) {
       for (const b of el.querySelectorAll("button")) b.onclick = () => { vals[fld.key] = b.textContent; go(1); };
       read = () => vals[fld.key] ?? ""; invalid = () => read() ? "" : "Pick one.";
     } else if (fld.type === "select") { el = document.createElement("select"); el.innerHTML = `<option value="">Choose…</option>` + fld.options.map((o) => `<option>${esc(o)}</option>`).join(""); }
-    else if (fld.type === "timerange") { // two native time pickers; stored as "2:00 PM – 8:00 PM"
+    else if (fld.type === "timerange") { // two dropdowns in 15-minute steps (native <input type=time> misreports typed values in Safari); stored as "2:00 PM – 8:00 PM"
       el = document.createElement("div"); el.className = "range";
-      const [s0 = "", e0 = ""] = raw[fld.key] ?? [];
-      el.innerHTML = `<input type="time" id="ff" required value="${s0}"><span>to</span><input type="time" required value="${e0}">`;
-      const [a, b] = el.querySelectorAll("input");
-      const fmt = (t) => { const [h, m] = t.split(":").map(Number); return `${h % 12 || 12}:${String(m).padStart(2, "0")} ${h < 12 ? "AM" : "PM"}`; };
-      read = () => { raw[fld.key] = [a.value, b.value]; return `${fmt(a.value)} – ${fmt(b.value)}`; };
-      invalid = () => !a.value || !b.value ? "Enter both a start and an end time." : b.value <= a.value ? "End time must be after the start time." : "";
-      for (const x of [a, b]) x.onkeydown = (e) => { if (e.key === "Enter") { e.preventDefault(); go(1); } };
+      const fmt = (m) => `${(Math.floor(m / 60) % 12) || 12}:${String(m % 60).padStart(2, "0")} ${m < 720 ? "AM" : "PM"}`;
+      const [s0, e0] = raw[fld.key] ?? [];
+      const sel = (first, v) => `<select${first ? ' id="ff"' : ""} required><option value="">${first ? "Start" : "End"}</option>${Array.from({ length: 96 }, (_, i) => i * 15).map((m) => `<option value="${m}"${v === m ? " selected" : ""}>${fmt(m)}</option>`).join("")}</select>`;
+      el.innerHTML = sel(true, s0) + `<span>to</span>` + sel(false, e0);
+      const [a, b] = el.querySelectorAll("select");
+      read = () => { raw[fld.key] = [+a.value, +b.value]; return `${fmt(+a.value)} – ${fmt(+b.value)}`; };
+      invalid = () => !a.value || !b.value ? "Pick both a start and an end time." : +b.value <= +a.value ? "End time must be after the start time." : "";
     }
     else if (fld.type === "textarea") el = document.createElement("textarea");
     else {

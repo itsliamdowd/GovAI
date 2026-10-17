@@ -344,7 +344,7 @@ function withSessionLock(sessionId, fn) {
 }
 
 // Voice mode: the resident hears the reply read aloud, so it has to sound like a person talking, not a page.
-const VOICE_RULE = `Voice mode: the resident is speaking to you and will hear your reply read aloud. Answer in one or two short spoken sentences, the way a person answers a question out loud. Lead with the single most useful fact, then at most a short offer of the next step. No lists, bullet points, markdown, headers, links, URLs, phone numbers spelled as digits with dashes, or citations in the text; say "the city's website" rather than reading an address. Still look things up with your tools first; just say the answer briefly.`;
+const VOICE_RULE = `Voice mode: the resident is speaking to you and will hear your reply read aloud. Answer in one or two short spoken sentences, the way a person answers a question out loud. Lead with the single most useful fact, then at most a short offer of the next step. No lists, bullet points, markdown, headers, links, URLs, phone numbers spelled as digits with dashes, or citations in the text; say "the city's website" rather than reading an address. Still look things up with your tools first; just say the answer briefly. Never mention sources, datasets, documents, records, minutes, transcripts, searches, or where the information came from, and never say "according to" or "the data shows" — state the answer as plain fact.`;
 
 async function chat(sessionId, userText, send, voice = false) {
   const messages = sessions.get(sessionId) ?? [];

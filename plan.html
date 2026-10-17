@@ -116,6 +116,20 @@
     </ul>
   </article>
 
+  <article class="entry" id="e-2026-10-17-1345">
+    <header>
+      <time>2026-10-17 13:45</time>
+      <h2>Voice mode: mute button reads as a mute button</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User (screenshot): the voice-mode control was a bare 🎙️ emoji in a grey circle, which reads as "record", not "mute".</p>
+    <h3>Files</h3>
+    <ul>
+      <li><b>13:50:</b> user: "get rid of the listening text". <code>setState()</code> no longer writes "Listening…/Thinking…/Muted" under the orb (the orb's animation already shows the state); the label element stays only for the "Microphone access denied" error.</li>
+      <li><code>public/index.html</code> &mdash; emoji replaced with a stroked mic SVG; a "Mute" caption sits under the button (and "End" under the red ✕); muted state flips to a slashed-mic icon on a white button with the caption "Unmute"; <code>aria-pressed</code> + <code>aria-label</code> track the state (<code>setMuteUI()</code> replaces the two <code>textContent</code> emoji swaps).</li>
+    </ul>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1335b">
     <header>
       <time>2026-10-17 13:35</time>
@@ -600,6 +614,22 @@ daily 07:00 → refreshCouncil() → for each alert:
     </ul>
   </article>
 
+  <article class="entry" id="e-2026-10-17-1600">
+    <header>
+      <time>2026-10-17 16:00</time>
+      <h2>Voice mode: interrupt the assistant mid-reply; spoken answers never mention sources</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: while the voice assistant is speaking, the resident should be able to talk over it and ask something else; and the spoken answer must not say anything about sources or where information came from.</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>public/index.html</code> — recognition now keeps running during the <code>speaking</code> state (<code>rec.start()</code> after the reply starts; <code>onend</code> restarts it while still speaking). <code>onresult</code> during speaking with ≥2 words calls <code>stopSpeaking()</code> (Kokoro audio + speechSynthesis) and flips to listening with that transcript; the normal <code>onend → send</code> path then handles it. The speak-done callback only returns to listening if the state is still <code>speaking</code>, so an interrupted reply doesn't clobber the new question. New <code>spoken(bot)</code> clones the reply bubble, drops <code>.acts</code>/<code>.sources</code> (the Sources pill used to be read aloud as "Sources") and strips URLs before TTS.</li>
+      <li><code>server.js</code> — <code>VOICE_RULE</code> adds: never mention sources, datasets, documents, records, minutes, transcripts, searches, or "according to"; state the answer as fact.</li>
+    </ul>
+    <p><b>Known limit.</b> Barge-in relies on the mic not transcribing the assistant's own voice; the 2-word threshold filters most echo. If it self-interrupts on speakers, raise the threshold or require a mic-level spike from <code>meter()</code>.</p>
+    <p><b>Verify.</b> <code>node --check</code> on server.js and the inline script. Live voice test needs a mic; not automatable here.</p>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1530">
     <header>
       <time>2026-10-17 15:30</time>
@@ -628,6 +658,7 @@ daily 07:00 → refreshCouncil() → for each alert:
     </ul>
     <p><b>Verify.</b> <code>node --check</code> on forms.js and the inline script; <code>npm test</code>. Dev server auto-restarts, page auto-reloads; open the block party form and step to question 2.</p>
     <p><b>Follow-up bug (fixed).</b> User (Safari) entered 1:20 PM – 6:30 PM and got "Enter both a start and an end time." Cause: <code>step="900"</code> on the time inputs; Safari sanitises a value that doesn't fall on a 15-minute step to "". Removed the step attribute, and <code>go()</code> now blurs the active element before reading so Safari commits typed segments. Verified in Chrome via the chrome-profile MCP: typed 1:20 PM / 6:30 PM → advanced to question 3; Back restores both values.</p>
+    <p><b>Second report (fixed).</b> Still failing for the user in Safari with 1:02 PM – 5:05 PM shown in both fields: Safari leaves <code>value</code> empty until the AM/PM segment is explicitly set, so visible digits don't mean a committed value. Replaced the native time inputs with two <code>&lt;select&gt;</code>s (Start / End, 15-minute steps, 12:00 AM – 11:45 PM); values are minutes-since-midnight, stored as "1:00 PM – 5:00 PM". No browser-specific behaviour left; blur workaround removed.</p>
   </article>
 
   <article class="entry" id="e-2026-10-17-1455">
