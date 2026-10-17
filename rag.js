@@ -112,10 +112,9 @@ export async function refreshCatalog() {
 }
 
 export async function buildIndex() {
-  const knowledge = JURS.flatMap((j) => {
-    const dir = `./knowledge/${j.id}`;
-    return fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith(".md")).flatMap((f) => chunkMarkdown(`${dir}/${f}`).map((c) => ({ ...c, jur: j.id }))) : [];
-  });
+  // hand-written knowledge/<jur>/*.md plus crawled data/knowledge/<jur>/*.md (crawl.js; gitignored, same "## heading / Source: url" format)
+  const knowledge = JURS.flatMap((j) => [`./knowledge/${j.id}`, `./data/knowledge/${j.id}`].flatMap((dir) =>
+    fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith(".md")).flatMap((f) => chunkMarkdown(`${dir}/${f}`).map((c) => ({ ...c, jur: j.id }))) : []));
   const datasets = [];
   for (const p of indexedPortals()) {
     try { datasets.push(...(await loadCatalog(p)).map((d) => ({ ...d, jur: p.jur, portal: p.id }))); }
