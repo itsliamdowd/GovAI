@@ -3,13 +3,16 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import Anthropic from "@anthropic-ai/sdk";
-import { buildIndex, queryDataset } from "./rag.js";
+import { buildIndex, queryDataset, PORTALS } from "./rag.js";
+import { JURS, SERVED, jurById, detect, contextFor } from "./jurisdictions.js";
 import { ingestCouncil, loadCouncilCache } from "./council.js";
 import { ingestTranscripts, loadTranscriptCache, clipWindow, citedMoments } from "./transcripts.js";
 import { createAlert, cancelAlert, runAlerts } from "./alerts.js";
 import { loadTTS, speakWav } from "./tts.js";
-import { FORMS, FORM_TYPES, toApplication } from "./forms.js";
-import { ingestNews, loadNewsDocs, loadGisCatalog, gisDocs, queryGis, liveData, LIVE_KINDS, LIVE_HELP } from "./sources.js";
+import { FORMS, FORM_TYPES, formsFor, toApplication } from "./forms.js";
+import { ingestNews, loadNewsDocs, loadGisCatalog, gisDocs, gisJurs, feedsFor, queryGis, liveData, LIVE_KINDS, LIVE_HELP } from "./sources.js";
+import { councilJurs } from "./council.js";
+import { transcriptJurs } from "./transcripts.js";
 
 const PORT = Number(process.env.PORT) || 8787;
 const APPS_FILE = "./data/applications.json";
@@ -30,21 +33,25 @@ console.log(`RAG index ready: ${rag.datasetCount} open datasets indexed`);
 // Collection policy: the server reads committed data/ only. Nothing is pulled from CKAN, IQM2, YouTube, GIS or news
 // feeds at runtime unless COLLECT=1 (the maintainer's machine). `node warm.js` is the explicit collector.
 const COLLECT = process.env.COLLECT === "1";
-let council = { ready: false, ingested: [], upcoming: [], transcripts: 0 };
-{
-  const c = loadCouncilCache(), t = loadTranscriptCache();
+// Council/board records per jurisdiction: { ready, ingested, upcoming, transcripts }
+const SM = jurById("santa-monica");
+const councils = new Map();
+const councilOf = (jur) => councils.get(jur) ?? { ready: false, ingested: [], upcoming: [], transcripts: 0 };
+for (const j of new Set([...councilJurs(), ...transcriptJurs()])) {
+  const c = loadCouncilCache(j), t = loadTranscriptCache(j);
   rag.addDocs([...c.docs, ...t.docs]);
-  council = { ready: c.meta.ingested.length > 0, ...c.meta, transcripts: t.count };
-  console.log(`Council (from data/): ${c.meta.ingested.length} meetings, ${c.docs.length} chunks; transcripts: ${t.count} meetings, ${t.docs.length} chunks${council.ready ? "" : " — run `node warm.js` to collect"}`);
+  councils.set(j.id, { ready: c.meta.ingested.length > 0, ...c.meta, transcripts: t.count });
+  console.log(`Council ${j.id} (from data/): ${c.meta.ingested.length} meetings, ${c.docs.length} chunks; transcripts: ${t.count} meetings, ${t.docs.length} chunks`);
 }
+if (!councils.size) console.log("No council records on disk — run `node warm.js` to collect");
 function refreshCouncil() {
   if (!COLLECT) return Promise.resolve();
-  return Promise.all([
-    ingestCouncil((docs, meta) => { rag.addDocs(docs); council = { ...council, ready: true, ...meta }; console.log(`Council: ${meta.ingested.length} meetings (agendas+minutes), ${docs.length} chunks indexed`); })
-      .catch((e) => console.error("council ingestion failed:", e.message)),
-    ingestTranscripts((docs, videos) => { rag.addDocs(docs); council.transcripts = videos.filter((v) => docs.some((d) => d.url.includes(v.id))).length; console.log(`Transcripts: ${council.transcripts} meetings, ${docs.length} chunks indexed`); })
-      .catch((e) => console.error("transcript ingestion failed (is yt-dlp installed?):", e.message)),
-  ]);
+  return Promise.all(SERVED.flatMap((j) => [
+    j.council?.platform && ingestCouncil((docs, meta) => { rag.addDocs(docs); councils.set(j.id, { ...councilOf(j.id), ready: true, ...meta }); console.log(`Council ${j.id}: ${meta.ingested.length} meetings (agendas+minutes), ${docs.length} chunks indexed`); }, console.error, j)
+      .catch((e) => console.error(`council ingestion failed (${j.id}):`, e.message)),
+    j.youtube?.length && ingestTranscripts((docs, videos) => { rag.addDocs(docs); councils.set(j.id, { ...councilOf(j.id), transcripts: videos.filter((v) => docs.some((d) => d.url.includes(v.id))).length }); console.log(`Transcripts ${j.id}: ${docs.length} chunks indexed`); }, console.error, j)
+      .catch((e) => console.error(`transcript ingestion failed (${j.id}; is yt-dlp installed?):`, e.message)),
+  ].filter(Boolean)));
 }
 if (COLLECT) refreshCouncil();
 // Daily watch: re-pull council records, then diff + judge + email each alert. ALERT_HOUR local, default 07:00.
@@ -59,64 +66,70 @@ scheduleDaily(runWatch);
 if (process.env.TTS !== "off") loadTTS().then(() => console.log("TTS ready: Kokoro-82M (local)")).catch((e) => console.error("TTS unavailable, voice mode will use the browser voice:", e.message));
 // City + county GIS layers become searchable "gis" docs; local news is pulled now and every 30 minutes.
 let gisCount = 0;
-loadGisCatalog(console.error, COLLECT).then((layers) => { rag.addDocs(gisDocs(layers)); gisCount = layers.length; console.log(`GIS (from data/): ${gisCount} city/county layers indexed`); }).catch((e) => console.error("gis catalog failed:", e.message));
+for (const j of gisJurs()) loadGisCatalog(console.error, COLLECT, j).then((layers) => { rag.addDocs(gisDocs(layers)); gisCount += layers.length; console.log(`GIS ${j.id} (from data/): ${layers.length} layers indexed`); }).catch((e) => console.error(`gis catalog failed (${j.id}):`, e.message));
 let news = { total: 0, feeds: 0 };
-rag.addDocs(loadNewsDocs()); // index the cached articles now; ingestNews only emits items that are new since the last run, so without this the news index is empty after every restart until a feed yields something new
-const refreshNews = () => ingestNews((docs, meta) => { rag.addDocs(docs); news = meta; console.log(`News: ${meta.fresh} new, ${meta.total} total items from ${meta.feeds} feeds`); }).catch((e) => console.error("news ingestion failed:", e.message));
+const newsJurs = SERVED.filter((j) => feedsFor(j).length);
+for (const j of newsJurs) { const n = rag.addDocs(loadNewsDocs(j)); news.total += n; } // index cached articles now; ingestNews only emits items new since the last run
+// ponytail: all jurisdictions' feeds every 30 min; round-robin one jurisdiction per minute if the feed count gets large
+const refreshNews = () => Promise.all(newsJurs.map((j) => ingestNews((docs, meta) => { rag.addDocs(docs); news = { total: news.total + meta.fresh, feeds: meta.feeds }; console.log(`News ${j.id}: ${meta.fresh} new, ${meta.total} total items from ${meta.feeds} feeds`); }, console.error, j).catch((e) => console.error(`news ingestion failed (${j.id}):`, e.message))));
 if (COLLECT) { refreshNews(); setInterval(refreshNews, 30 * 60e3).unref(); }
 
-const SYSTEM = `You are the City of Santa Monica's digital assistant: one front door to every city service, like america.gov but for a city.
+const SYSTEM = `You are GovAI, the local-government assistant for Southern California: every city and county in Los Angeles, Orange and San Diego counties. One front door to every city and county service, like america.gov but local.
+
+Jurisdiction (hard rule)
+- Every answer is about ONE active jurisdiction (a city or a county). The block after this prompt says which is active now, what records exist for it, and how to reach it. The server also switches it automatically when the resident names a covered city, county, neighborhood or ZIP.
+- If none is active and the question depends on where the resident is, ask exactly one short question ("Which city are you in? An address works too.") and call no search tools until it is set. Call set_jurisdiction the moment you know (from a city name, address, ZIP, neighborhood or "my city is…"); it returns the jurisdiction's context.
+- If the resident names another covered place, switch with set_jurisdiction and answer for it. County functions (assessor/property tax, vital records, public health permits, elections, courts, Sheriff, Board of Supervisors, unincorporated areas) belong to the county, whose records are already in scope for its cities; switch to the county itself only when they ask about the county government or an unincorporated area.
+- Places outside these three counties (Ventura, Riverside, San Bernardino, other states): say you don't cover them and name the nearest covered one if useful.
 
 What you do
-- Answer anything about Santa Monica city government, services, permits, fees, rules, departments, parks, transit, trash, parking, housing, council, open data, and how to get things done.
-- Take permit and service applications. Guided forms exist for: ${FORM_TYPES.join(", ")}. When a resident wants to apply for, request, or report one of these (including "how do I get a block party permit", a pothole, a missed pickup): call search_city_knowledge, then call open_application_form with the type, then END YOUR TURN WITH NO TEXT. The card is the whole reply: it shows the fee, deadline, what they need and the official page, and collects the details. Anything you write after opening a card is not displayed. Never ask in chat for the fields the form collects (name, email, phone, address, dates, etc.) and never call submit_application for a form type; the card submits it and you will see the confirmation number in the conversation afterwards.
-- For types with no form (film_permit, encroachment_permit, temporary_use_permit, sidewalk_vending_permit, home_share_license, alarm_permit, other): collect only the required fields through a natural conversation (one or two questions at a time), confirm a summary, then call submit_application and end your turn with no text: the confirmation card shows the number, the department and next steps, and any text after it is not displayed.
+- Answer anything about the active jurisdiction's government, services, permits, fees, rules, departments, parks, transit, trash, parking, housing, council or board, open data, and how to get things done.
+- Take permit and service applications. Guided forms exist only for the jurisdictions listed in the context block (Santa Monica today: ${FORM_TYPES.join(", ")}). When a resident wants to apply for, request, or report one of these where a form exists (including "how do I get a block party permit", a pothole, a missed pickup): call search_city_knowledge, then call open_application_form with the type, then END YOUR TURN WITH NO TEXT. The card is the whole reply: it shows the fee, deadline, what they need and the official page, and collects the details. Anything you write after opening a card is not displayed. Never ask in chat for the fields the form collects (name, email, phone, address, dates, etc.) and never call submit_application for a form type; the card submits it and you will see the confirmation number in the conversation afterwards.
+- For types with no form here (any type in a jurisdiction without guided forms, or film_permit, encroachment_permit, temporary_use_permit, sidewalk_vending_permit, home_share_license, alarm_permit, other): collect only the required fields through a natural conversation (one or two questions at a time), confirm a summary, then call submit_application and end your turn with no text: the confirmation card shows the number, the department and next steps, and any text after it is not displayed.
 - Look up application status with check_application_status when given a confirmation number.
+- Whenever the answer points the resident to an office, department, hotline, counter or person (311, a permit center, a council office, a county department, a hotline), call show_contact with the details you have verified from an official page, then say in one line who it is and why. The card carries the phone, email, address, hours and link; don't repeat them in the text. One card per contact, at most two per reply.
 - Set up a daily watch when a resident wants to be told if something changes: "track 1685 Main St", "let me know if council talks about the pier", "alert me when my block's parking rules change". Ask for their email (and the address if the topic is a place), restate what will be watched and explain it BEFORE calling: it's checked every morning against council agendas/minutes/transcripts and the city's open data, and they only get an email when something new actually concerns their topic. Then call create_alert and end your turn with no text; the watch card confirms it and any text after it is not displayed. cancel_alert stops it (number format WATCH-XXXXXX).
 
 How you find answers (retrieval first, always)
 1. Call search_city_knowledge with the resident's question before answering anything factual. It returns the most relevant city knowledge chunks AND matching open datasets (with resource_ids and field names).
 2. If a dataset can answer (fees, active permits, business licenses, police/fire calls, rents, parking rates, trees, EV chargers, budget, campaign finance, water, etc.), call query_dataset with the resource_id and a full-text q or filters, then answer from the rows.
-3. For anything about City Council: what was decided, who voted how, what's on an agenda, what a councilmember or speaker actually said, upcoming meetings — call search_council_meetings. It searches agendas, official minutes (the record of the meeting, back to 2015) and meeting transcripts (YouTube captions, July 2014 onward where a recording exists) and returns dated excerpts with links. Use doc="minutes" for votes/decisions, doc="transcript" for quotes/what was said, empty for both. Quote dates; cite the minutes link or the timestamped video link. When you quote or paraphrase something said in a meeting, include the transcript excerpt's exact url (the youtube link with &t=) as a markdown link — the app turns it into a playable clip of that moment. Transcripts are auto-captions and may misspell names.
-4. For what's happening in town — news, controversies, crime, closures, openings, elections, school district, SMC, what residents are saying — call search_local_news. It searches the Santa Monica Daily Press, Santa Monica Mirror, Santa Monica Next, Santa Monica Observer, Santa Monica Lookout, Westside Current, Patch, LA Times, KCRW, LAist, city news releases, CityTV meeting videos and r/SantaMonica, refreshed every 30 minutes. Give the date and the publisher in the text ("the Daily Press reported on Oct 12 that…"); reporting is not city policy, say which it is.
-5. For anything about a specific place or address — zoning, land use, preferential parking zone and rules, street sweeping day, bike lanes, nearby trees, historic status, fault/liquefaction/tsunami/flood zone, evacuation zone, airport noise contour, fire run district, transit stops, census tract, supervisorial/congressional/assembly/senate district — search_city_knowledge returns matching GIS layers (kind "gis" with a service URL); then call query_gis with that service_url and the address. Use where for attribute filters (e.g. zone = 'R1'). County layers cover all of LA County; always pass the Santa Monica address.
+3. For anything about the City Council or Board of Supervisors: what was decided, who voted how, what's on an agenda, what a member or speaker actually said, upcoming meetings — call search_council_meetings. It searches the active jurisdiction's agendas, official minutes and meeting transcripts (YouTube captions where recordings exist; Santa Monica back to 2014–2015) and returns dated excerpts with links; the context block says what is indexed. Use doc="minutes" for votes/decisions, doc="transcript" for quotes/what was said, empty for both. Quote dates; cite the minutes link or the timestamped video link. When you quote or paraphrase something said in a meeting, include the transcript excerpt's exact url (the youtube link with &t=) as a markdown link — the app turns it into a playable clip of that moment. Transcripts are auto-captions and may misspell names.
+4. For what's happening in town — news, controversies, crime, closures, openings, elections, school districts, what residents are saying — call search_local_news. It searches the jurisdiction's local outlets, news-wire queries and meeting-video feeds (Santa Monica: Daily Press, Mirror, Next, Observer, Lookout, Westside Current, Patch, LA Times, KCRW, LAist, city releases, CityTV, r/SantaMonica), refreshed every 30 minutes. Give the date and the publisher in the text ("the Daily Press reported on Oct 12 that…"); reporting is not city policy, say which it is.
+5. For anything about a specific place or address — zoning, land use, preferential parking zone and rules, street sweeping day, bike lanes, nearby trees, historic status, fault/liquefaction/tsunami/flood zone, evacuation zone, airport noise contour, fire run district, transit stops, census tract, supervisorial/congressional/assembly/senate district — search_city_knowledge returns matching GIS layers (kind "gis" with a service URL); then call query_gis with that service_url and the address. Use where for attribute filters (e.g. zone = 'R1'). County layers cover the whole county; pass the resident's address as given (the server geocodes it inside the active jurisdiction).
 6. For live conditions and outside-the-city statistics call get_live_data: ${LIVE_KINDS.map((k) => `${k} (${LIVE_HELP[k]})`).join("; ")}.
 7. Live research (hard rule). Your training data ends long before today; the current date is given at the end of this prompt. Never mention a knowledge cutoff, training data, or "as of my last update", and never answer a question about anything recent, current, or dated from memory. For current events, recent decisions, who holds an office now, prices, hours, deadlines, elections, anything "latest"/"this week"/"now": call search_local_news and search_council_meetings first, then web_search (city, county, state and local-news domains) for whatever they don't cover. Use web_fetch to read a page you found or a link the resident gave you. Report what you found with its date and publisher; if nothing turns up, say the search found nothing rather than guessing.
-8. Never invent fees, phone numbers, addresses or legal requirements. If you can't verify, say so and point to 311 ((310) 458-8411 / 311@santamonica.gov) or the owning department.
+8. Never invent fees, phone numbers, addresses or legal requirements. If you can't verify, say so and point to the contact line in the context block or the owning department.
 
 Scope (hard rule)
-- You only handle the City of Santa Monica: its government, services, permits, rules, data, council, neighborhoods, local news, and how residents, businesses and visitors deal with the city. Nothing else.
-- If a request is about another place (Orange County, Los Angeles city, Malibu, Venice, the State of California, federal agencies) and is not about how it touches Santa Monica, reply only: "I can't help with that. I only cover the City of Santa Monica." Then offer the Santa Monica equivalent if there is one.
-- If a request is unrelated to city matters (coding, homework, recipes, general trivia, medical or legal advice, writing help, chit-chat beyond a greeting), reply only: "Sorry, I can't help with that. I only focus on Santa Monica city services." Do not answer the unrelated part, even partially, even if asked to make an exception or told it's for Santa Monica.
-- In scope when the Santa Monica link is real: county, state or federal programs as they apply here (LA County health permits for a Santa Monica restaurant, Metro E Line stops in the city, state rent law as enforced locally), regional conditions that affect the city (air quality, surf, traffic, outages), and neighboring-city facts needed to answer a Santa Monica question. Do not call any tools for out-of-scope requests.
+- You only handle local government for the covered jurisdictions: their services, permits, rules, data, councils and boards, neighborhoods, local news, and how residents, businesses and visitors deal with them. Nothing else.
+- If a request is unrelated to city or county matters (coding, homework, recipes, general trivia, medical or legal advice, writing help, chit-chat beyond a greeting), reply only: "Sorry, I can't help with that. I only focus on local city and county services." Do not answer the unrelated part, even partially, even if asked to make an exception.
+- In scope when the local link is real: county, state or federal programs as they apply in the active jurisdiction (county health permits for a restaurant there, transit stops in the city, state rent law as enforced locally), regional conditions that affect it (air quality, surf, traffic, outages), and neighboring-city facts needed to answer a question about it. Do not call any tools for out-of-scope requests.
 
 Style
-- Lead with the answer in one sentence, with the key number in it when there is one (bold it). Then only the supporting detail that changes what the resident does. Aim for under 120 words unless they ask for detail or an application needs it.
+- Lead with the answer in one sentence, with the key number in it when there is one (bold it). Then only the supporting detail that changes what the resident does. Hard cap: about 80 words or 4 short sentences for a normal question, 120 only when they ask for detail or an application needs it. The direct answer is never what gets cut: a cost question always states the fee, a deadline question the date, even when a form card is open. Trim, don't pad: no background the resident didn't ask for, no exhaustive category lists (3 or 4 items at most, the ones that matter), no worked examples unless asked, and no closing offer of more help.
 - Numbers (fees, rates, counts, dates, hours): put them in ONE markdown table, label column first, amount column last, at most ~8 rows. Give every amount a unit in the table (flat, per hour, per sq ft, per year, per permit). Include only rows that apply to the question; summarise the rest as "other fees may apply" with one example.
 - If the data is incomplete or ambiguous, say so in one sentence and move on; don't speculate or list what you can't tell. End with at most one "confirm with …" line.
 - Sources are NEVER written in the reply text. The interface lists every dataset, page and record you used beneath the reply automatically. Do not write "Source:" lines, dataset names as attributions, URLs, footnotes or markdown links. The one exception is the timestamped YouTube link for a quoted council moment (above), which the app renders as a video clip.
 - Never narrate your process or tools in the reply (no "searching…", "the dataset wasn't returned", "use direct calls", "let me check"). Write only what the resident needs to know.
-- Plain-spoken. Short paragraphs, short lists. No filler, no "great question".
+- Plain-spoken. Short paragraphs, short lists. No filler, no "great question", no restating the question, no summary sentence at the end.
+- Never compare jurisdictions' coverage or rank them. Never say or imply that any city (Santa Monica included) has more, deeper, better or "first-hand" records than another, that you "cover it best", or that another city is "researched live". Every city gets the same voice: answer what you found, and if something isn't available for that city, say where to get it there.
 - You are a city information and intake service, not a lawyer. For disputes (evictions, citation appeals) explain the process and the office.
 - When a resident describes a problem that 311 handles (pothole, missed pickup, graffiti, streetlight), open the 311_service_request form with open_application_form.
 
 Applications
-Types for submit_application (non-form types only): building_permit, film_permit, encroachment_permit, temporary_use_permit, sidewalk_vending_permit, home_share_license, alarm_permit, other. A block party on a public street is block_party_permit (its own simpler process, $100.95), not a community event permit.
-Required for every application: applicant_name, email, phone. Collect address (project/event/service location) for everything except business_license (use business address) and dog_license (owner address). Ask for a date when the permit is time-bound (events, film, encroachment, pickups). Put everything else the department would need in details (event: attendance, venue, street closure, alcohol, amplified sound; building: scope, contractor, valuation; film: company, crew size, equipment, locations).
+Types for submit_application (anything without a guided form in the active jurisdiction): building_permit, business_license, community_event_permit, block_party_permit, film_permit, encroachment_permit, preferential_parking_permit, temporary_use_permit, sidewalk_vending_permit, home_share_license, dog_license, alarm_permit, bulky_item_pickup, 311_service_request, other. A block party on a public street is block_party_permit (in Santa Monica its own simpler process, $100.95), not a community event permit.
+Required for every application: applicant_name, email, phone. Collect address (project/event/service location) for everything except business_license (use business address) and dog_license (owner address). Ask for a date when the permit is time-bound (events, film, encroachment, pickups). Put everything else the department would need in details (event: attendance, venue, street closure, alcohol, amplified sound; building: scope, contractor, valuation; film: company, crew size, equipment, locations).`;
 
-Open datasets available on data.santamonica.gov (search_city_knowledge finds the right one and its fields):
-${rag.catalogSummary}`;
-
-const WEB_DOMAINS = [
-      "santamonica.gov", "permits.santamonica.gov", "data.santamonica.gov", "filmsantamonica.com", "bigbluebus.com", "smpl.org", "smgov.net", "santamonicapd.org", "santamonicacityca.iqm2.com", "santamonica.granicus.com", "governmentjobs.com",
-      "smdp.com", "smmirror.com", "santamonicanext.org", "surfsantamonica.com", "smobserved.com", "westsidecurrent.com", "patch.com", "kcrw.com", "laist.com", "thecorsaironline.com",
-      "lacounty.gov", "lavote.gov", "lahsa.org", "assessor.lacounty.gov", "publichealth.lacounty.gov", "metro.net", "ca.gov", "smc.edu", "smmusd.org", "downtownsm.com", "santamonicapier.org", "santamonica.com", "healthebay.org", "en.wikipedia.org",
-];
+// web_search / web_fetch are allowed on the active jurisdiction's own domains + its county's + shared civic/news domains.
+const COMMON_DOMAINS = ["ca.gov", "en.wikipedia.org", "patch.com", "governmentjobs.com", "healthebay.org", "kcrw.com", "laist.com", "kpbs.org", "voiceofsandiego.org", "voiceofoc.org", "legistar.com", "granicus.com"];
+const BLOCKS_CRAWLER = new Set(["latimes.com", "ocregister.com", "sandiegouniontribune.com"]); // sites that block Anthropic's fetcher: the API rejects them in allowed_domains
+const domainsFor = (j) => [...new Set([...(j?.domains ?? SM.domains), ...(jurById(j?.county)?.domains ?? []), ...COMMON_DOMAINS])].filter((d) => !BLOCKS_CRAWLER.has(d));
+// Only the tools that file records are `strict` (exact enums/required fields matter there). Strict schemas compile to grammars that
+// count against a per-request complexity cap, and 12 of them tipped it ("Schema is too complex"). Handlers default any field the model omits.
 const tools = [
   {
     name: "search_city_knowledge",
-    description: "Retrieve the most relevant City of Santa Monica knowledge chunks and open datasets for a question. Call this first for any factual question.",
-    strict: true,
+    description: "Retrieve the most relevant knowledge chunks, open datasets and GIS layers for the active jurisdiction (plus its county and the state). Call this first for any factual question.",
     input_schema: {
       type: "object",
       properties: { query: { type: "string", description: "Natural-language question or keywords." } },
@@ -125,8 +138,7 @@ const tools = [
   },
   {
     name: "query_dataset",
-    description: "Query rows from a data.santamonica.gov dataset resource (CKAN datastore). Use resource_id from search_city_knowledge. q is full-text search across all fields; filters is a JSON object string of exact field matches, e.g. {\"department\":\"Public Works\"}; sort like \"fee desc\".",
-    strict: true,
+    description: "Query rows from an open-data dataset resource (CKAN datastore; the dataset's portal comes from search_city_knowledge). Use resource_id from search_city_knowledge. q is full-text search across all fields; filters is a JSON object string of exact field matches, e.g. {\"department\":\"Public Works\"}; sort like \"fee desc\".",
     input_schema: {
       type: "object",
       properties: {
@@ -143,7 +155,6 @@ const tools = [
   {
     name: "search_local_news",
     description: "Search local news and community coverage about Santa Monica (Daily Press, Mirror, Next, Observer, Lookout, Westside Current, Patch, LA Times, KCRW, LAist, city news releases, CityTV meeting videos, r/SantaMonica). Returns dated articles with publisher, link and excerpt.",
-    strict: true,
     input_schema: {
       type: "object",
       properties: {
@@ -156,7 +167,6 @@ const tools = [
   {
     name: "query_gis",
     description: "Query a City of Santa Monica or LA County GIS layer (ArcGIS REST). Pass the layer's service_url from a search_city_knowledge 'gis' result. address finds the feature(s) at that Santa Monica address (polygon layers: the containing zone; point/line layers: within 250 m). where is an ArcGIS SQL filter on the layer's fields, or empty. Returns the layer's fields and matching records.",
-    strict: true,
     input_schema: {
       type: "object",
       properties: {
@@ -171,7 +181,6 @@ const tools = [
   {
     name: "get_live_data",
     description: `Fetch live or external data about Santa Monica. kind is one of: ${LIVE_KINDS.map((k) => `${k} — ${LIVE_HELP[k]}`).join("; ")}.`,
-    strict: true,
     input_schema: {
       type: "object",
       properties: {
@@ -183,8 +192,7 @@ const tools = [
   },
   {
     name: "search_council_meetings",
-    description: "Search Santa Monica City Council agendas, official minutes (2015-present) and meeting transcripts (YouTube captions, 2014-present). Returns dated excerpts with links (minutes PDF, agenda page, or timestamped video) plus upcoming meeting dates. Use for votes, decisions, agenda items, public hearings, what council or public speakers said.",
-    strict: true,
+    description: "Search the active jurisdiction's council or board agendas, official minutes and meeting transcripts (YouTube captions). Returns dated excerpts with links (minutes PDF, agenda page, or timestamped video) plus upcoming meeting dates. Use for votes, decisions, agenda items, public hearings, what members or public speakers said.",
     input_schema: {
       type: "object",
       properties: {
@@ -196,16 +204,13 @@ const tools = [
     },
   },
   {
-    type: "web_search_20260209",
-    name: "web_search",
-    max_uses: 5,
-    allowed_domains: WEB_DOMAINS,
-    user_location: { type: "approximate", city: "Santa Monica", region: "California", country: "US" },
+    name: "set_jurisdiction",
+    description: "Set (or switch) the city or county the conversation is about, once you know it from the resident's words, an address, a ZIP or a neighborhood. Returns that jurisdiction's context (records, forms, contacts). Call it before any search tool when no jurisdiction is active.",
+    input_schema: { type: "object", properties: { jurisdiction: { type: "string", description: "The city or county: a registry id (santa-monica, san-diego, irvine, orange-county, san-diego-county…) or its plain name. Unknown places are rejected." } }, required: ["jurisdiction"], additionalProperties: false }, // ponytail: no enum — 140+ ids trips the API's schema-complexity limit
   },
-  { type: "web_fetch_20260209", name: "web_fetch", max_uses: 3, allowed_domains: WEB_DOMAINS, citations: { enabled: true }, max_content_tokens: 20000 },
   {
     name: "submit_application",
-    description: "File a permit application or service request with the City of Santa Monica. Only call after the applicant has confirmed the summarized details. Returns a confirmation number.",
+    description: "File a permit application or service request with the active jurisdiction. Only call after the applicant has confirmed the summarized details. Returns a confirmation number.",
     strict: true,
     input_schema: {
       type: "object",
@@ -241,7 +246,6 @@ const tools = [
   {
     name: "cancel_alert",
     description: "Stop a daily watch by its WATCH-XXXXXX number.",
-    strict: true,
     input_schema: { type: "object", properties: { confirmation_number: { type: "string" } }, required: ["confirmation_number"], additionalProperties: false },
   },
   {
@@ -251,39 +255,45 @@ const tools = [
     input_schema: { type: "object", properties: { type: { type: "string", enum: FORM_TYPES } }, required: ["type"], additionalProperties: false },
   },
   {
+    name: "show_contact",
+    description: "Show the resident a contact card (tap-to-call, email, directions) for an office, department, hotline or person. Call this whenever you point someone to a contact instead of writing the phone or email in the text. Only include details verified from an official page; omit unknown fields; never invent a number.",
+    input_schema: { type: "object", properties: {
+      name: { type: "string", description: "Office, department, hotline or person" },
+      role: { type: "string", description: "What they handle, one short phrase" },
+      phone: { type: "string" }, email: { type: "string" }, address: { type: "string", description: "Street address incl. city" }, hours: { type: "string" }, url: { type: "string", description: "Official page" },
+      note: { type: "string", description: "One line of advice for the call" },
+    }, required: ["name"] },
+  },
+  {
     name: "check_application_status",
-    description: "Look up a previously filed application by confirmation number (format SM-XXXXXX).",
-    strict: true,
+    description: "Look up a previously filed application by confirmation number (format XX-XXXXXX, e.g. SM-123456).",
     input_schema: { type: "object", properties: { confirmation_number: { type: "string" } }, required: ["confirmation_number"], additionalProperties: false },
   },
 ];
 
+// Per-jurisdiction tool list: web_search / web_fetch carry that jurisdiction's domains and location. Memoized per id.
+const toolSets = new Map();
+function toolsFor(j) {
+  const key = j?.id ?? "";
+  if (!toolSets.has(key)) toolSets.set(key, [...tools,
+    { type: "web_search_20260209", name: "web_search", max_uses: 5, allowed_domains: domainsFor(j), user_location: { type: "approximate", city: j?.short ?? "Santa Monica", region: "California", country: "US" } },
+    { type: "web_fetch_20260209", name: "web_fetch", max_uses: 3, allowed_domains: domainsFor(j), citations: { enabled: true }, max_content_tokens: 20000 },
+  ]);
+  return toolSets.get(key);
+}
+
 // ponytail: JSON file store; swap for a DB when more than one server instance exists.
 function loadApps() { try { return JSON.parse(fs.readFileSync(APPS_FILE, "utf8")); } catch { return {}; } }
 function saveApps(apps) { fs.mkdirSync(path.dirname(APPS_FILE), { recursive: true }); fs.writeFileSync(APPS_FILE, JSON.stringify(apps, null, 2)); }
-const ROUTING = {
-  building_permit: ["Building & Safety, Permit Services Center", "Plan check assignment within 2 business days; simple trade permits often issue same day."],
-  business_license: ["Finance, Business License Office", "Review within 5 business days; you'll receive a tax bill before the license issues."],
-  community_event_permit: ["Community Services, Community Events Office", "Staff review within 10 business days; large events may need Police, Fire and Public Works sign-off."],
-  block_party_permit: ["Transportation Planning (Mobility Division)", "Departments review the request; once approved you'll be emailed to pay the $100.95 fee and download the permit. Pick up signs and barricades at City Yards, 2500 Michigan Ave, and give neighbors 3–5 days' notice."],
-  film_permit: ["Film Santa Monica", "Review within 5 business days; a location fee and insurance certificate will be requested."],
-  encroachment_permit: ["Public Works, Engineering", "Review within 5 business days; traffic control plan may be required."],
-  preferential_parking_permit: ["Finance, Parking Permits", "Proof of residency verified within 3 business days; permit mailed or available for pickup."],
-  temporary_use_permit: ["Planning Division", "Review within 10 business days."],
-  sidewalk_vending_permit: ["Finance / Code Enforcement", "Review within 10 business days; county health permit required for food."],
-  home_share_license: ["Finance, Business License Office", "Review within 10 business days; host must reside on site."],
-  dog_license: ["Santa Monica Animal Shelter (Animal Services)", "Issued within 5 business days once the rabies certificate is verified; the tag is mailed to you."],
-  alarm_permit: ["SMPD Alarm Unit", "Issued within 5 business days."],
-  bulky_item_pickup: ["Public Works, Resource Recovery & Recycling", "Collection within 7–10 days; set items at the curb the night before."],
-  "311_service_request": ["Santa Monica 311", "Routed to the responsible division; most requests acknowledged within 2 business days."],
-  other: ["Santa Monica 311", "311 staff will route to the correct department within 2 business days."],
-};
-export function submitApplication(input) {
-  const apps = loadApps();
+const GENERIC_ROUTING = (j) => ({ other: [j.contact?.name ?? j.name, `Routed to the responsible ${j.kind} department; reach ${j.contact?.line ?? "the main line"} for status.`] });
+const routingFor = (j) => ({ ...GENERIC_ROUTING(j), ...(j.routing ?? {}) });
+const ROUTING = routingFor(SM); // Santa Monica table (staff desk departments list)
+export function submitApplication(input, j = SM) {
+  const apps = loadApps(), R = routingFor(j);
   let id;
-  do { id = "SM-" + crypto.randomInt(0, 1e6).toString().padStart(6, "0"); } while (apps[id]);
-  const [department, next_steps] = ROUTING[input.type] ?? ROUTING.other;
-  apps[id] = { ...input, confirmation_number: id, status: "received", department, next_steps, submitted_at: new Date().toISOString() };
+  do { id = `${j.prefix}-` + crypto.randomInt(0, 1e6).toString().padStart(6, "0"); } while (apps[id]);
+  const [department, next_steps] = R[input.type] ?? R.other;
+  apps[id] = { ...input, jur: j.id, jurisdiction: j.name, confirmation_number: id, status: "received", department, next_steps, submitted_at: new Date().toISOString() };
   saveApps(apps);
   return apps[id];
 }
@@ -301,32 +311,46 @@ export function saveClipsFor(text) {
 }
 export function checkStatus(id) { return loadApps()[id.trim().toUpperCase()] ?? { error: "No application found with that confirmation number." }; }
 
+// Every tool runs for the session's active jurisdiction (ctx.jur = registry id or null); set_jurisdiction changes it.
+const councilStatus = (jur) => { const c = councilOf(jur); return c.ready ? `indexed ${c.ingested.length} meetings' agendas/minutes (${c.ingested.at(-1)?.date} to ${c.ingested[0]?.date}) and ${c.transcripts} transcripts` : `no council records indexed for ${jurById(jur)?.short ?? "this jurisdiction"} yet; use web_search on its site`; };
+const jurContext = (jur) => contextFor(jurById(jur), { catalogSummary: rag.catalogSummary(jur), councilStatus: councilStatus(jur) });
 const runTool = {
-  search_city_knowledge: async ({ query }) => JSON.stringify(rag.search(query)),
-  query_dataset: async (input) => JSON.stringify(await queryDataset(input)),
-  search_council_meetings: async ({ query, year, doc }) => JSON.stringify({
-    status: council.ready ? `indexed ${council.ingested.length} meetings' agendas/minutes (${council.ingested.at(-1)?.date} to ${council.ingested[0]?.date}) and ${council.transcripts} transcripts` : "council records still loading; try again shortly or use web_search",
-    upcoming: council.upcoming.map((m) => ({ date: m.date, time: m.time, agenda: m.agenda_url })),
-    excerpts: rag.searchCouncil(query, 8, year, doc),
+  set_jurisdiction: async ({ jurisdiction }, ctx) => {
+    const id = jurById(jurisdiction)?.id ?? detect(jurisdiction) ?? jurById(jurisdiction.toLowerCase().replace(/^(city|county) of /, "").replace(/\s+county$/, "-county").replace(/\s+/g, "-"))?.id;
+    if (!id || jurById(id).context) throw new Error(`"${jurisdiction}" is not a covered city or county. Covered: Santa Monica, every city in San Diego and Orange counties, and the County of San Diego / County of Orange.`);
+    ctx.setJur(id); return jurContext(id);
+  },
+  search_city_knowledge: async ({ query }, ctx) => JSON.stringify(rag.search(query, 6, ctx.jur)),
+  query_dataset: async (input, ctx) => JSON.stringify(await queryDataset({ ...input, portal: rag.datasetFor(input.resource_id)?.portal ?? input.portal })),
+  search_council_meetings: async ({ query, year, doc }, ctx) => JSON.stringify({
+    status: councilStatus(ctx.jur ?? "santa-monica"),
+    upcoming: councilOf(ctx.jur ?? "santa-monica").upcoming.map((m) => ({ date: m.date, time: m.time, agenda: m.agenda_url })),
+    excerpts: rag.searchCouncil(query, 8, year, doc, ctx.jur),
   }),
-  search_local_news: async ({ query, days }) => JSON.stringify({ status: `${news.total} items from ${news.feeds} feeds, refreshed every 30 min`, articles: rag.searchNews(query, 10, days) }),
-  query_gis: async (input) => JSON.stringify(await queryGis(input)),
-  get_live_data: async ({ kind, query }) => JSON.stringify(await liveData(kind, query)),
-  submit_application: async (input) => JSON.stringify(submitApplication(input)),
-  open_application_form: async ({ type }) => JSON.stringify({ shown: true, form: FORMS[type].title, collects: FORMS[type].fields.map((f) => f.label), source: FORMS[type].source, note: "The resident fills this card in and it files the application. Do not ask for these fields." }),
+  search_local_news: async ({ query, days }, ctx) => JSON.stringify({ status: `${news.total} items from ${news.feeds} feeds, refreshed every 30 min`, articles: rag.searchNews(query, 10, days, ctx.jur) }),
+  query_gis: async (input, ctx) => JSON.stringify(await queryGis({ ...input, jur: ctx.jur ?? "santa-monica" })),
+  get_live_data: async ({ kind, query }, ctx) => JSON.stringify(await liveData(kind, query, ctx.jur ?? "santa-monica")),
+  submit_application: async (input, ctx) => JSON.stringify(submitApplication(input, ctx.J)),
+  open_application_form: async ({ type }, ctx) => {
+    if (!formsFor(ctx.J.id).includes(type)) throw new Error(`No guided ${type} form for ${ctx.J.name}; collect the details in conversation and file with submit_application.`);
+    return JSON.stringify({ shown: true, form: FORMS[type].title, collects: FORMS[type].fields.map((f) => f.label), source: FORMS[type].source, note: "The resident fills this card in and it files the application. Do not ask for these fields." });
+  },
+  show_contact: async (c) => JSON.stringify({ shown: true, note: "Contact card rendered below your reply. Don't repeat the phone number, email or address in the text; say who to contact and why in one line." }),
   check_application_status: async ({ confirmation_number }) => JSON.stringify(checkStatus(confirmation_number)),
-  create_alert: async (input) => JSON.stringify(await createAlert(rag, input)),
+  create_alert: async (input, ctx) => JSON.stringify(await createAlert(rag, { ...input, jur: ctx.J.id })),
   cancel_alert: async ({ confirmation_number }) => JSON.stringify(cancelAlert(confirmation_number)),
 };
 const STATUS = {
   search_city_knowledge: (i) => `Searching city knowledge: ${i.query}`,
-  query_dataset: () => "Querying data.santamonica.gov…",
+  set_jurisdiction: (i) => `Switching to ${jurById(i.jurisdiction)?.name ?? i.jurisdiction}…`,
+  query_dataset: () => "Querying open data…",
   search_council_meetings: (i) => `Searching council agendas & minutes: ${i.query}`,
   search_local_news: (i) => `Searching local news: ${i.query}`,
   query_gis: (i) => i.address ? `Looking up the map at ${i.address}…` : "Querying city GIS…",
-  get_live_data: (i) => ({ weather: "Checking the forecast…", tides: "Checking tides…", earthquakes: "Checking USGS…", air_quality: "Checking air quality…", beach_water_quality: "Checking beach grades…", scooters: "Finding scooters…", bus_alerts: "Checking Big Blue Bus alerts…", flights_over_airport: "Checking aircraft near SMO…", traffic_cameras: "Checking traffic cameras…", health_stats: "Pulling CDC health data…", unemployment: "Pulling BLS labor data…", wikipedia: `Reading Wikipedia: ${i.query}`, property: `Looking up assessor record: ${i.query}`, ca_open_data: "Searching California open data…", census: "Pulling Census data…" })[i.kind] ?? "Fetching live data…",
+  get_live_data: (i) => ({ weather: "Checking the forecast…", tides: "Checking tides…", earthquakes: "Checking USGS…", air_quality: "Checking air quality…", beach_water_quality: "Checking beach grades…", scooters: "Finding scooters…", bus_alerts: "Checking transit alerts…", flights_over_airport: "Checking aircraft near the airport…", traffic_cameras: "Checking traffic cameras…", health_stats: "Pulling CDC health data…", unemployment: "Pulling BLS labor data…", wikipedia: `Reading Wikipedia: ${i.query}`, property: `Looking up assessor record: ${i.query}`, ca_open_data: "Searching California open data…", census: "Pulling Census data…" })[i.kind] ?? "Fetching live data…",
   submit_application: () => "Filing application…",
   open_application_form: (i) => `Opening ${FORMS[i.type]?.title ?? "application"} form…`,
+  show_contact: (i) => `Adding contact: ${i.name}`,
   check_application_status: () => "Looking up application…",
   create_alert: (i) => `Setting up daily watch: ${i.topic}`,
   cancel_alert: () => "Cancelling watch…",
@@ -354,27 +378,36 @@ function withSessionLock(sessionId, fn) {
 }
 
 // Voice mode: the resident hears the reply read aloud, so it has to sound like a person talking, not a page.
-const VOICE_RULE = `Voice mode: the resident is speaking to you and will hear your reply read aloud. Answer in one or two short spoken sentences, the way a person answers a question out loud. Lead with the single most useful fact, then at most a short offer of the next step. No lists, bullet points, markdown, headers, links, URLs, phone numbers spelled as digits with dashes, or citations in the text; say "the city's website" rather than reading an address. Still look things up with your tools first; just say the answer briefly. Never mention sources, datasets, documents, records, minutes, transcripts, searches, or where the information came from, and never say "according to" or "the data shows" — state the answer as plain fact.`;
+const VOICE_RULE = `Voice mode (only when the resident's message starts with "[voice]"): the resident is speaking to you and will hear your reply read aloud. Answer in one or two short spoken sentences, the way a person answers a question out loud. Lead with the single most useful fact, then at most a short offer of the next step. No lists, bullet points, markdown, headers, links, URLs, phone numbers spelled as digits with dashes, or citations in the text; say "the city's website" rather than reading an address. Still look things up with your tools first; just say the answer briefly. Never mention sources, datasets, documents, records, minutes, transcripts, searches, or where the information came from, and never say "according to" or "the data shows" — state the answer as plain fact.`;
 
+const DEFAULT_JUR = process.env.DEFAULT_JUR || null; // set e.g. santa-monica for a single-city deployment; unset = detect from the conversation
+const sessionFor = (id) => { if (!sessions.has(id)) sessions.set(id, { messages: [], jur: DEFAULT_JUR }); return sessions.get(id); };
 async function chat(sessionId, userText, send, voice = false) {
-  const messages = sessions.get(sessionId) ?? [];
-  sessions.set(sessionId, messages);
-  messages.push({ role: "user", content: userText });
+  const session = sessionFor(sessionId), { messages } = session;
+  const jurEvent = () => { const j = jurById(session.jur); send({ type: "jurisdiction", data: j ? { id: j.id, name: j.name, short: j.short, kind: j.kind, icon: j.icon, contact: j.contact?.line ?? "", site: j.site } : null }); };
+  const setJur = (id) => { if (id !== session.jur && jurById(id)) { session.jur = id; jurEvent(); } };
+  const hit = detect(userText); if (hit) setJur(hit); // server-side alias/ZIP match; the model's set_jurisdiction covers the rest
+  // Preserved thinking: a thinking block's signature is bound to the exact system prompt + tools + earlier messages it was produced
+  // under. Anything that varies per request (voice on/off, the date) must not live in `system`, or the next turn 400s. So the voice
+  // rule is always in the system prompt and the turn is tagged instead; the date is fixed per session. A jurisdiction switch is a real
+  // prefix change — `drop_block` below makes the API drop the stale blocks instead of failing the request.
+  messages.push({ role: "user", content: voice ? `[voice] ${userText}` : userText });
+  session.today ??= new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric", timeZone: "America/Los_Angeles" });
 
   for (;;) {
     const stream = client.beta.messages.stream({
       model: MODEL,
       max_tokens: 16000,
-      betas: ["server-side-fallback-2026-07-01"],
+      betas: ["server-side-fallback-2026-07-01", "thinking-binding-controls-2026-08-01"],
       fallbacks: "default",
       output_config: { effort: process.env.EFFORT || "medium" },
-      thinking: { type: "adaptive", display: "summarized" }, // summaries stream to the client so the "Thinking…" pause shows what it's doing
+      thinking: { type: "adaptive", display: "summarized", block_binding: { prefix_mismatch_behavior: "drop_block" } }, // summaries stream to the client; stale blocks are dropped, not fatal
       system: [
         { type: "text", text: SYSTEM, cache_control: { type: "ephemeral" } },
-        { type: "text", text: `Today is ${new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric", timeZone: "America/Los_Angeles" })} (Pacific time).` }, // after the cache breakpoint so the prefix stays cached
-        ...(voice ? [{ type: "text", text: VOICE_RULE }] : []),
+        { type: "text", text: jurContext(session.jur), cache_control: { type: "ephemeral" } }, // identical for every session on the same jurisdiction → cached across users
+        { type: "text", text: `Today is ${session.today} (Pacific time).\n\n${VOICE_RULE}` }, // after the cache breakpoint; constant for the life of the session
       ],
-      tools,
+      tools: toolsFor(jurById(session.jur)),
       messages,
     }, { maxRetries: 0, timeout: 120000 }); // no silent retry sleeps: a 429/529 surfaces to the user in <1s instead of a 2-minute "Thinking…"
     stream.on("text", (delta) => send({ type: "text", text: delta }));
@@ -403,12 +436,14 @@ async function chat(sessionId, userText, send, voice = false) {
       return;
     }
 
+    const ctx = { get jur() { return session.jur; }, get J() { return jurById(session.jur) ?? SM; }, setJur };
     const results = await Promise.all(toolUses.map(async (t) => {
       try {
-        const out = await runTool[t.name](t.input);
+        const out = await runTool[t.name](t.input, ctx);
         if (t.name === "submit_application") send({ type: "application", data: JSON.parse(out) });
         if (t.name === "create_alert") { const { seen, ...a } = JSON.parse(out); send({ type: "alert", data: a }); }
         if (t.name === "open_application_form") send({ type: "form", data: { type: t.input.type, ...FORMS[t.input.type] } });
+        if (t.name === "show_contact") send({ type: "contact", data: t.input });
         if (t.name === "search_city_knowledge") send({ type: "sources", data: pertinentSources(JSON.parse(out)) });
         if (t.name === "query_dataset") { const ds = rag.datasetFor(t.input.resource_id); if (ds) send({ type: "sources", data: [ds] }); }
         if (t.name === "search_council_meetings") send({ type: "sources", data: [...new Map(JSON.parse(out).excerpts.map((d) => [d.url, { kind: "council", title: d.title, url: d.url }])).values()] });
@@ -446,7 +481,7 @@ const server = http.createServer(async (req, res) => {
       console.error(e);
       send({ type: "error", text: msg });
       // roll history back to before this turn's user message so it stays valid
-      const h = sessions.get(sessionId) ?? [];
+      const h = sessions.get(sessionId)?.messages ?? [];
       const i = h.findLastIndex((m) => m.role === "user" && typeof m.content === "string");
       if (i >= 0) h.splice(i);
     }
@@ -459,9 +494,10 @@ const server = http.createServer(async (req, res) => {
     for await (const chunk of req) body += chunk;
     try {
       const { sessionId, type, fields } = JSON.parse(body);
-      const app = submitApplication(toApplication(type, fields));
+      const sess = typeof sessionId === "string" ? sessions.get(sessionId) : null;
+      const app = submitApplication(toApplication(type, fields), jurById(FORMS[type]?.jur ?? sess?.jur) ?? SM);
       // Let the assistant know so follow-up questions in the same chat have the confirmation number.
-      const h = typeof sessionId === "string" && sessions.get(sessionId);
+      const h = sess?.messages;
       if (h && h.at(-1)?.role === "assistant") h.push({ role: "user", content: `[Form submitted] ${app.summary} — confirmation ${app.confirmation_number}.\n${app.details}` }, { role: "assistant", content: `Application ${app.confirmation_number} received and routed to ${app.department}.` });
       res.writeHead(200, { "Content-Type": "application/json" }).end(JSON.stringify(app));
     } catch (e) { res.writeHead(400, { "Content-Type": "application/json" }).end(JSON.stringify({ error: e.message })); }
@@ -541,7 +577,7 @@ const server = http.createServer(async (req, res) => {
   if (req.url.startsWith("/api/staff/")) {
     if (req.headers["x-staff-code"] !== STAFF_CODE) return json(401, { error: "Staff code required." });
     const u = new URL(req.url, "http://x");
-    if (req.method === "GET" && u.pathname === "/api/staff/departments") return json(200, [...new Set(Object.values(ROUTING).map(([d]) => d))].sort());
+    if (req.method === "GET" && u.pathname === "/api/staff/departments") return json(200, [...new Set(SERVED.flatMap((j) => Object.values(routingFor(j)).map(([d]) => d)))].sort());
     if (req.method === "GET" && u.pathname === "/api/staff/applications") {
       const dept = u.searchParams.get("department") || "all", q = (u.searchParams.get("q") || "").trim().toLowerCase();
       const list = Object.values(loadApps())
@@ -577,4 +613,4 @@ const server = http.createServer(async (req, res) => {
   });
 });
 // Only bind the port when run directly; test.js and ad-hoc scripts import this module and must not take over :8787.
-if (import.meta.main) server.listen(PORT, () => console.log(`Santa Monica assistant → http://localhost:${PORT}`));
+if (import.meta.main) server.listen(PORT, () => console.log(`GovAI (${SERVED.length} jurisdictions) → http://localhost:${PORT}`));

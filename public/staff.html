@@ -119,7 +119,7 @@ function render() {
   $("list").innerHTML = apps.map((a) => `
     <article class="app${a.confirmation_number === openId ? " open" : ""}" data-id="${esc(a.confirmation_number)}">
       <div class="top"><span class="id">${esc(a.confirmation_number)}</span><span class="name">${esc(a.applicant_name)}</span><span class="st ${esc(a.status)}">${esc(LABEL[a.status] || a.status)}</span>
-        <span class="meta">${esc(a.summary)} · ${new Date(a.submitted_at).toLocaleString()}${dept === "all" ? ` · ${esc(a.department)}` : ""}</span></div>
+        <span class="meta">${a.jurisdiction ? `${esc(a.jurisdiction)} · ` : ""}${esc(a.summary)} · ${new Date(a.submitted_at).toLocaleString()}${dept === "all" ? ` · ${esc(a.department)}` : ""}</span></div>
       <div class="detail">
         <dl>
           <dt>Type</dt><dd>${esc(a.type)}</dd>

@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "start": "node --env-file=.env server.js",
-    "test": "node test.js",
+    "test": "GOVAI_DB=:memory: node test.js",
     "dev": "node --watch --env-file=.env server.js"
   },
   "dependencies": {

@@ -1,0 +1,31 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+	404 - Page Not Found
+</title><link href="../App_Themes/404/404.css" type="text/css" rel="stylesheet" /></head>
+<script type="text/javascript">
+function breakOut()
+{
+    if (top.location != location) {
+        top.location.href = document.location.href;
+    }
+}
+</script>
+<body onload="breakOut()">
+
+<h1>Oops! <span>This link does not exist.</span> <a href="javascript:history.go(-1)">&laquo; Go Back</a></h1>
+
+
+
+<h3>What happened? <span>List of possible reasons</span></h3>
+
+<ul>
+	<li>You entered the wrong URL</li>
+	<li>The link to this page is incorrect</li>
+	<li>The link you are trying to visit no longer exists</li>
+</ul>
+
+<div class="back"><a href="javascript:history.go(-1)">&laquo; Go Back</a></div>
+</body>
+</html>

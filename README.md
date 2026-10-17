@@ -1,8 +1,23 @@
-# GovAI — Santa Monica city assistant
+# GovAI — local-government assistant (Santa Monica, San Diego County, Orange County)
 
-One chat front door to the City of Santa Monica: answers anything about city services, pulls live rows from
-[data.santamonica.gov](https://data.santamonica.gov), searches City Council agendas and official minutes, and files
-permit applications / 311 requests end to end.
+One chat front door to local government. Santa Monica is fully wired (knowledge base, [data.santamonica.gov](https://data.santamonica.gov),
+City Council agendas/minutes/transcripts, local news, GIS, live feeds, guided permit forms). Every city in San Diego County and
+Orange County plus both county governments are in the registry (`jurisdictions.js`) and are being wired phase by phase.
+The assistant works out which jurisdiction a resident means from the conversation (city name, neighborhood, ZIP, address) —
+there is no picker — and scopes every search, tool, form and contact line to it.
+
+## Jurisdictions
+
+- `jurisdictions.js` is the registry: one entry per city/county (aliases for detection, centroid/bbox, open-data portals, council platform,
+  YouTube channels, news feeds, GIS hubs, live-API ids, contact, forms, routing, web domains, confirmation prefix).
+- Every indexed doc carries `jur`; `rag.search(...)` is scoped to the active jurisdiction + its county + the state.
+- Caches live under `data/<jurisdiction>/` (`catalog-*.json`, `council/`, `transcripts/`, `news.json`, `gis.json`); knowledge under `knowledge/<jurisdiction>/`.
+- `DEFAULT_JUR=santa-monica` pins a deployment to one city; unset, the server detects it per session and the model can call `set_jurisdiction`.
+- Entries marked `draft: true` have no data wired yet: the assistant says so and falls back to web search on the jurisdiction's own domains.
+- Wiring a jurisdiction: `node discover.js <id>` probes Legistar / Granicus / ArcGIS Hub / YouTube and prints registry fields to paste in;
+  `node knowledge-gen.js <id>` drafts its `knowledge/<id>/*.md` from the city's own pages (needs `ANTHROPIC_API_KEY`); `node warm.js catalog`,
+  `node warm.js council <id>`, `node warm.js transcripts <id>` collect the data. Council platforms supported today: `ckan-iqm2` (Santa Monica) and `legistar` (County of San Diego).
+- Open-data portals supported: CKAN (query live), DCAT catalogs (ArcGIS Hub feeds, Socrata/SANDAG via SODA, the City of San Diego inventory whose CSV/JSON files are downloaded once, capped at 25 MB, and filtered locally).
 
 ## Run
 

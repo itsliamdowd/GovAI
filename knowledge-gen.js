@@ -1,0 +1,64 @@
+// Draft knowledge/<jurisdiction>/*.md for a city or county from its own website, in the same format as the Santa Monica files
+// (## sections, each ending with "Source: <url>"), so rag.js indexes them identically. Maintainer script; needs ANTHROPIC_API_KEY.
+//   node knowledge-gen.js irvine           # one jurisdiction
+//   node knowledge-gen.js --all            # every draft jurisdiction without a knowledge folder
+// Pages come from the site's sitemap(s) filtered by topic keywords (capped per topic); the model is asked to write only what the
+// pages say, with fees/hours/phones verbatim, and to drop anything it cannot source. Review the output; it ships as-is.
+import fs from "node:fs";
+import Anthropic from "@anthropic-ai/sdk";
+import { SERVED, jurById } from "./jurisdictions.js";
+
+try { process.loadEnvFile(); } catch {}
+const client = new Anthropic();
+const MODEL = process.env.KNOWLEDGE_MODEL || "claude-sonnet-5-5";
+const UA = { "User-Agent": "Mozilla/5.0 (GovAI knowledge; +https://github.com/liamdowd/GovAI)" };
+const TOPICS = {
+  "city-services-az": ["library", "parks", "recreation", "trash", "recycl", "waste", "bulky", "street-sweep", "water", "utilit", "311", "report", "animal", "senior", "youth", "events", "contact", "hours", "department"],
+  "permits-howto": ["permit", "building", "planning", "zoning", "adu", "business-licen", "business-tax", "film", "special-event", "block-party", "encroach", "inspection", "fee"],
+  "housing-rent-control": ["housing", "rent", "tenant", "landlord", "affordable", "homeless", "eviction", "section-8"],
+  "public-safety-code": ["police", "fire", "code-enforcement", "noise", "nuisance", "emergency", "alert", "evacuation", "disaster"],
+  "transportation-parking": ["parking", "transit", "bus", "bike", "traffic", "street", "sidewalk", "shuttle", "ev-charg"],
+  "basics": ["about", "council", "mayor", "city-hall", "city-manager", "clerk", "elections", "budget", "meetings", "agenda"],
+};
+const PER_TOPIC = Number(process.env.KNOWLEDGE_PAGES) || 14, MAX_CHARS = 9000;
+const strip = (h) => h.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<nav[\s\S]*?<\/nav>|<footer[\s\S]*?<\/footer>/gi, " ").replace(/<\/(p|div|li|tr|h\d)>/gi, "\n").replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/[ \t]+/g, " ").replace(/\s*\n\s*/g, "\n").trim();
+async function text(url, t = 20000) { try { const r = await fetch(url, { headers: UA, redirect: "follow", signal: AbortSignal.timeout(t) }); return r.ok ? await r.text() : ""; } catch { return ""; } }
+async function sitemapUrls(site) {
+  const seen = new Set(), queue = [`${site}/sitemap.xml`, `${site}/sitemap_index.xml`, `${site}/sitemap-index.xml`];
+  const urls = [];
+  while (queue.length && seen.size < 20) {
+    const u = queue.shift(); if (seen.has(u)) continue; seen.add(u);
+    const xml = await text(u); if (!xml) continue;
+    for (const [, loc] of xml.matchAll(/<loc>\s*([^<\s]+)\s*<\/loc>/g)) (/sitemap[^/]*\.xml/i.test(loc) ? queue : urls).push(loc);
+  }
+  return [...new Set(urls)];
+}
+const EXAMPLE = fs.readFileSync("./knowledge/santa-monica/public-safety-code.md", "utf8").split("\n").slice(0, 14).join("\n");
+
+async function generate(j) {
+  const dir = `./knowledge/${j.id}`;
+  const all = await sitemapUrls(j.site);
+  console.log(`${j.id}: ${all.length} sitemap urls`);
+  fs.mkdirSync(dir, { recursive: true });
+  for (const [topic, keys] of Object.entries(TOPICS)) {
+    const picked = all.filter((u) => keys.some((k) => u.toLowerCase().includes(k))).slice(0, PER_TOPIC);
+    if (!all.length) picked.push(...keys.slice(0, 6).map((k) => `${j.site}/${k}`)); // no sitemap: try guessed paths
+    const pages = [];
+    for (const u of picked) { const t = strip(await text(u)); if (t.length > 400) pages.push({ url: u, text: t.slice(0, MAX_CHARS) }); }
+    if (!pages.length) { console.log(`  ${topic}: no pages`); continue; }
+    const res = await client.messages.create({
+      model: MODEL, max_tokens: 6000,
+      system: `You write a local-government knowledge file for ${j.name}, California, for a retrieval index. Output Markdown only, in exactly this format (title line, then "## " sections, each 1-3 short paragraphs of concrete facts followed by a "Source: <url>" line using the page the facts came from):\n\n${EXAMPLE}\n\nRules: only facts stated on the pages given; copy fees, hours, phone numbers, addresses and deadlines verbatim; never guess or generalise; skip a page that has no resident-facing facts; one section per distinct service or process; no preamble, no closing notes.`,
+      messages: [{ role: "user", content: `Topic file: ${topic}. Pages:\n\n${pages.map((p) => `=== ${p.url}\n${p.text}`).join("\n\n")}` }],
+    }, { maxRetries: 2 });
+    const md = res.content.filter((b) => b.type === "text").map((b) => b.text).join("\n").trim();
+    if (!/^## /m.test(md)) { console.log(`  ${topic}: model returned no sections`); continue; }
+    fs.writeFileSync(`${dir}/${topic}.md`, `# ${j.name} — ${topic.replace(/-/g, " ")}\n\nGenerated ${new Date().toISOString().slice(0, 10)} from ${j.site} pages listed in each section's Source line.\n\n${md.replace(/^# .*\n+/, "")}\n`);
+    console.log(`  ${topic}: ${pages.length} pages → ${(md.match(/^## /gm) ?? []).length} sections`);
+  }
+}
+
+const arg = process.argv[2];
+const targets = arg === "--all" ? SERVED.filter((j) => j.draft && !fs.existsSync(`./knowledge/${j.id}`)) : arg ? [jurById(arg)].filter(Boolean) : [];
+if (!targets.length) { console.error("usage: node knowledge-gen.js <jurisdiction-id> | --all"); process.exit(1); }
+for (const j of targets) await generate(j);

@@ -108,7 +108,9 @@ export const FORMS = {
   },
 };
 
+for (const f of Object.values(FORMS)) f.jur ??= "santa-monica"; // a form is specific to one jurisdiction's process and fees
 export const FORM_TYPES = Object.keys(FORMS);
+export const formsFor = (jur) => Object.keys(FORMS).filter((t) => FORMS[t].jur === jur);
 
 // Validates answers against the form and returns the submit_application input, or throws with a resident-readable message.
 export function toApplication(type, fields = {}) {

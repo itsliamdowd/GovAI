@@ -5,16 +5,21 @@
 const { refreshCatalog } = await import("./rag.js");
 const { ingestCouncil } = await import("./council.js");
 const { ingestTranscripts } = await import("./transcripts.js");
-const { loadGisCatalog, ingestNews } = await import("./sources.js");
-const only = process.argv[2];
+const { loadGisCatalog, ingestNews, gisJurs, feedsFor } = await import("./sources.js");
+const { SERVED, jurById } = await import("./jurisdictions.js");
+//   node warm.js council irvine   # one collector for one jurisdiction id
+const only = process.argv[2], jurs = process.argv[3] ? [jurById(process.argv[3])] : SERVED;
 const want = (k) => !only || only === k;
 const t0 = Date.now();
 const jobs = [];
+const log = (e) => console.error(e);
 if (want("catalog")) jobs.push(refreshCatalog().then((d) => console.log(`catalog: ${d.length} datasets`)));
-if (want("council")) jobs.push(ingestCouncil((docs, meta) => console.log(`council: ${meta.ingested.length} meetings, ${docs.length} chunks`)));
-if (want("transcripts")) jobs.push(ingestTranscripts((docs, videos) => console.log(`transcripts: ${videos.length} videos, ${docs.length} chunks`)));
-if (want("gis")) jobs.push(loadGisCatalog(console.error, true).then((l) => console.log(`gis: ${l.length} layers`)));
-if (want("news")) jobs.push(ingestNews((docs, meta) => console.log(`news: ${meta.fresh} new, ${meta.total} total`)));
+for (const j of jurs) {
+  if (want("council") && j.council?.platform) jobs.push(ingestCouncil((docs, meta) => console.log(`council ${j.id}: ${meta.ingested.length} meetings, ${docs.length} chunks`), log, j));
+  if (want("transcripts") && j.youtube?.length) jobs.push(ingestTranscripts((docs, videos) => console.log(`transcripts ${j.id}: ${videos.length} videos, ${docs.length} chunks`), log, j));
+  if (want("news") && feedsFor(j).length) jobs.push(ingestNews((docs, meta) => console.log(`news ${j.id}: ${meta.fresh} new, ${meta.total} total`), log, j));
+}
+if (want("gis")) for (const j of gisJurs()) jobs.push(loadGisCatalog(log, true, j).then((l) => console.log(`gis ${j.id}: ${l.length} layers`)));
 const results = await Promise.allSettled(jobs);
 for (const r of results) if (r.status === "rejected") console.error("failed:", r.reason?.message ?? r.reason);
 console.log(`done in ${Math.round((Date.now() - t0) / 1000)}s`);

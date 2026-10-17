@@ -8,3 +8,5 @@ data/feedback.jsonl
 data/outbox/
 data/transcripts/*.vtt
 data/transcripts/*.part
+# SQLite FTS5 index (built locally by the collector; too big for git at county scale)
+data/govai.db*

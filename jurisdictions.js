@@ -2,6 +2,7 @@
 // Santa Monica is fully wired. Other entries start as `draft: true` (name, aliases, centroid, site) and get their
 // portals / council / youtube / feeds / live ids filled by discover.js + a human. Null fields degrade gracefully.
 
+import { LA_CITIES } from "./jurisdictions-la.js";
 const gnews = (q) => `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=en-US&gl=US&ceid=US:en`;
 
 const SANTA_MONICA = {
@@ -16,26 +17,7 @@ const SANTA_MONICA = {
   portals: [{ id: "santamonica", type: "ckan", url: "https://data.santamonica.gov/api/3/action", site: "https://data.santamonica.gov" }],
   council: { platform: "ckan-iqm2", portal: "santamonica", resource: "40013cb9-7b56-4059-a7eb-5de5a26f8bac", agency: "City Council", label: "City Council", limit: 1000, since: "2015" },
   youtube: ["UC4V0jOEL4JMCcElkGA7AJpA", "UC8x0GS29SP-IbeiLRxMNlaw", "UCrlsaKRGJhbvnJbvRpQWykA"], // City of Santa Monica (2017→), Meeting Coverage (2015–17), SMUpdateCityTV16 (2014)
-  feeds: [
-    { id: "smdp", name: "Santa Monica Daily Press", url: "https://smdp.com/feed/" },
-    { id: "smmirror", name: "Santa Monica Mirror", url: "https://smmirror.com/feed/" },
-    { id: "smnext", name: "Santa Monica Next", url: "https://www.santamonicanext.org/feed/" },
-    { id: "observer", name: "Santa Monica Observer", url: "https://www.smobserved.com/rss/" },
-    { id: "patch", name: "Patch Santa Monica", url: "https://patch.com/feeds/california/santamonica" },
-    { id: "canyon", name: "Canyon News", url: "https://www.canyon-news.com/category/santa-monica/feed" },
-    { id: "reddit", name: "r/SantaMonica", url: "https://www.reddit.com/r/santamonica/new/.rss" },
-    { id: "latimes", name: "Los Angeles Times", url: "https://www.latimes.com/california/rss2.0.xml", filter: /santa monica/i },
-    { id: "bing", name: "Bing News", url: "https://www.bing.com/news/search?q=%22Santa+Monica%22&format=rss" },
-    { id: "gn", name: "Google News", url: gnews('"Santa Monica" when:30d') },
-    { id: "gn-lookout", name: "Santa Monica Lookout", url: gnews("site:surfsantamonica.com") },
-    { id: "gn-westside", name: "Westside Current", url: gnews("site:westsidecurrent.com santa monica") },
-    { id: "gn-kcrw", name: "KCRW", url: gnews("site:kcrw.com santa monica") },
-    { id: "gn-laist", name: "LAist", url: gnews("site:laist.com santa monica") },
-    { id: "gn-city", name: "City of Santa Monica news", url: gnews("site:santamonica.gov") },
-    { id: "gn-smc", name: "SMC / SMMUSD", url: gnews('"Santa Monica College" OR SMMUSD OR "Santa Monica-Malibu"') },
-    { id: "gn-landmarks", name: "Santa Monica landmarks", url: gnews('"Santa Monica Pier" OR "Third Street Promenade" OR "Santa Monica Airport"') },
-    ...[2, 3, 4, 5, 6, 7, 8].map((v) => ({ id: `citytv-${v}`, name: "Santa Monica CityTV", url: `https://santamonica.granicus.com/ViewPublisherRSS.php?view_id=${v}` })),
-  ],
+  feeds: null, // Santa Monica feeds are the FEEDS list in sources.js (feedsFor)
   gis: [{ org: "City of Santa Monica GIS", url: "https://gis-smgov.opendata.arcgis.com/api/feed/dcat-us/1.1.json" }], gisHosts: ["gis.santamonica.gov"],
   live: {
     nws: "LOX/146,45", nwsZone: "CAZ366", nwsName: "Los Angeles County Coast zone CAZ366",
@@ -68,8 +50,8 @@ const SANTA_MONICA = {
 };
 
 const LA_COUNTY = {
-  id: "los-angeles-county", name: "County of Los Angeles", short: "LA County", kind: "county", county: null, prefix: "LAC", context: true, // context for Santa Monica only; not a served jurisdiction yet
-  aliases: ["los angeles county", "la county", "county of los angeles"], center: [34.05, -118.25], bbox: null,
+  id: "los-angeles-county", name: "County of Los Angeles", short: "LA County", kind: "county", county: null, prefix: "LAC", draft: true, // served (county government + unincorporated areas); also context for every LA County city
+  aliases: ["los angeles county", "la county", "county of los angeles", "la county board of supervisors", "unincorporated los angeles", "marina del rey", "altadena", "east los angeles", "east la", "ladera heights", "view park", "windsor hills", "topanga", "stevenson ranch", "castaic", "rowland heights", "hacienda heights", "florence-firestone", "willowbrook", "lennox", "west athens", "acton", "agua dulce", "quartz hill", "lake los angeles", "littlerock", "valinda", "south whittier", "west whittier", "walnut park", "la crescenta", "universal city", "west carson", "del aire", "west rancho dominguez", "charter oak", "covina hills"], center: [34.05, -118.25], bbox: null,
   site: "https://lacounty.gov", icon: null,
   domains: ["lacounty.gov", "lavote.gov", "lahsa.org", "assessor.lacounty.gov", "publichealth.lacounty.gov", "metro.net"],
   contact: { name: "LA County 211", phone: "211", email: "", line: "211" },
@@ -95,9 +77,10 @@ const CALIFORNIA = {
 const SD_COUNTY = {
   id: "san-diego-county", name: "County of San Diego", short: "San Diego County", kind: "county", county: null, prefix: "SDC", draft: true,
   aliases: ["san diego county", "county of san diego", "sd county", "unincorporated san diego"], center: [32.75, -116.8], bbox: [-117.6, 32.53, -116.08, 33.51],
-  site: "https://www.sandiegocounty.gov", icon: null, domains: ["sandiegocounty.gov", "sdcounty.legistar.com", "sandag.org", "sangis.org", "sdcoe.net", "sandiegouniontribune.com", "voiceofsandiego.org", "kpbs.org", "inewsource.org", "timesofsandiego.com"],
+  site: "https://www.sandiegocounty.gov", icon: null, domains: ["sandiegocounty.gov", "sdcounty.legistar.com", "sandag.org", "sangis.org", "sdcoe.net", "voiceofsandiego.org", "kpbs.org", "inewsource.org", "timesofsandiego.com"],
   contact: { name: "County of San Diego", phone: "(619) 531-5434", email: "", line: "(619) 531-5434 (Clerk of the Board)" },
-  portals: [], council: { platform: "legistar", client: "sdcounty", body: "BOARD OF SUPERVISORS", label: "Board of Supervisors", limit: 200 },
+  portals: [{ id: "sandag", type: "dcat", url: "https://opendata.sandag.org/data.json", site: "https://opendata.sandag.org" }], // regional (SANDAG, Socrata): crime, transportation, demographics for the whole county
+  council: { platform: "legistar", client: "sdcounty", body: "BOARD OF SUPERVISORS", label: "Board of Supervisors", limit: 200 },
   youtube: [], feeds: [{ id: "gn", name: "Google News", url: gnews('"San Diego County" supervisors OR county when:30d') }],
   gis: [], gisHosts: [], live: { beachCounty: "San Diego", caltrans: "11", tide: "9410170", tideName: "La Jolla (Scripps Pier)" },
   forms: [], routing: {},
@@ -105,7 +88,7 @@ const SD_COUNTY = {
 const OC_COUNTY = {
   id: "orange-county", name: "County of Orange", short: "Orange County", kind: "county", county: null, prefix: "OC", draft: true,
   aliases: ["orange county", "county of orange", "oc board of supervisors", "oc supervisors", "unincorporated orange county"], center: [33.70, -117.78], bbox: [-118.13, 33.35, -117.41, 33.95],
-  site: "https://www.ocgov.com", icon: null, domains: ["ocgov.com", "oc.gov", "board.oc.gov", "ceo.oc.gov", "ocpublicworks.com", "ocregister.com", "voiceofoc.org", "octa.net", "ocvote.gov"],
+  site: "https://www.ocgov.com", icon: null, domains: ["ocgov.com", "oc.gov", "board.oc.gov", "ceo.oc.gov", "ocpublicworks.com", "voiceofoc.org", "octa.net", "ocvote.gov"],
   contact: { name: "County of Orange", phone: "(714) 834-2206", email: "", line: "(714) 834-2206 (Clerk of the Board)" },
   portals: [{ id: "ocpw", type: "dcat", url: "https://data-ocpw.opendata.arcgis.com/api/feed/dcat-us/1.1.json", site: "https://data-ocpw.opendata.arcgis.com" }],
   council: { platform: "ocboard", url: "https://board.oc.gov", label: "Board of Supervisors", limit: 200 },
@@ -123,7 +106,7 @@ const city = (id, name, county, site, center, aliases = [], extra = {}) => ({
   portals: [], council: null, youtube: [], feeds: [{ id: "gn", name: "Google News", url: gnews(`"${name}" california when:30d`) }], gis: [], gisHosts: [], live: {}, forms: [], routing: {},
   ...extra,
 });
-const SD = "san-diego-county", OC = "orange-county";
+const SD = "san-diego-county", OC = "orange-county", LA = "los-angeles-county";
 const CITIES = [
   // San Diego County (18)
   city("carlsbad", "Carlsbad", SD, "https://www.carlsbadca.gov", [33.158, -117.351]),
@@ -140,7 +123,7 @@ const CITIES = [
   city("oceanside", "Oceanside", SD, "https://www.ci.oceanside.ca.us", [33.196, -117.379]),
   city("poway", "Poway", SD, "https://poway.org", [32.963, -117.036]),
   city("san-diego", "San Diego", SD, "https://www.sandiego.gov", [32.716, -117.161], ["la jolla", "hillcrest", "north park", "mission valley", "rancho bernardo", "otay mesa", "san ysidro", "pacific beach", "ocean beach", "point loma", "clairemont", "mira mesa", "downtown san diego", "gaslamp"],
-    { prefix: "SD", icon: "https://www.sandiego.gov/sites/default/files/favicon.ico", domains: ["sandiego.gov", "data.sandiego.gov", "sandiego.hylandcloud.com", "sdmts.com", "sandiegouniontribune.com", "voiceofsandiego.org", "kpbs.org", "timesofsandiego.com"],
+    { prefix: "SD", icon: "https://www.sandiego.gov/sites/default/files/favicon.ico", domains: ["sandiego.gov", "data.sandiego.gov", "sandiego.hylandcloud.com", "sdmts.com", "voiceofsandiego.org", "kpbs.org", "timesofsandiego.com"],
       contact: { name: "City of San Diego — Get It Done", phone: "(619) 236-5555", email: "", line: "(619) 236-5555 or the Get It Done app" },
       portals: [{ id: "sandiego", type: "dcat", url: "https://raw.githubusercontent.com/COSD-PANDA/data-inventory/refs/heads/master/data.json", site: "https://data.sandiego.gov", datasetUrl: "https://data.sandiego.gov/datasets/" }],
       council: { platform: "hyland", url: "https://sandiego.hylandcloud.com/211agendaonlinecouncil", docket: "https://www.sandiego.gov/city-clerk/city-council-docket-agenda", label: "City Council", limit: 200 },
@@ -187,8 +170,9 @@ const CITIES = [
 ];
 // "Orange" the city must never match the bare word (Orange County, orange cones): only its explicit aliases.
 CITIES.find((c) => c.id === "orange").aliases = ["city of orange", "orange, ca", "orange ca", "old towne orange", "orange city council"];
+// Same for LA County cities whose names are ordinary words: never match the bare word.
 
-export const JURS = [SANTA_MONICA, LA_COUNTY, CALIFORNIA, SD_COUNTY, OC_COUNTY, ...CITIES];
+export const JURS = [SANTA_MONICA, LA_COUNTY, CALIFORNIA, SD_COUNTY, OC_COUNTY, ...LA_CITIES, ...CITIES];
 const byId = new Map(JURS.map((j) => [j.id, j]));
 export const jurById = (id) => byId.get(id) ?? null;
 export const SERVED = JURS.filter((j) => !j.context); // what the assistant answers for (counties + cities)

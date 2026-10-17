@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="en" class="accessibility">
+<head>
+
+		<script src="https://cdn.jsdelivr.net/npm/html-docx-js@0.3.1/dist/html-docx.min.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js" integrity="sha512-MpDFIChbcXl2QgipQrt1VcPHMldRILetapBl5MPCA9Y8r7qvlwx1/Mc9hNTzY+kS5kX6PdoDq41ws1HiVNLdZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+    
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/pendo-init.js"></script>
+<script>boardType="1"</script>
+<script>showPolicyValue="2"</script>
+<script>policyDraft=""</script>
+<script>windowTitleNew="Los Angeles Community College District BoardDocs® Plus"; printTitle="BoardDocs® Plus";</script>
+<title>Los Angeles Community College District BoardDocs® Plus</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="DESCRIPTION" content="Board of Trustees - Meeting Agendas and Minutes">
+<meta name="keywords" content="boarddocs, Meetings, Meeting, Agenda, Agenda Details">
+<meta name="robots" content="index, follow">
+<meta name="format-detection" content="telephone=no" />
+<link rel="apple-touch-icon" href="//cdn.boarddocs.com/static/images/apple-touch-icon-precomposed.png"/>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/sanitizeObject.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.3/purify.min.js" integrity="sha512-TBmnYz6kBCpcGbD55K7f4LZ+ykn3owqujFnUiTSHEto6hMA7aV4W7VDPvlqDjQImvZMKxoR0dNY5inyhxfZbmA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="//cdn.boarddocs.com/static/jquery/3.6.1/jquery-migrate-3.4.0.min.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/bd-base64-utils.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/bd-base64-auto-decode.js"></script>
+<script src="/ca/laccd/Board.nsf/javascript/jquery-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+<script type="text/javascript" src="//cdn.boarddocs.com/static/plus/javascript/jquery.mobile.custom.min.js"></script>
+<script type="text/javascript" src="//cdn.boarddocs.com/static/javascript/modernizr.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+<script type="text/javascript" src="//cdn.boarddocs.com/static/plus/blockui/blockui.js"></script>
+<script type="text/javascript" src="//cdn.boarddocs.com/static/javascript/jquery.scrollTo.min.2.1.2.js"></script>
+<script type="text/javascript" src="//cdn.boarddocs.com/2021v02/javascript/global.js"></script>
+<script type="text/javascript" src="//cdn.boarddocs.com/static/javascript/Math.uuid.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/bd-processing-overlay.js"></script>
+<script type="text/javascript" src="//cdn.boarddocs.com/static/reskin/bootbox/bootbox.min.js"></script>
+<script type="text/javascript" src="//cdn.boarddocs.com/2021v02/javascript/domino.js"></script>
+<script type="text/javascript" src="//cdn.boarddocs.com/2021v02/javascript/common.js"></script>
+<script type="text/javascript" src="//cdn.boarddocs.com/static/plus/javascript/jplayer/jPlayer-2.9.2/jquery.jplayer.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/video.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/boardDocsAccessibility.js"></script>
+<script type="text/javascript" src="//cdn.boarddocs.com/2021v02/javascript/api.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/library.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/packet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.js" integrity="sha512-o4gKX6jcK0rdciOZ9X8COYkV9gviTJAbYEVW8aC3OgIRuaKDmcT9/OFXBVzHSSOxiTjsTktqrUvCUrHkQHSn9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/policies.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/search.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/meetings.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/agenda.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/textmenu.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/page-title-change.js"></script>
+<script type="text/javascript" src="//cdn.boarddocs.com/static/reskin/sticky/sticky.js"></script>
+<script type="text/javascript" src="//cdn.boarddocs.com/static/javascript/moment.js"></script>
+<script type="text/javascript" language="javascript">
+
+	var bd = {};
+	bd.session_uuid = Math.uuid(16);
+    
+    bd.policy_connected="";
+    bd.meta_search_status="Disabled";
+	bd.total_committee_available=49;
+	bd.current_date_number = 20261017;
+	bd.current_datetime_number = 20261017160555;
+
+	bd.app_path = "ca/laccd/Board.nsf";
+	bd.app_is_plus = true;
+	bd.app_is_pro = true;
+	bd.app_is_lt = false;
+	bd.app_is_pl = false;
+	bd.app_is_debug = "";
+	bd.app_is_ios = false;
+
+	bd.cdn_release_folder = "//cdn.boarddocs.com/2021v02";
+	bd.cdn_static_folder = "//cdn.boarddocs.com/static";
+
+	bd.workflow_track_changes_enabled = true;
+	bd.workflow_track_changes_agenda = false;
+	bd.workflow_track_changes_policy = false;
+
+	bd.magic_line_enabled = false;
+	bd.trackchanges_username = "Anonymous";
+	bd.trackchanges_userid = "(7348A994EDEC39474F55A6BBA344E8F4)";
+
+	bd.policy_url = "";
+	bd.policy_system = 0;
+	bd.api_enabled = false;
+
+	bd.videoservice = "1";
+
+	bd.meeting_lists_enabled = true;
+	bd.meeting_lists_use_cache = false;
+
+	bd.ck_spellcheck_enabled = true;
+
+	bd.location_is_index = true;
+	
+	bd.print_workflow = false;
+	bd.print_page_break = false;
+	bd.print_agenda_footer = '';
+	bd.print_agenda_item_header = '';
+	bd.print_agenda_item_footer = '';
+
+	bd.user_is_super = false;
+	bd.user_is_publisher = false;
+	bd.user_is_publisheradmin = false;
+	bd.user_is_admin = false;
+	bd.user_is_adminexec = false;
+	bd.user_is_executive = false;
+	bd.user_is_voting = false;
+
+	bd.user_is_policy_publisher = false;
+	bd.user_is_library_publisher = false;
+	bd.user_is_library_admin = false;
+	bd.user_is_library_executive = false;
+
+	bd.user_is_anonymous = true;
+	bd.user_not_anonymous = false;
+	bd.user_is_annotations = false;
+	
+	bd.current_committee_id = ""; // not used
+	bd.current_meeting_id = ""; // not used
+	bd.current_agendaitem_id = ""; // not used
+	bd.current_library_id = ""; // not used
+	bd.current_policy_id = ""; // not used
+
+	bd.current_goto_id = "";
+
+	bd.locking_enabled = true;
+	bd.locking_renew_interval = 29000; 
+	bd.locking_max_hold = 60;
+	bd.locking_notify_interval = 15000; 
+
+	bd.mcp_is_running = false;
+	bd.mcp_current_item_id = "";
+	bd.mcp_current_item_text = "";
+	bd.mcp_current_motion_id = "";
+	bd.mcp_current_motion_text = "";
+
+	bd.mcp_timeout_meeting_stopped = 15001;
+	bd.mcp_timeout_meeting_running = 10001;
+	bd.mcp_timeout_item_active = 5001;
+	bd.mcp_timeout_voting = 5001;
+	
+	bd.mcp_current_term_yea = "Yea";
+	bd.mcp_current_term_nay = "Nay";
+	bd.mcp_current_term_abstain = "Abstain";
+	bd.mcp_current_term_not_present = "Not Present at Vote";
+
+	bd.mcp_current_term_unanimous = "Unanimous";
+	bd.mcp_current_term_motion_carries = "Motion Carries";
+	bd.mcp_current_term_motion_fails = "Motion Fails";
+
+	bd.server_root_hostname = "go.boarddocs.com";
+	bd.mcp_is_server_external = true;
+	
+bd.current_committee_name = "";
+bd.anonymous_redirect_enabled = false;
+bd.anonymous_redirect_hostname = "go.boarddocs.com";
+bd.anonymous_status_url = "https://423gszmb15.execute-api.us-east-1.amazonaws.com/prod/get/status";
+bd.anonymous_status_refresh_rate = 300000;
+bd.server_is_cnyric = false;
+bd.server_is_emgrp = true;
+var cl = function(){return false};
+</script>
+<link type="text/css" href="/ca/laccd/Board.nsf/css/reset.css" rel="stylesheet" />
+<link rel="stylesheet" href="//cdn.boarddocs.com/static/plus/jquery-ui-1.12.1.custom/jquery-ui.min.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/ca/laccd/Board.nsf/css/main.css" type="text/css">
+<link rel="stylesheet" href="/ca/laccd/Board.nsf/css/accessibility-home.css" type="text/css">
+<link rel="stylesheet" href="//cdn.boarddocs.com/2021v02/css/policies.css" type="text/css" media="screen">
+<link rel="stylesheet" href="//cdn.boarddocs.com/2021v02/css/library.css" type="text/css" media="screen">
+<link rel="stylesheet" href="//cdn.boarddocs.com/2021v02/css/video.css" type="text/css" media="screen">
+<link rel="stylesheet" href="//cdn.boarddocs.com/2021v02/css/tooltip.css" type="text/css"  media="screen">
+<link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+<link href='//fonts.googleapis.com/css?family=Merriweather' rel='stylesheet'>
+<link rel="stylesheet" href="//cdn.boarddocs.com/2021v02/css/policy-console.css" type="text/css"  media="screen">
+<link rel="stylesheet" href="//cdn.boarddocs.com/static/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css"  media="screen">
+<link rel="stylesheet" href="/ca/laccd/Board.nsf/css/editorviewmode.css" media="screen, print">
+<link rel="stylesheet" href="//cdn.boarddocs.com/static/css/addtional.css" media="screen, print">
+<link rel="stylesheet" href="/ca/laccd/Board.nsf/css/addtionalprint.css" media="print">
+<link rel="stylesheet" href="/ca/laccd/Board.nsf/css/responsive-dialog.css" media="screen">
+<link rel="stylesheet" href="/ca/laccd/Board.nsf/css/responsive-print-dialog.css" media="screen">
+<link rel="stylesheet" href="/ca/laccd/Board.nsf/css/ipadStyles.css" media="screen">
+<link rel="SHORTCUT ICON" href="//cdn.boarddocs.com/static/images/favicon.ico">
+</head>
+<body id="the-body">
+<div aria-hidden="true" aria-label="loading data icon" id="ajax-status" style="position: absolute; top: 0px; left: 5px; font-size: 11px; color: #333; z-index: 1000; opacity: 1; display: none;">loading<img alt="loading data icon" src="//cdn.boarddocs.com/static/images/ajax/ajax-loader.gif"></div>
+<div id="loading-boarddocs">
+<div class="bar"></div>
+<div class="logo"><img aria-label="Loading BoardDocs icon" alt="loading boarddocs" src="//cdn.boarddocs.com/static/logos/BoardDocs_DIL_logo.png"></div>
+<div class="spinner"><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i></div>
+</div>
+<div id="for-print" class="for-print"></div>
+<div id="for-screen">
+<div id="print-dialog" class="for-print" title="What would you like to print?" style="display: none;">
+<div id="print-dialog-tabs">
+<ul>
+     <li id="li-1" key="1" class="print-agenda"><a href="#tab-1" key="1"><span>Simple Agenda</span></a></li>
+     <li id="li-2" key="2" class="print-agenda"><a href="#tab-2" key="2"><span>Detailed Agenda</span></a></li>
+     <li id="li-3" key="3" class="print-agenda"><a href="#tab-3" key="3"><span>Current Agenda Item</span></a></li>
+     <li id="li-4" key="4" class="print-policy"><a href="#tab-4" key="4"><span>Current Policy Item</span></a></li>
+     <li id="li-5" key="5" class="print-library"><a href="#tab-5" key="5"><span>Current Library Item</span></a></li>
+     <li id="li-6" key="6" class="print-goal"><a href="#tab-6" key="6"><span>Goal Progress Report</span></a></li>
+</ul>
+<div id="printTab-1" tabindex="0" role="tab" aria-label="Print Tab 1">
+<div id="tab-1" key="1" class="print-agenda tab-content-print focusing" ></div></div>
+<div id="tab-2" key="2" class="print-agenda tab-content-print"></div>
+<div id="tab-3" key="3" class="print-agenda tab-content-print"></div>
+<div id="tab-4" key="4" class="print-policy tab-content-print"></div>
+<div id="tab-5" key="5" class="print-library tab-content-print"></div>
+<div id="tab-6" key="6" class="print-goal tab-content-print"></div>
+<div id="print-logo" style="display: none;"><div class="print-logo" style="text-align: center;"><img alt="" src="/ca/laccd/Board.nsf/files/PRINT_LOGO/$file/LACCD-Board-Docs-Print-Logo%20-%20no%20Colleges.jpg"></div></div>
+<div id="print-agenda-footer" style="display: none;"><div class="agenda-footer-text">Agenda Footer Text</div></div>
+<div id="print-agenda-item-header" style="display: none;"><div class="agenda-item-header-text">Agenda Item Header Text</div></div>
+<div id="print-agenda-item-footer" style="display: none;"><div class="agenda-item-footer-text">Agenda Item Footer Text<br><br>Line #2</div></div>
+</div>
+</div>
+<div id="minutes-dialog">
+<div class="title">Minutes</div>
+<div class="buttons">
+<a class="print button" href="#">Print</a>
+<a class="close button"  href="#">Close</a>
+</div>
+<div id="minutes">
+<div class="viewminutes"></div>
+</div>
+</div>
+<div id="jplayer">
+<div class="speaker"><i class="fa fa-volume-up fa-2x"></i></div>
+<div class="controls">
+<div class="title">Audio Player</div>
+<div class="stop"><i class="fa fa-stop-circle fa-2x"></i></div>
+<div class="play"><i class="fa fa-play-circle fa-2x"></i></div>
+<div class="pause"><i class="fa fa-pause-circle fa-2x"></i></div>
+<div class="nowplaying"></div>
+</div>
+<div class="player"></div>
+</div>
+<div id="generic-dialog" style="display: none;">
+</div>
+<div id="ok-dialog" style="display: none;">
+</div>
+<div  id="video-dialog" tabindex="0" style="display: none;">
+<form id="video-dialog-form">
+<input name="meeting_id" type="hidden" value="" autocomplete="off"><input name="video_id" class="video-id" type="hidden" value="" autocomplete="off">
+<div class="video">Video</div>
+<div class="agenda">Agenda</div>
+</form>
+</div>
+<div id="dialog-yesno" style="display: none;">
+Yes or no?
+</div>
+<div id="dialog-okcancel" style="display: none;">
+</div>
+<div id="dialog-vote" style="display: none;">
+<div class="title">Motion</div>
+<div class="motion"></div>
+</div>
+<div id="ajax-running" style="position: absolute; top: 0px; left: 0px; display: none;"><img alt="loading data icon" src="//cdn.boarddocs.com/static/images/ajax/ajax-running.gif"></div>
+<div id="alert-box"></div>
+<div aria-hidden="true" id="debug-window" style="display: none;">
+<i id="close-debug" class="fa fa-times" ></i>
+<div style="margin-bottom: 10px; font-size: 14px;">Information <img alt="refresh data icon" id="refresh-info-box" style="cursor: pointer;" src="//cdn.boarddocs.com/static/famfamfam/arrow_rotate_clockwise.png"></div>
+<table border="0">
+<tr><td valign="top">Browser:</td><td nowrap valign="top" id="display-browser"></td></tr>
+<tr><td valign="top">Browser Version:</td><td nowrap valign="top" id="display-browser-version"></td></tr>
+<tr><td valign="top">Server:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="info-server" value="CN=Diligent-Denver4/O=Emgrp" autocomplete="off"/></td></tr>
+<tr><td valign="top">Username:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="info-username" value="Anonymous" autocomplete="off"/></td></tr>
+<tr><td valign="top" colspan="2"><hr></td></tr>
+<tr><td valign="top">Meeting:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="current-meeting" value="" autocomplete="off" /></td></tr>
+<tr><td valign="top">Meeting Status:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="current-meeting-status" value="" autocomplete="off"/></td></tr>
+<tr><td valign="top">New Meeting:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="new-current-meeting" value="" autocomplete="off"/></td></tr>
+<tr><td valign="top">Agenda Item:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="current-agenda-item" value="" autocomplete="off"/></td></tr>
+<tr><td valign="top">Committee:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="current-committee" name="current_committee" value="" autocomplete="off"/></td></tr>
+<tr><td valign="top">Voting Item:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="current-voting-item" value="" autocomplete="off"/></td></tr>
+<tr><td valign="top">Policy Item:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="current-policy-item" value="" autocomplete="off"/></td></tr>
+<tr><td valign="top">Policy Book:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="current-policy-book" value="Board Policies" autocomplete="off"/></td></tr>
+<tr><td valign="top">Policy Status:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="current-policy-status" value="" autocomplete="off" /></td></tr>
+<tr><td valign="top">Library Item:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="current-library-item" value="" autocomplete="off"/></td></tr>
+<tr><td valign="top">Library Type:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="current-library-type" value="" autocomplete="off"/></td></tr>
+<tr><td valign="top" colspan="2"><hr></td></tr>
+<tr><td valign="top">Roles:</td><td nowrap valign="top" id="info-roles"></td></tr>
+<tr><td valign="top">Super:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="is-super" value="false" autocomplete="off"/></td></tr>
+<tr><td valign="top">Publisher:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="is-publisher" value="false" autocomplete="off"/></td></tr>
+<tr><td valign="top">Publisher Admin:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="is-publisher-admin" value="false"autocomplete="off" /></td></tr>
+<tr><td valign="top">Admin:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="is-admin" value="false" autocomplete="off"/></td></tr>
+<tr><td valign="top">AdminExec:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="is-admin-exec" value="false" autocomplete="off"/></td></tr>
+<tr><td valign="top">Executive:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="is-executive" value="false" autocomplete="off"/></td></tr>
+<tr><td valign="top">Voting:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="is-voting" value="false" autocomplete="off"/></td></tr>
+<tr><td valign="top">Policy Pub:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="is-policy-publisher" value="false" autocomplete="off" /></td></tr>
+<tr><td valign="top">Library Pub:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="is-library-publisher" value="false" autocomplete="off"/></td></tr>
+<tr><td valign="top">Library Admin:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="is-library-admin" value="false" autocomplete="off"/></td></tr>
+<tr><td valign="top">Library Exec:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="is-library-executive" value="false" autocomplete="off"/></td></tr>
+<tr><td valign="top">Anonymous:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="is-anonymous" value="true" autocomplete="off"/></td></tr>
+<tr><td valign="top">Support:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="is-support" value="false" autocomplete="off"/></td></tr>
+<tr><td valign="top" colspan="2"><hr></td></tr>
+<tr><td valign="top">Meeting Lists:</td><td nowrap valign="top"><input aria-hidden="true" aria-label="x" type="text" id="is-meeting-lists-enabled" value="true" autocomplete="off"/></td></tr>
+<tr><td valign="top">Response:</td><td nowrap valign="top"><div id="ajax-log" style="max-height: 200px; overflow: auto;"></div></td></tr>
+</table>
+</div>
+<!-- HEADER -->
+<nav id="header" class="navbar navbar-expand-lg navbar-drak bg-drak">
+<div id="SiteTitle1" class="line1 navbar-left introedit__sitetitle1">Los Angeles Community College District</div>
+<div id="SiteTitle2" class="line2 navbar-left introedit__sitetitle2">770 Wilshire Boulevard, Los Angeles, CA 90017 | (213) 891-2000 </div>
+<ul id="navbarMainSection1" class="navbar-nav ml-auto">
+<li><a class="dropdown-item-new" aria-label="Home" href="http://laccd.edu" id="btn-home"  style="outline:none;"><i class="fa fa-home fa-lg"></i></a></li>
+<li><a  class="dropdown-item-new" role="button" aria-label="Search" href="#" id="btn-search"  style="outline:none;"><i class="fa fa-search fa-lg"></i></a></li>
+<li class="dropdown">
+<a id="btn-user-menu" aria-label="User Menu" class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-user-o fa-lg"></i><span class="fa fa-caret-down"></span></a>
+<ul class="dropdown-menu ">
+<li ><a class="dropdown-item pull-left" href="https://go.boarddocs.com/ca/laccd/Board.nsf/Private?open&login" id="btn-login" aria-label="Login">Log In</a></li>
+</ul>
+      </li>
+	<li class="dropdown">
+        <a id="btn-board-committe-menu" aria-label="Board/Committee Menu" class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+        <span id="display-committee-name"></span><i class="fa fa-university fa-lg"></i><span class="fa fa-caret-down"></span></a> 
+        <ul  id ="sumukh" class="dropdown-menu">
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="A4EP6J588C05" aria-label="Board of Trustees Regular Meeting">Board of Trustees Regular Meeting</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BMP33W04F732" aria-label="Board of Trustees Emergency Meeting">Board of Trustees Emergency Meeting</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BA8Q3R61BA3B" aria-label="Board of Trustees Special Meeting">Board of Trustees Special Meeting</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="B9RRQZ654624" aria-label="BOT Budget & Finance">BOT Budget & Finance</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="B9RRQX654328" aria-label="BOT Facilities Master Planning">BOT Facilities Master Planning</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="B9RRPM650AED" aria-label="BOT Institutional Effectiveness">BOT Institutional Effectiveness</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="B9RRR2654B42" aria-label="BOT Legislative & Public Affairs">BOT Legislative & Public Affairs</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="B9RRRB6565A7" aria-label="BOT Student Affairs Committee">BOT Student Affairs Committee</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="CW3LSW57D394" aria-label="College Council -- LACC">College Council -- LACC</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BAQS6U5B02DB" aria-label="Committee of the Whole">Committee of the Whole</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="DF3UQR7D34E8" aria-label="DAS-AI Task Force">DAS-AI Task Force</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="CNWVCW80284D" aria-label="DAS Constitution and Bylaws Committee">DAS Constitution and Bylaws Committee</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="B9RRN464AEB9" aria-label="DAS District Academic Senate">DAS District Academic Senate</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BBPRLE640ECA" aria-label="DAS District Curriculum Committee (DCC)">DAS District Curriculum Committee (DCC)</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BBPRKC63CF6A" aria-label="DAS Equivalency Committee">DAS Equivalency Committee</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BBPRLJ641648" aria-label="DAS Executive Committee">DAS Executive Committee</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BENNMM609EDC" aria-label="DAS Guided Pathways">DAS Guided Pathways</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BT4NJE5FC6AD" aria-label="DAS Online Ed & Academic Technology Committee">DAS Online Ed & Academic Technology Committee</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BBPRKD63D563" aria-label="DAS Professional Development College">DAS Professional Development College</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="DLJPXT66CDA6" aria-label="DAS Sustainable Environment Institute (SEI)">DAS Sustainable Environment Institute (SEI)</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="B9RRN364AD15" aria-label="District Citizens Oversight Committe">District Citizens Oversight Committe</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BH9VJR810348" aria-label="District Planning Committee">District Planning Committee</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BC2V9M7FAD26" aria-label="Executive Search Committee Meeting">Executive Search Committee Meeting</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="B9RRNW64C55F" aria-label="Foundation for the LA Community Colleges">Foundation for the LA Community Colleges</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BAG3LM7C4D37" aria-label="HR Confidential Draft Area">HR Confidential Draft Area</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="CQYPC76387DB" aria-label="LASC Foundation">LASC Foundation</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BDPV5U7F2006" aria-label="Local AS -- ELAC">Local AS -- ELAC</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BDPV5X7F2300" aria-label="Local AS -- LACC">Local AS -- LACC</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BDPV637F276B" aria-label="Local AS -- LAHC">Local AS -- LAHC</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BDPV657F2AA7" aria-label="Local AS -- LAMC">Local AS -- LAMC</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BDPV687F2E1F" aria-label="Local AS -- LAPC">Local AS -- LAPC</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BDPV6E7F348C" aria-label="Local AS -- LASC">Local AS -- LASC</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BDPV6H7F37F7" aria-label="Local AS -- LATTC">Local AS -- LATTC</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BDPV6K7F3A82" aria-label="Local AS -- LAVC">Local AS -- LAVC</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BDPV6M7F3CC4" aria-label="Local AS -- WLAC">Local AS -- WLAC</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="C63R8N6985F8" aria-label="Local AS CC-- LAMC">Local AS CC-- LAMC</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="DJMQLU69E255" aria-label="Local AS CC -- LAHC">Local AS CC -- LAHC</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BKWURV7D5E6D" aria-label="Local AS CC -- LAPC">Local AS CC -- LAPC</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="CDPQ4965E462" aria-label="Local AS CC -- LAVC">Local AS CC -- LAVC</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="C6QLRP57D5B4" aria-label="Local AS CC -- WLAC">Local AS CC -- WLAC</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="CUJTUX792213" aria-label="Local AS Exec -- ELAC">Local AS Exec -- ELAC</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="CUKLCD55E4D3" aria-label="Local AS Exec -- LAPC">Local AS Exec -- LAPC</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="DASM4S597828" aria-label="Local AS Leg Liaison - ELAC">Local AS Leg Liaison - ELAC</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="B9T9RP0111A6" aria-label="Personnel Commission">Personnel Commission</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="CVWMHB5B1961" aria-label="Program Review Committee -- LASC">Program Review Committee -- LASC</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="CKCU7L77853D" aria-label="Safety & Security Oversight Committee">Safety & Security Oversight Committee</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="CVWMBJ5A74A8" aria-label="SLO Committee -- LASC">SLO Committee -- LASC</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BLZ2BU016E7F" aria-label="Technology Policy & Planning Committee">Technology Policy & Planning Committee</a></li>
+<li ><a href="#" class="dropdown-item committee-trigger" committeeid="BXTSRX7084A4" aria-label="WLAC Foundation">WLAC Foundation</a></li>
+</ul>
+      </li>
+<li id="wrap-change-vote"><a href="#" id="btn-change-vote"><i class="fa fa-hand-paper-o fa-lg"></i> Change Vote</a></li>
+</ul>
+<div id="navigation">
+<a href="http://laccd.edu" id="btn-home-nav">Home</a>
+</div>
+</nav>
+<div id="bd">
+<header>
+<div id="tab-left-nav">
+<div id="subheader" class="ui-helper-clearfix" role="banner">
+<div class="wrap-site-logo"><img alt="" id="site-logo" src="//cdn.boarddocs.com/static/images/lo-logo.png"></div>
+<ul class="dropdown" id="nav-header">
+<li id="li-welcome" class="droppdown"><a href="#tab-welcome"><span>Featured</span></a></li>
+<li id="li-meetings" class="droppdown" aria-expanded="false"><a  tabindex="1" href="#tab-meetings"><span id="mainMeetings">Meetings <i id="arrowkey" class="fa fa-chevron-down" aria-label="Meetings Dropdown Menu"></i></span></a>
+<div class="tab-menu">
+<img alt="policy dropdown-menu" src="//cdn.boarddocs.com/static/famfamfam/bullet_arrow_down.png">
+<div id="meetings-menu-items" class="tab-menuitems">
+<div tab="meetings" aria-label="Meetings  : Active" key="active" class="tab-menuitem" id="menuitem-meetings-active">Active</div>
+</div>
+</div>
+</li>
+<li id="li-agenda" class="droppdown" style="display: none;"><a href="#tab-agenda"><span>Agenda</span></a></li>
+
+				<li id="li-policies" class="droppdown" aria-expanded="false">
+						<a tabindex="1" href="#tab-policies">
+								<span id="mainPolicy">Policies	
+									<i id="dropdownarrowpolicies" class="fa fa-chevron-down" aria-label="Policy Dropdown Menu"></i>
+						</a>
+								</span>
+			
+<div class="tab-menu">
+<img alt="policy dropdown-menu" src="//cdn.boarddocs.com/static/famfamfam/bullet_arrow_down.png">
+<div id="policies-menu-items" class="tab-menuitems">
+<div tab="policies" aria-label="Policies  : Active" key="active" class="tab-menuitem" id="menuitem-policies-active">Active</div>
+
+<script>policyDraft="No Draft"</script>
+</div>
+</div>
+</li>
+<li id="li-library"  class="droppdown" ><a href="#tab-library"><span id="mainLibrary">Library <i id="library-menu-arrow" class="fa fa-chevron-down" role="option" aria-label="Library Dropdown Menu"></i></span></a>
+<div class="tab-menu">
+<img alt="library drop down menu" src="//cdn.boarddocs.com/static/famfamfam/bullet_arrow_down.png">
+<div id="library-menu-items" class="tab-menuitems">
+<div id="library-general" tab="library" aria-label="Library  : General" key="general" class="tab-menuitem">General</div>
+<div id="library-events" tab="library" aria-label="Library  : Events" key="event" class="tab-menuitem">Events</div>
+<div id="library-sgoals" tab="library" aria-label="Library  : Strategic Goals" key="goal" class="tab-menuitem">Strategic Goals</div>
+<div id="library-bd-members" tab="library" aria-label="Library  : Board Members" key="board" class="tab-menuitem"><h2>Board Members</h2></div>
+</div>
+</div>
+</li>
+<li id="li-search" style="display: none;"><a href="#tab-search"><span>Search</span></a></li>
+</ul>
+</div>
+<div id="tab-welcome" class="tab-content">
+<div id="wrap-packet"><div id="packet-accordion" data-columns class="pane-wrap"></div></div>
+</div>
+<div id="tab-meetings" class="tab-content XXXui-helper-clearfix">
+<div class="tab-title">
+<span id="meeting-tab-title-prefix"></span>
+<div id="committee-select"><select aria-hidden="true" aria-label="Committee Selector" name="committeeid" class="select ui-widget-content ui-corner-all" autocomplete="off"><option value="A4EP6J588C05">Board of Trustees Regular Meeting</option><option value="BMP33W04F732">Board of Trustees Emergency Meeting</option><option value="BA8Q3R61BA3B">Board of Trustees Special Meeting</option><option value="B9RRQZ654624">BOT Budget & Finance</option><option value="B9RRQX654328">BOT Facilities Master Planning</option><option value="B9RRPM650AED">BOT Institutional Effectiveness</option><option value="B9RRR2654B42">BOT Legislative & Public Affairs</option><option value="B9RRRB6565A7">BOT Student Affairs Committee</option><option value="CW3LSW57D394">College Council -- LACC</option><option value="BAQS6U5B02DB">Committee of the Whole</option><option value="DF3UQR7D34E8">DAS-AI Task Force</option><option value="CNWVCW80284D">DAS Constitution and Bylaws Committee</option><option value="B9RRN464AEB9">DAS District Academic Senate</option><option value="BBPRLE640ECA">DAS District Curriculum Committee (DCC)</option><option value="BBPRKC63CF6A">DAS Equivalency Committee</option><option value="BBPRLJ641648">DAS Executive Committee</option><option value="BENNMM609EDC">DAS Guided Pathways</option><option value="BT4NJE5FC6AD">DAS Online Ed & Academic Technology Committee</option><option value="BBPRKD63D563">DAS Professional Development College</option><option value="DLJPXT66CDA6">DAS Sustainable Environment Institute (SEI)</option><option value="B9RRN364AD15">District Citizens Oversight Committe</option><option value="BH9VJR810348">District Planning Committee</option><option value="BC2V9M7FAD26">Executive Search Committee Meeting</option><option value="B9RRNW64C55F">Foundation for the LA Community Colleges</option><option value="BAG3LM7C4D37">HR Confidential Draft Area</option><option value="CQYPC76387DB">LASC Foundation</option><option value="BDPV5U7F2006">Local AS -- ELAC</option><option value="BDPV5X7F2300">Local AS -- LACC</option><option value="BDPV637F276B">Local AS -- LAHC</option><option value="BDPV657F2AA7">Local AS -- LAMC</option><option value="BDPV687F2E1F">Local AS -- LAPC</option><option value="BDPV6E7F348C">Local AS -- LASC</option><option value="BDPV6H7F37F7">Local AS -- LATTC</option><option value="BDPV6K7F3A82">Local AS -- LAVC</option><option value="BDPV6M7F3CC4">Local AS -- WLAC</option><option value="C63R8N6985F8">Local AS CC-- LAMC</option><option value="DJMQLU69E255">Local AS CC -- LAHC</option><option value="BKWURV7D5E6D">Local AS CC -- LAPC</option><option value="CDPQ4965E462">Local AS CC -- LAVC</option><option value="C6QLRP57D5B4">Local AS CC -- WLAC</option><option value="CUJTUX792213">Local AS Exec -- ELAC</option><option value="CUKLCD55E4D3">Local AS Exec -- LAPC</option><option value="DASM4S597828">Local AS Leg Liaison - ELAC</option><option value="B9T9RP0111A6">Personnel Commission</option><option value="CVWMHB5B1961">Program Review Committee -- LASC</option><option value="CKCU7L77853D">Safety & Security Oversight Committee</option><option value="CVWMBJ5A74A8">SLO Committee -- LASC</option><option value="BLZ2BU016E7F">Technology Policy & Planning Committee</option><option value="BXTSRX7084A4">WLAC Foundation</option></select></div>
+</div>
+<div class="XXcontainer-fluid meetingContent">
+<div class="tab-row">
+<div class="pane-navigation">
+<div id="wrap-meetings" style="display: none;">
+<div  class="search-box not-policy-console">
+<div id="Search_Meetings"  class="search-buttons" tabindex="0">
+<a class="search lefMenu"><i   class="fa fa-search fa-lg"></i></a>
+<a class="clear lefMenu"><i   class="fa fa-times fa-lg" ></i></a>
+</div>
+<input id="Search-Meetings"  aria-label="Search Meetings" class="search-input" type="text" placeholder="Search Meetings"autocomplete="off">
+<div class="search-results pane-wrap">
+</div>
+</div>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/focus.js"></script>
+<div id="meetings" class="pane-wrap"></div>
+</div>
+<div id="wrap-drafts" style="display: none;">
+<div  class="search-box not-policy-console">
+<div id="Search_Drafts"  class="search-buttons" tabindex="0">
+<a class="search lefMenu"><i   class="fa fa-search fa-lg"></i></a>
+<a class="clear lefMenu"><i   class="fa fa-times fa-lg" ></i></a>
+</div>
+<input id="Search-Drafts"  aria-label="Search Drafts" class="search-input" type="text" placeholder="Search Drafts"autocomplete="off">
+<div class="search-results pane-wrap">
+</div>
+</div>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/focus.js"></script>
+<div id="drafts" class="pane-wrap"></div>
+</div>
+<div id="wrap-templates" style="display: none;">
+<div  class="search-box not-policy-console">
+<div id="Search_Templates"  class="search-buttons" tabindex="0">
+<a class="search lefMenu"><i   class="fa fa-search fa-lg"></i></a>
+<a class="clear lefMenu"><i   class="fa fa-times fa-lg" ></i></a>
+</div>
+<input id="Search-Templates"  aria-label="Search Templates" class="search-input" type="text" placeholder="Search Templates"autocomplete="off">
+<div class="search-results pane-wrap">
+</div>
+</div>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/focus.js"></script>
+<div id="templates" class="pane-wrap"></div>
+</div>
+<div id="wrap-my-items" style="display: none;">
+<div  class="search-box not-policy-console">
+<div id="Search_My_Agenda_Items"  class="search-buttons" tabindex="0">
+<a class="search lefMenu"><i   class="fa fa-search fa-lg"></i></a>
+<a class="clear lefMenu"><i   class="fa fa-times fa-lg" ></i></a>
+</div>
+<input id="Search-My-Agenda-Items"  aria-label="Search My Agenda Items" class="search-input" type="text" placeholder="Search My Agenda Items"autocomplete="off">
+<div class="search-results pane-wrap">
+</div>
+</div>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/focus.js"></script>
+<div key="my-items" id="my-agenda-items" class="pane-wrap"></div>
+</div>
+</div>
+<div class="pane-content" id="pane-content-meetings">
+<div id="meeting-content">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tab-policies" class="tab-content">
+<div class="tab-title">Policies</div>
+<div class="XXcontainer-fluid policyContent">
+<div class="tab-row">
+<div class="pane-navigation">
+<div id="wrap-policies">
+<div  class="search-box not-policy-console">
+<div id="Search_Policies"  class="search-buttons" tabindex="0">
+<a class="search lefMenu"><i   class="fa fa-search fa-lg"></i></a>
+<a class="clear lefMenu"><i   class="fa fa-times fa-lg" ></i></a>
+</div>
+<input id="Search-Policies"  aria-label="Search Policies" class="search-input" type="text" placeholder="Search Policies"autocomplete="off">
+<div class="search-results pane-wrap">
+</div>
+</div>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/focus.js"></script>
+<div id="policies" class="pane-wrap"></div>
+</div>
+</div>
+<div class="pane-content">
+<div id="policy-content">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tab-library" class="tab-content XXXui-helper-clearfix">
+<div class="tab-title">Library</div>
+<div class="XXcontainer-fluid libraryContent">
+<div class="tab-row">
+<div class="pane-navigation">
+<div id="wrap-library">
+<div  class="search-box not-policy-console">
+<div id="Search_Library"  class="search-buttons" tabindex="0">
+<a class="search lefMenu"><i   class="fa fa-search fa-lg"></i></a>
+<a class="clear lefMenu"><i   class="fa fa-times fa-lg" ></i></a>
+</div>
+<input id="Search-Library"  aria-label="Search Library" class="search-input" type="text" placeholder="Search Library"autocomplete="off">
+<div class="search-results pane-wrap">
+</div>
+</div>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/focus.js"></script>
+<div id="library-categories"></div>
+<div id="library" class="pane-wrap"></div>
+</div>
+</div>
+<div class="pane-content">
+<div id="library-content">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tab-agenda" class="tab-content XXXui-helper-clearfix">
+<div class="tab-title">Agenda</div>
+<div class="XXcontainer-fluid AgendaContent">
+<div class="tab-row">
+<div class="pane-navigation">
+<div  class="search-box not-policy-console">
+<div id="Search_Agenda"  class="search-buttons" tabindex="0">
+<a class="search lefMenu"><i   class="fa fa-search fa-lg"></i></a>
+<a class="clear lefMenu"><i   class="fa fa-times fa-lg" ></i></a>
+</div>
+<input id="Search-Agenda"  aria-label="Search Agenda" class="search-input" type="text" placeholder="Search Agenda"autocomplete="off">
+<div class="search-results pane-wrap">
+</div>
+</div>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/focus.js"></script>
+<div id="wrap-agenda" class="XXXXXXui-corner-bottom XXXXXXui-widget-content">
+   <div id="agenda" class="pane-wrap"></div>
+</div>
+</div>
+<div class="pane-content">
+<div id="agenda-content">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<div style="clear: both;"></div>
+</div>
+<footer role="contentinfo" id="ft">
+<!-- FOOTER -->
+<div id="copyright">
+<div class="pull-right"><a target=_blank href="http://www.boarddocs.com" >BoardDocs</a>&reg; A Diligent Brand, <span style="cursor: pointer;" id="debugclick">&copy;</span> 2002-2026</div>
+</div>
+</footer>
+<div id="search" aria-modal="true">
+<form id="search-form">
+<input aria-label="Site Search" id="searchstring" name="searchstring" placeholder="Search..." autocomplete="off">
+<input aria-hidden="true" aria-label="x" type="text" style="display: none;" disabled="disabled" size="1" autocomplete="off"/>
+<div tabindex="0" id="hitcount"></div>
+<div id="loadingMessage"></div>
+<input aria-hidden="true" aria-label="x" type="text" style="display: none;" disabled="disabled" size="1" autocomplete="off"/>
+<div id="search-filter-buttons">
+<button type="button" name="meetings" class="btn btn-sm btn-default">Meetings</button>
+<input aria-label="Search Meetings" class="search-filter" name="meetings" type="checkbox" value="1" checked />
+<button type="button" name="policies" class="btn btn-sm btn-default">Policies</button>
+<input aria-label="Search Policies" class="search-filter" name="policies" type="checkbox" value="1" checked />
+<button type="button" name="library" class="btn btn-sm btn-default">Library</button>
+<input aria-label="Search Library Items" class="search-filter" name="library" type="checkbox" value="1" checked />
+<button type="button" name="minutes" class="btn btn-sm btn-default">Minutes</button>
+<input aria-label="Search Minutes" class="search-filter" name="minutes" type="checkbox" value="1" checked />
+<button type="button" name="attachments" class="btn btn-sm btn-default">Include Attachments</button>
+<input aria-label="Search Attachments" class="search-filter" name="attachments" type="checkbox" value="1" checked />
+</div>
+</form>
+
+<div aria-label="Search result display" class="modal fade search-result-modal" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+     <!--<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<section class="modal-title"></section>
+      </div>-->
+      <div class="modal-body">
+		
+       <div id="search-result-display"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default takeme">Navigate There</button>
+        <button type="button" key="close" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+		<div id="meta-notice">
+			<section class="title">MetaSearch Notice</section>
+			<p>MetaSearch is intended for research, information and reference purposes only. Search results are not intended as legal advice for you or your organization and are not a substitute for obtaining legal advice from a qualified attorney in your jurisdiction.</p>
+			<p>Using our Services does not give you ownership of any intellectual property rights in our Services or the content you may access. Search results from our Services may contain copyrighted material and, if so, you may not use such content unless you obtain permission from its owner or are otherwise permitted by law. </p>
+			<p>Our Services may display content that does not belong to Emerald Data Solutions or its affiliates. This content is the sole responsibility of the entity that makes it available.</p>
+		</div>	
+	
+<div id="search-results" Xclass="pane-wrap"></div>
+<i  id="search-close" tabindex="0" class="fa fa-times fa-2x" aria-label="Close Site Search"></i>
+</div>
+</div>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/main.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/downloadWord.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/searchFunctionality.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/DownloadManager.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/tab-nav.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/agenda-nav.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/agenda-content-nav.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/meetings-content-nav.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/print-title.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/pendo-integration.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/video-modal-navigation.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/meetingButtonFocusHandler.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/ajax-accessibility-updates.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/removeDuplicatesFromXML.js"></script>
+<script type="text/javascript" src="//cdn.boarddocs.com/static/js/seo-event-schema.js"></script>
+<script type="text/javascript" src="/ca/laccd/Board.nsf/javascript/boarddocs-wcag-dom-fixes.js"></script>
+</body>
+</html>

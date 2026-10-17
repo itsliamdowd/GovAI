@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <script src="js/jquery-1.12.0.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="images/maintanencechip.png"/>
+    <style>   
+        .page {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            background-image: radial-gradient(#0061c3, #023677);
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            overflow: hidden;
+        }
+
+        @media only screen and (max-width: 900px) {
+            .col-sm-6 {
+                width: 100%;
+            }
+            #innerpic {
+                width: 50%;
+                margin: auto;
+            }
+
+            #inner {
+                width: 80%;
+                margin: auto;
+                padding-bottom: 50px;
+            }
+
+            #chipmaintenance {
+                width: 100%;
+                height: auto;
+    
+            }
+        }
+
+        @media only screen and (min-width: 900px) {
+            .v-align {
+                display: flex;
+                justify-content: center;
+                align-items: center; 
+            }
+
+
+
+            #chipmaintenance {
+                width: 80%;
+                height: auto;
+                max-width: 600px;
+            }
+            .v-text h1, .v-text h3{
+                text-align: center;
+            }
+
+            #inner {
+                width: 80%;
+                float: right;
+            }
+
+            #innerpic {
+                width: 90%;
+                margin: auto;
+            }
+
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="content">
+            <div class="row v-align">
+            <div class="col-sm-6 v-text">
+                    <div id="inner">
+                        <h1 class="text-light m-b-xs" style='color: white;font-weight: lighter;font-size:50px'>403!</h1>
+                        <h3 style="color:white; font-size: 33px">Forbidden: Access is denied.</h3>
+                    </div>
+                    </div>
+                   
+            <div class=""></div>
+            <div class="col-sm-6">
+                <div id="innerpic">
+                    <img id="chipmaintenance" src="images/maintanencechip.png"></img>
+                </div>
+                
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
