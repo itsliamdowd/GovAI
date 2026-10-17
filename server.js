@@ -506,7 +506,7 @@ async function streetNames(prefix) {
   streetCache.set(prefix, names);
   return names;
 }
-const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".svg": "image/svg+xml", ".json": "application/json", ".webmanifest": "application/manifest+json" };
+const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".svg": "image/svg+xml", ".png": "image/png", ".jpg": "image/jpeg", ".webp": "image/webp", ".gif": "image/gif", ".json": "application/json", ".webmanifest": "application/manifest+json" };
 const server = http.createServer(async (req, res) => {
   if (req.method === "POST" && req.url === "/chat") {
     let body = "";

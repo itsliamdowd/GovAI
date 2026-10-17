@@ -1,0 +1,1104 @@
+{
+  "santa-monica": {
+    "src": "/seals/santa-monica.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Santa_Monica,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/53/Seal_of_Santa_Monica%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Santa Monica",
+    "cityPage": "https://en.wikipedia.org/wiki/Santa%20Monica%2C%20California"
+  },
+  "los-angeles": {
+    "src": "/seals/los-angeles.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Los_Angeles.svg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Seal_of_Los_Angeles.svg",
+    "license": "Public domain",
+    "attribution": "The official seal for the City of Los Angeles was designed by Herbert L. Goudge, a deputy city attorney, and officially adopted on March 27, 1905 via Ordinance 10,834.",
+    "cityPage": "https://en.wikipedia.org/wiki/Los%20Angeles"
+  },
+  "long-beach": {
+    "src": "/seals/long-beach.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Long_Beach,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Seal_of_Long_Beach%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Long Beach",
+    "cityPage": "https://en.wikipedia.org/wiki/Long%20Beach%2C%20California"
+  },
+  "glendale": {
+    "src": "/seals/glendale.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Glendale,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Seal_of_Glendale%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Glendale",
+    "cityPage": "https://en.wikipedia.org/wiki/Glendale%2C%20California"
+  },
+  "santa-clarita": {
+    "src": "/seals/santa-clarita.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Santa_Clarita,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Seal_of_Santa_Clarita%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Santa Clarita",
+    "cityPage": "https://en.wikipedia.org/wiki/Santa%20Clarita%2C%20California"
+  },
+  "lancaster": {
+    "src": "/seals/lancaster.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Lancaster,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Seal_of_Lancaster%2C_California.png",
+    "license": "Public domain",
+    "attribution": "Unknown authorUnknown author",
+    "cityPage": "https://en.wikipedia.org/wiki/Lancaster%2C%20California"
+  },
+  "palmdale": {
+    "src": "/seals/palmdale.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Palmdale,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/2/23/Seal_of_Palmdale%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Palmdale",
+    "cityPage": "https://en.wikipedia.org/wiki/Palmdale%2C%20California"
+  },
+  "pomona": {
+    "src": "/seals/pomona.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Pomona,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/2/22/Seal_of_Pomona%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Pomona",
+    "cityPage": "https://en.wikipedia.org/wiki/Pomona%2C%20California"
+  },
+  "torrance": {
+    "src": "/seals/torrance.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Torrance,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Seal_of_Torrance%2C_California.png",
+    "license": "Public domain",
+    "attribution": "Fireman Sam Hughes of the Torrance Fire Department, for the City of Torrance, in 1963 based on a 1956 design.",
+    "cityPage": "https://en.wikipedia.org/wiki/Torrance%2C%20California"
+  },
+  "pasadena": {
+    "src": "/seals/pasadena.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Pasadena,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/3/34/Seal_of_Pasadena%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Pasadena",
+    "cityPage": "https://en.wikipedia.org/wiki/Pasadena%2C%20California"
+  },
+  "el-monte": {
+    "src": "/seals/el-monte.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_El_Monte,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Seal_of_El_Monte%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of El Monte",
+    "cityPage": "https://en.wikipedia.org/wiki/El%20Monte%2C%20California"
+  },
+  "downey": {
+    "src": "/seals/downey.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Downey,_California.svg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Seal_of_Downey%2C_California.svg",
+    "license": "Public domain",
+    "attribution": "Jetijones",
+    "cityPage": "https://en.wikipedia.org/wiki/Downey%2C%20California"
+  },
+  "inglewood": {
+    "src": "/seals/inglewood.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Inglewood,_California.svg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/09/Seal_of_Inglewood%2C_California.svg",
+    "license": "Public domain",
+    "attribution": "City of Inglewood",
+    "cityPage": "https://en.wikipedia.org/wiki/Inglewood%2C%20California"
+  },
+  "west-covina": {
+    "src": "/seals/west-covina.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_West_Covina,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Seal_of_West_Covina%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of West Covina",
+    "cityPage": "https://en.wikipedia.org/wiki/West%20Covina%2C%20California"
+  },
+  "norwalk": {
+    "src": "/seals/norwalk.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Norwalk,_California.svg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Seal_of_Norwalk%2C_California.svg",
+    "license": "Public domain",
+    "attribution": "Unknown authorUnknown author",
+    "cityPage": "https://en.wikipedia.org/wiki/Norwalk%2C%20California"
+  },
+  "burbank": {
+    "src": "/seals/burbank.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Burbank,_California.svg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Seal_of_Burbank%2C_California.svg",
+    "license": "Public domain",
+    "attribution": "City of Burbank, California",
+    "cityPage": "https://en.wikipedia.org/wiki/Burbank%2C%20California"
+  },
+  "compton": {
+    "src": "/seals/compton.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Compton,_California.svg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Seal_of_Compton%2C_California.svg",
+    "license": "Public domain",
+    "attribution": "City of Compton",
+    "cityPage": "https://en.wikipedia.org/wiki/Compton%2C%20California"
+  },
+  "south-gate": {
+    "src": "/seals/south-gate.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:South_gate_california_seal.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/52/South_gate_california_seal.jpg",
+    "license": "Public domain",
+    "attribution": "City of South Gate",
+    "cityPage": "https://en.wikipedia.org/wiki/South%20Gate%2C%20California"
+  },
+  "carson": {
+    "src": "/seals/carson.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Carson,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Seal_of_Carson%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Carson",
+    "cityPage": "https://en.wikipedia.org/wiki/Carson%2C%20California"
+  },
+  "santa-fe-springs": {
+    "src": "/seals/santa-fe-springs.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Santa_Fe_Springs,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Seal_of_Santa_Fe_Springs%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Santa Fe Springs",
+    "cityPage": "https://en.wikipedia.org/wiki/Santa%20Fe%20Springs%2C%20California"
+  },
+  "paramount": {
+    "src": "/seals/paramount.jpg",
+    "source": "https://www.laalmanac.com/cities/ci60.php",
+    "original": "https://www.laalmanac.com/images/seal_Paramount.jpg",
+    "attribution": "City of Paramount"
+  },
+  "hawthorne": {
+    "src": "/seals/hawthorne.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Hawthorne,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/07/Seal_of_Hawthorne%2C_California.png",
+    "license": "Public domain",
+    "attribution": "Unknown authorUnknown author",
+    "cityPage": "https://en.wikipedia.org/wiki/Hawthorne%2C%20California"
+  },
+  "whittier": {
+    "src": "/seals/whittier.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Whittier,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Seal_of_Whittier%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Whittier",
+    "cityPage": "https://en.wikipedia.org/wiki/Whittier%2C%20California"
+  },
+  "alhambra": {
+    "src": "/seals/alhambra.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Alhambra,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Seal_of_Alhambra%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Alhambra",
+    "cityPage": "https://en.wikipedia.org/wiki/Alhambra%2C%20California"
+  },
+  "lakewood": {
+    "src": "/seals/lakewood.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Lakewood_seal.svg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Lakewood_seal.svg",
+    "license": "Public domain",
+    "attribution": "City of Lakewood",
+    "cityPage": "https://en.wikipedia.org/wiki/Lakewood%2C%20California"
+  },
+  "bellflower": {
+    "src": "/seals/bellflower.gif",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Bellflower,_California.gif",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Seal_of_Bellflower%2C_California.gif",
+    "license": "Public domain",
+    "attribution": "City of Bellflower",
+    "cityPage": "https://en.wikipedia.org/wiki/Bellflower%2C%20California"
+  },
+  "baldwin-park": {
+    "src": "/seals/baldwin-park.gif",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Baldwin_Park,_California.gif",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Seal_of_Baldwin_Park%2C_California.gif",
+    "license": "Public domain",
+    "attribution": "City of Baldwin Park",
+    "cityPage": "https://en.wikipedia.org/wiki/Baldwin%20Park%2C%20California"
+  },
+  "lynwood": {
+    "src": "/seals/lynwood.gif",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Lynwood,_California.gif",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Seal_of_Lynwood%2C_California.gif",
+    "license": "Public domain",
+    "attribution": "City of Lynwood, California",
+    "cityPage": "https://en.wikipedia.org/wiki/Lynwood%2C%20California"
+  },
+  "redondo-beach": {
+    "src": "/seals/redondo-beach.gif",
+    "source": "https://commons.wikimedia.org/wiki/File:Redondo_Beach_CA_seal.gif",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/09/Redondo_Beach_CA_seal.gif",
+    "license": "Public domain",
+    "attribution": "City of Redondo beach",
+    "cityPage": "https://en.wikipedia.org/wiki/Redondo%20Beach%2C%20California"
+  },
+  "pico-rivera": {
+    "src": "/seals/pico-rivera.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Pico_Rivera,_California.svg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/1/13/Seal_of_Pico_Rivera%2C_California.svg",
+    "license": "Public domain",
+    "attribution": "City of Pico Rivera, California",
+    "cityPage": "https://en.wikipedia.org/wiki/Pico%20Rivera%2C%20California"
+  },
+  "montebello": {
+    "src": "/seals/montebello.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Montebello,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/51/Seal_of_Montebello%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Montebello",
+    "cityPage": "https://en.wikipedia.org/wiki/Montebello%2C%20California"
+  },
+  "monterey-park": {
+    "src": "/seals/monterey-park.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Monterrey_Park,_California.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Seal_of_Monterrey_Park%2C_California.jpg",
+    "license": "Public domain",
+    "attribution": "City of Monterey Park",
+    "cityPage": "https://en.wikipedia.org/wiki/Monterey%20Park%2C%20California"
+  },
+  "gardena": {
+    "src": "/seals/gardena.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Gardena,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Seal_of_Gardena%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Gardena",
+    "cityPage": "https://en.wikipedia.org/wiki/Gardena%2C%20California"
+  },
+  "huntington-park": {
+    "src": "/seals/huntington-park.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Huntington_Park_CA_seal.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Huntington_Park_CA_seal.png",
+    "license": "Public domain",
+    "attribution": "City of Huntington Park",
+    "cityPage": "https://en.wikipedia.org/wiki/Huntington%20Park%2C%20California"
+  },
+  "arcadia": {
+    "src": "/seals/arcadia.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Arcadia,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/7/72/Seal_of_Arcadia%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Arcadia",
+    "cityPage": "https://en.wikipedia.org/wiki/Arcadia%2C%20California"
+  },
+  "diamond-bar": {
+    "src": "/seals/diamond-bar.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Diamond_bar_ca_seal.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/3/37/Diamond_bar_ca_seal.png",
+    "license": "Public domain",
+    "attribution": "City of Diamond Bar",
+    "cityPage": "https://en.wikipedia.org/wiki/Diamond%20Bar%2C%20California"
+  },
+  "glendora": {
+    "src": "/seals/glendora.png",
+    "source": "https://commons.wikimedia.org/wiki/File:City_of_Glendora_Seal_transparent_background.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/1/18/City_of_Glendora_Seal_transparent_background.png",
+    "license": "Public domain",
+    "attribution": "Webb Detwiler, City of Glendora",
+    "cityPage": "https://en.wikipedia.org/wiki/Glendora%2C%20California"
+  },
+  "rosemead": {
+    "src": "/seals/rosemead.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Rosemead_seal.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Rosemead_seal.jpg",
+    "license": "Public domain",
+    "attribution": "City of Rosemead",
+    "cityPage": "https://en.wikipedia.org/wiki/Rosemead%2C%20California"
+  },
+  "cerritos": {
+    "src": "/seals/cerritos.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Cerritos_City_Seal_(color).png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/d/db/Cerritos_City_Seal_%28color%29.png",
+    "license": "Public domain",
+    "attribution": "City of Cerritos",
+    "cityPage": "https://en.wikipedia.org/wiki/Cerritos%2C%20California"
+  },
+  "covina": {
+    "src": "/seals/covina.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Covina,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Seal_of_Covina%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Covina",
+    "cityPage": "https://en.wikipedia.org/wiki/Covina%2C%20California"
+  },
+  "san-dimas": {
+    "src": "/seals/san-dimas.jpg",
+    "source": "https://www.laalmanac.com/cities/ci69.php",
+    "original": "https://www.laalmanac.com/images/seal_San_Dimas.jpg",
+    "attribution": "City of San Dimas"
+  },
+  "agoura-hills": {
+    "src": "/seals/agoura-hills.jpg",
+    "source": "https://www.laalmanac.com/cities/ci01.php",
+    "original": "https://www.laalmanac.com/images/seal_Agoura_Hills.jpg",
+    "attribution": "City of Agoura Hills"
+  },
+  "azusa": {
+    "src": "/seals/azusa.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Azusa,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Seal_of_Azusa%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Azusa, California",
+    "cityPage": "https://en.wikipedia.org/wiki/Azusa%2C%20California"
+  },
+  "la-mirada": {
+    "src": "/seals/la-mirada.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_La_Mirada,_California.svg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Seal_of_La_Mirada%2C_California.svg",
+    "license": "Public domain",
+    "attribution": "City of La Mirada, California",
+    "cityPage": "https://en.wikipedia.org/wiki/La%20Mirada%2C%20California"
+  },
+  "rancho-palos-verdes": {
+    "src": "/seals/rancho-palos-verdes.png",
+    "source": "https://commons.wikimedia.org/wiki/File:City_of_Rancho_Palos_Verde_Seal.svg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/6/6f/City_of_Rancho_Palos_Verde_Seal.svg",
+    "license": "CC BY-SA 4.0",
+    "attribution": "Mistzy",
+    "cityPage": "https://en.wikipedia.org/wiki/Rancho%20Palos%20Verdes%2C%20California"
+  },
+  "culver-city": {
+    "src": "/seals/culver-city.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Culver_City,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/6/66/Seal_of_Culver_City%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Culver City, California",
+    "cityPage": "https://en.wikipedia.org/wiki/Culver%20City%2C%20California"
+  },
+  "san-gabriel": {
+    "src": "/seals/san-gabriel.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_San_Gabriel,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/02/Seal_of_San_Gabriel%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of San Gabriel",
+    "cityPage": "https://en.wikipedia.org/wiki/San%20Gabriel%2C%20California"
+  },
+  "la-puente": {
+    "src": "/seals/la-puente.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_La_Puente,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/1/15/Seal_of_La_Puente%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of La Puente",
+    "cityPage": "https://en.wikipedia.org/wiki/La%20Puente%2C%20California"
+  },
+  "bell-gardens": {
+    "src": "/seals/bell-gardens.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Bell_Gardens,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/9/98/Seal_of_Bell_Gardens%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Bell Gardens",
+    "cityPage": "https://en.wikipedia.org/wiki/Bell%20Gardens%2C%20California"
+  },
+  "monrovia": {
+    "src": "/seals/monrovia.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Monrovia_CA_seal.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Monrovia_CA_seal.jpg",
+    "license": "Public domain",
+    "attribution": "City of Monrovia",
+    "cityPage": "https://en.wikipedia.org/wiki/Monrovia%2C%20California"
+  },
+  "claremont": {
+    "src": "/seals/claremont.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Claremont_ca_seal.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Claremont_ca_seal.png",
+    "license": "Public domain",
+    "attribution": "City of Claremont",
+    "cityPage": "https://en.wikipedia.org/wiki/Claremont%2C%20California"
+  },
+  "temple-city": {
+    "src": "/seals/temple-city.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Temple_City,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/08/Seal_of_Temple_City%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Temple City",
+    "cityPage": "https://en.wikipedia.org/wiki/Temple%20City%2C%20California"
+  },
+  "manhattan-beach": {
+    "src": "/seals/manhattan-beach.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Manhattan_Beach,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Seal_of_Manhattan_Beach%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Manhattan Beach",
+    "cityPage": "https://en.wikipedia.org/wiki/Manhattan%20Beach%2C%20California"
+  },
+  "west-hollywood": {
+    "src": "/seals/west-hollywood.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_West_Hollywood,_California.svg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Seal_of_West_Hollywood%2C_California.svg",
+    "license": "Public domain",
+    "attribution": "Original: City of West Hollywood Vectorization: AnonMoos",
+    "cityPage": "https://en.wikipedia.org/wiki/West%20Hollywood%2C%20California"
+  },
+  "beverly-hills": {
+    "src": "/seals/beverly-hills.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Beverly_Hills,_California.svg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/6/61/Seal_of_Beverly_Hills%2C_California.svg",
+    "license": "Public domain",
+    "attribution": "City of Beverly Hills",
+    "cityPage": "https://en.wikipedia.org/wiki/Beverly%20Hills%2C%20California"
+  },
+  "lawndale": {
+    "src": "/seals/lawndale.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Lawndale,_California.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Seal_of_Lawndale%2C_California.jpg",
+    "license": "Public domain",
+    "attribution": "City of Lawndale, California",
+    "cityPage": "https://en.wikipedia.org/wiki/Lawndale%2C%20California"
+  },
+  "la-verne": {
+    "src": "/seals/la-verne.gif",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_La_Verne,_California.gif",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/7/71/Seal_of_La_Verne%2C_California.gif",
+    "license": "Public domain",
+    "attribution": "City of La Verne",
+    "cityPage": "https://en.wikipedia.org/wiki/La%20Verne%2C%20California"
+  },
+  "calabasas": {
+    "src": "/seals/calabasas.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Calabasas,_California.svg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/00/Seal_of_Calabasas%2C_California.svg",
+    "license": "Public domain",
+    "attribution": "City of Calabasas",
+    "cityPage": "https://en.wikipedia.org/wiki/Calabasas%2C%20California"
+  },
+  "maywood": {
+    "src": "/seals/maywood.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Maywood,_CA.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Seal_of_Maywood%2C_CA.png",
+    "license": "Public domain",
+    "attribution": "Unknown authorUnknown author",
+    "cityPage": "https://en.wikipedia.org/wiki/Maywood%2C%20California"
+  },
+  "south-pasadena": {
+    "src": "/seals/south-pasadena.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_South_Pasadena,_California.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Seal_of_South_Pasadena%2C_California.jpg",
+    "license": "Public domain",
+    "attribution": "City of South Pasadena",
+    "cityPage": "https://en.wikipedia.org/wiki/South%20Pasadena%2C%20California"
+  },
+  "walnut": {
+    "src": "/seals/walnut.jpg",
+    "source": "https://www.laalmanac.com/cities/ci84.php",
+    "original": "https://www.laalmanac.com/images/seal_Walnut.jpg",
+    "attribution": "City of Walnut"
+  },
+  "westlake-village": {
+    "src": "/seals/westlake-village.jpg",
+    "source": "https://www.laalmanac.com/cities/ci87.php",
+    "original": "https://www.laalmanac.com/images/seal_Westlake_Village.jpg",
+    "attribution": "City of Westlake Village"
+  },
+  "cudahy": {
+    "src": "/seals/cudahy.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Logo_of_Cudahy,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/4/40/Logo_of_Cudahy%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Cudahy",
+    "cityPage": "https://en.wikipedia.org/wiki/Cudahy%2C%20California"
+  },
+  "duarte": {
+    "src": "/seals/duarte.gif",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Duarte,_California.gif",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Seal_of_Duarte%2C_California.gif",
+    "license": "Public domain",
+    "attribution": "City of Duarte, California",
+    "cityPage": "https://en.wikipedia.org/wiki/Duarte%2C%20California"
+  },
+  "san-fernando": {
+    "src": "/seals/san-fernando.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_San_Fernando,_California.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/1/12/Seal_of_San_Fernando%2C_California.jpg",
+    "license": "Public domain",
+    "attribution": "City of San Fernando",
+    "cityPage": "https://en.wikipedia.org/wiki/San%20Fernando%2C%20California"
+  },
+  "hermosa-beach": {
+    "src": "/seals/hermosa-beach.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hermosa_Beach_Seal.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Hermosa_Beach_Seal.jpg",
+    "license": "Public domain",
+    "attribution": "John T. Hales",
+    "cityPage": "https://en.wikipedia.org/wiki/Hermosa%20Beach%2C%20California"
+  },
+  "lomita": {
+    "src": "/seals/lomita.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Lomita_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/6/61/Seal_of_Lomita_California.png",
+    "license": "Public domain",
+    "attribution": "Unknown authorUnknown author",
+    "cityPage": "https://en.wikipedia.org/wiki/Lomita%2C%20California"
+  },
+  "el-segundo": {
+    "src": "/seals/el-segundo.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_El_Segundo,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Seal_of_El_Segundo%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of El Segundo",
+    "cityPage": "https://en.wikipedia.org/wiki/El%20Segundo%2C%20California"
+  },
+  "artesia": {
+    "src": "/seals/artesia.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Artesia_california_seal.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Artesia_california_seal.jpg",
+    "license": "Public domain",
+    "attribution": "City of Artesia, California.",
+    "cityPage": "https://en.wikipedia.org/wiki/Artesia%2C%20California"
+  },
+  "hawaiian-gardens": {
+    "src": "/seals/hawaiian-gardens.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hawaiian_Gardens_seal.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/9/98/Hawaiian_Gardens_seal.jpg",
+    "license": "Public domain",
+    "attribution": "",
+    "cityPage": "https://en.wikipedia.org/wiki/Hawaiian%20Gardens%2C%20California"
+  },
+  "san-marino": {
+    "src": "/seals/san-marino.png",
+    "source": "https://commons.wikimedia.org/wiki/File:City_of_San_Marino,_California_seal.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/4/4b/City_of_San_Marino%2C_California_seal.png",
+    "license": "Public domain",
+    "attribution": "Unknown authorUnknown author",
+    "cityPage": "https://en.wikipedia.org/wiki/San%20Marino%2C%20California"
+  },
+  "la-canada-flintridge": {
+    "src": "/seals/la-canada-flintridge.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_La_Ca%C3%B1ada_Flintridge,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Seal_of_La_Ca%C3%B1ada_Flintridge%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of La Cañada Flintridge",
+    "cityPage": "https://en.wikipedia.org/wiki/La%20Ca%C3%B1ada%20Flintridge%2C%20California"
+  },
+  "malibu": {
+    "src": "/seals/malibu.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Malibu,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/08/Seal_of_Malibu%2C_California.png",
+    "license": "Public domain",
+    "attribution": "Seal of Malibu, California.jpg City of Malibu derivative work: ויקיג'אנקי",
+    "cityPage": "https://en.wikipedia.org/wiki/Malibu%2C%20California"
+  },
+  "signal-hill": {
+    "src": "/seals/signal-hill.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Signal_Hill,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Seal_of_Signal_Hill%2C_California.png",
+    "license": "Public domain",
+    "attribution": "Alejandro Jaramillo",
+    "cityPage": "https://en.wikipedia.org/wiki/Signal%20Hill%2C%20California"
+  },
+  "sierra-madre": {
+    "src": "/seals/sierra-madre.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Sierra_Madre.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Seal_of_Sierra_Madre.png",
+    "license": "Public domain",
+    "attribution": "City of Sierra Madre, California, United States",
+    "cityPage": "https://en.wikipedia.org/wiki/Sierra%20Madre%2C%20California"
+  },
+  "south-el-monte": {
+    "src": "/seals/south-el-monte.gif",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_South_El_Monte,_California.gif",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/01/Seal_of_South_El_Monte%2C_California.gif",
+    "license": "Public domain",
+    "attribution": "City of South El Monte",
+    "cityPage": "https://en.wikipedia.org/wiki/South%20El%20Monte%2C%20California"
+  },
+  "palos-verdes-estates": {
+    "src": "/seals/palos-verdes-estates.gif",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Palos_Verdes_Estates,_California.gif",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Seal_of_Palos_Verdes_Estates%2C_California.gif",
+    "license": "Public domain",
+    "attribution": "City of Palos Verdes Estates",
+    "cityPage": "https://en.wikipedia.org/wiki/Palos%20Verdes%20Estates%2C%20California"
+  },
+  "la-habra-heights": {
+    "src": "/seals/la-habra-heights.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_La_Habra_Heights,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Seal_of_La_Habra_Heights%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of La Habra Heights",
+    "cityPage": "https://en.wikipedia.org/wiki/La%20Habra%20Heights%2C%20California"
+  },
+  "rolling-hills-estates": {
+    "src": "/seals/rolling-hills-estates.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Rolling_Hills_Estates_seal.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Rolling_Hills_Estates_seal.jpg",
+    "license": "Public domain",
+    "attribution": "City of Rolling Hills Estates",
+    "cityPage": "https://en.wikipedia.org/wiki/Rolling%20Hills%20Estates%2C%20California"
+  },
+  "commerce": {
+    "src": "/seals/commerce.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Commerce_ca_seal.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/7/70/Commerce_ca_seal.png",
+    "license": "Public domain",
+    "attribution": "City of Commerce",
+    "cityPage": "https://en.wikipedia.org/wiki/Commerce%2C%20California"
+  },
+  "irwindale": {
+    "src": "/seals/irwindale.jpg",
+    "source": "https://www.laalmanac.com/cities/ci38.php",
+    "original": "https://www.laalmanac.com/images/seal_Irwindale.jpg",
+    "attribution": "City of Irwindale"
+  },
+  "hidden-hills": {
+    "src": "/seals/hidden-hills.jpg",
+    "source": "https://www.laalmanac.com/cities/ci34.php",
+    "original": "https://www.laalmanac.com/images/seal_Hidden_Hills.jpg",
+    "attribution": "City of Hidden Hills"
+  },
+  "la-mesa": {
+    "src": "/seals/la-mesa.gif",
+    "source": "https://www.crwflags.com/FoTW/flags/us-calme.html",
+    "original": "https://www.crwflags.com/FoTW/images/u/us-calme).gif",
+    "attribution": "City of La Mesa"
+  },
+  "lemon-grove": {
+    "src": "/seals/lemon-grove.jpg",
+    "source": "https://www.lemongrove.ca.gov/our-government/city-clerk-s-office/",
+    "original": "https://www.lemongrove.ca.gov/media/cpwandkn/lg-logo.jpg",
+    "attribution": "City of Lemon Grove"
+  },
+  "avalon": {
+    "src": "/seals/avalon.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_avalon_ca.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Seal_avalon_ca.png",
+    "license": "Public domain",
+    "attribution": "City of Avalon.",
+    "cityPage": "https://en.wikipedia.org/wiki/Avalon%2C%20California"
+  },
+  "bell": {
+    "src": "/seals/bell.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Bell,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/4/41/Seal_of_Bell%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Bell",
+    "cityPage": "https://en.wikipedia.org/wiki/Bell%2C%20California"
+  },
+  "bradbury": {
+    "src": "/seals/bradbury.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Bradbury,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Seal_of_Bradbury%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Bradbury",
+    "cityPage": "https://en.wikipedia.org/wiki/Bradbury%2C%20California"
+  },
+  "rolling-hills": {
+    "src": "/seals/rolling-hills.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_City_of_Rolling_Hills,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/7/72/Seal_of_City_of_Rolling_Hills%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Rolling Hills, California",
+    "cityPage": "https://en.wikipedia.org/wiki/Rolling%20Hills%2C%20California"
+  },
+  "industry": {
+    "src": "/seals/industry.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_City_of_Industry,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Seal_of_City_of_Industry%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Industry, California",
+    "cityPage": "https://en.wikipedia.org/wiki/City%20of%20Industry%2C%20California"
+  },
+  "vernon": {
+    "src": "/seals/vernon.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Vernon,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Seal_of_Vernon%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Vernon",
+    "cityPage": "https://en.wikipedia.org/wiki/Vernon%2C%20California"
+  },
+  "carlsbad": {
+    "src": "/seals/carlsbad.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Carlsbad,_California.svg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Seal_of_Carlsbad%2C_California.svg",
+    "license": "Public domain",
+    "attribution": "City of Carlsbad, California, United States",
+    "cityPage": "https://en.wikipedia.org/wiki/Carlsbad%2C%20California"
+  },
+  "chula-vista": {
+    "src": "/seals/chula-vista.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Chula_Vista,_California.svg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Seal_of_Chula_Vista%2C_California.svg",
+    "license": "Public domain",
+    "attribution": "Vrysxy",
+    "cityPage": "https://en.wikipedia.org/wiki/Chula%20Vista%2C%20California"
+  },
+  "coronado": {
+    "src": "/seals/coronado.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Coronado,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/52/Seal_of_Coronado%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Coronado",
+    "cityPage": "https://en.wikipedia.org/wiki/Coronado%2C%20California"
+  },
+  "del-mar": {
+    "src": "/seals/del-mar.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Del_Mar,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/03/Seal_of_Del_Mar%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Del Mar",
+    "cityPage": "https://en.wikipedia.org/wiki/Del%20Mar%2C%20California"
+  },
+  "el-cajon": {
+    "src": "/seals/el-cajon.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_El_Cajon,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/4/43/Seal_of_El_Cajon%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of El Cajon, California",
+    "cityPage": "https://en.wikipedia.org/wiki/El%20Cajon%2C%20California"
+  },
+  "encinitas": {
+    "src": "/seals/encinitas.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Encinitas,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Seal_of_Encinitas%2C_California.png",
+    "license": "Public domain",
+    "attribution": "Senaida Sana, with further work by Don Schwartz[1]",
+    "cityPage": "https://en.wikipedia.org/wiki/Encinitas%2C%20California"
+  },
+  "escondido": {
+    "src": "/seals/escondido.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Escondido,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Seal_of_Escondido%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Escondido",
+    "cityPage": "https://en.wikipedia.org/wiki/Escondido%2C%20California"
+  },
+  "imperial-beach": {
+    "src": "/seals/imperial-beach.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Imperial_Beach,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Seal_of_Imperial_Beach%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Imperial Beach, California",
+    "cityPage": "https://en.wikipedia.org/wiki/Imperial%20Beach%2C%20California"
+  },
+  "national-city": {
+    "src": "/seals/national-city.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_National_City,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Seal_of_National_City%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of National City, California",
+    "cityPage": "https://en.wikipedia.org/wiki/National%20City%2C%20California"
+  },
+  "oceanside": {
+    "src": "/seals/oceanside.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Oceanside,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/2/27/Seal_of_Oceanside%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Oceanside",
+    "cityPage": "https://en.wikipedia.org/wiki/Oceanside%2C%20California"
+  },
+  "poway": {
+    "src": "/seals/poway.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Poway,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Seal_of_Poway%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Poway",
+    "cityPage": "https://en.wikipedia.org/wiki/Poway%2C%20California"
+  },
+  "san-diego": {
+    "src": "/seals/san-diego.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_San_Diego,_California.svg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Seal_of_San_Diego%2C_California.svg",
+    "license": "Public domain",
+    "attribution": "Carleton Monroe Winslow (1876-1946)",
+    "cityPage": "https://en.wikipedia.org/wiki/San%20Diego"
+  },
+  "san-marcos": {
+    "src": "/seals/san-marcos.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Official_Seal_of_the_City_of_San_Marcos,_CA.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/4/48/Official_Seal_of_the_City_of_San_Marcos%2C_CA.png",
+    "license": "Public domain",
+    "attribution": "Unknown authorUnknown author",
+    "cityPage": "https://en.wikipedia.org/wiki/San%20Marcos%2C%20California"
+  },
+  "santee": {
+    "src": "/seals/santee.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Santee,_California.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Seal_of_Santee%2C_California.jpg",
+    "license": "Public domain",
+    "attribution": "City of Santee, California",
+    "cityPage": "https://en.wikipedia.org/wiki/Santee%2C%20California"
+  },
+  "solana-beach": {
+    "src": "/seals/solana-beach.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Solana_Beach,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Seal_of_Solana_Beach%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Solana Beach",
+    "cityPage": "https://en.wikipedia.org/wiki/Solana%20Beach%2C%20California"
+  },
+  "vista": {
+    "src": "/seals/vista.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Vista,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Seal_of_Vista%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Vista, California, United States",
+    "cityPage": "https://en.wikipedia.org/wiki/Vista%2C%20California"
+  },
+  "aliso-viejo": {
+    "src": "/seals/aliso-viejo.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Aliso_Viejo,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/4/48/Seal_of_Aliso_Viejo%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Aliso Viejo",
+    "cityPage": "https://en.wikipedia.org/wiki/Aliso%20Viejo%2C%20California"
+  },
+  "anaheim": {
+    "src": "/seals/anaheim.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Anaheim,_California.svg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Seal_of_Anaheim%2C_California.svg",
+    "license": "Public domain",
+    "attribution": "The original uploader was Kalel2007 at Wikipedia.",
+    "cityPage": "https://en.wikipedia.org/wiki/Anaheim%2C%20California"
+  },
+  "brea": {
+    "src": "/seals/brea.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Brea,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Seal_of_Brea%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Brea",
+    "cityPage": "https://en.wikipedia.org/wiki/Brea%2C%20California"
+  },
+  "buena-park": {
+    "src": "/seals/buena-park.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:City_seal_of_the_city_of_Buena_Park,_California.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/7/73/City_seal_of_the_city_of_Buena_Park%2C_California.jpg",
+    "license": "Public domain",
+    "attribution": "City of Buena Park",
+    "cityPage": "https://en.wikipedia.org/wiki/Buena%20Park%2C%20California"
+  },
+  "costa-mesa": {
+    "src": "/seals/costa-mesa.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Costa_Mesa,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/3/35/Seal_of_Costa_Mesa%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Costa Mesa, California",
+    "cityPage": "https://en.wikipedia.org/wiki/Costa%20Mesa%2C%20California"
+  },
+  "cypress": {
+    "src": "/seals/cypress.gif",
+    "source": "https://commons.wikimedia.org/wiki/File:Cypress,_California_city_seal.gif",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/57/Cypress%2C_California_city_seal.gif",
+    "license": "Public domain",
+    "attribution": "City of Cypress",
+    "cityPage": "https://en.wikipedia.org/wiki/Cypress%2C%20California"
+  },
+  "dana-point": {
+    "src": "/seals/dana-point.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Dana_Point,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/7/72/Seal_of_Dana_Point%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Dana Point, California",
+    "cityPage": "https://en.wikipedia.org/wiki/Dana%20Point%2C%20California"
+  },
+  "fountain-valley": {
+    "src": "/seals/fountain-valley.gif",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Fountain_Valley,_California.gif",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/54/Seal_of_Fountain_Valley%2C_California.gif",
+    "license": "Public domain",
+    "attribution": "City of Fountain Valley, California",
+    "cityPage": "https://en.wikipedia.org/wiki/Fountain%20Valley%2C%20California"
+  },
+  "fullerton": {
+    "src": "/seals/fullerton.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Fullerton,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/8/82/Seal_of_Fullerton%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Fullerton",
+    "cityPage": "https://en.wikipedia.org/wiki/Fullerton%2C%20California"
+  },
+  "garden-grove": {
+    "src": "/seals/garden-grove.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Garden_Grove,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Seal_of_Garden_Grove%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Garden Grove",
+    "cityPage": "https://en.wikipedia.org/wiki/Garden%20Grove%2C%20California"
+  },
+  "huntington-beach": {
+    "src": "/seals/huntington-beach.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Huntington_Beach,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Seal_of_Huntington_Beach%2C_California.png",
+    "license": "Public domain",
+    "attribution": "FOX 52",
+    "cityPage": "https://en.wikipedia.org/wiki/Huntington%20Beach%2C%20California"
+  },
+  "irvine": {
+    "src": "/seals/irvine.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Irvine,_California.svg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Seal_of_Irvine%2C_California.svg",
+    "license": "Public domain",
+    "attribution": "Original: City of Irvine Vectorization: Timothy Gu",
+    "cityPage": "https://en.wikipedia.org/wiki/Irvine%2C%20California"
+  },
+  "la-habra": {
+    "src": "/seals/la-habra.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_La_Habra,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/7/78/Seal_of_La_Habra%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of La Habra",
+    "cityPage": "https://en.wikipedia.org/wiki/La%20Habra%2C%20California"
+  },
+  "la-palma": {
+    "src": "/seals/la-palma.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_La_Palma,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Seal_of_La_Palma%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of La Palma",
+    "cityPage": "https://en.wikipedia.org/wiki/La%20Palma%2C%20California"
+  },
+  "laguna-beach": {
+    "src": "/seals/laguna-beach.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Laguna_Beach,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/00/Seal_of_Laguna_Beach%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Laguna Beach",
+    "cityPage": "https://en.wikipedia.org/wiki/Laguna%20Beach%2C%20California"
+  },
+  "laguna-hills": {
+    "src": "/seals/laguna-hills.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Laguna_Hills,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/03/Seal_of_Laguna_Hills%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Laguna Hills",
+    "cityPage": "https://en.wikipedia.org/wiki/Laguna%20Hills%2C%20California"
+  },
+  "laguna-niguel": {
+    "src": "/seals/laguna-niguel.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Laguna_Niguel,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/4/47/Seal_of_Laguna_Niguel%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Laguna Niguel, California",
+    "cityPage": "https://en.wikipedia.org/wiki/Laguna%20Niguel%2C%20California"
+  },
+  "laguna-woods": {
+    "src": "/seals/laguna-woods.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:City-LagunaWoods-Logo.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/a/a9/City-LagunaWoods-Logo.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "EthandlpTS",
+    "cityPage": "https://en.wikipedia.org/wiki/Laguna%20Woods%2C%20California"
+  },
+  "lake-forest": {
+    "src": "/seals/lake-forest.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Lake_Forest,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Seal_of_Lake_Forest%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Lake Forest, California, United States",
+    "cityPage": "https://en.wikipedia.org/wiki/Lake%20Forest%2C%20California"
+  },
+  "los-alamitos": {
+    "src": "/seals/los-alamitos.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Los_Alamitos,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/8/85/Seal_of_Los_Alamitos%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Los Alamitos, California",
+    "cityPage": "https://en.wikipedia.org/wiki/Los%20Alamitos%2C%20California"
+  },
+  "mission-viejo": {
+    "src": "/seals/mission-viejo.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Mission_Viejo,_California.svg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Seal_of_Mission_Viejo%2C_California.svg",
+    "license": "Public domain",
+    "attribution": "City of Mission Viejo",
+    "cityPage": "https://en.wikipedia.org/wiki/Mission%20Viejo%2C%20California"
+  },
+  "newport-beach": {
+    "src": "/seals/newport-beach.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Newport_Beach,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Seal_of_Newport_Beach%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Newport Beach",
+    "cityPage": "https://en.wikipedia.org/wiki/Newport%20Beach%2C%20California"
+  },
+  "orange": {
+    "src": "/seals/orange.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Orange,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/03/Seal_of_Orange%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Orange",
+    "cityPage": "https://en.wikipedia.org/wiki/Orange%2C%20California"
+  },
+  "placentia": {
+    "src": "/seals/placentia.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Placentia,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Seal_of_Placentia%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Placentia.",
+    "cityPage": "https://en.wikipedia.org/wiki/Placentia%2C%20California"
+  },
+  "rancho-santa-margarita": {
+    "src": "/seals/rancho-santa-margarita.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:RanchoLogo.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/5d/RanchoLogo.jpg",
+    "license": "Public domain",
+    "attribution": "City of Rancho Santa Margarita",
+    "cityPage": "https://en.wikipedia.org/wiki/Rancho%20Santa%20Margarita%2C%20California"
+  },
+  "san-clemente": {
+    "src": "/seals/san-clemente.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_San_Clemente,_California.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Seal_of_San_Clemente%2C_California.jpg",
+    "license": "Public domain",
+    "attribution": "City of San Clemente",
+    "cityPage": "https://en.wikipedia.org/wiki/San%20Clemente%2C%20California"
+  },
+  "san-juan-capistrano": {
+    "src": "/seals/san-juan-capistrano.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_San_Juan_Capistrano,_California.svg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Seal_of_San_Juan_Capistrano%2C_California.svg",
+    "license": "Public domain",
+    "attribution": "Khauptli1",
+    "cityPage": "https://en.wikipedia.org/wiki/San%20Juan%20Capistrano%2C%20California"
+  },
+  "santa-ana": {
+    "src": "/seals/santa-ana.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Santa_Ana,_California.svg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/57/Seal_of_Santa_Ana%2C_California.svg",
+    "license": "Public domain",
+    "attribution": "The original uploader was Connormah at Wikipedia.",
+    "cityPage": "https://en.wikipedia.org/wiki/Santa%20Ana%2C%20California"
+  },
+  "seal-beach": {
+    "src": "/seals/seal-beach.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Seal_Beach,_California.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Seal_of_Seal_Beach%2C_California.jpg",
+    "license": "Public domain",
+    "attribution": "City of Seal Beach",
+    "cityPage": "https://en.wikipedia.org/wiki/Seal%20Beach%2C%20California"
+  },
+  "stanton": {
+    "src": "/seals/stanton.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:StantonCitySeal2024.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/3/33/StantonCitySeal2024.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "City of Stanton",
+    "cityPage": "https://en.wikipedia.org/wiki/Stanton%2C%20California"
+  },
+  "tustin": {
+    "src": "/seals/tustin.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Tustin,_California.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Seal_of_Tustin%2C_California.jpg",
+    "license": "Public domain",
+    "attribution": "City of Tustin",
+    "cityPage": "https://en.wikipedia.org/wiki/Tustin%2C%20California"
+  },
+  "villa-park": {
+    "src": "/seals/villa-park.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Villa_Park,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Seal_of_Villa_Park%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Villa Park",
+    "cityPage": "https://en.wikipedia.org/wiki/Villa%20Park%2C%20California"
+  },
+  "westminster": {
+    "src": "/seals/westminster.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Westminster_CA_seal.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Westminster_CA_seal.jpg",
+    "license": "Public domain",
+    "attribution": "City of Westminster",
+    "cityPage": "https://en.wikipedia.org/wiki/Westminster%2C%20California"
+  },
+  "yorba-linda": {
+    "src": "/seals/yorba-linda.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Seal_of_Yorba_Linda,_California.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Seal_of_Yorba_Linda%2C_California.png",
+    "license": "Public domain",
+    "attribution": "City of Yorba Linda",
+    "cityPage": "https://en.wikipedia.org/wiki/Yorba%20Linda%2C%20California"
+  }
+}

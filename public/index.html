@@ -107,6 +107,12 @@
   #f { position:fixed; left:0; right:0; bottom:0; padding:12px 16px calc(12px + var(--sab)); background:linear-gradient(transparent, var(--bg) 40%); z-index:5 } /* composer only: a bare `form` selector also pinned the menu's watch form to the viewport */
   .row { max-width:720px; margin:0 auto; display:flex; gap:4px; align-items:flex-end; background:var(--pill); border:1px solid var(--line); border-radius:26px; padding:6px 6px 6px 18px; transition:border-color .12s }
   .row:focus-within { border-color:#4a515b }
+  .city-seal { width:42px; height:42px; margin:0 10px 1px -8px; flex:none; display:grid; place-items:center; border-radius:50%; background:var(--bg); color:var(--muted); text-decoration:none; overflow:hidden }
+  .city-seal[hidden] { display:none }
+  .city-seal img { width:36px; height:36px; object-fit:contain }
+  .city-seal span { font-size:12px; font-weight:600 }
+  .city-seal:focus-visible { outline:2px solid var(--blue); outline-offset:3px }
+  .row textarea { min-width:0 }
   textarea { flex:1; resize:none; border:0; background:transparent; color:var(--ink); font:inherit; font-size:16px; padding:10px 0; max-height:160px; outline:none; line-height:1.4 } textarea::placeholder { color:#7d848d }
   .ib { width:40px; height:40px; border-radius:50%; border:0; display:grid; place-items:center; cursor:pointer; flex:none; background:transparent; color:var(--muted) } .ib:hover { color:var(--ink) }
   .ib svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round }
@@ -183,6 +189,7 @@
 
 <form id="f">
   <div class="row">
+    <a id="citySeal" class="city-seal" hidden target="_blank" rel="noopener noreferrer"><span id="citySealFallback" aria-hidden="true"></span><img id="citySealImage" hidden alt=""></a>
     <textarea id="in" rows="1" placeholder="Ask anything..." autocomplete="off" required></textarea>
     <button type="button" class="ib" id="mic" aria-label="Voice chat" title="Voice chat"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"/></svg></button>
     <button type="submit" class="ib" id="send" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
@@ -264,6 +271,29 @@ function answerText(bot) { const c = bot.cloneNode(true); c.querySelector(".acts
 // Official department badges: each source is mapped to the city department that published it and that department's own icon.
 let CITY_ICON = "/icon.svg", CITY_NAME = "Local government"; // replaced by the server's `jurisdiction` event once the conversation names a city or county
 let JUR = null;
+let citySeals = {};
+fetch('/seals/manifest.json').then(r => r.ok ? r.json() : {}).then(data => { citySeals = data; renderCitySeal(); }).catch(() => {});
+function renderCitySeal() {
+  const badge = $('citySeal'), image = $('citySealImage'), fallback = $('citySealFallback');
+  const j = JUR;
+  badge.hidden = !j;
+  image.onload = image.onerror = null;
+  image.hidden = true;
+  image.removeAttribute('src');
+  fallback.hidden = false;
+  if (!j) return;
+  const name = j.short || j.name;
+  badge.href = /^https:\/\//.test(j.site || '') ? j.site : '#';
+  badge.title = `${j.name} — official website`;
+  badge.setAttribute('aria-label', `Active jurisdiction: ${j.name}. Open official website`);
+  fallback.textContent = name.split(/\s+/).map(s => s[0]).slice(0, 3).join('');
+  const seal = citySeals[j.id];
+  if (!seal?.src?.startsWith('/seals/')) return;
+  image.alt = `${j.name} seal`;
+  image.onload = () => { image.hidden = false; fallback.hidden = true; };
+  image.onerror = () => { image.hidden = true; fallback.hidden = false; };
+  image.src = seal.src;
+}
 // Device location → the server picks the nearest covered city/county when the resident hasn't named one. Asked once, cached 10 min, silently skipped if denied.
 let geo = null, jurId = null;
 try { geo = JSON.parse(localStorage.getItem("sm_geo")); jurId = localStorage.getItem("sm_jur") || null; } catch {}
@@ -284,6 +314,7 @@ async function locate() {
 locate();
 function setJurisdiction(j) {
   JUR = j; CITY_ICON = j?.icon || "/icon.svg"; CITY_NAME = j?.name || "Local government";
+  renderCitySeal();
   $("fine").textContent = j ? `Not for emergencies. Call 911. ${j.name}: ${j.phone || j.contact || j.site}.` : "Not for emergencies. Call 911. Non-emergency: your city's 311 or main line.";
   document.title = j ? `GovAI · ${j.short}` : "GovAI";
 }

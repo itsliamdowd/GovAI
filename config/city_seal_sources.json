@@ -1,0 +1,11 @@
+{
+  "paramount": { "source": "https://www.laalmanac.com/cities/ci60.php", "image": "https://www.laalmanac.com/images/seal_Paramount.jpg" },
+  "san-dimas": { "source": "https://www.laalmanac.com/cities/ci69.php", "image": "https://www.laalmanac.com/images/seal_San_Dimas.jpg" },
+  "agoura-hills": { "source": "https://www.laalmanac.com/cities/ci01.php", "image": "https://www.laalmanac.com/images/seal_Agoura_Hills.jpg" },
+  "walnut": { "source": "https://www.laalmanac.com/cities/ci84.php", "image": "https://www.laalmanac.com/images/seal_Walnut.jpg" },
+  "westlake-village": { "source": "https://www.laalmanac.com/cities/ci87.php", "image": "https://www.laalmanac.com/images/seal_Westlake_Village.jpg" },
+  "hidden-hills": { "source": "https://www.laalmanac.com/cities/ci34.php", "image": "https://www.laalmanac.com/images/seal_Hidden_Hills.jpg" },
+  "irwindale": { "source": "https://www.laalmanac.com/cities/ci38.php", "image": "https://www.laalmanac.com/images/seal_Irwindale.jpg" },
+  "la-mesa": { "source": "https://www.crwflags.com/FoTW/flags/us-calme.html", "image": "https://www.crwflags.com/FoTW/images/u/us-calme).gif" },
+  "lemon-grove": { "source": "https://www.lemongrove.ca.gov/our-government/city-clerk-s-office/", "image": "https://www.lemongrove.ca.gov/media/cpwandkn/lg-logo.jpg" }
+}
