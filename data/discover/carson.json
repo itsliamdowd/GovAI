@@ -1,0 +1,41 @@
+{
+ "id": "carson",
+ "probed_at": "2026-10-17T20:50:46.401Z",
+ "site": {
+  "url": "https://carsonca.gov/index",
+  "title": "City of Carson, CA"
+ },
+ "legistar": {
+  "client": "carson",
+  "bodies": [
+   "City Council",
+   "Successor Agency",
+   "Housing Authority"
+  ]
+ },
+ "granicus": {
+  "host": "carson.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "City of Carson: All City of Carson Content (Agenda Feed)"
+   },
+   {
+    "view_id": 3,
+    "title": "City of Carson: iFrame View Template (Agenda Feed)"
+   },
+   {
+    "view_id": 4,
+    "title": "City of Carson: test new view (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UC3ethohaz3fuapOdycVAmWg",
+   "channel": "City of Carson, California - Official YouTube Page",
+   "example": "City of Carson CA. Council Meeting (Tuesday 7/21/2026 5PM)"
+  }
+ ]
+}

@@ -43,7 +43,7 @@ export async function politeFetch(url, { timeout = 45000, headers = {}, retries 
 
 export const html2text = (h) => String(h).replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<!--[\s\S]*?-->/g, "")
   .replace(/<\/(p|div|li|tr|h\d|section|article|table|ul|ol)>/gi, "\n").replace(/<br\s*\/?>/gi, "\n").replace(/<\/t[dh]>/gi, " \t").replace(/<[^>]+>/g, " ")
-  .replace(/&nbsp;|&#xa0;|&#160;/g, " ").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;|&apos;|&#8217;/g, "'").replace(/&#8220;|&#8221;/g, '"').replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n))
+  .replace(/&nbsp;|&#xa0;|&#160;/g, " ").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;?|&apos;|&#8217;|&[lr]squo;/g, "'").replace(/&#8220;|&#8221;|&[lr]dquo;/g, '"').replace(/&ndash;/g, "–").replace(/&mdash;/g, "—").replace(/&sect;/g, "§").replace(/&hellip;/g, "...").replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n))
   .replace(/[ \t]+/g, " ").replace(/\s*\n\s*/g, "\n").trim();
 
 // ponytail: shells out to poppler's pdftotext (brew install poppler). Missing binary -> throws, caller logs and moves on.
@@ -75,9 +75,10 @@ export function toYmd(s) {
   let m = s.match(/(\d{4})-(\d{2})-(\d{2})/); if (m) return `${m[1]}-${m[2]}-${m[3]}`;
   m = s.match(/([A-Za-z]{3,9})\.?\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(\d{4})/);
   if (m) { const mo = MONTHS[m[1].slice(0, 4).toLowerCase()] ?? MONTHS[m[1].slice(0, 3).toLowerCase()]; if (mo) return `${m[3]}-${String(mo).padStart(2, "0")}-${String(+m[2]).padStart(2, "0")}`; }
-  m = s.match(/(\d{1,2})\/(\d{1,2})\/(\d{2,4})/); if (m) { let y = +m[3]; if (y < 100) y += y < 70 ? 2000 : 1900; return `${y}-${String(+m[1]).padStart(2, "0")}-${String(+m[2]).padStart(2, "0")}`; }
-  m = s.match(/_(\d{2})(\d{2})(\d{4})-/); if (m) return `${m[3]}-${m[1]}-${m[2]}`; // CivicPlus _MMDDYYYY-ID
-  m = s.match(/(\d{1,2})-(\d{1,2})-(\d{4})/); if (m) return `${m[3]}-${String(+m[1]).padStart(2, "0")}-${String(+m[2]).padStart(2, "0")}`;
+  // digit guards: "uploads/2026/07/09292022-minutes.pdf" must not read as 26/07/0929
+  m = s.match(/(?<!\d)(\d{1,2})\/(\d{1,2})\/(\d{2,4})(?!\d)/); if (m) { let y = +m[3]; if (y < 100) y += y < 70 ? 2000 : 1900; return `${y}-${String(+m[1]).padStart(2, "0")}-${String(+m[2]).padStart(2, "0")}`; }
+  m = s.match(/(?<!\d)(\d{2})(\d{2})(\d{4})(?!\d)/); if (m && +m[1] <= 12 && +m[2] <= 31) return `${m[3]}-${m[1]}-${m[2]}`; // MMDDYYYY (CivicPlus _MMDDYYYY-ID, WordPress uploads)
+  m = s.match(/(?<!\d)(\d{1,2})-(\d{1,2})-(\d{4})(?!\d)/); if (m) return `${m[3]}-${String(+m[1]).padStart(2, "0")}-${String(+m[2]).padStart(2, "0")}`;
   return null;
 }
 export const safeId = (s) => String(s).replace(/[^A-Za-z0-9._-]+/g, "_").slice(0, 120);

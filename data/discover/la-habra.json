@@ -1,0 +1,31 @@
+{
+ "id": "la-habra",
+ "probed_at": "2026-10-17T21:10:27.067Z",
+ "site": {
+  "url": "https://www.lahabraca.gov/",
+  "title": "La Habra, CA - Official Website | Official Website"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "lahabra.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "City of La Habra: New View (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCxMF9QSjVT1H7Wc4Fep2vXA",
+   "channel": "City of La Habra Heights",
+   "example": "La Habra Heights City Council  Meeting - May 11, 2026"
+  },
+  {
+   "id": "UCP9PHCeolr3JEGq_DP3Ewmw",
+   "channel": "Delwin Lampkin",
+   "example": "La Habra City Council Meeting Tutorial"
+  }
+ ]
+}

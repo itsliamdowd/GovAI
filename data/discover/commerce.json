@@ -1,0 +1,46 @@
+{
+ "id": "commerce",
+ "probed_at": "2026-10-17T21:12:04.865Z",
+ "site": null,
+ "legistar": {
+  "client": "commerce",
+  "bodies": [
+   "City Council",
+   "Housing Authority",
+   "Derby Review Board"
+  ]
+ },
+ "granicus": {
+  "host": "commerce.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "Commerce City, CO: Old Non-MediaPortal ViewPage (Agenda Feed)"
+   },
+   {
+    "view_id": 3,
+    "title": "Commerce City, CO: Video Center (Agenda Feed)"
+   },
+   {
+    "view_id": 4,
+    "title": "Commerce City, CO: Testing ViewPage (Agenda Feed)"
+   },
+   {
+    "view_id": 6,
+    "title": "Commerce City, CO: Test Page (Agenda Feed)"
+   },
+   {
+    "view_id": 7,
+    "title": "Commerce City, CO: Employee Training Hub (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCRndyCJZcg3Eb8UzYTlgxEw",
+   "channel": "Commerce City, CO",
+   "example": "City Council Regular Meeting - October 5, 2026"
+  }
+ ]
+}

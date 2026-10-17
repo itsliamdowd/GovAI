@@ -9,7 +9,7 @@ import fs from "node:fs";
 import crypto from "node:crypto";
 import { politeFetch, html2text, absUrl, UA } from "./adapters/_http.js";
 
-const DROP = /\/(news|press|calendar|events?|event-|blog|gallery|photos?|videos?|archive|search|login|jobs?|careers|rfp|bids?|agendas?|minutes|category|tag|author|feed|directory|staff|sitemap|rss|share|print|translate|es|zh|ko|hy|tl|ru)(\/|$|\.)|\.(docx?|xlsx?|pptx?|jpe?g|png|gif|svg|mp4|mp3|zip|ics|xml|json|css|js)($|\?)|\?|#|\/es\/|lang=|\/wp-json\/|\/wp-content\/uploads\/.*\.(pdf)$/i;
+const DROP = /(?:^|\/)FAQ\.aspx$|\/(news|press|calendar|events?|event-|blog|gallery|photos?|videos?|archive|search|login|jobs?|careers|rfp|bids?|agendas?|minutes|category|tag|author|feed|directory|staff|sitemap|rss|share|print|translate|es|zh|ko|hy|tl|ru)(\/|$|\.)|\.(docx?|xlsx?|pptx?|jpe?g|png|gif|svg|mp4|mp3|zip|ics|xml|json|css|js)($|\?)|\?|#|\/es\/|lang=|\/wp-json\/|\/wp-content\/uploads\/.*\.(pdf)$/i;
 const BOOST = /permit|licen|fee|apply|application|how-?to|process|services?|trash|recycl|refuse|bulky|parking|animal|dog|business|rent|tenant|housing|311|contact|council|clerk|records|utility|water|sewer|street|sidewalk|tree|code-?enforcement|noise|short-?term|vending|film|event-?permit|block-?party|building|planning|zoning|adu|garage-?sale|alarm|fireworks|senior|library|park|pool|transit|bus|bike|ev-?charg|tax|budget|election|vote|emergency|evacuat|fire|police|faq/i;
 const EXPLAINER = [/\$\s?\d/, /\bfees?\b/i, /\bapply|application\b/i, /\bpermit|licen[cs]e\b/i, /\brequired|must\b/i, /\bdeadline|business days|calendar days\b/i, /\bsubmit\b/i, /\bhow to|step\b/i, /\brenew/i, /\(?\d{3}\)?[ .-]\d{3}[ .-]\d{4}/, /@[a-z0-9.-]+\.(gov|org|us|com)/i];
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -74,17 +74,29 @@ const explainerScore = (t) => EXPLAINER.reduce((n, re) => n + (re.test(t) ? 1 : 
 /** One page -> [{heading, text, url}] sections of <= 900 chars built from the main content area. */
 export function extractSections(html, url) {
   const title = (html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] ?? "").replace(/\s+/g, " ").split(/\s[|–-]\s/)[0].trim();
-  let main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1] ?? html.match(/<[^>]+role=["']main["'][^>]*>([\s\S]*?)<\/(div|section|article)>/i)?.[1]
-    ?? html.match(/<(?:div|section|article)[^>]+(?:id|class)=["'][^"']*(?:main-?content|page-?content|content-?main|\bcontent\b|article|widgetContent|fr-view|cpContent)[^"']*["'][^>]*>([\s\S]*?)<\/(?:div|section|article)>/i)?.[1] ?? html.match(/<body[^>]*>([\s\S]*?)<\/body>/i)?.[1] ?? html;
+  // Main region = from the main container's opening tag to the footer/end of body. Nested <div>s make "match to the
+  // first closing tag" useless (CivicPlus role="main" closes 40 divs later), so we slice by position instead.
+  const open = html.match(/<main\b[^>]*>|<[^>]+role=["']main["'][^>]*>|<(?:div|section|article)[^>]+(?:id|class)=["'][^"']*(?:main-?content|page-?content|content-?main|\bcontent\b|article|widgetContent|fr-view|cpContent)[^"']*["'][^>]*>/i);
+  let main = open ? html.slice(open.index + open[0].length) : (html.match(/<body[^>]*>([\s\S]*)<\/body>/i)?.[1] ?? html);
+  main = main.slice(0, main.search(/<\/main>|<footer\b|<[^>]+(?:id|class)=["'][^"']*footer[^"']*["']|<\/body>/i) >>> 0 || main.length);
   main = main.replace(/<(nav|header|footer|aside|form|script|style|noscript|iframe|svg|button|select)\b[\s\S]*?<\/\1>/gi, "").replace(/<[^>]+(aria-hidden=["']true["']|class=["'][^"']*(breadcrumb|share|sidebar|skip|menu|navbar|cookie|social|footer|header)[^"']*["'])[^>]*>[\s\S]*?<\/(div|ul|section|span)>/gi, "");
   const h1 = html2text(main.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1] ?? "") || title;
   const blocks = []; // [{level, heading}|{text}]
   const re = /<(h[1-3])\b[^>]*>([\s\S]*?)<\/\1>|<(p|li|td|th|dd|dt|blockquote)\b[^>]*>([\s\S]*?)<\/\3>/gi;
+  const seenLine = new Set(); // CivicPlus FAQ/accordion pages repeat category labels dozens of times
   for (const m of main.matchAll(re)) {
-    if (m[1]) { const t = html2text(m[2]); if (t && t.length < 160) blocks.push({ level: +m[1][1], heading: t }); }
-    else { const t = html2text(m[4]); if (t && t.length > 2 && !/<(p|li|td)\b/i.test(m[4])) blocks.push({ text: t }); }
+    if (m[1]) { const t = html2text(m[2]); if (t && t.length < 160) blocks.push({ level: +m[1][1], heading: t }); continue; }
+    if (/<(p|li|td)\b/i.test(m[4])) continue; // nested block: children match on their own
+    const t = html2text(m[4]).replace(/\s*\n\s*/g, " ").trim(), k = norm(t);
+    if (t.length < 25 && !/[.:$%]|\d/.test(t) || /^[a-z,.;:)]/.test(t) || seenLine.has(k)) continue; // link-list fragments, accordion tails, repeats
+    seenLine.add(k); blocks.push({ text: t });
   }
-  if (!blocks.some((b) => b.text)) { const t = html2text(main); if (t.length > 400) blocks.push(...t.split("\n").map((text) => ({ text }))); }
+  // Text in bare <div>/<span>s (CivicPlus fr-view widgets): fall back to the flattened main region when blocks caught little of it.
+  const got = blocks.reduce((n, b) => n + (b.text?.length ?? 0), 0), flat = html2text(main);
+  if (got < flat.length * 0.3 && flat.length > 400) {
+    blocks.length = 0; const seen2 = new Set();
+    for (const line of flat.split("\n")) { const t = line.trim(), k = norm(t); if (t.length >= 25 && !seen2.has(k)) { seen2.add(k); blocks.push({ text: t }); } }
+  }
   const sections = []; let heading = h1, cur = [];
   const flush = () => { const body = cur.join("\n").trim(); if (body.length >= 60) sections.push({ heading: heading.slice(0, 120), text: body, url }); cur = []; };
   for (const b of blocks) {

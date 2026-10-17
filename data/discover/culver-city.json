@@ -1,0 +1,42 @@
+{
+ "id": "culver-city",
+ "probed_at": "2026-10-17T20:56:59.621Z",
+ "site": {
+  "url": "https://www.culvercity.gov/Home",
+  "title": "Home - City of Culver City"
+ },
+ "legistar": {
+  "client": "culver-city",
+  "bodies": [
+   "City Council Meeting Agenda",
+   "DO NOT USE",
+   "PARKS, RECREATION AND COMMUNITY SERVICES COMMISSION"
+  ]
+ },
+ "granicus": {
+  "host": "culver-city.granicus.com",
+  "views": [
+   {
+    "view_id": 1,
+    "title": "Culver City, CA: New View (Agenda Feed)"
+   },
+   {
+    "view_id": 3,
+    "title": "Culver City, CA: Training View (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCJiFiwX9o1v7iEUqMwAMWFA",
+   "channel": "City of Culver City",
+   "example": "City of Culver City - City Council Meeting - 04/13/2026"
+  },
+  {
+   "id": "UCfH7AjL45Fl0hULse1mqqVA",
+   "channel": "Culver City Chamber",
+   "example": "Culver City Council Candidates Forum"
+  }
+ ]
+}

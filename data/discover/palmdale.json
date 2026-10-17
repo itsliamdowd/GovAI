@@ -1,0 +1,42 @@
+{
+ "id": "palmdale",
+ "probed_at": "2026-10-17T20:50:11.487Z",
+ "site": {
+  "url": "https://www.cityofpalmdaleca.gov/",
+  "title": "Palmdale, CA | Official Website"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "palmdale.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "City of Palmdale: City Council View (Agenda Feed)"
+   },
+   {
+    "view_id": 3,
+    "title": "City of Palmdale: Intranet View - All Content (Agenda Feed)"
+   },
+   {
+    "view_id": 4,
+    "title": "City of Palmdale: Planning Commission View (Agenda Feed)"
+   },
+   {
+    "view_id": 5,
+    "title": "City of Palmdale: Playhouse (Agenda Feed)"
+   },
+   {
+    "view_id": 7,
+    "title": "City of Palmdale: Media Clips for City Website (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCJHoqIwLNDlVFu7vZEJNkdA",
+   "channel": "City Of Palmdale",
+   "example": "City Council Meeting - September 1 2026"
+  }
+ ]
+}

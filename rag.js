@@ -26,7 +26,7 @@ async function loadCatalog(portal, refresh = false) {
   try {
     const cached = JSON.parse(fs.readFileSync(file, "utf8"));
     if (!refresh || Date.now() - cached.fetched_at < CATALOG_TTL_MS) return cached.datasets;
-  } catch { if (!refresh) throw new Error(`no ${file} — run \`node warm.js catalog\` to collect it`); }
+  } catch { if (!refresh) throw new Error(`no ${file} - run \`node warm.js catalog\` to collect it`); }
   const datasets = portal.type === "dcat" ? await dcatCatalog(portal) : await ckanCatalog(portal);
   fs.mkdirSync(dataDir(jurById(portal.jur)), { recursive: true });
   fs.writeFileSync(file, JSON.stringify({ fetched_at: Date.now(), datasets }, null, 1));
@@ -149,8 +149,12 @@ export async function buildIndex() {
     // general search: knowledge + datasets + GIS layers, plus up to 2 recent news hits so current events surface without a second call
     search(query, k = 6, jur = null) {
       return memo(`s|${jur}|${k}|${query}`, () => {
-        const jurs = scope(jur);
-        return [...store.search(query, { k, jurs, notKinds: ["council_meeting", "news"] }), ...store.search(query, { k: 2, jurs, kinds: ["news"], since: since(60) })];
+        const jurs = scope(jur), notKinds = ["council_meeting", "news"];
+        // the resident's own jurisdiction first, then at most 2 county/state hits: a county dataset about "council districts" must
+        // never push the city's own "when does the council meet" page out of the top 6 (evals/santa-monica.jsonl)
+        const own = jurs?.length > 1 ? store.search(query, { k, jurs: [jurs[0]], notKinds }) : [];
+        const rest = store.search(query, { k: own.length ? 2 : k, jurs: own.length ? jurs.slice(1) : jurs, notKinds });
+        return [...own, ...rest, ...store.search(query, { k: 2, jurs, kinds: ["news"], since: since(60) })];
       });
     },
     searchNews(query, k = 10, days = 0, jur = null) { return memo(`n|${jur}|${k}|${days}|${query}`, () => store.search(query, { k, jurs: scope(jur), kinds: ["news"], since: days ? since(days) : null })); },
@@ -163,8 +167,17 @@ export async function buildIndex() {
         return [...store.search(query, { ...base, k: half, notDoc: "transcript" }), ...store.search(query, { ...base, k: k - half, doc: "transcript" })];
       });
     },
-    addDocs(more) { // upsert by jur|url#part (store.js keyOf); returns how many keys were new. Edited chunks are rewritten in place.
-      const added = store.addDocs(more);
+    addDocs(more, attempt = 0) { // upsert by jur|url#part (store.js keyOf); returns how many keys were new. Edited chunks are rewritten in place.
+      let added = 0;
+      try { added = store.addDocs(more); }
+      catch (e) {
+        // warm.js / discover.js / crawl.js / a second server can hold the write lock past busy_timeout; never let that kill the
+        // server — the docs are still on disk, so log, retry in the background a few times, and move on. (Was a hard crash.)
+        if (!/locked|busy/i.test(e.message) || attempt >= 5) throw e;
+        console.error(`index busy (${more.length} docs); retry ${attempt + 1}/5 in 10s`);
+        setTimeout(() => { try { this.addDocs(more, attempt + 1); } catch (err) { console.error("index update dropped:", err.message); } }, 10000).unref();
+        return 0;
+      }
       if (store.dirty) { results.clear(); store.dirty = false; }
       return added;
     },

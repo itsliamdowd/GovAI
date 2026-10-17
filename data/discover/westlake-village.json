@@ -1,0 +1,44 @@
+{
+ "id": "westlake-village",
+ "probed_at": "2026-10-17T21:08:00.127Z",
+ "site": {
+  "url": "https://www.wlv.org/",
+  "title": "Westlake Village, CA - Official Website | Official Website"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "westlakevillage.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "City of Westlake Village: City Council View-OLD (Agenda Feed)"
+   },
+   {
+    "view_id": 6,
+    "title": "City of Westlake Village: In use (Agenda Feed)"
+   },
+   {
+    "view_id": 8,
+    "title": "City of Westlake Village: City Council View (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCCdUPHKpj05snnszr44KVZw",
+   "channel": "WestlakeRev",
+   "example": "Westlake Village City Council Candidates Forum"
+  },
+  {
+   "id": "UCOHIOF-rFAeLOnH0ri5F62g",
+   "channel": "Meghann Cuniff",
+   "example": "Resident Testifies About Intersection Safety Complaints To Westlake Village City Hall"
+  },
+  {
+   "id": "UCnj3G4Vi4Zq6OEjnFRHfAZA",
+   "channel": "Westlake Revelations",
+   "example": "Troop 485 Presentation to Westlake Village City Council"
+  }
+ ]
+}

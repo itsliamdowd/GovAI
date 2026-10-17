@@ -1,0 +1,27 @@
+{
+ "id": "downey",
+ "probed_at": "2026-10-17T20:50:11.607Z",
+ "site": null,
+ "legistar": null,
+ "granicus": {
+  "host": "downey.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "City of Downey: Streaming Media Archive (Agenda Feed)"
+   },
+   {
+    "view_id": 3,
+    "title": "City of Downey: NEW - iframe view (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCjWsukwVjG13PI3UugptpRg",
+   "channel": "City of Downey Council Meetings",
+   "example": "Downey City Council Meeting - 4/28/2026"
+  }
+ ]
+}

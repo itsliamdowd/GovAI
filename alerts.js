@@ -41,7 +41,7 @@ export async function createAlert(rag, { topic, address = "", email, name = "", 
   const baseline = await gatherEvidence(rag, [topic, address].filter(Boolean).join(" "), jur);
   alerts[id] = {
     confirmation_number: id, status: "watching", department: "Daily watch", topic, address, email, name, jur,
-    summary: `Watching: ${topic}${address ? ` (${address})` : ""} — daily check, email on change`,
+    summary: `Watching: ${topic}${address ? ` (${address})` : ""} - daily check, email on change`,
     next_steps: `Checked every morning. You'll get an email at ${email} only when something new turns up. Say "cancel ${id}" to stop.`,
     seen: baseline.map((i) => i.key), notified: [], submitted_at: new Date().toISOString(), last_checked: null,
   };

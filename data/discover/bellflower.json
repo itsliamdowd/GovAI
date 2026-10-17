@@ -1,0 +1,18 @@
+{
+ "id": "bellflower",
+ "probed_at": "2026-10-17T20:54:14.067Z",
+ "site": {
+  "url": "https://bellflower.ca.gov/",
+  "title": "Bellflower, CA"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCNt4BKguGJ_n8v8Vkb34XTw",
+   "channel": "CityOfBellflower",
+   "example": "Bellflower City Council Regular Meeting September 14, 2026"
+  }
+ ]
+}

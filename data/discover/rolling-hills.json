@@ -1,0 +1,26 @@
+{
+ "id": "rolling-hills",
+ "probed_at": "2026-10-17T21:06:18.837Z",
+ "site": {
+  "url": "https://www.rolling-hills.org/",
+  "title": "Rolling Hills, CA"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "rollinghills.granicus.com",
+  "views": [
+   {
+    "view_id": 1,
+    "title": "Rolling Hills, CA: Rolling Hills, CA (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UC3tMDkIN2V-EniiaihhOGHQ",
+   "channel": "City of Rolling Hills, CA",
+   "example": "City Council Meeting - September 28, 2026"
+  }
+ ]
+}

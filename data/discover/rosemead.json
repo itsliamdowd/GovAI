@@ -1,0 +1,53 @@
+{
+ "id": "rosemead",
+ "probed_at": "2026-10-17T20:55:44.828Z",
+ "site": {
+  "url": "https://rosemeadca.gov/",
+  "title": "Rosemead, CA"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "cityofrosemead.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "City of Rosemead, CA: Streaming Media Archive (Agenda Feed)"
+   },
+   {
+    "view_id": 3,
+    "title": "City of Rosemead, CA: I-frame View (Agenda Feed)"
+   },
+   {
+    "view_id": 4,
+    "title": "City of Rosemead, CA: Community Videos IFRAME (Agenda Feed)"
+   },
+   {
+    "view_id": 5,
+    "title": "City of Rosemead, CA: Training (Do Not Delete) (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UC0xiZ103lwEnctJqw3TYgTQ",
+   "channel": "Rosemead Tenants Union",
+   "example": "June 9, 2026 PublicComments"
+  },
+  {
+   "id": "UCsajdbzR5zpVfG0fLXqvP3g",
+   "channel": "WSGVR TV",
+   "example": "COVID-19: Rosemead City Updates & ADUs - July 23, 2020"
+  },
+  {
+   "id": "UClz8Xbl5kRrsrNikqRjyNhw",
+   "channel": "Roberto Fernandez",
+   "example": "Park Monterey residents at rosemead city hall june 9 2026 part 2"
+  },
+  {
+   "id": "UCHCm56W1FoM4UagRTzAFbjA",
+   "channel": "Whirl D Lee",
+   "example": "250909 Public Comments to Rosemead City Council"
+  }
+ ]
+}

@@ -70,3 +70,31 @@ export function suggestAddresses(query, limit = 8, jurId = null) {
   return out.map(strip);
 }
 const strip = ({ n, ...a }) => a;
+export const hasBook = (jurId) => books.has(jurId);
+
+// Jurisdictions without a collected address book: live, bounded Nominatim lookup instead, so a Pasadena form only ever
+// offers Pasadena addresses. ponytail: 1 req/s + 10-min cache; collect the county Address Points layer (node warm.js addresses) when a city needs offline/instant results.
+const liveCache = new Map(); let lastLive = 0;
+export async function liveAddresses(query, j, limit = 8) {
+  if (!j || query.trim().length < 3) return [];
+  const key = `${j.id}|${norm(query)}`;
+  const hit = liveCache.get(key); if (hit && Date.now() - hit.t < 600e3) return hit.v;
+  const wait = lastLive + 1100 - Date.now(); if (wait > 0) await new Promise((r) => setTimeout(r, wait)); lastLive = Date.now();
+  const [lat, lon] = j.center ?? [34.05, -118.25], r = j.kind === "county" ? 0.6 : 0.08;
+  const [x0, y0, x1, y1] = j.bbox ?? [lon - r, lat - r, lon + r, lat + r];
+  const params = new URLSearchParams({ q: `${query}, ${j.short}, CA`, format: "jsonv2", addressdetails: "1", limit: String(limit * 2), countrycodes: "us", dedupe: "1", viewbox: `${x0},${y1},${x1},${y0}`, bounded: "1" });
+  let hits = [];
+  try { const res = await fetch(`https://nominatim.openstreetmap.org/search?${params}`, { headers: { "User-Agent": "GovAI local-government assistant (address autocomplete)" }, signal: AbortSignal.timeout(9000) }); hits = res.ok ? await res.json() : []; } catch { hits = []; } // Nominatim answers in 1–9 s; the client's sequence guard drops stale results
+  const want = new Set([j.short, ...(j.aliases ?? [])].map((a) => a.toLowerCase()));
+  const seen = new Set(), v = [];
+  for (const h of hits) {
+    const a = h.address ?? {}; if (!a.house_number || !a.road) continue;
+    const city = a.city ?? a.town ?? a.village ?? a.municipality ?? a.county ?? "";
+    if (j.kind !== "county" && city && !want.has(city.toLowerCase())) continue; // inside the box but across the city line
+    const address = `${a.house_number} ${a.road}`; if (seen.has(address)) continue; seen.add(address);
+    v.push({ address, zip: a.postcode ?? "", city: city || j.short });
+    if (v.length >= limit) break;
+  }
+  liveCache.set(key, { t: Date.now(), v });
+  return v;
+}

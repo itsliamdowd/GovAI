@@ -1,0 +1,18 @@
+{
+ "id": "escondido",
+ "probed_at": "2026-10-17T21:08:31.573Z",
+ "site": {
+  "url": "https://www.escondido.gov/",
+  "title": "Escondido, CA | Official Website"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UC5Y9rYGmjQzXuZf95TJes0w",
+   "channel": "City of Escondido",
+   "example": "Escondido City Council Meeting - September 30, 2026"
+  }
+ ]
+}

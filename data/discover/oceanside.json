@@ -1,0 +1,27 @@
+{
+ "id": "oceanside",
+ "probed_at": "2026-10-17T21:10:18.736Z",
+ "site": null,
+ "legistar": null,
+ "granicus": {
+  "host": "oceanside.granicus.com",
+  "views": [
+   {
+    "view_id": 1,
+    "title": "Oceanside, CA: Oceanside CA View Page (Agenda Feed)"
+   },
+   {
+    "view_id": 2,
+    "title": "Oceanside, CA: Training View (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCJWgKHYqp2ov1yo-c5unwFA",
+   "channel": "KOCT Television - The Voice of North County",
+   "example": "Oceanside City Council Meeting: September 2, 2026"
+  }
+ ]
+}

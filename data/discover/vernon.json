@@ -1,0 +1,33 @@
+{
+ "id": "vernon",
+ "probed_at": "2026-10-17T21:08:22.643Z",
+ "site": null,
+ "legistar": null,
+ "granicus": {
+  "host": "cityofvernon.granicus.com",
+  "views": [
+   {
+    "view_id": 1,
+    "title": "City of Vernon, CA: City of Vernon, CA  (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCcdOYdk1MlAJxcvOBIlaOYA",
+   "channel": "City of Mount Vernon, Texas",
+   "example": "City Council Meeting, July 06, 2026"
+  },
+  {
+   "id": "UCQilkDtzhIQFu1Fx7iiOJMg",
+   "channel": "City of Vernon CA",
+   "example": "Regular City Council Meeting - August 17, 2021"
+  },
+  {
+   "id": "UCUob_hcQUmd4S93YkletdrA",
+   "channel": "City of Mount Vernon, WA - Government Television",
+   "example": "Mount Vernon City Council Meeting - August 11, 2021"
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+{
+ "id": "san-marino",
+ "probed_at": "2026-10-17T21:08:28.400Z",
+ "site": {
+  "url": "https://sanmarinoca.gov/",
+  "title": "City Of SanMarino"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCj9aPeP9kgQetiTh2JXgurQ",
+   "channel": "SMHS Titan Media",
+   "example": "San Marino City Council Voters' Forum"
+  },
+  {
+   "id": "UCGG3Yh9Yhr4ZtDxC8_IPC5Q",
+   "channel": "City of San Marino",
+   "example": "Regular City Council Meeting - December 9, 2020"
+  }
+ ]
+}

@@ -9,8 +9,11 @@ const text = (h) => h.replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&
 export function parseLinks(html, page, j) {
   const keep = new RegExp(j.council.link ?? "agenda|minutes|packet|summary", "i"), by = new Map();
   const since = j.council.since ? `${j.council.since}-01-01` : "0";
+  const base = html.match(/<base\s[^>]*href=["']([^"']+)/i)?.[1] ?? page.url; // Arcadia: <base href="https://www.arcadiaca.gov/"> + "Document Center/…" links
   for (const m of html.matchAll(/<a\b[^>]*href="([^"#]+)"[^>]*>([\s\S]*?)<\/a>/gi)) {
-    const url = absUrl(m[1], page.url), label = text(m[2]), blob = `${label} ${m[1]}`;
+    // classify by link text + file name only: a folder called "Agenda and Minutes" in the path must not turn every agenda into minutes
+    let file = m[1].split(/[?#]/)[0].split("/").pop(); try { file = decodeURIComponent(file); } catch {}
+    const url = absUrl(m[1], base), label = text(m[2]), blob = `${label} ${file}`;
     if (!url || !keep.test(blob)) continue;
     let date = toYmd(label); if (!date) { try { date = toYmd(decodeURIComponent(m[1])); } catch { date = null; } }
     if (!date || date < since) continue;

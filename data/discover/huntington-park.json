@@ -1,0 +1,50 @@
+{
+ "id": "huntington-park",
+ "probed_at": "2026-10-17T20:56:41.345Z",
+ "site": {
+  "url": "https://www.hpca.gov/",
+  "title": "The Official Site of Huntington Park, CA! | Official Website"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "huntingtonpark.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "The City of Huntington Park, CA: Open Platform View (Agenda Feed)"
+   },
+   {
+    "view_id": 3,
+    "title": "The City of Huntington Park, CA: Training Videos (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCWImSC9tkBLNRHzay5y_QGQ",
+   "channel": "WatchOurCity",
+   "example": "Huntington Park City Council Hears from The Editor of WatchOurCity.com"
+  },
+  {
+   "id": "UCSWoppsVL0TLxFQ2qP_DLqQ",
+   "channel": "NBCLA",
+   "example": "Corruption investigation at Huntington Park City Hall"
+  },
+  {
+   "id": "UCkH1uDkyuO9sVjSqdqBygOg",
+   "channel": "CBS LA",
+   "example": "Huntington Park mayor investigated in corruption probe speaks out during meeting"
+  },
+  {
+   "id": "UCKyHFNyJ3QV-1rjogCYHkRA",
+   "channel": "Knightscope, Inc.",
+   "example": "Huntington Park City Council Meeting - July 6, 2021"
+  },
+  {
+   "id": "UCmB3rWGIA_aR7UX9yGRexbQ",
+   "channel": "StreetShotLA",
+   "example": "Huntington Park Council Meeting New Mayor  3/17/25"
+  }
+ ]
+}

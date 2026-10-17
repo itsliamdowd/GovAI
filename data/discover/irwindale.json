@@ -1,0 +1,23 @@
+{
+ "id": "irwindale",
+ "probed_at": "2026-10-17T21:08:21.839Z",
+ "site": {
+  "url": "https://www.irwindaleca.gov/",
+  "title": "Irwindale, CA - Official Website | Official Website"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCkH1uDkyuO9sVjSqdqBygOg",
+   "channel": "CBS LA",
+   "example": "Irwindale City Council Expected To Officially Name Sriracha Factory A Public Nuisance"
+  },
+  {
+   "id": "UCDA1nn-cWnlv7VcrDvmhGdA",
+   "channel": "CT Insider",
+   "example": "About 60 protesters mainly Huy Fong employees outside the #irwindale city council meeting #sriracha"
+  }
+ ]
+}

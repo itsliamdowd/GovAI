@@ -1,0 +1,27 @@
+{
+ "id": "lynwood",
+ "probed_at": "2026-10-17T20:52:18.843Z",
+ "site": null,
+ "legistar": null,
+ "granicus": {
+  "host": "lynwood.granicus.com",
+  "views": [
+   {
+    "view_id": 1,
+    "title": "Lynwood CA: Default View (Agenda Feed)"
+   },
+   {
+    "view_id": 2,
+    "title": "Lynwood CA: Training (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCvKUHxi_hzytCWsen35RXiQ",
+   "channel": "City of Lynwood",
+   "example": "Lynwood City Council Continues to Move the Community Forward"
+  }
+ ]
+}

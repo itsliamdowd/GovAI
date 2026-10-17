@@ -1,0 +1,37 @@
+{
+ "id": "lancaster",
+ "probed_at": "2026-10-17T20:50:11.453Z",
+ "site": null,
+ "legistar": null,
+ "granicus": {
+  "host": "lancaster.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "City of Lancaster: New View (Agenda Feed)"
+   },
+   {
+    "view_id": 4,
+    "title": "City of Lancaster: Redesign View (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCTZlT_pCX2A_9q2MdbXL9Zw",
+   "channel": "City of Lancaster CA",
+   "example": "02-10-26 Lancaster City Council Meeting"
+  },
+  {
+   "id": "UCmhCIXa4G1txezCIW-8YmmA",
+   "channel": "CLN - Your Hometown Connection",
+   "example": "Lancaster City Council Meeting, Monday, May 18, 2026"
+  },
+  {
+   "id": "UCBuExvyMYDwZoQwbhldXwvg",
+   "channel": "City of Lancaster, PA",
+   "example": "City Council Meeting - October 13, 2026"
+  }
+ ]
+}

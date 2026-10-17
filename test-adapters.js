@@ -56,5 +56,5 @@ assert.equal(T.bodyOf("Budget and Finance Committee - October 14, 2026 (with cap
 assert.equal(T.bodyOf("Los Angeles City Council Meeting 10/14/26"), "Los Angeles City Council");
 assert.equal(T.bodyOf("City Council Meeting February 10, 2026"), "City Council");
 const tdocs = T.toDocs({ id: "abc", date: "2026-02-10", body: "Public Safety Committee", segments: [{ t: 0, text: "hello" }] }, 1500, { id: "los-angeles", council: { label: "City Council" } });
-assert.match(tdocs[0].title, /^Public Safety Committee 2026-02-10 — transcript/); assert.equal(tdocs[0].jur, "los-angeles");
+assert.match(tdocs[0].title, /^Public Safety Committee 2026-02-10 [—-] transcript/); assert.equal(tdocs[0].jur, "los-angeles");
 console.log("adapters ok");

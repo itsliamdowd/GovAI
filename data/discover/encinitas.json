@@ -1,0 +1,44 @@
+{
+ "id": "encinitas",
+ "probed_at": "2026-10-17T21:08:34.647Z",
+ "site": null,
+ "legistar": null,
+ "granicus": {
+  "host": "encinitas.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "City of Encinitas: City Council View (Agenda Feed)"
+   },
+   {
+    "view_id": 5,
+    "title": "City of Encinitas: Sectioned View (Agenda Feed)"
+   },
+   {
+    "view_id": 6,
+    "title": "City of Encinitas: Homepage Section View (Agenda Feed)"
+   },
+   {
+    "view_id": 7,
+    "title": "City of Encinitas: Default View (Agenda Feed)"
+   },
+   {
+    "view_id": 8,
+    "title": "City of Encinitas: Revised Mini Media Portal (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UC0Y0bsSxZ4kYXwV1zBaqbLQ",
+   "channel": "City of Encinitas",
+   "example": "Regular City Council Meeting Livestream 05/13/2026"
+  },
+  {
+   "id": "UCRmLhQzg5jYAOpNKVK5d8GA",
+   "channel": "LWVNCSD",
+   "example": "LWVNCSD Encinitas Mayor & City Council Districts 3 & 4 Candidate Forum | 2026 Election"
+  }
+ ]
+}

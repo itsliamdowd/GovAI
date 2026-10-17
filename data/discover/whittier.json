@@ -1,0 +1,20 @@
+{
+ "id": "whittier",
+ "probed_at": "2026-10-17T20:53:27.223Z",
+ "site": null,
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UC6seOK4_MZtAVNkhmy4X2dQ",
+   "channel": "City of Whittier",
+   "example": "Budget Study Session Recap - Special Meeting of the Whittier City Council"
+  },
+  {
+   "id": "UCBg7gv6xdpH-LfbwiDwgfHw",
+   "channel": "City of Whittier Alaska",
+   "example": "10.13.2026 Whittier City Council Special Meeting @ 7pm"
+  }
+ ]
+}

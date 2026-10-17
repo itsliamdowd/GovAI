@@ -1,0 +1,28 @@
+{
+ "id": "poway",
+ "probed_at": "2026-10-17T21:09:58.627Z",
+ "site": {
+  "url": "https://poway.org/",
+  "title": "Poway, CA - Official Website | Official Website"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCMscWako8oDvpdF4pppku-g",
+   "channel": "CBS 8 San Diego",
+   "example": "Poway City Council holds special meeting  to discuss vacant District 2 seat"
+  },
+  {
+   "id": "UCz8QsOYD8s3RcQ_-mAWbGBg",
+   "channel": "FOX 5 San Diego",
+   "example": "Poway City Council votes to ban AI data centers"
+  },
+  {
+   "id": "UCP9Zo2a0-bS9oPd_8tl92rQ",
+   "channel": "KPBS News ",
+   "example": "Poway City Council looks to fill newly vacant seat"
+  }
+ ]
+}

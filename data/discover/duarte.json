@@ -1,0 +1,30 @@
+{
+ "id": "duarte",
+ "probed_at": "2026-10-17T21:06:06.741Z",
+ "site": null,
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UC8eJLKjHNan8UTMM6xf0XIw",
+   "channel": "DCTV Duarte",
+   "example": "Duarte City Council Meeting Feb 8, 2022"
+  },
+  {
+   "id": "UC3bIJAEFDDT41mLkQxaS--g",
+   "channel": "City of Duarte",
+   "example": "City of Duarte FY 2020-21 Budget Workshop"
+  },
+  {
+   "id": "UCj8sTRdkmvfaeF-FkdbFlzQ",
+   "channel": "Duarte Unified School District - Media",
+   "example": "9/10/26  Regular Board Meeting - Duarte USD"
+  },
+  {
+   "id": "UCoAhEWspIEBbwVts4OtCheg",
+   "channel": "Duarte Chamber of Commerce",
+   "example": "2022 Duarte City Council Candidates Forum"
+  }
+ ]
+}

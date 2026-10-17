@@ -1,0 +1,26 @@
+{
+ "id": "south-gate",
+ "probed_at": "2026-10-17T20:50:49.228Z",
+ "site": {
+  "url": "https://www.cityofsouthgate.org/Home",
+  "title": "Home City of South Gate"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "cityofsouthgate.granicus.com",
+  "views": [
+   {
+    "view_id": 1,
+    "title": "South Gate, CA: Default View (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCaLGb6Z8TOuR2lzosAc2OpA",
+   "channel": "South Gate, CA",
+   "example": "South Gate City Council Meeting 8/25/26"
+  }
+ ]
+}

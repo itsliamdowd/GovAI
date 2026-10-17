@@ -1,0 +1,23 @@
+{
+ "id": "temple-city",
+ "probed_at": "2026-10-17T20:58:53.756Z",
+ "site": {
+  "url": "https://www.templecityca.gov/",
+  "title": "Temple City, CA - Official Website | Official Website"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCkvCs2ab8fk3QeYOHsKtNZg",
+   "channel": "City of Temple",
+   "example": "City of Temple - City Council Meeting | October 15, 2026"
+  },
+  {
+   "id": "UC6Q5uMs3Ec23LY93T91RCwQ",
+   "channel": "ConnectWithTC",
+   "example": "Temple City City Council October 20, 2026"
+  }
+ ]
+}

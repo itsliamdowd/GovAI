@@ -1,0 +1,23 @@
+{
+ "id": "pico-rivera",
+ "probed_at": "2026-10-17T20:54:11.061Z",
+ "site": {
+  "url": "https://www.pico-rivera.org/",
+  "title": "Welcome to the City of Pico Rivera"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UC0pHCL4z2dSoBjYMK_ZQeKw",
+   "channel": "City of Pico Rivera",
+   "example": "City of Pico Rivera Meeting of the City Council - December 13, 2022"
+  },
+  {
+   "id": "UCVxBA3Cbu3pm8w8gEIoMEog",
+   "channel": "ABC7",
+   "example": "Pico Rivera councilman blasted for anti-military comments | ABC7"
+  }
+ ]
+}

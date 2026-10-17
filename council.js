@@ -10,7 +10,7 @@ import { promisify } from "node:util";
 import { ckan, PORTALS } from "./rag.js";
 import { jurById, dataDir, SERVED } from "./jurisdictions.js";
 
-// Which jurisdiction's records: default Santa Monica (platform ckan-iqm2). Other platforms (legistar, granicus, ocboard, hyland) land in Phase B/C.
+// Which jurisdiction's records: default Santa Monica (platform ckan-iqm2). Other platforms resolve to ./adapters/<platform>.js (legistar, granicus, primegov, civicplus, pdflist, hyland, ocboard, ...).
 const SM = jurById("santa-monica");
 const dirFor = (j) => `${dataDir(j)}/council`;
 const limitFor = (j) => Number(process.env.COUNCIL_MEETINGS) || j.council?.limit || 200; // past meetings to ingest
@@ -53,11 +53,11 @@ async function legistarMeetings(j) {
   return (await r.json()).map(legistarEvent);
 }
 export const legistarEvent = (e) => ({ id: `legistar-${e.EventId}`, event_id: e.EventId, body: e.EventBodyName, date: e.EventDate.slice(0, 10), time: e.EventTime ?? "", canceled: /cancel/i.test(e.EventComment ?? ""), agenda_url: e.EventAgendaFile || e.EventInSiteURL || "", minutes_url: e.EventMinutesFile || "", site_url: e.EventInSiteURL || "" });
-/** Agenda items with their recorded actions ("ITEM 3 Title — Passed 4-1"): the decisions without reading the PDFs. */
+/** Agenda items with their recorded actions ("ITEM 3 Title - Passed 4-1"): the decisions without reading the PDFs. */
 async function legistarItemsText(j, event_id) {
   const r = await fetch(`https://webapi.legistar.com/v1/${j.council.client}/events/${event_id}/eventitems?AgendaNote=1&MinutesNote=1`, { headers: UA, signal: AbortSignal.timeout(60000) });
   if (!r.ok) return "";
-  return (await r.json()).filter((i) => i.EventItemTitle).map((i) => [i.EventItemAgendaNumber && `${i.EventItemAgendaNumber}.`, i.EventItemTitle, i.EventItemActionName && `— Action: ${i.EventItemActionName}`, i.EventItemPassedFlagName && `(${i.EventItemPassedFlagName})`, i.EventItemMover && `Moved by ${i.EventItemMover}`, i.EventItemTally && `Vote: ${i.EventItemTally}`, i.EventItemMinutesNote].filter(Boolean).join(" ")).join("\n\n");
+  return (await r.json()).filter((i) => i.EventItemTitle).map((i) => [i.EventItemAgendaNumber && `${i.EventItemAgendaNumber}.`, i.EventItemTitle, i.EventItemActionName && ` -  Action: ${i.EventItemActionName}`, i.EventItemPassedFlagName && `(${i.EventItemPassedFlagName})`, i.EventItemMover && `Moved by ${i.EventItemMover}`, i.EventItemTally && `Vote: ${i.EventItemTally}`, i.EventItemMinutesNote].filter(Boolean).join(" ")).join("\n\n");
 }
 // Platform adapters. Built-ins live here; any other platform resolves to ./adapters/<platform>.js exporting
 //   listMeetings(j) -> [{ id, date (YYYY-MM-DD), time, canceled, agenda_url, minutes_url, packet_url?, ...extra }]  (newest first)
@@ -78,9 +78,10 @@ async function ingestMeeting(m, log, j = SM) {
   const file = `${dirFor(j)}/${m.id}.json`;
   let cached = null;
   try { cached = JSON.parse(fs.readFileSync(file, "utf8")); } catch {}
-  // re-fetch only if minutes have appeared since we last looked
-  if (cached && (cached.minutes_text || !m.minutes_url)) return cached;
-  const rec = { ...m, agenda_text: cached?.agenda_text ?? "", minutes_text: "" };
+  // re-fetch only if minutes have appeared since we last looked, or a past fetch left the agenda empty (404, bot wall, bad base URL) — at most 3 tries
+  const tries = cached?.tries ?? 0, agendaMissing = m.agenda_url && !cached?.agenda_text && tries < 3;
+  if (cached && (cached.minutes_text || !m.minutes_url) && !agendaMissing) return cached;
+  const rec = { ...m, agenda_text: cached?.agenda_text ?? "", minutes_text: "", tries: tries + 1 };
   const custom = (await adapterFor(j)).meetingText;
   if (custom) { try { Object.assign(rec, await custom(m, j)); } catch (e) { log(`text ${m.date}: ${e.message}`); } fs.writeFileSync(file, JSON.stringify(rec)); return rec; }
   const isPdf = (u) => /\.pdf($|\?)|ViewReport\.ashx|legistar\.com\/View/i.test(u);
@@ -119,7 +120,7 @@ export function toDocs(rec, j = SM) {
     if (!text) continue;
     chunk(text).forEach((t, i) => docs.push({
       kind: "council_meeting", jur: j.id, meeting_date: rec.date, doc: type, part: i + 1,
-      title: `${label} ${rec.date} — ${type}`, url, text: t,
+      title: `${label} ${rec.date} - ${type}`, url, text: t,
       searchText: `${label.toLowerCase()} meeting ${rec.date} ${type} ${t}`,
     }));
   }

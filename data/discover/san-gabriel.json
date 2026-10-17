@@ -1,0 +1,18 @@
+{
+ "id": "san-gabriel",
+ "probed_at": "2026-10-17T21:01:05.925Z",
+ "site": {
+  "url": "https://www.sangabrielcity.com/",
+  "title": "San Gabriel, CA - Official Website | Official Website"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCniLDPXskawRaAntVyeaqLw",
+   "channel": "City of San Gabriel",
+   "example": "City Council Regular Meeting - August 18, 2026 - City of San Gabriel"
+  }
+ ]
+}

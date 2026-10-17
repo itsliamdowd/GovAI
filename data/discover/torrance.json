@@ -1,0 +1,30 @@
+{
+ "id": "torrance",
+ "probed_at": "2026-10-17T20:50:11.520Z",
+ "site": {
+  "url": "https://www.torranceca.gov/Home",
+  "title": "Home - City of Torrance"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "torrance.granicus.com",
+  "views": [
+   {
+    "view_id": 7,
+    "title": "City of Torrance: Torrance CitiCABLE (Agenda Feed)"
+   },
+   {
+    "view_id": 8,
+    "title": "City of Torrance: City Council View (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCNCEKEuWWc3gNCzAo3mMb7Q",
+   "channel": "City of Torrance, CA",
+   "example": "Torrance City Council Meeting October 6, 2026"
+  }
+ ]
+}

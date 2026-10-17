@@ -1,0 +1,32 @@
+{
+ "id": "san-marcos",
+ "probed_at": "2026-10-17T21:09:02.372Z",
+ "site": {
+  "url": "https://www.sanmarcosca.gov/Home",
+  "title": "Home | City of San Marcos, California"
+ },
+ "legistar": {
+  "client": "sanmarcos",
+  "bodies": [
+   "City Council",
+   "Planning Commission"
+  ]
+ },
+ "granicus": {
+  "host": "sanmarcos.granicus.com",
+  "views": [
+   {
+    "view_id": 3,
+    "title": "City of San Marcos: NEW San Marcos Web View (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UC95wmXIQpIibZWa1YMyy4tQ",
+   "channel": "City of San Marcos, California ",
+   "example": "City of San Marcos City Council Meeting | Tuesday, March 10, 2026"
+  }
+ ]
+}

@@ -119,7 +119,7 @@ export function toDocs(rec, size = 1500, j = SM) {
   const docs = [], label = rec.body || j.council?.label || "City Council"; let cur = "", start = null, part = 0;
   const flush = () => { if (cur.trim()) docs.push({
     kind: "council_meeting", jur: j.id, doc: "transcript", meeting_date: rec.date, part: ++part,
-    title: `${label} ${rec.date} — transcript @${hms(start)}`, url: `https://www.youtube.com/watch?v=${rec.id}&t=${start}s`,
+    title: `${label} ${rec.date} - transcript @${hms(start)}`, url: `https://www.youtube.com/watch?v=${rec.id}&t=${start}s`,
     text: cur.trim(), searchText: `${label.toLowerCase()} meeting ${rec.date} transcript ${cur}`,
   }); cur = ""; start = null; };
   for (const s of rec.segments) {

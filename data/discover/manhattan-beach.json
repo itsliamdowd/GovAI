@@ -1,0 +1,34 @@
+{
+ "id": "manhattan-beach",
+ "probed_at": "2026-10-17T21:00:31.741Z",
+ "site": null,
+ "legistar": {
+  "client": "manhattanbeach",
+  "bodies": [
+   "City Council Regular Meeting",
+   "Human Resources Department",
+   "City Clerk"
+  ]
+ },
+ "granicus": {
+  "host": "manhattanbeach.granicus.com",
+  "views": [
+   {
+    "view_id": 4,
+    "title": "City of Manhattan Beach: City Council (Agenda Feed)"
+   },
+   {
+    "view_id": 7,
+    "title": "City of Manhattan Beach: Planning Commission (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCJTGNACj7h8pYYb5tfi87Dg",
+   "channel": "City of Manhattan Beach",
+   "example": "Manhattan Beach City Council: Regular Meeting - June 16, 2026"
+  }
+ ]
+}

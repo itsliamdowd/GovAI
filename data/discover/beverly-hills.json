@@ -1,0 +1,50 @@
+{
+ "id": "beverly-hills",
+ "probed_at": "2026-10-17T21:03:59.504Z",
+ "site": {
+  "url": "https://www.beverlyhills.org/",
+  "title": "Beverly Hills, CA | Official Website"
+ },
+ "legistar": {
+  "client": "beverlyhills",
+  "bodies": [
+   "City Council Formal Meeting",
+   "City Council Study Session",
+   "Parking Authority"
+  ]
+ },
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCvXKgjqoopm4l8AcR9nj1uQ",
+   "channel": "Village of Beverly Hills",
+   "example": "Beverly Hills Council Meeting February 3, 2026"
+  },
+  {
+   "id": "UCUjgC7AP6rYimmpikxH5-cw",
+   "channel": "Beverly Hills Chamber of Commerce",
+   "example": "Special Government Affairs Committee Meeting Election Forum - 4/16"
+  },
+  {
+   "id": "UCzSRcnANzs5BourVavBoe9A",
+   "channel": "MrCheckpoint ",
+   "example": "I was arrested 5 days after making this public comment by Beverly Hills Police"
+  },
+  {
+   "id": "UCijQrEl1reP1K6-_ZA_8FSA",
+   "channel": "Beverly Hills",
+   "example": "Village of Beverly Hills Council Meeting 05/01/2018"
+  },
+  {
+   "id": "UCnOr0cM_6r1wQccOBmS7ylQ",
+   "channel": "hiimmikelee",
+   "example": "City Council Candidate Forum Presented by The Municipal League of Beverly Hills   April 30, 2026 240"
+  },
+  {
+   "id": "UCapyNowFZMnEnOfJ0P8c3DQ",
+   "channel": "thajigisup",
+   "example": "The Angriest Man in Beverly Hills"
+  }
+ ]
+}

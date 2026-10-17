@@ -1,0 +1,28 @@
+{
+ "id": "rolling-hills-estates",
+ "probed_at": "2026-10-17T21:03:55.368Z",
+ "site": null,
+ "legistar": {
+  "client": "rollinghillsestatesca",
+  "bodies": [
+   "City Council",
+   "Traffic and Safety Committee",
+   "Environmental Advisory Committee"
+  ]
+ },
+ "granicus": {
+  "host": "rollinghillsestatesca.granicus.com",
+  "views": [
+   {
+    "view_id": 1,
+    "title": "Rolling Hills Estates, CA: Default View (Agenda Feed)"
+   },
+   {
+    "view_id": 2,
+    "title": "Rolling Hills Estates, CA: Iframe View (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": null
+}

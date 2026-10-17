@@ -1,0 +1,18 @@
+{
+ "id": "glendora",
+ "probed_at": "2026-10-17T20:57:43.188Z",
+ "site": {
+  "url": "https://www.cityofglendora.gov/Home",
+  "title": "Home  | City of Glendora"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCQVXk5L__r9wqma0jlbox5A",
+   "channel": "City of Glendora",
+   "example": "City Council Meeting, 7/14/26"
+  }
+ ]
+}

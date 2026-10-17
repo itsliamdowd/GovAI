@@ -1,0 +1,40 @@
+{
+ "id": "pasadena",
+ "probed_at": "2026-10-17T20:50:11.567Z",
+ "site": {
+  "url": "https://www.cityofpasadena.net/",
+  "title": "City of Pasadena - California"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "pasadena.granicus.com",
+  "views": [
+   {
+    "view_id": 4,
+    "title": "City of Pasadena: Library Web Page (Agenda Feed)"
+   },
+   {
+    "view_id": 5,
+    "title": "City of Pasadena: City Events (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UChfkDrnz1Vc8FnzcXHTF8bQ",
+   "channel": "City of Pasadena TX Council Meetings",
+   "example": "Pasadena Council Meeting 09/15/2026"
+  },
+  {
+   "id": "UCYqcc4tBgjAjGcHpJ1kVrIQ",
+   "channel": "Pasadena Media",
+   "example": "Pasadena City Council Meeting: September 29, 2026"
+  },
+  {
+   "id": "UC514B1OlciNW3q7lZU94PiA",
+   "channel": "City of Pasadena",
+   "example": "Pasadena Channel Live Stream of City Council Meeting 10 6 2026"
+  }
+ ]
+}

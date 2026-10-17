@@ -40,9 +40,19 @@ export function speechText(text) {
     .replace(/\s+/g, " ").trim();
 }
 
-/** Text → WAV buffer (24 kHz mono). */
+/** Float32 samples → 16-bit PCM WAV. Kokoro's toWav() writes IEEE-float WAV, which Safari/iOS and some Chrome builds won't decode; PCM plays everywhere. */
+export function pcmWav(samples, rate) {
+  const n = samples.length, buf = Buffer.alloc(44 + n * 2);
+  buf.write("RIFF", 0); buf.writeUInt32LE(36 + n * 2, 4); buf.write("WAVE", 8); buf.write("fmt ", 12);
+  buf.writeUInt32LE(16, 16); buf.writeUInt16LE(1, 20); buf.writeUInt16LE(1, 22); buf.writeUInt32LE(rate, 24); buf.writeUInt32LE(rate * 2, 28); buf.writeUInt16LE(2, 32); buf.writeUInt16LE(16, 34);
+  buf.write("data", 36); buf.writeUInt32LE(n * 2, 40);
+  for (let i = 0; i < n; i++) { const v = Math.max(-1, Math.min(1, samples[i])); buf.writeInt16LE(v < 0 ? v * 32768 : v * 32767, 44 + i * 2); }
+  return buf;
+}
+
+/** Text → WAV buffer (24 kHz mono, 16-bit PCM). */
 export async function speakWav(text) {
   const tts = await loadTTS();
   const audio = await tts.generate(speechText(text).slice(0, 2000), { voice: VOICE, speed: Number(process.env.TTS_SPEED) || 1 });
-  return Buffer.from(audio.toWav());
+  return pcmWav(audio.audio, audio.sampling_rate);
 }

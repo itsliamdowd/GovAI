@@ -1,0 +1,36 @@
+{
+ "id": "walnut",
+ "probed_at": "2026-10-17T21:03:19.358Z",
+ "site": {
+  "url": "https://www.walnutca.gov/Home",
+  "title": "Home - City of Walnut California"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "cityofwalnut.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "City of Walnut: City of Walnut View Page (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCkH1uDkyuO9sVjSqdqBygOg",
+   "channel": "CBS LA",
+   "example": "19-year-old sworn into Walnut City Council, becomes one of youngest Asian American elected officials"
+  },
+  {
+   "id": "UCKpxTJSNMXesTPPBeEgUcUA",
+   "channel": "Walnut Dirty Politics",
+   "example": "Dirty Politics of the City of Walnut"
+  },
+  {
+   "id": "UCEo_595kfMy_S4cEQr3qQjQ",
+   "channel": "City of Walnut Creek",
+   "example": "Walnut Creek Planning/Design Review Commission: 10/22/26"
+  }
+ ]
+}

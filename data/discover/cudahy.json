@@ -1,0 +1,25 @@
+{
+ "id": "cudahy",
+ "probed_at": "2026-10-17T21:02:36.048Z",
+ "site": null,
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCHfF8wFnipMeDpJf8OmMxDg",
+   "channel": "FOX 11 Los Angeles",
+   "example": "'Sanctuary city' battle tensions run high at Cudahy city council meeting"
+  },
+  {
+   "id": "UCsFX8g1TOBQar5qQTZchvxw",
+   "channel": "Cudahy City Recordings",
+   "example": "2026-04-21 - Common council"
+  },
+  {
+   "id": "UCjfpIrbyc1hMT-CRZWbGF4g",
+   "channel": "Capital & Main",
+   "example": "City of Cudahy City Council Meeting 6/12/2017"
+  }
+ ]
+}

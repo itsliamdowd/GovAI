@@ -1,0 +1,33 @@
+{
+ "id": "arcadia",
+ "probed_at": "2026-10-17T20:53:30.751Z",
+ "site": {
+  "url": "https://www.arcadiaca.gov/",
+  "title": "Arcadia, CA"
+ },
+ "legistar": null,
+ "granicus": null,
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCk8usiTiut5Jibf1vIW8aWQ",
+   "channel": "Voice of Arcadia",
+   "example": "Highlights of Aug 19 Arcadia city council meeting "
+  },
+  {
+   "id": "UCkH1uDkyuO9sVjSqdqBygOg",
+   "channel": "CBS LA",
+   "example": "Arcadia City Council Votes To Bring Back Basketball Courts To Eisenhower Park"
+  },
+  {
+   "id": "UCm9QiBtUzAbF6mzcV2R58Lw",
+   "channel": "Grace Arabella Lee",
+   "example": "Arcadia City Council Meeting - June 2, 2026"
+  },
+  {
+   "id": "UCyYXqDYUHGAJkb3RAxdWOvA",
+   "channel": "Arcadia Chinese Association",
+   "example": "ACA Arcadia City Council Election Candidate Forum  District 2 & 3 Part 2"
+  }
+ ]
+}

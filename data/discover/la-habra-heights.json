@@ -1,0 +1,30 @@
+{
+ "id": "la-habra-heights",
+ "probed_at": "2026-10-17T21:04:22.552Z",
+ "site": {
+  "url": "https://www.lhhcity.org/",
+  "title": "La Habra Heights, CA | Official Website"
+ },
+ "legistar": null,
+ "granicus": {
+  "host": "la-habra-heights.granicus.com",
+  "views": [
+   {
+    "view_id": 2,
+    "title": "City of La Habra Heights, CA: City of La Habra Heights  (Agenda Feed)"
+   },
+   {
+    "view_id": 4,
+    "title": "City of La Habra Heights, CA: Template Designer view (Agenda Feed)"
+   }
+  ]
+ },
+ "hub": null,
+ "youtube": [
+  {
+   "id": "UCxMF9QSjVT1H7Wc4Fep2vXA",
+   "channel": "City of La Habra Heights",
+   "example": "La Habra Heights El Niño Workshop - October 3, 2026"
+  }
+ ]
+}
