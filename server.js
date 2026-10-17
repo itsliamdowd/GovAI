@@ -4,7 +4,7 @@ import path from "node:path";
 import crypto from "node:crypto";
 import Anthropic from "@anthropic-ai/sdk";
 import { buildIndex, queryDataset, PORTALS } from "./rag.js";
-import { JURS, SERVED, jurById, detect, contextFor } from "./jurisdictions.js";
+import { JURS, SERVED, jurById, detect, contextFor, countyOf, nearest } from "./jurisdictions.js";
 import { ingestCouncil, loadCouncilCache } from "./council.js";
 import { ingestTranscripts, loadTranscriptCache, clipWindow, citedMoments } from "./transcripts.js";
 import { createAlert, cancelAlert, runAlerts } from "./alerts.js";
@@ -108,7 +108,7 @@ Scope (hard rule)
 - In scope when the local link is real: county, state or federal programs as they apply in the active jurisdiction (county health permits for a restaurant there, transit stops in the city, state rent law as enforced locally), regional conditions that affect it (air quality, surf, traffic, outages), and neighboring-city facts needed to answer a question about it. Do not call any tools for out-of-scope requests.
 
 Style
-- Lead with the answer in one sentence, with the key number in it when there is one (bold it). Then only the supporting detail that changes what the resident does. Hard cap: about 80 words or 4 short sentences for a normal question, 120 only when they ask for detail or an application needs it. The direct answer is never what gets cut: a cost question always states the fee, a deadline question the date, even when a form card is open. Trim, don't pad: no background the resident didn't ask for, no exhaustive category lists (3 or 4 items at most, the ones that matter), no worked examples unless asked, and no closing offer of more help.
+- Lead with the answer in one sentence, with the key number in it when there is one (bold it). Then the detail the resident needs to act on. Length follows the question: a simple fact (a fee, an address, a date) is one to three sentences; a how-to, eligibility, process or "what do I need" question gets the full picture, steps in order, what to bring, deadlines, costs, exceptions and common gotchas, as far as the records support it (up to roughly 200 words). Never drop a requirement, deadline or fee to stay short, and never pad: every sentence should change what the resident does or expects. The direct answer is never what gets cut: a cost question always states the fee, a deadline question the date, a status question the status.
 - Numbers (fees, rates, counts, dates, hours): put them in ONE markdown table, label column first, amount column last, at most ~8 rows. Give every amount a unit in the table (flat, per hour, per sq ft, per year, per permit). Include only rows that apply to the question; summarise the rest as "other fees may apply" with one example.
 - If the data is incomplete or ambiguous, say so in one sentence and move on; don't speculate or list what you can't tell. End with at most one "confirm with …" line.
 - Sources are NEVER written in the reply text. The interface lists every dataset, page and record you used beneath the reply automatically. Do not write "Source:" lines, dataset names as attributions, URLs, footnotes or markdown links. The one exception is the timestamped YouTube link for a quoted council moment (above), which the app renders as a video clip.
@@ -315,7 +315,7 @@ export function checkStatus(id) { return loadApps()[id.trim().toUpperCase()] ?? 
 
 // Every tool runs for the session's active jurisdiction (ctx.jur = registry id or null); set_jurisdiction changes it.
 const councilStatus = (jur) => { const c = councilOf(jur); return c.ready ? `indexed ${c.ingested.length} meetings' agendas/minutes (${c.ingested.at(-1)?.date} to ${c.ingested[0]?.date}) and ${c.transcripts} transcripts` : `no council records indexed for ${jurById(jur)?.short ?? "this jurisdiction"} yet; use web_search on its site`; };
-const jurContext = (jur) => contextFor(jurById(jur), { catalogSummary: rag.catalogSummary(jur), councilStatus: councilStatus(jur) });
+const jurContext = (jur, via = "") => contextFor(jurById(jur), { catalogSummary: rag.catalogSummary(jur), councilStatus: councilStatus(jur), via });
 const runTool = {
   set_jurisdiction: async ({ jurisdiction }, ctx) => {
     const id = jurById(jurisdiction)?.id ?? detect(jurisdiction) ?? jurById(jurisdiction.toLowerCase().replace(/^(city|county) of /, "").replace(/\s+county$/, "-county").replace(/\s+/g, "-"))?.id;
@@ -384,11 +384,12 @@ const VOICE_RULE = `Voice mode (only when the resident's message starts with "[v
 
 const DEFAULT_JUR = process.env.DEFAULT_JUR || null; // set e.g. santa-monica for a single-city deployment; unset = detect from the conversation
 const sessionFor = (id) => { if (!sessions.has(id)) sessions.set(id, { messages: [], jur: DEFAULT_JUR }); return sessions.get(id); };
-async function chat(sessionId, userText, send, voice = false) {
+async function chat(sessionId, userText, send, voice = false, geo = null) {
   const session = sessionFor(sessionId), { messages } = session;
   const jurEvent = () => { const j = jurById(session.jur); send({ type: "jurisdiction", data: j ? { id: j.id, name: j.name, short: j.short, kind: j.kind, icon: j.icon, contact: j.contact?.line ?? "", site: j.site } : null }); };
-  const setJur = (id) => { if (id !== session.jur && jurById(id)) { session.jur = id; jurEvent(); } };
+  const setJur = (id, via = "message") => { if (id !== session.jur && jurById(id)) { session.jur = id; session.via = via; jurEvent(); } };
   const hit = detect(userText); if (hit) setJur(hit); // server-side alias/ZIP match; the model's set_jurisdiction covers the rest
+  if (!session.jur && geo) { const near = nearest(geo.lon, geo.lat); if (near) setJur(near.id, "location"); } // device location, only when nothing was named
   // Preserved thinking: a thinking block's signature is bound to the exact system prompt + tools + earlier messages it was produced
   // under. Anything that varies per request (voice on/off, the date) must not live in `system`, or the next turn 400s. So the voice
   // rule is always in the system prompt and the turn is tagged instead; the date is fixed per session. A jurisdiction switch is a real
@@ -406,7 +407,7 @@ async function chat(sessionId, userText, send, voice = false) {
       thinking: { type: "adaptive", display: "summarized", block_binding: { prefix_mismatch_behavior: "drop_block" } }, // summaries stream to the client; stale blocks are dropped, not fatal
       system: [
         { type: "text", text: SYSTEM, cache_control: { type: "ephemeral" } },
-        { type: "text", text: jurContext(session.jur), cache_control: { type: "ephemeral" } }, // identical for every session on the same jurisdiction → cached across users
+        { type: "text", text: jurContext(session.jur, session.via), cache_control: { type: "ephemeral" } }, // identical for every session on the same jurisdiction → cached across users
         { type: "text", text: `Today is ${session.today} (Pacific time).\n\n${VOICE_RULE}` }, // after the cache breakpoint; constant for the life of the session
       ],
       tools: toolsFor(jurById(session.jur)),
@@ -438,7 +439,7 @@ async function chat(sessionId, userText, send, voice = false) {
       return;
     }
 
-    const ctx = { get jur() { return session.jur; }, get J() { return jurById(session.jur) ?? SM; }, setJur };
+    const ctx = { get jur() { return session.jur; }, get J() { return jurById(session.jur) ?? SM; }, setJur: (id) => setJur(id, "tool") };
     const results = await Promise.all(toolUses.map(async (t) => {
       try {
         const out = await runTool[t.name](t.input, ctx);
@@ -466,16 +467,17 @@ const server = http.createServer(async (req, res) => {
   if (req.method === "POST" && req.url === "/chat") {
     let body = "";
     for await (const chunk of req) body += chunk;
-    let sessionId, message, voice;
+    let sessionId, message, voice, geo;
     try {
-      ({ sessionId, message, voice } = JSON.parse(body));
+      ({ sessionId, message, voice, geo } = JSON.parse(body));
+      geo = geo && Number.isFinite(+geo.lat) && Number.isFinite(+geo.lon) && +geo.lat > 32 && +geo.lat < 42.1 && +geo.lon > -124.6 && +geo.lon < -114 ? { lat: +geo.lat, lon: +geo.lon } : null; // California only; anything else is ignored
       if (typeof message !== "string" || !message.trim() || message.length > 8000) throw new Error("bad message");
       if (typeof sessionId !== "string" || !/^[\w-]{1,64}$/.test(sessionId)) throw new Error("bad session");
     } catch { res.writeHead(400).end("bad request"); return; }
     res.writeHead(200, { "Content-Type": "text/event-stream", "Cache-Control": "no-cache", Connection: "keep-alive" });
     const send = (ev) => res.write(`data: ${JSON.stringify(ev)}\n\n`);
     try {
-      await withSessionLock(sessionId, () => chat(sessionId, message.trim(), send, voice === true));
+      await withSessionLock(sessionId, () => chat(sessionId, message.trim(), send, voice === true, geo));
     } catch (e) {
       const msg = e instanceof Anthropic.AuthenticationError ? "Server is missing a valid ANTHROPIC_API_KEY (see .env.example)."
         : e instanceof Anthropic.RateLimitError ? "Rate limited, try again in a moment."
@@ -584,7 +586,18 @@ const server = http.createServer(async (req, res) => {
   if (req.url.startsWith("/api/staff/")) {
     if (req.headers["x-staff-code"] !== STAFF_CODE) return json(401, { error: "Staff code required." });
     const u = new URL(req.url, "http://x");
-    if (req.method === "GET" && u.pathname === "/api/staff/departments") return json(200, [...new Set(SERVED.flatMap((j) => Object.values(routingFor(j)).map(([d]) => d)))].sort());
+    if (req.method === "GET" && u.pathname === "/api/staff/departments") { // grouped: county → cities (county government first) → departments
+      const groups = new Map();
+      for (const j of SERVED) {
+        const departments = [...new Set(Object.values(routingFor(j)).map(([d]) => d))].sort();
+        if (!departments.length) continue;
+        const c = j.kind === "county" ? j : countyOf(j), key = c?.id ?? j.id;
+        if (!groups.has(key)) groups.set(key, { county: c?.short ?? j.short, cities: [] });
+        groups.get(key).cities.push({ city: j.short, isCounty: j.kind === "county", departments });
+      }
+      for (const g of groups.values()) g.cities.sort((a, b) => (b.isCounty - a.isCounty) || a.city.localeCompare(b.city));
+      return json(200, [...groups.values()].sort((a, b) => a.county.localeCompare(b.county)));
+    }
     if (req.method === "GET" && u.pathname === "/api/staff/applications") {
       const dept = u.searchParams.get("department") || "all", q = (u.searchParams.get("q") || "").trim().toLowerCase();
       const list = Object.values(loadApps())

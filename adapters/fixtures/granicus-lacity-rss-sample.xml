@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet href="browserfriendlyRSS_Layout.xslt" type="text/xsl" media="screen"?>
+<rss version="2.0" 
+    xmlns:dc="https://purl.org/dc/elements/1.1/" 
+    xmlns:gran="https://www.granicus.com/schema/rss-supplements" >
+<channel>
+  <title>City of Los Angeles: CLK Council Meeting Internet ALL Years View (Agenda Feed)</title>
+  <gran:sourceURL>https://lacity.granicus.com/ViewPublisherRSS.php?view_id=129&amp;mode=agendas</gran:sourceURL>
+  <link>https://lacity.granicus.com/ViewPublisher.php?view_id=129</link>
+  <description></description>
+  <language>en-us</language>
+<item>
+  <guid isPermaLink="false">4435d2c8-1dbc-4cfb-947b-72056244997f</guid>
+  <title>City Council Meeting - Wednesday  - Mar 03, 2021</title>
+  <pubDate>Wed, 03 Mar 2021 09:45:00 -0800</pubDate>
+  <gran:pubDateParts yr='2021' mo='03' day='03' hr='09' min='45' sec='0' tz='8' />
+  <link>https://lacity.granicus.com/AgendaViewer.php?view_id=129&amp;clip_id=20580</link>
+  <description>
+    <![CDATA[
+      <p style='margin-top:2px;'>
+The agenda for City Council Meeting - Wednesday  dated Wednesday, 03 March 2021  has been archived. Access it here:<br />      <a href="https://lacity.granicus.com/AgendaViewer.php?view_id=129&amp;clip_id=20580" style='margin-right:50px;'>https://lacity.granicus.com/AgendaViewer.php?view_id=129&amp;clip_id=20580</a>
+      </p>
+    ]]>
+  </description>
+</item>
+<item>
+  <guid isPermaLink="false">a0b2ddb9-a24f-40fe-91df-f2cd52adff98</guid>
+  <title>City Council Meeting - Tuesday - Mar 02, 2021</title>
+  <pubDate>Tue, 02 Mar 2021 09:45:00 -0800</pubDate>
+  <gran:pubDateParts yr='2021' mo='03' day='02' hr='09' min='45' sec='0' tz='8' />
+  <link>https://lacity.granicus.com/AgendaViewer.php?view_id=129&amp;clip_id=20575</link>
+  <description>
+    <![CDATA[
+      <p style='margin-top:2px;'>
+The agenda for City Council Meeting - Tuesday dated Tuesday, 02 March 2021  has been archived. Access it here:<br />      <a href="https://lacity.granicus.com/AgendaViewer.php?view_id=129&amp;clip_id=20575" style='margin-right:50px;'>https://lacity.granicus.com/AgendaViewer.php?view_id=129&amp;clip_id=20575</a>
+      </p>
+    ]]>
+  </description>
+</item>
+</channel></rss>

@@ -249,6 +249,9 @@ function answerText(bot) { const c = bot.cloneNode(true); c.querySelector(".acts
 // Official department badges: each source is mapped to the city department that published it and that department's own icon.
 let CITY_ICON = "/icon.svg", CITY_NAME = "Local government"; // replaced by the server's `jurisdiction` event once the conversation names a city or county
 let JUR = null;
+// Device location → the server picks the nearest covered city/county when the resident hasn't named one. Asked once, cached 10 min, silently skipped if denied.
+let geo = null;
+navigator.geolocation?.getCurrentPosition((p) => { geo = { lat: p.coords.latitude, lon: p.coords.longitude }; }, () => {}, { maximumAge: 600000, timeout: 8000 });
 function setJurisdiction(j) {
   JUR = j; CITY_ICON = j?.icon || "/icon.svg"; CITY_NAME = j?.name || "Local government";
   $("fine").textContent = j ? `Not for emergencies. Call 911. ${j.name}: ${j.contact || j.site}.` : "Not for emergencies. Call 911. Non-emergency: your city's 311 or main line.";
@@ -596,7 +599,7 @@ async function send(text, voice = false) {
   // The dev server (node --watch) restarts on every file save, killing in-flight requests and refusing new ones for a few
   // seconds while the index rebuilds. If nothing has streamed yet, wait for it to come back and resend once instead of failing.
   for (let attempt = 0; ; attempt++) try {
-    const res = await fetch("/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sessionId, message: text, voice }), signal: ctrl.signal });
+    const res = await fetch("/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sessionId, message: text, voice, geo }), signal: ctrl.signal });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const reader = res.body.getReader(), dec = new TextDecoder(); let carry = "";
     while (true) {

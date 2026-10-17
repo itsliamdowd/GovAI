@@ -203,11 +203,12 @@ export function nearest(lon, lat) {
 }
 
 /** Per-turn system block describing the active jurisdiction to the model (what exists, what doesn't). */
-export function contextFor(j, { catalogSummary = "", councilStatus = "" } = {}) {
+export function contextFor(j, { catalogSummary = "", councilStatus = "", via = "" } = {}) {
   if (!j) return `No jurisdiction is set yet. Covered: Santa Monica; every city in San Diego County and Orange County; the County of San Diego and the County of Orange. If the question depends on where the resident is, ask one short question ("Which city are you in? An address works too.") and call no search tools until it is set. Call set_jurisdiction as soon as you know.`;
   const county = countyOf(j);
   const lines = [
     `Active jurisdiction: ${j.name} (${j.kind}${county ? `, ${county.name}` : ""}). Website: ${j.site}. Contact for anything you can't verify: ${j.contact?.line ?? "the city's main line"}.`,
+    via === "location" ? `This was inferred from the resident's device location, not from anything they said. Answer for ${j.short} without asking; the first time a place matters, say in a few words that you're assuming ${j.short} and that they can name another city.` : "",
     j.draft ? `Data wiring for ${j.short} is partial: no curated knowledge or indexed records yet beyond what is listed below. Prefer web_search/web_fetch on ${j.domains.join(", ")} and say when something could not be verified.` : "",
     j.council ? `Council/board records: ${j.council.label} via ${j.council.platform}${councilStatus ? ` (${councilStatus})` : ""}.` : `No council/board records are indexed for ${j.short}; use web_search on its site for meetings.`,
     j.forms?.length ? `Guided application cards available here: ${j.forms.join(", ")}.` : `No guided application cards for ${j.short}; collect details in conversation and file with submit_application (type "other" if nothing fits).`,

@@ -16,6 +16,31 @@
        Status badge classes: planned | progress | done | blocked.
        Do NOT log changes to ~/.claude/, plan.html itself, or the changelog server. -->
 
+  <article class="entry" id="e-2026-10-17-1520">
+    <header>
+      <time>2026-10-17 15:20</time>
+      <h2>Voice mode: make the free local voice sound human (Kokoro fp32 + speech normalizer + warm-up)</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal (user).</b> "The text-to-voice doesn't work super well and sounds super robotic… find a free alternative (not ElevenLabs) and make it sound like a human."</p>
+    <h3>Findings</h3>
+    <ul>
+      <li>A free local engine was already wired: <b>Kokoro-82M</b> (Apache-2.0, <code>kokoro-js</code>, CPU, no key) in <code>tts.js</code> behind <code>POST /tts</code>, with the browser's <code>speechSynthesis</code> as fallback. That fallback is the robotic voice.</li>
+      <li>Why the fallback was being heard: the model loaded lazily and <b>the first generate paid ~4 s of graph init</b> (6 s for an 8 s sentence), long enough that the first voice turn often dropped to the browser voice; <code>q8</code> quantization also adds a faint metallic edge.</li>
+      <li>Written city text reads badly aloud: phone numbers, <code>SM-749311</code>, "Blvd", "Mon–Thu", "a.m.–p.m.", emails, URLs, markdown asterisks.</li>
+      <li>Benchmarked precisions warm on a 10-core Mac: fp32 2.1 s / fp16 2.3 s / q4 2.0 s per 7.7 s of audio, all ~3.5× realtime; q8 cold was 5.9 s. fp32 is the cleanest and costs nothing in speed once warm.</li>
+    </ul>
+    <h3>What changed</h3>
+    <ul>
+      <li><code>tts.js</code> — default <code>TTS_DTYPE=fp32</code>; <code>loadTTS()</code> runs a warm-up generate at startup; new <code>speechText()</code> normalizer: phone numbers and confirmation IDs spelled digit by digit, street abbreviations (Blvd/Ave/Rd/Hwy/Ste, "Main St"), day/month abbreviations and ranges ("Mon–Thu" → "Monday through Thursday", "Jul 1–Jun 30" → "July 1 to June 30", "7:30 a.m.–5:30 p.m." → "7:30 AM to 5:30 PM"), emails/URLs → "311 at santamonica dot gov", PCH/ADU/SMPD/SMFD, "24/7", "&amp;", "%", slashes, markdown leftovers. Voice stays <code>af_heart</code> (Kokoro's only A-graded voice; <code>TTS_VOICE</code> to change).</li>
+      <li><code>test.js</code> — three <code>speechText()</code> golden cases. <code>package.json</code> — <code>npm test</code> runs with <code>TTS=off</code>: importing <code>server.js</code> otherwise starts the warm-up and the test's <code>process.exit</code> aborted inside onnxruntime ("mutex lock failed").</li>
+      <li><code>README.md</code> — <code>tts.js</code> line.</li>
+    </ul>
+    <p><b>Verified 15:40:</b> <code>npm test</code> passes incl. the normalizer cases. fp32 load + warm-up from cache: 1.1 s; a 4-sentence block-party reply (18 s of speech, float32 WAV) rendered in 5.1 s ≈ 3.5× realtime, so the sentence-by-sentence pipeline starts speaking in ~1 s and shouldn't fall back to the browser voice. Not verified by ear in this session (agent has no audio); sample WAV saved in this session's scratchpad. If it still sounds off after <code>npm start</code>: try <code>TTS_VOICE=af_bella</code> (warmer) or <code>bf_emma</code>, and <code>TTS_SPEED=0.95</code>.</p>
+    <p><b>15:50 follow-up (user, prompt only):</b> "descriptions can be a little less concise if more info is needed" — replaced the hard 80-word cap in the SYSTEM Style rules with length-follows-the-question: simple facts stay 1–3 sentences; how-to / eligibility / process questions get full steps, requirements, deadlines, costs and exceptions (~200 words), never dropping a requirement or fee to stay short. <code>server.js</code> Style bullet 1.</p>
+    <p><b>Skipped:</b> larger neural models (Chatterbox / XTTS / Orpheus): they need a GPU or several GB and 5–20× more compute per sentence; Kokoro is the best free CPU option. Revisit when there's a GPU box to deploy on.</p>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1400">
     <header>
       <time>2026-10-17 14:10</time>
@@ -423,6 +448,21 @@ index                 one BM25 is fine to ~100k docs; beyond that, shard per cou
     <ul>
       <li>Server-side SSE path (<code>res.write</code> per delta) — verified not the bottleneck. <code>npm test</code> still fails on the parallel work's <code>pertinentSources</code> assertion (test.js:40), untouched here.</li>
     </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1545">
+    <header>
+      <time>2026-10-17 15:45</time>
+      <h2>Staff desk: department dropdowns grouped by county, then city</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User (screenshot): since the jurisdiction registry, <code>/api/staff/departments</code> returned one flat alphabetical list mixing Santa Monica's departments with 140 "City of …" entries. "Break the dropdown down by county and then the cities."</p>
+    <h3>Files</h3>
+    <ul>
+      <li><code>server.js</code> &mdash; <code>/api/staff/departments</code> now returns <code>[{ county, cities: [{ city, isCounty, departments }] }]</code>: grouped by the jurisdiction's county (<code>countyOf</code>), county government first, cities alphabetical, departments sorted; jurisdictions with no routing are skipped.</li>
+      <li><code>public/staff.html</code> &mdash; <code>deptOptions()</code> renders an <code>&lt;optgroup&gt;</code> per county; a draft city's single "City of X" department shows as just "X", a jurisdiction with real departments shows "Santa Monica · Planning Division". Used by both the sign-in department picker and the queue's view select (which keeps "my department" and "All departments" on top). Option values are unchanged, so the applications filter still works. County governments read "Orange County (county government)".</li>
+    </ul>
+    <p><b>Verified 15:55</b> on a temp server: payload has 3 groups (LA County 89 entries incl. Santa Monica's 12 departments, Orange County 35, San Diego County 19), county government first in each; <code>deptOptions()</code> run in node against the live payload renders 3 optgroups and keeps "Planning Division" selected. Chrome on :9223 was closed, so no screenshot of the native dropdown.</p>
   </article>
 
   <article class="entry" id="e-2026-10-17-1525">
@@ -1013,6 +1053,30 @@ daily 07:00 → refreshCouncil() → for each alert:
       <li>Article bodies are the feed excerpt/content only (SMDP ships full text; others a paragraph). Fetching article pages would hit bot walls; add per-publisher if excerpts prove too thin.</li>
       <li>Blocked sources are reached via Google News proxies (Lookout, Westside Current, KCRW, LAist) rather than directly; Reddit via RSS only.</li>
     </ul>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1935">
+    <header>
+      <time>2026-10-17 19:35</time>
+      <h2>Jurisdiction from device location instead of asking</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal.</b> User: "instead of always asking for where the user is pull the location".</p>
+    <ul>
+      <li><code>public/index.html</code> — asks <code>navigator.geolocation</code> once on load (10-min cache, 8 s timeout, denial ignored) and sends <code>geo</code> with every <code>/chat</code> message.</li>
+      <li><code>server.js</code> — validates <code>geo</code> (California bounds only); in <code>chat()</code>, when no jurisdiction is set and nothing in the message names one, <code>nearest(lon, lat)</code> picks the city (bbox hit, else nearest centroid within 12 km, else county bbox) and sets the session with <code>via:"location"</code>. Explicit mentions and <code>set_jurisdiction</code> still override. Session now tracks <code>via</code> (message | location | tool).</li>
+      <li><code>jurisdictions.js</code> <code>contextFor(..., {via})</code> — when inferred from location the model is told to answer for that place without asking and to mention the assumption once.</li>
+    </ul>
+    <p><b>Limits.</b> Browser permission is required (HTTPS or localhost); cities without a bbox resolve by centroid distance until <code>discover.js</code> fills boundaries; outside California nothing is inferred and the model asks as before.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1920">
+    <header>
+      <time>2026-10-17 19:20</time>
+      <h2>Staff desk: department dropdown styled like the text inputs</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><code>public/staff.html</code> — the native <code>&lt;select&gt;</code> ignored the shared padding/height in Safari and painted its own stepper and focus ring, so it sat shorter and looked foreign next to the inputs. Now <code>appearance:none</code>, 46px height matching the inputs, an inline SVG chevron on the right, dark option list, same border/focus as the inputs.</p>
   </article>
 
   <article class="entry" id="e-2026-10-17-1700">

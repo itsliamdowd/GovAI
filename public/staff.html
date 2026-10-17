@@ -30,7 +30,9 @@
   #login { max-width:none; padding:32px 36px; margin-top:24px } #login h2 { font-size:24px; margin-bottom:8px } #login .sub { font-size:15px; margin-bottom:22px }
   #login label { font-size:16px; margin:18px 0 8px } #login :is(input,select) { font-size:17px; padding:14px 16px; border-radius:12px } #login button.primary { height:44px; padding:0 24px; font-size:15px; margin-top:22px !important }
   @media (max-width:640px) { #login { padding:22px 18px } }
-  label { display:block; font-size:15px; font-weight:500; margin:12px 0 6px } input,select,textarea { width:100%; background:var(--bg); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:10px 12px; font:inherit; font-size:15px; outline:none } :is(input,select,textarea):focus { border-color:var(--blue-2) } textarea { min-height:84px; resize:vertical }
+  label { display:block; font-size:15px; font-weight:500; margin:12px 0 6px } input,select,textarea { width:100%; background:var(--bg); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:10px 12px; font:inherit; font-size:15px; line-height:1.4; outline:none; box-sizing:border-box } :is(input,select,textarea):focus { border-color:var(--blue-2); box-shadow:none } textarea { min-height:84px; resize:vertical }
+  /* native <select> ignores padding/height in Safari and paints its own stepper: draw it ourselves so it matches the text inputs */
+  select { appearance:none; -webkit-appearance:none; padding-right:40px; height:46px; cursor:pointer; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239aa0a6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 9l6 6 6-6'/></svg>"); background-repeat:no-repeat; background-position:right 14px center } select option { background:var(--pill); color:var(--ink) }
   button.primary { background:var(--blue); color:#fff; border:1px solid var(--blue); border-radius:999px; height:34px; padding:0 16px; font:inherit; font-size:13px; font-weight:500; cursor:pointer } button.primary:hover { background:var(--blue-2) }
   .error { color:var(--err); font-size:14px; margin-top:8px; min-height:1em }
   .bar { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px } .bar input { flex:1 1 240px } .bar select { flex:0 1 230px; width:auto }
@@ -87,11 +89,16 @@ const api = async (path, opts = {}) => {
 };
 
 // Department list comes from the server once the code is typed; a static subset shows before that.
+// Shape: [{ county, cities: [{ city, isCounty, departments: [...] }] }] → <optgroup> per county, one option per department.
+const FALLBACK = [{ county: "Los Angeles County", cities: [{ city: "Santa Monica", departments: ["Planning Division", "Building & Safety, Permit Services Center", "Transportation Planning (Mobility Division)", "Public Works, Resource Recovery & Recycling", "Finance, Business License Office", "Santa Monica 311"] }] }];
+const deptOptions = (groups, selected, skip = null) => groups.map((g) => `<optgroup label="${esc(g.county)}">` + g.cities.flatMap((c) => c.departments.filter((d) => d !== skip).map((d) => {
+  const label = d === `City of ${c.city}` ? c.city : c.isCounty && /^County of /.test(d) ? `${c.city} (county government)` : `${c.city} · ${d}`;
+  return `<option value="${esc(d)}"${d === selected ? " selected" : ""}>${esc(label)}</option>`;
+})).join("") + `</optgroup>`).join("");
 async function fillDeptSelect() {
   const r = await fetch("/api/staff/departments", { headers: { "x-staff-code": $("code").value } }).catch(() => null);
-  const list = r?.ok ? await r.json() : ["Planning Division", "Building & Safety, Permit Services Center", "Transportation Planning (Mobility Division)", "Public Works, Resource Recovery & Recycling", "Finance, Business License Office", "Santa Monica 311"];
-  const cur = $("dept").value;
-  $("dept").innerHTML = list.map((d) => `<option${d === (cur || "Planning Division") ? " selected" : ""}>${esc(d)}</option>`).join("");
+  const groups = r?.ok ? await r.json() : FALLBACK;
+  $("dept").innerHTML = deptOptions(groups, $("dept").value || "Planning Division");
 }
 
 function signout() { me = null; sessionStorage.removeItem("sm_staff"); $("desk").hidden = true; $("who").hidden = true; $("login").hidden = false; }
@@ -102,7 +109,7 @@ async function signin(session) {
   sessionStorage.setItem("sm_staff", JSON.stringify(me));
   $("login").hidden = true; $("desk").hidden = false; $("who").hidden = false;
   $("whoDept").innerHTML = `<b>${esc(me.name || "Staff")}</b><br><span>${esc(me.dept)}</span>`;
-  $("view").innerHTML = `<option value="${esc(me.dept)}">${esc(me.dept)}</option><option value="all">All departments</option>` + depts.filter((d) => d !== me.dept).map((d) => `<option value="${esc(d)}">${esc(d)}</option>`).join("");
+  $("view").innerHTML = `<option value="${esc(me.dept)}">${esc(me.dept)}</option><option value="all">All departments</option>` + deptOptions(depts, null, me.dept);
   load();
 }
 
