@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 from contextlib import contextmanager
 from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 import json
 import logging
 import math
@@ -15,6 +16,7 @@ import os
 from pathlib import Path
 import re
 import tempfile
+import time
 
 CHANNELS = {
     "City of Santa Monica / CityTV": "UC4V0jOEL4JMCcElkGA7AJpA",
@@ -48,6 +50,85 @@ def atomic_write(path, text):
     finally:
         if os.path.exists(tmp):
             os.unlink(tmp)
+
+
+class TranscriptRateLimit(RuntimeError):
+    def __init__(self, retry_after=0):
+        super().__init__("YouTube caption requests are rate limited")
+        self.retry_after = retry_after
+
+
+def retry_after_seconds(value, clock=time.time):
+    """Honor HTTP Retry-After in either seconds or HTTP-date format."""
+    try:
+        seconds = float(value)
+    except (TypeError, ValueError):
+        try:
+            seconds = parsedate_to_datetime(value).timestamp() - clock()
+        except (TypeError, ValueError, OverflowError):
+            return 0
+    return max(0, seconds) if math.isfinite(seconds) else 0
+
+
+def paced_request(control, request, *args, **kwargs):
+    """Wrap Session.request without retrying a rejected request in a tight loop."""
+    kwargs.setdefault("timeout", 30)
+    control.before_request()
+    response = request(*args, **kwargs)
+    if response.status_code == 429:
+        delay = retry_after_seconds(response.headers.get("Retry-After"), control.clock)
+        response.close()
+        raise TranscriptRateLimit(delay)
+    return response
+
+
+class TranscriptRequestControl:
+    """Pace every caption HTTP request and persist a circuit breaker across runs."""
+    def __init__(self, data_dir, delay=10, cooldown=1800, clock=time.time, sleep=time.sleep):
+        if not math.isfinite(delay) or delay < 0:
+            raise ValueError("Request delay must be finite and nonnegative")
+        if not math.isfinite(cooldown) or cooldown <= 0:
+            raise ValueError("Block cooldown must be finite and positive")
+        self.path = Path(data_dir) / "request-state.json"
+        self.delay, self.cooldown, self.clock, self.sleep = delay, cooldown, clock, sleep
+        self.state = {"next_request_at": 0, "cooldown_until": 0, "blocks": 0}
+        if self.path.exists():
+            # Fail closed on corrupt state; do not silently drop an active cooldown.
+            self.state.update(json.loads(self.path.read_text(encoding="utf-8")))
+        if (any(not isinstance(self.state[k], (int, float)) or
+                not math.isfinite(self.state[k]) or self.state[k] < 0
+                for k in ("next_request_at", "cooldown_until")) or
+                type(self.state["blocks"]) is not int or self.state["blocks"] < 0):
+            raise ValueError("Invalid persisted caption request state; refusing requests")
+
+    def save(self):
+        atomic_write(self.path, json.dumps(self.state) + "\n")
+
+    def remaining(self):
+        return max(0, self.state["cooldown_until"] - self.clock())
+
+    def before_request(self):
+        if self.remaining():
+            raise TranscriptRateLimit(self.remaining())
+        # Small bounded sleeps keep Ctrl+C responsive, even with a long delay.
+        while self.clock() < self.state["next_request_at"]:
+            self.sleep(min(1, self.state["next_request_at"] - self.clock()))
+        self.state["next_request_at"] = self.clock() + self.delay
+        self.save()
+
+    def block(self, retry_after=0):
+        if not self.remaining():
+            count = self.state["blocks"]
+            duration = max(min(self.cooldown * 2 ** min(count, 10), 86400),
+                           self.cooldown, retry_after)
+            self.state.update(blocks=count + 1, cooldown_until=self.clock() + duration)
+            self.save()
+        return self.state["cooldown_until"]
+
+    def completed(self):
+        # Reset escalating cooldowns only after an uninterrupted successful run.
+        self.state.update(blocks=0, cooldown_until=0)
+        self.save()
 
 
 def chunk_transcript(record, max_words=250, overlap_words=35):
@@ -98,13 +179,15 @@ def chunk_transcript(record, max_words=250, overlap_words=35):
 
 class YouTubeIngestor:
     def __init__(self, youtube, transcripts, data_dir=DEFAULT_DIR,
-                 languages=("en",), refresh_transcripts=False):
+                 languages=("en",), refresh_transcripts=False, request_control=None):
         self.youtube = youtube
         self.transcripts = transcripts
         self.data_dir = Path(data_dir)
         self.languages = tuple(languages)
         self.refresh_transcripts = refresh_transcripts
         self.channels = {}
+        self.request_control = request_control
+        self.blocked = False
 
     def get_upload_playlist(self, channel_id):
         response = self.youtube.channels().list(
@@ -162,7 +245,8 @@ class YouTubeIngestor:
         result = {"transcript_available": False, "transcript_text": "",
                   "transcript_segments": [], "transcript_language": None,
                   "transcript_is_generated": None, "transcript_checked_at": now(),
-                  "transcript_status": "no_captions", "transcript_error": None}
+                  "transcript_status": "no_captions", "transcript_error": None,
+                  "transcript_retry_after": None}
         try:
             tracks = list(self.transcripts.list(video_id))
             # Prefer requested languages, manual before auto within each language.
@@ -197,8 +281,14 @@ class YouTubeIngestor:
                 "VideoUnavailable": "unavailable", "VideoUnplayable": "unavailable",
                 "AgeRestricted": "unavailable", "RequestBlocked": "blocked",
                 "IpBlocked": "blocked",
+                "TranscriptRateLimit": "blocked",
             }.get(name, "error")
             result["transcript_error"] = name
+            if result["transcript_status"] == "blocked":
+                self.blocked = True
+                if self.request_control:
+                    until = self.request_control.block(getattr(exc, "retry_after", 0))
+                    result["transcript_retry_after"] = datetime.fromtimestamp(until, timezone.utc).isoformat()
             LOG.warning("Transcript %s: %s", video_id, name)
         return result
 
@@ -240,6 +330,11 @@ class YouTubeIngestor:
                 atomic_write(path, json.dumps(record, ensure_ascii=False) + "\n")
             counts["videos"] += 1
             counts["transcripts"] += int(record["transcript_available"])
+            LOG.info("%s: %d videos saved, %d transcripts (%d reused)",
+                     channel_name, counts["videos"], counts["transcripts"], counts["reused"])
+            if self.blocked:
+                # Checkpoint the blocked record, then stop across ALL channels.
+                break
             if max_videos is not None and counts["videos"] >= max_videos:
                 break
         return counts
@@ -260,7 +355,14 @@ class YouTubeIngestor:
 
     def ingest_all_channels(self, channels=None, max_videos=None):
         summary, failures = {}, []
+        self.blocked = bool(self.request_control and self.request_control.remaining())
         try:
+            if self.blocked:
+                LOG.warning("Caption cooldown active; no requests made. Retry after %s",
+                            datetime.fromtimestamp(self.request_control.state["cooldown_until"], timezone.utc).isoformat())
+                return {"channels": {}, "failed_channels": [], "paused": True,
+                        "retry_after": datetime.fromtimestamp(
+                            self.request_control.state["cooldown_until"], timezone.utc).isoformat()}
             for name, channel_id in (CHANNELS if channels is None else channels).items():
                 try:
                     summary[channel_id] = self.ingest_channel(name, channel_id, max_videos)
@@ -268,9 +370,17 @@ class YouTubeIngestor:
                     failures.append(channel_id)
                     LOG.error("Channel %s failed: %s (saved records retained)", channel_id,
                               type(exc).__name__)
+                if self.blocked:
+                    LOG.warning("Stopping after YouTube blocked caption requests; saved transcripts retained")
+                    break
         finally:
             self.export()
-        return {"channels": summary, "failed_channels": failures}
+        if self.request_control and not self.blocked and not failures:
+            self.request_control.completed()
+        return {"channels": summary, "failed_channels": failures, "paused": self.blocked,
+                "retry_after": datetime.fromtimestamp(
+                    self.request_control.state["cooldown_until"], timezone.utc).isoformat()
+                if self.blocked and self.request_control else None}
 
 
 @contextmanager
@@ -295,10 +405,20 @@ def main():
     parser.add_argument("--channel-id", choices=CHANNELS.values(), action="append")
     parser.add_argument("--languages", default="en", help="Comma-separated preference order")
     parser.add_argument("--refresh-transcripts", action="store_true")
+    parser.add_argument("--request-delay", type=float,
+                        default=os.environ.get("YOUTUBE_REQUEST_DELAY_SECONDS", "10"),
+                        help="Minimum seconds between caption HTTP requests (default 10)")
+    parser.add_argument("--block-cooldown", type=float,
+                        default=os.environ.get("YOUTUBE_BLOCK_COOLDOWN_SECONDS", "1800"),
+                        help="Initial cooldown after a block; repeated blocks double it (default 1800)")
     parser.add_argument("--max-videos", type=int, help="Optional per-channel smoke-test limit; default: all")
     args = parser.parse_args()
     if args.max_videos is not None and args.max_videos < 1:
         parser.error("--max-videos must be positive")
+    if not math.isfinite(args.request_delay) or args.request_delay < 1:
+        parser.error("--request-delay must be at least 1 second")
+    if not math.isfinite(args.block_cooldown) or args.block_cooldown < 1:
+        parser.error("--block-cooldown must be at least 1 second")
     key = os.environ.get("YOUTUBE_API_KEY")
     if not key:
         parser.error("Set YOUTUBE_API_KEY in the environment (or use npm run ingest:youtube)")
@@ -307,22 +427,27 @@ def main():
     import httplib2
     from requests import Session
 
-    class TimeoutSession(Session):
+    class PacedSession(Session):
         def request(self, *a, **kw):
-            kw.setdefault("timeout", 30)
-            return super().request(*a, **kw)
+            return paced_request(control, super().request, *a, **kw)
 
     youtube = build("youtube", "v3", developerKey=key, cache_discovery=False,
                     http=httplib2.Http(timeout=30))
-    importer = YouTubeIngestor(youtube, YouTubeTranscriptApi(http_client=TimeoutSession()),
-                              args.data_dir, tuple(x.strip() for x in args.languages.split(",") if x.strip()),
-                              args.refresh_transcripts)
     channels = {name: cid for name, cid in CHANNELS.items()
                 if not args.channel_id or cid in args.channel_id}
     with ingestion_lock(args.data_dir):
-        result = importer.ingest_all_channels(channels, args.max_videos)
+        # Read persistent state under the same single-writer lock as video files.
+        control = TranscriptRequestControl(args.data_dir, args.request_delay, args.block_cooldown)
+        importer = YouTubeIngestor(youtube, YouTubeTranscriptApi(http_client=PacedSession()),
+                                  args.data_dir, tuple(x.strip() for x in args.languages.split(",") if x.strip()),
+                                  args.refresh_transcripts, request_control=control)
+        try:
+            result = importer.ingest_all_channels(channels, args.max_videos)
+        except KeyboardInterrupt:
+            LOG.warning("Interrupted; saved records exported and lock released")
+            return 130
     print(json.dumps(result, indent=2))
-    return 1 if result["failed_channels"] else 0
+    return 2 if result["paused"] else 1 if result["failed_channels"] else 0
 
 
 if __name__ == "__main__":

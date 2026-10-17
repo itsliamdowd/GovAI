@@ -4,7 +4,9 @@ from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 import unittest
 
-from scripts.ingest_youtube import YouTubeIngestor, chunk_transcript, ingestion_lock
+from scripts.ingest_youtube import (YouTubeIngestor, chunk_transcript, ingestion_lock,
+                                    TranscriptRequestControl, TranscriptRateLimit,
+                                    paced_request, retry_after_seconds)
 
 FIRST, SECOND, THIRD = "abcdefghijk", "lmnopqrstuv", "wxyz1234567"
 CHANNEL = "UC4V0jOEL4JMCcElkGA7AJpA"
@@ -174,6 +176,85 @@ class IngestionTests(unittest.TestCase):
         self.assertFalse((Path(self.tmp.name) / ".ingest.lock").exists())
         with self.assertRaises(ValueError):
             self.ingestor.record_path("../../secrets")
+
+    def test_block_stops_all_channels_and_persists_across_restart(self):
+        clock = [1000.0]
+        control = TranscriptRequestControl(self.tmp.name, cooldown=60, clock=lambda: clock[0])
+        self.ingestor.request_control = control
+        calls = []
+        def blocked(video_id):
+            calls.append(video_id)
+            raise type("IpBlocked", (Exception,), {})()
+        self.ingestor.transcripts = SimpleNamespace(list=blocked)
+        result = self.ingestor.ingest_all_channels({"CityTV": CHANNEL, "Police": "other"})
+        self.assertTrue(result["paused"])
+        self.assertEqual(calls, [FIRST])
+        self.assertEqual(len(self.youtube.calls), 3)  # one channel, one page, metadata
+        self.assertEqual(self.read(FIRST)["transcript_status"], "blocked")
+        self.assertTrue((Path(self.tmp.name) / "videos.jsonl").exists())
+        # New process: persisted cooldown prevents all API calls.
+        self.youtube.calls.clear()
+        resumed = YouTubeIngestor(self.youtube, self.ingestor.transcripts, self.tmp.name,
+                                 request_control=TranscriptRequestControl(
+                                     self.tmp.name, cooldown=60, clock=lambda: clock[0]))
+        self.assertTrue(resumed.ingest_all_channels({"CityTV": CHANNEL})["paused"])
+        self.assertEqual(self.youtube.calls, [])
+        self.assertEqual(calls, [FIRST])
+        # After cooldown: a new block doubles the delay rather than hammering YouTube.
+        clock[0] = 1061
+        resumed.ingest_all_channels({"CityTV": CHANNEL})
+        self.assertEqual(resumed.request_control.remaining(), 120)
+        clock[0] = 1182
+        resumed.transcripts = SimpleNamespace(list=lambda _: [track()])
+        self.assertFalse(resumed.ingest_all_channels({"CityTV": CHANNEL})["paused"])
+        self.assertTrue(self.read(FIRST)["transcript_available"])
+        self.assertIsNone(self.read(FIRST)["transcript_retry_after"])
+        self.assertEqual(resumed.request_control.state["blocks"], 0)
+
+    def test_every_http_request_is_paced_and_retry_after_respected(self):
+        clock, sleeps = [1000.0], []
+        def sleep(delay):
+            sleeps.append(delay)
+            clock[0] += delay
+        control = TranscriptRequestControl(self.tmp.name, delay=10, cooldown=60,
+                                           clock=lambda: clock[0], sleep=sleep)
+        calls = []
+        def request(*args, **kwargs):
+            calls.append((clock[0], kwargs["timeout"]))
+            return SimpleNamespace(status_code=200)
+        paced_request(control, request, "GET", "test")
+        paced_request(control, request, "GET", "test")
+        self.assertEqual(calls, [(1000, 30), (1010, 30)])
+        self.assertTrue(all(s <= 1 for s in sleeps))
+        # Persisted spacing also applies after a restart.
+        again = TranscriptRequestControl(self.tmp.name, delay=10,
+                                         clock=lambda: clock[0], sleep=sleep)
+        again.before_request()
+        self.assertEqual(clock[0], 1020)
+        closed = []
+        response = SimpleNamespace(status_code=429, headers={"Retry-After": "7200"},
+                                   close=lambda: closed.append(True))
+        with self.assertRaises(TranscriptRateLimit) as exc:
+            paced_request(control, lambda *a, **kw: response, "GET", "test")
+        control.block(exc.exception.retry_after)
+        self.assertEqual(control.remaining(), 7200)
+        self.assertEqual(closed, [True])
+        with self.assertRaises(TranscriptRateLimit):
+            paced_request(control, request, "GET", "test")
+        self.assertEqual(len(calls), 2)
+        self.assertEqual(retry_after_seconds("Thu, 01 Jan 1970 00:20:00 GMT", lambda: 1000), 200)
+        self.assertEqual(retry_after_seconds("nonsense"), 0)
+        self.assertEqual(retry_after_seconds("nan"), 0)
+
+    def test_interrupt_exports_checkpoints_and_releases_lock(self):
+        def interrupted(_):
+            raise KeyboardInterrupt()
+        self.ingestor.transcripts = SimpleNamespace(list=interrupted)
+        with self.assertRaises(KeyboardInterrupt):
+            with ingestion_lock(Path(self.tmp.name)):
+                self.ingestor.ingest_all_channels({"CityTV": CHANNEL})
+        self.assertTrue((Path(self.tmp.name) / "chunks.jsonl").exists())
+        self.assertFalse((Path(self.tmp.name) / ".ingest.lock").exists())
 
 
 if __name__ == "__main__":

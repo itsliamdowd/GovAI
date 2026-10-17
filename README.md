@@ -58,6 +58,8 @@ npm run ingest:youtube -- --max-videos 3
 npm run ingest:youtube -- --channel-id UCyq1UTKGqCmUtsJi984yF5A --languages en,es
 # Force a refresh of successful captions too:
 npm run ingest:youtube -- --refresh-transcripts
+# Increase spacing between individual caption HTTP requests:
+npm run ingest:youtube -- --request-delay 15
 ```
 
 On Windows set `PYTHON=python` in `.env` if `python3` is unavailable. When calling
@@ -120,10 +122,29 @@ machines against the same directory. Use persistent disk if running on ephemeral
 
 YouTube API calls have 30-second timeouts and up to three client-library retries. A metadata/API
 failure stops that channel, continues with the next, exports saved results and returns exit code 1.
-A caption failure affects only that video and is recorded; other videos continue, and the command
-still succeeds. Check `transcript_status` in `videos.jsonl` when assessing coverage. YouTube may
-block public-caption requests from cloud IPs; this is recorded as a failure rather than pretending
-the video has no captions. No proxy, cookies, or ownership credentials are required by this code.
+A normal caption failure affects only that video and is recorded; other videos continue. An IP
+block (`IpBlocked`/`RequestBlocked`) or HTTP 429 stops the run across both channels after saving
+the current record. Exit code **2** and `"paused": true` mean the import is incomplete; the summary
+includes a UTC `retry_after`. Check `transcript_status` in `videos.jsonl` when assessing coverage.
+YouTube may block public-caption requests from cloud or other IPs; this is recorded as a failure
+rather than pretending the video has no captions. No proxy, cookies, or ownership credentials
+are required by this code.
+
+Every caption HTTP request (including the separate requests to list and fetch captions) is paced
+with a default **10-second minimum interval**. Set `YOUTUBE_REQUEST_DELAY_SECONDS=15` in `.env`
+or pass `--request-delay 15` to slow it further. This is a conservative starting value, not an
+official allowed rate or a guarantee against blocking. Ordinary Google Data API requests use the
+existing client retries and are separate from caption pacing.
+
+After a block, `data/youtube/request-state.json` persists a circuit-breaker cooldown: initially
+**30 minutes**, doubling on repeated blocked runs up to **24 hours** (a longer server `Retry-After`
+is honored). Configure the initial duration with `YOUTUBE_BLOCK_COOLDOWN_SECONDS` or
+`--block-cooldown` (seconds). Restarting during this cooldown makes **no YouTube requests** and
+returns exit code 2. After it expires, rerun the same command to resume, reusing downloaded captions.
+An uninterrupted completed run resets the escalating cooldown count. Keep the request-state file
+along with the transcript cache; removing it to retry immediately defeats this protection.
+Ctrl+C during ingestion exports saved records and releases the lock through Python's cleanup;
+a forced process kill can still leave the lock behind. There is no automatic unbounded retry loop.
 The initial import can be slow; no whole-channel ingest is started inside an HTTP request or at
 server startup. Schedule the CLI externally if regular refreshes are needed.
 
@@ -136,7 +157,9 @@ npm test                  # existing app checks (also start background network s
 
 Tests cover paginated uploads, video hydration, metadata retention, missing/failed/auto captions,
 language selection, idempotent re-runs, successful-caption reuse, failed-refresh preservation,
-bounded overlapping chunks and precise times, channel isolation, lock/path safety, and BM25 loading.
+bounded overlapping chunks and precise times, channel isolation, lock/path safety, BM25 loading,
+per-request pacing, HTTP Retry-After, stop-on-block, persisted/exponential cooldowns, resume,
+and interrupt cleanup.
 Live ingestion requires a real YouTube API key and network access to YouTube.
 
 ## Sources
