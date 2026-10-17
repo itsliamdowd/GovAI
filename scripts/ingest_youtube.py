@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import argparse
 from contextlib import contextmanager
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from email.utils import parsedate_to_datetime
 import json
 import logging
@@ -23,7 +23,42 @@ CHANNELS = {
     "Santa Monica Police Department": "UCyq1UTKGqCmUtsJi984yF5A",
 }
 DEFAULT_DIR = Path(__file__).resolve().parents[1] / "data" / "youtube"
+DEFAULT_SOURCES = Path(__file__).resolve().parents[1] / "config" / "youtube_sources.json"
 LOG = logging.getLogger(__name__)
+
+
+def load_sources(path=DEFAULT_SOURCES, regions=None):
+    sources = json.loads(Path(path).read_text(encoding="utf-8"))
+    selected = {}
+    metadata = {}
+    for source in sources:
+        if not source.get("enabled", True) or (regions and source["region"] not in regions):
+            continue
+        ref = source["channel_ref"]
+        if not re.fullmatch(r"UC[A-Za-z0-9_-]{22}|@[A-Za-z0-9_.-]+|user:[A-Za-z0-9_.-]+", ref):
+            raise ValueError(f"Invalid channel reference: {ref}")
+        if source["name"] in selected or ref in metadata:
+            raise ValueError("Duplicate configured channel")
+        selected[source["name"]] = ref
+        metadata[ref] = {"region": source["region"], "jurisdiction": source["jurisdiction"],
+                         "source_reference_url": source["official_source_url"]}
+    if not selected:
+        raise ValueError("No enabled channels match the selected regions")
+    return selected, metadata
+
+
+def calendar_year_ago(today):
+    try:
+        return today.replace(year=today.year - 1)
+    except ValueError:  # February 29 -> February 28
+        return today.replace(year=today.year - 1, day=28)
+
+
+def parse_date(value):
+    try:
+        return date.fromisoformat(value)
+    except ValueError:
+        raise argparse.ArgumentTypeError("Use a publication date in YYYY-MM-DD format") from None
 
 
 def now():
@@ -162,6 +197,7 @@ def chunk_transcript(record, max_words=250, overlap_words=35):
                                       "channel_name", "title", "published_at")},
             "transcript_language": record.get("transcript_language"),
             "transcript_is_generated": record.get("transcript_is_generated"),
+            **{k: record[k] for k in ("region", "jurisdiction", "source_reference_url") if k in record},
             "start": start, "end": end,
             "url": f"{record['youtube_url']}&t={math.floor(start)}s",
             "text": " ".join(w for u in window for w in u["words"]),
@@ -179,7 +215,9 @@ def chunk_transcript(record, max_words=250, overlap_words=35):
 
 class YouTubeIngestor:
     def __init__(self, youtube, transcripts, data_dir=DEFAULT_DIR,
-                 languages=("en",), refresh_transcripts=False, request_control=None):
+                 languages=("en",), refresh_transcripts=False, request_control=None,
+                 published_since=None, published_until=None, metadata_only=False,
+                 source_metadata=None):
         self.youtube = youtube
         self.transcripts = transcripts
         self.data_dir = Path(data_dir)
@@ -188,16 +226,26 @@ class YouTubeIngestor:
         self.channels = {}
         self.request_control = request_control
         self.blocked = False
+        self.published_since, self.published_until = published_since, published_until
+        self.metadata_only = metadata_only
+        self.source_metadata = source_metadata or {}
 
     def get_upload_playlist(self, channel_id):
+        # Resolve official handles/usernames through Data API v3, never search.list.
+        selector = ({"forHandle": channel_id} if channel_id.startswith("@") else
+                    {"forUsername": channel_id[5:]} if channel_id.startswith("user:") else
+                    {"id": channel_id})
         response = self.youtube.channels().list(
-            part="snippet,contentDetails", id=channel_id).execute(num_retries=3)
+            part="snippet,contentDetails", **selector).execute(num_retries=3)
         items = response.get("items", [])
         if not items:
             raise ValueError(f"Channel not found: {channel_id}")
         channel = items[0]
         self.channels[channel_id] = channel
-        atomic_write(self.data_dir / "channels" / f"{channel_id}.json",
+        actual_id = channel["id"]
+        if not re.fullmatch(r"UC[A-Za-z0-9_-]{22}", actual_id):
+            raise ValueError("Invalid channel ID in API response")
+        atomic_write(self.data_dir / "channels" / f"{actual_id}.json",
                      json.dumps(channel, ensure_ascii=False, indent=2) + "\n")
         return channel["contentDetails"]["relatedPlaylists"]["uploads"]
 
@@ -229,13 +277,14 @@ class YouTubeIngestor:
                 yield {
                     "video_id": video_id,
                     "youtube_url": f"https://www.youtube.com/watch?v={video_id}",
-                    "channel_id": channel_id,
+                    "channel_id": self.channels[channel_id]["id"],
                     "channel_name": self.channels[channel_id]["snippet"]["title"],
                     "title": snippet.get("title", fallback.get("title", "Unavailable video")),
                     "description": snippet.get("description", fallback.get("description", "")),
                     "published_at": snippet.get("publishedAt") or item.get(
                         "contentDetails", {}).get("videoPublishedAt"),
                     "video_available": video_id in details,
+                    **self.source_metadata.get(channel_id, {}),
                 }
             token = page.get("nextPageToken")
             if not token:
@@ -298,7 +347,8 @@ class YouTubeIngestor:
         return self.data_dir / "records" / f"{video_id}.json"
 
     def ingest_channel(self, channel_name, channel_id, max_videos=None):
-        counts = {"videos": 0, "transcripts": 0, "reused": 0}
+        counts = {"videos": 0, "transcripts": 0, "reused": 0,
+                  "outside_date_range": 0, "undated": 0}
         for metadata in self.get_all_channel_videos(channel_id):
             path = self.record_path(metadata["video_id"])
             previous = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
@@ -306,8 +356,29 @@ class YouTubeIngestor:
                 # Preserve last known metadata if the video becomes private/deleted.
                 for field in ("title", "description", "published_at"):
                     metadata[field] = previous.get(field, metadata[field])
+            published = metadata.get("published_at")
+            try:
+                published_date = date.fromisoformat(published[:10]) if published else None
+            except (ValueError, TypeError):
+                published_date = None
+            dated_filter = self.published_since is not None or self.published_until is not None
+            if published_date and ((self.published_since and published_date < self.published_since) or
+                                   (self.published_until and published_date > self.published_until)):
+                counts["outside_date_range"] += 1
+                continue
+            undated = dated_filter and published_date is None
+            if undated:
+                counts["undated"] += 1
             record = {**previous, **metadata, "configured_channel_name": channel_name}
-            if previous.get("transcript_available") and not self.refresh_transcripts:
+            if self.metadata_only or undated:
+                # Discovery can run during a caption cooldown; metadata isn't a transcript.
+                if "transcript_available" not in record:
+                    record.update(transcript_available=False, transcript_text="",
+                                  transcript_segments=[], transcript_language=None,
+                                  transcript_is_generated=None, transcript_checked_at=None,
+                                  transcript_error=None,
+                                  transcript_status="pending" if metadata["video_available"] else "unavailable")
+            elif previous.get("transcript_available") and not self.refresh_transcripts:
                 counts["reused"] += 1
             elif metadata["video_available"]:
                 attempt = self.get_transcript(metadata["video_id"])
@@ -355,7 +426,7 @@ class YouTubeIngestor:
 
     def ingest_all_channels(self, channels=None, max_videos=None):
         summary, failures = {}, []
-        self.blocked = bool(self.request_control and self.request_control.remaining())
+        self.blocked = bool(not self.metadata_only and self.request_control and self.request_control.remaining())
         try:
             if self.blocked:
                 LOG.warning("Caption cooldown active; no requests made. Retry after %s",
@@ -375,9 +446,12 @@ class YouTubeIngestor:
                     break
         finally:
             self.export()
-        if self.request_control and not self.blocked and not failures:
+        if self.request_control and not self.blocked and not failures and not self.metadata_only:
             self.request_control.completed()
         return {"channels": summary, "failed_channels": failures, "paused": self.blocked,
+                "metadata_only": self.metadata_only,
+                "published_since": self.published_since.isoformat() if self.published_since else None,
+                "published_until": self.published_until.isoformat() if self.published_until else None,
                 "retry_after": datetime.fromtimestamp(
                     self.request_control.state["cooldown_until"], timezone.utc).isoformat()
                 if self.blocked and self.request_control else None}
@@ -402,7 +476,14 @@ def ingestion_lock(data_dir):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-dir", type=Path, default=DEFAULT_DIR)
-    parser.add_argument("--channel-id", choices=CHANNELS.values(), action="append")
+    parser.add_argument("--channel-id", action="append", help="Channel ID, @handle, or user:legacyname")
+    parser.add_argument("--regional", action="store_true", help="Use the official regional source registry")
+    parser.add_argument("--region", action="append", choices=["los-angeles", "orange-county", "san-diego"])
+    parser.add_argument("--sources-file", type=Path, default=DEFAULT_SOURCES)
+    parser.add_argument("--since", type=parse_date, help="Inclusive publication date YYYY-MM-DD")
+    parser.add_argument("--until", type=parse_date, help="Inclusive publication date YYYY-MM-DD")
+    parser.add_argument("--past-year", action="store_true", help="One calendar year through today")
+    parser.add_argument("--metadata-only", action="store_true", help="Catalog videos without caption requests")
     parser.add_argument("--languages", default="en", help="Comma-separated preference order")
     parser.add_argument("--refresh-transcripts", action="store_true")
     parser.add_argument("--request-delay", type=float,
@@ -413,6 +494,13 @@ def main():
                         help="Initial cooldown after a block; repeated blocks double it (default 1800)")
     parser.add_argument("--max-videos", type=int, help="Optional per-channel smoke-test limit; default: all")
     args = parser.parse_args()
+    if args.past_year:
+        if args.since or args.until:
+            parser.error("Use --past-year or explicit --since/--until dates")
+        args.until = date.today()
+        args.since = calendar_year_ago(args.until)
+    if args.since and args.until and args.since > args.until:
+        parser.error("--since must not be later than --until")
     if args.max_videos is not None and args.max_videos < 1:
         parser.error("--max-videos must be positive")
     if not math.isfinite(args.request_delay) or args.request_delay < 1:
@@ -433,14 +521,22 @@ def main():
 
     youtube = build("youtube", "v3", developerKey=key, cache_discovery=False,
                     http=httplib2.Http(timeout=30))
-    channels = {name: cid for name, cid in CHANNELS.items()
-                if not args.channel_id or cid in args.channel_id}
+    source_metadata = {}
+    if args.regional or args.region:
+        channels, source_metadata = load_sources(args.sources_file, args.region)
+    else:
+        channels = dict(CHANNELS)
+    if args.channel_id:
+        configured = {ref: name for name, ref in channels.items()}
+        channels = {configured.get(ref, ref): ref for ref in args.channel_id}
     with ingestion_lock(args.data_dir):
         # Read persistent state under the same single-writer lock as video files.
         control = TranscriptRequestControl(args.data_dir, args.request_delay, args.block_cooldown)
         importer = YouTubeIngestor(youtube, YouTubeTranscriptApi(http_client=PacedSession()),
                                   args.data_dir, tuple(x.strip() for x in args.languages.split(",") if x.strip()),
-                                  args.refresh_transcripts, request_control=control)
+                                  args.refresh_transcripts, request_control=control,
+                                  published_since=args.since, published_until=args.until,
+                                  metadata_only=args.metadata_only, source_metadata=source_metadata)
         try:
             result = importer.ingest_all_channels(channels, args.max_videos)
         except KeyboardInterrupt:

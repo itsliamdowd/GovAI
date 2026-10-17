@@ -25,7 +25,7 @@ export function loadYouTubeDocs(dir = YOUTUBE_DIR, log = console.error) {
       const url = `https://www.youtube.com/watch?v=${c.video_id}&t=${Math.floor(c.start)}s`;
       docs.push({ ...c, kind: "youtube_video", doc: "transcript", part: c.chunk_id, url,
         title: `${c.channel_name}: ${c.title}`,
-        searchText: `${c.channel_name} ${c.title} ${c.published_at ?? ""} ${c.text}` });
+        searchText: `${c.region ?? ""} ${c.jurisdiction ?? ""} ${c.channel_name} ${c.title} ${c.published_at ?? ""} ${c.text}` });
     } catch { log(`YouTube cache: skipping invalid chunk on line ${i + 1}`); }
   }
   return docs;

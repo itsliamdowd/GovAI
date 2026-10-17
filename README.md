@@ -164,6 +164,59 @@ Live ingestion requires a real YouTube API key and network access to YouTube.
 
 ## Sources
 
+### Regional YouTube starter collection
+
+The optional `config/youtube_sources.json` registry adds official city/county channels for
+Los Angeles, Orange County (California), and San Diego. It is a **starter list**, not an inventory
+of every municipality, police department, or public agency in these counties. Each entry records
+its region, jurisdiction and the government page used to identify its YouTube link. Handles and
+legacy usernames are resolved by official `channels.list(forHandle=.../forUsername=...)`, followed
+by uploads-playlist enumeration. There is no YouTube search-based channel guessing.
+
+Enabled sources: the two existing Santa Monica channels; LA CityView, LA City Clerk, LA County,
+LA County Board of Supervisors; Orange County Registrar of Voters; San Diego County, San Diego
+City, San Diego Public Meetings, and San Diego Public Hearings. The general Orange County CEO
+channel link on its website returned HTTP 404 during verification on 2026-10-17 and is disabled
+in the registry pending a verified working replacement. Orange County coverage is therefore
+limited to election-related videos in this first registry. Review/edit the registry to add agencies.
+
+Run from the repository root, using the same `YOUTUBE_API_KEY` already configured in `.env`:
+
+```powershell
+# Catalog the past year without any transcript requests (works during a caption cooldown):
+npm.cmd run ingest:youtube -- --regional --past-year --metadata-only
+
+# Download available captions from the same sources with pacing/cooldowns:
+npm.cmd run ingest:youtube -- --regional --past-year --request-delay 15
+
+# Fixed inclusive publication window for reproducible imports:
+npm.cmd run ingest:youtube -- --regional --since 2025-10-17 --until 2026-10-17
+
+# One region only (repeat --region to select several):
+npm.cmd run ingest:youtube -- --region san-diego --past-year
+```
+
+`--past-year` means one calendar year through the local date when the command runs; videos are
+filtered by their API publication date, not a date guessed from the title. All playlist pages are
+scanned; an older/pinned video does not prematurely end discovery. Old and future-dated videos
+outside an explicit window are skipped before fetching captions. Records lacking a usable date
+are retained as metadata, counted under `undated`, and do not trigger caption requests when a
+date filter is active. `--max-videos` counts saved in-scope/undated records, not skipped old uploads.
+Missing transcripts in metadata-only runs are marked `pending`, not mislabeled as unavailable.
+Metadata-only runs never clear a caption cooldown or erase successful captions.
+
+Records and chunks retain `region`, `jurisdiction`, and `source_reference_url`; the existing BM25
+loader includes jurisdiction in search text. This change expands the video corpus, not the rest
+of the Santa Monica-specific app, forms or live-data routing. Date flags control new imports;
+existing cached transcripts from earlier runs are retained and remain in the JSONL snapshots.
+Restart the app after an import to load new chunks. No videos or audio files are downloaded.
+
+The date window reduces caption traffic but does not guarantee YouTube permits caption access.
+Public video-page scraping was also rejected with HTTP 429/bot checks during a 2026-10-17 live
+probe; this importer therefore retains the reliable keyed metadata API path. A successful metadata
+catalog is not evidence that captions were downloaded. Check transcript counts and per-video
+status before reporting coverage. A complete regional transcript corpus has not been live-validated.
+
 Beyond `knowledge/*.md`, the 82 data.santamonica.gov datasets and council agendas/minutes/transcripts, the assistant retrieves from:
 
 - **Local news** (`search_local_news`, refreshed every 30 min, cached in `data/news.json`): Santa Monica Daily Press, Santa Monica Mirror, Santa Monica Next, Santa Monica Observer, Patch Santa Monica, Canyon News, LA Times California, r/SantaMonica, Bing News, Google News queries covering the Santa Monica Lookout, Westside Current, KCRW, LAist, city news releases, SMC/SMMUSD and local landmarks, plus Santa Monica CityTV meeting-video feeds (council and boards).

@@ -1,0 +1,90 @@
+[
+  {
+    "name": "City of Santa Monica / CityTV",
+    "channel_ref": "UC4V0jOEL4JMCcElkGA7AJpA",
+    "region": "los-angeles",
+    "jurisdiction": "City of Santa Monica",
+    "official_source_url": "https://www.santamonica.gov/",
+    "verification_note": "Original channel supplied by the project owner."
+  },
+  {
+    "name": "Santa Monica Police Department",
+    "channel_ref": "UCyq1UTKGqCmUtsJi984yF5A",
+    "region": "los-angeles",
+    "jurisdiction": "City of Santa Monica",
+    "official_source_url": "https://www.santamonica.gov/departments/police",
+    "verification_note": "Original channel supplied by the project owner."
+  },
+  {
+    "name": "City of Los Angeles / LA CityView",
+    "channel_ref": "@LACity",
+    "region": "los-angeles",
+    "jurisdiction": "City of Los Angeles",
+    "official_source_url": "https://lacity.gov/tv"
+  },
+  {
+    "name": "Los Angeles City Clerk",
+    "channel_ref": "@LACityClerk",
+    "region": "los-angeles",
+    "jurisdiction": "City of Los Angeles",
+    "official_source_url": "https://lacity.gov/tv"
+  },
+  {
+    "name": "County of Los Angeles",
+    "channel_ref": "UCutBHggRFn38J-tfVGC2tBw",
+    "region": "los-angeles",
+    "jurisdiction": "County of Los Angeles",
+    "official_source_url": "https://lacounty.gov/"
+  },
+  {
+    "name": "Los Angeles County Board of Supervisors",
+    "channel_ref": "@LACountyBOS",
+    "region": "los-angeles",
+    "jurisdiction": "County of Los Angeles",
+    "official_source_url": "https://lacounty.granicus.com/AgendaViewer.php?clip_id=10216&view_id=1"
+  },
+  {
+    "name": "County of Orange / CEO Communications",
+    "channel_ref": "@countyoforangeceocommunica4264",
+    "region": "orange-county",
+    "jurisdiction": "County of Orange",
+    "official_source_url": "https://www.ocgov.com/page/social-media",
+    "enabled": false,
+    "verification_note": "The county website links this handle, but it returned HTTP 404 on 2026-10-17. Disabled until a working official replacement is verified."
+  },
+  {
+    "name": "Orange County Registrar of Voters",
+    "channel_ref": "@ocrov",
+    "region": "orange-county",
+    "jurisdiction": "County of Orange",
+    "official_source_url": "https://ocgov.com/press/registrar-voters-releases-new-community-champions-videos"
+  },
+  {
+    "name": "County of San Diego",
+    "channel_ref": "user:countysandiego",
+    "region": "san-diego",
+    "jurisdiction": "County of San Diego",
+    "official_source_url": "https://www.sandiegocounty.gov/content/sdc/cosd/connections.html"
+  },
+  {
+    "name": "City of San Diego",
+    "channel_ref": "UCAbQeRpOa1f12BZnXcYQlqw",
+    "region": "san-diego",
+    "jurisdiction": "City of San Diego",
+    "official_source_url": "https://www.sandiego.gov/communications/citytv"
+  },
+  {
+    "name": "City of San Diego Public Meetings",
+    "channel_ref": "@cityofsandiegopublicmeetin5034",
+    "region": "san-diego",
+    "jurisdiction": "City of San Diego",
+    "official_source_url": "https://www.sandiego.gov/communications/citytv"
+  },
+  {
+    "name": "City of San Diego Public Hearings",
+    "channel_ref": "@cityofsandiegopublichearin5234",
+    "region": "san-diego",
+    "jurisdiction": "City of San Diego",
+    "official_source_url": "https://www.sandiego.gov/communications/citytv"
+  }
+]

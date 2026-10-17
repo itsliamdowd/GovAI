@@ -1,4 +1,5 @@
 import json
+from datetime import date
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
@@ -6,7 +7,8 @@ import unittest
 
 from scripts.ingest_youtube import (YouTubeIngestor, chunk_transcript, ingestion_lock,
                                     TranscriptRequestControl, TranscriptRateLimit,
-                                    paced_request, retry_after_seconds)
+                                    paced_request, retry_after_seconds, load_sources,
+                                    calendar_year_ago)
 
 FIRST, SECOND, THIRD = "abcdefghijk", "lmnopqrstuv", "wxyz1234567"
 CHANNEL = "UC4V0jOEL4JMCcElkGA7AJpA"
@@ -255,6 +257,59 @@ class IngestionTests(unittest.TestCase):
                 self.ingestor.ingest_all_channels({"CityTV": CHANNEL})
         self.assertTrue((Path(self.tmp.name) / "chunks.jsonl").exists())
         self.assertFalse((Path(self.tmp.name) / ".ingest.lock").exists())
+
+    def test_date_filter_scans_past_old_uploads_and_preserves_undated_metadata(self):
+        original = self.youtube.video
+        def dated(kw):
+            request = original(kw)
+            for video in request.value["items"]:
+                video["snippet"]["publishedAt"] = ("2024-01-01T00:00:00Z" if video["id"] == FIRST
+                                                     else "2026-10-17T23:59:59Z")
+            return request
+        self.youtube.video = dated
+        self.ingestor.published_since = date(2025, 10, 17)
+        self.ingestor.published_until = date(2026, 10, 17)
+        result = self.ingestor.ingest_all_channels({"CityTV": CHANNEL})
+        stats = result["channels"][CHANNEL]
+        self.assertEqual(stats["outside_date_range"], 1)
+        self.assertEqual(stats["undated"], 1)
+        self.assertFalse(self.ingestor.record_path(FIRST).exists())
+        self.assertEqual(self.transcripts.calls, [THIRD])
+        self.assertEqual(self.read(SECOND)["transcript_status"], "unavailable")
+        self.assertTrue(self.read(THIRD)["transcript_available"])
+
+    def test_metadata_only_works_during_caption_cooldown_without_clearing_it(self):
+        self.ingestor.metadata_only = True
+        control = TranscriptRequestControl(self.tmp.name, clock=lambda: 1000)
+        control.block()
+        self.ingestor.request_control = control
+        result = self.ingestor.ingest_all_channels({"CityTV": CHANNEL})
+        self.assertFalse(result["paused"])
+        self.assertTrue(result["metadata_only"])
+        self.assertEqual(result["channels"][CHANNEL]["videos"], 3)
+        self.assertEqual(self.transcripts.calls, [])
+        self.assertEqual(control.remaining(), 1800)
+        self.assertFalse(self.read(FIRST)["transcript_available"])
+        self.assertEqual(self.read(FIRST)["transcript_status"], "pending")
+
+    def test_regional_sources_and_official_handle_resolution(self):
+        channels, metadata = load_sources(regions=["orange-county"])
+        self.assertIn("@ocrov", channels.values())
+        self.assertNotIn("@countyoforangeceocommunica4264", channels.values())
+        self.assertTrue(all(s["region"] == "orange-county" for s in metadata.values()))
+        def resolve(kw):
+            self.youtube.calls.append(("channels", kw))
+            return Request({"items": [{"id": CHANNEL, "snippet": {"title": "Official channel"},
+                                       "contentDetails": {"relatedPlaylists": {"uploads": "uploads-id"}}}]})
+        self.youtube.channel = resolve
+        self.ingestor.source_metadata = {"@LACity": {"region": "los-angeles", "jurisdiction": "City of Los Angeles"}}
+        rows = list(self.ingestor.get_all_channel_videos("@LACity"))
+        self.assertEqual(self.youtube.calls[0][1]["forHandle"], "@LACity")
+        self.assertTrue(all(r["channel_id"] == CHANNEL for r in rows))
+        self.assertTrue(all(r["jurisdiction"] == "City of Los Angeles" for r in rows))
+        self.ingestor.get_upload_playlist("user:countysandiego")
+        self.assertEqual(self.youtube.calls[-1][1]["forUsername"], "countysandiego")
+        self.assertEqual(calendar_year_ago(date(2024, 2, 29)), date(2023, 2, 28))
 
 
 if __name__ == "__main__":
