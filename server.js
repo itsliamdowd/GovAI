@@ -387,13 +387,15 @@ function withSessionLock(sessionId, fn) {
 const VOICE_RULE = `Voice mode (only when the resident's message starts with "[voice]"): the resident is speaking to you and will hear your reply read aloud. Answer in one or two short spoken sentences, the way a person answers a question out loud. Lead with the single most useful fact, then at most a short offer of the next step. No lists, bullet points, markdown, headers, links, URLs, phone numbers spelled as digits with dashes, or citations in the text; say "the city's website" rather than reading an address. Still look things up with your tools first; just say the answer briefly. Never mention sources, datasets, documents, records, minutes, transcripts, searches, or where the information came from, and never say "according to" or "the data shows" — state the answer as plain fact.`;
 
 const DEFAULT_JUR = process.env.DEFAULT_JUR || null; // set e.g. santa-monica for a single-city deployment; unset = detect from the conversation
+const jurPayload = (j) => j ? { id: j.id, name: j.name, short: j.short, kind: j.kind, icon: j.icon, contact: j.contact?.line ?? "", phone: j.contact?.phone ?? "", site: j.site } : null;
 const sessionFor = (id) => { if (!sessions.has(id)) sessions.set(id, { messages: [], jur: DEFAULT_JUR }); return sessions.get(id); };
-async function chat(sessionId, userText, send, voice = false, geo = null) {
+async function chat(sessionId, userText, send, voice = false, geo = null, jur = null) {
   const session = sessionFor(sessionId), { messages } = session;
-  const jurEvent = () => { const j = jurById(session.jur); send({ type: "jurisdiction", data: j ? { id: j.id, name: j.name, short: j.short, kind: j.kind, icon: j.icon, contact: j.contact?.line ?? "", phone: j.contact?.phone ?? "", site: j.site } : null }); };
+  const jurEvent = () => send({ type: "jurisdiction", data: jurPayload(jurById(session.jur)) });
   const setJur = (id, via = "message") => { if (id !== session.jur && jurById(id)) { session.jur = id; session.via = via; jurEvent(); } };
   const hit = detect(userText); if (hit) setJur(hit); // server-side alias/ZIP match; the model's set_jurisdiction covers the rest
   if (geo) session.geo = geo; // latest device location; tools use it whenever the resident hasn't given an address
+  if (!session.jur && jur && jurById(jur)) setJur(jur, "location"); // the browser already located itself via /api/locate (remembered across visits)
   if (!session.jur && geo) { const near = nearest(geo.lon, geo.lat); if (near) setJur(near.id, "location"); } // device location, only when nothing was named
   // Preserved thinking: a thinking block's signature is bound to the exact system prompt + tools + earlier messages it was produced
   // under. Anything that varies per request (voice on/off, the date) must not live in `system`, or the next turn 400s. So the voice
@@ -467,6 +469,19 @@ async function chat(sessionId, userText, send, voice = false, geo = null) {
   }
 }
 
+// ponytail: distinct SitusStreet values by prefix, cached per prefix for the process lifetime (street names don't change)
+const streetCache = new Map();
+async function streetNames(prefix) {
+  if (streetCache.has(prefix)) return streetCache.get(prefix);
+  const url = "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Assessor%20Parcel%20Data%20Roll%202026/FeatureServer/0/query?" + new URLSearchParams({
+    where: `SitusCity LIKE 'SANTA MONICA%' AND UPPER(SitusStreet) LIKE '${prefix.replace(/'/g, "''")}%'`, outFields: "SitusStreet", returnDistinctValues: "true", returnGeometry: "false", orderByFields: "SitusStreet", resultRecordCount: "25", f: "json" });
+  const r = await fetch(url, { signal: AbortSignal.timeout(8000) }); const j = await r.json(); if (j.error) throw new Error(j.error.message);
+  const ABBR = { STREET: "St", AVENUE: "Ave", BOULEVARD: "Blvd", DRIVE: "Dr", PLACE: "Pl", COURT: "Ct", LANE: "Ln", ROAD: "Rd", WAY: "Way", TERRACE: "Ter", CIRCLE: "Cir", HIGHWAY: "Hwy", PARKWAY: "Pkwy", ST: "St", AVE: "Ave", BLVD: "Blvd", DR: "Dr", PL: "Pl", CT: "Ct", LN: "Ln", RD: "Rd", TER: "Ter", CIR: "Cir", HWY: "Hwy", PKWY: "Pkwy" };
+  const title = (w) => ABBR[w] ?? (/^\d/.test(w) ? w.toLowerCase() : w[0] + w.slice(1).toLowerCase());
+  const names = [...new Set(j.features.map((f) => f.attributes.SitusStreet.trim().split(/\s+/).map(title).join(" ")))]; // "EUCLID ST" + "EUCLID STREET" → one "Euclid St"
+  streetCache.set(prefix, names);
+  return names;
+}
 const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".svg": "image/svg+xml", ".json": "application/json", ".webmanifest": "application/manifest+json" };
 const server = http.createServer(async (req, res) => {
   if (req.method === "POST" && req.url === "/chat") {
@@ -474,7 +489,7 @@ const server = http.createServer(async (req, res) => {
     for await (const chunk of req) body += chunk;
     let sessionId, message, voice, geo;
     try {
-      ({ sessionId, message, voice, geo } = JSON.parse(body));
+      ({ sessionId, message, voice, geo, jur } = JSON.parse(body));
       geo = geo && Number.isFinite(+geo.lat) && Number.isFinite(+geo.lon) && +geo.lat > 32 && +geo.lat < 42.1 && +geo.lon > -124.6 && +geo.lon < -114 ? { lat: +geo.lat, lon: +geo.lon } : null; // California only; anything else is ignored
       if (typeof message !== "string" || !message.trim() || message.length > 8000) throw new Error("bad message");
       if (typeof sessionId !== "string" || !/^[\w-]{1,64}$/.test(sessionId)) throw new Error("bad session");
@@ -482,7 +497,7 @@ const server = http.createServer(async (req, res) => {
     res.writeHead(200, { "Content-Type": "text/event-stream", "Cache-Control": "no-cache", Connection: "keep-alive" });
     const send = (ev) => res.write(`data: ${JSON.stringify(ev)}\n\n`);
     try {
-      await withSessionLock(sessionId, () => chat(sessionId, message.trim(), send, voice === true, geo));
+      await withSessionLock(sessionId, () => chat(sessionId, message.trim(), send, voice === true, geo, typeof jur === "string" ? jur : null));
     } catch (e) {
       const msg = e instanceof Anthropic.AuthenticationError ? "Server is missing a valid ANTHROPIC_API_KEY (see .env.example)."
         : e instanceof Anthropic.RateLimitError ? "Rate limited, try again in a moment."
@@ -496,6 +511,16 @@ const server = http.createServer(async (req, res) => {
     }
     send({ type: "done" });
     res.end();
+    return;
+  }
+  if (req.method === "POST" && req.url === "/api/locate") { // device coordinates → nearest covered city/county, so the page knows where it is before the first message
+    let body = "";
+    for await (const chunk of req) body += chunk;
+    try {
+      const { geo } = JSON.parse(body); const lat = Number(geo?.lat), lon = Number(geo?.lon);
+      if (!Number.isFinite(lat) || !Number.isFinite(lon)) throw 0;
+      res.writeHead(200, { "Content-Type": "application/json" }).end(JSON.stringify(jurPayload(nearest(lon, lat))));
+    } catch { res.writeHead(400).end("bad request"); }
     return;
   }
   if (req.method === "POST" && req.url === "/api/applications") { // filed from a form card
@@ -623,6 +648,13 @@ const server = http.createServer(async (req, res) => {
       return json(200, app);
     }
     return json(404, { error: "not found" });
+  }
+  if (req.method === "GET" && req.url.startsWith("/api/streets?")) { // address autocomplete: Santa Monica street names from the LA County Assessor roll
+    const q = (new URL(req.url, "http://x").searchParams.get("q") ?? "").toUpperCase().replace(/[^A-Z0-9 ]/g, "").trim().slice(0, 40);
+    if (q.length < 2) { res.writeHead(200, { "Content-Type": "application/json" }).end("[]"); return; }
+    try { res.writeHead(200, { "Content-Type": "application/json", "Cache-Control": "public, max-age=86400" }).end(JSON.stringify(await streetNames(q))); }
+    catch (e) { res.writeHead(502, { "Content-Type": "application/json" }).end(JSON.stringify({ error: e.message })); }
+    return;
   }
   if (req.method === "GET" && req.url.startsWith("/api/applications/")) {
     const r = checkStatus(decodeURIComponent(req.url.slice(18)));

@@ -33,12 +33,23 @@ async function sitemapUrls(site) {
   }
   return [...new Set(urls)];
 }
+// No sitemap: crawl the home page and its same-host links two levels deep (keyword-matching links only at level 2). ponytail: serial, capped at 1500 urls
+async function crawlUrls(site) {
+  const host = new URL(site).host, seen = new Set([site]), out = [];
+  const links = (base, html) => [...html.matchAll(/href=["']([^"'#?]+)/gi)].map(([, h]) => { try { return new URL(h, base).href.replace(/\/$/, ""); } catch { return null; } }).filter((u) => u && new URL(u).host === host && !/\.(pdf|jpg|png|gif|css|js|xml|ico|svg|mp4|zip)$/i.test(u));
+  const home = links(site, await text(site));
+  for (const u of home) if (!seen.has(u)) { seen.add(u); out.push(u); }
+  const keys = Object.values(TOPICS).flat();
+  for (const u of out.slice(0, 120)) { if (out.length > 1500) break; for (const v of links(u, await text(u))) if (!seen.has(v) && keys.some((k) => v.toLowerCase().includes(k))) { seen.add(v); out.push(v); } }
+  return out;
+}
 const EXAMPLE = fs.readFileSync("./knowledge/santa-monica/public-safety-code.md", "utf8").split("\n").slice(0, 14).join("\n");
 
 async function generate(j) {
   const dir = `./knowledge/${j.id}`;
-  const all = await sitemapUrls(j.site);
-  console.log(`${j.id}: ${all.length} sitemap urls`);
+  let all = await sitemapUrls(j.site), how = "sitemap";
+  if (!all.length) { all = await crawlUrls(j.site); how = "crawled"; }
+  console.log(`${j.id}: ${all.length} ${how} urls`);
   fs.mkdirSync(dir, { recursive: true });
   for (const [topic, keys] of Object.entries(TOPICS)) {
     const picked = all.filter((u) => keys.some((k) => u.toLowerCase().includes(k))).slice(0, PER_TOPIC);

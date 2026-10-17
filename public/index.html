@@ -73,6 +73,7 @@
   /* native time/date pickers: one highlight only — the focused segment takes the field's accent, the field border stays quiet */
   .form input:is([type=time],[type=date]) { color-scheme:dark } .form input:is([type=time],[type=date]):focus { border-color:var(--line); box-shadow:0 0 0 2px var(--blue) }
   .form input:is([type=time],[type=date])::-webkit-datetime-edit-hour-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-minute-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-ampm-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-month-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-day-field:focus,.form input:is([type=time],[type=date])::-webkit-datetime-edit-year-field:focus { background:var(--blue); color:#fff; border-radius:4px; outline:none }
+  .form select { padding:13px 36px 13px 14px } /* room to breathe + space for the native chevron */
   .form .range { display:flex; align-items:center; gap:10px } .form .range :is(input,select) { flex:1; min-width:0 } .form .range span { color:var(--muted); font-size:14px }
   .form .choices { display:flex; flex-wrap:wrap; gap:8px } .form .choices button { border:1px solid var(--line); background:var(--bg); color:var(--ink); border-radius:999px; padding:10px 16px; font:inherit; font-size:14px; cursor:pointer; text-align:left } .form .choices button:hover { border-color:var(--blue-2) } .form .choices button.on { border-color:var(--blue); background:#16243a }
   .form .nav { display:flex; gap:8px; justify-content:space-between; margin-top:14px } .form .nav button { border:1px solid var(--line); border-radius:999px; height:34px; padding:0 16px; font:inherit; font-size:13px; font-weight:500; cursor:pointer; background:transparent; color:var(--ink) } .form .nav .next { background:var(--blue); border-color:var(--blue); color:#fff } .form .nav .next:hover { background:var(--blue-2) } .form .nav button:disabled { opacity:.35; cursor:default }
@@ -250,8 +251,23 @@ function answerText(bot) { const c = bot.cloneNode(true); c.querySelector(".acts
 let CITY_ICON = "/icon.svg", CITY_NAME = "Local government"; // replaced by the server's `jurisdiction` event once the conversation names a city or county
 let JUR = null;
 // Device location → the server picks the nearest covered city/county when the resident hasn't named one. Asked once, cached 10 min, silently skipped if denied.
-let geo = null;
-navigator.geolocation?.getCurrentPosition((p) => { geo = { lat: p.coords.latitude, lon: p.coords.longitude }; }, () => {}, { maximumAge: 600000, timeout: 8000 });
+let geo = null, jurId = null;
+try { geo = JSON.parse(localStorage.getItem("sm_geo")); jurId = localStorage.getItem("sm_jur") || null; } catch {}
+// Resolve the device position once (the first message waits up to 2.5 s for it), remember it, and ask the server which city it is in
+// so the header/footer and the first answer already know, instead of the assistant asking "Which city are you in?".
+const geoReady = new Promise((res) => {
+  if (!navigator.geolocation) return res(null);
+  navigator.geolocation.getCurrentPosition((p) => { geo = { lat: p.coords.latitude, lon: p.coords.longitude }; try { localStorage.setItem("sm_geo", JSON.stringify(geo)); } catch {} res(geo); }, () => res(null), { maximumAge: 600000, timeout: 8000 });
+});
+async function locate() {
+  const g = (await geoReady) ?? geo; if (!g) return;
+  try {
+    const r = await fetch("/api/locate", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ geo: g }) });
+    const j = r.ok ? await r.json() : null;
+    if (j?.id) { jurId = j.id; try { localStorage.setItem("sm_jur", j.id); } catch {} if (!JUR) setJurisdiction(j); }
+  } catch {}
+}
+locate();
 function setJurisdiction(j) {
   JUR = j; CITY_ICON = j?.icon || "/icon.svg"; CITY_NAME = j?.name || "Local government";
   $("fine").textContent = j ? `Not for emergencies. Call 911. ${j.name}: ${j.phone || j.contact || j.site}.` : "Not for emergencies. Call 911. Non-emergency: your city's 311 or main line.";
@@ -599,7 +615,8 @@ async function send(text, voice = false) {
   // The dev server (node --watch) restarts on every file save, killing in-flight requests and refusing new ones for a few
   // seconds while the index rebuilds. If nothing has streamed yet, wait for it to come back and resend once instead of failing.
   for (let attempt = 0; ; attempt++) try {
-    const res = await fetch("/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sessionId, message: text, voice, geo }), signal: ctrl.signal });
+    if (!geo) await Promise.race([geoReady, new Promise((r) => setTimeout(r, 2500))]); // give the permission prompt a moment on the very first message
+    const res = await fetch("/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sessionId, message: text, voice, geo, jur: jurId }), signal: ctrl.signal });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const reader = res.body.getReader(), dec = new TextDecoder(); let carry = "";
     while (true) {
@@ -664,6 +681,19 @@ function contactCard(c) {
   d.innerHTML = `<b>${esc(c.name)}</b>${c.role ? `<div class="role">${esc(c.role)}</div>` : ""}<div class="rows">${rows}</div>${c.note ? `<div class="note">${esc(c.note)}</div>` : ""}${cta ? `<div class="cta">${cta}</div>` : ""}`;
   log.appendChild(d);
 }
+// Address autocomplete: "111 eu" → datalist of "111 Euclid St", … from /api/streets (LA County Assessor roll, Santa Monica only).
+function streetSuggest(input) {
+  const dl = document.createElement("datalist"); dl.id = "streets-" + Math.random().toString(36).slice(2, 8); input.after(dl); input.setAttribute("list", dl.id); input.autocomplete = "off";
+  let t = 0, last = "";
+  input.addEventListener("input", () => {
+    clearTimeout(t);
+    t = setTimeout(async () => {
+      const m = input.value.match(/^\s*(\d+[A-Za-z]?(?:\s*\/\s*\d+)?)?\s*([A-Za-z0-9][A-Za-z0-9 ]{1,}?)\s*$/); if (!m) return;
+      const num = m[1] ? m[1] + " " : "", q = m[2].trim(); if (q === last) return; last = q;
+      try { const names = await (await fetch(`/api/streets?q=${encodeURIComponent(q)}`)).json(); if (Array.isArray(names)) dl.innerHTML = names.map((n) => `<option value="${esc(num + n)}">`).join(""); } catch {}
+    }, 180);
+  });
+}
 function appCard(a, label) {
   const c = document.createElement("div"); c.className = "card";
   c.innerHTML = `<small>${label}</small><div class="num">${esc(a.confirmation_number)} <button type="button">Copy</button></div><small><b>Routed to:</b> ${esc(a.department)}</small><small>${esc(a.next_steps)}</small>`;
@@ -707,6 +737,7 @@ function formCard(f) {
     else if (fld.type === "textarea") el = document.createElement("textarea");
     else {
       el = document.createElement("input"); el.type = fld.type || "text"; if (fld.type === "number") el.min = "1";
+      if (/address|street|location/.test(fld.key)) streetSuggest(el); // autocomplete Santa Monica street names as they type
       if (fld.type === "date") { const d = new Date(); d.setDate(d.getDate() + (fld.minDays ?? 0)); el.min = d.toISOString().slice(0, 10); } // no past dates; lead time per field
     }
     if (el.tagName !== "DIV") { el.id = "ff"; el.required = !fld.optional; if (fld.placeholder) el.placeholder = fld.placeholder; if (vals[fld.key] != null) el.value = vals[fld.key]; }

@@ -16,6 +16,22 @@
        Status badge classes: planned | progress | done | blocked.
        Do NOT log changes to ~/.claude/, plan.html itself, or the changelog server. -->
 
+  <article class="entry" id="e-2026-10-17-1700">
+    <header>
+      <time>2026-10-17 17:00</time>
+      <h2>Locate the resident from the device before the first message (no more "Which city are you in?")</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Goal (user).</b> Stop opening with "Which city are you in? An address works too." and pull the user's location instead.</p>
+    <p><b>Why it still asked.</b> Geolocation plumbing existed (client sent <code>geo</code> with each message; server picked <code>nearest()</code> when no jurisdiction was named) but the position was requested fire-and-forget at page load, so the first message, especially a hero chip clicked right away, went out with <code>geo: null</code> while the permission prompt was still up, and the model asked.</p>
+    <h3>What changed</h3>
+    <ul>
+      <li><code>public/index.html</code> — position is resolved once into a promise and remembered in <code>localStorage</code> (<code>sm_geo</code>, <code>sm_jur</code>); on load the page calls <code>POST /api/locate</code> and sets the header/footer jurisdiction immediately; the first message waits up to 2.5 s for the fix if it isn't in yet; every <code>/chat</code> body carries <code>jur</code> (the located id) as well as <code>geo</code>.</li>
+      <li><code>server.js</code> — <code>POST /api/locate {geo}</code> → nearest covered city/county (same payload as the <code>jurisdiction</code> event, via new <code>jurPayload()</code>); <code>chat()</code> seeds an unset session from <code>jur</code> before falling back to raw coordinates; a city named in the message still wins. The prompt's one-question fallback stays for denied/unsupported location.</li>
+    </ul>
+    <p><b>Verified:</b> <code>nearest()</code> maps Santa Monica Pier, Diamond Bar, downtown San Diego, Irvine to the right cities and Fresno to none; syntax checks pass. Not tested in a browser (Chrome MCP unavailable); permission prompt behaviour is the browser's.</p>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1605">
     <header>
       <time>2026-10-17 16:05</time>
@@ -477,6 +493,7 @@ index                 one BM25 is fine to ~100k docs; beyond that, shard per cou
 
   <article class="entry" id="e-2026-10-17-1600">
     <header><time>2026-10-17 16:00</time><h2>Composer: send arrow points up</h2><span class="badge done">done</span></header>
+    <p><b>16:10:</b> form-card dropdowns (e.g. block party start/end time) get more padding: <code>.form select { padding:13px 36px 13px 14px }</code> (was 10px 12px), with right-side room for the native chevron. <code>public/index.html</code>.</p>
     <p><b>16:05:</b> staff desk empty state "No applications for Planning Division" &rarr; "Planning Division has no applications" ("No applications" when viewing all; "… matching ‘q’" appended when searching). <code>public/staff.html</code>.</p>
     <p>User (screenshot): "the arrow should be up". <code>public/index.html</code> send button SVG path changed from a right arrow (<code>M5 12h14M13 6l6 6-6 6</code>) to an up arrow (<code>M12 19V5M6 11l6-6 6 6</code>); the stop-square state is unchanged.</p>
   </article>
