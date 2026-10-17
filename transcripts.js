@@ -49,7 +49,7 @@ export async function listVideos(log = console.error, j = SM) {
   try { const c = JSON.parse(fs.readFileSync(file, "utf8")); if (c.key === key && Date.now() - c.fetched_at < LIST_TTL_MS) return c.videos; } catch {}
   let stdout = "";
   for (const ch of channels) for (const tab of TABS) {
-    try { stdout += (await run("yt-dlp", ["--flat-playlist", "--print", "%(id)s\t%(title)s", `https://www.youtube.com/channel/${ch}/${tab}`], { maxBuffer: 50e6 })).stdout + "\n"; }
+    try { stdout += (await run("yt-dlp", ["--flat-playlist", "--print", "%(id)s\t%(title)s", `https://www.youtube.com/${/^UC[\w-]{20,}$/.test(ch) ? "channel/" + ch : ch.replace(/^https?:\/\/(www\.)?youtube\.com\//, "")}/${tab}`], { maxBuffer: 50e6 })).stdout + "\n"; } // channel id, @handle, user/x or c/x
     catch (e) { log(`yt-dlp ${ch}/${tab}: ${e.stderr?.split("\n").find((l) => l.includes("ERROR")) ?? e.message}`); }
   }
   const isMeeting = (t) => (j.council?.titleRe ?? /council/i).test(t) && /meeting|city council\b|board of supervisors/i.test(t) && !/planning|rent control|candidate|forum|budget study|workshop|retreat|proclamation|covid|booster|mask|message|election|statement|squirm/i.test(t);

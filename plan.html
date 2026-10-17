@@ -32,6 +32,7 @@
     <ul>
       <li><code>server.js</code> / <code>public/index.html</code> — the <code>jurisdiction</code> event now carries <code>phone</code>; the footer shows "City of Diamond Bar: (909) 839-7000." (bare number when known, the contact line otherwise).</li>
     </ul>
+    <p><b>16:50 follow-up (user, staff desk):</b> search box and department dropdown were stacking because the native <code>select</code> keeps its intrinsic (longest option) width as <code>min-width:auto</code>; <code>public/staff.html</code> <code>.bar</code> now gives the select a fixed 240px with <code>min-width:0</code> and only wraps below 560px.</p>
     <p><b>Result 16:40:</b> collector found 118 of 138 from the cities' own sites. 20 sites were bot-walled or had no number in reach (Whittier, Burbank, Santa Fe Springs, Lynwood, Arcadia, Montebello, Claremont, Paramount, South El Monte, Sierra Madre, Duarte, Coronado, Vista, Anaheim, El Cajon, Brea, Villa Park, San Juan Capistrano, Orange, Cudahy) and 8 scraped numbers were wrong or department lines (Azusa printed a typo'd 826 area code; National City had a placeholder 456-7890; Imperial Beach, Torrance, Glendale, Long Beach, Newport Beach, Chula Vista picked a clerk/district line). All 28 were looked up by web search and written into <code>data/phones.json</code> with <code>method: "verified-by-search"</code> and the source URL. <b>140 / 140 cities now have a main number</b>; <code>npm test</code> passes. Least certain: Burbank (818) 238-5850 and San Juan Capistrano (949) 493-1171 came from third-party directories, Whittier's city directory lists 567-9403 for City Hall while the county/211 list 567-9999 as the main line (kept 9999).</p>
   </article>
 
@@ -1106,6 +1107,7 @@ daily 07:00 → refreshCouncil() → for each alert:
       <h2>Staff desk: department dropdown styled like the text inputs</h2>
       <span class="badge done">done</span>
     </header>
+    <p><b>Follow-up.</b> Safari clipped the selected text at the top (vertical padding + fixed height on a custom-appearance select). Now zero vertical padding with <code>line-height:normal</code>; the 46px height centres the text.</p>
     <p><code>public/staff.html</code> — the native <code>&lt;select&gt;</code> ignored the shared padding/height in Safari and painted its own stepper and focus ring, so it sat shorter and looked foreign next to the inputs. Now <code>appearance:none</code>, 46px height matching the inputs, an inline SVG chevron on the right, dark option list, same border/focus as the inputs.</p>
   </article>
 

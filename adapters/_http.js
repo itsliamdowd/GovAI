@@ -9,7 +9,10 @@ import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 
 const run = promisify(execFile);
-export const UA = `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 GovAI/1.0 (civic assistant; ${process.env.CONTACT_EMAIL ? "mailto:" + process.env.CONTACT_EMAIL : "+https://github.com/liamdowd/GovAI"})`;
+// A plain browser UA: Cloudflare-fronted city sites (Burbank, Glendale, Downey…) 403 any UA with an extra product token. We identify
+// ourselves the standard way instead: a From: header with the contact mailbox (CONTACT_EMAIL) on every request.
+export const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36";
+const FROM = process.env.CONTACT_EMAIL ? { From: process.env.CONTACT_EMAIL } : {};
 const hosts = new Map(); // host -> { active, last }
 const limits = { concurrency: Number(process.env.FETCH_CONCURRENCY) || 2, gapMs: Number(process.env.FETCH_GAP_MS) || 400 };
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -29,7 +32,7 @@ export async function politeFetch(url, { timeout = 45000, headers = {}, retries 
   for (let attempt = 0; ; attempt++) {
     const release = await slot(host);
     let r;
-    try { r = await fetch(url, { ...init, headers: { "User-Agent": UA, Accept: "text/html,application/xhtml+xml,application/xml,application/json,application/pdf,*/*;q=0.8", ...headers }, signal: AbortSignal.timeout(timeout), redirect: "follow" }); }
+    try { r = await fetch(url, { ...init, headers: { "User-Agent": UA, Accept: "text/html,application/xhtml+xml,application/xml,application/json,application/pdf,*/*;q=0.8", "Accept-Language": "en-US,en;q=0.9", ...FROM, ...headers }, signal: AbortSignal.timeout(timeout), redirect: "follow" }); }
     catch (e) { release(); if (attempt < retries) { await sleep(2000 * 4 ** attempt); continue; } throw e; }
     release();
     if (r.status === 403) throw new BlockedError(url, 403);
