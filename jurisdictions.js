@@ -154,7 +154,7 @@ const CITIES = [
   city("fullerton", "Fullerton", OC, "https://www.cityoffullerton.com", [33.870, -117.925]),
   city("garden-grove", "Garden Grove", OC, "https://ggcity.org", [33.774, -117.938]),
   city("huntington-beach", "Huntington Beach", OC, "https://www.huntingtonbeachca.gov", [33.660, -117.999], ["surf city"]),
-  city("irvine", "Irvine", OC, "https://www.cityofirvine.org", [33.684, -117.826], ["great park", "woodbridge", "uci", "irvine spectrum"], { live: { caltrans: "12", placesName: "Irvine", censusPlace: "36770", censusName: "Irvine_city,_California" } }),
+  city("irvine", "Irvine", OC, "https://cityofirvine.gov", [33.684, -117.826], ["great park", "woodbridge", "uci", "irvine spectrum"], { domains: ["cityofirvine.gov", "cityofirvine.org"], council: { platform: "granicus", client: "irvine", views: [{ id: 68, body: "City Council" }], limit: 2000, label: "City Council" }, live: { caltrans: "12", placesName: "Irvine", censusPlace: "36770", censusName: "Irvine_city,_California" } }), // view 68 is the agenda iframe on cityofirvine.gov; the discovered view 6 is the ICTV events feed
   city("la-habra", "La Habra", OC, "https://www.lahabraca.gov", [33.932, -117.946]),
   city("la-palma", "La Palma", OC, "https://www.cityoflapalma.org", [33.846, -118.047]),
   city("laguna-beach", "Laguna Beach", OC, "https://www.lagunabeachcity.net", [33.542, -117.783]),

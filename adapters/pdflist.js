@@ -16,7 +16,8 @@ export function parseLinks(html, page, j) {
     let label = text(m[2]);
     // Revize sites (Arcadia) pair every document with a "Copy document link" button whose real title sits in data-copy-label / aria-label
     if (/copy .*link/i.test(label)) label = text(m[0].match(/data-copy-label="([^"]*)"/)?.[1] ?? m[0].match(/aria-label="Copy[^"]*? for ([^"]*)"/)?.[1] ?? label);
-    const url = absUrl(m[1], base), blob = `${label} ${file}`;
+    // CivicPlus Archive Center (Huntington Park): the row links to Archive.aspx?ADID=N; the PDF itself is /ArchiveCenter/ViewFile/Item/N
+    const url = absUrl(m[1].replace(/^(.*?)Archive\.aspx\?ADID=(\d+).*$/, "$1ArchiveCenter/ViewFile/Item/$2"), base), blob = `${label} ${file}`;
     if (!url || !keep.test(blob)) continue;
     let date = toYmd(label); if (!date) { try { date = toYmd(decodeURIComponent(m[1])); } catch { date = null; } }
     if (!date || date < since) continue;
@@ -31,11 +32,14 @@ export function parseLinks(html, page, j) {
 export async function listMeetings(j) {
   const out = [];
   for (const page of j.council.pages ?? []) { try { out.push(...parseLinks(await fetchHtml(page.url), page, j)); } catch (e) { console.error(`pdflist ${j.id} ${page.url}: ${e.message}`); } }
-  return out.sort((a, b) => b.date.localeCompare(a.date));
+  // the same body+date can surface on several pages (Huntington Park keeps agendas and minutes in separate Archive Center modules): merge, don't duplicate
+  const by = new Map(); for (const r of out) { const e = by.get(r.id); if (!e) by.set(r.id, r); else { e.agenda_url ||= r.agenda_url; e.minutes_url ||= r.minutes_url; e.packet_url ||= r.packet_url; e.canceled &&= r.canceled; } }
+  return [...by.values()].sort((a, b) => b.date.localeCompare(a.date));
 }
 export async function meetingText(m) {
   const out = { agenda_text: "", minutes_text: "" };
-  if (m.agenda_url) out.agenda_text = await fetchText(m.agenda_url).catch(() => "");
-  if (m.minutes_url) out.minutes_text = await fetchText(m.minutes_url).catch(() => "");
+  const big = { timeout: 240000 }; // Arcadia agenda packets run 30+ MB; the default 45 s aborts them
+  if (m.agenda_url) out.agenda_text = await fetchText(m.agenda_url, big).catch(() => "");
+  if (m.minutes_url) out.minutes_text = await fetchText(m.minutes_url, big).catch(() => "");
   return out;
 }

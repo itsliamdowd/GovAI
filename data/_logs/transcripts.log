@@ -5,3 +5,96 @@ captions 2026-04-14 W_xI3PJxnTQ: ERROR: Unable to download video subtitles for '
 transcripts santa-clarita: 30 videos, 1047 chunks
 done in 1216s
 ### torrance 14:16
+captions 2022-01-11 UcCOZOu-o8g: ERROR: [download] Got error: Failed to perform, curl: (6) Could not resolve host: www.youtube.com. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.. Giving up after 10 retries
+captions 2021-12-14 9-o_dVosdXU: ERROR: [youtube] 9-o_dVosdXU: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+captions 2021-06-15 TuHxVwU37BU: ERROR: Unable to download video subtitles for 'en': HTTP Error 429: Too Many Requests
+transcripts torrance: 196 videos, 13212 chunks
+done in 7614s
+### west-covina 16:23
+captions 2025-05-06 BMcztXP8O5w: ERROR: [youtube] BMcztXP8O5w: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+captions 2025-04-01 6eijx1vSSko: ERROR: [youtube] 6eijx1vSSko: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+captions 2024-11-19 roqfLU65oCY: ERROR: Unable to download video subtitles for 'en': HTTP Error 429: Too Many Requests — pausing YouTube pulls 15 min
+transcripts west-covina: 305 videos, 19122 chunks
+done in 87988s
+### norwalk 16:49
+captions 2026-01-20 S2ecRMDGruY: ERROR: [youtube] S2ecRMDGruY: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies — pausing YouTube pulls 15 min
+captions 2025-12-16 QCFQeV9lXlo: ERROR: [youtube] QCFQeV9lXlo: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies — pausing YouTube pulls 15 min
+captions 2025-12-09 zyWBycGwdcw: ERROR: [youtube] zyWBycGwdcw: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies — pausing YouTube pulls 15 min
+transcripts norwalk: 72 videos, 3719 chunks
+done in 8427s
+### south-gate 19:09
+captions 2024-09-24 8VfkUiO7VNY: ERROR: [youtube] 8VfkUiO7VNY: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies — pausing YouTube pulls 15 min
+captions 2024-09-10 FbaWD_U4Em4: ERROR: [youtube] FbaWD_U4Em4: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies — pausing YouTube pulls 15 min
+captions 2024-09-24 8VfkUiO7VNY: ERROR: [youtube] 8VfkUiO7VNY: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies — pausing YouTube pulls 15 min
+transcripts south-gate: 75 videos, 6127 chunks
+done in 48096s
+### carson 08:31
+captions 2025-04-15 jJyDZgjX36Y: ERROR: [youtube] jJyDZgjX36Y: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+captions 2025-04-01 qOcK949ps0Q: ERROR: [youtube] qOcK949ps0Q: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+captions 2020-02-06 mAjTbQJ-ff0: ERROR: Unable to download video subtitles for 'en': HTTP Error 429: Too Many Requests — pausing YouTube pulls 15 min
+transcripts carson: 126 videos, 8446 chunks
+done in 10919s
+### bellflower 11:33
+yt-dlp UCNt4BKguGJ_n8v8Vkb34XTw/streams: ERROR: [youtube:tab] UCNt4BKguGJ_n8v8Vkb34XTw: This channel does not have a streams tab
+YouTube: 219 council meeting videos listed
+captions 2023-09-11 8MObEF952HM: ERROR: [youtube] 8MObEF952HM: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies — pausing YouTube pulls 15 min
+transcripts bellflower: 219 videos, 12328 chunks
+done in 13677s
+### redondo-beach 15:21
+captions 2020-05-26 OMmMjrwZAk4: ERROR: [youtube] OMmMjrwZAk4: Unable to download API page: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer')) (caused by TransportError("('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))"))
+captions 2020-05-19 kSOgqA2fEZI: ERROR: [youtube] kSOgqA2fEZI: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+captions 2020-05-19 kSOgqA2fEZI: ERROR: [youtube] kSOgqA2fEZI: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+transcripts redondo-beach: 231 videos, 25616 chunks
+done in 12902s
+### pico-rivera 18:56
+yt-dlp UC0pHCL4z2dSoBjYMK_ZQeKw/streams: ERROR: [youtube:tab] UC0pHCL4z2dSoBjYMK_ZQeKw/streams: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+yt-dlp UC0pHCL4z2dSoBjYMK_ZQeKw/videos: ERROR: [youtube:tab] UC0pHCL4z2dSoBjYMK_ZQeKw/videos: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+YouTube: 0 council meeting videos listed
+transcripts pico-rivera: 0 videos, 0 chunks
+done in 1s
+### monterey-park 18:56
+yt-dlp user/MontParkTV/streams: ERROR: [youtube:tab] MontParkTV/streams: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+yt-dlp user/MontParkTV/videos: ERROR: [youtube:tab] MontParkTV/videos: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+YouTube: 0 council meeting videos listed
+transcripts monterey-park: 0 videos, 0 chunks
+done in 1s
+### gardena 18:56
+yt-dlp user/CityofGardena/streams: ERROR: [youtube:tab] CityofGardena/streams: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+yt-dlp user/CityofGardena/videos: ERROR: [youtube:tab] CityofGardena/videos: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+YouTube: 0 council meeting videos listed
+transcripts gardena: 0 videos, 0 chunks
+done in 1s
+### arcadia 18:56
+yt-dlp UCmUzBtC0MaSH-c4aMmtlZtA/streams: ERROR: [youtube:tab] UCmUzBtC0MaSH-c4aMmtlZtA/streams: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+yt-dlp UCmUzBtC0MaSH-c4aMmtlZtA/videos: ERROR: [youtube:tab] UCmUzBtC0MaSH-c4aMmtlZtA/videos: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+YouTube: 0 council meeting videos listed
+transcripts arcadia: 0 videos, 0 chunks
+done in 829s
+### diamond-bar 19:10
+yt-dlp c/cityofdiamondbar/streams: ERROR: [youtube:tab] cityofdiamondbar/streams: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+yt-dlp c/cityofdiamondbar/videos: ERROR: [youtube:tab] cityofdiamondbar/videos: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+YouTube: 0 council meeting videos listed
+transcripts diamond-bar: 0 videos, 0 chunks
+done in 1s
+### glendora 19:10
+yt-dlp UCQVXk5L__r9wqma0jlbox5A/streams: ERROR: [youtube:tab] UCQVXk5L__r9wqma0jlbox5A/streams: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+yt-dlp UCQVXk5L__r9wqma0jlbox5A/videos: ERROR: [youtube:tab] UCQVXk5L__r9wqma0jlbox5A/videos: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+YouTube: 0 council meeting videos listed
+transcripts glendora: 0 videos, 0 chunks
+done in 1s
+### rosemead 19:10
+yt-dlp @rosemeadca/streams: ERROR: [youtube:tab] @rosemeadca/streams: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+yt-dlp @rosemeadca/videos: ERROR: [youtube:tab] @rosemeadca/videos: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+YouTube: 0 council meeting videos listed
+transcripts rosemead: 0 videos, 0 chunks
+done in 1s
+### la-mirada 19:10
+yt-dlp @CityofLaMirada/streams: ERROR: [youtube:tab] @CityofLaMirada/streams: Unable to download API page: HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known) (caused by TransportError("HTTPSConnection(host='www.youtube.com', port=443): Failed to resolve 'www.youtube.com' ([Errno 8] nodename nor servname provided, or not known)"))
+YouTube: 1 council meeting videos listed
+transcripts la-mirada: 1 videos, 13 chunks
+done in 1063s
+### claremont 19:28
+YouTube: 0 council meeting videos listed
+transcripts claremont: 0 videos, 0 chunks
+done in 2s
+### temple-city 19:28

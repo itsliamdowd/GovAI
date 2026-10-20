@@ -2,120 +2,122 @@
 
 Generated 2026-10-17 from https://www.tustinca.org pages listed in each section's Source line.
 
+## Animal Bites & Nuisance Issues
+
+If you need immediate assistance or have been bitten by an animal, dial 911. If a bite breaks the skin, Animal Control may have to quarantine the animal or have it tested for rabies. Dogs and cats that have caused a skin break to a person with their teeth are routinely subject to quarantine. Dog owners who know their dog or cat has bitten another person must report the incident to Animal Control immediately. Animal Control does not routinely examine low-risk animals such as rabbits, rodents, hamsters, or guinea pigs.
+
+To report an animal bite, call Orange County Animal Care at 714-796-6421 or fill out their online form. For barking dog information and other nuisance issues, visit Orange County Animal Care.
+
+Source: https://www.tustinca.org/574/Animal-Bites-Nuisance-Issues
+
+## Bulky Item Collection
+
+CR&R provides up to four (4) bulky item collections per calendar year to single family residential customers. To schedule a collection, contact CR&R at (714) 372-8272. A bulky item collection consists of up to 4 items per pick-up, at no additional cost to single family residential customers. You may also schedule a free pick-up of pure recyclable materials such as bundles/bags of recyclable materials, flattened cardboard boxes, and paper.
+
+Residents of multifamily complexes should contact their property manager, as CR&R will only schedule a collection at the request of the person listed on the account. Bulky items are collected from multifamily complexes for a fee.
+
+Common bulky items include appliances (air conditioner, dishwasher, microwave oven, refrigerator, stove, washer/dryer, water heater), barbeques, bicycles, containers, furniture (box spring, chairs, desk, mattress, patio furniture, sofa, table), porcelain products, shipping crates, suitcases, swing sets, tires, toilets, tools, and toys.
+
+Source: https://www.tustinca.org/375/Bulky-Items
+
+## Business Recycling and Organics Requirements
+
+All businesses must separate recycling, garbage, and organic waste (food scraps and green waste) into three separate containers. Property managers must provide a separate organics container to tenants in addition to trash and recycling containers. State law SB 1383 applies to all business types, even if they don't serve or sell food. Businesses can be cited and fined for lack of adequate service or contamination. Businesses must also educate staff, contractors, and tenants about the recycling and composting program annually.
+
+AB 341 requires businesses that generate 4 cubic yards or more of waste per week to arrange for recycling services. AB 1826 requires businesses to arrange recycling services for food waste, green waste, landscape and pruning waste, nonhazardous wood waste, and food-soiled paper. Effective July 1, 2020, AB 827 requires food service establishments to provide customers with disposal containers for food scraps, recyclables, and trash generated from products purchased and consumed onsite. These bins must be placed adjacent to trash bins and be visible, easily accessible, and clearly labeled.
+
+CR&R offers recycling programs at a lower cost than trash service, plus technical assistance and staff training in multiple languages if needed. To schedule a site visit and waste stream analysis, contact CR&R at (714) 230-2832. Businesses that meet the de minimis or physical space waiver criteria, or that have an existing recycling or self-haul program, can be exempted from some SB 1383 requirements. See the City's Organic Waste & Recycling Waiver & Self-Haul Application page.
+
+Source: https://www.tustinca.org/1290/Business-Recycling
+
+## City Council Meetings and City Hall Closures
+
+Upcoming City Council Regular Meetings are listed for Oct 20, Nov 3, and Nov 17. The Public Art Commission meets Oct 21 and Nov 18. City Hall is closed Nov 11 for Veterans Day.
+
+Source: https://www.tustinca.org/1324/Parks-Recreation
+
+## Columbus Tustin Recreation Center
+
+The Columbus Tustin Recreation Center is at 17522 Beneta Way, Tustin 92780. Phone: 714.573.3009. Hours: M-F 8:00 am - 10:00 pm, Sat. 8:00 am - 8:00 pm, Sun. 8:00 am - 10:00 pm. Hours are subject to change due to class times and rentals. The center is on the northwest corner of Columbus Tustin Park near Beneta Way and Prospect Avenue. It is a 17,000 square foot facility with a 9,900 square foot gymnasium and three classrooms.
+
+The gymnasium has 1 professional size basketball court (94ft x 50ft) or 2 junior high size courts (74ft x 42ft), 6 retractable basketball hoops, up to 2 volleyball courts (59ft x 29.5ft), retractable 5 level bleacher seating, and a fully retractable partition wall. The 2,700 square foot multipurpose classroom can be divided into up to 3 smaller classrooms and has a 32ft full mirror wall, ballet bars, sink area, restrooms, climate control, free WIFI, chairs, tables, and portable stages. Free parking is available for 182 vehicles, including 6 ADA accessible spots.
+
+Source: https://www.tustinca.org/850/Columbus-Tustin-Recreation-Center
+
+## Electronic Waste
+
+Electronic waste (e-waste) includes any appliance that has a circuit board or battery. It is illegal to dispose of e-waste in any of your automated carts. CR&R will collect and legally dispose of and recycle these items. To schedule a collection, contact CR&R at (714) 372-8272.
+
+E-waste includes cables, cell phones, computer keyboards, computer monitors, computers/laptops, desk copiers, digital cameras, digital clocks, dishwashers, microwave ovens, printers/scanners, stereo speakers, stereos, televisions, VCR/DVD/CD/tape players, and all other corded appliances and corded devices not defined as universal waste. For refrigerators and appliances that contain freon and other chemicals requiring special handling, CR&R will collect these items from your curbside for a nominal charge.
+
+Source: https://www.tustinca.org/376/Electronic-Waste
+
+## Household Hazardous Waste (HHW)
+
+Household hazardous wastes are products that are flammable, corrosive, reactive, or toxic. It is illegal to dispose of household hazardous waste in any CR&R waste and recycling container, including batteries of all types and sizes. CR&R hosts two (2) HHW collection events each year at no cost to Tustin residents, generally in May and November. The next HHW collection event will be held on November 14, 2026, from 8 a.m. to 4 p.m.
+
+Accepted items include automotive fluids, batteries (other than automotive), cleaning products, fluorescent tubes, heat lamps containing mercury, non-empty aerosol cans, paint and solvents, pesticides/herbicides, pool chemicals, and thermostats containing mercury. OC Waste and Recycling operates four recycling facilities year-round throughout the county; see https://oclandfills.com/hazardous-waste.
+
+Source: https://www.tustinca.org/259/Household-Hazardous-Waste-HHW
+
+## Kids Corner Recreation Preschool Program
+
+The Kids Corner Preschool Program will not be offered for the 2026–2027 school year.
+
+Source: https://www.tustinca.org/1345/Kids-Corner-Recreation-Preschool-Program
+
 ## Library
 
-The Tustin Library is open. For more information, visit the Tustin Library website or the Orange County Public Libraries website, or call 714-544-7725.
+For information about the Tustin Library, visit the Tustin Library website or the Orange County Public Libraries website, or call 714-544-7725.
 
 Source: https://www.tustinca.org/697/Library
 
+## Parks & Recreation Events
+
+Listed upcoming events: Old Town Art Walk & Artisan Market on October 17, 2026; Halloween Howl on October 30, 2026; Veterans Day Celebration and Car Show on November 7, 2026; Breakfast with Santa on December 12, 2026. Other listings include the Halloween Bash Trunk-or-Treat, the Little Folks Kinder Prep Program, and Mudline / Field Usage Updates (field information updated daily).
+
+Source: https://www.tustinca.org/1324/Parks-Recreation
+
 ## Report An Issue
 
-The City's Report An Issue page offers these report categories: Animal Control, Code Violation, Crime, Graffiti Clean-up, Pothole or Road Hazard, Train Horn Violations, Water Waste, and Website Issue.
+The City's Report An Issue page offers reporting links for: Animal Control, Code Violation, Crime, Graffiti Clean-up, Pothole or Road Hazard, Train Horn Violations, Water Waste, and Website Issue.
 
 Source: https://www.tustinca.org/698/Report-An-Issue
 
-## Seniors
+## Senior Services
 
-The Tustin Area Senior Center offers recreation, resources, education, and friendships. It provides a continuum of services for adults at all stages of life, from learning how to care for an aging parent to finding ways to stay active as an older adult. Free or low-cost services are available. More information is on the Tustin Area Senior Center page and the Affordable Senior Housing page.
+The Tustin Area Senior Center offers recreation, resources, education, and friendships, with a continuum of services for adults at all stages of life. Information on caring for an aging parent or staying active as an older adult is available, along with free or low-cost services. Additional information is on the Tustin Area Senior Center page and the Affordable Senior Housing page.
 
 Source: https://www.tustinca.org/699/Seniors
 
-## Senior Housing — Rental Opportunities
+## Senior Center Special Event — Community Yard Sale and Resource Fair
 
-- Coventry Court, 16000 Cambridge Street: 36 Very-Low, 61 Low, and 56 Moderate income units (age restricted to 55+). Phone 714-389-1188.
-- Heritage Place, 1101 Sycamore Street: 17 Very-Low and 36 Low income units (age restricted to 62+ or disabled). Phone 714-734-6752.
-- Tustin Gardens, 275 East 6th Street: 99 Very-Low income units (age restricted to 62+ or disabled). Phone 714-731-8158.
-- Tustin Terrace, 17432 - 42 Mitchell Avenue: 20 Market rate priced units, Section 8 Vouchers accepted (age restricted to 62+ or disabled). Phone 714-734-8959.
+The combined Community Yard Sale and Resource Fair is Saturday, September 5, from 8:00 am to 12:00 pm at the Tustin Civic Center Parking Lot, 300 Centennial Way. To be a Community Yard Sale vendor, submit an application to Justine Padilla at JMPadilla@tustinca.org. To be a Resource Fair vendor, submit an application to Kezia Montes at KMontes@tustinca.org. Applications are accepted on a first-come, first-served basis and are due by Friday, August 31, or until capacity is reached.
 
-Specialized senior rental facilities:
-- Silverado Tustin Hacienda Memory Care Community, 240 East 3rd Street: 714-418-4264.
-- The Groves of Tustin Senior Living, 1262 Bryan Avenue: 714-460-9901.
+Source: https://www.tustinca.org/1342/Special-Events
 
-Helpful links listed: Orange County Office on Aging, Orange County Health Care Agency, County of Orange Senior Services, Community Action Partnership of Orange County, and Senior Guidance.
+## Trash & Recycling Services
 
-Source: https://www.tustinca.org/425/Senior-Housing
+The City contracts with CR&R Incorporated for trash and recycling services. For questions about your service, contact CR&R at (714) 372-8272. Single family homes use a three-cart system for weekly pick-ups: the black bin is for all other regular waste, the green cart is for grass and plant materials that can be composted (food waste can be included beginning July 1, 2021), and the blue cart is for clean recycle materials such as paper, cardboard, aluminum and glass. Look up your collection day on the Residential Collection Map.
 
-## Youth
+If your scheduled weekly service day falls on or after a major holiday, service may be delayed by one day for the remainder of that week. Major holidays are New Year's Day, Memorial Day, Independence Day, Labor Day, Thanksgiving Day, and Christmas Day. For all other holidays, collection stays on the normal schedule. A rate schedule and Notice of Rate Adjustment for FY 2025-26 are posted, and a Notice of Rate Adjustment for FY 2026-27 is effective July 1, 2026. To find beverage container recycling centers, use CalRecycle's locator page.
 
-Tustin describes itself as a great place to grow up, with parks, programs and events, schools, and a library. The Youth page lists these resources: Events, Camps, Classes, and Library.
+To report service deficiencies, contact Public Works at (714) 573-3150 or tustinrecycles@tustinca.org.
 
-Source: https://www.tustinca.org/703/Youth
+Source: https://www.tustinca.org/256/Trash-Recycling-Services
+
+## Utility Worker Scams
+
+The Tustin Police Department warns residents about burglary suspects posing as utility workers. Typically one suspect says the utility company will be doing work in the back yard and takes the resident there, while a second suspect enters the residence and steals cash, jewelry, and other items. Always ask workers for identification. If you accompany a worker, lock your doors. When in doubt, tell the workers you will call to verify who they are.
+
+Southern California Gas employees carry photo identification, and most wear uniforms with So Cal Gas logos. Verify by calling 800-427-2200 (800-342-4545 for Spanish). Most Southern California Edison (SCE) visits are regularly scheduled or customer-requested. Be suspicious if someone arrives without an appointment asking to check appliances or wiring. If you believe the person is an impostor, report it to the Tustin Police Department and call SCE immediately at 800-655-4555. If you may have an impostor at your door, call the police.
+
+Source: https://www.tustinca.org/504/Utility-Worker-Scams
 
 ## Water Efficient Landscape Ordinance
 
-California passed Assembly Bill 1881 in 2006 to protect limited water resources and increase water conservation in landscaping. The Department of Water Resources then adopted the State's Model Water Efficient Landscape Ordinance (MWELO), which was updated in 2015. The MWELO reduces landscape-related water use by promoting water-efficient landscapes, limiting turf, preventing waste water, and incentivizing the use of graywater and recycled water in new construction and rehabilitated projects.
+California passed Assembly Bill 1881 in 2006, leading the Department of Water Resources to adopt the Model Water Efficient Landscape Ordinance (MWELO), updated in 2015. The MWELO reduces landscape-related water use by promoting water-efficient landscapes, limiting turf, preventing waste water, and incentivizing graywater and recycled water in new construction and rehabilitated projects. On December 15, 2015, the City of Tustin adopted Ordinance 1465, based on a model regional ordinance.
 
-On December 15, 2015, the City of Tustin adopted Ordinance 1465, based on a model regional ordinance developed by the Municipal Water District of Orange County and the Association of California Cities.
-
-Available documents: City Council PowerPoint Presentation (PDF), Guidelines for the Implementation of Tustin's Water Efficient Landscape Ordinance (PDF), Ordinance Number 1465 (PDF), and Water Efficient Landscape Ordinance Submittal Checklist/Application (PDF). For California friendly plants and landscape information, the page points to http://www.bewaterwise.com/.
+The City page provides the Ordinance Number 1465 (PDF), Guidelines for the Implementation of Tustin's Water Efficient Landscape Ordinance (PDF), and a Water Efficient Landscape Ordinance Submittal Checklist/Application (PDF). For California friendly plants and landscape information, visit http://www.bewaterwise.com/.
 
 Source: https://www.tustinca.org/1064/Water-Efficient-Landscape-Ordinance
-
-## Water Billing — Hours, Payments and Contacts
-
-The Water Billing Division is available 7:30 a.m. to 5 p.m. Monday - Thursday, and 8 a.m. to 4:30 p.m. on Friday. Customer service can be conducted by internet, email, phone, or in person.
-
-Payments can be made online on the utility payment portal, by phone at (714) 265-7390, by mail, or in the drop box next to the City Hall main entrance at 300 Centennial Way, Tustin, CA 92780. The Water Billing Department can be reached at (714) 573-3075 or by email through the Water Billing link. For after-hours emergencies, call (714) 549-6913.
-
-City offices will be closed Wednesday, November 11, 2026 for Veterans Day. Regular business hours resume Thursday, November 12, 2026.
-
-Source: https://www.tustinca.org/1102/Water-Customer-Service
-
-## Watering Guidelines
-
-Watering Guidelines effective April 1, 2026: Tuesday, Thursday, Saturday, and Sunday.
-
-Source: https://www.tustinca.org/1102/Water-Customer-Service
-
-## Water Bill Assistance and Discontinuation Policy
-
-The Low-Income Household Water Assistance Program can provide payment assistance for those who qualify. Eligibility information is on the Low-Income Household Water Assistance Program page.
-
-The City has a policy on Discontinuation of Residential Water Service for Non-Payment. It is available in English, Korean, Spanish, Tagalog, Traditional Chinese, and Vietnamese. The City of Tustin had 124 residential discontinuations in 2024 and 122 in 2025.
-
-Source: https://www.tustinca.org/1102/Water-Customer-Service
-
-## Reading Your Water Meter and Detecting a Leak
-
-The page offers an instructional video in which Tustin Water Meter Reader Matt Rossman shows step-by-step how to read a meter and detect a leak. It also links to Water Rates, Understanding Your Water Bill (a step-by-step guide to the bill), and Water Rate Increase FAQs, including how to sign up for Autopay.
-
-Source: https://www.tustinca.org/1102/Water-Customer-Service
-
-## Water Conservation Tips
-
-Tips listed by the City:
-- Install a low-flow showerhead, then take only 5-minute showers or 3-inch baths.
-- Install a 1.28 gallon high efficiency toilet, which can save 52 gallons per day.
-- Fix all leaky toilets, faucets, and pipes.
-- Run only full loads in dishwashers and washing machines.
-- Water your lawn no more than once a week, and water outdoors in the early morning or evening.
-- Use a bucket, sponge, and a hose with a shut-off valve to wash your car.
-- Sweep (never hose) your driveway, patio, and sidewalk.
-
-Water used for common activities: brushing teeth 3 gallons a day; shower 40 gallons every 10 minutes; bath 20 gallons; toilet 28 gallons a day per person; washing machine 45 gallons per load; cooking 5 gallons per day; dishwasher 15 gallons per load; hosing driveway 150 gallons; washing car 150 gallons.
-
-Source: https://www.tustinca.org/1102/Water-Customer-Service
-
-## CDBG Consolidated Plan and Action Plan
-
-The Consolidated Plan is a five-year planning document required by HUD as a condition for receiving CDBG funds and other federal entitlements. The Action Plan details how the City will spend its annual CDBG allocation. The 2025-26 Action Plan was approved by the Tustin City Council in April 2025, along with the 2025-2029 ConPlan. The 2025-26 Program Year began July 1, 2025.
-
-Copies of the current Consolidated Plan and Action Plan are available for review in the Community Development Department at City Hall, 300 Centennial Way, Tustin, during regular business hours. They can also be downloaded from the page, which links to the Consolidated Plan 2025-2029 & Annual Action Plan 2025-2026 and the 2026-2027 CDBG Action Plan. For further information, call 714-573-3138.
-
-The page also links to the Consolidated Annual Performance & Evaluation Report (CAPER), including the DRAFT 2025-26 CAPER and the 2024-25 CAPER, and to the CDBG Low/Moderate Income Census Tract Target Area Map - 2025.
-
-Source: https://www.tustinca.org/393/CDBG-Reports
-
-## Parks & Recreation — Events and Announcements
-
-Listed events:
-- Old Town Tustin Art Walk & Artisan Market: October 17, 2026.
-- Halloween Howl: October 30, 2026.
-- Veterans Day Celebration and Car Show: November 7, 2026.
-- Breakfast with Santa: December 12, 2026.
-
-Other spotlight items include the Halloween Bash Trunk-or-Treat, the Little Folks Kinder Prep Program, and Mudline / Field Usage Updates (field information updated daily).
-
-The page's calendar also lists a Public Art Commission Meeting on Oct 21, City Council Regular Meetings on Oct 20, Nov 3, and Nov 17, and City Hall Closed – Veterans Day on Nov 11.
-
-Source: https://www.tustinca.org/1324/Parks-Recreation

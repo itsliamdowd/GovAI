@@ -2,140 +2,155 @@
 
 Generated 2026-10-17 from https://www.chulavistaca.gov pages listed in each section's Source line.
 
-## City Departments
+## Gazebo & Picnic Area Reservations
 
-The City of Chula Vista lists these departments: Animal Care, City Attorney, City Clerk, City Manager, Development Services, Economic Development, Engineering, Finance, Fire, Housing, Human Resources, Information Technology, Library, Mayor and Council, Parks and Recreation, Police, Public Works, and Sustainability.
+Chula Vista has over 65 parks and nearly 560 acres of park land. Parks are open 7:00 a.m. to 10:00 p.m. unless otherwise stated. You must be at least 21 years old to reserve a park or obtain a permit. Bring your permit on the day of your event, because Park Rangers may request it at any time.
 
-Source: https://www.chulavistaca.gov/departments
+Reservations must be made 7 days prior to your event date and can be made up to 6 months in advance. Unreserved gazebos and picnic areas are first come, first served for groups under 25 people with no vendor services. Reservations are required for gatherings of 25 or more and for any size group using a vendor service (e.g. food vendor, air jump, soft play, petting zoo). Electricity is NOT provided at any of the gazebos. Gazebo and picnic area reservations do not include adjacent sports fields or courts.
 
-## City Manager's Office
+For general questions, contact Gazebo Reservations at (619) 409-1994. For day-of-park reservation needs, contact Park Ranger Dispatch at (619) 587-2318.
 
-Chula Vista operates under a "Council-Manager" form of government. The City Council appoints a City Manager, who is responsible for implementing all of the City Council's policy decisions and direction. The Administration Department, headed by the City Manager, includes one Assistant City Manager and two Deputy City Managers.
+Source: https://www.chulavistaca.gov/departments/parks-and-recreation/park-reservations/gazebo-field-reservations
 
-Listed staff: Tiffany Allen, City Manager; Courtney Chase, Deputy City Manager; Fred Mousavipour, Deputy City Manager; Roy Sapa'u, Deputy City Manager / Director of Development Services; Sarah Schoen, Deputy City Manager. The page also links to the Master Fee Schedule, which lists fees for services provided to residents and customers.
+## Gazebo & Picnic Area Reservation Fees
 
-Source: https://www.chulavistaca.gov/departments/city-manager
+Fees (updated 9/19/2025), Chula Vista resident rate / non-resident rate:
+- Small Gazebos & Picnic Areas (1-50 people): $94 / $189
+- Medium Gazebos (50-100 people): $189 / $380
+- Large Gazebos (100-200 people): $380 / $761
 
-## Animal Care Facility — Location, Hours, Contact
+Vendor permits, Chula Vista resident rate / non-resident rate:
+- Standard Size Vendor Service (15x15 or smaller): $63 / $127
+- Large Size Vendor Service (15x15 or larger): $94 / $189
+- Food Cart Vendor: $63 / $127
+- Game Truck: $94 / $189
 
-The Animal Care Facility is at 130 Beyer Way, Chula Vista, CA 91911. Hours: Tuesday–Friday 10:00 am–5:00 pm; Saturday 10:00 am–4:00 pm; Sunday–Monday CLOSED. It closes from 12pm–1pm daily.
+Each reservation requires a refundable $100 cleaning/damage deposit. It is refunded as long as all park rules have been followed.
 
-Phone and email: 619-476-2477, animalcare@chulavistaca.gov, animalcontrol@chulavistaca.gov. Office: (619) 691-5123. Animal Dispatch: (619) 476-2476. After hours and weekends: (619) 691-5151.
+Source: https://www.chulavistaca.gov/departments/parks-and-recreation/park-reservations/gazebo-field-reservations
 
-Appointments are recommended, but walk-ins are accepted for most services, and appointments are given priority. Owner surrenders and requests for euthanasia are by appointment only with approval. Adoptions must be completed no later than 4:00 pm Tuesday–Friday and 3:00 pm on Saturday.
+## Park Vendors at Reserved Gazebos
 
-Holiday hours: March 31st CLOSED; November 26th 10AM-3PM; November 27th CLOSED; November 28th CLOSED; December 24th 10AM-3PM; December 25th CLOSED; December 31st 10AM-3PM; January 1st CLOSED.
+All vendor services must be pre-approved and added to your reservation at least 7 days in advance. A vendor permit is required per service, and vendors are permitted in select park areas only. All vendor companies, aside from food vendors, must be on the Approved Vendor List. Use of an unauthorized vendor will result in forfeit of your deposit.
 
-Source: https://www.chulavistaca.gov/departments/animal-care/location-hours-contact
+Food vendors are not required to be selected from the Approved Vendor List. It is the renter's responsibility to ensure the food service vendor has a Chula Vista Business License and a County of San Diego Health Permit, and abides by all park rules. Food vendors should be catering style and contained within a 10x10 canopy. Food trucks are not permitted.
 
-## Pet Adoption — Requirements and Fees
+Air Jump generators cannot have any other device plugged into them. Additional generators are allowed as long as they are not placed directly on the grass (use plywood, etc.) and are not refueled on the grass.
 
-To adopt, a person must complete the CVACF Animal Adoption application, be at least 18 years of age, have current and verifiable identification, and live where pets are allowed. The facility recommends that all family members and dogs be present for dog interactions. It reserves the right to deny adoptions in certain circumstances for cause. Online applications may take up to 2 business days to process. Adoptable pets can be viewed on Petharbor.com or in person at the facility. Dogs adopted by Chula Vista residents receive a FREE one-year license.
+Source: https://www.chulavistaca.gov/departments/parks-and-recreation/park-reservations/gazebo-field-reservations
 
-Dog fees: $85 for dogs 1 year–7 years old (except LTRC); $95 for puppies younger than 1 year; $25 for LTRC (long term residents, available for adoption for more than 60 days); senior fee $35 (dogs over 7 years). The dog fee includes initial intake vaccines, microchip, one-year license (CV residents only), and spay/neuter surgery (required by law).
+## Park Rules and Regulations
 
-Cat fees: $65 for cats (except LTRC); $25 for LTRC; senior fee $35 (cats over 7 years); $65 for 2FUR1 kittens or compatible adults. The cat fee includes initial intake vaccines, microchip, and spay/neuter surgery.
+- You may bring your own tables, chairs, and up to three canopies. Each canopy must be 10'x10' or smaller.
+- Charcoal can only be used in park-designated BBQ grills. All other fires must be contained in propane-style BBQ grills. No additional charcoal grills, deep fryers, fire pits or cooking oil are allowed.
+- Piñatas may not be affixed to any structure in the park.
+- You must be 21 or older to have or consume alcohol at a permitted park. Be prepared to show ID to Park Rangers and Police. No kegs or glass.
+- Regardless of gathering size, a park reservation is required to have alcohol at Eucalyptus Park, Friendship Park, Harborside Park, Lauderbach Park, Memorial Park, Orange Park, Rienstra Park, and SDG&E East & West Parks.
+- Battery powered radios and boom boxes are allowed as long as the volume is kept down and they are not modified to include an amplified sound system.
+- All trash and litter must go in trash cans. No confetti.
+- No smoking is permitted at any City Park.
+- No animals except dogs and cats are allowed in any Chula Vista Park. Dogs and cats must remain on a leash no longer than 6 ft.
+- All vehicles, including motorcycles, must stay in parking areas. No driving on park grounds.
+- No weapons, guns, drones, firecrackers, rockets, torpedoes, air guns, or slingshots are allowed in any park.
+- No overnight camping.
+- Amplified Music/DJ, display posters, handout leaflets, and selling merchandise are prohibited unless authorized and permitted by the Parks & Recreation Administrator or their designees.
 
-Other animals: Rodents $10; Birds small $25, large and exotic $95; Poultry $10; Reptiles $10–$95; Rabbits $25; Livestock actual cost; Other, except livestock, $20–$95.
+Source: https://www.chulavistaca.gov/departments/parks-and-recreation/park-reservations/gazebo-field-reservations
 
-Source: https://www.chulavistaca.gov/departments/animal-care/adoptions
+## Parks & Recreation — Volunteering, Jobs and Contract Instructors
 
-## Waived Adoption Fees — October 2026
+Volunteer opportunities with Chula Vista Parks & Rec are available for those 15 ½ years of age or older. Individuals and groups can help on a one-day project or on an ongoing basis. Volunteers can assist with operations, recreation classes, youth sports, aquatics, and seniors. Some opportunities are eligible for student service learning or community service hours for school.
 
-The Animal Care page lists a "Waived Adoption Fees" community event running 10/03/2026 – 10/31/2026.
+All volunteers and interns must complete an application (a youth application is for under age 18; an adult application is for 18 and older). Submitting an application is not a guarantee of placement. Applications are kept on file for six months and are then purged if you have not been placed. Multiple applications submitted within a six month period will be deleted from the system.
 
-Source: https://www.chulavistaca.gov/departments/animal-care
+Job applications must be submitted online for each position. If you need help completing a job or volunteer online application, call the Human Resources Department at (619) 691-5096. To become a contract instructor (e.g. karate, arts & crafts, dance), contact Principal Recreation Manager Shaun Ellis.
 
-## Spooky Open House (October 24)
+Source: https://www.chulavistaca.gov/departments/parks-and-recreation/about-us
 
-Chula Vista Animal Services holds a Spooky Open House on October 24th, 10am–4pm, at 130 Beyer Way, Chula Vista, CA 91911. RSVP is online. Admission is free and open to the community. Adoption fees are waived during the event.
+## Parks and Recreation Administration — Contact and Hours
 
-Planned activities: interacting with adoptable pets, family-friendly Halloween activities, local vendors offering pet-related products, crafts and treats, and information on the shelter's community programs and services. Adoption applications can be completed online or in person.
+Administration phone: (619) 409-5979. Address: 276 Fourth Avenue, Building C, Chula Vista, CA 91910. Hours: Monday – Thursday 8 a.m. - 5 p.m.; Friday 8 a.m. - 12 p.m.; Saturday & Sunday CLOSED. The City has 9 Community Centers, two aquatic facilities and 65 parks.
 
-Source: https://www.chulavistaca.gov/departments/animal-care/bulletin-board-events
+Source: https://www.chulavistaca.gov/departments/recreation
 
-## Lost Pets — What to Do
+## Youth Sports Leagues
 
-If you lost a pet in Chula Vista, Lemon Grove, or National City, search online at 24 Pet Connect. All animals at the Animal Care Facility are updated on the site hourly. You can also schedule an appointment to check in person. Check the facility daily.
+Chula Vista Youth Sports leagues and classes are co-ed recreational programs open to all participants and skill levels. All players must attend mandatory evaluations for the sport league selected, and teams are then drafted to ensure a balance. All leagues are based on the participant's year born regardless of skill level or grade. Valid proof of age is required.
 
-Pets reunited within 24 hours of arrival at the facility MAY be granted a one time waiver for fines and most fees. This applies if the pet is microchipped and licensed in Chula Vista, or has a current rabies vaccination for residents of contract cities. Bring a leash (for a dog), any proof of ownership, and a government issued photo ID.
+Registration for Fall 2026 basketball opens Saturday July 25, 2026 (Online: 8AM / Walk-In: 9AM). Registration for Winter 2027 basketball opens Saturday October 17, 2026 (Online: 8AM / Walk-In: 9AM).
 
-All City of Chula Vista license tags come with DocuPet's Home Safe 24/7 lost pet service. Each tag is etched with a unique 8-digit Home Safe code linked to the dog's online pet profile.
+Source: https://www.chulavistaca.gov/departments/recreation/sports/youth-sports
 
-Source: https://www.chulavistaca.gov/departments/animal-care/lost-found
+## Senior Programs
 
-## Found Animals — What to Do
+Chula Vista Parks and Rec offers senior programming at many community centers, but the majority is provided at Norman Park Senior Center. It offers classes, social programs, and special events. Registration for senior programs and activities is online through the page. A Norman Park newsletter for October, November, December 2026 and a class and activity list are posted there.
 
-If a found pet wears a City of Chula Vista license tag, call the number on the back of the tag, or use the 8-digit code on the tag to file a Found Pet Report online with Home Safe. Check for a microchip at a shelter or veterinary clinic.
+Source: https://www.chulavistaca.gov/departments/recreation/seniors
 
-If you cannot locate an owner, schedule a drop-off appointment for dogs, or for sick/injured cats. Chula Vista Animal Services also offers a Finder Foster option. Following national guidelines, the facility recommends leaving healthy free-roaming cats in their environment.
+## Trash Collection
 
-Source: https://www.chulavistaca.gov/departments/animal-care/lost-found
+Republic Services offers three sizes of black trash carts, and your trash service fee is based upon the size cart you select. Keep lids closed. Trash placed outside of your cart is subject to an extra collection charge. If you have extra trash, contact Republic Services in advance of your service day for a larger cart or to buy special trash bags at a discounted price. For larger volumes, consider using one of your free annual yard waste or landfill passes.
 
-## Animal Emergencies and Animal Control
+Trash, recycling and yard waste are collected any time between 7 am and 6 pm on service days. Containers should be at the curb by 7 am, and empty containers must be removed from the curb by 8 pm. If your scheduled service day falls on or after a holiday, your service day may be delayed by one day. The holidays listed are New Year's Day, Memorial Day, Independence Day, Labor Day, Thanksgiving Day and Christmas Day.
 
-Call (619) 476-2476 during normal business hours. For after hours help, contact CVPD dispatch at (619) 691-5151. Animal Control is available Monday through Friday 8:30am to 5pm, and Saturday and Sunday 8am to 4:30pm.
+Place carts in the street with the wheels against the curb and the arrow on the lid pointing toward the street, with the lid closed. Leave at least 1 1/2 feet between your trash, yard waste and recycling containers.
 
-Animal emergencies include: animal bites (you are bitten, or your animal bit someone else); injured or sick stray animals; and animals creating traffic or safety hazards. For a bite report, staff ask for a description of the animal, the animal's name, the address where it lives, the owner's name, the time of day you were bitten, and the location on your body where you were bitten.
+Contact Republic Services at (619) 421-9400 for disposal of dirt, rocks and concrete; hot ashes; household hazardous waste; and debris from construction, remodeling or demolition. Do NOT put these in the trash. For dead animal removal, contact the Chula Vista Animal Care Facility at (619) 691-5123.
 
-Source: https://www.chulavistaca.gov/departments/animal-care/pet-ownership-assistance/services-page
+Source: https://www.chulavistaca.gov/departments/clean/environmental-services/trash
 
-## Animal Incident Report
+## Recycling Rules
 
-Use the Incident Report form for bites, attacks, or harassment by an animal; property damage caused by an animal; and other disturbances, abuse, or neglect. To report animal disturbances, sanitation problems, mistreatment or abuse, neglect or any other animal related problems, call (619) 476-2476 during business hours.
+Per Chula Vista Municipal Code 8.25.050 it is mandatory that everyone in Chula Vista recycle. State Assembly Bill 341 mandates that all commercial businesses in California recycle. To recycle properly: EMPTY (scrape out leftover food), DRY (pour out all liquids), FLATTEN (break down all boxes). NEVER bag recyclables; keep them loose. Recyclables contaminated with trash or put in plastic bags must be disposed of as trash.
 
-Source: https://www.chulavistaca.gov/departments/animal-care/pet-ownership-assistance/services-page
+Accepted items include dry food boxes, paper bags, cardboard, paper, junk mail, shredded paper in a see-through bag, milk cartons and juice boxes, magazines, newspapers, catalogs, phone books, block Styrofoam (no peanuts or sheets), empty metal paint or aerosol cans, glass or plastic bottles and jars, all CRV containers, steel, tin, pie tins, wire hangers, aluminum cans and foil.
 
-## Barking Dog Complaints
+These go in the trash container: plastic bags, Styrofoam peanuts and sheets, unusable clothing and shoes, Ziplock bags, food wrappers, plastic film, non-donatable clothes hangers, garden hoses, and painted or treated wood. Usable clothing and shoes can be donated.
 
-Continual barking for long periods of time (at least 55 straight minutes) needs to be addressed. The city recommends first discussing the problem with your neighbors. If that does not solve it, submit a Barking Dog Complaint Form. Formal complaints from neighbors serve as proof of a violation in case of a citation or hearing.
+Businesses can request a free waste audit at environmentalservices @ chulavistaca .gov or (619) 691-5122.
 
-Step 1: Submit a Barking Dog Complaint Form, which results in a notification letter to the Dog Owner. Step 2: If the problem persists after a minimum 2 week period, a second form must be received from you, plus one from a neighbor at a different address. A second letter is sent to the Dog Owner. Step 3: If the barking has not stopped, one more completed form is needed from either you or the other neighbor. Animal Control Officers will then issue a citation to the Dog Owner. See CVMC 6.24.040.
+Source: https://www.chulavistaca.gov/departments/clean/environmental-services/recycling
 
-Source: https://www.chulavistaca.gov/departments/animal-care/faqs
+## Bulky Items, Landfill and Yard Waste Passes
 
-## Dog Licensing
+To request a bulky item pick-up, visit the Republic Services website or call (619) 421-9400 at least 24 hours before your service day. Up to 10 bulky items can be picked up weekly. Residents with cart service collection are entitled to two landfill passes and two yard waste passes every calendar year. If you have a large amount of painted or treated wood, schedule a bulky item pickup by calling Republic Services at 619-421-9400. To schedule an electronic waste pickup, call Republic Services at 619-421-9400; there is a cost associated with this service.
 
-In California, all dogs are required to be licensed and vaccinated against rabies. Chula Vista partners with DocuPet for online licensing and renewal, free HomeSafe 24/7 lost pet recovery, and custom tags and pet products (20% goes back to the shelter).
+Source: https://www.chulavistaca.gov/departments/clean/environmental-services/recycling
 
-Licenses can be purchased online at chulavista.docupet.com, by mail, over the phone, or in person, for 1, 2 and 3-years. You need your pet's current rabies vaccination certificate and proof of sterilization (spay or neuter) if applicable. To update or report a lost pet through DocuPet, owners can also call 1-877-239-6072.
+## Household Hazardous Waste, Medication and Sharps Disposal
 
-Source: https://www.chulavistaca.gov/departments/animal-care/pet-ownership-assistance/services-page
+Paint/thinners, batteries, fluorescent bulbs, electronic waste and sharps are household hazardous waste. If you live in Chula Vista, Imperial Beach, National City or Unincorporated County of San Diego, you may bring them to the Household Hazardous Waste Facility at 1800 Maxwell Road. It is open Wednesday and Saturday excluding holidays from 9am-1pm, and no appointment is necessary.
 
-## Dog License — When Required
+Medication should never be put in the trash or flushed down a drain or toilet. For syringes or lancets, go to your local pharmacy for a mail-back container. Participating pharmacies include CVS, Costco, Sharp Rees Steely, Ralphs, Rite Aid and Walgreens. For used paint, look on the Paint Care website for the nearest location.
 
-All dogs over the age of four months residing in Chula Vista must be licensed. They should be licensed within 30 days after being brought within the City or upon reaching the age of four months. Renewals may be purchased in 1, 2 and 3-year increments. Licenses may be bought online, by mail-in form, by phone, or in person during business hours.
+Source: https://www.chulavistaca.gov/departments/clean/environmental-services/recycling
 
-Source: https://www.chulavistaca.gov/departments/animal-care/faqs
+## Street Sweeping
 
-## Rabies Vaccine Clinic
+The City contracts SCA of CA, L.L.C., effective July 1, 2022, to sweep City streets, center islands/medians, centerlines and designated parking lots. The residential schedule is Monday to Friday, 7 a.m. to 4 p.m. The commercial schedule is Monday to Friday, 12 to 6 a.m. Special sweeping may be scheduled as directed by Public Works. To report issues or problems with street sweeping, call Public Works at (619) 397-6000.
 
-Hours: Tuesday–Friday 10:00–11:30am and 1:00–4:00pm; Saturdays 10:00–11:30am and 1:00–3:00pm. Cost: $10. Dogs must be leashed; cats must be in carriers. All dogs over 4 months must be vaccinated and licensed.
+Sweeping frequency by class:
+- Class "A": residential streets, once every two months
+- Class "B": business/commercial streets, once every two months
+- Class "C": commercial streets, once every two weeks
+- Class "D": center islands & medians, once every two months
+- Class "E": center lines, once every two months
+- Class "F": non-curbed streets, once every two months
 
-Rabies exemptions must be completed by your veterinarian and renewed annually. Licenses are only valid for 1 year with an exemption.
+Source: https://www.chulavistaca.gov/departments/public-works/services/street-sweeping
 
-Source: https://www.chulavistaca.gov/departments/animal-care/pet-ownership-assistance/services-page
+## Sewer System and Wastewater Engineering
 
-## Microchipping
+The Wastewater Engineering section of Public Works manages the City's sewer system, which uses over 430 miles of sewer pipes and 12 sewer pump stations. Wastewater is conveyed to the Point Loma Wastewater Treatment Plant, owned and operated by the City of San Diego Public Utilities Department.
 
-Available Tuesday–Friday 10:00am–12:00pm and 1:00pm–5:00pm, and Saturday 10:00am–12:00pm and 1:00pm–4:00pm. Microchip: $30. Microchip/Rabies combo (Wednesdays only): $35.
+Grease and cooking oil are primary causes of sewer blockages, so dispose of them properly. For a complete listing of what is prohibited from the sewer system, see Chula Vista Municipal Code Section 13.12.010. A copy of the Sewer System Management Plan (SSMP) report can be reviewed in person at the Wastewater Engineering Division of the Department of Engineering & Capital Projects at 276 Fourth Avenue.
 
-The chip is injected under the skin, lasts over 25 years, and is automatically registered for life to HomeAgain. To update microchip information, call HomeAgain at 1-888-466-3242.
+Source: https://www.chulavistaca.gov/departments/public-works/engineering/wastewater-engineering
 
-Source: https://www.chulavistaca.gov/departments/animal-care/pet-ownership-assistance/services-page
+## Animal Care Facility — Location, Hours and Contact
 
-## Low-Cost Spay and Neuter Program
+The Animal Care Facility is at 130 Beyer Way, Chula Vista, CA 91911. Hours: Tuesday - Friday 10:00 am - 5:00 pm; Saturday 10:00 am - 4:00 pm; Sunday - Monday CLOSED. It closes 12pm-1pm daily.
 
-Clinic dates were listed as FULL; sign up for e-notification for updates on new dates. When openings are available, apply in person at 130 Beyer Way, Chula Vista 91911. Visit during business hours (Tuesday–Friday 10-12, 1-5, Saturday 10-12, 1-4), without your pets, to complete the surgery consent. The pet owner must complete the consent, ID and residency confirmation. Limit 3 pets.
+Appointments are recommended, but walk-ins are accepted for most services. Owner surrenders and requests for euthanasia are by appointment only with approval. Adoptions must be completed no later than 4:00 pm Tuesday - Friday and 3:00 pm on Saturday.
 
-Requirements: residency in Chula Vista, National City, or Lemon Grove (91910-91915, 91950, 91945 only), with a government issued photo ID and mail or bill showing residency. All documents must be in the name of the person completing the consent forms. There are no longer income restrictions. Chula Vista residents with dogs must be licensed through DocuPet before surgery drop off.
-
-Costs: dogs $40 (Chula Vista) or $35 (Lemon Grove), including surgery, pain medication, e-collar, rabies, license and microchip. Dogs currently licensed and needing only a microchip are $20. Dogs microchipped and needing a CV license are $30 (Lemon Grove $15). Cats are $20, including surgery, pain medication, rabies and microchip.
-
-The shuttle cannot accommodate dogs over 70#. Brachycephalic breeds (French Bulldogs, Shih Tzus, Bulldogs, Boxers, Pugs, etc.) can no longer be accommodated. The clinic is only open to dogs and cats. Residents of San Diego and La Mesa should visit the San Diego Humane Society's website. Other organizations: San Diego Affordable Spay & Neuter Clinic (760) 532-9335; SNAP (866) 772-9287; Feral Cat Coalition (855) 322-2287.
-
-Source: https://www.chulavistaca.gov/departments/animal-care/spaying-neutering
-
-## Feral and Community Cats (Trap-Neuter-Return)
-
-Animal Control Officers do not pick up feral or community cats. For unowned cats, the recommended approach is Trap-Neuter-Return (TNR). You may rent a humane trap from the Animal Care Facility with a $60 cash deposit, when available. Arrange a
+Phone: 619-476-2477. Email: animalcare@chulavistaca.gov; animalcontrol@chulavistaca.gov. Office: (619) 691-5123. Animal Dispatch: (619) 476-2476. After hours and weekends: (619) 691-5151.

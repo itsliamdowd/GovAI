@@ -16,6 +16,37 @@
        Status badge classes: planned | progress | done | blocked.
        Do NOT log changes to ~/.claude/, plan.html itself, or the changelog server. -->
 
+  <article class="entry" id="e-2026-10-17-1521-irvine">
+    <header>
+      <time>2026-10-17 15:21</time>
+      <h2>Irvine council source was the ICTV events feed; repointed to Granicus view 68</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p><b>Found.</b> The discovery probe recorded Irvine's only Granicus view as id 6 ("Redirect from Old ICTV page"), so <code>apply-discover.js</code> wired it as City Council. The 15:04 collection pass ingested 100 "meetings" that were swim nights and gallery exhibits, all with empty agenda text. The real council feed is view 68, embedded as an iframe on cityofirvine.gov/government/city-council/city-council-agendas (849 rows, agenda links resolve through AgendaViewer).</p>
+    <ul>
+      <li><code>jurisdictions.js</code> Irvine entry: site now <code>https://cityofirvine.gov</code> (the .org redirects there), domains include both, hand-written <code>council: { platform: "granicus", client: "irvine", views: [{ id: 68 }] }</code> so it wins over <code>data/discovered.json</code>.</li>
+      <li>Purged <code>data/irvine/council/granicus-6-*.json</code> and the Irvine <code>council_meeting</code> rows in <code>data/govai.db</code>.</li>
+      <li>Re-collected: <code>node warm.js council irvine</code> ingested 695 City Council meetings (644 with agenda text), 12,843 chunks; log <code>data/_warm-council-irvine.log</code>.</li>
+    </ul>
+    <p><b>Open.</b> Other Granicus cities wired from a single discovered view may have the same problem (video-only or wrong-body views); a "0 chunks" line in the warm logs is the cheap check. <code>node test.js</code> currently fails with "database is locked" because several warm.js collectors are writing govai.db at once; rerun when they finish.</p>
+  </article>
+
+  <article class="entry" id="e-2026-10-17-1505">
+    <header>
+      <time>2026-10-17 15:05</time>
+      <h2>Brand export: GovAI logo as SVG + PNG + favicon, zipped</h2>
+      <span class="badge done">done</span>
+    </header>
+    <p>User: "give me an export of the govai logo". Source of truth is <code>public/icon.svg</code> (civic building + spark on a dark rounded square) and the header wordmark.</p>
+    <ul>
+      <li><code>brand/govai-icon.svg</code>, <code>brand/govai-mark-white.svg</code>, <code>brand/govai-mark-dark.svg</code>, <code>brand/govai-lockup-dark.svg</code>, <code>brand/govai-lockup-light.svg</code> (400x120 artboard, Georgia 600 wordmark).</li>
+      <li>PNGs: <code>govai-icon-{32,64,128,180,256,512,1024}.png</code>, <code>govai-mark-{white,dark}-512.png</code> (transparent), <code>govai-lockup-{dark,light}-1600x480.png</code>; <code>favicon.ico</code> (16/32/48/64).</li>
+      <li><code>brand/README.md</code>: file guide + colors (#0b0e13 bg, #e8eaed ink, #fbbf24 / #f59e0b spark).</li>
+      <li><code>govai-logo.zip</code> at the repo root (not gitignored; delete or ignore if it should not ship).</li>
+    </ul>
+    <p><b>How.</b> ImageMagick's own SVG renderer dropped the stroked paths, so rasterization ran in Chrome (Chrome DevTools MCP): each SVG drawn to a canvas and POSTed to a throwaway local Node sink that wrote the PNGs; <code>magick</code> only built the .ico from the 256 PNG. Renders eyeballed at 256 icon, 512 dark mark and light lockup.</p>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1452">
     <header>
       <time>2026-10-17 14:52</time>
@@ -250,19 +281,20 @@
     <header>
       <time>2026-10-17 13:52</time>
       <h2>Service knowledge for every San Diego and Orange County city (user: "wire knowledge for ALL the cities I said")</h2>
-      <span class="badge progress">in-progress</span>
+      <span class="badge done">done</span>
     </header>
     <p><b>Trigger.</b> A Huntington Beach bulky-pickup question came back vague. User: "This is the type of data that you need to be an expert on." Two fixes: (1) draft jurisdictions get open web search immediately, (2) generate the six <code>knowledge/&lt;id&gt;/*.md</code> files for all 53 remaining SD/OC jurisdictions.</p>
     <h3>Done</h3>
     <ul>
       <li><code>server.js</code>: <code>webScope(j)</code> drops <code>allowed_domains</code> for <code>draft</code> entries (open web search); draft context text tells the model to search "&lt;city&gt; &lt;service&gt;", prefer the city site and its contracted haulers/providers, and web_fetch the page before answering.</li>
       <li><code>knowledge-gen.js</code>: accepts several ids per run; browser-like request headers (Carlsbad's Akamai front 403'd the old UA: 0 pages, now 10,575 sitemap URLs); <code>crawlUrls()</code> same-host two-level crawl when a site has no sitemap (ocgov.com); when a site is still unreachable the model writes the topic file itself with <code>web_search</code> (allowed_domains = city host) + <code>web_fetch</code>.</li>
-      <li>Generation running: 4 background workers over the 53 targets (18 SD cities minus san-diego, 34 OC cities, both counties). Groups in the session scratchpad <code>kgen-groups.json</code>, logs <code>kgen-1..4.log</code>. First launch failed on zsh word-splitting (<code>$ids</code> passed as one arg, so the usage error); relaunched with <code>${=ids}</code>.</li>
+      <li>Round-robin page picking per keyword (first-match-wins let "department"/"contact" pages crowd out trash/bulky pages: HB's services file had no trash section); services files regenerated for all 55 with it. Topic-level try/catch (one API "Connection error" used to drop the rest of a city); existing topic files are skipped so reruns only fill gaps.</li>
+      <li>Result: <code>knowledge/&lt;id&gt;/</code> for all 55 (53 new): 326 of 330 topic files. Missing (model found no resident facts on the matched pages): irvine housing + transportation, vista housing + permits. Rerun those with <code>KNOWLEDGE_PAGES=30 node knowledge-gen.js irvine vista</code> if needed.</li>
+      <li>Verified after <code>touch server.js</code>: "I live in Huntington Beach, how do I get a couch picked up and what does it cost?" → knowledge hit + web check: free with cart service, 4 pickups/yr, 10 items, Republic/Rainbow phone, $30/item for bin-service properties, bulky-pickup form opened. <code>TTS=off npm test</code> green.</li>
+      <li>Generation ran as background workers over the 53 targets (18 SD cities minus san-diego, 34 OC cities, both counties). Groups in the session scratchpad <code>kgen-groups.json</code>, logs <code>kgen-1..4.log</code>. First launch failed on zsh word-splitting (<code>$ids</code> passed as one arg, so the usage error); relaunched with <code>${=ids}</code>.</li>
     </ul>
-    <h3>Pending</h3>
+    <h3>Ceilings</h3>
     <ul>
-      <li>Workers finish → <code>touch server.js</code> so the watch server rebuilds the index with the new <code>knowledge/</code> folders (rag.js reads <code>knowledge/&lt;id&gt;</code> for every JURS entry at build).</li>
-      <li>Verify: Huntington Beach bulky-item pickup answer cites the city's / Republic Services page with the actual limits and phone; spot-check one SD city and one county file for thin topics.</li>
       <li>Known ceiling: PER_TOPIC=14 pages per topic; permit files tend to be thinner than services files. Re-run a single id with <code>KNOWLEDGE_PAGES=30</code> if a city reads thin.</li>
     </ul>
   </article>
@@ -316,11 +348,41 @@
     </ul>
   </article>
 
+  <article class="entry" id="e-2026-10-17-1935">
+    <header>
+      <time>2026-10-17 19:35</time>
+      <h2>Fix all bugs: council collectors that returned 0 or stale meetings for 14 cities</h2>
+      <span class="badge progress">in-progress</span>
+    </header>
+    <p><b>Goal (user).</b> "fix all bugs". Audit of <code>data/&lt;id&gt;/council</code> after the first full collection run: Bell, Cerritos, Monterey Park, Pasadena 0 meetings; Lakewood 1; Huntington Park 2; Lynwood 3; Vernon 15 (2018); Baldwin Park 19 (2018); Arcadia 109 meetings but 0 text. Each one traced to its real cause with the adapter against the live site.</p>
+    <h3>Adapter fixes (shared code, so every city on the platform benefits)</h3>
+    <ul>
+      <li><code>adapters/granicus.js</code> — rows with <code>event_id</code> instead of <code>clip_id</code> (agenda-only rows, Lynwood) were skipped; now parsed, with <code>packet_url</code> from the <code>AgendaPacketLink</code> cell and no fake video URL.</li>
+      <li><code>adapters/pdflist.js</code> — (1) Revize "Copy document link" buttons gave every Arcadia record the name "Copy document link": the real title is read from <code>data-copy-label</code>/<code>aria-label</code>; (2) packet-only listings (Arcadia posts only agenda packets) are now treated as the agenda (<code>agenda_url ||= packet_url</code>), otherwise <code>council.js</code> dropped them as document-less; (3) 30 MB packets aborted at the 45 s default — document fetches now get 240 s; (4) CivicPlus Archive Center links <code>Archive.aspx?ADID=N</code> are rewritten to the file <code>/ArchiveCenter/ViewFile/Item/N</code>; (5) records for the same body+date coming from different pages (agendas module vs minutes module) are merged instead of duplicated.</li>
+      <li><code>adapters/primegov.js</code> — compiled PDFs get the same 240 s timeout (Vernon's are built on request and redirect to Azure blob storage).</li>
+      <li><code>adapters/civicplus.js</code> — (earlier today) categories under <code>&lt;h3&gt;</code> accepted.</li>
+    </ul>
+    <h3>New adapters</h3>
+    <ul>
+      <li><code>adapters/civicclerk.js</code> — CivicClerk OData API (<code>&lt;client&gt;.api.civicclerk.com/v1/Events</code>, 15 events per page whatever <code>$top</code> says, optional server-side <code>categoryName</code> filter via <code>j.council.categories</code>; files via <code>Meetings/GetMeetingFileStream(fileId=N,plainText=false)</code>). Monterey Park: 418 City Council meetings 2019→, agenda 4.5k / minutes 4.7k chars on a sample.</li>
+      <li><code>adapters/opencities.js</code> — Granicus govAccess/OpenCities CMS: index page → one page per meeting (date in link text) → PDFs under <code>/files/…</code>; agenda text concatenates the agenda parts Bell splits into index/consent/business/hearing files. Lakewood 10 meetings (minutes + video pages, 2026), Bell 6 (2025-26 page; agenda 77k chars sample).</li>
+      <li><code>adapters/pasadena.js</code> — the classic ASP site <code>ww2.cityofpasadena.net/?year=YYYY</code> (folders <code>Mon_DD_YY/agenda.asp</code>, minutes <code>YYYY MM DD CC MIN.pdf</code>, cancellation notices). 107 meetings for 2025–26 in the test, agenda 18k / minutes 26k chars. pasadena.granicus.com is video-only.</li>
+    </ul>
+    <h3>Registry fixes (<code>jurisdictions-la.js</code> WIRING)</h3>
+    <ul>
+      <li>cerritos → Granicus view 13 (the TV3 archive view that carries agenda/minutes links; view 8 was video-only: 1,753 rows, 0 docs). baldwin-park → views 10 + 16 + 3 (view 3 alone stopped in 2018).</li>
+      <li>lynwood → CivicPlus on <code>lynwoodca.gov</code> (lynwood.ca.us no longer resolves; Granicus holds 11 agendas). vernon → PrimeGov <code>cityofvernon</code> on <code>cityofvernonca.gov</code>. monterey-park → CivicClerk <code>montereyparkca</code>. huntington-park → pdflist over Archive Center modules 30 (agendas) + 31 (minutes): 205 meetings, 150 with both. pasadena → pasadena adapter. bell → opencities on <code>cityofbell.gov</code>. lakewood → opencities on <code>lakewoodca.gov</code>. Sites/domains updated where the old domain redirects or is dead.</li>
+    </ul>
+    <p><b>Verified:</b> each adapter's <code>listMeetings</code> + <code>meetingText</code> run against the live site (counts above); <code>npm test</code> passes. <b>Running:</b> <code>warm.js council</code> for cerritos, baldwin-park, lynwood, vernon (log <code>data/_logs/council-fixes-A.log</code>), pasadena, bell, lakewood, monterey-park (<code>council-fixes-B.log</code>), huntington-park, arcadia; results get recorded here when they finish.</p>
+    <p><b>Vernon packets.</b> Vernon's "Agenda Packet" PDFs are 30–40 MB served at ~100 KB/s from Azure blob storage (36.5 MB took &gt;300 s), and the "HTML Agenda" template is often unpublished ("Document Not Found"). <code>adapters/primegov.js meetingText</code> now sends a 1-byte <code>Range</code> request first and skips any document over 20 MB (HEAD returns no length through the redirect). Per-meeting time dropped from 248–311 s to 2–4 s; the minutes (19.7k chars on the 2026-08-18 sample) carry the record where the agenda is skipped.</p>
+    <p><b>Open:</b> Lakewood only exposes 2026 minutes pages on its index; Bell's older years have no listing page.</p>
+  </article>
+
   <article class="entry" id="e-2026-10-17-1720">
     <header>
       <time>2026-10-17 17:20</time>
       <h2>Pull more data: discover + collect council/video/GIS/news for the San Diego and Orange County cities</h2>
-      <span class="badge progress">in-progress</span>
+      <span class="badge done">done</span>
     </header>
     <p><b>Goal (user).</b> "pull MORE DATA". State before: 144 jurisdictions, 142 still drafts (name, site, centroid only); data dirs exist for 9; council configured for 15; the LA County expansion (other session, <code>jurisdictions-la.js</code> overrides + <code>data/_discover/los-angeles-county.json</code>) is in progress. The 52 San Diego + Orange County cities had not been probed at all.</p>
     <p><b>Pivot 17:35.</b> Discovery for every draft city (LA + SD + OC, 8 parallel <code>discover.js</code> batches), <code>warm.js council|transcripts los-angeles</code>, <code>crawl.js malibu</code> and <code>knowledge-gen.js</code> for all SD/OC cities are already running from the other session (seen in <code>ps</code>; <code>data/discover/_batch*.txt</code>). My 4 SD/OC discovery shards were stopped so as not to double-hit the same sites. What nobody was collecting: <b>council records for the LA cities that already have a platform configured but no <code>data/&lt;id&gt;/council</code></b>, and the <b>open-data catalogs</b> for the configured portals (LA County, SD County, Long Beach, San Diego, Santa Monica all showed <code>portals ✗</code>).</p>
@@ -348,9 +410,9 @@
       <li><b>Not fixed (other session's config):</b> arcadia <code>pdflist</code> — 109 meetings listed but 0 chunks: every record's <code>minutes_url</code> under <code>…/Document%20Center/…/Agenda%20and%20Minutes/&lt;year&gt;/Packet/…pdf</code> returns the site's HTML 404 page, and the link text parsed as the name is "Copy document link". The listing page <code>meetings_agendas.php</code> needs a different link selector.</li>
     </ul>
     <p><b>Test suite.</b> <code>npm test</code> failed on <code>council_comment.meeting select needs options</code>: the other session's new Public Comment form (<code>forms.js</code>) deliberately ships <code>options: []</code> and <code>server.js withMeetings()</code> fills them from the jurisdiction's upcoming meetings per request. <code>test.js</code> now exempts the <code>meeting</code> key from the static-options check. Suite passes (3,633 datasets indexed).</p>
-    <h3>Council shard results so far (files in <code>data/&lt;id&gt;/council</code>, 19:10)</h3>
-    <p>palmdale 144 · arcadia 110 · temple-city 97 (96 meetings, 489 chunks) · san-dimas 228 · artesia 336 (335 meetings, 1,645 chunks) · san-marino 91 · <b>azusa 1, la-mirada 1, san-gabriel 1</b> (their platform configs in <code>jurisdictions-la.js</code> yield a single record — other session's area, flagged not fixed) · el-monte 0, signal-hill 0 (still queued or empty). Shards still running.</p>
-    <p><b>Status:</b> adapters done and verified; collectors still running — counts above update when they finish. Remaining: final per-city totals, server restart to load the new council docs.</p>
+    <h3>Results (meetings collected into <code>data/&lt;id&gt;/council</code>, 19:50)</h3>
+    <p><b>New adapters:</b> san-diego 200 meetings / 1,825 chunks (hyland) · orange-county 200 / 7,214 (ocboard). <b>After the parser fixes:</b> azusa 783 / 9,530 · la-mirada 356 / 2,596 · san-gabriel 848 / 7,252. <b>Shards:</b> palmdale 190 · artesia 335 / 1,645 · temple-city 96 / 489 · san-dimas 227 / 457 · arcadia 109 · san-marino 660 · el-monte 695 · la-verne 586 · signal-hill 165 · long-beach 124 · gardena 123 · irwindale 173 · avalon 123 · alhambra 99 · south-gate 144 · redondo-beach ~100 (several of these were finished by the other session's parallel <code>warm.js council</code> run). Catalog: 3,633 datasets. Transcripts: santa-clarita 27 meetings / 1,047 chunks, torrance onward still running (log <code>data/_logs/transcripts.log</code>).</p>
+    <p><b>Status:</b> done for this entry. The cities whose configured collectors still returned nothing (bell, cerritos, monterey-park, pasadena, lakewood, huntington-park, lynwood, vernon, baldwin-park, arcadia text) are handled in the 19:35 "Fix all bugs" entry above. The user's dev server (<code>node --watch</code>) reloads on file change and reads <code>data/</code> at boot, so the new council docs appear on its next restart.</p>
   </article>
 
   <article class="entry" id="e-2026-10-17-1352">
@@ -547,7 +609,7 @@ catalogs.js ───────────┘</code></pre>
       <li><b>Ranking fix the evals exposed (<code>rag.js</code> <code>search</code>):</b> with scope <code>[city, county, california]</code>, LA County datasets ("LA City Council Districts 2012", "adults meeting physical-activity guidelines") outranked Santa Monica's own council-schedule page for "when does the city council meet". Search now takes top-k from the resident's jurisdiction first, then at most 2 county/state hits, then 2 news — the plan's "city hits before regional" rule. SM parity tests still green.</li>
       <li><b>Background collection results (this machine):</b> LA CityView 35 transcripts finished: <b>73 council videos listed → 545 chunks</b> in 45 min, but YouTube returned 429 on subtitle pulls near the end even at a 30 s gap, and the listing stopped at 73 videos — see Open items. LA City council backfill (<code>COUNCIL_MEETINGS=30000</code>) still running: 848 meeting files in <code>data/los-angeles/council</code> so far (PrimeGov 2016→, Granicus 2008-2021 queued after). <code>data/govai.db</code> 201 MB. Live-check runs for beverly-hills / calabasas / palos-verdes-estates / rolling-hills-estates / glendale / manhattan-beach / commerce / hawaiian-gardens in flight.</li>
       <li><b>Round-2 live checks done:</b> beverly-hills 3 meetings / 20 chunks (CivicPlus), calabasas 3 / 3 (Granicus view 2), palos-verdes-estates 3 / 18, rolling-hills-estates 3 / 4, glendale 3 / 12 (PrimeGov), manhattan-beach 3 / 30 (Legistar), hawaiian-gardens 3 / 7 after a fix (<code>adapters/primegov.js</code> now accepts a "Packet" template as the agenda when no Agenda template exists), commerce 2 / 5 (Legistar items; its agenda PDFs on <code>cityofcommerce.legistar1.com</code> failed on first fetch — the new retry picks them up next run). A peer session is wiring more cities in <code>jurisdictions.js</code> concurrently (coverage script now reports 59 of 88 LA cities with a council adapter, 67 with YouTube); peer was told which shared lines I changed.</li>
-      <li><b>LA City video source corrected:</b> <code>UCC2hfJIf4FjXXL9ZBP-EXwA</code> (LA CityView 35) has 2,574 videos of which 130 pass the body filter and nearly all are press events and ribbon cuttings — that is why the transcript job "found" 73 council meetings dated 2014-2023. The meetings are streamed by the <b>LA City Clerk channel <code>@lacityclerk</code></b> ("Regular City Council - 10/16/26", "Transportation Committee - 10/21/26", every committee, plus "SAP" Spanish-audio duplicates; its /videos tab holds a 1998→ archive). <code>jurisdictions-la.js</code> now lists only <code>@lacityclerk</code>; <code>transcripts.js</code>: multi-body channels match on <code>titleRe</code> alone (committee titles have no "meeting" word), junk filter adds press conference / briefing / currents / interview / SAP, <code>bodyOf</code> strips "Regular + Special" prefixes and clock times, and a 429 or bot check pauses all YouTube pulls for <code>YT_PAUSE_MS</code> (15 min) instead of failing the rest of the queue. Fresh LA listing running; the 73-video run's 545 chunks stay cached (ids unchanged) but will be filtered out of the next listing. <b>Gate made machine-wide:</b> <code>ps</code> showed three yt-dlp caption pulls at once (peer's <code>warm.js transcripts</code> for glendora / torrance / solana-beach + mine), each pacing itself — the cause of the 429s. The gate now paces on the mtime of <code>data/.yt-last-pull</code> and a 429 touches <code>data/.yt-paused</code> (both gitignored), so every collector process on the machine shares one 30 s cadence and one pause. ponytail: mtime markers, not a lock; a real token bucket only if collectors ever run on several hosts.</li>
+      <li><b>LA City video source corrected:</b> <code>UCC2hfJIf4FjXXL9ZBP-EXwA</code> (LA CityView 35) has 2,574 videos of which 130 pass the body filter and nearly all are press events and ribbon cuttings — that is why the transcript job "found" 73 council meetings dated 2014-2023. The meetings are streamed by the <b>LA City Clerk channel <code>@lacityclerk</code></b> ("Regular City Council - 10/16/26", "Transportation Committee - 10/21/26", every committee, plus "SAP" Spanish-audio duplicates; its /videos tab holds a 1998→ archive). <code>jurisdictions-la.js</code> now lists only <code>@lacityclerk</code>; <code>transcripts.js</code>: multi-body channels match on <code>titleRe</code> alone (committee titles have no "meeting" word), junk filter adds press conference / briefing / currents / interview / SAP, <code>bodyOf</code> strips "Regular + Special" prefixes and clock times, and a 429 or bot check pauses all YouTube pulls for <code>YT_PAUSE_MS</code> (15 min) instead of failing the rest of the queue. Fresh listing done: <b>6,611 LA meeting videos 1997→2026</b> (City Council 3,295; PLUM 488; Transportation 212; Budget &amp; Finance 191; Public Safety 155; Housing 145; 20 more committees and the Health Commission; 100-350 per year since 2000). <code>dateFromTitle</code> read "10/30/98" as 2098 (210 videos) — pivot fixed (&lt;70 → 20xx, else 19xx). <code>node warm.js transcripts los-angeles</code> restarted on the corrected list, newest first; at the shared 30 s cadence that is ≈55 h for the full archive, usable from the first hour. The 73-video run's 545 chunks stay cached (ids unchanged) but will be filtered out of the next listing. <b>Gate made machine-wide:</b> <code>ps</code> showed three yt-dlp caption pulls at once (peer's <code>warm.js transcripts</code> for glendora / torrance / solana-beach + mine), each pacing itself — the cause of the 429s. The gate now paces on the mtime of <code>data/.yt-last-pull</code> and a 429 touches <code>data/.yt-paused</code> (both gitignored), so every collector process on the machine shares one 30 s cadence and one pause. ponytail: mtime markers, not a lock; a real token bucket only if collectors ever run on several hosts.</li>
       <li><b><code>evals/malibu.jsonl</code></b> (6 proposed cases from the crawl): 4/6 hit — alarm permit @1, film permit @1, organics recycling @1, council "call to order" @1; misses: "who picks up my trash" lands on Recycling-Trash instead of Trash-Pickup (both correct pages; expectation widened later), "where is the fee schedule" loses to Alarm/Film permit pages (fee-schedule page text is three dated one-liners — a PDF-only page the crawler cannot see). Long Beach: no sitemap, so BFS → 132 pages / 141 sections (parking permits, citations, building permits, special events &amp; filming, city clerk, council districts); <code>evals/long-beach.jsonl</code> 3/6 proposed hits — preferential parking @1, building permit @1, council "call to order" @1; misses are the shallow crawl (citations page loses to the parking hub; "speak at council on zoom" finds the council-districts dataset first). Raise <code>--max</code> and add <code>crawl.exclude</code> for the district news pages before promoting any Long Beach case to verified.</li>
       <li><b>Open items:</b> Granicus TranscriptViewer → transcript docs (LA 2008-2021 = 577 clips, Azusa, La Mirada, Palmdale…); adapters still missing: <code>iqm2.js</code> (diamond-bar, santa-clarita), <code>civicclerk.js</code> (rolling-hills, maywood, monterey-park, montebello), <code>agendalink.js</code> (agoura-hills, carson, lawndale, downey), destiny (hawthorne, la-habra-heights), civiclive (lawndale, montebello, rosemead), boarddocs (LAUSD/LACCD), LA County BOS SOP + commissions pdflist, LA Neighborhood Councils, Metro/MWD legistar, <code>codes.js</code>; server.js county-wide prompt text + <code>jurisdiction</code> tool param + coverage block + <code>/status</code>; crawl the remaining wired cities (<code>node crawl.js &lt;jur&gt;</code>) and seed <code>evals/&lt;jur&gt;.jsonl</code> from each crawl.</li>
     </ul>

@@ -2,195 +2,165 @@
 
 Generated 2026-10-17 from https://www.sealbeachca.gov pages listed in each section's Source line.
 
-## Lampson Well Head Treatment System (WT1902) — Construction on Lampson Avenue
-
-Work along Lampson Avenue, between Candleberry Avenue and Heather Street, begins Friday, October 16, 2026. Crews will saw-cut on Friday, and excavation starts the following Monday as part of sewer line improvements for the new treatment system at the Lampson Well site. Work will continue in phases across Lampson Avenue for approximately four weeks. Drivers are asked to slow down and follow traffic control.
-
-Questions or concerns can be emailed to pwinquiries@sealbeachca.gov.
-
-Source: https://sealbeachca.gov/departments/public-works/lampson-well-head-treatment-system-wt1902/
-
-## Animal Control — Who to Call
+## Animal Control — Reporting and General Contacts
 
 As of July 1, 2023, Seal Beach Police Department took over animal control services. To request animal control services or report stray, aggressive, or dead animals, call Seal Beach Police Dispatch at (562) 594-7232. For questions about animal control, call (562) 799-4100 ext. 1606 or email animalcontrol@sealbeachca.gov.
 
-Source: https://sealbeachca.gov/animal-control/
-
-## Vermin, Mosquitoes & West Nile Virus
-
-Issues involving vermin go to the Orange County Mosquito & Vector Control District, (714) 971-2421. Vermin include mice, rats, mosquitoes, red fire ants, Africanized honey bees, and other similar pests.
-
-Infected mosquitoes spread West Nile virus. To reduce exposure, use insect repellent, wear long sleeves and long pants, and eliminate standing water where mosquitoes can lay eggs.
+For a stray, found, or dead animal in a public place, call the non-emergency dispatch line at 562-594-7232 and animal control officers will respond to pick it up. Animal Control will only pick up community cats that are sick, injured, or distressed. To report suspected abuse, cruelty, or neglect, contact Seal Beach Police Dispatch at 562-594-7232.
 
 Source: https://sealbeachca.gov/animal-control/
 
-## WAGS Pet Adoption and Dog Licensing
+## Animal Control — Deceased or Injured Animals
 
-Seal Beach partners with WAGS to provide shelter and care for domestic animals. WAGS contact: (714) 887-6156 (text messages only). Address: 6621 Westminster Blvd. Westminister, Ca, 92683. Open Tue – Sun, 1:00pm to 5:00pm. Website: https://wagspetadoption.org
+To report a deceased or injured animal in the City of Seal Beach that is not on a freeway, call Seal Beach Non-Emergency dispatch at 562-594-7232. To report an injured live animal on any freeway, call California Highway Patrol at 714-567-6000. To report a deceased animal on any freeway, call CalTrans at 949-936-3600.
 
-Pet Data handles all dog licensing within the city of Seal Beach. To register a dog, visit https://www.petdata.com/for-pet-owners/seb/license-online or call 1-877-730-6348.
-
-Source: https://sealbeachca.gov/animal-control/
-
-## Coyotes — Precautions and What to Do
-
-Residents are asked to take these precautions:
-- Feed pets indoors or promptly remove dishes, and store bags of pet food indoors.
-- Use trash barrels with pipe clamping devices on the lids.
-- Remove fallen fruit, particularly avocados.
-- Clear brush and dense weeds.
-- Keep small animals indoors as much as possible, especially at night.
-- Do not feed or provide water to coyotes or other wildlife.
-- Do not use plastic bags as garbage containers.
-- Do not put trash cans out the night before scheduled pick up. Put them out in the morning.
-
-Residents with small pets (less than 20 pounds) should supervise them outdoors. Cats and small dogs should be kept indoors. Always use a secure, sturdy leash when walking a dog. Retractable leashes are not recommended. Coyotes can jump up to 14 feet, and wrought iron or chain link fence does not deter them.
-
-If you see a coyote during the daytime or are approached by one, yell, wave your arms and/or throw something at it. Do not run.
-
-Source: https://sealbeachca.gov/animal-control/
-
-## Keeping Wildlife Out of Your Yard
-
-- Keep pet food indoors and do not leave food outside at night.
-- Keep cats and small dogs indoors or close to an adult.
-- Remove any fruit that has fallen to the ground.
-- Keep yards free from thick brush and weeds.
-- Enclose the bottoms of porches and decks.
-- Eliminate garbage, debris, lumber piles, etc.
-- Check fencing and try to eliminate access points to roof tops.
-- Change automatic sprinkler settings regularly.
-
-Source: https://sealbeachca.gov/animal-control/
-
-## Stray, Found, or Dead Animals
-
-For a stray, found, or dead animal in a public place, call the non-emergency dispatch line at 562-594-7232. Animal control officers will respond to pick it up. Animal Control will only pick up community cats that are sick, injured, or distressed.
+Seal Beach Animal Control provides emergency care for stray animals only. When the pet is claimed, the owner is responsible for all costs incurred. Owners of a sick or injured pet must take it to a veterinarian or an emergency veterinary hospital.
 
 Animal Control does not remove carcasses from private land. Double-bag the remains with gloves and place them in your trash bin, or call a licensed wildlife-removal service for pickup.
 
 Source: https://sealbeachca.gov/animal-control/
 
-## Deceased or Injured Animals — Including Freeways
+## Animal Bites — Reporting
 
-To report a deceased or injured animal in the City of Seal Beach that is not on a freeway, call Seal Beach Non-Emergency dispatch at 562-594-7232. To report an injured live animal on any freeway, call California Highway Patrol at 714-567-6000. To report a deceased animal on any freeway, call CalTrans at 949-936-3600.
+If you are bitten or scratched by any animal, seek immediate medical advice or attention. Anyone with knowledge of a person bitten or scratched by a warm-blooded animal should immediately notify Seal Beach Animal Control. Anyone willfully concealing this information is guilty of a misdemeanor. All animal bites should be reported within 24 hours.
 
-Seal Beach Animal Control will provide emergency care for stray animals only. When the pet is claimed, the owner is responsible for all costs incurred. Owners of a sick or injured pet are responsible for taking it to a veterinarian or an emergency veterinary hospital.
+Animal Control must document that the biting animal stays healthy for 10 days after the bite. To report a bite involving a loose or wild animal, call 562-594-7232. Keep the animal's whereabouts known until an animal control officer arrives, and do not try to restrain an aggressive or unfamiliar animal yourself.
 
-Source: https://sealbeachca.gov/animal-control/
-
-## Swarm of Bees
-
-Leave the swarm alone. If the bees are on City-owned property, call 949-644-3717 and request an Animal Control response. If the bees are on private property, contact a local bee keeper or pest control company.
+Be prepared to provide: victim name and contact information; description of the biting animal; place and circumstances of the bite; description and location of wounds sustained.
 
 Source: https://sealbeachca.gov/animal-control/
 
-## Animal Abuse, Cruelty, or Neglect
+## Swarms of Bees and Vermin
 
-Abuse, cruelty, and neglect of animals are crimes punishable by fine and/or imprisonment. To report suspected cases for investigation, contact Seal Beach Police Dispatch at 562-594-7232.
+If you find a swarm of bees, leave it alone. If the bees are on City-owned property, call 949-644-3717 and request an Animal Control response. If the bees are on private property, contact a local bee keeper or pest control company.
 
-Source: https://sealbeachca.gov/animal-control/
-
-## Animal Bites
-
-If you are bitten or scratched by any animal, seek immediate medical advice or attention. Anyone with knowledge of a person bitten or scratched by a warm-blooded animal should immediately notify Seal Beach Animal Control. Willfully concealing this information is a misdemeanor. All animal bites should be reported within 24 hours. Animal Control must document that the biting animal stays healthy for 10 days after the bite.
-
-To report a bite involving a loose or wild animal, call 562-594-7232. Try to keep the animal's whereabouts known until an animal control officer arrives, and do not try to restrain an aggressive or unfamiliar animal yourself. Be prepared to provide:
-- Victim name and contact information
-- Description of the biting animal
-- Place and circumstances of bite
-- Description and location of wounds sustained
+Issues involving vermin (mice, rats, mosquitoes, red fire ants, Africanized honey bees, and similar pests) are referred to the Orange County Mosquito & Vector Control District at (714) 971-2421.
 
 Source: https://sealbeachca.gov/animal-control/
 
-## Title VI Non-Discrimination — Filing a Complaint
+## Dog Licensing and WAGS Pet Adoption
 
-Anyone who believes they have been subjected to discrimination under a City program, service, or activity may file a formal complaint with the City of Seal Beach Title VI Coordinator. The complaint must be filed within 180 days of the date of the alleged discrimination. Submit a written Title VI complaint form (available in English and Spanish, along with complaint procedures) to:
+Pet Data handles all dog licensing within the city of Seal Beach. To register your dog, visit https://www.petdata.com/for-pet-owners/seb/license-online or call 1-877-730-6348.
 
-Michael Peterman, Title VI Coordinator City of Seal Beach 211 Eight Street Seal Beach, CA 90740 MPeterman@sealbeachca.gov
+Seal Beach partners with WAGS to provide shelter and care for domestic animals. Contact WAGS at (714) 887-6156 (text messages only). WAGS is at 6621 Westminster Blvd., Westminister, Ca, 92683, open Tue – Sun 1:00pm to 5:00pm. Website: https://wagspetadoption.org
 
-Complainants receive a written acknowledgment that the complaint has been received. The Title VI Coordinator reviews the complaint to determine whether it falls within the City's jurisdiction. Complaints within jurisdiction are investigated under the City's Title VI complaint procedures, and the complainant receives written notification of the City's determination.
+Source: https://sealbeachca.gov/animal-control/
 
-Source: https://sealbeachca.gov/departments/title-vi-program/
+## Coyote Safety
 
-## Community CPR Classes
+Coyotes visit at nighttime and during the day and display no fear in the presence of people. Coyotes can jump up to 14 feet, and wrought iron or chain link fence does not deter them. The most effective way to prevent coyote attacks is to eliminate the feeding of any wildlife, whether intentionally or accidentally.
 
-The Seal Beach Marine Safety Department offers annual CPR courses to the public. Participants receive a CPR certification card through the American Heart Association that is valid for two (2) years. Learn more and register through the city's online recreation website. Sign-ups open six (6) weeks prior to the class.
+Precautions listed by the City:
+- Feed pets indoors or promptly remove dishes, and store pet food indoors.
+- Use trash barrels fitted with pipe clamping devices on the lids.
+- Do not use plastic bags as garbage containers.
+- Do not put trash cans out the night before scheduled pick up; put them out in the morning.
+- Remove fallen fruit.
+- Clear brush and dense weeds.
+- Keep small animals indoors as much as possible, especially at night.
+- Residents with small pets (less than 20 pounds) should supervise them outdoors.
+- Use a secure, sturdy leash; retractable leashes are not recommended.
 
-Source: https://sealbeachca.gov/departments/marine-safety-lifeguards/community-cpr-classes/
+If you see a coyote during the daytime or are approached by one, yell, wave your arms and/or throw something at it. Do not run.
 
-## 2026 General Municipal Election — Candidate Intention Statements
+Source: https://sealbeachca.gov/animal-control/
 
-Candidate intention statements are listed by district:
-- District One – Old Town & Surfside Colony: Chad Berlinghieri, Mattthew Terry, Perla Mendoza, Matthew Smith, Scott Davis
-- District Three – The Hill, Coves, Bridgeport & Heron Point: Lisa Landau
-- District Five – Leisure World: Nathan Steele
+## City Hall Location and Hours
 
-Source: https://sealbeachca.gov/departments/city-clerk/voter-election-information/candidate-intention-statements/
+City Hall is at 211 Eighth Street, Seal Beach, CA 90740. Phone: (562) 431-2527. City Hall is open Monday through Friday, 8:00 a.m. to 5:00 p.m., except holidays, and is closed daily for lunch from 12:00 noon to 1:00 p.m.
 
-## Ethics and Fiscal Training Records (SB 827 / AB 1234) — Public Requests
+Source: https://sealbeachca.gov/seal-beach-government/city-hall-location-hours/
 
-The public may request ethics training records (AB 1234) and fiscal and financial training records (SB 827) for covered City officials. As of January 1, 2026, SB 827 requires covered officials to complete fiscal and financial management training every two years. Officials serving as of January 1, 2026 must complete their first training by January 1, 2028, so some records may not yet be available.
+## City Clerk — Contacts
 
-Copies of a Certificate of Completion are obtained by submitting a Public Records Act request. Include:
-- A brief description of the records requested
-- First and Last Name
-- Email Address
-- Phone Number
-- Mailing Address
+City Clerk, Gloria Harper: gharper@sealbeachca.gov, (562) 431-2527 x1305.
+Deputy City Clerk, Brandon DeCriscio: bdecriscio@sealbeachca.gov, (562) 431-2527 x1306.
+Office Specialist, Karen Pickering: kpickering@sealbeachca.gov, (562) 431-2527 x1304.
 
-The City responds in accordance with the California Public Records Act. For more information, call the City Clerk's Office at (562) 431-2527.
+Source: https://sealbeachca.gov/departments/city-clerk/contact-us/
+
+## Ethics and Fiscal Training Records (SB 827 / AB 1234)
+
+Members of the public may request copies of ethics training records (AB 1234) and fiscal and financial training records (SB 827) by submitting a Public Records Act request for a Certificate of Completion. Include: a brief description of the records requested, first and last name, email address, phone number, and mailing address.
+
+The City will respond in accordance with the California Public Records Act. Officials serving as of January 1, 2026 must complete their first SB 827 training by January 1, 2028, so some records may not yet be available. For more information, contact the City Clerk's Office at (562) 431-2527.
 
 Source: https://sealbeachca.gov/departments/city-clerk/contact-us-copy/
 
-## Senior Services — AARP Tax Assistance
+## Special Event Permits
 
-The city offers free assistance for low-income seniors in preparing State and Federal income tax returns. The service is by appointment only. Appointments can be made come January of each year, first-come, first-served. Appointments are held solely on Mondays, from February through April, at Fire Station #48 – Community Room, 3131 North Gate Road, Seal Beach, CA 90740. For more information, call (562) 431-2527 x1307.
+Events that are one-time uses not commonly taking place on a property, events on public property, and events requiring street closures or other private use of public areas are Special Events. Examples include large gatherings, parties on private property with live music, beach weddings (ceremony only, no receptions), carnivals/fairs, Christmas tree and pumpkin patch lots, haunted houses, public fireworks displays, and large temporary structures like tents or canopies. Failure to secure a permit will result in termination of the event, citation by the City, or both.
 
-Source: https://sealbeachca.gov/senior-resources/
+Applications go to the Recreation and Community Services Department, and all submittal requirements (pages 3 and 4 of the application packet) must be submitted together. Applications can also be submitted through the City's public web portal, which lets applicants track permit status. Applications must be submitted no later than 4:00 p.m., thirty (30) days prior to the event date. Review takes a minimum of 30 days.
 
-## Bathroom Accessibility Grant Program (Leisure World)
+Special events at Eisenhower Park or on the beach during peak season are not guaranteed. Peak season begins the Friday of Memorial Day weekend and ends the Tuesday after Labor Day. Any written appeal of Staff's decision must be filed within ten (10) calendar days of receipt of the decision, and a fee must be submitted when the appeal is filed.
 
-The program is for eligible Leisure World residents and is funded through federal CDBG dollars administered by HUD and the County of Orange. It is administered by CivicStone, Inc. and provides coordination from application through construction at no cost to the homeowner.
+Questions: Anthony Nguyen, Community Services Coordinator, anguyen@sealbeachca.gov, (562) 431-2527 x 1344, City Hall, 211 8th St Seal Beach CA 90740.
 
-Eligible improvements: bathtub cut down for conversion to a walk-in shower; installation of a high-boy toilet; addition of grab bars as needed; alteration or creation of shower bench. Porcelain tubs do not qualify.
+Source: https://sealbeachca.gov/departments/community-services-recreation/special-events-film-permits/
 
-Applicants must:
-- Be 55 years of age or older
-- Own and reside in a home within Leisure World, Seal Beach
-- Meet HUD income limits (only income is considered, not savings)
-- Submit a completed Doctor's Analysis Form indicating mobility, pain, or balance issues
+## Film Permits
 
-Applicants are prioritized by medical need documented by a licensed physician. Apply online or download forms at www.civicstone.com, or request a printed application from CivicStone. Once approved, construction typically takes less than one week. CivicStone, Inc.: (909) 364-9000, monique@civicstone.com.
+Send the Film Permit Application or any questions to Anthony Nguyen, Community Services Coordinator, anguyen@sealbeachca.gov, (562) 431-2527 x 1344, City Hall, 211 8th St Seal Beach CA 90740.
 
-Source: https://sealbeachca.gov/senior-resources/
+Source: https://sealbeachca.gov/departments/community-services-recreation/special-events-film-permits/
 
-## Senior Lunch Program (Congregate Meals)
+## Recreation and Community Services Department — Contact
 
-Meals on Wheels Orange County runs the Senior Lunch Café at the North Seal Beach Community Center, 3333 St. Cloud Drive, Seal Beach, CA 90740. It is served 11:00am-12:00pm noon, Monday through Friday (closed on City of Seal Beach observed Holidays). It is open to all adults age 60 years and older. The suggested voluntary contribution is $3 per meal, and no one is turned away for inability to contribute. For more information, call (562) 460-6079.
+The department is at City Hall, 211 Eighth Street, Seal Beach, CA 90740, on the 2nd floor. Phone: (562) 431-2527 ext 1307. Hours: Monday through Friday 8:00 a.m. – noon & 1:00 p.m. – 5:00 p.m.
 
-Source: https://sealbeachca.gov/senior-resources/
+For general information, athletic fields/gym reservations, adult sports, senior services, community gardens, and park rentals, call (562) 431-2527 x1307. For facility rentals, special event permits, recreation guide, classes and programs, instructor information, aquatics, marketing and social media, call (562) 431-2527 x1344. Seal Beach Tennis & Pickleball Center: (562) 598-8624.
 
-## Home Delivered Meals
+Source: https://sealbeachca.gov/departments/community-services-recreation/contact-us/
 
-For homebound individuals aged 60 years and older who are unable to shop and/or prepare meals, Meals on Wheels Orange County delivers two meals to the home: breakfast items, a cold lunch, and a frozen dinner. Meals are available five days per week. The suggested donation is $4.50 per day. For more information, call (562) 430-6079 between 8:00 AM and 12:00 PM, Monday through Friday.
+## Zoeter Softball Facility
 
-Source: https://sealbeachca.gov/senior-resources/
+Zoeter Softball Facility is at 12th Street & Landing Avenue, by reservation only. It is a 1.5 acre lot with lights, restrooms, reservable areas, and softball fields. To inquire about reservations, call the Recreation Department at (562) 431-2527 x1307 or email ncaukin@sealbeachca.gov.
 
-## Seal Beach Transportation Program — Registration
+Seal Beach offers adult softball leagues at Zoeter Field. Questions: (562) 431-2527 x1307 or ncaukin@sealbeachca.gov.
 
-The program provides free transportation for Seal Beach residents aged 60 years and older, and adults with disabilities. Only registered users can use the fixed-route senior shuttle and Dial-A-Ride cab services. New riders must submit the Senior Transportation Program Application with photo identification (driver's license, or state or government issued ID) and proof of Seal Beach residency (such as a recent utility bill, a deed, or insurance). Leisure World residents may provide a Golden Rain Foundation ID Card instead of a residency document. Applications can be delivered in person at City Hall, mailed, or emailed.
+Source: https://sealbeachca.gov/departments/community-services-recreation/parks-facilities/zoeter-softball-facility/
 
-Contacts: Tatiana Marocco, tmarocco@sealbeachca.gov, (562) 431-2527 x1307; Nathan Caukin, ncaukin@sealbeachca.gov, (562)-431-2527 x1390.
+## Seal Beach Tennis & Pickleball Center
 
-Source: https://sealbeachca.gov/senior-resources/
+The center is at 3900 Lampson Avenue, with lights, reservable areas, and restrooms. Members-only hours are every day 8:00am – 12:00pm; members receive free use of tennis and/or pickleball courts.
 
-## Senior Fixed-Route Shuttle
+General public hours: Mon-Fri 12:00pm – 9:00pm; Sat & Sun 12:00pm – 5:00pm. Tennis courts: $10 per hour per court from noon – 5:00 pm; $12 per hour per court from 5:00 pm – 9:00 pm. Pickleball courts: $5 per person per day.
 
-The free shuttle runs a fixed route through major city stops, including the Seal Beach Pier, Leisure World, the Rossmoor Shopping Center, and the North Seal Beach Community Center. It is a 20-passenger vehicle that accommodates wheelchairs, scooters, and other mobility devices, and has a bike rack for two (2) bikes. No reservations are required to board for program participants. Operating hours are Monday through Friday, 9:00a.m. to 12:00p.m. and 1:00p.m. to 4:00p.m.
+Contact: (562) 598-8624 or sbtpc@sealbeachca.gov.
 
-Source: https://sealbeachca.gov/senior-resources/
+Source: https://sealbeachca.gov/departments/community-services-recreation/parks-facilities/seal-beach-tennis-pickleball-center/
 
-## Senior Dial-A-Ride Cab Service
+## Utility Provider Contacts
 
-The free service provides rides to any location within City limits, and up to three (3) miles outside City limits and within Orange County, for non-emergency medical or health purposes. Users may also go to the VA Hospital in Long Beach and UCI Health – Los Alamitos (off Katela Avenue). Cabs can accommodate wheelchairs, scooters, and other mobility devices on request. Operating
+- Electricity: Southern California Edison, (800) 655-4555
+- Gas: Southern California Gas Company, (800) 427-2200
+- Telephone: Verizon FiOS, (800) 483-4000
+- Cable: Time Warner, (888) 892-2253
+- Internet: Frontier Communications, (855) 242-3842
+- Trash: Republic Services, (800) 299-4898
+- Water: City of Seal Beach Water Services, 211 Eighth Street, Seal Beach, CA 90740, (562) 431-2527 x1309, Monday through Friday 8:00 a.m. – noon & 1:00 p.m. – 5:00 p.m.
+
+The fee for trash collection is included with the water bill for residences. Businesses must contact Republic Services at (562) 347-2105 to set up trash collection.
+
+Source: https://sealbeachca.gov/city-services/utilities/
+
+## Utility Billing — Payments, Due Dates and Contact
+
+The Utility Billing Division provides water, sewer, trash, street sweeping and tree trimming to customers throughout Seal Beach. Services are generally billed every two months. Payments are due 20 days from the bill date. Payments received after the due date are subject to a 10% penalty. If the bill remains unpaid after 60 days from the bill date, the account is subject to disconnection and further service charges will apply.
+
+For commercial businesses, Republic Services bills customers directly for trash services; to set up trash collection call (562) 347-2105. Rates were scheduled to increase on September 1, 2025.
+
+Contact Monday through Friday (8:00 a.m. – noon & 1:00 p.m. – 5:00 p.m.): (562) 431-2527 x1309, payments@sealbeachca.gov. Pay online (free) using a credit card or bank account at https://www.municipalonlinepayments.com/sealbeachca. Registered users of the payment website must re-register using the new customer and account number on the new bill statement.
+
+Source: https://sealbeachca.gov/departments/finance/utility-billing-information/
+
+## Emergency Water Service
+
+For water emergencies after 5 p.m., call the Police Department non-emergency line at (562) 594-7232. A staff member will come to the location to determine whether the leak is the responsibility of the City or the business/homeowner. If it is the City's responsibility, it will be fixed at no cost. If it is the responsibility of the business/homeowner, an emergency call out fee will be charged (minimum of $250). Additional fees apply if the City's water meter was tampered with.
+
+Source: https://sealbeachca.gov/departments/finance/utility-billing-information/
+
+## Reading Your Water Meter
+
+The meter is read left to right, like a car odometer. On most meters the last two digits are dropped because billing is in units of one hundred cubic feet (HCF). One hundred cubic feet equals 748 gallons. To calculate gallons used in the two-month cycle, multiply the usage on your bill by 748. To calculate daily usage, divide total gallons by the number of days in the billing cycle. If you suspect a meter issue, contact the Utility Billing Division and a team

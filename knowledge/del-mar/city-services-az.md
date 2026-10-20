@@ -2,142 +2,156 @@
 
 Generated 2026-10-17 from https://www.delmar.ca.us pages listed in each section's Source line.
 
+## Animal Services
+
+Del Mar coordinates animal services with San Diego Humane Society (SDHS), its primary animal care and control agency. Services include dog licensing, lost and found, adoptions, microchipping, spay/neuter, vaccination clinics, educational programs, and cruelty investigations. Animal noise complaints are handled by SDHS. For barking dog complaints, residents may fill out and submit a form on the page.
+
+Report animal-related concerns by email at investigations@sdhumane.org (checked frequently, but not in immediate real time) or by phone at 619-299-7012 ext. 1 (available 24 hours a day/7 days a week). Residents can also submit a form to SDHS Humane Law Enforcement (HLE). For an animal-related emergency, cruelty, or imminent threat or danger to animals or humans, call HLE dispatch at 619-299-7012 ext. 1. Call 911 for human-related emergencies.
+
+All dogs four months of age and older must have a valid license and wear a license ID tag at all times. Owners must show proof of rabies vaccination to receive a license. Licenses can be bought and renewed online at sdhumane.org/license through DocuPet. Each DocuPet tag includes the Home Safe™ 24/7 lost pet service.
+
+For lost or found pets, visit SDHS from 10 a.m. to 6 p.m., Tuesday through Sunday (closed Mondays), and bring a picture of your pet if you have one. SDHS: phone 619-299-7012, email info@sdhumane.org, website sdhumane.org, mail 5500 Gaines St., San Diego CA 92110. Its Resource Center answers phone calls and email 7 days a week from 9 a.m.-6 p.m., excluding major holidays.
+
+Source: https://www.delmar.ca.us/656/Animal-Services
+
+## Beaches & Parks
+
+Del Mar has two-plus miles of sandy beach. Powerhouse Park and Seagrove Park are located just above the 15th Street surf break. Powerhouse Park has a barefoot friendly, dog free "tot lot." North Beach, called "Dog Beach" by dog owners, is north of 29th Street and stretches nearly one half mile to the Solana Beach border.
+
+Del Mar Lifeguards: 1700 Coast Blvd., Del Mar, CA 92014. Phone: 858-755-1556. Lifeguard Emergency: 858-755-1555 or 911 (after-hours). Surf Report: 858-259-8208.
+
+Source: https://www.delmar.ca.us/203/Beaches-Parks
+
 ## Budget & Financial Reports
 
-The City of Del Mar operates on a July 1 to June 30 fiscal year. The City prepares and adopts a new biennial budget in June on odd numbered calendar years, and a budget update for year two in even numbered calendar years. Amendments are generally submitted with mid-year budget reports and agenda items requiring additional appropriations. The current Fiscal Year 2025-2026 and 2026-2027 Operating and Capital Budget was adopted on June 16, 2025. The page also links to the Budget in Brief, Annual Comprehensive Financial Reports (ACFR), Financial Reports, and Quarterly Treasurer's Reports.
+The City of Del Mar operates on a July 1 to June 30 fiscal year. It adopts a new biennial budget in June of odd numbered calendar years, and a budget update in June of even numbered years. The current Fiscal Year 2025-2026 and 2026-2027 Operating and Capital Budget was adopted on June 16, 2025. The page links to the most recent adopted budget, Annual Comprehensive Financial Reports (ACFR), Financial Reports, and Quarterly Treasurer's Reports.
 
 Finance Department: 1050 Camino del Mar, Del Mar, CA 92014. Phone: 858-755-9354. After hours Water/Sewer Emergency: 858-756-1126. Hours: Monday through Thursday 7:30 a.m. to 5:30 p.m.; Friday - Closed to the public.
 
 Source: https://www.delmar.ca.us/132/Budget-Financial-Reports
 
-## Utility Billing — Services and Paying Your Bill
+## City Hall, Public Works, Planning and Building Counter Hours
 
-City utility services include water, wastewater and clean water. Trash/Recycling/Green Waste and Billing are provided by EDCO Disposal. Contact EDCO to establish or cancel trash service at https://del-mar.edcodisposal.com or (619) 287-7555.
+Del Mar Civic Center, 1050 Camino del Mar, Del Mar, CA 92014: Monday through Thursday 7:30 a.m. to 5:30 p.m. Phone (858) 755-9313. Email: cityhall@delmar.ca.us. Friday (City Hall closed for walk-in service) 7:30 a.m. to 4:30 p.m. (remote service only).
 
-Acceptable payment methods include cash, check, or credit card (Visa, MasterCard, and Discover online, in person, or by phone). Have your 8 digit account number handy.
-- Online: the City partners with Paymentus for a secure, no cost way to pay one time or automatically. For assistance call Paymentus Customer Service at 800-420-1663.
-- By phone: 1-855-385-9410 (automated phone payment system).
-- By mail: City of Del Mar, Finance Department, 1050 Camino del Mar, Del Mar, CA 92014.
-- Drop off: inside the Finance Department lobby during office hours.
+Public Works Department, 2240 Jimmy Durante Blvd., Del Mar, CA 92014: Monday through Friday 7 a.m. to 3:30 p.m. (remote service and by appointment only). Phone: (858) 755-3294. Email: PublicWorks@delmar.ca.us.
 
-Automatic Bill Payment is a free service with two options, Automatic Debit and Automatic Credit Card (Visa, MasterCard, Discover). To participate, register for an online account and schedule your payments.
+Planning Counter: Monday & Wednesday 1:00 p.m. to 5:30 p.m. Email: planning@delmar.ca.us. Building Counter: Monday & Wednesday 1:00 p.m. to 5:30 p.m. Email: Building@delmar.ca.us.
 
-Source: https://www.delmar.ca.us/307/Utility-Billing
+Remote services: pay utilities by calling (855) 385-9410 (toll free) or visiting www.delmar.ca.us/billpay. Zoning information is available through the Public Map Viewer at https://delmar.geoviewer.io/. Code enforcement: call (858) 704-3651 or file a complaint at http://www.delmar.ca.us/forms.aspx?FID=93.
 
-## Utility Billing — Starting or Stopping Service
-
-To determine whether a property is within the Del Mar city limits, view the City Limits Map. To start service, submit a Utility Service Application (PDF) to the Finance Department. Requests made during business hours are typically activated within 24 hours.
-
-Charges accrue until the city is contacted to discontinue service, and the city requires at least 24 hours notice to discontinue service. To cancel, complete a Utility Service Cancellation Request or call the Finance Department at (858) 755-9354.
-
-Source: https://www.delmar.ca.us/307/Utility-Billing
-
-## Utility Billing — Billing Practices, Deposits and Late Fees
-
-The City bills utility customers bi-monthly (every two months), and each account is billed for a two-month period of service. If you begin service in the middle of a billing period, all charges are prorated.
-
-All new customers must submit a completed application (PDF). A deposit, based on meter size, will be billed on the first billing statement. The deposit will be refunded after 12 consecutive bills (two years) with a good payment record. Any balance remaining is returned when an account is closed.
-
-Charges paid after the due date are subject to a ten percent late fee. Payments must be received on or before the past due date noted on the face of the bill. (Postmarks are not sufficient.) Services terminated due to non-payment will be subject to additional charges.
-
-Source: https://www.delmar.ca.us/307/Utility-Billing
-
-## Water Service Discontinuation for Non-Payment
-
-The City of Del Mar may discontinue water service for accounts with unpaid balances 60 days after the due date, as outlined in the Discontinuation of Residential Water Services Policy. Customers receive multiple notifications before termination, including mailed reminders, phone calls, emails, and on-site notices. To avoid disconnection, customers may arrange a City-approved payment plan or submit proof of financial hardship, including health-related documentation if discontinuation would create a safety risk.
-
-If service is discontinued, it can be restored after full payment of the outstanding balance, plus a reconnection fee. For details, including payment options and appeal processes, contact the City's water utility division at (858) 755-9354 or finance@delmar.ca.us. The City had -0- accounts disconnected due to non-payment in calendar year 2025. The policy is available in English, Chinese, Korean, Spanish, Tagalog and Vietnamese (PDF).
-
-Source: https://www.delmar.ca.us/307/Utility-Billing
+Source: https://www.delmar.ca.us/813/Operating-Hours-Remote-Services
 
 ## Clean Water Program
 
-The Del Mar Clean Water Program protects and enhances the quality of our lagoons, beaches, and the Pacific Ocean by overseeing pollution-sensitive activity, providing education and outreach, and monitoring water quality. Storm water is any precipitation that flows over impervious surfaces such as streets, parking lots, and rooftops into storm drains. It carries pollutants untreated into streams, rivers, lagoons, and the Pacific Ocean.
+The Del Mar Clean Water Program protects and enhances the quality of the city's lagoons, beaches, and the Pacific Ocean. It oversees pollution-sensitive activity, provides education and outreach, and monitors water quality. Residents, business owners, and contractors are expected to prevent water pollution by following best management practices. Tips on the page include using biodegradable car wash products and washing your car on permeable surfaces like grass, keeping dirt out of storm drains, and choosing plants suited to your climate.
 
-Residents, business owners, and contractors should follow best management practices. When washing your car at home, use biodegradable car wash products and wash on permeable surfaces like grass. Keep dirt out of storm drains. Project Clean Water (www.projectcleanwater.org) is a county-wide initiative on preserving water quality in San Diego County.
-
-Contact: Phone 858-704-3652, Email cleanwater@delmar.ca.us. Clean Water Program Manager: Mikhail Ogawa, 858-704-3652.
+Project Clean Water is a county-wide initiative on water quality in San Diego County (www.projectcleanwater.org). Contact the Clean Water Program at 858-704-3652 or cleanwater@delmar.ca.us. A Water Runoff Report can be submitted online. Clean Water Program Manager: Mikhail Ogawa, 858-704-3652.
 
 Source: https://www.delmar.ca.us/167/Clean-Water-Program
 
-## Report Water Runoff Concerns
+## Clean Water Regulations
 
-Immediately contact the Clean Water Program if you witness the release of runoff into streets, sidewalks, gutters, and storm drains from activities such as over-irrigation, vehicle washing, driveway or sidewalk washing, or washing of restaurant mats or equipment. At construction sites, all materials and sediment must remain on the job site and off the public right-of-way.
+Storm water compliance is governed by laws, regulations, and agencies at several levels of government. The agencies are the Environmental Protection Agency (federal), the California State Water Resources Control Board (state), the San Diego Regional Water Quality Control Board (local), and the Del Mar Clean Water Program (city). Resources listed include the Regional Water Quality Control Board Permit and the Del Mar Municipal Code. Contact: 858-704-3652, cleanwater@delmar.ca.us.
 
-Contact: Phone 858-704-3652, Email cleanwater@delmar.ca.us, or use the "Submit Water Runoff Report" link on the page.
+Source: https://www.delmar.ca.us/906/Clean-Water-Regulations
 
-Source: https://www.delmar.ca.us/910/Report-Water-Runoff-Concerns
+## Clean Water Plans and Reports
 
-## Clean Water — Pet Waste
+The Clean Water Program implements a Jurisdictional Runoff Management Program (JRMP), a set of policies and procedures to prevent stormwater pollutants from entering the Municipal Separate Storm Sewer System (MS4). It also implements Water Quality Improvement Plans (WQIP). Del Mar is part of two watersheds: San Dieguito and Los Peñasquitos. The page links to the Del Mar JRMP, JRMP Annual Reports, both WQIPs, the BMP Design Manual, and its appendices. Contact: 858-704-3652, cleanwater@delmar.ca.us.
 
-Pet waste contains pathogens and parasites such as E.coli and Giardia. Its nitrogen and phosphorous act as fertilizers, leading to excessive algae growth that depletes oxygen in waterways. The page advises residents to:
-- Carry a bag on walks.
-- Always pick up pet waste immediately, in your yard or on walks, and dispose of it properly in the trash or compost bins.
-- Stay up to date with pet vaccinations.
+Source: https://www.delmar.ca.us/907/Plans-and-Reports
 
-Contact the Clean Water Program at 858-704-3652 or cleanwater@delmar.ca.us.
+## Construction and Demolition Waste Recycling
 
-Source: https://www.delmar.ca.us/894/Pet-Waste
+With some exceptions, state and local laws require construction and demolition (C&D) projects to recycle debris. Contractors and project managers must verify whether their projects require a Waste Management Plan. The City will not issue building permits if Waste Management Plans do not meet CalGreen standards, which require the recycling of at least 65% of C&D waste.
 
-## Clean Water — Trash
+Upon completion of a project and before final building permit inspections, contractors or project managers must complete the compliance section of the Waste Management Plan. They must also present receipts from waste, recycling and reuse facilities to show that diversion requirements were met.
 
-Common forms of trash in storm drains include cigarette buds, food wrappers, bottles, and cans, which accumulate in the storm drain system and end up on our beaches. The page advises residents to:
-- Avoid littering, especially near waterways, and use designated bins.
-- Secure trash lids, as winds and animals can carry trash away.
-- Secure trash in moving vehicles so it cannot blow away.
-- Properly dispose of any household hazardous waste (see FAQs - Hazardous Waste Disposal).
+To order C&D containers, contact the City's solid waste hauler, EDCO: 619-287-7555. Contractors who self-haul C&D waste are advised to dump at a certified facility. The governing ordinance is DMMC Chapter 23.70 (8/5/2019).
 
-Contact the Clean Water Program at 858-704-3652 or cleanwater@delmar.ca.us.
+Source: https://www.delmar.ca.us/762/Construction-and-Demolition-Waste-Recycl
 
-Source: https://www.delmar.ca.us/895/Trash
+## Lawn Waste and Water Quality
 
-## Clean Water — Lawn Waste
-
-Lawn waste, including grass clippings, leaves, and yard debris, can be carried into storm drains, clog infrastructure and potentially cause flooding. Residents who hire a landscaping company should make sure it follows these guidelines. The page advises residents to:
-- Not sweep or blow leaves and landscape trimmings into the street. Collect all lawn waste and place it in the green waste bin for collection.
-- Clean up and dispose of any gardening chemicals, fertilizers, or soil spills, and not leave chemicals outside or exposed to the elements.
-
-Contact the Clean Water Program at 858-704-3652 or cleanwater@delmar.ca.us.
+Lawn waste such as grass clippings, leaves, and yard debris can be carried into storm drains, where it can clog infrastructure and cause potential flooding. Do not sweep or blow leaves and landscape trimmings into the street. Collect all lawn waste and place it into the green waste bin for collection. Clean up and dispose of any gardening chemicals, fertilizers, or soil spills. Residents who hire a landscaping company should make sure the company follows these guidelines. Contact: 858-704-3652, cleanwater@delmar.ca.us.
 
 Source: https://www.delmar.ca.us/899/Lawn-Waste
 
-## Clean Water — Plans, Reports and Regulations
+## Parks & Recreation Committee
 
-The Clean Water Program implements a Jurisdictional Runoff Management Program (JRMP), which is a set of policies and procedures to prevent stormwater pollutants from entering the Municipal Separate Storm Sewer System (MS4). It also implements Water Quality Improvement Plans (WQIP). The City of Del Mar is part of two watersheds: San Dieguito and Los Peñasquitos. The page links to the Del Mar JRMP, JRMP Annual Reports, both WQIPs, the BMP Design Manual and its Appendices.
+Agendas for the Parks & Recreation Committee are available prior to the meetings. Minutes are available following approval. The page offers email notification sign-up.
 
-Storm water compliance is governed by these agencies: Federal: Environmental Protection Agency; State: California State Water Resources Control Board; Local: San Diego Regional Water Quality Control Board; City: Del Mar Clean Water Program. Resources include the Regional Water Quality Control Board Permit and the Del Mar Municipal Code.
+Source: https://www.delmar.ca.us/240/Parks-Recreation-Committee
 
-Contact: 858-704-3652, cleanwater@delmar.ca.us.
+## Pet Waste and Water Quality
 
-Source: https://www.delmar.ca.us/907/Plans-and-Reports
-Source: https://www.delmar.ca.us/906/Clean-Water-Regulations
+Pet waste contains pathogens and parasites such as E.coli and Giardia, and can wash into storm drains, creeks, and rivers. Carry a bag on walks. Pick up pet waste immediately, in your yard or on walks, and dispose of it properly in the trash or compost bins. Contact: 858-704-3652, cleanwater@delmar.ca.us.
+
+Source: https://www.delmar.ca.us/894/Pet-Waste
+
+## Senior Services
+
+The City contracts with Del Mar Community Connections (DMCC), a 501c3 nonprofit, to serve Del Mar's senior population with social, cultural, health, and educational activities and transportation services. DMCC: 225 9th Street, Del Mar, CA 92014. Phone: 858- 792-7565.
+
+The County of San Diego Aging & Independence Services offers services Del Mar residents may be eligible for. These include adult protective services, care coordination, meals and senior dining information, health and community engagement, in-home supportive services, and a long-term care ombudsman. Phone: 800-339-4661.
+
+Source: https://www.delmar.ca.us/871/Senior-Services
 
 ## Street Sweeping Schedules
 
-The City publishes a Commercial Street Sweeping Schedule (PDF), a Residential Street Sweeping Schedule (PDF), and a Street Sweeping Holidays (PDF) document on its Street Sweeping Schedule page under Planning & Community Development.
+The City posts a Commercial Street Sweeping Schedule (PDF), a Residential Street Sweeping Schedule (PDF), and a Street Sweeping Holidays (PDF) list.
 
 Source: https://www.delmar.ca.us/478/Street-Sweeping-Schedule
 
-## Fire Department
+## Trash and Water Quality
 
-The Del Mar Fire Department has nine full-time staff (three captains, three fire engineers, and three firefighters/paramedics), one front-line fire engine, one rescue unit and one reserve fire engine. Headquarters are at 2200 Jimmy Durante Boulevard, Del Mar, CA 92014, on the southeast corner of the Del Mar Fairgrounds. Emergency: 911.
+Common trash in storm drains includes cigarette butts, food wrappers, bottles, and cans, which end up on beaches. Avoid littering near waterways, use designated bins, and secure trash lids because wind and animals can carry trash away. Secure trash in moving vehicles. Dispose of household hazardous waste properly. Contact: 858-704-3652, cleanwater@delmar.ca.us.
 
-The department serves nearly 5,000 full-time residents and more than 3 million annual visitors to the fairgrounds, across more than 2.5 square miles and more than 1,600 structures. It handles fire suppression and protection, emergency medical services, vehicle accidents, rescue and hazardous materials incidents. It provides mutual aid to Solana Beach, Encinitas and portions of the City of San Diego. Dispatch is 24-hour through the Rancho Santa Fe Regional Dispatch Agency.
+Source: https://www.delmar.ca.us/895/Trash
 
-The fire prevention program inspects all hotels, motels, restaurants and new businesses and reviews all commercial building plans for fire code compliance. It also provides free fire prevention inspections for residential property. Classes and demonstrations on safety and disaster preparedness are offered regularly.
+## Trash, Recycling, & Organics Collection
 
-Source: https://www.delmar.ca.us/134/Fire-Department
+EDCO Waste and Disposal Corp. provides solid waste collection and disposal for residential and commercial customers in Del Mar. Carts are Blue = Recyclables, Gray = Trash, Green = Organics. State law requires food waste to be separated from the rest of trash. Use the green cart for food scraps, yard trimmings, and other organic materials, collected each week on your scheduled service day. Pickup schedules and holiday schedules are on the EDCO website. The page also lists a Rate Schedule Effective 7/1/2025.
 
-## Sheriff's Department
+Source: https://www.delmar.ca.us/856/Trash-Recycling-Organics
 
-Since its incorporation in 1959, Del Mar has contracted for law enforcement services from the San Diego County Sheriff's Department. Services include routine patrols, emergency response, and crime prevention. Del Mar is served by the Sheriff's North Coastal Station, 175 N. El Camino Real, Encinitas, CA 92024. Emergency: 911. Non-emergency: 858-868-3200.
+## Undergrounding Program — Contact
 
-Patrol deputies respond to crimes or emergencies in progress and calls for service, conduct routine patrols and preliminary investigations, and apprehend suspects. Traffic deputies focus on vehicle code enforcement, traffic collision investigations and traffic control. The page offers a "Report a non-emergency public safety concern" link and Sheriff's links including Crime Prevention, Home Vacation Check, Take Me Home Registry, Prescription Drug Drop-off, Firearms Disposal and Senior Volunteer Patrol.
+Undergrounding Project Hotline: 858-375-9513. Email: Up@delmar.ca.us. Residents can subscribe to receive meeting agendas and undergrounding project updates.
 
-Source: https://www.delmar.ca.us/162/Sheriffs-Department
+Source: https://www.delmar.ca.us/694/Contact-Information
 
-## Parks & Recreation Committee — Agendas and Minutes
+## Undergrounding Program — Document Library
 
-Parks & Recreation Committee agendas are available prior to the meetings. Minutes are available following approval. The page links to the most recent agenda (PDF), all agendas and minutes, and email notification sign-up.
+Undergrounding of all utility poles Citywide is an identified City Council priority. The City Council established the Undergrounding Project Advisory Committee (UPAC) in spring of 2018. The page compiles key staff reports to the City Council, dated December 04, 2017 (UPAC), October 01, 2018, April 15, 2019, and August 05, 2019 (two reports). Resources include the CPUC Undergrounding Rules (PDF) and a Study by Utility Specialists Southwest, Inc. (PDF).
 
-Source: https://www.delmar.ca.us/240/Parks-Recreation-Committee
+Source: https://www.delmar.ca.us/692/Document-Library
+
+## Utility Billing — Payments
+
+City utility services include water, wastewater and clean water. Trash/Recycling/Green Waste and billing are provided by EDCO Disposal. Contact EDCO at https://del-mar.edcodisposal.com or (619) 287-7555 to establish or cancel trash service.
+
+Acceptable payment methods include cash, check, or credit card (Visa, MasterCard, and Discover online, in person, or by phone). Pay online through Paymentus, a secure and no cost method; have your 8 digit account number handy. Paymentus Customer Service: 800-420-1663. Pay by phone at 1-855-385-9410 using the automated phone payment system. By mail: City of Del Mar, Finance Department, 1050 Camino del Mar, Del Mar, CA 92014. Drop off inside the Finance Department lobby during office hours.
+
+Automatic Bill Payment is a free service with two options, Automatic Debit and Automatic Credit Card (Visa, MasterCard, Discover). Participants must register for an online account and schedule payments.
+
+Source: https://www.delmar.ca.us/307/Utility-Billing
+
+## Utility Billing — Establish or Discontinue Service
+
+To start service, submit a Utility Service Application (PDF) to the Finance Department. Requests made during business hours are typically activated within 24 hours. To cancel service, complete a Utility Service Cancellation Request or call the Finance Department at (858) 755-9354. The city requires at least 24 hours notice to discontinue service. Charges accrue until the city is contacted to discontinue service.
+
+Source: https://www.delmar.ca.us/307/Utility-Billing
+
+## Utility Billing — Billing Practices, Late Fees, and Deposits
+
+The City bills utility customers bi-monthly (every two months), and each account is billed for a two-month period of service. If service begins mid-period, charges are prorated. All new customers must submit a completed application. A deposit, based on meter size, is billed on the first statement. The deposit will be refunded after 12 consecutive bills (two years) with a good payment record. Any balance remaining is returned when an account is closed.
+
+Charges paid after the due date are subject to a ten percent late fee. Payments must be received on or before the past due date on the bill; postmarks are not sufficient.
+
+Source: https://www.delmar.ca.us/307/Utility-Billing
+
+## Utility Billing — Discontinuation of Water Service for Non-Payment
+
+The City may discontinue water service for accounts with unpaid balances 60 days after the due date, under the Discontinuation of Residential Water Services Policy. Customers receive multiple notifications beforehand, including mailed reminders, phone calls, emails, and on-site notices. To avoid disconnection, customers may arrange a City-approved payment plan or submit proof of financial hardship, including health-related documentation if discontinuation would create a safety risk. Service can be restored after full payment of the out

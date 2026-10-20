@@ -2,138 +2,153 @@
 
 Generated 2026-10-17 from https://www.danapoint.org pages listed in each section's Source line.
 
-## City Hall Operating Hours
-
-Administration Building lobby hours are Monday - Thursday 7:30AM - 5:30PM and Fridays 7:30AM - 4:30PM. Closed Saturday and Sunday.
-
-Community Development lobby hours are Monday - Thursday 7:30AM - 5:30PM and Fridays 7:30AM - 4:30PM. Permit Counter Hours (walk-ins) are Monday - Friday 8:00AM - 3:30PM. Over-the-Counter Plan Review (walk-ins) is Tuesdays and Thursdays 8:00AM - 12:00PM and 1:00PM - 3:30PM. Closed Saturday and Sunday.
-
-Public Works lobby hours are Monday -Thursday 7:30AM - 5:30PM and Fridays 7:30AM - 4:30PM. Engineering Counter Hours (walk-ins) are Monday - Friday 8:00AM - 3:30PM. Closed Saturday and Sunday.
-
-Source: https://www.danapoint.org/City-Government/City-Hall-Operating-Hours
-
-## City Hall Holiday Closures
-
-Holiday closures: Memorial Day - Monday, May 25, 2026; Independence Day (Observed) - July 3, 2026; Labor Day - Monday, September 7, 2026; Veterans Day - Wednesday, November 11, 2026; Thanksgiving - Thursday, November 26, 2026 and Friday, November 27, 2026. Winter Closure - Thursday, December 24, 2026 to Friday, January 1, 2027.
-
-Source: https://www.danapoint.org/City-Government/City-Hall-Operating-Hours
-
-## Recreation — Refund & Withdraw Request
-
-To request a refund or withdraw from a recreation activity, submit the online Refund & Withdraw Request form. Required fields are the participant's first and last name, the Activity Number or Name, and the Reason for Refund & Withdraw Request. An email address is also asked for. Requesters must acknowledge that a response may take up to 2 business days. The response is sent to the email address provided.
-
-Source: https://www.danapoint.org/Community/Recreation/Refund-Withdraw-Request
-
-## Youth Board
-
-The Dana Point Youth Board gives youth a chance to be active and make a difference in their community. The Youth Board participates in various City activities throughout the year, promotes and encourages increased interest and participation among young people in community affairs, and meets to discuss issues that affect local teens. A Dana Point Youth Board Application (PDF, 192KB) is available on the page.
-
-Meetings: 6 Meetings | 3rd Wednesday of month | 4:30pm-6pm | City Council Chambers. Meeting dates are October 21, 2026 (1st meeting); November 18, 2026 (2nd); December 16, 2026 (NO MEETING); January 20, 2027 (3rd); February 17, 2027 (4th); March 17, 2027 (5th); and April 21, 2027 (6th).
-
-Community involvement events: Spooktacular Trunk or Treat: October 24, 2026; Dia De Los Muertos: November 1, 2026; Thanksgiving Luncheon November 21, 2026; Holiday Home Decorating Contest: December 2026 (winner announced January 2027); Egg Hunts: 2027.
-
-Source: https://www.danapoint.org/Community/Recreation/Youth-Board
-
 ## Salt Creek Beach Park
 
-Salt Creek Beach Park is operated by the County of Orange. It offers beach access as well as grassy areas with barbeques, picnic tables, and benches to enjoy the view. Location: 33333 Pacific Coast Hwy, Dana Point, CA 92629.
+Salt Creek Beach Park is operated by the County of Orange. It offers beach access plus grassy areas with barbeques, picnic tables, and benches. Other listed features are a basketball court, lit paths, public restrooms, a concrete trail, trash cans, and water fountains. For more information, use the OC Parks Salt Creek Beach website linked on the page.
 
-Hours are 05:00 AM–11:59 PM every day, Sunday through Saturday. Features: Barbeque, Basketball Court, Benches, Grassy Area, Lit Paths, Picnic Tables, Public Restrooms, Trail Type: Concrete, Trash Cans, Water Fountains. For more information, visit the OC Park's Salt Creek Beach website.
+Location: 33333 Pacific Coast Hwy, Dana Point, CA 92629. Hours: Sunday–Saturday, 05:00 AM–11:59 PM.
 
 Source: https://www.danapoint.org/Community/Parks-Trails/Salt-Creek-Beach-Park
 
 ## Crystal Cove Park (Ocean Knoll Park)
 
-Crystal Cove Park is a small park located within the Crystal Cove community. It has walking trails with views of the ocean and Pacific Coast Highway below, and a small dog park for the public and residents to use. The park is also referred to as Ocean Knoll Park. Location: Ocean Knoll Park, Dana Point, CA 92629.
+Crystal Cove Park is a small park in the Crystal Cove community, also called Ocean Knoll Park. It has walking trails with views of the ocean and Pacific Coast Highway below, and a small dog park. Listed features are benches, a dog run, a grassy area, lit paths, a concrete trail, and trash cans.
 
-Hours are 06:00 AM–10:00 PM every day, Sunday through Saturday. Features: Benches, Dog Run, Grassy Area, Lit Paths, Trail Type: Concrete, Trash Cans.
+Location: Ocean Knoll Park, Dana Point, CA 92629. Hours: Sunday–Saturday, 06:00 AM–10:00 PM.
 
 Source: https://www.danapoint.org/Community/Parks-Trails/Crystal-Cove-Park
 
-## Reporting Water Quality Violations
+## Recreation Refund & Withdraw Request
 
-Report water quality violations, including irrigation/sprinkler runoff and pollutant discharges, as follows.
+The online Refund & Withdraw Request form asks for the participant's first and last name (required), the activity number or name (required), the reason for the request (required), and an email address. You must check an acknowledgment that a response may take up to 2 business days. The response is sent to your email address.
 
-During office hours: Code Enforcement 949-248-3564; Dana Point Connect; or Lisa Zawaski 949-248-3584, lzawaski@danapoint.org.
+Source: https://www.danapoint.org/Community/Recreation/Refund-Withdraw-Request
 
-After hours: Dana Point Connect App; Orange County Water Pollution Hotline (24-hour) 1-877-89-SPILL (1-877-89-77455); or Non-Emergency Police Dispatch 949-770-6011 (Orange County Sheriff Dept).
+## Recreation Division — Programs, Park Reservations, and Accessibility
 
-Source: https://www.danapoint.org/City-Government/Public-Works-Engineering/Ocean-Water-QualitySurface-Runoff
+City of Dana Point Recreation offers contract recreation classes, camps, youth and adult sports leagues, and major city-wide events such as concerts in the park, movies in the park, and holiday events. Recreation oversees the permitting process to reserve any one of 28 parks in the City, as well as facility rentals in the Community Center. The page notes that LOOKOUT Magazine fall registration opens on August 5th at 8AM.
 
-## Construction Best Management Practices (BMPs) and Runoff Threat Assessment
+The Community Services Department asks for advance notice from individuals who need special accommodations or assistance from a personal care aide. Submit requests by emailing recreation@danapoint.org.
 
-The City has published minimum Best Management Practices (BMP) for all construction projects, as required per the San Diego Regional Water Quality Control Board. Construction BMPs are available as a PDF (3MB). Illegal discharges are subject to enforcement actions, including fines. Routine construction BMP inspections are conducted at all construction sites within the City. Inadequate, ineffective and unmaintained BMPs and/or prohibited discharges will result in enforcement actions that may include a Notice of Noncompliance, Stop Work Order and/or Fines.
+Source: https://www.danapoint.org/City-Government/Community-Services/Recreation
 
-Minimum BMP requirements are designated for all encroachment, grading (rough and precise) and improvement projects. Upon application submittal, each project applicant completes the Runoff Threat Assessment Form (PDF, 145KB) to determine the project priority (High, Medium or Low). Based on the priority and proposed activities, the applicant prepares a BMP REPORT using the BMP Report Template (PDF, 119KB). The applicant must retain a copy of the report at the site and implement the BMPs as required in it.
+## Senior Services & Programs
 
-Source: https://www.danapoint.org/City-Government/Public-Works-Engineering/Ocean-Water-QualitySurface-Runoff
+An Active Lifestyle Membership (Age 55+) is free and required to participate in the active lifestyle programs. Ask at the front desk of the Dana Point Community Center, 34052 Del Obispo St., to create a membership.
 
-## State General Construction Permit
+- Coastal Café: Monday–Friday except Wednesday, 8:00am–9:45am, with coffee, tea, packaged pastries, and microwavable breakfast items. No reservations required.
+- Bagels & Binge: Mondays 8:00am–9:45am, with limited bagel supply.
+- Stay and Play: Mondays 12:30pm–3:00pm (art, card games, board games).
+- Helping Hands: Mondays 2:30pm–3:00pm, a drive-up food distribution that is donation based, so quantities vary.
+- Friday Flicks: every Friday at 1:15pm in the Coastal Café. Line up in the hallway from 12:50pm. Seating is limited to 55 guests and sign-in is required.
+- Excursions: held every other month, for seniors 55+. Pre-registration is required, online at www.danapoint.org/recreation or at the front desk. Departures and arrivals are at the Community Center.
+- Senior Dance Socials: offered throughout the year. Register online at www.danapoint.org/recreation or at the front desk.
 
-Every construction project that disturbs more than one (1) acre of land is required to obtain coverage under the State General Construction Permit. The project applicant must submit to the State a Notice of Intent (NOI) to receive a Waste Discharge Identification Number (WDID), and must prepare and implement a Storm Water Pollution Prevention Plan (SWPPP). As part of the application process, the applicant provides documentation of the State NOI submittal and/or WDID to the City prior to receiving any Permits.
+Age Well Senior Services programs (call 949-496-4252) include Home Delivered Meals, a Weekday Lunch Program in the Coastal Café (reservations required), and Senior Lunch Program Transportation. Other contacts: Case Management 949-441-9558; Hi-CAP Counseling 949-496-4252; Community Legal Aid So Cal 714-571-5200; Monarch Health Care Medical Insurance Information 949-496-4252.
 
-Source: https://www.danapoint.org/City-Government/Public-Works-Engineering/Ocean-Water-QualitySurface-Runoff
+Source: https://www.danapoint.org/Community/Recreation/Register-for-Classes/Senior-Services-Programs
 
-## Water Quality Requirements for Development Projects
+## Youth Board
 
-All development/redevelopment projects, regardless of priority, shall implement the site design and source control principles, where applicable and feasible. The Non-Priority Project Water Quality Checklist (PDF, 168KB) is required as part of the grading plan submittal. See Section 7 of the Dana Point Water Quality Local Implementation Plan (LIP) for the water quality requirements for development.
+The Dana Point Youth Board participates in City activities throughout the year, encourages young people to take part in community affairs, and meets to discuss issues that affect local teens. An application (PDF) is available on the page.
 
-All priority projects shall meet Water Quality Management Plan (WQMP) and Hydromodification Management Plan (HMP) requirements. To determine whether a project is a Priority Development Project requiring a WQMP, use the Priority Development Project Criteria List (PDF, 238KB). The Preliminary WQMP (pWQMP) is required as part of the Project Application, and an application will not be deemed complete without one.
+Meetings are on the 3rd Wednesday of the month, 4:30pm–6pm, in City Council Chambers. Dates: October 21, 2026; November 18, 2026; December 16, 2026 (NO MEETING); January 20, 2027; February 17, 2027; March 17, 2027; April 21, 2027.
 
-The City encourages applicants to contact Lisa Zawaski, Senior Water Quality Engineer, at (949) 248-3584 or lzawaski@danapoint.org to discuss water quality requirements early in the planning phase.
+Community involvement listed: Spooktacular Trunk or Treat, October 24, 2026; Dia De Los Muertos, November 1, 2026; Thanksgiving Luncheon, November 21, 2026; Holiday Home Decorating Contest, December 2026 (winner announced January 2027); Egg Hunts, 2027.
 
-Source: https://www.danapoint.org/City-Government/Public-Works-Engineering/Ocean-Water-QualitySurface-Runoff
+Source: https://www.danapoint.org/Community/Recreation/Youth-Board
+
+## Volunteer Opportunities (Recreation Page Listings)
+
+The Recreation page lists community groups that accept volunteers:
+
+- Coastal Animal Services Authority (CASA): 2211 Avenida Fabricante, San Clemente, CA 92672, 949-492-1617. Volunteers assist in the front office, walk shelter dogs, and interact with cats/kittens and rabbits.
+- Age Well Senior Services: 34052 Del Obispo, Dana Point, CA 92629. Contact Sandra Andrews at 949-496-4252 or sandrews@myagewell.org. Roles include Meals on Wheels drivers, kitchen volunteers, lunch servers, senior center support, and special events.
+- VFW Post 9934: Wayne Yost, 949-357-3303 or WayneYost@aol.com.
+- Dana Point 5th Marine Regiment Support Group: Sheri Schneringer, dp5thmarinevolunteers@gmail.com; www.danapoint5thmarines.com/be-a-volunteer/.
+- The Shea Center for Therapeutic Riding: 949-240-8441; www.sheacenter.org.
+- Ocean Institute, Dana Point: 949-496-2274; https://oceaninstitute.org/volunteer-opportunities/.
+- Doheny State Beach Interpretive Association: Kathy Wade, volunteer@dohenystatebeach.org.
+- Just Like Me Foundation: info@justlikemefoundation.org; www.justlikemefoundation.org.
+- Dana Point Women's Club: dpwc.oc@gmail.com or projectfoster.dpwc@gmail.com; https://www.danapointwomensclub.org.
+- Boys and Girls Club San Juan Capistrano/Via Positiva Branch: Janice Gordillo, 949-542-4105.
+- Soroptimist – Dana Point: www.soroptimist.org.
+- Friends of the Dana Point Library: Lisa Buchner, 949-489-3956 or LisaBuchner@cox.net; http://friendsdanapoint.org/the-bookstore.
+
+Source: https://www.danapoint.org/City-Government/Community-Services/Recreation
+
+## Coastal Animal Services Authority (CASA) — Shelter, Adoption, and Licensing
+
+The San Clemente / Dana Point Animal Shelter is at 221 Avenida Fabricante, San Clemente, CA 92672. Phone (949) 492-1617; email animalservices@scdpanimalshelter.org. Shelter hours: Tuesday–Sunday, 10:00am–4:00pm. Closed Mondays and holidays. CASA states that animals in its care are never euthanized due to lack of space or for exceeding a predetermined amount of time.
+
+Pet license fees: 1 year - $40; 2 year - $80; 3 year - $120. The page offers online license renewal, a downloadable form for license by mail, and a Reduced License Fee Application (PDF). A link to animals available for adoption is also on the page.
+
+Source: https://www.danapoint.org/Services/Resident-Resources/Coastal-Animal-Services-Authority
 
 ## Organics Recycling (Residential)
 
-Dana Point has an Organic Waste Recycling program in compliance with SB1383 State Organic Waste Regulations. As of January 1, 2020, residents can place food scraps and food-soiled paper in their green waste carts (now referred to as the organics cart). These are taken with yard waste to a facility to be processed into compost.
+Dana Point's Organic Waste Recycling program complies with SB1383 State Organic Waste Regulations. As of January 1, 2020, residents can place food scraps and food-soiled paper in their green waste carts, now called the organics cart. They are processed into compost along with yard waste.
 
 Acceptable items:
 - Yard trimmings: grass, leaves, non-hazardous wood waste, tree limbs (less than 5 feet long), weeds.
 - Food scraps: bread/pasta, meat/bones, cheese, egg shells, fruits, vegetables, shellfish.
 - Food-soiled paper: coffee filters, greasy pizza boxes, napkins, paper towels, tea bags.
-- Compostable packaging: paper/cardboard takeout boxes.
+- Compostable packaging, including paper/cardboard takeout boxes.
 
-Tips: line the cart bottom with cardboard or green waste; layer food scraps with green waste; keep the lid closed; place the cart out to the curb each week for pick-up, even if it's not full. CR&R will exchange your organics cart for a clean cart free of charge once per year.
+Cart tips: line the bottom with cardboard or green waste; layer food scraps with green waste; keep the lid closed; put the cart out to the curb each week even if it's not full. CR&R will exchange your organics cart for a clean one free of charge once per year.
 
 Source: https://www.danapoint.org/Services/Resident-Resources/Solid-Waste-Recycling
 
 ## Commercial Food Waste Recycling (AB 1826)
 
-AB 1826 requires businesses, including multi-family buildings with five or more units, that generate a specific amount of organic waste per week to arrange for organics recycling. "Businesses" includes multi-family residences with 5 units or more, but multi-family premises are not required to recycle food waste. Thresholds by commencement date:
+AB 1826 was signed on September 28, 2014 and took effect January 1, 2016. It requires businesses, including multi-family buildings with five or more units, that generate a specified amount of organic waste per week to arrange for organics recycling. Multi-family premises are not required to recycle food waste.
+
+Phase-in schedule:
 - April 1, 2016: businesses with 8 cubic yards (CY)/week+ of organic material.
 - January 1, 2017: businesses with 4 CY/week+ of organic material.
 - January 1, 2019: businesses with 4 CY/week+ of solid waste.
 - September 15, 2020: businesses with 2 CY/week+ of solid waste.
 
-Affected businesses must source separate organic waste from non-organic waste and participate in a recycling service that includes collection and recycling of organic waste. Businesses may instead self-haul organic waste off site for processing and recycling. The City's hauler, CR&R, Inc., performs outreach, education and monitoring of affected businesses and can assist with right-sizing waste services. CR&R's Commercial Food Waste Recycling Program handout (PDF, 363KB) is available on the page.
+Affected businesses must source separate organic waste and participate in a service that collects and recycles it. They may instead self-haul organic waste off site for processing and recycling. The City's hauler, CR&R, Inc., does outreach, education, and monitoring and can help right-size waste services. A CR&R Commercial Food Waste Recycling Program handout (PDF) is linked on the page.
 
 Source: https://www.danapoint.org/Services/Resident-Resources/Solid-Waste-Recycling
 
-## Upcoming City Events and Meetings
+## CR&R Trash Service Rates, Cart Swaps, and Bulky Item Pickup
 
-Events listed for fall 2026 (31 results found, 4 pages):
-- Surf Queenie of Doheny: October 17, 2026.
-- City Council Meeting: October 20, 2026, City Council Chamber, 33282 Golden Lantern, Dana Point, CA 92629.
-- Youth Board Meeting: October 21, 2026, Dana Point City Hall- Council of Chambers, 33282 Golden Lantern, 92629. Regular meetings are usually the 3rd Wednesday of the month at 4:30pm, with no meeting in December 2026.
-- Halloween Spooktacular & Trunk or Treat: October 24, 2026, Dana Point Community Center, 34052 Del Obispo Street, Dana Point, CA 92629.
-- Planning Commission Meeting - Cancelled: October 26, 2026.
-- Remembering Our Fallen (a National Memorial): October 27, 2026, Heritage Park, 34400 Old Golden Lantern, Dana Point, CA 92629.
-- Dia de los Muertos: November 1, 2026, La Plaza Park, 34111 La Plaza, 92629.
-- City Council Meeting: November 3, 2026, City Council Chamber, 33282 Golden Lantern.
-- Planning Permits Administrative Hearing: November 5, 2026, Dana Point Community Development Conference Room, 33282 Golden Lantern, Suite 209, 92629.
-- Planning Commission Meeting: November 9, 2026, City Council Chamber, 33282 Golden Lantern.
+CR&R contact: (877) 728-0446. Residents may order 32, 67, or 96 gallon containers at $23.76, $24.53, and $26.13 per month respectively. The rate includes trash, recycle, and organics (food and green waste) collection. Residents get 1 free cart swap per year. Single-family and multi-family residences get two free bulky item pickups per year, scheduled online through the link on the page.
 
-Source: https://www.danapoint.org/Events-directory
+Source: https://www.danapoint.org/City-Government/Public-Works-Engineering/Solid-Waste-Recycling/CRR-Services
 
-## Fair Political Practices Reporting — Form 806 (Public Official Appointments)
+## Household Hazardous Waste (HHW) — On-Call Pickup
 
-Form 806 (Agency Report of Public Official Appointments) is used to report additional compensation that officials receive when they are appointed to positions on committees, boards, or commissions of another public agency, or to a committee or position of the agency of which the public official is a member. The City Clerk's page provides documents by year for 2025, 2024, 2023, 2022, 2021, 2020, 2019 and 2018.
+The FREE Residential On-Call HHW Pick-Up Service Program has been available since February 1, 2014. To use it:
+1. Call CR&R, Inc. Customer Service at (877) 728-0446 to schedule a pick-up. Pick-ups are typically scheduled for the same day as your usual trash service.
+2. Tell CR&R which types of HHW you want picked up.
+3. On pick-up day, place the HHW at the collection area agreed on when scheduling.
 
-Source: https://www.danapoint.org/City-Government/City-Clerk/Fair-Political-Practices-Reporting/Agency-Report-of-Public-Official-Appointments
+Accepted items include cleaning products, cosmetics, latex and oil paint, aerosol paint, personal care products, fluorescent tubes and ballasts, batteries, antifreeze, degreasers, motor oil, unused road flares, waxes and polishes, fertilizers, fungicides, herbicides, pesticides, pool chemicals, aerosols, hobby chemicals, mercury, varnishes, wood preservatives, television sets, and e-waste. Check product labels for words such as Toxic, Caution, Danger, Poison, Corrosive, Flammable, Combustible, or Irritant.
 
-## Fair Political Practices Reporting — Form 802 (Ceremonial Role Events and Ticket/Pass Distributions)
+Source: https://www.danapoint.org/City-Government/Public-Works-Engineering/Solid-Waste-Recycling/CRR-Services
 
-In 2012, the Fair Political Practices Commission (FPPC) launched an online service providing access to FPPC Form 802 disclosures on the FPPC website. FPPC Form 802 disclosures for years 2012 - 2015 are accessed through the FPPC website. As of April 2015, FPPC Form 802 is again available through the City's links. The City Clerk's page links to Form 802 disclosures for years 2009 – 2011 and 2015 - Present, as well as City policy for FPPC Form 802, with documents by year for 2026, 2025, 2024, 2023, 2022 and 2021.
+## Household Hazardous Waste Collection Facility and Stop & Swap
 
-Source: https://www.danapoint.org/City-Government/City-Clerk/Fair-Political-Practices-Reporting/Agency-Report-of-Ceremonial-
+The closest County of Orange HHW Collection Facility is at Prima Deshecha Landfill, 32250 La Pata Avenue, San Juan Capistrano, CA 92675, (714) 834-6752, off Ortega Hwy and La Pata. Hours: Tuesday through Saturday, 9:00 a.m.–3:00 p.m. It is closed Sundays, Mondays, holidays, and rainy days. Drop off is FREE for Orange County residents. For more information call (714) 834-4000.
+
+Handling rules:
+- You may carry a maximum of 15 gallons or 125 pounds per trip, and may make multiple trips.
+- Remain in your car when delivering.
+- Containers larger than 5 gallons are not accepted.
+- Containers must be sturdy, non-leaking, and have lids.
+- Do not mix different hazardous wastes. Similar paints may be combined (oil with oil, latex with latex), but never oil and latex together.
+
+Stop & Swap lets you drop off unneeded household, yard, and car maintenance products and pick up usable products for free. It is located at the HHW Collection Centers in San Juan Capistrano, Irvine, Anaheim, and Huntington Beach.
+
+Source: https://www.danapoint.org/City-Government/Public-Works-Engineering/Solid-Waste-Recycling/CRR-Services
+
+## Street Sweeping
+
+Street sweeping occurs once per week on all public streets in Dana Point. Residents must move their cars out of the street on sweeping day. Parking restrictions during sweeping hours apply on certain streets designated by City Council Resolution. A street was generally considered for restrictions only if the sweeper could not reach at least fifty (50) percent of the curb. Stored vehicles exceeding the 72 hour limit on public streets can be cited with assistance from Police Services.
+
+Find your street's schedule using the search feature on the page, or in the Citywide Street Sweeping Maps (PDF, 2MB). Questions: Public Works Department at (949) 248-3554 or publicworks@danapoint.org.
+
+Trash collection does not occur on New Year's Day, Memorial Day, Independence Day, Labor Day, Thanksgiving Day, and Christmas Day. In holiday weeks, other than

@@ -2,102 +2,139 @@
 
 Generated 2026-10-17 from https://www.encinitasca.gov pages listed in each section's Source line.
 
-## Fraud Alert — Phishing Emails Impersonating City Officials
+## Parks, Recreation & Cultural Arts — Department Contact and Services
 
-The City of Encinitas posts a Fraud Alert (IC3) about phishing emails impersonating City officials for permit payment. The City of Encinitas will NEVER request payment via email, wire, cryptocurrency, or apps. Verify through CSS or call the City at (760) 633-2710.
+Parks, Recreation and Cultural Arts is at 505 S. Vulcan Ave., Encinitas, CA 92024. Phone (760) 633-2740, email prca@encinitasca.gov. The director is Dave Knopp. The department handles recreation programs, city-wide special events (Holiday Parade, Spring Egg Hunt, Movies in the Park, Summer Concerts, Cyclovia), park, beach and recreational trail maintenance, management of open space, streetscape maintenance, animal services, and oversight of the administration of the Encinitas Ranch Golf Authority.
 
-Source: https://www.encinitasca.gov/government/departments
+Its divisions are Administrative Services (leases, contract management, grants, program registration, special permits), Cultural Arts (Civic Arts and Public Art programs, more than 80 pieces of public art), Parks, Beaches and Trails, and Recreation (youth, teens, adults, and adults 50+). The Recreation Division operates the 39,000 square foot Encinitas Community & Senior Center. Many recreation activities operate on a fee-for-use basis to subsidize program costs.
 
-## City Departments Overview
+Source: https://www.encinitasca.gov/government/departments/parks-recreation-cultural-arts
 
-The City's departments are Administrative Services, City Attorney, City Clerk, City Manager, Development Services, Engineering, Finance, Human Resources, Information Technology, Parks, Recreation & Cultural Arts, Public Safety, Public Works, and Utilities.
+## Parks, Beaches & Trails — Maintenance Reports and Brick Pavers
 
-Development Services consists of five functional sections: Operations & Engagement, Development Planning & Code Enforcement, Policy Planning & Housing, Land Development & Building, and Sustainability. The Parks and Recreation Department handles recreation programs, city-wide special events (Holiday Parade, Spring Egg Hunt and Summer Concerts), park, beach and recreational trail maintenance, streetscape maintenance, animal control services, and oversight of the administration of the Encinitas Ranch Golf Authority. The Encinitas Fire Department provides fire protection, emergency response, medical aid, fire prevention, disaster preparedness, search and rescue, lifeguard services and community education programs.
+The department maintains 10 miles of streetscapes, 82 acres of open space, 138 acres of developed parks, more than 30 acres of beaches, and 43 miles of trails. To report a maintenance problem at one of the City's parks, beaches, or trails, call the Parks and Recreation Department at (760) 633-2740 or email prca@encinitasca.gov.
 
-Source: https://www.encinitasca.gov/government/departments
+The free OuterSpatial app has interactive maps of the City's trails, viewpoints, public facilities, parks, and beaches. Customized brick pavers are available at Encinitas Community Park: 6"x9" pavers are $200 and include 3 lines of text. A Paver Order Form (pdf) is on the page. Funds raised from paver sales purchase amenities for the park.
 
-## Water and Sewer Service Providers
+Source: https://www.encinitasca.gov/government/departments/parks-recreation-cultural-arts/parks-beaches-trails
 
-The Utilities Department consists of the San Dieguito Water District, which provides potable (drinking) water services to the communities of Cardiff, Old Encinitas, Leucadia, and a portion of New Encinitas. Its Wastewater Collection Division provides sewer maintenance and operation services for the Cardiff Sanitary Division and the Encinitas Sanitary Division. Other agencies that provide services within the City of Encinitas are Olivenhain Municipal Water District and Leucadia Wastewater.
+## City Special Events
 
-Source: https://www.encinitasca.gov/government/departments
+Events listed by the Parks, Recreation and Cultural Arts Department:
+- 40th Anniversary Celebration: Saturday, October 3, 2026 at Moonlight Beach and Pacific View Arts Center, 8am-8:30pm.
+- Dia De Los Muertos: November 1, 3-5pm at the Encinitas Library.
+- Encinitas Holiday Parade: Saturday, December 5, 2026, South Coast Highway 101.
+- Spring Egg Hunt: Saturday, March 27, 2027 at Encinitas Community Park.
+- Arbor Day: 2027 date and location TBD.
+- Cyclovia Encinitas: Third Sunday in May, South Coast Highway 101.
+- Moonlight Beach Concerts: normally held on four Sundays in July and August at Moonlight Beach.
+- Dog Days of Summer: held in partnership with Cardiff 101 Main Street, normally the first Sunday in August, Encinitas Community Park.
+- Movies in the Park: spring and fall movie night showings at Glen Park.
+- The Nutcracker and Art Night are also listed.
 
-## City Attorney's Office
+Source: https://www.encinitasca.gov/government/departments/parks-recreation-cultural-arts/recreation-programs/special-events
 
-City Attorney's Office, 505 S. Vulcan Ave., Encinitas, CA 92024, (760) 943-2227. The City Attorney is Ajit Thind of Colantuono, Highsmith & Whatley, PC. The City Attorney is a contract City Attorney and represents the City of Encinitas and the San Dieguito Water District and other associated entities. The City Attorney advises the City Council, City Departments and City Commissions on legal matters.
+## Community Grant Program
 
-A complete set of California State Code and the Encinitas Municipal and Zoning Codes can be accessed online. They are also available at the Encinitas Public Library. The page's "I Want To" links include submitting comments to City Council regarding an upcoming agenda item, reporting an issue or concern, submitting a Municipal Code Violation/Enforcement Form, and using the MyEncinitas App to report an issue or concern.
+The Community Grant Program (CGP) provides City funding to nonprofit and tax-exempt organizations for Civic projects (social, recreation, education, health and environment) and Arts projects (visual art, performing arts, arts education, literary arts, etc.). Organizations must be legally established with nonprofit 501(c)(3) status.
 
-Source: https://www.encinitasca.gov/government/departments/city-attorney
+FY 2026-27 key dates: applications opened Monday, February 2, 2026 at 8:00 a.m. and closed Friday, March 6, 2026 at 4:00 p.m. City Council funding allocations were set for Wednesday, April 15, 2026 at 6:00 p.m. The Mandatory Grant Recipient Workshop is Tuesday, May 12, 2026 at 4:00 p.m. Insurance documents are due Monday, June 1, 2026. Funded projects must take place between July 1, 2026 and June 30, 2027.
 
-## City Clerk — Contact and Services
+The CGP is reimbursement-based. For FY25/26 grants, all reimbursement requests are due no later than 4:30pm on June 18, 2026. Reimbursement requests after this date/time may not be granted. Questions go to CGP@EncinitasCA.gov. The page asks that you do not call; staff will respond within two business days.
 
-City Clerk's Office, 505 S. Vulcan Ave., Encinitas, CA 92024. Phone: (760) 633-2601. Fax: (760) 633-2627. Email: cityclerk@encinitasca.gov. The City Clerk is Pete Weichers.
+Source: https://www.encinitasca.gov/government/departments/parks-recreation-cultural-arts/cultural-arts/community-grant-program
 
-The City Clerk prepares City Council agendas and minutes, posts and publishes legal notices, and permanently records Council decisions. The Clerk also serves as Secretary/Clerk to the San Dieguito Water District, Encinitas Housing Authority, Encinitas Financing Authority and Encinitas Ranch Golf Authority (ERGA). As Elections Official, the Clerk administers municipal elections. The Clerk is the local filing officer for Political Reform Act filings, including conflict of interest forms (Form 700) and campaign contribution and expenditure reports.
+## Zero Waste Program — Reporting Issues and Events
 
-Source: https://www.encinitasca.gov/government/departments/city-clerk
+Report a trash and recycling issue through the MyEncinitas App or by emailing recycling@encinitasca.gov. To search where to recycle various items, use https://wastefreesd.org/.
 
-## Public Records and City Clerk Forms
+Upcoming events listed:
+- October 6, 5pm-6:30pm: "Blue, Green and Beyond" free informational session at Encinitas Community Library, 540 Cornish Dr., with City staff, EDCO, and Goodwill Industries.
+- Mulch and Compost Giveaway at Cardiff Farmer's Market (with Cardiff 101 and EDCO): free, self-loading, every second Saturday of the month during market hours (10am-2pm, weather permitting). Bring your own container and gloves; shovels are provided on site.
 
-The City Clerk serves as Records Manager, oversees the City's Records Management Program, responds to public records requests, and updates and maintains the Municipal Code. Links are provided to Public Records Archives, Agendas, Minutes, Ordinances, and Resolutions.
+Source: https://www.encinitasca.gov/government/departments/public-works/trash-recycling
 
-Forms and resources listed on the City Clerk page: Naming of City Land, Facilities & Amenities Form; Public Records Request; Appeal Request Form; and City Commissioner Orientation Video.
+## Household Hazardous Waste, U-Waste and E-Waste Disposal
 
-Source: https://www.encinitasca.gov/government/departments/city-clerk
+Household hazardous waste (products labeled toxic, poisonous, corrosive, flammable, combustible or irritant), universal waste (household batteries, lithium-ion batteries, bulbs) and electronic waste (TVs, computers, cell phones, and any other unwanted electronic device) are illegal to dispose of in the trash bin.
 
-## Boards and Commissions — Recruitment and Eligibility
+Encinitas residents may use the Household Hazardous Collection Service for free pickup of U-Waste, E-Waste, and sharps (syringes and lancets). Pickups comingled with other Household Hazardous Waste items (paints, pesticides, motor oil, etc.) are subject to a $10 copay, waived for residents 65 and over. Schedule pickups by calling (800) 714-1195 or 877-443-2371.
 
-The City Clerk oversees recruitment for the City Council appointed Boards and Commissions. The page lists "Annual Commission/Committee Recruitment for term expiring March 2026."
+Drop-off facilities (proof of Encinitas residency required; open Saturdays 9am-3pm, no appointment required):
+- City of Vista, 1145 E. Taylor Street, Vista, CA 92084, 800-714-1195
+- City of Poway, 12325 Crosthwaite Circle, Poway, CA 92064, 858-668-4710
 
-Under the Maddy Act (Government Code Section 54970-549742), the Local Appointments List is posted annually by December 31. The current list was posted October 20, 2025. Board Members, Commissioners, and Committee members serve at the pleasure of the City Council and shall be a resident and registered voter in the City of Encinitas. For geographic specific appointments, they shall maintain residency and voter registration in the geographic area designated for the position.
+The City hosts quarterly drive-up U-waste events in the City Hall parking lot (505 S Vulcan Ave.), with free disposal of u-waste, e-waste, and sharps for residents with proof of residency (driver's license, recent utility bill). The fourth and final collection event of 2026 was October 3. Dates for 2027 events are being set and will be posted to the Public Works Event Calendar.
 
-For current membership, refer to the commission's page or contact the City Clerk's Office at (760) 633-2601 or cityclerk@encinitasca.gov.
+Source: https://www.encinitasca.gov/government/departments/public-works/trash-recycling/hazardous-waste-materials
 
-Source: https://www.encinitasca.gov/government/departments/city-clerk
+## Sharps and Pharmaceuticals Disposal
 
-## City Council Districts — How Many and How Elected
+California residents may request free sharps disposal containers mailed to their residence through the Sharps Take Back Program; containers can be returned by mail at no charge. Visit the Med Project website or call 844-633-7765.
 
-The City of Encinitas has four City Council members elected by district voters, and a mayor who is elected at-large. Redistricting happens every ten years so that each district is substantially equal in population, and the City Council is responsible for drawing council districts. For more information, contact the City Clerk at (760) 633-2601.
+Spent or expired pharmaceuticals can be disposed of free of charge through the MED-Project take-back program. Request a free mail-back package, use a drop-box at a participating local pharmacy, or call 844-633-7765.
 
-Source: https://www.encinitasca.gov/government/departments/city-clerk/city-council-redistricting/redistricting-process-faq
+Source: https://www.encinitasca.gov/government/departments/public-works/trash-recycling/hazardous-waste-materials
 
-## City Council Redistricting 2021–2022 — Outcome and Key Dates
+## Used Motor Oil and Oil Filter Collection Locations
 
-The Council adopted the new Redistricting Map on March 9, 2022 (Public Hearing #4, Regular City Council Meeting, 6:30 pm). The Voting District Map page lets residents determine what election district an Encinitas address falls within.
+Used motor oil can be recycled through the City's Household Hazardous Waste program or at certified collection centers. Locations marked * also accept used oil filters:
+- Auto Zone* 120 Leucadia Blvd. (760) 942-2662
+- Brad's Foreign & Domestic 565 Westlake St., Suite 200-C (760) 753-6217
+- Encinitas Aloha Auto Repair* 140 N Coast Hwy. 101 (760) 634-1505
+- Encinitas Ford* 1424 Encinitas Blvd. (760) 944-5461
+- Encinitas Foreign and Domestic Auto Repair* 901 Second St. (760) 632-0830
+- Encinitas Gasoline & Auto Service* 1355 Encinitas Blvd. (858) 792-9801
+- Encinitas Promenade Gas & Oil Change* (760) 634-1002
+- Herman Cook Volkswagen* 1435 Encinitas Blvd. (760) 753-6256
+- Hugo's European Car Service 110 N Coast Hwy. 101 (760) 436-7862
+- O-Reilly Auto Parts* 146 N El Camino Real Unit A (760) 753-4911
+- Pep Boys 254 N El Camino Real (760) 944-7007
+- Valvoline Instant Oil Change* 127 S. El Camino Real (760) 230-5113
+- Valvoline Instant Oil Change* 221 N. El Camino Real (760) 452-0046
 
-The legal deadline for the Council to adopt a redistricting plan by resolution was April 17, 2022. The resolution becomes effective 30 days after adoption. July 18, 2022 was the first day for circulating nomination papers. November 8, 2022 was the first election using the new lines.
+Source: https://www.encinitasca.gov/government/departments/public-works/trash-recycling/hazardous-waste-materials
 
-Earlier meetings: Redistricting Zoom Workshop August 16, 2021; Public Hearing #1 September 22, 2021; in-person Public Workshop October 16, 2021 at the Encinitas Community Center, 10:00 am - 2:00 pm; Public Hearing #2 November 17, 2021; Public Hearing #3 January 19, 2022.
+## Paint Disposal (PaintCare)
 
-Source: https://www.encinitasca.gov/government/departments/city-clerk/city-council-redistricting
+Leftover paint can be recycled through PaintCare, an industry-sponsored paint stewardship non-profit program (www.paintcare.org lists Encinitas locations), or through the City's Household Hazardous Waste program. Usable leftover paint can be donated; to find donation locations, visit WasteFreeSD.org and select "Donate."
 
-## Redistricting — Criteria and Public Participation
+Source: https://www.encinitasca.gov/government/departments/public-works/trash-recycling/hazardous-waste-materials
 
-District lines are adopted, to the extent practicable, using these criteria: (1) geographically contiguous districts; (2) the geographic integrity of local neighborhoods or communities shall be respected in a manner that minimizes its division; (3) easily identifiable boundaries that follow natural or artificial barriers (rivers, streets, highways, rail lines, etc.); and (4) lines shall be drawn to encourage geographic compactness. Boundaries shall not be drawn for purposes of favoring or discriminating against a political party.
+## Residential Organics Recycling (Green Bin)
 
-Public hearings and workshops were provided in applicable languages if residents submitted a request in advance. Public comments could be submitted by emailing cityclerk@encinitasca.gov.
+All food waste, food soiled paper, and yard waste goes in the green cart. Under the statewide Organics Recycling Bill SB1383, Encinitas residents are required to place both food scraps and yard waste in their green bins. EDCO built an anaerobic digestion (AD) facility to process organic waste. Resources are available in English and Spanish, including an Organics Recycling Resource Sheet and FAQs.
 
-Source: https://www.encinitasca.gov/government/departments/city-clerk/city-council-redistricting/redistricting-process-faq
+The City has partnered with ProduceGood to harvest and collect excess backyard fruit tree produce for San Diego's Charitable Food System. You can pick and donate it yourself or schedule ProduceGood volunteers; register through the ProduceGood website.
 
-## Redistricting — Submitting a Map
+Source: https://www.encinitasca.gov/government/departments/public-works/trash-recycling/waste-recycling-and-organics
 
-Public mapping tools included a Paper Mapping Kit and the DistrictR online tool. To submit a map created using your own software, email cityclerk@encinitasca.gov and include: (1) a gis shapefile and/or a census block equivalency file (using 2020 census blocks); and (2) a description of the choices and key points of your map.
+## Construction & Demolition Debris Recycling
 
-The interactive Council District Boundary Map is a tool to review, analyze, and compare maps, not create them. Deadlines were January 5, 2022 for maps considered at the January 19 hearing, and February 17, 2022 as the final deadline for public plans.
+Covered building projects must achieve a minimum of 65% reuse, salvage, or recycling of generated materials, per the California Green Building Standards Code, state law (SB1383), and Encinitas Municipal Code 11.22. Covered projects must submit a Waste Management Plan estimating debris types and quantities and identifying destination facility(ies). The project must retain and submit weight ticket receipts at completion to show the 65% target was met.
 
-Source: https://www.encinitasca.gov/government/departments/city-clerk/city-council-redistricting/draw-a-map
+C&D hauling is covered by the City's franchise agreement with EDCO Waste and Recycling Services. A project applicant, property owner, or general contractor may use EDCO for all C&D debris or self-haul using their own staff and equipment. Use of a non-franchised, third party waste hauler is prohibited and subject to enforcement per Encinitas Municipal Code 11.20.030.
 
-## Proposed Maps Considered in Redistricting
+Source: https://www.encinitasca.gov/government/departments/public-works/trash-recycling/construction-demolition-debris
 
-The Voting Districts Overview Map - Redistricting Map adopted March 9, 2022 is posted as the newly adopted Voting District Map. Maps considered at Hearing #4 were Current Districts, Map 69847, Map 69847C, Map 69847E, and Map 102644, each with a Stat Sheet. Map 102644 was a new map received prior to the February 17 deadline.
+## Commercial and Multifamily Recycling Requirements
 
-Source: https://www.encinitasca.gov/government/departments/city-clerk/city-council-redistricting/proposed-maps
+- AB 341: Commercial enterprises generating four cubic yards or more of solid waste weekly must participate in recycling programs. This includes multi-family complexes of five units or more regardless of waste amount. EDCO, the City's waste hauler, offers commercial recycling services.
+- AB1826: Businesses and public entities generating two cubic yards (CY) of solid waste must recycle organic waste (food and/or green waste). Apartment and condominium complexes of five units or more must recycle non-food organic waste. Businesses may self-haul, mulch/compost on-site (with appropriate state permitting) or contact EDCO.
+- SB1383: Requires residents, businesses, and multifamily properties with five or more units to participate in organic waste collection. Large edible food generators, such as grocery stores and restaurants, must donate surplus food to approved recovery organizations.
 
-## District-Based Council Elections — Background (2017)
+Source: https://www.encinitasca.gov/government/departments/public-works/trash-recycling/commercial-multifamily-resources
 
-The City of Encinitas transitioned to a system where City Council members are elected by district instead of serving "at large." The city received a certified letter from the law firm of Shenkman & Hughes on July 20, 2017 claiming a violation of the California Voting Rights Act (Elec. Code §§ 14025-14032). The Council adopted Resolution 2017-82 on August 30, 2017 to evaluate moving to district elections. Ordinance 2017-15 implementing district-based elections was adopted November 15, 2017.
+## Graywater Systems
 
-The legal protection used applies only to cities that pass a resolution within 45 days of receiving a demand letter alleging a violation of the California Voting Rights Act. The resolution must indicate the city's intent to move to district elections.
+Graywater is untreated waste water from bathtubs, showers, bathroom washbasins, clothes washing machines, and laundry tubs. It excludes waste water from toilets, kitchen sinks, dishwashers, and laundry water from soiled diapers. It may irrigate landscape including fruit trees, but excluding vegetable gardens.
 
-Source: https://www.encinitasca.gov/government/departments/city-clerk/city-council-district-elections-2017
+Basic graywater systems using wastewater from a single clothes washer in a one- or two-family dwelling may be installed without a permit provided certain requirements are met. Systems that affect existing plumbing, electrical, mechanical or building systems require a permit, as does any system with a potable water connection or a pump. Systems are regulated under Chapter 15 of the California Plumbing Code. The Regional Board waiver (Waiver No. 1 of Order No. R9-2014-0041) requires a Notice of Intent (NOI) to discharge to be filed with the Regional Board (SanDiego@waterboards.ca.gov).
+
+Effective September 20, 2015, all new single-family homes must be pre-plumbed with graywater plumbing to all graywater eligible discharge sources and with a stub-out for connection to the landscape irrigation system (Ordinance 2016-10). Resolution 2015-57 (September 23, 2015) waives fees for graywater systems in existing one- and two-family homes; portions requiring alteration of mechanical systems or building modification are subject to fees. Graywater systems should not store graywater for more than 24 hours. Questions: climateaction@encinitasca.gov.
+
+Source: https://www.encinitasca.gov/government/departments/development-services/land-development-building/building/gray-water-systems
+
+## Utilities — Who Serves Your Address
+
+The Utilities Department consists of the San Dieguito Water District (SDWD) and the Wastewater Collection Division. SDWD provides potable (drinking) water to Cardiff, Old

@@ -2,137 +2,130 @@
 
 Generated 2026-10-17 from https://www.cityoforange.org pages listed in each section's Source line.
 
-## City Attorney's Office
+## Library — Programs and Events
 
-The City Attorney cannot advise the public in legal matters. For legal help, contact Community Legal Aid SoCal at (800) 834-5001 or (714) 571-5200, or the Orange County Bar Association Lawyer Referral Service at (949) 440-6747 or (877) 257-4762.
+The Orange Public Library website lists these programs. Career Online High School lets you earn your high school diploma online at no cost. The page gives the age as "Ages 18+" in one place and "Ages 19+" in another.
 
-The City Attorney's Office is at 300 E. Chapman Ave., Orange, CA 92866. Phone: (714) 744-5580. Fax: (714) 538-7157. Hours: Monday - Friday 8:00 a.m. - 5:00 p.m. The City Attorney is Nathalie Adourian. The office is responsible for the criminal prosecution of violations of City ordinances, including housing and building codes, business license codes, and crimes involving the public peace, morals, and welfare.
+Read & Grow Orange is a family literacy workshop series for all ages. It is for Adult Literacy Learners and their family members who are eligible for California Library Literacy Services, and it is presented by the Orange Public Library's Adult Literacy Program. The In-N-Out Cover to Cover Club (Ages 4-12) runs Saturday, October 3 – Saturday, November 14. A food drive collects unopened, unexpired, and nonperishable items for the OC Food Bank, October 1 - 30.
 
-Source: https://www.cityoforange.org/our-city/departments/city-attorney
+Source: https://www.cityoforange.org/our-city/departments/library
 
-## Filing a Claim Against the City (Risk Management)
+## Library — Branch Locations and Phone Numbers
 
-Risk Management staff investigate liability property and auto damage claims. The City Attorney's office handles all other types of claims filed against the City. To file a claim against the City, you must serve the claim at: City of Orange, City Clerk's Office, 300 E. Chapman Ave., Orange, CA 92866. To obtain a claim form, call the City Clerk at (714) 744-5500.
+Library - Main Branch: 407 E Chapman Avenue, Orange, CA 92866, (714) 288-2400. Library - El Modena Branch: 380 S Hewes Street, Orange, CA 92869, (714) 288-2450. Library - Taft Branch: 740 E Taft Avenue, Orange, CA 92865, (714) 288-2430.
 
-Risk Manager Janet Flores can be reached at (714) 288-2539. The City Attorney's Office is open Monday - Friday 8:00 a.m. - 5:00 p.m.
+Source: https://www.cityoforange.org/residents/city-contacts
 
-Source: https://www.cityoforange.org/our-city/departments/city-attorney/risk-management
+## Parks — Overview and Closure Information
 
-## Community Development Department
+The Community Services Department offers 22 parks, each with its own amenities. To find out about weather-related park closures and sports field conditions, call (714) 744-5592. Updates are given after 2:00 PM on weekdays and after 8:30 AM on weekends.
 
-Community Development is at 300 E. Chapman Ave., Orange, CA 92866. Phone: (714) 744-7220. Director: Russell Bunim. To contact staff, submit a contact form. City Hall Hours: Monday - Friday 8:00 a.m. - 5:00 p.m.
-
-The department includes Building & Safety, Code Enforcement, Economic Development, Housing, and Planning. It reviews all new development and business activity for compliance with the General Plan, zoning, and historic preservation and design standards.
-
-Residential permit applications can now be submitted through the Civic Portal. The portal covers building permits, inspection scheduling, and land use applications.
-
-The Meats to Heim Specific Plan page invites feedback on the draft Preferred Plan, submitted via the project website through October 30th. The Historic Preservation Ordinance Working Draft is available for public review and will be scheduled for a City Council public hearing.
-
-Source: https://www.cityoforange.org/our-city/departments/community-development
-
-## Building and Safety Services
-
-The Building Division accepts all permit applications only through the Civic Portal. In the portal, create an account and signature under the "My Profile" tab once logged in. The Building Division tab is on the homepage of the Civic Portal.
-
-Counter Hours: 8:00 a.m. - 5:00 p.m. daily. In-person fee payment will be accepted until 4:30 p.m. Phone: (714) 744-7200. Address: 300 E. Chapman Ave., Orange, CA 92866. Chief Building Official: Evan Zeisel. To contact staff, submit a contact form.
-
-To schedule a Planning Division inspection, contact the project Planner directly to obtain the time and date. Do NOT schedule Planning Division inspections on the Online Civic Portal.
-
-Source: https://www.cityoforange.org/our-city/departments/community-development/building-and-safety-services
-
-## Housing Division
-
-The Housing Division supports affordable housing and community-based projects to help households with low or moderate incomes. It administers Community Development Block Grant (CDBG) and HOME Investment Partnerships (HOME) funds from the U.S. Department of Housing and Urban Development (HUD). Programs listed include Affordable Housing, Business Assistance Facade Program, CDBG, and Tenant Based Rental Assistance Program.
-
-Contact: Jessica Herrera, Housing Manager, 300 E. Chapman Ave., Orange, CA 92866, (714) 744-7273. To contact staff, submit a contact form. City Hall Hours: Monday - Friday 8:00 a.m. - 5:00 p.m.
-
-On January 2, 2024 the State of California Department of Housing and Community Development (HCD) found the City's Housing Element, adopted on October 30, 2023, to be in substantial compliance with State Housing Element Law (Gov. Code § 65580 et seq).
-
-Source: https://www.cityoforange.org/our-city/departments/community-development/housing
-
-## Planning Division
-
-The Planning Division covers Current Projects, Historic Preservation, Zoning, General Plan, and Environmental Review. Applications and forms listed include the Accessory Dwelling Unit (ADU) or Junior ADU Application, Alcohol Licensing Permit for M-1 and M-2 Zones Only, Appeal Application, Land Use Project Application, Sober Living Facility Application for R-1 and R-2 Zones Only, and Minor Design Review Application. The Master Fee Schedule and a WQMP Information Packet are also listed.
-
-Planning Manager: Hayden Beckman, 300 E. Chapman Ave., Orange, CA 92866, (714) 744-7203. For general inquiries, submit a contact form. City Hall Hours: Monday - Friday 8:00 a.m. - 5:00 p.m.
-
-To schedule a Planning Division inspection, contact the project Planner directly. Do NOT schedule Planning Division inspections on the Online Civic Portal.
-
-Source: https://www.cityoforange.org/our-city/departments/community-development/planning-division
-
-## Community Services Department
-
-In-person customer service is provided at the Sports Center @ Grijalva Park, 368 N. Prospect St., Building B, (714) 744-7274. Counter Hours: Monday - Friday 8:00 a.m. - 5:00 p.m. Park and facility permits are also available online.
-
-Important numbers:
-- Parks and Facilities Reservations & Classes and Summer Camp: (714) 744-7274
-- Park Closures / Field Conditions: (714) 744-5592
-- 24-Hour Park Emergencies: (714) 538-1961
-
-The City Council adopted Resolution No. 11665 amending the City's Master Schedule of Fees and Charges for various Community Services & Library programs, services, facility rentals, and equipment rentals. Community Services Director: Leslie Hardy.
-
-Source: https://www.cityoforange.org/our-city/departments/community-services
-
-## Parks and Facilities, Closures and Conditions
-
-The City of Orange offers 22 parks. To reserve a park for an event, visit Parks and Permits. For weather-related park closures and sports field conditions, call the Community Services Department at (714) 744-5592. Updates are given after 2:00 PM on weekdays and after 8:30 AM on weekends.
-
-Park rules are in Ch. 12.48 Park Ordinance of the Orange Municipal Code. In-person customer service is at the Sports Center @ Grijalva Park, 368 N. Prospect St., Building B, (714) 744-7274, Monday - Friday 8:00 a.m. - 5:00 p.m.
+The park ordinance is Ch. 12.48 of the Orange Municipal Code. In-person customer service is at Sports Center @ Grijalva Park, 368 N. Prospect St., Building B, (714) 744-7274. Counter hours are Monday - Friday 8:00 a.m. - 5:00 p.m.
 
 Source: https://www.cityoforange.org/our-city/departments/community-services/parks-maintenance-and-development
 
-## Finance Department
+## Park & Facility Permits — How to Reserve
 
-The Finance Department is at 300 E. Chapman Ave., Orange, CA 92866. Phone: (714) 744-2238. Fax: (714) 744-2245 and (714) 744-2275. Finance Director: Trang Nguyen. City Hall Hours: Monday - Friday 8:00 a.m. - 5:00 p.m.
+CivicRec is the City's park and facility permits portal. Create an account or log in to make reservations and view availability. Permits can be issued no earlier than 90 days and no later than 10 days before your requested date.
 
-Services and pages listed include Bids & Proposals, Budgets, Business License, Hotel Transient Occupancy Tax, Short Term Rentals, and Utility Billing. Resources include Annual Financial Reports, City Treasurer, Fee Schedule 2026 Update (effective June 1, 2026), Orange Development Fees, and Purchasing and Accounts Payable.
+Other permit details: one permit per user/group per month. Groups of 24 or fewer don't need a permit unless reserving a pavilion or having a jumper. Permits will not be issued on these holidays: New Year's Eve, New Year's Day, Martin Luther King Day, President's Day, Easter Sunday, Memorial Day, July 3 & 4, Labor Day, Veterans Day, Thanksgiving Day, Christmas Eve, and Christmas Day, and observed holidays.
 
-Source: https://www.cityoforange.org/our-city/departments/finance
+Contacts: csinfo@cityoforange.org for general inquiries; sports@cityoforange.org for field permits and inquiries. In person: Sports Center @ Grijalva Park, 368 N. Prospect St., Building B, (714) 744-7274, Monday - Friday 8:00 a.m. - 5:00 p.m. The City Council adopted Resolution No. 11665 amending the Master Schedule of Fees and Charges for Community Services programs, services, facility rentals, and equipment rentals, and the updated fee schedule is now in effect.
 
-## Fire Department — Paramedic Membership Program
+Source: https://www.cityoforange.org/our-city/departments/community-services/parks-and-permits
 
-Orange City Fire Department offers a Paramedic Membership Program to protect yourself from unexpected expenses of an ambulance and emergency paramedic treatment. Quick links on the Fire Department page include Locate a Station, Evacuation Info (fire evacuation area maps), Wildfire Information, and FAQs.
+## Special Event Park Permits
 
-Source: https://www.cityoforange.org/our-city/departments/fire
+A Special Event Park Permit is required for events open to the public, private events with 200 or more guests, or events with other components such as vendors, booths, or displays in a City park. All special events with 200 or more attendees must be submitted through the Civic Portal (select Special Events). In-person submissions are no longer accepted.
 
-## Human Resources
+The page gives two sets of timing and fee details. The top of the page says applications must be submitted 2–5 months before the event date, with a $240 application fee charged after the initial review, in addition to standard park permit fees. The Special Event Park Permit Guidelines say an application can be submitted up to five (5) months in advance, but no later than sixty (60) days prior to the event, with a $60 application fee submitted via Civic Portal after initial review. Upon receipt of the fee, a hold for that day is placed on the requested park facility.
 
-Human Resources is at 300 E. Chapman Ave., Orange, CA 92866. Phone: (714) 744-7255. Fax: (714) 744-7254. Director: Monica Espinoza. City Hall Hours: Monday - Friday 8:00 a.m. - 5:00 p.m.
+If the application is approved, the applicant pays all applicable park permit fees and deposits and has ten (10) days after notice of approval to submit all outstanding fees. Events in a City park require a layout of the event noting the set-up specifications and a certificate of insurance with an endorsed letter certifying that the City of Orange is additionally insured on the policy. Some special events may require additional documentation as requested by staff.
 
-The department lists Career Opportunities, Internal Openings, Job Classifications, City Compensation, MOUs, and the Employer-Employee Relations Resolution.
+Source: https://www.cityoforange.org/our-city/departments/community-services/parks-and-permits
 
-Source: https://www.cityoforange.org/our-city/departments/human-resources
+## Park Rules for Special Event Permit Holders
 
-## Police Department — Contact and Hours
+By applying for a Special Event Park Permit, applicants acknowledge these policies:
+- Monies may not be exchanged in City parks.
+- Alcoholic beverages are not allowed in City parks.
+- Unauthorized vehicles may not drive onto City parks.
+- Vendor equipment and jumpers must be hand-carted into the park. Jumpers may not exceed 15x20 feet in size and must operate from their own generator.
+- Cooking devices such as personal BBQ's and food carts (aside from park BBQ's) must be at a minimum of 20 feet from any City building, structure, or overhang.
+- Free distribution of food, beverages, and/or supplies to the general public is not allowed.
+- Walkways must remain unobstructed at all times.
+- Smoking is prohibited at all park buildings, including entrances, at or near playgrounds, and at or near active sport fields.
+- Permit holders accept full responsibility for the conduct of their guests.
+- Amplified sound (live music, radio, DJ, PA system, etc.) is allowed from 9 a.m. - 10 p.m. but may not exceed a noise level of 55 decibels.
 
-For emergencies, dial 9-1-1. The Police Department is at 1107 N. Batavia St., Orange, CA 92866. Phone: (714) 744-7444. Fax: (714) 744-7320. Vehicle Release: (714) 744-7380.
+Source: https://www.cityoforange.org/our-city/departments/community-services/parks-and-permits
 
-Hours (closed on all major holidays for the Traffic Counter):
-- Front Desk: Mon - Fri 8 am - 6 pm; Sat 8 am - 2 pm
-- Traffic Counter: Mon - Thurs 8 am - 5 pm
-- Records Counter: Mon - Fri 8 am - 6 pm; Sat 8 am - 2 pm
+## Park Permit Cancellations, Refunds, and Inclement Weather
 
-The department also lists a FREE Vacation Check program.
+Permit cancellations must be submitted in writing to csinfo@cityoforange.org by the permit holder prior to the event date. Refer to your permit for applicable fees. Approved permit refunds may take up to 6 weeks to receive.
 
-Source: https://www.cityoforange.org/our-city/departments/police
+The City does not refund permit fees for inclement weather cancellations. Permit holders may reschedule for another date. A request to reschedule due to inclement weather must be made by the permit holder to the Community Services Department within 24-hours of the cancellation. Rescheduled dates depend on availability and may only be reserved up to three months in advance.
 
-## Public Works — Contact and After-Hours Emergencies
+Source: https://www.cityoforange.org/our-city/departments/community-services/parks-and-permits
 
-Public Works is at 300 E. Chapman Ave., Orange, CA 92866. Phone: (714) 744-5525. Director: Christopher Cash. City Hall Hours: Monday - Friday 8:00 a.m. - 5:00 p.m.
+## Recreation Classes and Camps
 
-Emergency & After Hours Contact: call (714) 538-1961 to report problems with water, sewers, street lights, or traffic signals.
+Community Services offers recreation classes and camps for all ages and interests. The page says classes involve no long-term commitments or membership fees. Page links include Online Class Registration, Our Orange Activity Guide, Printable Registration Form, and Sports.
 
-Responsibilities include roadway and sidewalk maintenance, sewer and storm drain repairs, solid waste oversight, street sweeping, parkway tree care, traffic signal network maintenance, and a clean, safe, potable water supply. The Property Information Viewer looks up address APNs, police/fire districts, trash/sweep days, schools, and council districts.
+In-person customer service is at Sports Center @ Grijalva Park, 368 N. Prospect St., Building B, (714) 744-7274. Counter hours are Monday - Friday 8:00 a.m. - 5:00 p.m.
 
-Source: https://www.cityoforange.org/our-city/departments/public-works
+Source: https://www.cityoforange.org/our-city/departments/community-services/recreation
 
-## Energy Efficiency and Utility Assistance Programs
+## Senior Services — Orange Senior Center
 
-The City collaborates with Southern California Edison® and SoCalGas® through the North Orange County Cities Energy Partnership (NOCC). Programs listed:
-- Summer Discount Plan: earn up to $180 in credits on your energy bill with the Southern California Edison Summer Discount Plan. There is no cost to enroll or participate.
-- Medical Baseline Allowance: financial assistance from Southern California Edison and SoCalGas if you or someone in your household requires powered medical equipment.
-- Comprehensive Manufactured Homes Program: free energy efficiency upgrades to mobile and manufactured homeowners.
-- SoCalGas's CARE Program: eligible customers get a 20 percent discount on their gas bill.
-- Energy Saving Assistance Program: no-cost energy-saving home improvements to income-qualified homeowners.
+Senior Services is managed through a contract service provider, Orange Elderly Services (OES), which operates the Orange Senior Center and provides programming. No registration fee is required and all programming services are low-cost or free. Orange Senior Center: 170 S. Olive St., Orange, CA 92866, (714) 538-9633, Monday - Friday 8:00 a.m. - 4:00 p.m.
 
-Source: https://www.cityoforange.org/our-city/departments/public-works
+For food assistance (list is for information only), Meals on Wheels is (714) 823-3294 and the Orange Senior Center is (714) 538-9633.
+
+Source: https://www.cityoforange.org/our-city/departments/community-services/programs-and-services/senior-services
+
+## Senior Transportation — Go Orange and OCTA Programs
+
+Go Orange is an affordable, non-emergency, senior (60+) transportation service for Orange senior residents. It provides rides to medical appointments, a local pharmacy, a grocery store, or the Orange Senior Center. For only $8, seniors receive six one-way ride vouchers for travel to essential locations within City limits. Contact the Orange Senior Center transportation coordinator at (714) 538-9633.
+
+OCTA also offers the Senior Mobility Program (SMP), the OC Go Senior Non-Emergency Medical Transportation (SNEMT) Program, and OC ACCESS. OC ACCESS is a shared-ride service for qualified applicants whose physical or cognitive limitations prevent them from using the regular OC Bus fixed-route service.
+
+Source: https://www.cityoforange.org/our-city/departments/community-services/programs-and-services/senior-services
+
+## Special Events
+
+Due to the City's current financial situation, all events traditionally sponsored by the City have been put on hold until further notice. Local non-profits have committed to sponsoring and hosting many of these events:
+- Concerts in the Park - Kiwanis of Orange
+- Treats in the Streets – Orange Plaza Traditions
+- Veterans Day Tribute at the Field of Valor – Community Foundation of Orange
+- Christmas Market and Tree Lighting - Orange Plaza Traditions
+
+Source: https://www.cityoforange.org/our-city/departments/community-services/programs-and-services/special-events
+
+## Trash, Recycling, and Organics — Service Provider and Contacts
+
+Trash, recyclables, and organics (green waste and food waste) are collected by CR&R Environmental Services. CR&R customer care at (714) 372-8272 helps with establishing service, change of address, cart replacement, bulky item pickups, temporary bins, and missed pickups.
+
+Public Works Department, City Solid Waste Manager: 300 E. Chapman Ave., Orange, CA 92866, (714) 532-6480. City Hall hours are Monday - Friday 8:00 a.m. - 5:00 p.m. To report SB 1383 compliance issues, contact that number. Anonymous complaints may be placed by calling it, and complainants may receive information regarding the result of the complaint upon request. To ask about self-hauling your solid waste, contact the solid waste program manager at pwinfo@cityoforange.org.
+
+Source: https://www.cityoforange.org/our-city/departments/public-works/field-services-division/trash-recycling-and-organics
+
+## Holiday Trash and Street Sweeping Schedule
+
+CR&R Environmental Services does not collect trash, recyclables, or organics on: New Year's Day (January 1), Memorial Day (Last Monday in May), Independence Day (July 4), Labor Day (First Monday in September), Thanksgiving Day (Fourth Thursday in November), and Christmas Day (December 25). If a holiday falls on a weekday (Monday–Friday), collection is delayed one day for the remainder of the week.
+
+Streets are not swept on: New Year's Day (January 1), Martin Luther King Jr. Day (Third Monday in January), Presidents' Day (Third Monday in February), Cesar Chavez Day (March 31), Memorial Day (Last Monday in May), Juneteenth (June 19), Independence Day (July 4), Labor Day (First Monday in September), Columbus/Indigenous Peoples' Day (Second Monday in October), Veterans Day (November 11), Thanksgiving Day (Fourth Thursday in November), and Christmas Day (December 25). If sweeping is postponed due to a holiday or other event such as inclement weather, service resumes on the next scheduled sweeping day (typically the following week). If trash collection and street sweeping fall on the same day, place carts on top of the curb or parkway, not in the street.
+
+Source: https://www.cityoforange.org/our-city/departments/public-works/field-services-division/trash-recycling-and-organics
+
+## Organics Recycling and SB 1383 Requirements
+
+Organic waste includes yard waste (grass clippings, weeds, leaves, prunings, flowers, wood scraps/chips) and kitchen waste (fruit, bread, fish, meat (no bones), vegetables, dairy, FOG (fats, oils, grease), compostable bags). Not organic waste: pet waste, palm fronds, plastic, glass, metal, treated lumber. Commingled organic waste is sent to CR&R's Regional Organics Anaerobic Recovery Facility in Perris, CA to be converted into renewable natural gas and anaerobic compost.
+
+Everyone is required to participate. As of January 2024, the state has mandated that the City of Orange fine residents and businesses who do not participate. If your waste is not sorted, you may receive contamination charges from CR&R Environmental Services. Starting in 2022, food service businesses must donate surplus edible food to food recovery organizations.
+
+Source: https://www.cityoforange.org/our-city/departments/public-works/field-services-division/trash-recycling-and-organics
+
+## Solid Waste Rate Adjustment
+
+On January 9, 2024, the City Council approved the amended and restated Franchise Agreement with CR&R, Inc. to establish solid waste rates for residents and businesses. The agreement became effective on March 1, 2024 and authorizes solid waste collection and street sweeping services with CR&R Inc. for 10 years. Starting 2025, residential and commercial r

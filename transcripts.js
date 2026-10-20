@@ -27,7 +27,7 @@ export function dateFromTitle(title) {
   const m = title.match(/([A-Za-z]{3,9})\.?\s+(\d{1,2})(?:st|nd|rd|th)?\s*[,.]?\s+(\d{4})/) ?? title.match(/(\d{1,2})\/(\d{1,2})\/(\d{2,4})/);
   if (!m) return null;
   let y, mo, d;
-  if (isNaN(m[1])) { mo = MONTHS[m[1].toLowerCase()]; d = +m[2]; y = +m[3]; } else { mo = +m[1]; d = +m[2]; y = +m[3]; if (y < 100) y += 2000; }
+  if (isNaN(m[1])) { mo = MONTHS[m[1].toLowerCase()]; d = +m[2]; y = +m[3]; } else { mo = +m[1]; d = +m[2]; y = +m[3]; if (y < 100) y += y < 70 ? 2000 : 1900; } // "10/30/98" on the LA City Clerk archive is 1998
   if (!mo || !d || !y) return null;
   return `${y}-${String(mo).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
 }

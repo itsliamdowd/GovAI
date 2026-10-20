@@ -2,94 +2,134 @@
 
 Generated 2026-10-17 from https://www.elcajon.gov pages listed in each section's Source line.
 
-## Special Events in the Public Right-of-Way
+## El Cajon Library — Hours, Location and Contact
 
-The City Calendar lists City meetings and City-sponsored events throughout the year. Each City Council meeting includes a list of highlighted community events. City news and events are also published in the bi-annual newsletter "El Cajon Gateway: City News and Guide to Recreation".
+The El Cajon branch of the San Diego County Library is at 201 E. Douglas, El Cajon, CA 92020. Phone: (619) 588-3718. Email: elcajonlibrary@sdcounty.ca.gov.
 
-To host an event in the public right-of-way, use the "Special Event in the Community LONG Application" on the Events page.
+Hours: Monday 10:00AM - 6:00PM; Tuesday 12:00PM - 7:00PM; Wednesday 12:00PM - 7:00PM; Thursday 10:00AM - 6:00PM; Friday 10:00AM - 5:00PM; Saturday 10:00AM - 5:00PM; Sunday 10:00AM - 5:00PM.
 
-Source: https://www.elcajon.gov/discover-el-cajon/events
+Closed all day on Wednesday, November 11, 2026; Thursday, November 26, 2026 - Friday, November 27, 2026; and Friday, December 25, 2026.
 
-## City Clerk — Contact and Office Hours
+Facilities and features: ADA Accessible, Community Room, Cool Zone, Friends Bookstore, Wi-Fi, MakerBot 3D Printer.
 
-The City Clerk's Office is at 200 Civic Center Way, El Cajon CA 92020. Phone: (619) 441-1763. Office hours are Monday through Thursday 7:30am – 5:00pm and Alternate Fridays 8:00am – 5:00pm. The City Clerk is Angela Cortez, CMC.
+Source: https://www.elcajon.gov/resident-services/living-in-el-cajon/el-cajon-library
 
-The Clerk records City Council actions and prepares agendas and minutes. The Clerk also serves as Elections Official for municipal and special elections and oversees the City's Records Management Program. The Clerk recruits for City Council appointed Boards and Commissions. The Clerk is the Filing Officer for campaign disclosure statements and Statements of Economic Interest (Form 700) under the Political Reform Act.
+## Parks & Recreation Department — Contact and Programs
 
-Source: https://www.elcajon.gov/your-government/departments/city-clerk
+All City of El Cajon Recreation Centers and Parks are open to the public. Register for a class or program through the online registration link on the Parks & Recreation page, and see the latest Recreation Guide for current activity offerings. To request the El Cajon Parks & Recreation Refund Policy, Facility Use Application, or Activity Registration Form, email erec@elcajon.gov.
 
-## Public Records Requests
+Contact: Adam Tronerud, Director of Parks & Recreation, 200 Civic Center Way, Attn: Parks & Recreation, El Cajon, CA 92020. Phone: (619) 441-1754.
 
-The City Clerk's office receives and responds to public records requests in accordance with the California Public Records Act. Residents can request copies of City records, including City Council meeting minutes, ordinances, contracts, and more, through the Public Records Request Page on the City Clerk's website.
+The department supervises five community recreation centers, one banquet/meeting facility, nine sports fields, a skate park, a dog park, outdoor pickleball courts, and a spring/summer aquatics program. It offers recreation programs for ages one through senior adult.
 
-Source: https://www.elcajon.gov/your-government/departments/city-clerk
+Source: https://www.elcajon.gov/your-government/departments/recreation
 
-## Proof of Life (By Appointment Only)
+## Sports Field Conditions Hotline and Field Reservations
 
-A Proof of Life verifies that a person is alive to qualify the individual for pensions and other benefits from foreign governments/institutions. The service is by appointment only. Call the City Clerk's office at (619) 441-1763 to make an appointment.
+For current sports field conditions, call the hotline at (619) 441-1538.
 
-Source: https://www.elcajon.gov/your-government/departments/city-clerk
+Field reservations and scheduling by location:
+- Albert Van Zanten Park: three baseball/softball fields (one lighted) available for community rentals 4pm-9pm Monday through Friday and all day on weekends. Call Bostonia Recreation Center at (619) 441-1670.
+- Cajon Valley Middle School Park: two lighted ballfields and two multi-purpose fields that can be rented. The park and outdoor basketball courts are open to the public 4pm-9:30pm Monday through Friday and all day weekends. For field scheduling call (619) 441-1678.
+- Karl Tuttle Park: field availability and reservations are administered through Renette Recreation Center at (619) 441-1678. The ballfield is open to the community after school hours between 4-9:30pm Monday through Friday, and all day on weekends.
+- Wells Park: ball field reservations and park information are available at the Wells Park office, (619) 873-2322.
 
-## Community Development — Project Assistance Center
+Source: https://www.elcajon.gov/your-government/departments/recreation/parks-playgrounds-sports-fields
 
-The Project Assistance Center aids residents, property owners, businesses, and developers with their projects. It combines Planning, Engineering, Building and Housing Services. Contacts:
-- Building Safety: building@elcajon.gov, 619-441-1726
-- Planning: planning@elcajon.gov, 619-441-1742
-- Engineering Services: publicworks@elcajon.gov, 619-441-1653
-- Housing: housing@elcajon.gov, 619-441-1710
+## City Parks — Addresses and Phone Numbers
 
-Source: https://www.elcajon.gov/your-government/departments/community-development
+- Albert Van Zanten Park: 1495 Greenfield Drive, (619) 441-1670. 15 acres with a 440-yard track, soccer/football fields, concession stand, restrooms and score booths.
+- Bill Beck Park: 543 North Pierce Street, (619) 441-1674. Fitness course and playground; contact Hillside Recreation Center.
+- Bostonia Park: 1049 Bostonia Street, (619) 441-1670. Two acres with playground equipment including three slides; recreation programs are offered at Bostonia Recreation Center.
+- Cajon Valley Middle School Park: 750 Park Avenue, (619) 441-1678. 14 acres with concession stands, scorebooths and restrooms.
+- Fire Station Park: Westwind and Tyrone, (619) 441-1674. Very small park adjacent to the Fletcher Hills Fire Station with trail access down to Hillside Center and Park.
+- Fletcher Hills Center & Pool: 2345 Center Place, (619) 441-1672. Pool has heated water and depths of 3-4.5 feet and is used for the "Learn to Swim Program"; also a playground and picnic area.
+- Hillside Park: 840 Buena Terrace, (619) 441-1674. 19+ acres with picnicking, walking trails, and a lower park with a grassy playing field and restrooms; Hillside Recreation Center is adjacent.
+- Judson Park: Magnolia and Park Avenue, (619) 441-1673. White gazebo; gazebo reservations are available through the Ronald Reagan Community Center at (619) 441-1673.
+- Karl Tuttle Park: 379 Chase Avenue, (619) 441-1678. Nine acres with ballfields, concession stand, score booth and restrooms.
+- Renette Park: 935 Emerald Avenue, (619) 441-1678. Lighted outdoor basketball court, grassy playing field, picnic areas, a "Plaza" play court that is skate-able for skateboards and roller blades only, and an accessible playground. Renette Recreation Center has meeting rooms, a game room, a gymnasium and supervised recreation activities.
+- Wells Park: 1153 E Madison Avenue, (619) 873-2322; Dog Park Line (619) 441-1680. 18 acres with a lighted ball field, lighted soccer field, playground, outdoor fitness court with seven workout stations, mini-pitch soccer arena and two half basketball courts. Five pickleball courts and a pickleball pro shop are listed as coming soon.
 
-## Building Safety — Permits, Inspections and Contact
+Source: https://www.elcajon.gov/your-government/departments/recreation/parks-playgrounds-sports-fields
 
-Building Safety provides plan check and inspection of new buildings and structures, permitting and inspection of mobile home installations, inspection of substandard properties, graffiti eradication, and citizen complaints. Its service links cover Building Permits, Fire Permits, Photovoltaic Permits, Graffiti Abatement, Substandard Abatement, Frequently Asked Questions, Mobilehome Inspection Program, and Forms.
+## Youth Sports Programs and Code of Conduct
 
-Lists of issued and finaled permits are posted by month for 2026 and by year back to 2020. Copies of permits and related document records finalized prior to 2020 can be requested via a Public Records Request. Daily inspection times, results, and corrections can be viewed online.
+The Parks and Recreation Department offers youth sports for participants of all skill levels between the ages of 3 and 17. Seasons: Spring Sports April-June; Summer Sports July-September; Fall Sports October-December; Winter Sports January-March. Not all programs are offered during every session. The most current Rec Guide lists program descriptions, hours, and fees.
 
-Beginning on January 1, 2026, the City enforces the 2025 Edition of California Building Standards Codes (Title 24 of the California Codes of Regulations). The City cannot approve projects that do not comply with the codes in effect at the time of plan submittal.
+A Youth Sports Code of Conduct applies to staff, spectators, participants and parents. Its Zero Tolerance Policy requires an environment free from drugs and alcohol, violence or threats of violence, intimidation or harassment, gambling or solicitation, profanity or abusive language, object throwing, vandalism, or property damage.
 
-Contact: General Information 619-441-1726, Building@elcajon.gov. Address: City of El Cajon Building Safety, 200 Civic Center Way, El Cajon, CA 92020.
+Penalties: for a minor infraction, a verbal request or warning is given. For subsequent infractions, the person is asked to leave the playing area until the next scheduled event and/or season, and the department may request a one-on-one meeting prior to reentry. For serious or consistent infractions, the department may take action up to and including permanent dismissal from the youth sports leagues and playing areas. Failure to abide by the Code is cause for suspension or expulsion from the league.
 
-Source: https://www.elcajon.gov/your-government/departments/community-development/building-fire-safety-division
+Source: https://www.elcajon.gov/your-government/departments/recreation/youth-sports
 
-## Planning — Zoning and Project Submittals
+## Adult & Senior Programs and Resources
 
-Planning helps determine the zone of a property, allowable uses and/or development potential using the Zoning Code, General Plan and other applicable plans. All projects can be submitted online through the Project Assistance Center Online (PACO). Planning permits are decided at different levels: staff, Community Development Director, Planning Commission, and City Council. Each permit has its associated fees and timelines. An Interactive Zoning Map is available.
+Not all classes are offered in all locations or during every session; the latest Rec Guide has the current class listing.
 
-Contact: Phone 619-441-1742. Walk-in: City Hall, 200 Civic Center Way, 1st Floor, Monday through Thursday, 7:30 to 5:00 p.m. and every other Friday, 8 to 5 p.m.
+- AARP Chapter 4800 serves El Cajon and La Mesa at 9:15 a.m. on the second Friday of each month. Contact Hoagy Carmichael at 619-444-8679.
+- Elder Law provides free legal services (donations welcome) for seniors 60+ (wills, landlord/tenant issues, Medicare and MediCal) on the 2nd Wednesday of each month between 1:30 p.m. and 4:00 p.m. at Renette Park Community Center. Appointments are required: call 858-565-1392, ext. 200.
+- ECAN (East County Action Network) general meetings are open to the public on the 3rd Thursday of each month at County of San Diego - El Cajon Branch Library, 195 E. Douglas Ave. No meetings in March, August and December. Phone 619-401-3994.
 
-Source: https://www.elcajon.gov/your-government/departments/community-development/planning-division
+Important phone numbers: 211 Information 211; Adult Protective Services 858-495-5660; Aging and Independence Services 800-510-2020; Better Business Bureau 858-496-2131; City of El Cajon 619-441-1776; Consumer Fraud 619-531-3507; Cool Zone Information 800-510-2020, press "6"; ECAN 619-401-3994; El Cajon Library 619-588-3718; Elder Law 858-565-1392, ext. 200; Fletcher Hills Library 619-466-1132; Foothills Adult School 619-588-3500; Internal Revenue Service 800-829-1040; Meals on Wheels (East County) 619-447-8782; MTS Transportation (ADARide) 877-232-7433; Renter's Rights 858-571-1166; Salvation Army/El Cajon Nutrition Center 619-440-4683; Social Security Administration 800-772-1213.
 
-## Finance Department — Contact
+Source: https://www.elcajon.gov/your-government/departments/recreation/for-seniors
 
-The Finance Department is at 200 Civic Center Way, Fifth Floor, El Cajon, CA 92020. Phone: (619) 441-1668. The Director of Finance is Clay Schoen, CPA. Responsibilities include budgeting, payroll, payables, receivables, collections, accounting, and financial reporting.
+## Solid Waste and Recycling Service (EDCO)
 
-Source: https://www.elcajon.gov/your-government/departments/finance
+The City of El Cajon has an exclusive franchise agreement with EDCO for solid waste disposal and recycling services. The City transitioned services to EDCO beginning January 1, 2021. Reach EDCO's Customer Service call center at (619) 287-7555.
 
-## Business Licenses
+The Public Works Department manages the City's integrated waste management activities, including solid waste franchise administration and compliance with CalRecycle. The City's diversion rate is approximately 61%, above the State's mandated 50%.
 
-Title 5 of the City of El Cajon Municipal Code requires all businesses conducting business within the City limits to obtain a business license and pay the business license tax. This includes those who work out of their home, and businesses from outside the City that perform services and/or sales at the customer's place of business or residence in El Cajon.
+Source: https://www.elcajon.gov/your-government/departments/public-works/recycling
 
-The online filing method is the most convenient and fastest. It can be used to apply for a new license, renew, pay a balance, update, or close a license, and to search for an existing licensed El Cajon business. A paper application can be filled out online, printed for signature, and submitted to the Finance Department at El Cajon City Hall, 200 Civic Center Way, El Cajon, CA, 92020.
+## Recycling Requirements for Households and Businesses
 
-For businesses with a location inside the City limits, Community Development reviews the application to ensure the location is in an approved zone. Home Occupation businesses must comply with the Home Occupation Requirements in the Zoning Ordinance.
+Every single family residential unit in El Cajon has curbside recycling. California AB 341 requires businesses and multi-family residences with four or more units to provide recycling. AB 827 requires businesses to provide customers with visible, easily accessible recycling receptacles adjacent to trash receptacles with educational signage. AB 1826 requires businesses, including multifamily dwellings of five or more units, to recycle organic waste (food waste, green waste, landscape and pruning waste, nonhazardous wood waste, and food-soiled paper waste mixed in with food waste). With the new refuse and recycling agreement in January 2021, all residents and businesses can recycle food waste along with landscape trimmings in the green waste bin.
 
-Business licenses expire on December 31 and courtesy renewal notices are mailed mid-November of each year. Renewal usually takes four to six weeks in December, January and February, and may take longer if the business location and/or description of business has changed.
+If you are not already recycling at your home or business, contact EDCO at (619) 287-7555 to set up recycling services.
 
-A special operation license is also required for businesses and activities listed in City of El Cajon Municipal Code Section 5.16.030. Additional forms and fees are required, so contact the office for instructions. Monthly business license listings are available through the Online Business License - Business Search.
+Source: https://www.elcajon.gov/your-government/departments/public-works/recycling/legislation
 
-Contact: Business License Division, 200 Civic Center Way, El Cajon, CA 92020, (619) 441-1668.
+## Sewer Billing — Contacts and How Charges Work
 
-Source: https://www.elcajon.gov/your-government/departments/finance/business-licenses
+Two water districts serve the City based on property location: Helix Water District and Padre Dam Municipal Water District. The water district notifies the City when a property's water account is activated or deactivated and provides water use information. Sewer charges are based on the amount of water used and the category of use at a property. The City's sewer service includes transportation to the City of San Diego's Point Loma treatment plant.
 
-## Financial Reports and Audits
+For sewer billing information, contact Engineering Services: SewerBilling@elcajon.gov, (619) 441-1653. The page offers online adjustment requests and lists sewer billing rates through June 30, 2026.
 
-The Finance page posts Annual Comprehensive Financial Reports for Fiscal Years 2020-2021 through 2024-2025. It also posts Single Audits for the same fiscal years. Successor Agency Recognized Obligation Payment Schedules (ROPS) are posted from July 1, 2022 to June 30, 2023 through July 1, 2026 to June 30, 2027. The latest American Rescue Plan Act Report is Quarter 3, 2025 (July - September). Contact: Telephone (619) 441-1668.
+Source: https://www.elcajon.gov/your-government/departments/engineering-services/utility-billing-wastewater/sewer-billing
 
-Source: https://www.elcajon.gov/your-government/departments/finance/financial-reports
+## Sewer Overflow Emergencies
 
-## City Budgets and Financial Policies
+During business hours, contact Public Works Operations at (619) 441-1658 or email PublicWorks@elcajon.gov. After hours, contact the Police Department at (619) 579-3311.
 
-Adopted Budgets are posted for FY2021-22 through FY2026-27. Annual Comprehensive Financial Reports are posted for FY2020-21 through FY2024-25. The page is currently under construction for accessibility compliance. For questions about financial policies or copies of additional financial reports, contact the Finance Department at 619-441-1668 or finance@elcajon.gov.
+Source: https://www.elcajon.gov/your-government/departments/engineering-services/utility-billing-wastewater/sewer-billing
 
-Source: https://www.elcajon.gov/your-government/departments/finance/budgets-financial-policies
+## Sewer Billing — Multi-family Residential Accounts
+
+Multi-family Residential accounts are billed based on the annual water consumption of the property. If a separate landscape meter is installed, the sewer bill is calculated using a higher water use charge. Accounts without an irrigation meter are billed at a lower water use charge to offset landscaping water use that cannot be tracked without an irrigation water meter.
+
+Source: https://www.elcajon.gov/your-government/departments/engineering-services/utility-billing-wastewater/sewer-billing/multi-family-residential
+
+## Street Sweeping Pilot Program
+
+Beginning in February, the City launches a six-month street sweeping pilot program in select residential and commercial areas, with temporary parking restrictions during scheduled sweeping times. Community outreach begins in mid-January, before enforcement. It includes door hangers, windshield notices, temporary signage, permanent "No Parking During Street Sweeping" signs displaying schedules, and warning notices issued during the first scheduled sweep.
+
+Schedules:
+- Fesler Street (between Johnson and Pioneer): Wednesdays, 4:00 a.m. - 7:00 a.m.
+- Decker Street (between Anza and 1st): north side monthly on 3rd Monday; south side monthly on 4th Monday; 7:00 a.m. - 10:00 a.m.
+- East Madison Avenue (between 4th and Verdin Street): monthly on 3rd Monday, 7:00 a.m. - 10:00 a.m.
+- East Main Street (between 3rd Street and Broadway): north side Mondays; south side Thursdays; 4:00 a.m. - 7:00 a.m.
+
+Vehicles in violation may receive a $42.50 parking citation. Towing may occur when necessary to allow street sweeping operations.
+
+Source: https://www.elcajon.gov/your-government/departments/public-works/street-sweeping-pilot-program
+
+## Storm Water Forms and Fact Sheets
+
+The City's Storm Water Forms Library includes Storm Water Information (JURMP Best Management Practices; Storm Water Pollution Prevention Plan (SWPPP)) and a SWPPP Checklist for development and construction. Residential fact sheets: Car Wash Rules, Cigarettes and the Environment, Clean Up After Your Pets, Major Causes of Urban Runoff, Motor Home Dumping, Power Washing, Trash and Sweeping Facts, Yard Care Facts. Commercial/Industrial: Clean Business Facts Sheet; No Exposure Conditional Exemptions for Industrial Facilities.
+
+Source: https://www.elcajon.gov/your-government/departments/engineering-services/storm-water/storm-water-forms
+
+## Police Department — Contact Numbers
+
+El Cajon Police Department Headquarters: 100 Civic Center Way, El Cajon

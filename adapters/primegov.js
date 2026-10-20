@@ -42,7 +42,11 @@ async function htmlDoc(url) { const r = await politeFetch(url); if (!r.ok) retur
 export async function meetingText(m) {
   const out = { agenda_text: "", minutes_text: "" };
   if (m.agenda_html_url) out.agenda_text = await htmlDoc(m.agenda_html_url).catch(() => "");
-  if (!out.agenda_text && m.agenda_url) out.agenda_text = await fetchText(m.agenda_url).then((t) => (gone(t) ? "" : t)).catch(() => "");
-  if (m.minutes_url) out.minutes_text = await fetchText(m.minutes_url).then((t) => (gone(t) ? "" : t)).catch(() => "");
+  const big = { timeout: 240000 }; // compiled PDFs are built on request and can take minutes (Vernon)
+  // ponytail: Vernon's agenda packets are 30-40 MB served at ~100 KB/s from Azure blob storage, so a HEAD check skips anything over 20 MB
+  // instead of burning 5 minutes per meeting; the HTML agenda (when published) already carries the item text
+  const tooBig = async (url) => { try { const r = await politeFetch(url, { headers: { Range: "bytes=0-0" }, timeout: 30000, retries: 1 }); await r.arrayBuffer(); const total = r.headers.get("content-range")?.match(/\/(\d+)$/)?.[1] ?? r.headers.get("content-length"); return Number(total) > 20e6; } catch { return false; } }; // HEAD gets no Content-Length from the blob redirect; a 1-byte Range GET returns Content-Range: bytes 0-0/<total>
+  if (!out.agenda_text && m.agenda_url && !(await tooBig(m.agenda_url))) out.agenda_text = await fetchText(m.agenda_url, big).then((t) => (gone(t) ? "" : t)).catch(() => "");
+  if (m.minutes_url) out.minutes_text = await fetchText(m.minutes_url, big).then((t) => (gone(t) ? "" : t)).catch(() => "");
   return out;
 }

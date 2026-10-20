@@ -2,120 +2,171 @@
 
 Generated 2026-10-17 from https://www.lakeforestca.gov pages listed in each section's Source line.
 
+## Parks & Fields
+
+Lake Forest's Parks & Fields page says the city has 31 parks. Park hours are dawn to dusk. Lighted athletic fields or tennis courts are open until 10:00 p.m. Park rules are posted in each park. The page also lists a Park Guide (PDF), Dog Parks, Field Closures, Mudline/Rain Policy (field closures due to inclement weather), and Walking Trails.
+
+The Lake Forest Sports Park is an 86-acre Sports Park and Recreation Center that opened in November 2014, with 57 acres devoted to sports fields and a multi-functional recreational center. The city also has Orange County's largest free skatepark.
+
+Source: https://www.lakeforestca.gov/departments/community_services/parks_fields/index.php
+
+## Sports Field Reservations
+
+Field allocation meetings for sports groups are held in July for the fall sports season (August to December) and in December for the spring sports season (February to June). For information on reserving a sports field, call the Sports Park.
+
+Source: https://www.lakeforestca.gov/departments/community_services/parks_fields/index.php
+
+## Parks & Trails Directory
+
+The Parks & Trails page lists 32 parks. Park hours are dawn to dusk, and lighted athletic fields or tennis courts are open until 10:00 p.m. Community Services can be reached at (949) 273-6960.
+
+Selected addresses:
+- Baker Ranch Community Park: 26380 Rancho Parkway S, Lake Forest, CA 92630
+- Barker Ranch Dog Park: 25600 Baffin Bay, Lake Forest, CA 92630
+- El Toro Park: 23701 Los Alisos Blvd., Lake Forest, CA 92630
+- Etnies Skate Park of Lake Forest: 20028 Lake Forest Drive, Lake Forest, CA 92630
+- Heritage Hill Historical Park: 25151 Serrano Road, Lake Forest, CA 92630, (949) 923-2230
+- Lake Forest Sports Park: 28000 Rancho Parkway, Lake Forest, CA 92630, (949) 273-6960
+- Portola Park: 28040 Glenn Ranch Road, Lake Forest, CA 92630
+- Whiting Ranch Wilderness Park: 26701 Portola Parkway, Foothill Ranch, CA 92610, (949) 923-2245
+
+The Lake Forest Community Center, Conference Center, Performing Arts Center and Senior Clubhouse are all at 100 Civic Center Drive, Lake Forest, CA 92630.
+
+Source: https://www.lakeforestca.gov/departments/community_services/parks_fields/parks_trails.php
+
+## Sports Park & Recreation Center
+
+The Lake Forest Recreation Center is at 28000 Rancho Parkway, Lake Forest, CA 92630. Phone: (949) 273-6960. Hours: Monday through Saturday 8:00 a.m. to 10:00 p.m.; Sunday 10:00 a.m. to 6:00 p.m. The center page links to park information, reservations (rentals and reservations at the Sports Park & Recreation Center), and programs and activities.
+
+Source: https://www.lakeforestca.gov/departments/community_services/facilities/sports_park_recreation_center/index.php
+
+## Recreation, Events & Facilities
+
+For recreation information call (949) 461-3450. The page lists these city amenities:
+- **Parks and trails:** 30 neighborhood and community parks, including Heritage Hill Historic Park, Whiting Ranch Wilderness Park, Lake Forest Golf and Practice Center, and the Serrano Creek and Aliso Creek Trails.
+- **Shopping and dining areas:** The Arbor on El Toro and the Foothill Ranch Towne Centre.
+- **Programs and events:** Teen and senior programs, recreation classes, youth sports, excursions, and community events such as Bunny Blast, Dino Days, and the 4th of July Parade.
+- **Sports Park:** 5 baseball/softball diamonds, 2 synthetic turf soccer fields, 3 natural turf soccer fields, and a 27,000 square-foot gymnasium/recreation center.
+- **Civic Center:** Facilities at the 12.5 acre Civic Center Campus can be rented through the Facility Rentals Page.
+- **Etnies Skatepark of Lake Forest:** Opened in 2003. For information visit their website or call (949) 916-5870.
+
+For the city calendar or event information call (949) 273-6960.
+
+Source: https://www.lakeforestca.gov/departments/economic_development/shop_dine_stay/recreation.php
+
+## Special Events and Special Event Permits
+
+Special event applications are required when a patron (resident or non-resident) plans to have a gathering of more than 50 people at any City park. The process applies to private parties, non-profit organizations, and for-profit businesses. Community Services Department: (949) 273-6960.
+
+City events listed:
+- **Bunny Blast "Eggstravaganza":** Held each spring at El Toro Park. Wristbands can be purchased at the Lake Forest Sports Park for $10 each.
+- **Snowfest:** Snow, games, and a sled ride down Mount Pittsford.
+- **Movies in the Park:** Free movies.
+- **Summer Concerts:** Music in the park with food trucks and local vendors.
+- **Multicultural Festival:** 3rd Annual, Saturday, June 20, 2026, 3:00 p.m. to 7:00 p.m. at the Civic Center Campus (100 Civic Center Drive).
+- **Fourth of July Parade:** Information on registering a float is at https://www.lakeforestca.gov/departments/community_services/fourth_of_july_parade.php. Contact: lhunter@lakeforestca.gov
+
+Source: https://www.lakeforestca.gov/departments/community_services/special_events.php
+
+## Youth Camps
+
+Contact: Kaili Godfrey, Recreation Coordinator, (949) 273-6964, kgodfrey@lakeforestca.gov. Both camps are at Lake Forest Sports Park & Recreation Center (28000 Rancho Pkwy.). For more information call The Recreation Center at 949-273-6960.
+
+**Little Wranglers** (listed as currently sold out)
+- Ages 3-6 years. Every Little Wrangler must be potty trained.
+- Fee (per week): $100 Resident, $105 Non-Resident.
+- Morning session: Mon-Fri 9am-12pm.
+
+**Creative Kids Summer Camp 2025** (listed as currently sold out)
+- Ages 6-13 years.
+- Fee (per week): $200 Resident, $205 Non-Resident.
+- Mon-Fri 7:30 am - 6:00 pm. Camps begin June 9th.
+- Participants must bring snacks and a lunch. No transfers or refunds for missed days.
+- There will NOT be camp June 30 - July 4.
+- Registration begins May 6th for Residents and May 13th for Non-Residents.
+- 35 campers maximum per week.
+
+Source: https://www.lakeforestca.gov/departments/community_services/programs_and_sports/youth_camps.php
+
 ## Senior Advisory Board
 
-The Senior Advisory Board serves in an advisory capacity to the Community Services Commission, providing the Commission with information on all issues of importance to senior citizens. Members are Chair Michelle Wood, Vice-Chair Shirley Maldonado, and Members Elaine Blais, Sandy Stang and Jan Wiviott.
+The Senior Advisory Board serves in an advisory capacity to the Community Services Commission and provides information on issues of importance to senior citizens. Members: Chair Michelle Wood; Vice-Chair Shirley Maldonado; Members Elaine Blais, Sandy Stang, and Jan Wiviott.
 
-Meetings are held the second Wednesday of the specified months at 10:30 a.m. at The Clubhouse (100 Civic Center Drive). The 2026 meeting dates are February 11, May 13, August 12 and October 14. The Clubhouse is open Mon - Thu, 10:00 a.m. to 3:00 p.m.; phone (949) 461-3408.
+2026 meetings are held the second Wednesday of the specified months at 10:30 a.m. at The Clubhouse (100 Civic Center Drive): February 11, May 13, August 12, and October 14, 2026.
+
+The Clubhouse is open Mon - Thu, 10:00 a.m. to 3:00 p.m. Phone: (949) 461-3408.
 
 Source: https://www.lakeforestca.gov/city_government/commissions_and_boards/senior_advisory_board.php
 
-## Public Records — Online Access and Requests
+## Trash & Recycling — CR&R Solid Waste Agreement
 
-The City provides online access to building permits (Building Permit Search) and to contracts, public notices, public meeting materials and building permit reports (Document Search). City Council and Commission meeting documents, such as agendas and recordings, are under Public Meetings Records. Permit records on the website are for informational purposes only and may not be the complete records maintained by the City. A permit missing from the online database does not necessarily mean no such record exists.
+The City's agreement with CR&R began on July 1, 2025. It includes:
+- New trucks with collision avoidance, leak detection, and fire suppression systems.
+- New commercial bins and residential carts (completed summer 2025).
+- New kitchen countertop pails (completed fall 2025).
+- Two free compost events and a "how-to" compost workshop annually.
+- An annual bulky item drop-off event in addition to three residential bulky item pickups.
+- An annual household hazardous waste drop-off event.
+- Two residential household hazardous waste pickups per year.
+- A sharps pre-paid mail-back program.
+- One reusable donated item pickup per year.
 
-For records not available online, such as building permits and building plans, submit a request through the City's public records request online portal. Alternatively, complete the Public Records Request Form and deliver it to the City Clerk's Office via email or in person. Under the Public Records Act, the City will respond within ten (10) days of receiving your request. Questions go to the City's Records Coordinator at (949) 461-3421.
+Single-family homes can use the kitchen pail to recycle food scraps and plant clippings. Distribution of kitchen pails for multi-family residences is scheduled to begin in 2026. For questions about recycling, programs, or contamination, use Ask Lake Forest.
 
-Source: https://www.lakeforestca.gov/departments/city_clerk/public_records.php
+Source: https://www.lakeforestca.gov/departments/public_works/trash_and_recycling/index.php
 
-## Copies of Building Plans
+## Residential Solid Waste Rates (Effective July 1, 2026)
 
-California Health and Safety Code section 19851 governs copies of building plans. Section 19851(a) states that building plans shall be open for inspection as a public record only on the premises of the building department.
+Annual residential rate adjustments effective July 1, 2026 include CR&R's annual contractual adjustment and the County's rate adjustment for landfill disposal. Residential rates, fiscal year 2026–2027:
 
-The City may provide copies if it receives written permission to duplicate the plans from both the certified, licensed or registered professional who signed the original documents and the original or current owner of the building. If the building is part of a common interest development, the City must instead receive written permission from the board of directors or governing body of the association (such as a Homeowners Association board). You must also complete the required Affidavit form(s), available in the City Clerk's Office, and pay appropriate fees (see the City's Schedule of Administrative Fees). For more information, contact the City Clerk's Office during normal business hours at (949) 461-3400.
+| Cart size set | Current rate | Rate change | Effective July 1, 2026 |
+|---|---|---|---|
+| 35-gallon | $22.13 | $2.04 | $24.17 |
+| 65-gallon | $23.71 | $2.76 | $26.47 |
+| 95-gallon | $25.02 | $3.35 | $28.37 |
 
-Source: https://www.lakeforestca.gov/departments/city_clerk/public_records.php
+Source: https://www.lakeforestca.gov/departments/public_works/trash_and_recycling/index.php
 
-## Office of the City Clerk
+## Residential Collection Day Rules and Holidays
 
-The Office of the City Clerk is led by Thy Merritt, City Clerk. Phone (949) 461-3400; email cityclerk@lakeforestca.gov; (949) 461-3511.
+CR&R Customer Service: (949) 520-6005.
 
-The office accepts Claims, Summons and Subpoenas, conducts bid openings, and provides notary services. It prepares and disseminates City Council meeting agendas and minutes, and records and maintains video recordings of meetings. It coordinates with the Orange County Registrar of Voters to conduct elections and facilitate voter registration, and accepts nomination papers from candidates. It is the filing officer for the Fair Political Practices Commission (FPPC), including Campaign Disclosure Statements and Statements of Economic Interest (Form 700). It also updates and publishes the Lake Forest Municipal Code and responds to Public Records Requests.
+On collection day:
+- Place carts at the curbside no later than 6:30 a.m. and remove them within 12 hours after service.
+- Place carts with the handles and wheels facing towards your home.
+- Place carts side-by-side approximately 1 foot apart and at least 3 feet from any obstruction (i.e. vehicles, fire hydrants, trees).
+- Items placed outside of carts will not be collected. Cart lids should be closed. Do not overload.
 
-Source: https://www.lakeforestca.gov/departments/city_clerk/index.php
+Non-collection days: New Years Day, Memorial Day, July 4th, Labor Day, Thanksgiving Day, and Christmas Day. If the holiday falls on a Saturday or Sunday, trash is collected on the normal day with no delays. If the holiday falls on a weekday, collection for the remainder of the week is delayed by one day.
 
-## Passport Services
+Source: https://www.lakeforestca.gov/departments/public_works/trash_and_recycling/residential_services.php
 
-The City of Lake Forest is a designated Passport Acceptance Facility and accepts new passport applications on behalf of the U.S. Department of State. Applications are processed by appointment Monday - Thursday, 8:30 am - 5:00 pm, and Friday, 9:00 am - 4:00 pm. Appointments can be booked online. For questions, call (949) 461-3537, or contact the Passport Manager at (949) 461-3424 or passports@lakeforestca.gov.
+## Bulky Item Pickup
 
-Routine processing takes 4–6 weeks. Expedited processing takes 2–3 weeks and has a $60 fee. For urgent international travel within 14 calendar days, you must have proof of urgency (airline ticket) and/or a documented reason for urgent travel. Call 877-487-2778 to book an in-person appointment at the L.A. Passport Agency.
+Bulky items are household items that cannot fit in your waste containers and require two people to handle and transport, such as chairs, couches, desks, mattresses, tables, and shelves. Each residential customer can schedule up to three (3) bulky item pickups free of charge per calendar year. A bulky item service may include a combination of ten (10) large items. Additional pickups may be arranged for a nominal charge.
 
-First-time applicants, and those whose previous passport was issued more than 15 years ago, must appear in person. Applicants under the age of 16 must appear with both parents/legal guardians. If one parent is absent, the applying parent must present a notarized consent document, a court document proving sole custody, or a death certificate. Applicants 16 to 17 years old can apply on their own with valid government-issued identification, though it is recommended that at least one parent accompany them.
+If you live in a Homeowners Association (HOA) or community with shared trash enclosures, contact your HOA or property management company to schedule a pickup. Call CR&R Customer Service at (949) 520-6005 for larger waste containers (from 3 yards to 40 yards) for clean-up projects.
 
-Bring these six items to your appointment:
-- A completed, UNSIGNED Passport Application DS-11, filled out in black ink.
-- Evidence of U.S. citizenship: the original and a front and back photocopy of ONE of the following: previous U.S. Passport, certified copy of the applicant's birth certificate, or Certificate of Naturalization.
-- Identification: the original and a front and back photocopy of ONE of the following: current, valid driver's license; Government ID (city, state, or federal); or Military ID (military and dependents).
-- One (1) color passport photo, 2" x 2", taken within the past six (6) months. Photos are not offered at this facility.
-- A check for the Application Fee, made payable to the U.S. Department of State.
-- Payment of the Acceptance Fee, made payable to the City of Lake Forest.
+Source: https://www.lakeforestca.gov/departments/public_works/trash_and_recycling/residential_services.php
 
-Source: https://www.lakeforestca.gov/departments/city_clerk/passports.php
+## Household Hazardous Waste and Used Oil
 
-## Passport Fees
+Household Hazardous Waste (HHW) is flammable, corrosive, reactive or toxic. It is illegal to dispose of HHW in any of your waste containers. Examples: automotive fluids, cleaning products, fertilizers, herbicides, medical sharps, non-empty aerosol cans, paint and solvents, pesticides, pool chemicals, and propane.
 
-Bring two payments for each applicant. Payment #1 is the application fee payable to the U.S. Department of State; calculate it on the U.S. Department of State website. Accepted payment types for Payment #1 are Check or Money Order only. Payment #2 is a $35.00 Execution Fee payable to the City of Lake Forest. Accepted payment types for Payment #2 are Cash, Credit Card, Check, or Money Order.
+Residents in single-family homes can request up to two (2) HHW pickups per calendar year at no charge. Contact CR&R Customer Service at (949) 520-6005. Orange County Waste and Recycling operates year round drop-off centers; the nearest is in Irvine. For hours or information, contact the County of Orange at (714) 834-6752.
 
-Source: https://www.lakeforestca.gov/departments/city_clerk/passports.php
+You can dispose of up to five gallons of used motor oil at a household hazardous waste collection center or a certified oil collection center. Do not dispose of oil or oil filters with regular household trash.
 
-## Passport Renewals
+Source: https://www.lakeforestca.gov/departments/public_works/trash_and_recycling/residential_services.php
 
-The City Clerk's office does not handle passport renewal applications; you must submit them directly to the U.S. Department of State. Most renewals can be done by mail. If your passport was issued less than 15 years ago and you were at least 16 years old when it was issued, you may be able to submit a self-service renewal. See the U.S. Department of State - Passports by Mail page to check whether you qualify.
+## Sharps, Medication, Paint, E-Waste, Mattresses and Reusable Items
 
-Source: https://www.lakeforestca.gov/departments/city_clerk/passports.php
+- **Sharps:** Single-family residents can request a pre-paid mail-back sharps collection kit by contacting CR&R Customer Service at (949) 520-6005. Sharps should never be placed in any landfill, recycling, or organics container.
+- **Medication:** Medication should not be flushed down the drain or toilet.
+- **Paint:** PaintCare drop-off sites are listed at paintcare.org/drop-off-sites/ or oclandfills.com/hazardous-waste.
+- **E-waste and universal waste:** It is illegal to dispose of e-Waste (anything with a circuit board or battery) in any of your automated carts. Call CR&R Customer Service at (949) 520-6005 to arrange a curbside pickup.
+- **Mattresses and box springs:** Visit ByeByeMattress.com or call (855) 494-8400.
+- **Carpet:** Find drop-off sites at CarpetRecovery.org.
+- **Reusable/donated items:** Single-family residents get one (1) collection of reusable donated items per calendar year. Call CR&R Customer Service at (949) 520-6005. CR&R transports the items to a Goodwill location. Unacceptable items: glassware, hazardous waste, mattresses, automotive parts.
 
-## Notary Services
-
-The City Clerk's Office provides Notary Public services to the public, Monday through Thursday, from 9:00 AM to 5:00 PM. To request an appointment by phone or ask questions, call (949) 461-3400. Appointments can also be scheduled online. The fee is $15.00 per signature, payable by cash, credit card, check, or money order. Bring a valid form of identification, such as a California ID or driver's license.
-
-Source: https://www.lakeforestca.gov/departments/city_clerk/notary.php
-
-## Claims for Damages and Requests for Censure
-
-If you experience an event resulting in injuries or damages to personal property for which you feel the City may be responsible, you may file a Claim for Damages (Fillable PDF). Claims must be filed with the City Clerk in person or by mail pursuant to Government Code Section 915(a). All claims are processed by the City's third-party administrator, Athens Administrator. A representative from their office will contact you directly 2 - 3 weeks after receiving your claim.
-
-To begin the censure process, file a Request for Censure Form. Requests for Censure must be filed with the City Clerk in person or online. City Clerk contact: (949) 461-3400.
-
-Source: https://www.lakeforestca.gov/departments/city_clerk/claims.php
-
-## Emergency Notifications
-
-During emergencies, public safety and City officials share updates through AlertOC, Nixle, Cox Channel 851, and AM 1690. The Lake Forest Emergency Hotline at (949) 461-3536 provides recorded updates.
-
-Source: https://www.lakeforestca.gov/departments/communications/index.php
-
-## City of Lake Forest Mobile App and Public Information Office
-
-The free City of Lake Forest app lets you report issues, explore local events, and stay up to date on City news. It is available on the App Store and the Google Play Store.
-
-The Public Information Office can be reached at (949) 210-3069. Members of the media seeking information or an official statement may contact the Public Information Office at (949) 461-3413 or pio@lakeforestca.gov.
-
-Source: https://www.lakeforestca.gov/departments/communications/index.php
-
-## City Publications and e-Newsletters
-
-The Leaflet/Recreation Guide is available for Fall 2026 and Summer 2026, and the Summer 2026 Leaflet is viewable as a flipbook. Residents can sign up for the City of Lake Forest e-Newsletters and the Economic Development e-Newsletter. For questions, contact Erin Rodriguez, Communications & Marketing Manager, at 949-461-3413.
-
-Source: https://www.lakeforestca.gov/departments/communications/publications.php
-
-## Special Studies and Community Satisfaction Surveys
-
-Management Services conducts and/or oversees special studies related to City operations, including the biennial Resident and Business Satisfaction Study. The 2025 and 2023 Lake Forest Community Satisfaction Surveys are posted, as is an Animal Control Study (PDF) under Animal Control Services Study. Contact Bella Veloz, Communications & Marketing Specialist, at 949-210-3069.
-
-Source: https://www.lakeforestca.gov/departments/communications/special_studies.php
-
-## City Social Media
-
-The City of Lake Forest is on Facebook, Instagram, X, Threads, NextDoor, Youtube, LinkedIn and Linktree. The City's Social Media Policy (PDF) outlines guidelines for public interaction and content management across all City platforms.
-
-Source: https://www.lakeforestca.gov/departments/communications/social_media.php
-
-## Community Development Department
-
-Community Development can be reached at (949) 461-3460. The department has these divisions:
-- **Building & Safety Division:** reviews building construction plans, issues building permits, and provides inspection services for new construction and remodeling activity throughout the City.
-- **Community Preservation Division (aka Code Enforcement):** ensures compliance with property maintenance, zoning standards, and other City codes.
-- **Planning Division:** provides planning-related staff support to the City Council and Planning Commission and coordinates the activities of the regional planning agencies affecting the City.
-- **Sustainability:** supports local and regional efforts to improve air quality, reduce greenhouse gas emissions, promote energy conservation, and expand multimodal transportation options.
-
-Source: https://www.lakeforestca.gov/departments/community_development/index.php
+Source: https://www.lakeforestca.gov/departments/public_works/trash_and

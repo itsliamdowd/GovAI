@@ -2,118 +2,106 @@
 
 Generated 2026-10-17 from https://www.cypressca.org pages listed in each section's Source line.
 
-## City Hall and City Facilities — Addresses and Contacts
+## Park & Facility Locations
 
-City Hall: 5275 Orange Avenue, Cypress, CA 90630. Phone (714) 229-6700, fax (714) 229-3392, info@cypressca.org.
+City facility and park addresses (first 20 of 27 listed): Arnold Cypress Park, 8611 Watson Street; Baroldi Sycamore Park, 6616 W Cerritos Ave; Cedar Glen Park, 10201 Moody St; Cypress Civic Center/Library/Tennis Courts, 5275 Orange Avenue; Cypress Community Center, 5700 Orange Ave; Cypress Senior Center, 9031 Grindlay St; Damron Park, 5400 Myra Avenue; Darrell Essex Park, 5131 Ball Rd; Eucalyptus Park, 5900 Orangewood Street; Evergreen Park, 9300 Moody St; Hettinga Manzanita Park, 6500 Orangewood AVE; La Palma Community Center, 7821 Walker Street, La Palma, CA 90623; Laurel Park, 5902 Cathy Avenue; Lexington Junior High, 4351 Orange Avenue; Lexington Park, 4600 Cerritos Ave; Mackay Park, 8732 Walker Street; Maple Grove Park North, 6221 Orangewood Ave; Maple Grove Park South, 6220 Orangewood Ave; Nature Park, 4201 Ball Rd; Oak Knoll Park, 9600 Graham St. All are in Cypress, CA 90630 unless noted.
 
-Community Center: 5700 Orange Avenue, (714) 229-6780, fax (714) 229-3398, crpd@cypressca.org. Maintenance Yard: 5285 Cypress Street, (714) 229-6760, fax (714) 229-3395, pw@cypressca.org. Senior Center: 9031 Grindlay Street, (714) 229-6670, fax (714) 229-2008, senior@cypressca.org.
+Listed amenities: Arnold Cypress Park has a lighted full basketball court, pickleball court, lighted volleyball court, natural and synthetic turf softball fields, sport field lighting, fitness zone, electric vehicle parking, a reservable picnic site, restrooms and a 1/2 mile walking path. Cypress Civic Center has tennis courts. Evergreen Park has a non-lighted full basketball court, a reservable picnic site and restrooms. Lexington Park has an exercise course, multi-sport court, a reservable picnic site, restrooms and natural/synthetic soccer fields. Oak Knoll Park has a baseball field, softball field, non-lighted volleyball court, non-lighted full basketball court, exercise course and restrooms. Nature Park has a nature facility and restrooms. Mackay Park has a non-lighted half basketball court, exercise course and restrooms.
 
-Police Department: 5275 Orange Avenue, (714) 229-6600, fax (714) 229-8957, cypd@cypressca.org. Police Emergencies: 911. The Contact Us page also has an online form for questions, comments or suggestions; include your email address if you want a response.
+Source: https://www.cypressca.org/how-do-i/find-city-facilities-parks
 
-Source: https://www.cypressca.org/resident/contact-us
+## Report a Park or Facility Issue
 
-## City Services Phone Directory
+To report an issue at a City park or facility, call (714) 229-6600 or post a request in the City of Cypress Central App.
 
-Building Permits & Inspections (714) 229-6730. Business Licenses (714) 229-6712. City Clerk (714) 229-6685, cityclerk@cypressca.org. Code Enforcement (714) 229-6726. Community Development (714) 229-6720, cdd@cypressca.org. Economic Development Programs (714) 229-6720. Engineering Division (714) 229-6740, pw@cypressca.org.
+Source: https://www.cypressca.org/how-do-i/find-city-facilities-parks
 
-Finance & Administrative Services (714) 229-6700, fin@cypressca.org. Housing Programs (714) 229-6723. Human Resources (714) 229-6684. Planning & Zoning (714) 229-6720. Public Works Maintenance (714) 229-6760, maintenance@cypressca.org. Purchasing (714) 229-6713. Recreation & Community Services (714) 229-6780, crpd@cypressca.org. Senior Center & Senior Programs (714) 229-6670, senior@cypressca.org. Webmaster: webmaster@cypressca.org.
+## Facility & Park Rentals
 
-Police – Emergency: 911. Police – Non-Emergency: (714) 229-6600, cypd@cypressca.org.
+The City of Cypress has indoor and outdoor facilities for family celebrations, wedding receptions, birthday parties and company meetings. Cypress residents may reserve the facilities a maximum of 15 months in advance. Non-residents may reserve a maximum of 11 months in advance. A completed reservation packet is required with payment to reserve a date. For questions about rental fees or availability, contact the Cypress Recreation & Community Services Department at (714) 229-6780.
 
-Source: https://www.cypressca.org/resident/contact-us
+Rental locations: Cypress Community Center, 5700 Orange Ave., Cypress, CA 90630; Cypress Senior Center, 9031 Grindlay St., Cypress, CA 90630; Arnold/Cypress Park, 8611 Watson St., Cypress, CA 90630; Evergreen Park, 9300 Moody Street; Lexington Park Pavillion, 4600 W Cerritos Ave; Veterans Park, 4554 Avenida Granada, Cypress, CA 90630.
 
-## Utilities, Waste Disposal and Hotlines
+Source: https://www.cypressca.org/how-do-i/find-city-facilities-parks/reserve-a-park-or-facility
 
-Utilities: Southern California Edison (800) 655-4555; Golden State Water (800) 999-4033; Southern California Gas (800) 427-2200.
+## Recreation Class Registration — Payment Fees
 
-Phone and internet: AT&T Business (800) 750-2355, Residence (800) 310-2355; Verizon Business & Residence (800) 483-5000; Frontier Communications (833) 747-9645 (www.frontier.com); Charter Spectrum (855) 243-8892 (www.spectrum.com/services/california/cypress).
+Fee notice dated Tue, Feb 01, 2022: there is a NON-REFUNDABLE 2.75% convenience fee ($1.95 minimum) attached to all credit card transactions. ACH payment options (e-check) are available for a flat fee of $1.50. The additional fees are not itemized and will not appear on your receipt. Cash and check payments can still be made at the Community Center and Senior Center, Monday - Friday between 8:00am-5:00pm.
 
-Waste Disposal: Valley Vista Services (714) 380-5450. The page also links a Trash Collection Schedule and a Street Sweeping Schedule. Miscellaneous: Graffiti Hotline (562) 949-4107; Joint Forces Training Base (JFTB) Noise Hotline (562) 795-2572; Traffic Signal Maintenance (24 hour) (714) 563-4099; Dig Alert (800) 227-2600; Air Quality Management District (800) 425-6247.
-
-Source: https://www.cypressca.org/resident/utilities-information
-
-## Administration — City Manager and City Clerk
-
-Administration Department main phone number: (714) 229-6680. Shannon DeLong is the City Manager and Lisa Berglund is the City Clerk. The City Manager is the City's Chief Administrative Officer, appointed by the City Council, and directs the work of all department heads and city staff. The department prepares the annual city budget and the seven-year capital improvement program, and it oversees community events.
-
-The City Clerk prepares City Council agendas, maintains City Council minutes, ordinances and resolutions, preserves official City records, conducts City elections, records deeds, administers oaths, receives and processes liability claims against the City, responds to Public Records Act requests, and provides applications for voter registration. The page links to a Request for Public Records, the Online Public Records Center, and File a Claim Against the City.
-
-Source: https://www.cypressca.org/government/departments/city-management-city-clerk
-
-## Form 802 Ticket Disclosure
-
-Under Section 18944.1 of the Fair Political Practices Commission, the City posts a ticket policy. Ticket disclosure (Form 802) is posted within 30-days after distribution of tickets.
-
-Source: https://www.cypressca.org/government/departments/city-management-city-clerk/form-802-ticket-disclosure
-
-## Finance & Administrative Services
-
-Main Number (714) 229-6700; Business Licenses (714) 229-6712; Human Resources (714) 229-6684; email fin@cypressca.org. Office Hours: Monday–Thursday 7:30 a.m.–5:30 p.m.; Friday 8:00 a.m.–5:00 p.m. The Director is Stephanie Sikkema, Director of Finance & Administrative Services/City Treasurer.
-
-The department oversees financial accounting, payroll, fixed assets, departmental budgets, business licensing, personnel data, information technology, accounts payable and investments. Its divisions are Finance, Human Resources and Information Technology.
-
-Source: https://www.cypressca.org/departments/finance-administrative-services
-
-## Annual Budget and Capital Improvement Program
-
-The page lists the FY 2026-27 Adopted Budget, the Budget in Brief FY 2026-27, and City of Cypress Annual Budgets back to Fiscal Year 2014-15. It also lists Cypress Recreation and Park District Operating Budgets for Fiscal Years 2014-15 and 2015-16.
-
-The Capital Improvement Program (CIP) identifies major public improvements to the City's infrastructure over the next seven years. The current fiscal year CIP is approved as part of the annual budget. The 7-Year CIP covers FY 2026-27 to 2032-33.
-
-Source: https://www.cypressca.org/departments/finance-administrative-services/annual-budget
-
-## Annual Comprehensive Financial Report
-
-Annual Comprehensive Financial Reports are posted for the fiscal years ended June 30, 2025, 2024, 2023 and 2022. Cypress Recreation & Park District Basic Financial Statements & Independent Auditors' Reports are posted for the fiscal years ended June 30, 2024, 2023, 2022 and 2021. The page also links Previous Annual Financial Reports.
-
-Source: https://www.cypressca.org/departments/finance-administrative-services/annual-comprehensive-financial-report
-
-## Business Licenses — Requirements, Fees and Renewal
-
-Under Chapter 15 of the Cypress Municipal Code, all businesses and non-profit entities must obtain and maintain a Cypress business license/tax certificate to transact business or occupy space in the City. This includes businesses located outside Cypress that conduct business activity within city limits, such as contractors, sub-contractors, gardeners, caterers and food trucks. An application must be submitted within 30 days of the first date of conducting business in the City. Applications and annual renewals can be submitted online through the City's 3rd Party Administrator, HdL Companies - Fresno, CA.
-
-All licenses expire annually on June 30. Renewals are sent to business owners the first week of July. Out of town contractors must renew their license prior to applying for a building permit, and building permits will not be issued to contractors who do not possess a valid business license. The current administrative fee for new business licenses and license renewals is $35. The Disability Access and Education Fee is $4, added to any application for a local business license or renewal.
-
-Payment: online by credit card (American Express, Visa, MasterCard, or Discover) or e-check, with no additional charge for e-check. Credit card payments are subject to a 2.9 percent convenience fee (minimum $2.00). For assistance, call (714) 229-6712 Monday through Friday from 8:00 a.m. to 5:00 p.m.
-
-Source: https://www.cypressca.org/departments/finance-administrative-services/business-licenses
-
-## Business Licenses — Supporting Documents and Other Agencies
-
-In-town businesses using a fictitious business name that does not include the owner's surname must first file a Fictitious Business Name Statement through the Orange County Clerk/Recorder. The business address and ownership on the Statement must match the Application. Businesses selling or leasing merchandise, vehicles, or other tangible property need a Seller's Permit from the California Department of Tax and Fee Administration, and the permit number must be provided in the Application. Corporations must provide a copy of the Articles of Incorporation. Home-based businesses are subject to the Home Occupation Permit Criteria; questions go to the Planning Division at (714) 229-6720.
-
-Other agencies listed: Orange County Clerk Recorder, 222 S Harbor Blvd. #100, Anaheim, CA 92805, 714-834-2500 (Fictitious Business Name); California Department of Tax and Fee Administration, 16715 Von Karman Avenue #200, Irvine, CA 92606, 949-440-3473 (Seller's Permit); Internal Revenue Service 800-829-4933 (FEIN); Orange County Environmental Health, 1241 E. Dyer Road #120, Santa Ana, CA 92705, 714-433-6000 (Health Permits for Food Service Businesses); Contractors State License Board 800-321-2752; Cypress Chamber of Commerce 714-484-6015 (Monday thru Thursday 9:00 a.m. - 5:00 p.m.).
-
-Source: https://www.cypressca.org/departments/finance-administrative-services/business-licenses
-
-## Community Development Department
-
-The Community Development Department is open to the public. For questions or to schedule an appointment, call (714) 229-6720 or email cdd@cypressca.org. Alicia Velasco is the Director of Community Development. Hours: Monday - Thursday 7:30 a.m. - 5:30 p.m.; Friday 8:00 a.m. - 5:00 p.m. The Public Counter is closed daily from 12:30 p.m. to 1:30 p.m.
-
-Divisions: Planning (714) 229-6720, cdd@cypressca.org; Housing (714) 229-6720, cdd@cypressca.org; Economic Development (714) 229-6753, cwong@cypressca.org; Code Enforcement (714) 229-6726, cdd@cypressca.org.
-
-Source: https://www.cypressca.org/departments/community-development
-
-## Housing Division and Housing Assistance
-
-The Housing Division provides information on fair housing resources, the City's 2021-2029 Housing Element, ADUs, reasonable accommodations, residential water and energy conservation, the HELP II Program, Orange County and utility assistance programs, and Federal and State laws for tenants and landlords. It also provides SB 330 and SB 35 housing development information. For questions, contact the planning department at 714-229-6720.
-
-Available Assistance: the City is offering up to $20,000 in the form of a 10 year, forgivable loan, in which the principal is reduced annually by 10% and completely forgiven after the tenth year. To get started, print the pdf Preliminary Application Form, fill it out, stamp it and mail it, or fill out and submit the Preliminary Application Form online.
-
-Source: https://www.cypressca.org/departments/community-development/housing-division
+Source: https://www.cypressca.org/how-do-i/find-city-facilities-parks/register-for-recreation-classes-activities
 
 ## Recreation & Community Services Commission
 
-The commission meets the third Tuesday of each month at 6:00 p.m. at the Community Center. The 2026 meeting dates are January 20, February 17, March 17, April 21, May 19, June 8 (Special Meeting), June 16, July 21, August 18, September 15, October 20 (Meeting Canceled), November 17 and December 15.
+The Recreation & Community Services Commission meets the third Tuesday of each month at 6:00 p.m. at the Community Center. It provides recommendations and advice to the City Council on policies, projects and other matters pertaining to parks, recreation and community services facilities and programs. The departmental liaison is Recreation and Community Services.
 
-Members and term expirations: Fermin Cervantes, June 30, 2027; Jeff Dronkers, June 30, 2030; Colin Edwards, June 30, 2028; Carol Erbe, June 30, 2028; Anne Logovii, June 30, 2029; Sukrit Mukherjee, June 30, 2030; Kenna Russell, June 30, 2029. The commission advises the City Council on policies, projects and other matters pertaining to parks, recreation and community services facilities and programs.
+2026 meeting dates: January 20, February 17, March 17, April 21, May 19, June 8 (Special Meeting), June 16, July 21, August 18, September 15, October 20 (Meeting Canceled), November 17, December 15.
+
+Members and term expirations: Fermin Cervantes, June 30, 2027; Jeff Dronkers, June 30, 2030; Colin Edwards, June 30, 2028; Carol Erbe, June 30, 2028; Anne Logovii, June 30, 2029; Sukrit Mukherjee, June 30, 2030; Kenna Russell, June 30, 2029.
 
 Source: https://www.cypressca.org/government/boards-commissions-committees/recreation-community-services-commission
 
 ## Senior Citizens Commission
 
-The commission meets at 3:00 p.m. on the second Wednesday of each month at the Cypress Senior Center. The 2026 meeting dates are January 14, February 11, March 11, April 8, May 13, June 10, July 8, August 12, September 9, October 14 (Meeting Cancelled), November 11 and December 9.
+The Senior Citizens Commission meets at 3:00 p.m. on the second Wednesday of each month at the Cypress Senior Center. It provides recommendations and advice to the City Council on policies, projects and other matters pertaining to senior citizens programs and services and the senior center facilities. The departmental liaison is Recreation and Community Services.
 
-Members and term expirations: Cheryl Bhence, June 30, 2030; Glenn Button, June 30, 2029; Linda Croce, June 30, 2028; Claudia Nessary, June 30, 2030; Ginger Osman, June 30, 2027; Marilyn Reames, June 30, 2029; David Skorupinski, June 30, 2028. The commission advises the City Council on policies, projects and other matters pertaining to senior citizens programs and services and the senior center facilities.
+2026 meeting dates: January 14, February 11, March 11, April 8, May 13, June 10, July 8, August 12, September 9, October 14 (Meeting Cancelled), November 11, December 9.
+
+Members and term expirations: Cheryl Bhence, June 30, 2030; Glenn Button, June 30, 2029; Linda Croce, June 30, 2028; Claudia Nessary, June 30, 2030; Ginger Osman, June 30, 2027; Marilyn Reames, June 30, 2029; David Skorupinski, June 30, 2028.
 
 Source: https://www.cypressca.org/government/boards-commissions-committees/senior-citizens-commission
+
+## Certified Farmers Market
+
+The Cypress Certified Farmers Market is held EVERY SATURDAY from 9:00 am to 2:00 pm (Rain or Shine) at the corner of Katella and Lexington in the Cottonwood Church parking lot. It is open all year long. For more information or to inquire about vendor opportunities, contact Enriched Farms at (818) 699-6204 or visit www.enrichedfarms.com.
+
+Source: https://www.cypressca.org/activities/community-events/certified-farmers-market
+
+## Trash, Recycling & Organics Collection — Valley Vista Services
+
+The City of Cypress contracts with Valley Vista Services for residential trash, recycling and organics collection. The City has an exclusive franchise agreement with Valley Vista Services, and all trash and recycling must be picked up by them. Valley Vista Customer Service: (714) 380-5450. To activate trash service or report any problem with your service, call 714-380-5450. For a residential project, contact the Building Division at 714-229-6730 for information on who you can use to dispose of construction debris.
+
+Source: https://www.cypressca.org/departments/public-works/trash-recycling/frequently-asked-questions
+
+## Extra Trash and Recycling Carts
+
+To get an extra regular trash can, call Valley Vista Services at 714-380-5450 to arrange service. The can will be delivered on your regularly scheduled trash pick up day. To get another recycling can, contact Valley Vista Services at 714-380-5450. There is no fee for an additional recycling can, and it will be delivered on your regularly scheduled trash pick up day.
+
+Source: https://www.cypressca.org/departments/public-works/trash-recycling/frequently-asked-questions
+
+## Trash Collection Day, Holidays and Cart Placement
+
+To determine your trash collection day, check the City's Trash Collection Schedule. There is no trash pick up on the following holidays: New Year's Day, Memorial Day, July 4th, Labor Day, Thanksgiving Day, and Christmas Day. If your collection day falls on or after the holiday, your collection will be delayed by one day during the holiday week. For more information, visit www.cypress.valleyvistaservices.com and click on Holiday Schedule, or call Valley Vista Services at 714-380-5450.
+
+The City of Cypress Municipal Code specifies that all trash containers be placed behind a screened area and not be viewed from the public right-of-way on non-trash pick up days.
+
+Source: https://www.cypressca.org/departments/public-works/trash-recycling/frequently-asked-questions
+
+## Bulky Item Pickup
+
+Valley Vista Services customers can receive up to four free bulky item pickups per calendar year. For the remainder of 2026, two pickups are available, with the full four-pickup benefit beginning in 2027.
+
+Single-family residences: up to 10 items per scheduled pickup. Schedule by submitting a request online at valleyvistaservices.com/bulky-item, emailing an itemized list to vvsbulky@myvvs.com, or contacting Valley Vista Services customer service at (800) 442-6454. Schedule your pickup at least 48 hours before your regular trash collection day.
+
+Multi-family residences: up to four items per unit, per pickup. Requests should be coordinated through your property manager or HOA.
+
+Common bulky items include furniture (sofas, desks, chairs and tables), mattresses and box springs, patio furniture, stoves and dishwashers, washers and dryers, water heaters, microwave ovens and air conditioners, toilets, sinks and other porcelain products, shipping crates and containers, bicycles and suitcases, barbecues and swing sets, and tires, tools and toys.
+
+Source: https://www.cypressca.org/departments/public-works/trash-recycling/bulky-items
+
+## Electronic Waste (E-Waste)
+
+Electronic waste, or e-waste, includes appliances and devices that contain a circuit board or battery. It is illegal to dispose of e-waste in your automated carts. Valley Vista Services will collect these items for proper disposal and recycling. Examples include dishwashers and microwave ovens, televisions, printers, scanners and desktop copiers, digital cameras, computer monitors, computers and laptops, computer keyboards, VCR, DVD, CD and tape players, cellphones, stereos and speakers, cables and digital clocks, and other corded appliances and devices not defined as universal waste. Curbside e-waste pickup is only available to residents.
+
+Source: https://www.cypressca.org/departments/public-works/trash-recycling/bulky-items
+
+## Donating Usable Items
+
+Goodwill Industries accepts usable items at 10650 Walker St. in Cypress. Habitat for Humanity of Orange County ReStores accepts larger household items in good working condition, including furniture, appliances, cabinets, lighting, plumbing fixtures, doors and windows, and is also licensed to accept electronic waste. Call (714) 434-6202 for more information.
+
+Source: https://www.cypressca.org/departments/public-works/trash-recycling/bulky-items
+
+## Household Hazardous Waste Collection Centers
+
+Household hazardous waste Collection Centers are located at 1071 N. Blue Gum St. Anaheim, CA; 17121 Nichols Street - Gate 6 Huntington Beach, CA; and 6411 Oak Canyon Irvine, CA. Hours of operation: Tuesday through Saturday from 9:00 am to 3:00 pm.
+
+Typical items accepted: antifreeze, batteries, flammables / combustibles, household chemicals, household items with cathode ray tubes (CRTs), mercury thermostats or thermometers, paint (latex and oil-based), pesticides / herbicides, used motor oil, and used oil filters. Wastes are only accepted in original containers and are limited to 15 gallons or 125 pounds

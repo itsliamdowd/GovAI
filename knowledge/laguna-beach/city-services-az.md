@@ -2,145 +2,133 @@
 
 Generated 2026-10-17 from https://www.lagunabeachcity.net pages listed in each section's Source line.
 
-## City Hall Hours
+## Recreation Division
 
-City Hall office hours are Monday–Thursday 7:30 a.m. to 5:30 p.m. and alternate Fridays 7:30 a.m. to 4:30 p.m. City Hall is closed alternate Fridays. Information about closed Fridays is available on the home page of the City website.
+The Recreation Division is located in the Community and Susi Q Center at 380 Third Street and at the new Community and Recreation Center at 30516 South Coast Highway. Staff can help with class and camp registration; wedding, photo and alcohol permits; and questions about parks, recreation and community services.
 
-City of Laguna Beach General Information: (949) 497-3311.
+Drop-in sports at the Laguna Beach Community and Recreation Center:
+- Volleyball: every Saturday 1:00–3:00 p.m.
+- Basketball: every Wednesday 5:30–7:30 p.m. and Saturday 9:00 a.m.–1:00 p.m.
+- Pickleball: every Monday 8:30–11:00 a.m.
+- Pickleball court reservations: every Wednesday and Friday 8:00–10:00 a.m. and 10:00 a.m.–noon. Reservations are required and can be booked a week in advance.
 
-Source: https://www.lagunabeachcity.net/live-here/city-hall-hours
-
-## City Clerk — Records, Elections and Services
-
-The City Clerk's Office prepares the agenda before and the minutes after each City Council meeting. It administers the City's record management system, maintains the City's Municipal Code, and administers certain tort claims. It also processes legal documents such as ordinances, resolutions, contracts, agreements, permits, in-lieu certificates, historic register applications, domestic partnership registrations, and civil marriage ceremonies. The office also provides information about and referrals to City services.
-
-The City Clerk is responsible for Laguna Beach's municipal elections and ensures that elected and appointed officials adhere to the filing requirements of the Political Reform Act. The City Clerk serves an elected four-year term. The current City Clerk, Ann Marie McKay, was elected in November 2020, re-elected in November 2024, and will be up for re-election in November 2028.
-
-Contacts: City Clerk's Office (949) 497-0705; Elected City Clerk Ann Marie McKay (949) 497-0309; Deputy City Clerk Cheryl Baldridge (949) 497-0302. Hours: Monday–Thursday 7:30 a.m. to 5:30 p.m.; alternate Fridays 7:30 a.m. to 4:30 p.m. (closed alternate Fridays).
-
-Source: https://www.lagunabeachcity.net/government/departments/city-clerk
-
-## ADA Accommodations for City Meetings
-
-Under the Americans with Disabilities Act, persons with a disability who need a disability-related modification or accommodation to participate in a meeting, including auxiliary aids or services, may request it from the City Clerk at (949) 497-0705 (telephone) or (949) 497-0771 (facsimile). Notification 48 hours prior to the meeting will enable the City to make reasonable arrangements to assure accessibility.
-
-Source: https://www.lagunabeachcity.net/government/departments/city-clerk
-
-## City Manager's Office
-
-Laguna Beach operates under the Council-Manager form of government. The City Council provides overall policy direction and appoints a City Manager to implement the policies. The City Manager's Office coordinates policy implementation, oversees the City's administrative function, and provides leadership for operational departments.
-
-City Manager: Dave Kiff, (949) 497-0704, dkiff@lagunabeachcity.net. Assistant City Manager: Jeremy Frimond, (949) 464-6673. City Manager's Office: (949) 497-0704. Hours: Monday–Thursday 7:30 a.m. to 5:30 p.m.; alternate Fridays 7:30 a.m. to 4:30 p.m. (closed alternate Fridays). Residents can sign up for the City Manager's email updates on the page.
-
-Source: https://www.lagunabeachcity.net/government/departments/city-manager
-
-## Community Development — Permit Counter Hours and Check-In
-
-The public permit counter is open Monday through Thursday, 7:30 a.m. - 2:00 p.m. The last sign-in is at 12:45 p.m. so that all business is completed by the 2:00 p.m. closing time. Staff begin monitoring the check-in queue approximately 1½ hours before closing. Once staff determine the queue has reached capacity during the final 1½ hours of service, no additional sign-ins are accepted. Customers can arrive early or schedule an appointment with a Planner/Building Plan Reviewer to avoid missing the daily cut-off.
-
-Contacts: Community Development (949) 497-0712; Planning (949) 497-0713; Building (949) 497-0715; Code Enforcement (949) 497-0301; Economic Development (949) 497-0736. Specific questions can be submitted through the Ask Laguna website.
-
-Source: https://www.lagunabeachcity.net/government/departments/community-development
-
-## Building Permits and Zoning Plan Checks — Apply Online
-
-Building Permits and Zoning Plan Checks can be submitted through the City's Public Permit Portal in two steps: (1) register an account for the Public Permit Portal, and (2) submit project plans and the completed application through the portal. The Community Development Department Fees page was last updated May 12, 2026.
-
-Source: https://www.lagunabeachcity.net/government/departments/community-development
-
-## Phishing Scam Warning for Planning Applicants
-
-A phishing scam is affecting applicants with applications pending with the Planning Division. The City of Laguna Beach will never email you requesting that you wire money. City online payments are conducted only through credit card transactions, or in person by cash or check. Official City emails come only from an "@lagunabeachcity.net" email address. If in doubt about an invoice or email, contact the City directly using one of the publicly posted phone numbers on the City's official website.
-
-Source: https://www.lagunabeachcity.net/government/departments/community-development
-
-## Recreation Division — Locations and Services
-
-The Recreation Division is located in the Community and Susi Q Center at 380 Third Street and at the new Community and Recreation Center at 30516 South Coast Highway. Recreation staff can help with class and camp registration; wedding, photo and alcohol permits; and questions about parks, recreation and community services.
-
-Contacts: Community & Susi Q Center (949) 464-6645; Community & Recreation Center (949) 715-8620. Hours: Monday–Thursday 7:30 a.m. to 5:30 p.m.; alternate Fridays 7:30 a.m. to 4:30 p.m. (closed alternate Fridays).
+Contacts: Community & Susi Q Center (949) 464-6645; Community & Recreation Center (949) 715-8620. Hours: Monday–Thursday 7:30 a.m. to 5:30 p.m.; alternate Fridays 7:30 a.m. to 4:30 p.m. City Hall is closed alternate Fridays.
 
 Source: https://www.lagunabeachcity.net/government/departments/parks-recreation
 
-## Drop-in Sports at the Community and Recreation Center
+## Parks — Hours, Reservations, and Permits
 
-- Drop-in Volleyball: every Saturday 1:00 - 3:00 p.m.
-- Drop-in Basketball: every Wednesday 5:30 - 7:30 p.m. and Saturday 9:00 a.m. - 1:00 p.m.
-- Drop-in Pickleball: every Monday 8:30 - 11:00 a.m.
-- Pickleball Court Reservations: every Wednesday and Friday 8:00 - 10:00 a.m. and 10:00 a.m. - noon. Reservations are required and can be booked a week in advance.
+Recreational use of City parks is first-come, first-served. The City does not reserve or rent parks or barbecue facilities for parties, events or gatherings of any kind. City beaches are open 5:00 a.m. until 1:00 a.m. unless otherwise noted. City parks are closed 10:00 p.m. to 5:00 a.m. Restrooms are open dawn to dusk. Crescent Bay Point Park is open 5:00 a.m. until 12:00 midnight. The Dog Park closes every Wednesday for maintenance. City tennis courts open at 7:30 a.m. until dusk unless lit courts. The open space near Alta Laguna Park closes at sunset; it is part of OC Parks' Aliso and Wood Canyons park.
 
-Residents can ask to be added to the email distribution list for volleyball, basketball, and/or pickleball.
+Permits are required for weddings and filming on City property. Wedding, Photo & Film Permits: (949) 497-0716.
 
-Source: https://www.lagunabeachcity.net/government/departments/parks-recreation
+Source: https://www.lagunabeachcity.net/government/departments/parks-recreation/parks-and-open-space
 
-## Marine Safety — Beach Safety and Lifeguard Jobs
+## Facility Rentals and Field Permits
 
-Marine Safety, (949) 497-0310. Police & Fire Non-Emergency: (949) 497-0701. Beach safety tips from the United States Lifeguard Association: learn to swim; swim near a lifeguard (USLA statistics over a ten-year period show the chance of drowning at a beach without lifeguard protection is almost five times as great as at a beach with lifeguards); swim with a buddy; check with the lifeguards; use sunscreen and drink water; obey posted signs and flags; keep the beach and water clean; and learn rip current safety. For a rip current, don't fight it: swim parallel to shore until you feel the current relax, then swim back to the beach.
+Per LBMC 18.28.010, parks are to be used only with the structures, equipment and other facilities provided by the city. No additional tables, booths, tents or structures may be erected or installed for general use activities. All group field events require a field permit. Permits for weddings and filming on City property can be obtained from the Recreation Division.
 
-The City is accepting applications for the 2026/2027 Seasonal Ocean Lifeguard Testing and Academies, for lifeguarding in the summer of 2027.
+- Community & Susi Q Center: classrooms and meeting rooms are available for meetings, presentations, and trainings. Call (949) 497-0716 or email atirnauer@lagunabeachcity.net.
+- Community & Recreation Center and Lang Park: meeting rooms, art room, grass field, and indoor gymnasium are available for meetings, presentations, sports practices and trainings. Call (949) 497-0788 or email tdoran@lagunabeachcity.net.
+- City Council Chambers: available for meetings, presentations, and trainings. Rentals are not permitted for fee-based classes or programs, parties, meals, receptions, fundraising events, business, or sales purposes.
 
-Source: https://www.lagunabeachcity.net/government/departments/marine-safety
+Source: https://www.lagunabeachcity.net/government/departments/parks-recreation/parks-and-open-space/facility-rentals
 
-## Police Department — Contact and Lobby Hours
+## Hortense Miller Garden Tours
 
-Laguna Beach Police is at 505 Forest Avenue, phone (949) 497-0701 (also stated as 949-497-0701). The department is on duty 24 hours a day. Emergency: 911. Police Public Information Office: LBPDmedia@lagunabeachcity.net.
+The Hortense Miller Home and Garden covers 2.5 acres and has been part of the City since 1959. The Friends of the Hortense Miller Garden offer docent-led tours starting at 10:00 a.m. on one Thursday per month and most Saturdays (varies per month). The home and garden are in a private, gated community, so tour groups meet at a designated location and carpool to the property with a docent. Tours last approximately 2 hours; comfortable, flat-soled shoes are suggested due to steep and uneven paths. Recreation: (949) 464-6645.
 
-Front lobby hours: Monday–Thursday 7:30 a.m. to 5:30 p.m.; alternate Fridays 7:30 a.m. to 4:30 p.m. The lobby is closed alternate Fridays and closed on all holidays, except for July 4th. The department's page links to paying a parking ticket, community programs, the Daily Log, and the Arrest Log.
+Source: https://www.lagunabeachcity.net/government/departments/parks-recreation/special-events-programs/hortense-miller-garden-tours
 
-Source: https://www.lagunabeachcity.net/government/departments/police
+## Community Assistance Grants
 
-## Public Works and Utilities — Contacts and Hours
+The City provides Community Assistance Grants to nonprofit organizations serving Laguna Beach residents through specialized programs and services, to support new initiatives or the expansion of services. All awards are approved by the City Council. The City awarded $234,400 in grants for the 2026-2027 Fiscal Year.
 
-The Public Works Office is at 479 Ocean Avenue. Public Works: (949) 497-0711. Maintenance Division: (949) 497-0711. Recycling & Trash (CR&R): (949) 662-3819. Recycling and Solid Waste Division: (949) 464-6677, Recycle@lagunabeachcity.net. Services listed include Right-of-Way Permits, Capital Improvement Projects, Outside Agency Projects, Utility Undergrounding Projects, and RFPs & Bids.
+The application process for FY 2027-2028 will open in early 2027. Applications must be submitted electronically. Criteria: local nonprofit organizations with established, functioning programs; projects and services that provide the greatest benefit in meeting the needs of Laguna Beach residents; new and/or expanded services not currently available to residents. Contact Program Liaison Andrea Tirnauer, (949) 497-0716, atirnauer@lagunabeachcity.net.
 
-Hours: Monday–Thursday 7:30 a.m. to 5:30 p.m.; alternate Fridays 7:30 a.m. to 4:30 p.m. (closed alternate Fridays).
+Source: https://www.lagunabeachcity.net/government/departments/parks-recreation/community-assistance-grants
 
-Source: https://www.lagunabeachcity.net/government/departments/public-works
+## Residential Carts and Trash Set-Out Rules
 
-## Water Quality and Water Utilities
+Laguna Beach residents receive three carts: blue lid for recyclables; green lid for food scraps, food-soiled paper, and yard waste; black lid for trash or landfill. Do not use regular plastic bags in the green cart; newspaper, paper bags, and approved compostable bags may be used as liners. Do not place palm branches, ice plant, animal waste, or plastic bags in the green cart.
 
-The Laguna Beach County Water District supplies water to most of Laguna Beach. Residents of South Laguna get their water from the South Coast Water District. Water Quality staff: (949) 497-0711. Plumber's Hotline: (949) 464-6616. Hours: Monday–Thursday 7:30 a.m. to 5:30 p.m.; alternate Fridays 7:30 a.m. to 4:30 p.m.
+No bin, cart, or other container may be placed adjacent to or in a street or public right-of-way before seven p.m. the day prior to scheduled collection, and must be removed by six a.m. the day following collection. Outdoor storage areas may be screened with lattice, wood or other suitable fencing with approval from the City's Zoning Division, (949) 497-0714. See Laguna Beach Municipal Code Section 7.16.150.
 
-Source: https://www.lagunabeachcity.net/government/departments/water-quality
+Source: https://www.lagunabeachcity.net/government/departments/public-works/recycling-waste-and-compost
 
-## Private Development Projects — Water Quality and Sewer Review
+## Bulky Item Collection
 
-The Engineering and Water Quality Divisions review private development projects for compliance with Water Quality Management Plan requirements, sewer connection standards, and backwater valve installation for hillside, oceanside, and multilevel properties. They also coordinate with the Building Division on all remodels and home upgrades to ensure each private sewer lateral is in serviceable condition and free of defects that could lead to sewer backups.
+Residents and businesses get free bulky item collections four (4) times each calendar year. Bulky items include furniture, appliances and electronic waste. Up to ten (10) items may be collected each time at no charge; additional collection is available for a charge. Schedule online through the CR&R Laguna Beach page or call CR&R Customer Service at (949) 662-3819.
 
-Available documents: LID Checklist FAQ, LID Checklist for Development Projects, Policy of Fixed Improvements Landscaping Easements, South OC WQMP Model (2017), Water Quality Design Standards, and WQMP Process Flow Chart. Staff: (949) 497-0711. Plumber's Hotline: (949) 464-6616.
+Source: https://www.lagunabeachcity.net/government/departments/public-works/recycling-waste-and-compost
 
-Source: https://www.lagunabeachcity.net/government/departments/water-quality/private-development-projects
+## Valet and Temporary Waste Services
 
-## Clean Ocean Business and Mobile Business Program
+Valet service: CR&R staff retrieve your carts from your home and return them after service for $31.22 per month. For customers who require assistance due to a disability, the service is at no cost upon presentation of valid disability documentation. Temporary services for construction and clean-up projects use bin sizes from 3-yard bins to 40-yard rolloff bins. For either service, call CR&R Customer Service at (949) 662-3819.
 
-Releasing any kind of contaminant or polluting substance into a storm drain, or any place where it will run off into a storm drain, is against the law and subject to a citation and/or fine. Water in Laguna Beach's streets, gutters and storm drains often flows directly to local creeks or the ocean without treatment. Businesses should follow the Clean Ocean Business Guidelines.
+Source: https://www.lagunabeachcity.net/government/departments/public-works/recycling-waste-and-compost
 
-The Mobile Business Program helps mobile businesses understand Laguna Beach's regulations and best practices, and it inspects mobile businesses and enforces applicable ordinances. Activities with significant potential to pollute include carpet cleaning, cement mixing, landscaping, masonry, mobile car washing, mobile dog washing, painting, pest control services, pool cleaning, power washing, window cleaning, and anything that could release water into storm sewers.
+## Holiday Tree Recycling and Textile Recycling
 
-Source: https://www.lagunabeachcity.net/government/departments/water-quality/running-a-clean-ocean-business
+CR&R will collect all holiday greenery for a three-week period between December 26th and January 16th. Place greenery in or next to your organics cart. (The Trash FAQ page lists the window as December 26th to January 15th.) CR&R also collects textiles placed at the curb during two specific weeks of the year; the textiles go to local charities. Additional details are to be announced.
 
-## Fats, Oils, and Grease (FOG) Program
+Source: https://www.lagunabeachcity.net/government/departments/public-works/recycling-waste-and-compost
 
-The grease ordinance (Title 17, Chapter 17.40 of the Municipal Code) sets regulations for disposing of grease and other insoluble waste discharges from food service establishments in the city. Its purpose is to prevent sewer blockages and accidental discharge of wastewater into the storm drain system or the Pacific Ocean. Environmental Compliance Inspection Services (ECIS) is the City's designated FOG inspector, authorized to inspect establishments and enforce the Grease Ordinance.
+## Free Reusable 1-Pound Propane Canisters
 
-Grease haulers listed by the City (FOG disposal):
-- Grease Management Solutions, 5900 S. Eastern Suite 150, Los Angeles, CA, 888-696-9906
-- JR Grease Services, Inc., 1571 W. 15th Street, Long Beach, CA, 714-794-8727 or 888-800-0118
-- Baker Commodities, 4020 Bandini Blvd, Vernon, CA 90058, (800) 427-0696
-- Darling International, 2624 Hickory St, Santa Ana, CA 92707
-- Triple A Pumping and Jetting, 1035 N Batavia St, Orange, CA 92867, (714) 628-0900
-- Orange County Pumping, 630 South Hathaway, Santa Ana CA 92705, (714) 836-6384
-- LA Grease Solutions, 6711 McKinley Ave Suite C, Los Angeles CA 90001, (323) 232-2629
-- Diamond Environmental, 817 E. Mission Road, San Marcos CA, 92069, (888) 744-7191
+Through the CalRecycle HD43 Grant, the City participates in the Refuel Your Fun program. Residents can get a free reusable 1-pound propane canister at the Public Works & Utilities Administration Office, 479 Ocean Avenue, during normal business hours. Canisters may be exchanged or refilled at participating local retailers. More information: refuelyourfun.org.
 
-Source: https://www.lagunabeachcity.net/government/departments/water-quality/running-a-clean-ocean-business
+Source: https://www.lagunabeachcity.net/government/departments/public-works/recycling-waste-and-compost
 
-## Senior Transportation
+## Trash and Recycling FAQs — Carts, Theft, Sand Bags, Junk Mail
 
-The Laguna Beach Trolley provides service throughout the city and all trolleys are wheelchair-accessible. Transit Division/Dispatch: (949) 497-0766.
+- Replace a lost or stolen cart, add carts, or exchange cart size: call CR&R Customer Service at (949)-662-3819. You may upgrade the size of your organic and recycling carts at no additional cost. Residential rates are based on trash bin size.
+- Theft of recyclables: only CR&R has the legal right to take recyclables from your cart. Put recyclables out by 7:00 a.m. on collection day rather than the night before. If an incident is in progress, call the police department at (949) 497-0701.
+- Sand bags: empty the sand (trash or reuse it) and place the bag in the trash cart or bin. Residents can take sand bags to the landfill for a nominal fee (oclandfills.com/landfills).
+- Junk mail: write to Mail Preference Service, Direct Marketing Association, PO Box 9008, Farmington, NY 11735-9008.
 
-Sally's Fund provides free transportation to and from the Laguna Beach Community and Susi Q Center. Residents 60 years plus can schedule a ride to attend the lunch program or classes Monday – Friday from 8:30 a.m. – 5:00 p.m. Transportation should be scheduled in advance and is first-come, first-serve. Phone: (949) 499-4100.
+Source: https://www.lagunabeachcity.net/government/departments/public-works/recycling-waste-and-compost/trash-recycling-compost-faq
 
-Age Well Senior Services provides free, non-emergency medical transportation for Laguna Beach residents at least 60 years old to Mission Hospital in Laguna Beach and Mission Hospital in Mission Viejo. It also provides non-emergency medical transportation to locations in Irvine, Newport Beach, and San Clemente a maximum distance of 15 miles from residence. Phone: (949) 855-8033.
+## Organics (SB 1383) and Composting FAQs
 
-OCTA offers seniors a discount on fares for fixed-route buses; phone (949) 560-5660. OCTA ACCESS service is for people unable to board or exit a fixed-route bus, get to or from a bus stop due to physical and/or environmental barriers, or who do not understand how to ride the bus. Eligibility is based on functional abilities and limitations due to a disability, through a formal certification process following AD
+- Residents are not required to donate food; as of January 1, 2022, only Tier One Businesses, including major supermarkets and grocery stores, must donate edible food.
+- Dirty or used napkins and paper towels, and biodegradable cutlery, can go in the organics cart.
+- Plastic bags are not acceptable for food scraps. Preferably use no bag; if needed, use recyclable paper bags or BPI-certified compostable bags. You may use your own pail or container.
+- Continue to compost at home. Bones and meat scraps are not recommended for composting or burying. Coffee filters and teabags can be composted. Natural fibers including fleece, cotton, hemp and burlap can be composted. Pet waste is not recommended for composting.
+
+Source: https://www.lagunabeachcity.net/government/departments/public-works/recycling-waste-and-compost/trash-recycling-compost-faq
+
+## Holiday Trash Pickup and Street Sweeping Schedule
+
+If the holiday falls on a Saturday or Sunday, there will be no delays.
+- No trash & recycling pickup, with pickup delayed by one day for the rest of the week: New Year's Day, Memorial Day, Independence Day, Labor Day, Thanksgiving Day, Christmas Day.
+- Normal pickup: Martin Luther King, Jr. Day, Presidents' Day, Veteran's Day, Day after Thanksgiving.
+- No residential street sweeping on any of these holidays.
+
+Source: https://www.lagunabeachcity.net/government/departments/public-works/recycling-waste-and-compost/holiday-schedule
+
+## Document Shredding Events
+
+Free drive-thru shredding for Laguna Beach residents and local businesses, held in partnership with CR&R Environmental. Dates: Saturday, November 14, 2026; Saturday, March 21, 2027; Saturday, November 13, 2027, each 8:00 a.m. to 12:00 p.m. Location: City Parking Lot #16, 1900 Laguna Canyon Road.
+
+Limit of 10 standard banker size boxes or 10 (13-gallon) plastic bags per carload; items must be in the trunk or rear compartment. Vehicles only; no pedestrian drop-offs. Bring proof of residency or your business license number. Not accepted: three ring binders or hanging folders, file folders with metal clips, X-rays, E-waste, hazardous waste. Questions: (949) 464-6677 or recycle@lagunabeachcity.net.
+
+Source: https://www.lagunabeachcity.net/government/departments/public-works/recycling-waste-and-compost/recycling-events
+
+## Free Compost Giveaways
+
+Drive-thru events on Saturday, February 20, 2027 and Saturday, April 17, 2027, 8:00 a.m. to 12:00 p.m., at City Parking Lot 16, 1900 Laguna Canyon Rd. Limited amount of pre-bagged STA certified compost. Proof of Laguna Beach residency is required. Limit 5 bags per household (approximately 25 pounds each); first come first serve. Questions: (949) 464-6677 or recycle@lagunabeachcity.net.
+
+Source: https://www.lagunabeachcity.net/government/departments/public-works/recycling-waste-and-compost/recycling-events
+
+## Paint, Universal Waste & E-Waste Drop-Off Event
+
+Free annual drive-thru event for Laguna Beach residents (proof of residency required): Saturday, May 22, 2027, 8:00 a.m. to 12:00 p.m., Parking Lot 16, 1900 Laguna Canyon Road. Accepted: oil and latex paint in 5-gallon and smaller containers (no thinners, caulk, fillers); e-waste such as computers, TVs, printers, phones; universal waste such as mercury thermometers, aerosol cans, lamps and light bulbs, and alkaline, lithium, NiCad, mercury and small lead acid batteries. Rechargeable lithium-ion batteries are hazardous waste and will not be accepted. Not accepted: other hazardous waste, containers over 5 gallons, sharps, expired pharmaceuticals, explosives, ammunition.
+
+Maximum of 15 gallons or 125 pounds per vehicle, per trip; multiple trips OK. Materials must be in secure, labeled containers. Vehicles only. Residents can also dispose of hazardous waste via a free pickup by calling CR&R Customer Service at (949) 662-3819.
+
+Source: https://www.lagunabeachcity.net/government/departments/public-works/recycling-waste-and-compost/recycling-events
+
+## Commercial and Multi-Family Recycling Laws
+
+AB 341 (effective July 1, 2012) requires businesses and public entities generating 4 cubic yards or more of waste per week, and multi-family buildings with five or more units, to arrange for recycling services. AB 1826 requires businesses to arrange recycling for food waste, green

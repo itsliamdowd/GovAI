@@ -2,37 +2,69 @@
 
 Generated 2026-10-17 from https://www.cityofsanteeca.gov pages listed in each section's Source line.
 
-## Human Resources & Risk Management — Contact and Jobs
+## City Hall — Location, Hours and Walk-In Services
 
-The Human Resources Department manages employment information, recruitment and selection, benefit administration, labor and employee relations, classification and compensation, employee training and development, and risk management. The City is hiring EMTs, Recreation Leaders/Aides, Crossing Guards, and more. Job listings are on GovernmentJobs.com. The City is also recruiting an Assistant City Manager.
+City of Santee, 10601 Magnolia Ave., Santee, CA 92071, 619-258-4100. City Hall Operational Hours: M-Th 8:00am – 5:00pm, F 8:00am – 1:00pm.
 
-Contact Rida Freeman, Human Resources Director: 619-258-4100 ext. 262, fax 619-258-9113. Hours: M–Th 8:00am-5:00pm, F 8:00am-1:00pm. Location: Santee City Hall, Human Resources Department, 10601 Magnolia Avenue, Building 3, Santee, CA 92071.
+City Hall public counters and lobbies are open for walk-in services. Appointments are not required but may assist in providing the best service. For general inquiries or to request an appointment, call 619-258-4100. Any correspondence with the City may be considered a public record and subject to public disclosure. Confidentiality cannot be assured.
 
-Source: https://www.cityofsanteeca.gov/departments/human-resources-risk-management
+Source: https://www.cityofsanteeca.gov/departments/department-directory
 
-## Fire & Life Safety Services — Stations and Contacts
+## Department Contact Numbers
 
-Santee Fire Stations: Fire Station 4, 8950 Cottonwood Avenue, Santee, CA 92071; Fire Station 5, 9130 Carlton Oaks Drive, Santee, CA 92071; Fire Station 20, 9530 Via Zapador, Santee CA 92071 (inside City of Santee Operations Yard).
+City Clerk: (619) 258-4100 ext. 226 (boards, commissions & committees, elections & voting information, municipal code, passports, public meetings, public records requests). City Manager's Office: 619-258-4100 ext. 100 (animal control, city administration, economic development, information technology, law enforcement, SanteeTV).
 
-Fire Administration: Harley Wallace, Fire Chief, 619-258-4100 ext. 207. Hours: M–Th 8:00am-5:00pm, F 8:00am-1:00pm. Location: Santee City Hall, Fire Administration, 10601 Magnolia Avenue, Building 5, Santee, CA 92071. The Infection Control Officer can be reached at 619-441-1621, same hours and location.
+Community Services: 619-258-4100 ext. 222 (city parks, Civic Center room rentals, dead animal removal, graffiti abatement, park reservations, pot hole repair, recreation programs, sidewalk maintenance, skate park, solid waste/refuse collection, special events, storm drain cleaning, street sweeping, Teen Center). Engineering: 619-258-4100 ext. 167 (traffic services, traffic signals, street light maintenance, MTS transit services, storm water program).
 
-The Fire Department is hiring Firefighter Paramedics, Crossing Guards, EMTs and Fire EMS Intern positions.
+Finance: 619-258-4100 ext. 144 (business licenses, parking citations, security alarm permits). Fire & Life Safety Services: 619-258-4100 ext. 207 (CERT program, disaster preparedness, fire safety & prevention programs). Human Resources & Risk Management: 619-258-4100 ext. 262. Planning & Building: 619-258-4100 ext. 167 (code compliance, weed abatement, sign posting regulations, planning & zoning services). General information: 619-258-4100.
 
-Source: https://www.cityofsanteeca.gov/departments/fire-life-safety-services
+Source: https://www.cityofsanteeca.gov/departments/department-directory
 
-## 2026 Fire Department Open House
+## Online Services and Permitting & Licensing Portal
 
-Date: Saturday, October 10, 2026, 10:00 AM. Location: Fire Station 4, 8950 Cottonwood Ave, Santee, CA 92071. The event is free and family-friendly. Attendees can meet local firefighters, watch live demonstrations, tour the station and get fire safety tips.
+Santee's Permitting and Licensing Portal is a one stop shop for permitting, licensing, scheduling inspections, service requests and more. Visit SanteePortal.org.
 
-Source: https://www.cityofsanteeca.gov/calendar/events/2026-fire-department-open-house/46305
+Online services listed include Service Requests, Business Licenses, Inspections, Parking Citations, Permitting & Licensing Portal, Portal User Guides and Tutorials, Program Registration, Solar, Shelter Rentals and U.S. Passport. For general inquiries and feedback, email the City of Santee.
 
-## Public Utilities — Providers
+Source: https://www.cityofsanteeca.gov/contact/online-services-requests
 
-Gas and electric: San Diego Gas and Electric (SDG&E) provides gas and electricity to San Diego County. Water and sewer: Padre Dam Municipal Water District provides water, wastewater, recycled water, and recreation services to Santee. San Diego County Water Authority provides water supplies to retail water providers.
+## Law Enforcement, Animal Services and Other Agencies
 
-Trash, recycling and organics: Waste Management provides residential trash pickup, organics, and recycling services to Santee. Republic Services provides solid waste collection, transfer, disposal, and recycling.
+San Diego County Sheriff's Office, Santee Sheriff's Station, 8811 Cuyamaca Street, Santee, 619-956-4000. Non-Emergency Dispatch: 858-868-3200. The Sheriff provides law enforcement services for Santee, including emergency services, crime prevention programs, patrol and traffic services, parking enforcement, noise complaints, crime analysis, investigations, and narcotics enforcement.
+
+San Diego Humane Society: General Information 619-299-7012; Animal Related Emergency 619-243-3466. It enforces laws related to domestic animals, including animal abuse, and provides dog licensing, rabies vaccinations, microchip pet identification, spay and neuter referrals, pet adoptions, and lost and found pet services.
+
+Other listed agencies: 211 San Diego (dial 211 or 858-300-1211, 24 hours a day in more than 150 languages); San Diego County Library - Santee Branch, 9225 Carlton Hills Boulevard #17, 619-448-1863; Santee School District, 9625 Cuyamaca Street, 619-258-2300; Grossmont Union High School District, 1100 Murray Drive, El Cajon, 619-644-8000.
+
+Source: https://www.cityofsanteeca.gov/departments/department-directory
+
+## Gas, Electric, Water and Sewer Service Providers
+
+San Diego Gas and Electric (SDG&E) provides gas and electricity: 800-411-7343. Padre Dam Municipal Water District provides water, wastewater, recycled water, and recreation services to Santee: 9300 Fanita Parkway, Santee, 619-448-3111. San Diego County Water Authority provides regional water supplies to retail water providers.
 
 Source: https://www.cityofsanteeca.gov/our-community/public-utilities
+
+## Trash & Recycling Service
+
+Commercial and residential trash hauling, as well as industrial solid waste and recycling collection and disposal services, are provided by Waste Management Inc. under an exclusive franchise agreement with the city. To begin, change or end residential, commercial or industrial cart, bin or debris box service, contact Waste Management at 619-596-5100.
+
+Santee Municipal Code Chapter 9 requires residents, businesses and multi-family apartment complexes to separate all recyclable materials from other solid waste. SB 1383 (effective January 1, 2022) applies to all customers (businesses, multi-family and single-family residents). Materials go in the blue bin (recycling) or green bin (organic recycling).
+
+For help complying, email santeerecycles@cityofsanteeca.gov or call the Community Services Department at 619-258-4100 ext. 127. Hours: M–Th 8:00am-5:00pm, F 8:00am-1:00pm. Office: Santee City Hall, Community Services Department, 10601 Magnolia Avenue, Building 6.
+
+Source: https://www.cityofsanteeca.gov/our-community/trash-recycling
+
+## Household Hazardous Waste Disposal
+
+Santee residents should dispose of household hazardous waste at the Permanent Household Hazardous Waste Collection facility operated by Waste Management in El Cajon. It is open on the second and fourth Saturdays of the month, by appointment only. Call WM (619-596-5100) to make an appointment. There is currently no charge for disposal. Loads cannot exceed 125 pounds or 15 gallons. No explosives, medical waste or business waste is accepted.
+
+Curbside Pick-Up: call Waste Management to schedule, 619-596-5100 (motor oil, used oil filters).
+
+These items are accepted without an appointment Monday through Friday between 8:00 a.m. and 2:00 p.m. at Waste Management's recycling center, 925 O'Conner Street: sharps (syringes and lancets properly packaged for disposal), household batteries, fluorescent light tubes, mattresses and box springs, thermostats, and e-waste (TVs, computers, VCRs, stereos, microwaves; limit 1-2 similar items per visit).
+
+Prescription Drug Drop Off: the Santee Sheriff's Station at 8811 Cuyamaca Street has a bin in its lobby for expired or no longer needed prescription medications.
+
+Source: https://www.cityofsanteeca.gov/our-community/trash-recycling/household-hazardous-waste
 
 ## Landfill Passes
 
@@ -40,119 +72,72 @@ Santee residents qualify for (2) free landfill passes a year. Contact the Sycamo
 
 Source: https://www.cityofsanteeca.gov/our-community/public-utilities
 
-## Code Compliance — Services and How to Submit a Request
+## Street Sweeping
 
-The Code Compliance Division resolves concerns related to property maintenance, land uses, construction, animals, signage, inoperable vehicles, junk, and assists with illicit discharges into the City's storm drain system.
+Residential Street Sweeping serves all residential areas on a twice a month schedule, between 7:00 am and 6:00 pm. Do not park on the street between 7:00 am and 6:00 pm on scheduled sweeping days. Do not place lumber, bricks, basketball hoops or other foreign objects in the gutter or street, and move any parked vehicle at least every 72 hours (per the vehicle code).
 
-Submit a service request via the MySanteeCA app, in-person or by telephone at 619-258-4100 ext. 167. Code Compliance: 619-258-4100 ext. 206. Hours: M–F 7:00am-4:00pm. Location: Santee City Hall, Planning & Building Department, 10601 Magnolia Avenue, Building 4, Santee, CA 92071.
+Arterial & Commercial Sweeping covers main streets (e.g. Mast Boulevard, Mission Gorge Road, Cuyamaca Street, Magnolia Avenue, Carlton Hills Boulevard). They are swept twice a month between 3:00 am and 7:00 am.
 
-Source: https://www.cityofsanteeca.gov/departments/planning-building/code-compliance
+Look up your street in the alphabetical Street Sweeping Schedule. The schedule is subject to change. In the event of a holiday, make-up sweeping occurs within two working days of the scheduled day(s). In inclement weather, make-up sweeping occurs within four calendar days for arterial streets, and within seven calendar days for streets and/or city parking lots swept twice per month.
 
-## Code Compliance — What Happens After a Service Request
+Public Services Division: Kristin Caudillo, 619-258-4100 ext. 300, M–Thu 8:00–5:00pm, F 8:00-1:00pm, Santee Operations Center, 9534 Via Zapador, Santee, CA 92071.
 
-Once a Service Request is received, an investigation is conducted to determine if a violation of the Santee Municipal Code exists. A notice is sent to the property owner with a timeframe to voluntarily correct the concern. Many property maintenance violations are corrected within two weeks. Violations that require obtaining permits, or more extensive or complex cases, can take longer.
-
-Source: https://www.cityofsanteeca.gov/departments/planning-building/code-compliance
-
-## Concerns Not Enforced by Code Compliance
-
-- Parking enforcement: Sheriff's Department non-emergency dispatch, (858) 868-3200.
-- Barking dogs: San Diego Humane Society, 619-299-7012.
-- Mosquitos, rats and other vermin: County of San Diego Vector Control, 858-694-2888 or vector@sdcounty.ca.gov.
-- Complaints regarding substandard rental units: Food and Housing Division within the Department of Environmental Health & Quality, 858-505-6903, or fhdutyeh@sdcounty.ca.gov.
-- Not enforced by Code Compliance: property line disputes, landscape disputes, tree roots/overhanging trees or leaves from neighbors' trees, private housing development agreement and private road easement conditions, smoke from BBQ grills or fire pits, security cameras, and landlord-tenant disputes.
-
-Source: https://www.cityofsanteeca.gov/departments/planning-building/code-compliance
-
-## Code Compliance FAQ — Parking RVs, Trailers and Vehicles
-
-A recreational vehicle (motor home, trailer, utility trailer, trailed boat, dune buggy, jet skis, etc.) can park on the street for no more than 72 hours at a time. After 72 hours it must move at least 300 feet and remain 300 feet away from the previous location for at least 72 hours. RVs may not park within 50 feet of an intersection. RVs over 8 feet in height may not park overnight in posted prohibited areas. Report parking violations to the Sheriff's Department non-emergency dispatch, (858) 868-3200.
-
-City streets are available for parking on a first come first served basis. Blocking the street to prevent others from parking is not allowed. Operable vehicles with current registration tabs may be parked in the front yard if entirely on an approved surface (concrete, concrete pavers, asphalt, or gravel). No portion may overhang the sidewalk or public right-of-way. You can work on your car at home, but be mindful of noise and fumes and ensure no automotive fluids are discharged.
-
-Source: https://www.cityofsanteeca.gov/departments/planning-building/code-compliance
-
-## Code Compliance FAQ — Chickens, Short-Term Rentals and Trash Containers
-
-Chickens are allowed; roosters are not. Contact Planning & Building at 619-258-4100 ext. 167 or see Santee Municipal Code Title 13, Chapter 13.10.030. The City does not allow short term rentals (less than 30 days). Renting out your swimming pool/backyard is not allowed.
-
-Trash, recycling and green waste containers may be placed on the street prior to 6:30 am on the day of collection, but no more than 12 hours before the earliest regularly scheduled collection time. Remove each container no later than 12 hours after the latest regularly scheduled collection time.
-
-Source: https://www.cityofsanteeca.gov/departments/planning-building/code-compliance
-
-## Code Compliance FAQ — Neighbor Permits, Fences and Walls
-
-To ask whether a neighbor has a construction permit, contact the Planning & Building Department at 619-258-4100 ext. 198. The City does not require neighbors to share fence replacement costs. A property with a swimming pool must maintain a fence that prevents access to the pool or spa from neighboring properties.
-
-Before constructing a wall, contact the Engineering Department at 619-258-4100 ext. 168. Most walls require permits and may not be in the right of way, which typically extends ten (10) feet from the face of the curb toward your house.
-
-Source: https://www.cityofsanteeca.gov/departments/planning-building/code-compliance
-
-## Parking Citations — Paying
-
-Parking citations issued in Santee by the San Diego County Sheriff's Office can be paid online at PayMyCite, by mail, or in person at the City's Finance Department, Building 3, 10601 Magnolia Avenue. Online payments are subject to a $5.95 convenience fee.
-
-Mail with the original citation to City of Santee c/o Parking Citation Services, P.O. Box 11923, Santa Ana, CA 92711, or to City of Santee Attn: Finance Department, 10601 Magnolia Ave, Santee, CA 92071. Make checks or money orders payable to the "City of Santee" and write the citation number on them. DO NOT MAIL CASH!
-
-Source: https://www.cityofsanteeca.gov/departments/finance/parking-citations
-
-## Parking Citations — Payment Plan
-
-CVC 40220 allows installment payments to qualifying low-income individuals who apply within 120 days from the issuance of a notice of parking violation, or within 10 days after an administrative hearing determination, whichever is later. For information call 1-866-353-5867 or visit PayMyCite. A payment plan application form is required.
-
-Source: https://www.cityofsanteeca.gov/departments/finance/parking-citations
-
-## Parking Citations — Contesting
-
-To contest a violation, complete a Request for Administrative Review of Notice of Parking Violation within 21 days of the citation issue date or 14 days from the delinquent parking notice. Provide supporting documentation such as pictures. Original pictures that are mailed will not be returned. Submit in person, by e-mail or by mail to City of Santee Attn: Finance Department, 10601 Magnolia Avenue, Santee, CA 92071.
-
-For a citation for not displaying a handicap placard, request dismissal using the Request for Dismissal Form within 21 days of the citation. Provide the original citation, a copy of the disabled placard, and a copy of the disabled placard registration (not vehicle registration). Submit in person, by email, or by mail to the Finance Department at the same address.
-
-Finance Department: 619-258-4100 ext. 146. Hours: M–Th 8:00am–5:00pm, F 8:00am-1:00pm.
-
-Source: https://www.cityofsanteeca.gov/departments/finance/parking-citations
-
-## Engineering Department
-
-The Engineering Department is responsible for capital improvements, land development, traffic engineering and storm water management. Land Development issues encroachment, retaining wall, and grading permits and administers the storm water pollution prevention program. Traffic Engineering maintains City-owned traffic signals, street lights, roadway striping and street signage. Services listed include Encroachment Permits, Flood Zones, Grading Permits, Moving & Oversized Load Permits, Storm Water, Street Maintenance and Traffic Engineering.
-
-Contact Carl Schmitz, Engineering Director: 619-258-4100 ext. 167. Hours: M–Th 8:00am-5:00pm, F 8:00am-1:00pm. Location: Santee City Hall, Engineering Department, 10601 Magnolia Avenue, Building 4, Santee, CA 92071.
-
-Source: https://www.cityofsanteeca.gov/departments/engineering
-
-## Community Services Department
-
-The Community Services Department includes the Public Services and Parks & Recreation Divisions and oversees Solid Waste and Recycling. Public Services maintains City-owned buildings and property, parks, rights of way, the municipal storm drain system, the urban forest, City trails, and landscape maintenance districts. Parks & Recreation offers Instructional Programs and Camps, Special Events, Senior 55+ Programs, Teen Center, Santee Skate Park, and permitting of parks, fields and facilities.
-
-Contact Nicolas Chavez, Community Services Director: 619-258-4100 ext. 222, fax 619-258-4189. Hours: M–Th 8:00am–5:00pm, F 8:00am-1:00pm. Location: Santee City Hall, Community Services Department, 10601 Magnolia Avenue, Building 6, Santee, CA 92071.
-
-Source: https://www.cityofsanteeca.gov/departments/community-services
+Source: https://www.cityofsanteeca.gov/our-community/street-sweeping
 
 ## Picnic Shelter Rentals
 
-Picnic shelters are available for rental at most City parks. No electricity or Wi-Fi is available at any shelter. Reservations are by rental blocks: 8:30am - 12:30pm and 1:00pm - 5:00pm. Shelters: Big Rock Park (2 shelters, 5 tables each); Mast Park (3 shelters: Large 7 tables, Medium 4 tables, Medium Lath Covering 4 tables); Shadow Hill Park (1 shelter, 6 tables); Town Center Park East (2 shelters, 5 tables each); Town Center Park West (1 shelter, 7 tables); West Hills Park (Playground 7 tables, Hilltop 4 tables); Weston Park (1 shelter, 4 tables); Woodglen Vista Park (half shelter or full shelter, 9 or 18 tables).
+Picnic shelters are available for rental at most of the City of Santee's public parks. No electricity or Wi-Fi is available at any of the shelters. Reservations are done by rental blocks: 8:30am - 12:30pm and 1:00pm - 5:00pm. Reserve online through the Picnic Shelter reservation page.
 
-To reserve the Town Center Park West shelter or the West Hills Hilltop shelter, call 619-258-4100 ext. 222, as some restrictions may apply.
+Shelters by park: Big Rock Park, 2 shelters (5 tables each). Mast Park, 3 shelters (Large - 7 tables + parking space, Medium - 4 tables, Medium Lath Covering - 4 tables). Shadow Hill Park, 1 shelter (6 tables). Town Center Park East, 2 shelters (5 tables each). Town Center Park West, 1 shelter (7 tables). West Hills Park, 2 shelters (Playground - 7 tables, Hilltop - 4 tables). Weston Park, 1 shelter (4 tables). Woodglen Vista Park, half shelter (east & west sides) or full shelter (9 or 18 tables).
+
+To reserve the Town Center Park West shelter or the West Hills Park Hilltop shelter, call 619-258-4100 ext. 222 as some restrictions may apply. West Hills Park online reservation is for the Playground location only. Air jumps and additional entertainment vendors are unavailable at Town Center Park East and West.
+
+Source: https://www.cityofsanteeca.gov/our-community/parks-recreation/picnic-shelters-facilities
+
+## Civic Center Room Rentals
+
+The Santee Civic Center, 10601 Magnolia Avenue, can accommodate weddings/receptions, club meetings, anniversary parties, reunions, business workshops, etc. A Facility Application and Room and Equipment Pricing are available.
+
+Building 7: Meeting/Dining Hall, occupancy 150 Meeting / 100 Dining, tile flooring, full kitchen (stove available for warming only), free Wi-Fi, ADA access, heating/air conditioning.
+
+Building 8A: Meeting/Activity Room, occupancy 70 Meeting / 56 Dining, tile flooring, shared restroom with 8P, refrigerator, counter space, free Wi-Fi, ADA access. Two hour time limit on rental, unless permitted in conjunction with 8P.
+
+Building 8P: Meeting/Dining Hall, occupancy 200 Meeting / 130 Dining, carpet flooring, split-level room (1/3 floor space is raised ~4 ft.), free Wi-Fi, ADA access. Adjoining room 8A.
+
+Breezeway: may be utilized with prior approval from City staff. Outdoor equipment available - fees apply.
 
 Source: https://www.cityofsanteeca.gov/our-community/parks-recreation/picnic-shelters-facilities
 
-## Santee Civic Center Room Rentals
+## Santee Community Center (Under Construction)
 
-The Santee Civic Center, 10601 Magnolia Avenue, can accommodate weddings/receptions, club meetings, anniversary parties, reunions, business workshops, etc.
-
-- Building 7: Meeting/Dining Hall, occupancy 150 meeting / 100 dining. Full kitchen (stove available for warming only), free Wi-Fi, ADA access, heating/air conditioning.
-- Building 8A: Meeting/Activity Room, occupancy 70 meeting / 56 dining. Shared restroom with 8P. Two hour time limit on rental, unless permitted in conjunction with 8P.
-- Building 8P: Meeting/Dining Hall, occupancy 200 meeting / 130 dining. Split-level room, carpet flooring, free Wi-Fi, ADA access.
-- Breezeway: may be used with prior approval from City staff. Outdoor equipment is available, fees apply.
+The Santee Community Center is under construction with an anticipated opening date in November 2027.
 
 Source: https://www.cityofsanteeca.gov/our-community/parks-recreation/picnic-shelters-facilities
+
+## Recreation Program Registration
+
+Fall registration opens on Monday, August 10. Recreation guide (Fall 2026) and sign-up for recreation activities are on the Parks & Recreation page; a registration form (PDF) can be downloaded. Registration is through ActiveNet, which also sends the seasonal recreation brochure.
+
+Community Services Department: 619-258-4100 ext. 222. Hours: M–Th 8:00am–5:00pm, F 8:00am-1:00pm. Santee City Hall, Community Services Department, 10601 Magnolia Avenue, Building 6, Santee, CA 92071.
+
+Source: https://www.cityofsanteeca.gov/our-community/parks-recreation
+
+## Teen Center and Santee Seniors 55+
+
+The Santee Teen Center @ Big Rock Park is open Monday through Friday 2:00–6:00pm. Daily programming includes indoor and outdoor recreation activities, and homework assistance is available daily.
+
+Santee Seniors 55+: older adults meet to get involved, stay connected and be active. Pre-registration is not required.
+
+Source: https://www.cityofsanteeca.gov/our-community/parks-recreation
 
 ## Park Maintenance Hotline
 
-Phone: 619-258-4100 ext. 304. Available 24 Hours a Day, 7 Days a Week. For non-urgent matters, submit a Service Request.
+Phone: 619-258-4100 ext. 304. Hours: 24 Hours a Day, 7 Days a Week. For non-urgent matters, submit a Service Request.
 
-Source: https://www.cityofsanteeca.gov/our-community/parks-recreation/picnic-shelters-facilities
+Source: https://www.cityofsanteeca.gov/our-community/parks-recreation
 
-## Boards, Commissions & Committees — Applying
+## Dog Parks (Off-Leash Areas)
 
-Applications may be submitted by completing the online application form, by printing and completing the application form, or by picking one up at the City Clerk's
+Designated off-leash areas are at Big Rock, Mast, and Woodglen Vista Parks. Big Rock Park: daily dawn to 9:00 am, no fence, open area. Mast Park: daily dawn to dusk, three fenced areas (puppy, small/medium, and large dogs). Woodglen Vista Park: daily dawn to dusk, fenced area.
+
+Rules: dogs must be licensed and under effective voice control. Owners must clean up after pets. Pets must be prevented from biting or harassing any person or another animal. Pets must be kept out of playground and landscape areas, sports courts and picnic areas. Pets must remain on leash until reaching the designated off-leash area and while on park

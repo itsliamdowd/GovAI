@@ -2,62 +2,132 @@
 
 Generated 2026-10-17 from https://www.san-marcos.net pages listed in each section's Source line.
 
-## Fire Station Tours
+## Las Abejas Park
 
-The San Marcos Fire Department provides services from four fire stations located throughout the City, covering a 33 square mile service area. Fire station tours give the public a chance to learn about the department, its facilities and equipment, and pick up fire safety tips.
+Las Abejas Park is at 999 Woodhaven Road, San Marcos, CA 92069. It has a reservable shelter. Features: BBQ, permanent restrooms, picnic shelter, picnic tables, play equipment, shelter rental, trail connection, and turf play. Hours are sunrise to sunset daily. Phone: (760) 744-9000.
 
-To schedule a tour, contact the station nearest you or call SMFD at (760) 744-1050, ext. 3400. Assistance is available during administrative business hours: Monday through Thursday from 7:30 am to 5:30 pm, and alternating Fridays.
+Source: https://www.sanmarcosca.gov/Parks-Recreation/Find-Parks-Pools-Facilities/Las-Abejas-Park
 
-Source: https://www.sanmarcosca.gov/Resident-Services/Stay-Safe/Fire-Department/Fire-Department-Facilities/Fire-Station-4
+## Summerhill Park
 
-## Regional Emergency Services Training Center
+Summerhill Park is at 701 W. Bel Esprit Circle, San Marcos, CA 92069. Features: adapted play equipment, basketball (1/2 court), picnic tables, play equipment, and turf play. Hours are sunrise to sunset daily. Phone: (760) 744-9000.
 
-The San Marcos Regional Emergency Services Training Center serves fire, law enforcement, emergency medical, and other related emergency service organizations. It is located at 184 Santar Place in San Marcos, with easy access from highway 78.
+Source: https://www.sanmarcosca.gov/Parks-Recreation/Find-Parks-Pools-Facilities/Summerhill-Park
 
-The center has a fire/rescue drill tower and a fully equipped instructional building. Floors one through three have re-configurable floor plans for search and rescue training and can produce an artificial smoke environment. The fourth floor has a ventilation prop that can be fitted for a flat or pitched roof. The tower also has an environmental burn room for live fire training and a working sprinkler and standpipe system.
+## San Elijo Park
 
-The drill ground has a fire pump test facility for testing fire pumps and holding pump operator testing. It also has an all-weather prop area for vehicle extrication and controlled propane/natural gas training exercises. A concrete staging apron is available for practicing manipulative skills and basic driving skills. For more information, contact Maria Conklin, (760) 744-1050 ext. 3400.
+San Elijo Park is at 1105 Elfin Forest Road, San Marcos, CA 92078. It has a reservable shelter. The splash pad is closed Nov. 15 through Mar. 14 for the off-season shutdown period. Features: lighted ballfield, BBQ, community building, dog park, horseshoe court, kiosk, lighted multi-purpose field, permanent restrooms, picnic shelter, picnic tables, play equipment, shelter rental, splash pad, trail connection, and turf play.
 
-Source: https://www.sanmarcosca.gov/Resident-Services/Stay-Safe/Fire-Department/Fire-Department-Facilities/Regional-Training-Facility
+Hours are sunrise to sunset daily. After sunset, Tier B parks are closed to general public use, except for designated lighted amenities and scheduled sporting events. Phone: (760) 744-9000 ext. 3500.
 
-## Prepare for Emergencies
+Source: https://www.sanmarcosca.gov/Parks-Recreation/Find-Parks-Pools-Facilities/San-Elijo-Park
 
-Residents should maintain an emergency supply kit for any emergency. After a disaster you may be without immediate help for up to 72 hours. The page also links to an emergency supplies list, a "make a plan" resource, a "know your hazards" resource, and CERT (Join CERT).
+## Williams' Barn Rental
 
-Apps to download: Genasys Protect, Alert San Diego App, SDGE Alerts, and San Marcos City App. Official information sources are the City website, San Marcos Fire Department, San Diego County Sheriff, Alert San Diego, SDGE, Genasys Protect, and 2-1-1.
+Williams' Barn is an event venue at Walnut Grove Park, 1950 Sycamore Drive, San Marcos, CA 92069. It is four miles north of State Route 78, accessed from the Twin Oaks Valley Road exit. It offers 2,000 square feet of flexible event space and holds up to 170 guests with dining-style seating. It suits family gatherings, business events, weddings, and receptions.
 
-During an emergency, remain calm, be aware of your surroundings, use your family preparedness plan, and stay informed. If an evacuation is ordered, follow the instructions of local officials regarding evacuation routes and shelter locations. If shelter-in-place is recommended, local officials will provide instructions. Do not leave your sheltered location or return to the evacuated area until local officials deem it safe.
+The facility includes tables and chairs for banquet seating and a kitchen with a stove, oven, sink, refrigerator, and counter space. It also has a large outdoor patio with an adjacent grass area. Rental resources on the page: an online calendar, a rental application, a rental guide (PDF), and frequently asked questions (PDF).
 
-Source: https://www.sanmarcosca.gov/Resident-Services/Stay-Safe/Fire-Department/Prepare-for-Emergencies
+Contact: Krystal Mainprize, Recreation Coordinator, 760-744-9000, ext. 3511, kmainprize@sanmarcosca.gov.
 
-## Evacuation and Alert Terms
+Source: https://www.sanmarcosca.gov/Parks-Recreation/Find-Parks-Pools-Facilities/Williams-Barn
 
-- **Advisory:** Residents should be prepared to evacuate at any time. It is the first level of warning, encouraging residents to monitor local news, gather supplies, and prepare for potential evacuation.
-- **Evacuation WARNING:** Indicates a potential threat to life and property and suggests an evacuation order may be issued if conditions worsen.
-- **Evacuation ORDER:** A directive to immediately leave a specific area due to an immediate threat, such as a wildfire or other disaster. People in the designated area should evacuate immediately and without delay.
-- **Shelter in place:** Take refuge in a designated safe location within a building during an emergency, instead of evacuating the area.
+## Parks & Recreation Contact Information
 
-Contact: San Marcos Fire Department, 1 Civic Center Drive San Marcos, CA 92069, (760)744-1050, ext. 3400. Office Specialist Maria Conklin can also be reached at (760) 744-1050, ext. 3400.
+Parks & Recreation is at 3 Civic Center Drive, San Marcos, CA 92069. Phone: 760-744-9000. Email: parksandrec@sanmarcosca.gov. Hours: Monday-Thursday 8:30 a.m. - 5:30 p.m.; alternating Fridays 8 a.m. to 4:30 p.m.
 
-Source: https://www.sanmarcosca.gov/Resident-Services/Stay-Safe/Fire-Department/Prepare-for-Emergencies
+Other numbers listed:
+- Emergencies: call 9-1-1.
+- Park Ranger Hotline: 760-744-9494 ext. 3707.
+- F.H. "Corky" Smith Gymnasium: 760-744-9494.
+- San Marcos Senior Center: 760-744-5535 ext. 3600.
+- Sheriff (non emergency): 858-868-3200.
+- Road hazards (24/7): 760-752-7550.
 
-## Business and Multifamily Recycling (AB 341)
+Source: https://www.sanmarcosca.gov/Parks-Recreation/Park-Facility-Rentals/Contact-Parks-Rec
 
-California law (AB 341) requires certain businesses and multi-family properties to participate in recycling programs. It applies to businesses generating four cubic yards or more of solid waste per week and to multi-family housing communities with five or more units.
+## July City Hike — Heart of the City
 
-Steps to comply: contact EDCO Waste and Recycling Services to set up recycling, work with EDCO to create a recycling plan, and encourage recycling of paper, plastics, glass, and metals. If you believe your business or property qualifies for an exemption, contact Waste & Recycling at 760-481-3875 or submit a waiver form, available in English (PDF, 834KB) or Spanish (PDF, 721KB).
+The hike is Saturday, July 11, 2026 (second Saturday) at 8 a.m., with sign-in at 7:30 a.m. Difficulty: Easy-to-Moderate. It is a 6.5-mile loop with 580' of elevation gain toward the northern city limits. The route passes through Civic Center Park on urban trails that follow the rail trail east, then visits Hollandia Park and views of Mulberry Park.
 
-Source: https://www.sanmarcosca.gov/Resident-Services/Trash-Recycling/For-Businesses
+Meeting location: San Marcos Community Center (Outdoor Hearth), 3 Civic Center Drive, San Marcos 92069. Hikers are asked to pick up after themselves and their pets, stay on official trails and out of natural and sensitive habitats, keep voices down, and use headphones for music or audio.
 
-## Business Organics Recycling (AB 1826)
+Contact: Parks & Recreation, 760-744-9000, parksandrec@sanmarcosca.gov. Park Ranger Hotline: 760-744-9494, ext. 3707.
 
-California law (AB 1826) requires businesses generating two cubic yards or more of waste weekly to recycle organics: food scraps, green waste, compostable paper, and nonhazardous wood waste. To comply, contact EDCO to set up organics recycling. Businesses may also consider composting or mulching on-site with proper permits. For exemptions, contact Waste & Recycling at 760-481-3875 or submit a waiver form.
+Source: https://www.sanmarcosca.gov/Meetings-Events/Parks-Recreation/City-Hikes/July-City-Hike
 
-Source: https://www.sanmarcosca.gov/Resident-Services/Trash-Recycling/For-Businesses
+## Senior Center HVAC Project and Temporary Relocation
 
-## Food Service Single-Use Plastics Rules
+The San Marcos Senior Center is getting a new HVAC system. Beginning Monday, December 22, the Center will temporarily close while crews install it. Tentative January through March 2026 schedule:
 
-The City of San Marcos enforces rules for food service businesses under Ordinance 2021-1507 and AB 1276, which limit single-use plastics and require recyclable or compostable alternatives. Requirements:
+- **San Marcos Senior Center (fitness classes remain on-site):** Fun 2B Fit, Chair Yoga, Line Dance, Individual Exercise Activity, Balance and Coordination, Tai Chi, Indian Dance.
+- **Richmar Center, 131 Richmar Avenue, San Marcos:** Lunch Program (no soup and salad bar during move), Ukulele, BINGO, American Mahjong, Samba, Canasta, Merry Makers Bridge.
+- **San Marcos Community Center, 3 Civic Center Dr., San Marcos:** Pilates Basics, Zumba Gold, Beginning Acrylic, Beginning Watercolor, Mixed Media Art, Book Club, Knitting & Crocheting Group. Parties: Ringin' in the New Year Party, Jan. 14, 2026; Valentine's Day Party, Feb. 1, 2026; Senior Social, Mar. 13, 2026.
+
+A full map and final schedule will be available beginning January 5, 2026. The Senior Center is expected to reopen when the project wraps up this spring.
+
+Source: https://www.sanmarcosca.gov/City-Government/Communication-Engagement/City-News/Senior-center-ac-project
+
+## Youth Commission Meetings
+
+The Youth Commission meets at San Marcos Civic Center, 1 Civic Center Drive, 92069, from 04:00 PM to 05:00 PM. The next date listed is Monday, November 02, 2026. Listed dates:
+- Monday, December 01, 2025
+- Monday, January 05, 2026
+- Monday, February 02, 2026
+- Monday, March 02, 2026
+- Monday, April 06, 2026
+- Monday, May 04, 2026
+- Monday, June 01, 2026
+- Monday, July 06, 2026
+- Monday, August 03, 2026
+- Monday, September 14, 2026
+- Monday, October 05, 2026
+- Monday, November 02, 2026
+- Monday, December 07, 2026
+
+The page offers an email sign-up for agendas and calendar invitations.
+
+Source: https://www.sanmarcosca.gov/Meetings-Events/Events/Boards-Commissions/Youth-Commission
+
+## Household Hazardous Waste Disposal
+
+Household hazardous waste (HHW) includes paint, household cleaners, pool chemicals, automotive products, and pesticides. It cannot be thrown in household trash or poured down the sink. San Marcos residents may dispose of HHW free of charge at:
+- Vista HHW Collection Facility, 1145 E. Taylor St., 800-714-1195
+- Poway HHW Collection Facility, 12325 Crosthwaite Circle, 800-714-1195
+
+Residents must provide proof of San Marcos residency, such as a formal ID or a current utility bill. No appointment is necessary. The facilities also accept items like paint and batteries.
+
+Home pickup: residents ages 65 or older, or households with a registered placard for persons with disabilities, may schedule free door-to-door HHW collection by calling 800-714-1195 to make an appointment.
+
+Hours: Saturdays, 9 a.m. to 3 p.m. except on holiday weekends. Closed on Easter weekend, Memorial Day weekend, Independence Day weekend, Labor Day weekend, and Thanksgiving weekend.
+
+Source: https://www.sanmarcosca.gov/Resident-Services/Trash-Recycling/Vista-HHW-Collection-Facility
+
+## Residential Organics Recycling
+
+EDCO offers organic waste pick-up on your regularly scheduled trash day. Place the following in your green cart: food scraps, landscaping and pruning debris, non-hazardous wood cuttings, and food-soiled paper waste. You can request a Kitchen Caddie for moving food scraps from the kitchen to the organics cart or compost pile.
+
+Accepted examples:
+- Food scraps: fruit, vegetables, meat, bones, dairy, eggshells, prepared food.
+- Food-soiled paper: napkins, tea bags, paper plates, coffee filters.
+- Yard waste: plants, leaves, branches, grass.
+- Natural fibers: popsicle sticks, sawdust, toothpicks, wooden chopsticks, untreated wood.
+
+Prohibited items: aluminum, animal carcasses, cigarette butts and ashes, clothing, diapers, dirt, glass, hazardous waste, kitty litter, landscape timbers, liquids, medical waste, metal, pet waste, plastic bags or film, plastic containers, plastic straws, rocks, soil, Styrofoam, trash, treated or painted lumber, tree stumps, and wine corks.
+
+Do not use any kind of plastic bags for green waste, food waste, or other organics. All organic material must be placed loosely inside the organics cart. Paper bags are acceptable.
+
+Source: https://www.sanmarcosca.gov/Resident-Services/Trash-Recycling/Organics-Recycling
+
+## Business and Multifamily Recycling, Organics, and Plastics Rules
+
+**Recycling (AB 341):** California law requires businesses generating four cubic yards or more of solid waste per week, and multi-family housing communities with five or more units, to participate in recycling programs. To comply, contact EDCO Waste and Recycling Services to set up recycling and create a recycling plan.
+
+**Organics (AB 1826):** Businesses generating two cubic yards or more of waste weekly must recycle organics (food scraps, green waste, compostable paper, and nonhazardous wood waste). Contact EDCO to set up organics recycling.
+
+**Exemptions:** If you believe your business or property qualifies for an exemption, contact Waste & Recycling at 760-481-3875 or submit a waiver form (English or Spanish PDF).
+
+**Plastics:** The City enforces rules for food service businesses under Ordinance 2021-1507 and AB 1276:
 - Provide disposable utensils or condiments only when requested.
 - Delivery apps must let customers opt in to disposables.
 - All food ware must be recyclable or compostable.
@@ -65,56 +135,18 @@ The City of San Marcos enforces rules for food service businesses under Ordinanc
 
 Source: https://www.sanmarcosca.gov/Resident-Services/Trash-Recycling/For-Businesses
 
-## Williams' Barn Rental
+## Fire Station Tours and Regional Training Facility
 
-Williams' Barn is an event venue at Walnut Grove Park, 1950 Sycamore Drive, San Marcos, CA 92069, four miles north of State Route 78 and accessed from the Twin Oaks Valley Road exit. It has 2,000 square feet of flexible event space and can accommodate up to 170 guests with dining-style seating. It is suited to family gatherings, business events, weddings, receptions, and special celebrations.
+The San Marcos Fire Department provides services from four fire stations. To schedule a fire station tour, contact the station nearest you or call SMFD at (760) 744-1050, ext. 3400 during administrative business hours (Monday through Thursday from 7:30 am to 5:30 pm, and alternating Fridays).
 
-The facility includes tables and chairs for banquet seating and a kitchen with a stove, oven, sink, refrigerator, and counter space. It also has a large outdoor patio with an adjacent grass area. Rental resources include an online calendar, a rental application, a rental guide (PDF, 242KB), and frequently asked questions (PDF, 613KB).
+The San Marcos Regional Emergency Services Training Center is at 184 Santar Place in San Marcos, with access from highway 78. It offers training for fire, law enforcement, emergency medical, and related organizations. It has a fire/rescue drill tower, an instructional building, a fire pump test facility, and a vehicle extrication and propane/natural gas prop area. For more information, contact Maria Conklin, (760) 744-1050 ext. 3400.
 
-Contact: Krystal Mainprize, Recreation Coordinator, 760-744-9000, ext. 3511, kmainprize@sanmarcosca.gov.
+Source: https://www.sanmarcosca.gov/Resident-Services/Stay-Safe/Fire-Department/Fire-Department-Facilities/Fire-Station-4
 
-Source: https://www.sanmarcosca.gov/Parks-Recreation/Find-Parks-Pools-Facilities/Williams-Barn
+## Water Mill Homes, Inc. (TSM21-0004) Planning Project
 
-## Las Abejas Park
+This is a request for a Tentative Subdivision Map for 9 single-family residential lots on a 10-acre property in the Agricultural (A-1) Zone. Project type: Residential: Single-Family. Status: Approved. Location: southwest corner of Cox and Mulberry Drive, 92069.
 
-Las Abejas Park is at 999 Woodhaven Road, San Marcos, CA 92069. Hours are sunrise to sunset daily. Features: BBQ, permanent restrooms, picnic shelter, picnic tables, play equipment, shelter rental (reservable shelter), trail connection, and turf play. Contact: (760) 744-9000.
+Contact: Sam Dominguez, 760-744-1050, ext. 4598, sdominguez@san-marcos.net.
 
-Source: https://www.sanmarcosca.gov/Parks-Recreation/Find-Parks-Pools-Facilities/Las-Abejas-Park
-
-## Summerhill Park
-
-Summerhill Park is at 701 W. Bel Esprit Circle, San Marcos, CA 92069. Hours are sunrise to sunset daily. Features: adapted play equipment, basketball (1/2 court), picnic tables, play equipment, and turf play. Contact: (760) 744-9000.
-
-Source: https://www.sanmarcosca.gov/Parks-Recreation/Find-Parks-Pools-Facilities/Summerhill-Park
-
-## San Elijo Park
-
-San Elijo Park is at 1105 Elfin Forest Road, San Marcos, CA 92078. Hours are sunrise to sunset daily. After sunset, Tier B parks are closed to general public use, except for designated lighted amenities and scheduled sporting events. The splash pad is closed Nov. 15 through Mar. 14 for the off-season shutdown period.
-
-Features: lighted ballfield, BBQ, community building, dog park, horseshoe court, kiosk, lighted multi purpose field, permanent restrooms, picnic shelter, picnic tables, play equipment, shelter rental (reservable shelter), splash pad, trail connection, and turf play. Contact: (760) 744-9000 ext. 3500.
-
-Source: https://www.sanmarcosca.gov/Parks-Recreation/Find-Parks-Pools-Facilities/San-Elijo-Park
-
-## July City Hike — Heart of the City
-
-The July city hike, "Heart of the City," is Saturday, July 11, 2026 (second Saturday), at 8 a.m., with sign-in at 7:30 a.m. Difficulty is Easy-to-Moderate. It is a 6.5-mile loop hike with 580' of elevation gain toward the northern city limits. The route passes through Civic Center Park using urban trails that follow the rail trail east, then visits Hollandia Park and views of Mulberry Park.
-
-Meeting location: San Marcos Community Center (Outdoor Hearth), 3 Civic Center Drive, San Marcos 92069. Hikers are asked to pick up after themselves and their pets, stay on official trails and out of natural and sensitive habitats, keep voices down, and use headphones for music or audio.
-
-Contact: Parks & Recreation, 3 Civic Center Drive, San Marcos, CA 92069, 760-744-9000, parksandrec@sanmarcosca.gov. Park Ranger Hotline: 760-744-9494, ext. 3707.
-
-Source: https://www.sanmarcosca.gov/Meetings-Events/Parks-Recreation/City-Hikes/July-City-Hike
-
-## Financial Reports
-
-The Finance page posts Quarterly Financial Status Reports (PDF) for Fiscal-Year-2021-2022 Q1 through Fiscal-Year-2025-2026 Q3. It also posts Annual Comprehensive Financial Reports (ACFR, PDF) for fiscal years 2019-2020 through 2024-2025.
-
-Source: https://www.sanmarcosca.gov/City-Government/Finance/Financial-Reports
-
-## Housing Compliance Reports and Fair Housing Contacts
-
-The City elected in January 2012 to retain the housing assets and affordable housing functions of the former redevelopment agency as the housing successor. The San Marcos Redevelopment Agency was dissolved on February 1, 2012. Reports posted include the AB 987 Report (PDF, 82KB), the SB 341 Report (PDF, 223KB), Barriers to Racial and Ethnic Equity (PDF, 431KB), and Economic Displacement Risk Analysis (PDF, 858KB). The AB 987 report is not a complete inventory of affordable housing units in the City and does not show currently available units. For affordable housing opportunities, see the Housing Resources webpage.
-
-If you believe you have been a victim of housing discrimination or have questions about fair housing, contact Legal Aid Society of San Diego at (844) 449-3500. You may also contact the U.S. Department of Housing and Urban Development's Fair Housing hotline at (800) 669-9777.
-
-Source: https://www.sanmarcosca.gov/Resident-Services/Housing/Compliance-Reports
+Source: https://www.sanmarcosca.gov/Business-Services/Development/Planning/Projects/Water-Mill-Homes-Inc

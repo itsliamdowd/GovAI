@@ -2,182 +2,163 @@
 
 Generated 2026-10-17 from https://www.carlsbadca.gov pages listed in each section's Source line.
 
-## City Hall — General Contact and Department Directory
+## Report a Problem — Directory
 
-If you're not sure which department to contact, call City Hall at 442-339-2820 or email help@carlsbadca.gov. The City Manager's Office is also at manager@carlsbadca.gov, 442-339-2820.
+The City Manager's Office is always happy to assist if you are not sure who to call: 442-339-2820. An online reporting system is also available.
 
-Frequently requested contacts:
-- Building inspections: bldginspections@carlsbadca.gov, 442-339-2700.
-- Building permits: building@carlsbadca.gov, 442-339-2719.
-- Business License Office: finance@carlsbadca.gov, 442-339-2495.
-- City Clerk's Office: clerk@carlsbadca.gov, 442-339-2808.
-- Communication & Engagement: communications@carlsbadca.gov, 442-339-2075.
-- Community Development: 442-339-2710.
-- Code Enforcement: codeenforcement@carlsbadca.gov, 442-339-2703.
-- Construction Management & Inspection: cmi@carlsbadca.gov, 442-339-2780.
-- Cultural Arts Office: arts@carlsbadca.gov, 442-339-2090.
-- Development Services: 442-339-2710.
-- Economic Development: 442-339-2222.
-- Environmental Sustainability: environmental@carlsbadca.gov, 442-339-2729.
-- Sustainable Materials Management: 442-339-2646.
-- Finance: finance@carlsbadca.gov, 442-339-2430.
-- Fire (non-emergencies): firemail@carlsbadca.gov, 442-339-2141.
-- Housing & Homeless Services: housing@carlsbadca.gov, 442-339-2810.
-- Human Resources: hr@carlsbadca.gov, 442-339-2440.
-- Information Technology: 442-339-2450.
-- Library: librarian@carlsbadca.gov, 442-339-2049.
-- Parks & Recreation: parksandrec@carlsbadca.gov, 442-339-2826.
-- Planning: planning@carlsbadca.gov, 442-339-2600.
-- Police (non-emergencies): police@carlsbadca.gov, 760-931-2197.
-- Public Works Branch: 442-339-2730.
-- Streets and Storm Drain Maintenance: 442-339-2980.
-- Sewer: wastewater@carlsbadca.gov, 442-339-2722 (sewer emergencies after hours: 760-931-2197).
-- Water and Utilities: water@carlsbadca.gov, 442-339-2722.
-- Utility Billing: utilitybilling@carlsbadca.gov, 442-339-2420.
-- Transportation: transportation@carlsbadca.gov, 442-339-2746.
+Direct lines: Abandoned Vehicles 442-339-2289 (RVs and other vehicles parked on the street for more than 72 hours). Construction Updates 442-339-2780, ext. 7301. Graffiti Removal Hotline 442-339-2990. Junk and Debris on Private Property 442-339-2703. Sewer Division 442-339-2722 (report sewer spills/issues). Solid Waste 442-339-2646. Storm Water Hotline 442-339-2799. Water Division 442-339-2722 (report leaks/breaks).
 
-Source: https://www.carlsbadca.gov/departments
-
-## Report a Problem — Hotline Directory
-
-Not sure who to call? The City Manager's Office can assist at 442-339-2820. An online reporting system is also available.
-
-- Abandoned vehicles (RVs and other vehicles parked on the street for more than 72 hours): 442-339-2289.
-- Construction updates: 442-339-2780, ext. 7301.
-- Graffiti Removal Hotline: 442-339-2990.
-- Junk and debris on private property: 442-339-2703.
-- Sewer Division, to report sewer spills/issues: 442-339-2722.
-- Solid Waste: 442-339-2646.
-- Storm Water Hotline: 442-339-2799.
-- Water Division, to report leaks/breaks: 442-339-2722.
-
-The directory also lists these categories: animal and pest problems, bee removal, construction complaints, flight noise info, noise complaints, parks and trails maintenance problems, speeding, street-related repairs, street lights, tree maintenance problems, and utilities problems.
+The directory also links to pages for Animal and Pest Problems, Bee Removal, Construction Complaints, Flight Noise Info, Noise Complaints, Parks and Trails Maintenance Problems, Speeding, Street-related Repairs, Street Lights, Tree Maintenance Problems and Utilities Problems.
 
 Source: https://www.carlsbadca.gov/residents/report-a-problem
 
-## Online Services
+## Parks and Trails Maintenance Problems
 
-The city offers these online options:
-- Report a problem, and download the Carlsbad Connects app.
-- Bid on a city project: get listings of open bids and download bidding documents.
-- Report a crime through the online crime reporting system.
-- Get a permit: apply for a building permit, check its status or pay fees.
-- Sign up for camps, classes and events.
-- Apply for or renew a business license.
-- Pay your water bill: secure online payment, and monitor water use.
-- Pay or contest a parking ticket.
-- Pay transient occupancy (hotel) taxes.
-- Find property records such as zoning and parcel numbers.
-- Access city maps: Council district, city facilities and more.
-- Watch meetings and other programs live.
-- Access the library catalog.
-- Get development forms and applications.
-- Search and request public records.
-- Look up the Carlsbad Municipal Code, policies and more.
+Call 442-339-2824 for each of these: irrigation repairs in city parks, parks maintenance, parks, trees and median maintenance, restroom conditions at city parks, and trails maintenance. You can also submit your request online through the "Report a Problem" link.
 
-Source: https://www.carlsbadca.gov/departments/online-services
+Source: https://www.carlsbadca.gov/residents/report-a-problem/parks-and-trails-maintenance-problems
 
-## Abandoned Vehicles and 72-Hour Parking
+## Storm Water Hotline — Report Pollution
 
-Under California Vehicle Code Section 22651(k) and Carlsbad Municipal Code 10.40.010(a), it is unlawful to park a vehicle on any street or public place for 72 or more consecutive hours. A vehicle not driven more than one-tenth of a mile from its original position every 72 hours is subject to citation or towing at the owner's expense. Recreational vehicles may park on public streets subject to these sections, and trailers must remain attached to a vehicle. You can report a vehicle parked more than 72 hours through the online reporting system.
+Report pollution to the Storm Water Hotline at 442-339-2799 or stormwater@carlsbadca.gov. The city protects its seven miles of beaches, three lagoons and numerous creeks. The page links to pollution prevention tips for residents and businesses, TCBMP (required stormwater compliance) and FAQs.
 
-To report a vehicle abandoned on city streets, call the Abandoned Vehicle Hotline at 442-339-2289 and leave a message with the location, license number, description and any other observations. You can also submit a report online. Do not submit an online report if the issue involves an emergency vehicle or government-owned trailer.
+Source: https://www.carlsbadca.gov/residents/report-a-problem/storm-water-hotline
 
-For an illegal parking issue that needs to be resolved immediately, call the 24-hour non-emergency dispatch line at 442-339-2197. To file a specific request for parking regulation enforcement, contact the Police Department's non-emergency dispatch at 760-931-2197.
+## Animal & Pest Problems — Mosquitoes
 
-Source: https://www.carlsbadca.gov/residents/report-a-problem/abandoned-vehicles
+The County of San Diego advises residents to dump out any water sources, put screens on windows and doors, and wear long sleeves and pants. It also advises using insect repellent with an EPA approved active ingredient such as DEET, picaridin, oil of lemon eucalyptus, Para-menthane-diol, 2-undecanone, or IR3535.
 
-## Recreational and Oversized Vehicle Parking Permits
+If you are being bitten by mosquitoes during daylight hours, see mosquitoes that look like invasive Aedes mosquitoes, or notice increased mosquito activity, report it to the county at 858-694-2888 or vector@sdcounty.ca.gov.
 
-The Oversized Vehicle Ordinance, implemented in March 2013, restricts overnight parking of recreational and oversized vehicles on city streets between 2:00 a.m. and 5:00 a.m. Every citation carries a $50 penalty. An oversized vehicle is defined as 22 feet in length, or seven feet in height and seven feet in width.
+The city can help with some other animal and pest problems, but most are handled by other agencies and private companies. The page links to information on barking dogs, stray dogs and cats, dead animal removal, bees and wildlife.
 
-Residents and their guests can apply for a permit, which must be displayed in the window when the vehicle is parked on a city street between 2 and 5 a.m. The vehicle must be parked within 400 feet of the residence that was granted the permit. Permit types:
-- Yearly Residential Permit: free for Carlsbad residents who own an RV. It allows parking on a public street at the residence for up to 72 hours, four times within each month.
-- Temporary 72 Hour Guest Permit: free. It allows a resident's guest with an RV to park at the residence for up to 72 hours, six times per year.
-- Commercial Property Permit: the city issues each hotel and motel reusable permits to give to guests whose RVs can't be accommodated in the property's parking lot.
+Source: https://www.carlsbadca.gov/residents/report-a-problem/animal-and-pest-problems
 
-The free permit can be obtained from the Police Department, Monday through Friday, 8:00 a.m. to 5:00 p.m. The Police Department is located at 2560 Orion Way, 442-339-2119.
+## Bulky Item Collection
 
-Source: https://www.carlsbadca.gov/residents/report-a-problem/abandoned-vehicles
+Republic Services offers bulky item pickup. Residents receive three bulky item pickups a year, with up to five items picked up each time. Call 760-332-6464 to schedule. Acceptable items are typically too large to fit in your curbside cart and weigh less than 200 pounds. Examples are appliances (including refrigerators), furniture, carpet, mattresses, a toilet, a water heater, a washer and dryer, and electronic waste.
 
-## Towed Vehicles and Impound Release
+Special handling:
+- Place items in the location specified with the agent when scheduling.
+- Cut carpet down to four (4) feet in length and bundle it into one roll.
+- Disassemble and bundle gym sets and swing sets.
+- Wrap mattresses in plastic for collection.
+- Some older refrigerators may require freon removal and tagging. Call Republic Services for more information.
+- Bundle and tie yard trimmings and/or non-treated wood waste, with no more than four (4) bundles per pickup.
 
-If your vehicle has been towed, call 442-339-2100 to find out how to get it released. In some cases you need a vehicle impound release from the Police Department before the tow company can return your car. The registered or legal owner must come to the Police Department with a valid driver's license or picture identification and a licensed driver. The vehicle must have current registration or a valid temporary operating permit.
+Not accepted: auto parts, bath tubs w/showers attached, boats, camper shell, construction & demolition debris, fencing, garage door, household hazardous waste, piano, plywood/wallboard, pool, pool table, roofing, satellite dish, shopping cart, shower module, sinks, sliding glass door, spa, tires, tree stump, universal waste (batteries/fluorescent bulbs) and windows. (A garage door motor and track are accepted.)
 
-The Police Department charges a $154 release fee and accepts only exact cash or Visa/Mastercard. Impound release hours are Monday through Friday (excluding city holidays), 8:30 a.m. to 4:30 p.m. If a vehicle does not require a Police Department release, it may be picked up directly from the towing company.
+Contact the Sustainable Materials Management Division at 442-339-2646.
 
-Source: https://www.carlsbadca.gov/residents/report-a-problem/abandoned-vehicles
+Source: https://www.carlsbadca.gov/departments/environmental-sustainability/reduce-reuse-recycle/bulky-item-collection
 
-## Stolen Vehicles and Collision Reports
+## Trash & Recycling — Contacts and Billing
 
-To report a stolen vehicle, or to ask about its status, contact the 24-hour communications center at 760-931-2197. In most cases, law enforcement notifies the owner of a stolen vehicle by telephone within 48 hours of its recovery.
+Republic Services bills directly for all residential, multifamily, commercial, and industrial trash and recycling services. The City of Carlsbad no longer bills residential trash service through utility billing. For billing questions, contact Republic Services at 760-332-6464 or carlsbadservice@republicservices.com.
 
-The Police Department documents all traffic collisions on public roadways except minor "fender benders." It need not respond if all parties agree the collision is minor, have exchanged driver and insurance information, and all vehicles can be driven from the scene under their own power. The Traffic Division investigates serious and fatal injury collisions and reviews all hit and run collisions. Contact it at 442-339-2290.
+Sustainable Materials Management: 442-339-2646, reducereuserecycle@carlsbadca.gov. City of Carlsbad Utility Billing (Water & Sewer): 442-339-2420, utilitybilling@carlsbadca.gov.
 
-Source: https://www.carlsbadca.gov/residents/report-a-problem/abandoned-vehicles
+Source: https://www.carlsbadca.gov/business/doing-business/utilities-for-businesses
 
-## Fix-It Tickets
+## Waste Collection — Temporary Service Suspension
 
-Fix-it tickets can be signed off at the Police Department on weekdays between 8:00 a.m. and 5:00 a.m.–5:00 p.m. For a citation received in Carlsbad, or for Carlsbad residents, sign-off fees are:
-- Moving violation, with proof of correction: $20.
-- Parking/registration violation, with proof of correction: $13.
+Residents may request a temporary suspension of waste collection services by submitting an application to the Sustainable Materials Management Division for review. Apply online with the web-based application, which is sent automatically to division staff. You can also complete, print and submit an application by mail or in person to:
 
-A court administrative fee is also paid when you submit the corrected, signed citation to the court; it is explained on the back of the citation. For a citation from another jurisdiction, for a non-resident of Carlsbad, the sign-off fee is $20.
+City of Carlsbad
+Attn: Sustainable Materials Management Division
+1635 Faraday Avenue
+Carlsbad, CA 92008
 
-Source: https://www.carlsbadca.gov/residents/report-a-problem/abandoned-vehicles
+Questions: 442-339-2646, SustainableMaterialsManagement@carlsbadca.gov.
 
-## Parking Tickets
+Source: https://www.carlsbadca.gov/business/doing-business/utilities-for-businesses
 
-A parking ticket must be paid or contested within 21 days of the issue date. Two of the most common correctable citations that get dismissed are failing to display a valid handicapped placard at the time of the citation, and getting a vehicle registration current. Parking tickets can be found, paid or appealed online.
+## Water & Sewer — Which District Serves You
 
-Source: https://www.carlsbadca.gov/residents/report-a-problem/abandoned-vehicles
-
-## Ocean Street Public Parking Lot — Overnight Parking
-
-Overnight parking is not allowed between 11 p.m. and 5 a.m., all days of the week, in the Ocean Street public parking lot. Enforcement began on February 1, 2020. The same parameters are in place for other public parking lots owned or controlled by the City of Carlsbad.
-
-Source: https://www.carlsbadca.gov/residents/report-a-problem/abandoned-vehicles
-
-## Water and Sewer Service — Who Serves You
-
-Carlsbad is served by three water districts. A water district map shows whether your property is in the Carlsbad Municipal Water District. For properties in the Carlsbad Municipal Water District, contact utility billing at 442-339-2420 for service sign-ups, disconnects, installation and payment arrangements. Online self-service is currently not available to start or stop service.
+The City of Carlsbad is served by three water districts. For properties in the Carlsbad Municipal Water District, contact utility billing at 442-339-2420 for utility service sign-ups, disconnects, installation and payment arrangements. Online self-service is currently not available to start or stop service.
 
 For properties in the southern portion of the city, contact the Olivenhain Municipal Water District, Leucadia Wastewater District or Vallecitos Water District (water and sewer). Questions about your bill: call 442-339-2420 or email utilitybilling@carlsbadca.gov.
 
 Source: https://www.carlsbadca.gov/business/doing-business/utilities-for-businesses
 
-## Starting and Stopping Water Service
+## Water Service — Starting and Stopping
 
-To start service, call 442-339-2420. The city requires at least 24 hours notice for service turn-on.
-- There is a $48 setup fee for all new accounts.
-- If the city is contacted on the same day service is requested, a $194 charge is assessed on the next bill.
-- When calling on holidays, on weekends or after 5 p.m. on weekdays to have water turned on the same day, a charge of $290 must be paid to the city on the following working day.
+To start service, call 442-339-2420. The city requires at least 24 hours notice for service turn-on. There is a $48 setup fee for all new accounts. If the city is contacted on the same day as requested service turned on, there will be a $194 charge assessed on the next bill. When calling on holidays, on weekends or after 5 p.m. on weekdays to have water turned on the same day, a charge of $290 must be paid to the city on the following working day.
 
 To stop service, call 442-339-2420. The city requires at least 24 hours notice to discontinue service. Charges accrue until the city is contacted to discontinue service.
 
-Landlords who receive water service from the city water district can pay a $12 continuity of service fee (in lieu of the $48 setup fee) to retain water service to rental properties during vacancy. Complete a continuity of service agreement form and email it to utilitybilling@carlsbadca.gov or fax it to 760-602-1118.
+Landlords who receive water service from the city water district can choose a continuity of service fee of $12 (in lieu of the $48 setup fee) to retain water service during vacancy. Complete a continuity of service agreement form and email it to utilitybilling@carlsbadca.gov or fax it to 760-602-1118.
 
 Source: https://www.carlsbadca.gov/business/doing-business/utilities-for-businesses
 
-## Paying Your Water and Sewer Bill
+## Water & Sewer Bills — Payments
 
-Water and sewer customers are billed monthly. The billing period is normally 30 days, based on the water meter reading date. If service is established mid-period, charges are prorated. Charges paid after the due date are subject to a ten percent late fee. Charges not paid after 30 days are considered delinquent and are subject to additional fees.
+The city bills water and sewer customers monthly. The billing period is normally 30 days and is based on the water meter reading date. If service is established in the middle of a billing period, all charges are prorated. Charges paid after the due date are subject to a ten percent late fee. Charges not paid after 30 days are considered delinquent and are subject to additional fees.
 
-Payment options:
-- Online: Visa, Mastercard, Discover and E-Check are accepted, with no credit card fees. You do not need to register for an online account; click "Pay My Bill." Credit card transactions typically take 48 hours to settle. ACH (e-check) transactions typically take 48–72 hours.
-- Drop boxes: in the City Hall parking lot on Pio Pico Drive and outside the Faraday building (1635 Faraday Ave.). Payments deposited there are not credited until the following business day.
-- By phone: 442-339-2420, Option 1, a secure automated line available 24/7. Payments cannot be accepted with a representative over the phone.
+Ways to pay:
+- **Online:** Visa, Mastercard, Discover and E-Check are accepted, with no credit card fees. Credit card transactions typically take 48 hours to settle. ACH (e-check) transactions typically take 48–72 hours. You do not need to register for an online account; click "Pay My Bill."
+- **Drop boxes:** In the parking lot at City Hall on Pio Pico Drive and outside the Faraday building (1635 Faraday Ave.). Payments are not credited until the following business day.
+- **By phone:** 442-339-2420, Option 1. This secure automated line is available 24/7. Payments cannot be accepted with a representative over the phone.
 
-The city may refuse payment in coins. Postdated checks are not accepted. Past due bills scheduled for shut off must be paid in cash, money order, or credit card in person at the Faraday building, or by credit card with utility billing customer service at 442-339-2420, Option 1.
+The city reserves the right to refuse payment of utility charges in coins. Postdated checks will not be accepted. Past due bills scheduled for shut off must be paid in cash, money order, or credit card in person at the Faraday building, or by credit card with customer service at 442-339-2420, Option 1.
 
 Source: https://www.carlsbadca.gov/business/doing-business/utilities-for-businesses
 
-## Online Utility Bill Account Registration
+## Water Bill — Online Account Registration
 
 Register at https://waterbill.carlsbadca.gov/ by clicking "New User Register Now." Chrome is the preferred browser; do not use Internet Explorer.
-- Username: no spaces, minimum 8 characters. An email address is acceptable.
-- Password: must contain 3 special characters (@#!$%&), for example waterbill$$$.
-- Account number: needs 8 digits before the dash. Add leading zeros, so 1234567-01 is entered as 01234567-01.
+- The username cannot contain spaces and must be at least 8 characters. An email address is acceptable.
+- The password must contain 3 special characters (@#!$%&).
+- The account number needs 8 digits before the dash, so add leading zeros. For example, 1234567-01 is entered as 01234567-01.
 - Enter your mailing zip code.
 
-After registering, you receive an email with a verification link; check junk or spam folders. Use "Forgot Password?" or "Forgot Username?" on the login screen to recover cred
+After registering you will receive an email with a verification link, so check junk or spam folders. If you go paperless, you receive an email notification each time a new bill is ready. You cannot receive both electronic and paper bills. If you cannot locate your account number, call customer service at 442-339-2420.
+
+Source: https://www.carlsbadca.gov/business/doing-business/utilities-for-businesses
+
+## Help Paying Your Water Bill
+
+211 is a 24-hour phone referral service for people needing help with utility bills, food, health services, domestic violence assistance, shelter and other needs. Modest Needs Foundation is a grant program for unusual or emergency situations. If approved, it would pay the bill in its entirety, and the grant is not repaid. For questions, call the city at 442-339-2420.
+
+Source: https://www.carlsbadca.gov/business/doing-business/utilities-for-businesses
+
+## Street Sweeping Schedule
+
+Carlsbad annually sweeps 19,900 miles of roadway. To find the schedule for a specific address, click the first letter of the street name on the page. Schedules are listed by week and weekday. Examples: Abanto Street is swept the 2nd and 4th Friday, and Acacia Avenue the 1st and 3rd Tuesday. Some streets are listed by segment, such as Adams Street. Some are noted as private roads or gated communities that are not swept.
+
+There is no street sweeping on city holidays.
+
+To report litter or roadway debris, call 442-339-2980. To report flooding or pollution, call 442-339-2799.
+
+Source: https://www.carlsbadca.gov/departments/streets-traffic/maintenance/street-sweeping-schedule
+
+## Holiday Hours — 2026
+
+City offices will be closed on these 2026 holidays:
+- New Year's Day, Thursday 1/1/2026
+- Martin Luther King Jr., Monday 1/19/2026
+- Presidents Day, Monday 2/16/2026
+- Memorial Day, Monday 5/25/2026
+- Independence Day, Friday 7/3/2026
+- Labor Day, Monday 9/7/2026
+- Indigenous Peoples' Day, Monday 10/12/2026
+- Veterans Day, Wednesday 11/11/2026
+- Thanksgiving Day, Thursday 11/26/2026
+- Thanksgiving Friday, Friday 11/27/2026
+- Christmas Day, Friday 12/25/2026
+
+On Monday, Oct. 12 (Indigenous Peoples' Day), city offices, libraries, Cannon Art Gallery, the city sculpture garden, Alga Norte Aquatic Center, community centers, Leo Carrillo Ranch Historic Park and the Senior Center are closed. Trash pickup has no delay and emergency services run regular service. For the holiday transit schedule, visit gonctd.com or call 5-1-1. A complete list of city service hours is posted approximately one week prior to each holiday.
+
+Source: https://www.carlsbadca.gov/residents/holiday-hours
+
+## City Departments — Frequently Requested Contacts
+
+If you're not sure which department you need, call City Hall at 442-339-2820 or email help@carlsbadca.gov.
+
+- Building inspections: 442-339-2700, bldginspections@carlsbadca.gov
+- Building permits: 442-339-2719, building@carlsbadca.gov
+- Business License Office: 442-339-2495, finance@carlsbadca.gov
+- City Clerk's Office: 442-339-2808, clerk@carlsbadca.gov
+- Code Enforcement: 442-339-2703, codeenforcement@carlsbadca.gov
+- Community Development: 442-339-2710
+- Construction Management & Inspection: 442-339-2780, cmi@carls

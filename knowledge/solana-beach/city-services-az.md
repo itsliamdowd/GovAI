@@ -2,192 +2,128 @@
 
 Generated 2026-10-17 from https://www.cityofsolanabeach.org pages listed in each section's Source line.
 
-## City Hall — Hours, Phone and Address
+## Summer Day Camps — Kids Camps (Ages 5-11)
 
-City Hall hours are M-Th 7:30 AM to 5:30 PM, Fridays 8:00 AM to 5:00 PM, closed alternate Fridays. Phone: (858) 720-2400. Address: 635 South Highway 101, Solana Beach, CA 92075.
+Weekly sessions meet Monday through Friday from 8:30 AM to 2:00 PM at Fletcher Cove Community Center (133 Pacific Ave) and Friday at La Colonia Park (715 Valley Ave). The fee is $185/week ($240 non-residents) per child. It includes activities such as beach games, swimming, arts & crafts, a Library visit, games, friends, and a Thursday field trip. After-care is offered from 2:00 PM - 5:00 PM ($53/week; $81/week non-residents). The "Leader in Training" program for 12-16 year olds is $46/week.
 
-Source: https://www.cityofsolanabeach.org/en/government/departments
+Summer 2026 weekly camps: Salty Science & Ocean Magic (June 15 - 19, field trip to Fleet Science Center); Splash & Play (June 22 - 26, The Wave Waterpark); Beach Olympics (June 29 - July 3, San Diego Ice Arena); Tide Pool Explorers (July 6 - 10, Alga Norte Pool); Coastal Creators (July 13 - 17, New Children's Museum); Wave Riders (July 20 - 24, The Wave Waterpark); Beach Bash (July 27 - 31, Skateworld San Diego). Field trip locations and dates are subject to change.
 
-## Filing a Claim with the City / Risk Management
+Source: https://www.cityofsolanabeach.org/en/parks-recreation/summer-day-camps
 
-The Human Resources Department oversees the City's Risk Management functions. For questions about risk management claims or related services, contact Kyle Koszewnik, Senior Insurance and Risk Manager. To file a claim with the City, the City's Claim Form must be completed in its entirety and filed with the City Clerk's Office.
+## Summer Day Camps — Registration, Cancellation and Contact
 
-Source: https://www.cityofsolanabeach.org/en/government/departments/human-resources-risk-management
+Registration for Solana Beach residents begins Wednesday, April 8th, 2026 at 9:00 AM. Registration for non-residents begins Wednesday, April 15th, 2026 at 9:00 AM. There is a $50 cancellation fee for anyone who cancels in writing prior to 30 days before the camp session begins. No refund is given if cancelled within 29 days of the start date of the session.
 
-## City Employment — Human Resources
+For more details, contact the Parks & Recreations Department at 858-720-4430 or drossi@cityofsolanabeach.ca.gov.
 
-The Human Resources page links to Employment Opportunities, How to Apply, the Job Application Portal, Salary Schedules, Employee Benefits, Memorandums of Understanding (MOUs), Personnel Rules & Regulations, Job Descriptions and the Holiday Schedule. HR Team: Kyle Koszewnik, Senior Insurance and Risk Manager; Jose Gonzalez, Senior Human Resources Analyst.
+Source: https://www.cityofsolanabeach.org/en/parks-recreation/summer-day-camps
 
-Source: https://www.cityofsolanabeach.org/en/government/departments/human-resources-risk-management
+## Parks, Community Centers and Public Wi-Fi
 
-## City Clerk — Services and Contacts
+Solana Beach's parks are Fletcher Cove Park (111 S. Sierra Ave) and La Colonia Park (715 Valley Ave). The city has two community centers that may be rented for special events: Fletcher Cove Community Center (133 Pacific Avenue) and La Colonia Community Center (715 Valley Avenue). Each has a Rental Application.
 
-The City Clerk's Department coordinates agenda postings for the City's legislative body's public meetings. It is the Custodian of the City's Official Records. The City Clerk is the elections official for the City and coordinates municipal elections. The Clerk also posts and publishes City Council actions and agendas, certifies City documents, and codifies the municipal code. The page links to FPPC Local Form 700 Filings, the Local Conflict of Interest Code and Local Campaign Filings.
+Public Wi-Fi is available at La Colonia Park Community Center, Fletcher Cove Community Center, and City Hall.
 
-City Clerk: Angela Ivey, (858) 720-2420, aivey@cityofsolanabeach.ca.gov. City Clerk's Office: (858) 720-2400, clerkoffice@cityofsolanabeach.ca.gov.
+Parks & Recreation staff: Kirk Wenger, Parks & Recreation Manager, (858) 720-2453; Dylan Rossi, Recreation Supervisor, (858) 720-2454, drossi@cityofsolanabeach.ca.gov.
 
-Source: https://www.cityofsolanabeach.org/en/government/departments/city-clerk
+Source: https://www.cityofsolanabeach.org/en/recreation
 
-## Attending Public Meetings
+## Special Event, Sound and Film Permits
 
-All publicly noticed Council Committee and Citizen Commission meetings are open to the public. Agendas and a schedule of meeting dates and times are on the Public Meetings page.
+The Parks and Recreation Department issues permits for special events in the City's public areas, playing fields, beaches, parks, and community centers. This includes road closure permits and film permits. Any event with 25 or more people on public property requires a Special Event Permit. Events such as block parties may also require one. No private events are allowed at Fletcher Cove or City beaches.
 
-Source: https://www.cityofsolanabeach.org/en/government/departments/city-clerk/city-clerk-faq
+Applications are available for the Special Event Permit, Sound Permit, and Film Permit.
 
-## Public Records Requests
+Source: https://www.cityofsolanabeach.org/en/recreation
 
-Get public records by submitting a records request form to the City Clerk's office.
+## Waste & Recycling — EDCO Hauling Service
 
-Source: https://www.cityofsolanabeach.org/en/government/departments/city-clerk/city-clerk-faq
+EDCO Waste and Recycling Services is the only authorized company that can haul solid waste in the City of Solana Beach. Visit the EDCO website to start or stop service, view service schedules, or find out more about residential and commercial recycling. You can also schedule a Bulky Item Pickup or order a roll-off bin for a home project on the EDCO website. To reach EDCO by phone, call (858) 350-8544.
 
-## Voter Registration
+The page lists the 2018 EDCO Franchise Agreement, the 2022 Organics Amendment, and the 2025 Solid Waste Rates (PDF).
 
-For the most up-to-date voting information, visit the Registrar of Voters website. You may also pick up a voter registration form from the City Clerk office, DMV, Post Office or Library.
+Source: https://www.cityofsolanabeach.org/en/city-services/resident-services/utilities-waste-services
 
-Source: https://www.cityofsolanabeach.org/en/government/departments/city-clerk/city-clerk-faq
+## Curbside Recycling Guides
 
-## Fictitious Business Names
+EDCO's Recycling Guide is the most accurate source for what to include in your Blue Bin. EDCO's Organics Recycling webpage has the most accurate information about what to place in your green bin. iRecycleSmart is a website created by CalRecycle as part of a California-wide education campaign. To schedule a Bulky Item Pickup or order a roll-off bin, visit the EDCO website or call (858) 350-8544.
 
-The County Clerk/Recorder/Assessor processes Fictitious Business Names. It can be reached at (619) 237-0502 or online.
+Source: https://www.cityofsolanabeach.org/en/curbside-waste-services
 
-Source: https://www.cityofsolanabeach.org/en/government/departments/city-clerk/city-clerk-faq
+## Plastic Bags and Retail Plastic Film
 
-## Birth, Marriage and Death Certificates
+Single-use plastic bags should not be placed in the recycling cart because they are not recyclable and damage EDCO's materials sorting machines. Residents can collect clean plastic bags that have not been contaminated by food or other material and drop them off at Solana Beach City Hall. They are compressed into bales and recycled into building materials.
 
-The San Diego County Clerk/Recorder/Assessor maintains birth certificates, marriage licenses and death certificates. It can be reached at (619)237-0502 or through the Office of Vital Records and Statistics.
+Businesses that throw away retail plastic film material can check whether the program of Plastic Beach, a non-profit operating in the City, is a good fit.
 
-Source: https://www.cityofsolanabeach.org/en/government/departments/city-clerk/city-clerk-faq
+Source: https://www.cityofsolanabeach.org/en/Waste-Recycling
 
-## Community Development Department
+## Utilities — Who to Contact
 
-The department issues building permits, processes applications for development and land use permits, and manages affordable housing programs. It administers the City's General Plan and Certified Land Use Plan. Its four divisions are Planning, Building, Code Enforcement and Shoreline Management. The Fire Prevention Bureau is part of the Fire Department but works closely with Planning on permit inspection and code compliance under the current California Building & Fire Code.
+The City of Solana Beach does not manage billing or maintenance requests for any utility or waste services. For general questions about utilities in a public right-of-way, contact the Engineering Department at (858) 720-2470.
 
-Contact: (858) 720-2440, planning@cityofsolanabeach.ca.gov.
+Electricity: Clean Energy Alliance (CEA) is the default power provider for Solana Beach. SDG&E delivers the energy, handles billing and serves customers. You may opt out of CEA and choose SDG&E as your power provider. Gas: San Diego Gas & Electric (SDG&E). Water: Santa Fe Irrigation District or Olivenhain Municipal Water District. The City encourages residents to research all options before picking an Internet provider.
 
-Source: https://www.cityofsolanabeach.org/en/government/departments/community-development
+Source: https://www.cityofsolanabeach.org/en/city-services/resident-services/utilities-waste-services
 
-## Planning Permits
+## Household Hazardous Waste (HHW) — Drop-Off
 
-The Planning Division processes discretionary applications such as Development Review Permits, Structure Development Permits, Conditional Use Permits, Temporary Use Permits and Variance requests. Contact the Planning Department at planning@cityofsolanabeach.ca.gov or (858) 720-2440.
+It is dangerous and illegal to discard HHW into the trash, storm drain, or down the sewer. Products labeled Caution, Warning, Danger, Poison, Toxic, Flammable or Corrosive are considered hazardous. Accepted items include e-waste, batteries, paint, lamps with fluorescent tubes, used motor oil and filters, pool cleaners, household cleaners, mercury thermometers and switches, non-empty aerosol cans, automobile fluids, landscaping chemicals, and novelties such as some singing greeting cards or flashing athletic shoes.
 
-Source: https://www.cityofsolanabeach.org/en/government/departments/community-development/planning
+Two regional permanent collection facilities are open every Saturday (except holiday weekends) from 9:00am to 3:00pm. Drop-off is free of charge because the City subsidizes the disposal cost. Proof of residency (formal I.D. or current utility bill) is required, and drop-offs are limited to 125 lbs of waste. The Vista facility is at 1145 East Taylor Street at Laguna Lane (800-714-1195). The Poway facility is in the South Poway Business Park at 12325 Crosthwaite Circle at Stowe Drive (858-668-4710). No appointment is required.
 
-## Accessory Dwelling Units (ADUs)
+Source: https://www.cityofsolanabeach.org/en/e-waste-hhw
 
-Anyone who wants to build an ADU should review the current Accessory Dwelling Unit regulations and the ADU Submittal Process and Basic Requirements Handout. Information on the CAL HFA ADU Grant Program is available for applicants interested in financial assistance. Plans for the City's Pre-Approved Accessory Dwelling Unit Program (PADU) are submitted per the PADU Processing Guide. All ADU applicants are requested to complete and submit the Housing Affordability Tracking Form to Planning@cosb.org.
+## Household Hazardous Waste and E-Waste — Home Pick-Up
 
-Source: https://www.cityofsolanabeach.org/en/government/departments/community-development/planning
+A Door-to-Door HHW/E-Waste collection service is available to all Solana Beach residents. To set up an appointment, call 800-714-1195. Residents pay a $10.00 co-payment for HHW pick-up. There is no charge to qualifying homebound or senior residents (age 65 and over). There is no charge for E-Waste pick-up. Pick-ups are limited to 125 lbs of waste.
 
-## Affordable Housing Resources
+Source: https://www.cityofsolanabeach.org/en/e-waste-hhw
 
-Residents seeking affordable housing and other housing-related resources are encouraged to review the Housing & Community Resources Guide and the current Affordable Housing List.
+## Battery Disposal
 
-Source: https://www.cityofsolanabeach.org/en/government/departments/community-development/planning
+Used batteries are hazardous waste and should never go in the curbside trash, recycling, or organics carts. Residents have 3 options:
+1. Drop them off at the battery recycling bin inside Solana Beach City Hall. It accepts regular (acid) batteries and rechargeable lithium-ion batteries. More powerful Li-On batteries found in cell phones, laptops, power tools or other embedded battery products are treated as universal waste and cannot currently be disposed of at City Hall.
+2. Drop them off at the Vista (1145 East Taylor Street at Laguna Lane) or Poway (12325 Crosthwaite Circle at Stowe Drive) HHW facility.
+3. Schedule a HHW pickup by calling 800-714-1195 ($10.00 co-payment; no charge to qualifying homebound or senior residents age 65 and over).
 
-## Shoreline Management and Local Coastal Program
+Battery-embedded products (SB 1215) include cell phones, wireless ear buds, tools, computer accessories, smart watches, kitchen devices, electric shavers, and E-Bikes. Do not throw them in the trash. Treat them like an old battery and take them to a HHW facility.
 
-The Shoreline Management Division administers local, state and federal efforts to maintain and improve the City's shoreline and beach re-nourishment programs. The City Council adopted the Local Coastal Program (LCP) Land Use Plan on February 27, 2013, and approved the amended LUP under Resolution 2014-060 on June 11, 2014. The LCP LUP can be viewed online and in person at the Community Development Department at City Hall, 635 South Highway 101, Solana Beach, California, 92075.
+Source: https://www.cityofsolanabeach.org/en/e-waste-hhw
 
-Source: https://www.cityofsolanabeach.org/en/government/departments/community-development/shoreline-management
+## Electronic Waste (E-Waste) Drop-Off
 
-## Community Services — Parks, Recreation and Public Art
+Residents can recycle computers and televisions (working or not) with Goodwill at local drop-off locations. Goodwill accepts all computers, televisions and computer related equipment and electronics free of charge and provides a receipt for tax purposes. There are no drop-off locations within Solana Beach currently.
 
-Contacts: Parks & Recreation: Kirk Wenger, Parks & Recreation Manager, (858) 720-2453, kwenger@cosb.org. Public Arts: Kayla Moshki, Management Analyst, (858) 720-2438, kmoshki@cosb.org.
+E-waste can also be taken free of charge to the Vista and Poway regional facilities, open Saturdays 9:00am to 3:00pm (except holiday weekends). Proof of residency is required, and drop-offs are limited to 125 lbs.
 
-Source: https://www.cityofsolanabeach.org/en/government/departments/community-services
+Source: https://www.cityofsolanabeach.org/en/e-waste-hhw
 
-## Engineering & Public Works — Overview
+## Lightbulbs, Universal Waste and Mercury Thermostats
 
-The department maintains, repairs and improves streets, sewers, storm drains, streetlights, traffic signals and public parks. It also implements the City's capital improvement projects and provides reviews, permits and inspections for private grading and drainage projects. Permit & Project Services reviews, issues and inspects encroachment, grading and sanitation permits, and approves Construction & Demolition Waste Management Plans (WMP's).
+Universal waste ("U-Waste") includes fluorescent lamps, cathode ray tubes, instruments that contain mercury, batteries, and others. Residents can call to schedule a pick-up or drop off at the City of Vista HHW Collection Facility (1145 E. Taylor Street, Vista, CA 92084, 800-714-1195) or the City of Poway HHW Collection Facility (12325 Crosthwaite Circle, Poway, CA 92064, 858-668-4710). Facilities are open Saturdays from 9am-3pm (no appointment required).
 
-Source: https://www.cityofsolanabeach.org/en/government/departments/engineering-public-works
+For an old mercury thermostat, you can use HHW collection service (call 800-714-1195; residents under the age of 65 may have to pay a $10 charge for pick-up) or drop it at the Vista or Poway facility. You can also receive a $30 rebate by bringing it to a ThermostatCare drop-off location. The nearest to Solana Beach is AC Pro at 13230 Evening Creek Drive South, San Diego. Fill out the rebate form to receive a check in the mail.
 
-## Engineering Permits — Contacts
+Source: https://www.cityofsolanabeach.org/en/e-waste-hhw
 
-Engineering Counter: (858) 720-2470, pw-eng@cosb.org. Engineering Services contact: Dan Goldberg, (858) 720-2474, dgoldberg@cosb.org.
+## Paint Recycling
 
-Source: https://www.cityofsolanabeach.org/en/government/departments/engineering-public-works/engineering/engineering-permits
+PaintCare accepts the following for free recycling in San Diego County: latex, acrylic, water-based, alkyd, oil-based, and enamel paints (including textured coatings); deck coatings and floor paints (including elastomeric); primers, sealers, undercoaters; shellacs, lacquers, varnishes, urethanes; stains; waterproofing for concrete/masonry/wood; sealers and repellents; metal coatings and rust preventatives; and field and lawn paints. The Solana Beach drop-off is Dunn-Edwards at 2689 Via De La Valle, Del Mar.
 
-## Encroachment Permits
+Source: https://www.cityofsolanabeach.org/en/e-waste-hhw
 
-An encroachment permit is required whenever construction or temporary storage is being conducted in the public right-of-way. Repairs to the public sewer, such as private lateral connections, also require encroachment permits. An Encroachment Permit Refund Request form is available. A permit is also required for work in the public right-of-way even on an unimproved shoulder, and for the portion of a driveway within the public right-of-way. For standard construction, only a properly licensed and insured contractor may do work in the public right-of-way.
+## Storm Water Pollution — How to Report
 
-Source: https://www.cityofsolanabeach.org/en/government/departments/engineering-public-works/engineering/engineering-permits
+Notify the City's Storm Water Program hotline at (858) 720-4424 (stormwater@cosb.org), or submit an Urban Runoff Report Form online, if you observe any of the following:
+- Power washing or mobile detailing whose runoff flows into the sidewalk, curb and gutter, street, or a storm drain
+- Over irrigation where water runs off into the streets or storm drain system
+- Landscape crews using hoses to wash down driveways or gutters into the street
+- Restaurants washing mats or equipment outdoors and letting runoff flow into streets or alleyways
+- Construction materials or sediment coming off a construction site and entering the City's right-of-way
 
-## Placing a Dumpster, Basketball Stand or Planting/Removing Trees in the Public Right-of-Way
+Source: https://www.cityofsolanabeach.org/en/government/departments/engineering-public-works/engineering/storm-water-program
 
-Before placing a dumpster in the street or public right-of-way, you must obtain a temporary encroachment permit from the Engineering Department. Not all requests are approved, as public safety takes precedence. The City does not have any legal authority to allow a basketball stand in the street or sidewalk.
+## Storm Water Program — Rules and Prevention
 
-Trees in the public right-of-way are public property. To remove a public tree you must first obtain City Manager approval, and a temporary encroachment permit is also required. To plant a tree in the public right-of-way you must first obtain a temporary encroachment permit and comply with the City's planting standards for trees.
-
-Source: https://www.cityofsolanabeach.org/en/government/departments/engineering-public-works/faq-engineering-public-works
-
-## Grading Permits
-
-A grading permit is needed if earth is being moved on-site and the work is not covered under a building permit. Under SBMC 15.40.040 a grading permit is not required for exceptions such as:
-- Excavation below finished grade for basements and footings authorized by a valid building permit.
-- Excavations for wells, tunnels or utilities.
-- Exploratory excavations under the direction of soil engineers or engineering geologists.
-- A fill meeting all of these conditions: no more than three feet in vertical height; not placed on an existing slope steeper than five units horizontal to one vertical; no change to or adverse effect on the existing drainage pattern; toe no closer than three feet to an exterior property line; and no more than 100 cubic yards of material per each 8,000 square feet of area.
-
-A grading permit IS required for all grading on property which contains or is immediately adjacent to a coastal or inland bluff. Clearing and grubbing of vegetation for land development must not be undertaken until all discretionary approvals have been issued and a grading permit has been obtained.
-
-Source: https://www.cityofsolanabeach.org/en/government/departments/engineering-public-works/faq-engineering-public-works
-
-## Grading Operation Hours
-
-Municipal Code Section 7.34.100 prohibits disturbing, excessive or offensive noise before 7:00 a.m. or after 7:00 p.m., Monday through Friday, and before 8:00 a.m. or after 7:00 p.m. on Saturday, all day on Sunday and on certain holidays. Loading and transportation of earth from or to a site must end by sunset.
-
-Source: https://www.cityofsolanabeach.org/en/government/departments/engineering-public-works/faq-engineering-public-works
-
-## Retaining Walls and Fences
-
-A permit is not required for retaining walls that are 4 feet tall or shorter, measured from the bottom of the footing to the top of the wall. The wall, including the footing, must be entirely on the property and not in the public right-of-way. A retaining wall may require a grading permit if it exceeds the grading permit threshold limits. Contact Community Development for zoning height limits.
-
-A fence must be installed entirely on your property. Consult Community Development for height restrictions. Fences cannot impede vehicular sight distance at intersections.
-
-Source: https://www.cityofsolanabeach.org/en/government/departments/engineering-public-works/faq-engineering-public-works
-
-## Property Lines, Setbacks and Easements
-
-The edge of the pavement is not necessarily your property line. Actual boundaries can be determined from records of survey or the legal description on your grant deed, and a licensed surveyor can show you the boundaries. To determine required setbacks, contact Community Development. The City has records for some public easements, but a preliminary title report prepared by a title insurance company is the preferred source.
-
-Source: https://www.cityofsolanabeach.org/en/government/departments/engineering-public-works/faq-engineering-public-works
-
-## Neighbor Drainage Problems
-
-Unless the drainage problem is the result of a grading violation, it is a civil matter between you and your neighbor. If you believe the problem results from a grading violation, contact the Engineering Services Department.
-
-Source: https://www.cityofsolanabeach.org/en/government/departments/engineering-public-works/faq-engineering-public-works
-
-## Sewer Connection and Sanitation Permits
-
-A sanitation permit is required when connecting to the public sewer. To connect a private sewer lateral to the public sewer main, a sewer permit and construction permit are required. Visit the Engineering Department counter in City Hall to determine if the public sewer is near your property. Sewer fees are set annually by the City Council based on the EDU (Equivalent Dwelling Unit). An EDU determination and current sewer charges are in SBMC Section 14.08.060. For more information call the Engineering Department at (858)720-2470.
-
-Source: https://www.cityofsolanabeach.org/en/government/departments/engineering-public-works/faq-engineering-public-works
-
-## Failing Septic Systems
-
-If you have a failing septic system, you must either repair/replace it, or obtain a letter from the County Health Department or a private septic system company documenting the failure and begin proceedings for connection to the public sewer system. Septic systems are permitted and inspected by the County of San Diego Department of Environmental Health, (858) 565-5173.
-
-Source: https://www.cityofsolanabeach.org/en/government/departments/engineering-public-works/faq-engineering-public-works
-
-## Sewer Maintenance and Service Charges
-
-The City maintains the sanitary sewer system. Sewage is pumped to the San Elijo Water Reclamation Facility in Cardiff. All public sewers are cleaned at least once a year, and problem sewers up to four times annually. Sewer service charges are billed annually on the County property tax bill, are based on a user classification or category, and are not determined by water usage. For questions on sewer service charges and hook-up fees, call Public Works at (858) 720-2470.
-
-Source: https://www.cityofsolanabeach.org/en/government/departments/engineering-public-works/engineering
-
-## DigAlert — Call Before Excavating
-
-Before excavating, call 811 for DigAlert (Underground Service Alert of Southern California). Excavators' permits are not valid until they have contacted DigAlert by calling 811, or creating an online ticket, at least two (2) full working days before they begin excavation to get an inquiry identification number.
-
-Source: https://www.cityofsolanabeach.org/en/government/departments/engineering-public-works/engineering/engineering-permits
-
-## Construction & Demolition Recycling
-
-You must use EDCO, Inc roll-off boxes for all construction projects within the City. If EDCO cannot provide roll-off boxes, you must provide verification of the reason(s) and the name of the roll-off provider. EDCO San Marcos Recycling Center: (760) 744-2700. A copy of your WMP and receipts (tickets) for all recycling and disposal must be submitted before your project can receive final Building approval. For Demolition Permits, the demolition waste receipts should be provided before the first footing inspection after the building permit is issued. Details are in Section 6.36 of the Solana Beach Municipal Code. For questions about the C & D Recycling Ordinance or the form, call (858) 720-2470.
-
-Source: https://www.cityofsolanabeach.org/en/government/departments/engineering-public-works/engineering/engineering-permits
-
-## Construction
+The City prohibits all non-stor

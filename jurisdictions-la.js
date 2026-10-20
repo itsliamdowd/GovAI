@@ -147,7 +147,7 @@ const WIRING = {
   "west-hollywood": { feeds: [{ id: "wehotimes", name: "WeHo Times", url: "https://www.wehotimes.com/feed/" }, { id: "gn", name: "Google News", url: gnews('"West Hollywood" when:30d') }] },
   "burbank": { feeds: [{ id: "burbankleader", name: "Burbank Leader", url: "https://www.burbankleader.com/feed/" }, { id: "gn", name: "Google News", url: gnews('"Burbank" california when:30d') }], youtube: [] },
   "glendale": { feeds: [{ id: "glendalenewspress", name: "Glendale News-Press", url: "https://www.glendalenewspress.com/feed/" }, { id: "gn", name: "Google News", url: gnews('"Glendale" california when:30d') }], council: { platform: "primegov", client: "glendaleca", since: "2019", limit: 4000, label: "City Council" }, youtube: ["user/JewelCityCA"] },
-  "pasadena": { feeds: [{ id: "pasadenanow", name: "Pasadena Now", url: "https://pasadenanow.com/main/feed" }, { id: "gn", name: "Google News", url: gnews('"Pasadena" california when:30d') }, { id: "gn-starnews", name: "Pasadena Star-News", url: gnews("site:pasadenastarnews.com when:30d") }] },
+  "pasadena": { council: { platform: "pasadena", since: "2019", limit: 2000, label: "City Council" }, feeds: [{ id: "pasadenanow", name: "Pasadena Now", url: "https://pasadenanow.com/main/feed" }, { id: "gn", name: "Google News", url: gnews('"Pasadena" california when:30d') }, { id: "gn-starnews", name: "Pasadena Star-News", url: gnews("site:pasadenastarnews.com when:30d") }] },
   "hermosa-beach": { feeds: [{ id: "easyreader", name: "Easy Reader", url: "https://easyreadernews.com/feed/" }, { id: "gn", name: "Google News", url: gnews('"Hermosa Beach" when:30d') }], youtube: ["c/CityofHermosaBeach90254"] },
   "manhattan-beach": { feeds: [{ id: "easyreader", name: "Easy Reader", url: "https://easyreadernews.com/feed/" }, { id: "gn", name: "Google News", url: gnews('"Manhattan Beach" when:30d') }], council: { platform: "legistar", client: "manhattanbeach", body: "City Council", limit: 2000, label: "City Council" }, youtube: ["user/cityofmb"] },
   "redondo-beach": { feeds: [{ id: "easyreader", name: "Easy Reader", url: "https://easyreadernews.com/feed/" }, { id: "gn", name: "Google News", url: gnews('"Redondo Beach" when:30d') }, { id: "gn-breeze", name: "Daily Breeze", url: gnews("site:dailybreeze.com \"Redondo Beach\" when:30d") }] },
@@ -160,6 +160,12 @@ const WIRING = {
   "redondo-beach": { council: { platform: "legistar", client: "redondo", body: "City Council", limit: 2000, label: "City Council" }, youtube: ["@CityofRedondoBeachIT"] },
   "artesia": { council: { platform: "civicplus", since: "2019", limit: 2000, label: "City Council" } },
   "irwindale": { council: { platform: "civicplus", since: "2019", limit: 2000, label: "City Council" } },
+  // --- Granicus view probe 2026-10-17 (adapters/granicus.js parseView over view_id 1-20): the discovered views were video-only or stale ---
+  "huntington-park": { council: { platform: "pdflist", pages: [{ url: "https://www.hpca.gov/Archive.aspx?AMID=30", body: "City Council" }, { url: "https://www.hpca.gov/Archive.aspx?AMID=31", body: "City Council" }], since: "2019", limit: 2000, label: "City Council" } }, // CivicPlus Archive Center: AMID 30 = agendas, 31 = minutes (68 = agenda material); huntingtonpark.granicus.com stops in 2017
+  "lakewood": { site: "https://www.lakewoodca.gov", domains: ["lakewoodca.gov"], council: { platform: "opencities", pages: [{ url: "https://www.lakewoodca.gov/Government/Council-Members/CC-Mtgs-Minutes-Videos", body: "City Council" }], limit: 2000, label: "City Council" } }, // lakewoodcity.org redirects here; minutes pages per meeting, lakewood.granicus.com is dead
+  "lynwood": { site: "https://www.lynwoodca.gov", domains: ["lynwoodca.gov"], council: { platform: "civicplus", since: "2019", categories: ["City Council"], limit: 2000, label: "City Council" } }, // lynwood.ca.us no longer resolves; Granicus view 1 holds only 11 agendas from 2024
+  "cerritos": { council: { platform: "granicus", client: "cerritos", views: [{ id: 13 }], limit: 2000, label: "City Council" } }, // TV3 archive view 13 carries the agenda/minutes links (1,051 of 1,753 rows); view 8 is video-only
+  "baldwin-park": { council: { platform: "granicus", client: "baldwinpark", views: [{ id: 10, body: "City Council" }, { id: 16, body: "City Council" }, { id: 3, body: "City Council" }], limit: 2000, label: "City Council" } }, // 10 = 2023-10→2025-06, 16 = 2012→2015, 3 = 2006→2018
   "san-gabriel": { council: { platform: "civicplus", since: "2019", limit: 2000, label: "City Council" } },
   "temple-city": { council: { platform: "civicplus", site: "https://www.templecityca.gov", since: "2019", limit: 2000, label: "City Council" }, youtube: ["@ConnectWithTC"] },
   "westlake-village": { council: { platform: "civicplus", since: "2019", limit: 2000, label: "City Council" } },
@@ -170,13 +176,13 @@ const WIRING = {
   "arcadia": { council: { platform: "pdflist", pages: [{ url: "https://www.arcadiaca.gov/government/city_clerk/meetings_agendas.php", body: "City Council" }], limit: 2000, label: "City Council" }, youtube: ["UCmUzBtC0MaSH-c4aMmtlZtA"] },
   "gardena": { council: { platform: "pdflist", pages: [{ url: "https://cityofgardena.org/agendas-city-council/", body: "City Council" }], limit: 2000, label: "City Council" }, youtube: ["user/CityofGardena"] },
   "south-pasadena": { council: { platform: "pdflist", pages: [{ url: "https://www.southpasadenaca.gov/How-Do-I/Find/Agendas-Minutes", body: "City Council" }], limit: 2000, label: "City Council" } },
-  "bell": { council: { platform: "pdflist", pages: [{ url: "https://www.cityofbell.org/Meetings-directory", body: "City Council" }], limit: 2000, label: "City Council" }, youtube: ["c/CityofBell1927"] },
+  "bell": { site: "https://www.cityofbell.gov", domains: ["cityofbell.gov"], council: { platform: "opencities", pages: [{ url: "https://www.cityofbell.gov/City-Hall/City-Clerk/Agendas-and-Minutes/2025-26-Agendas-and-Minutes", body: "City Council" }], limit: 2000, label: "City Council" }, youtube: ["c/CityofBell1927"] },
   "bellflower": { youtube: ["UCNt4BKguGJ_n8v8Vkb34XTw"] },
   "claremont": { youtube: ["@cityofclaremontcalifornia7952"] },
   "diamond-bar": { youtube: ["c/cityofdiamondbar"] },
   "la-habra-heights": { youtube: ["@LaHabraHeightsCity"] },
   "lawndale": { youtube: ["@lawndalecitytv7478"] },
-  "monterey-park": { youtube: ["user/MontParkTV"] },
+  "monterey-park": { council: { platform: "civicclerk", client: "montereyparkca", since: "2019", categories: ["City Council"], limit: 2000, label: "City Council" }, youtube: ["user/MontParkTV"] }, // montereyparkca.portal.civicclerk.com; monterey-park.granicus.com is video-only
   "pico-rivera": { youtube: ["UC0pHCL4z2dSoBjYMK_ZQeKw"] },
   "rolling-hills": { youtube: ["@cityofrollinghills"] },
   "rosemead": { youtube: ["@rosemeadca"] },
@@ -190,7 +196,7 @@ const WIRING = {
   "duarte": { youtube: ["UC3bIJAEFDDT41mLkQxaS--g"] },
   "el-segundo": { youtube: ["UCxIHXywoJ5iy5iiizQyULXg"] },
   "lancaster": { youtube: ["UCitRWO0qH_VJoKRxI2W01Ag"], feeds: [{ id: "gn", name: "Google News", url: gnews('"Lancaster" california when:30d') }] },
-  "vernon": { youtube: ["UCQilkDtzhIQFu1Fx7iiOJMg"] },
+  "vernon": { site: "https://www.cityofvernonca.gov", domains: ["cityofvernonca.gov"], council: { platform: "primegov", client: "cityofvernon", since: "2019", limit: 2000, label: "City Council" }, youtube: ["UCQilkDtzhIQFu1Fx7iiOJMg"] }, // cityofvernon.org redirects here; agendas moved from Granicus (2018) to PrimeGov
   "beverly-hills": { council: { platform: "civicplus", since: "2019", limit: 3000, label: "City Council" } },
   "calabasas": { council: { platform: "granicus", client: "calabasas", views: [{ id: 2, body: "City Council" }], limit: 2000, label: "City Council" } },
   "palos-verdes-estates": { council: { platform: "granicus", client: "pvestates", views: [{ id: 1, body: "City Council" }], limit: 2000, label: "City Council" } },
